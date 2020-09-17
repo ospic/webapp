@@ -1,0 +1,42 @@
+{
+    "AboutSession": [
+        {
+            "LinkName": "Dashboard",
+            "Link": "/about"
+        },
+        {
+            "LinkName": "Developers Groups",
+            "Link": "https://app.slack.com/client/TC9AJDQMN/GQN93JKM2"
+        }
+    ],
+    "ChapterResourcesSession": [
+        {
+            "LinkName": "Become a Sponsor",
+            "Link": "mailto:finspointa@gmail.com"
+        },
+        {
+            "LinkName": "Email Us",
+            "Link": "mailto: finspointa@gmail.com"
+        }
+    ],
+    "DevConsole": [
+        {
+            "LinkName": "Google API Console",
+            "Link": "https://console.developers.google.com/"
+        },
+        {
+            "LinkName": "Firebase Console",
+            "Link": "https://console.firebase.google.com/"
+        }
+    ],
+    "FooterEndSession": [
+        {
+            "LinkName": "Code of Conduct",
+            "Link": "https://docs.google.com/document/d/1Wz_w6Z7usMnXKFMpOY4IPbA35twK7Uc4CAxScGDiwOk/edit"
+        },
+        {
+            "LinkName": "Terms & Servies",
+            "Link": "https://docs.google.com/document/d/14g3fv9NItiB8Hd-YGYyVYd2N4LRxe6Bx3syWse_wsiA/edit?usp=sharing"
+        }
+    ]
+}
