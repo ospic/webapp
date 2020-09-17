@@ -1,4 +1,4 @@
-# ospic-web
+# Ospic [![Build Status](https://travis-ci.com/ospic/webapp.svg?branch=master)](https://travis-ci.com/ospic/webapp)
 
 ## Build Setup
 
