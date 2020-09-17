@@ -4,6 +4,7 @@
     <v-navigation-drawer class="primary" elevation="0" v-model="drawer" width="180" app>
       <v-toolbar color="primary" elevation="0">
         <v-spacer></v-spacer>
+
         <v-toolbar-items></v-toolbar-items>
       </v-toolbar>
 
@@ -39,6 +40,7 @@
         <v-avatar color="primary lighten-1" size="36">
           <span class="white--text font-weight-bold overline" @click.stop="drawer = !drawer">
             <v-icon small color="white">mdi-dialpad</v-icon>
+            <!--<v-app-bar-nav-icon color="white" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>-->
           </span>
         </v-avatar>
         <span
@@ -119,7 +121,7 @@ export default {
       ChapterDetails: ChapterDetails,
       FooterData: FooterData,
       clipped: false,
-      drawer: false,
+      drawer: true,
       fixed: false,
       picture: true,
       dark: false,
@@ -133,7 +135,7 @@ export default {
         { title: "Disaggregations", icon: "mdi-eye" }
       ],
       titles: {
-        title: "National Bureau of Statistics"
+        title: "Ospic"
       },
 
       items: [
@@ -180,7 +182,107 @@ export default {
     };
   },
 
- };
+  methods: {
+    selectedItemAction: function(item) {
+      switch (item) {
+        case 0:
+          //this.$router.push("/profile");
+          break;
+        case 2:
+          localStorage.removeItem("qAccessToken");
+          localStorage.removeItem("uuId");
+          sessionStorage.clear();
+          this.$router.push("/");
+          break;
+      }
+    },
+    logoutsession: function() {
+      this.$store.dispatch("logout");
+    },
+    changemode: function() {
+      this.dark = !this.dark;
+      this.$vuetify.theme.dark = this.dark;
+    },
+    nativateToHere(id) {
+      this.$router.push("/" + id);
+    },
+    toggle(value) {
+      if (`${value}` === "true") {
+        this.$vuetify.theme.dark = true;
+      } else {
+        this.$vuetify.theme.dark = false;
+      }
+    },
+      },
+  beforeMount: function() {
+    
+  },
+  computed: {
+  
+    todayDate() {
+      var objToday = new Date(),
+        weekday = new Array(
+          "Sunday",
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday"
+        ),
+        dayOfWeek = weekday[objToday.getDay()],
+        domEnder = (function() {
+          var a = objToday;
+          if (/1/.test(parseInt((a + "").charAt(0)))) return "th";
+          a = parseInt((a + "").charAt(1));
+          return 1 == a ? "st" : 2 == a ? "nd" : 3 == a ? "rd" : "th";
+        })(),
+        dayOfMonth =
+          today + (objToday.getDate() < 10)
+            ? "0" + objToday.getDate() + domEnder
+            : objToday.getDate() + domEnder,
+        months = new Array(
+          "January",
+          "February",
+          "March",
+          "April",
+          "May",
+          "June",
+          "July",
+          "August",
+          "September",
+          "October",
+          "November",
+          "December"
+        ),
+        curMonth = months[objToday.getMonth()],
+        curYear = objToday.getFullYear(),
+        curMinute =
+          objToday.getMinutes() < 10
+            ? "0" + objToday.getMinutes()
+            : objToday.getMinutes(),
+        curSeconds =
+          objToday.getSeconds() < 10
+            ? "0" + objToday.getSeconds()
+            : objToday.getSeconds(),
+        curMeridiem = objToday.getHours() > 12 ? "PM" : "AM";
+      var today =
+        dayOfWeek +
+        " " +
+        dayOfMonth +
+        " of " +
+        curMonth +
+        ", " +
+        curYear +
+        curMinute +
+        "." +
+        curSeconds +
+        curMeridiem +
+        " ";
+      return today;
+    }
+  }
+};
 </script>
 <style>
 #app {
