@@ -17,7 +17,8 @@
     "@nuxtjs/pwa": "^3.0.2",
     "core-js": "^3.6.5",
     "nuxt": "^2.14.5",
-    "vue-i18n": "^8.15.1"
+    "vue-i18n": "^8.15.1",
+    "sweetalert": "^2.1.2"
   },
   "devDependencies": {
     "@nuxt/types": "^2.14.5",
@@ -34,6 +35,9 @@
     "eslint-plugin-nuxt": "^1.0.0",
     "jest": "^26.4.2",
     "ts-jest": "^26.3.0",
-    "vue-jest": "^3.0.4"
+    "vue-jest": "^3.0.4",
+    "dotenv": "^8.2.0",
+    "node-sass": "^4.13.1",
+    "sass-loader": "^8.0.2"
   }
 }
