@@ -5,15 +5,14 @@
         
       </div>
       <v-card class="pa-4">
-          <h1>Open source Hospital Management System</h1>
+          <h1>Appointments</h1>
         
-        
-        <v-card-actions>
+          <v-card-actions>
           <v-spacer />
           <v-btn
             color="primary"
             nuxt
-            to="/register"
+            to="/"
           >
             Continue
           </v-btn>
