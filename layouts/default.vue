@@ -1,23 +1,27 @@
 <template>
   <v-app class="app">
     <!--NAVIGATION DRAWER-->
-    <v-navigation-drawer 
-     v-model="drawer"
+    <v-navigation-drawer
+      v-model="drawer"
       :mini-variant="$vuetify.breakpoint.mdAndDown"
       :expand-on-hover="$vuetify.breakpoint.mdAndDown"
       overlay-color="primary"
       color="primary"
       clipped
       :absolute="$vuetify.breakpoint.mdAndUp"
-    fixed app
-     width="180">
-
+      fixed
+      app
+      width="180"
+    >
       <v-list nav dense subheader tile class="mt-0 pa-0">
-         <v-divider light ></v-divider>
+        <v-divider light></v-divider>
         <template v-for="(item, i) in items">
-          <v-list-item class="ma-0" dense
+          <v-list-item
+            class="ma-0"
+            dense
             :key="`${i}-${item.route}`"
-            v-on:click="nativateToHere(item.route)">
+            v-on:click="nativateToHere(item.route)"
+          >
             <v-list-item-icon class="mr-0">
               <v-icon color="default" v-text="item.icon" small></v-icon>
             </v-list-item-icon>
@@ -26,10 +30,7 @@
             </v-list-item-content>
           </v-list-item>
 
-        <v-divider light
-          :key="i"
-          :inset="item.inset"
-        ></v-divider>
+          <v-divider light :key="i" :inset="item.inset"></v-divider>
         </template>
       </v-list>
       <template v-slot:append>
@@ -43,12 +44,9 @@
         </v-list-item>
       </template>
     </v-navigation-drawer>
-    <v-app-bar
-    absolute
-    clipped-left
-    fixed app>
-      <v-toolbar-side-icon >
-        <img width="30%" src="../assets/images/logo.png" alt="Header Image"/>
+    <v-app-bar absolute clipped-left fixed app dense short>
+      <v-toolbar-side-icon>
+        <img width="30%" class="mt-1" src="../assets/images/logo.png" alt="Header Image" />
       </v-toolbar-side-icon>
 
       <v-spacer></v-spacer>
@@ -56,7 +54,7 @@
         <template v-slot:activator="{ on }">
           <v-btn icon v-on="on" @click.stop="syncro()" x-small>
             <v-progress-circular v-if="sync" v-on="on" size="20" indeterminate color="white"></v-progress-circular>
-            <v-icon v-else small >mdi-sync</v-icon>
+            <v-icon v-else small>mdi-sync</v-icon>
           </v-btn>
         </template>
 
@@ -81,7 +79,7 @@
       <v-tooltip bottom color="primary" open-on-hover open-delay="500">
         <template v-slot:activator="{ on }">
           <v-btn icon v-on="on" x-small>
-            <v-icon small  @click="logoutsession">mdi-logout-variant</v-icon>
+            <v-icon small @click="logoutsession">mdi-logout-variant</v-icon>
           </v-btn>
         </template>
         <span>Click to logout</span>
@@ -149,76 +147,102 @@ export default {
         },
         {
           text: "Patient Registration",
-          icon: "mdi-bunk-bed-outline",
+          icon: "mdi-account-plus-outline",
           route: "home",
           subtitle: "Lorem ipsum dolor sit de amet..",
         },
         {
-          text: "Appointments",
+          text: "Appointment & Scheduling",
           icon: "mdi-file-cabinet",
           route: "home",
           subtitle: "Lorem ipsum dolor sit de amet ...",
         },
-         {
-          text: "OPD Management",
+        {
+          text: "OPD Center",
           icon: "mdi-zodiac-cancer",
           route: "",
           subtitle: "Lorem ipsum dolor sit de amet..",
         },
-         {
-          text: "Laboratoty",
+        {
+          text: "IPD Center",
+          icon: "mdi-bed-outline",
+          route: "",
+          subtitle: "Lorem ipsum dolor sit de amet..",
+        },
+        {
+          text: "Laboratory",
           icon: "mdi-beaker-question-outline",
           route: "",
           subtitle: "Lorem ipsum dolor sit de amet..",
         },
-         {
+        {
+          text: "Pharmacy & Medicine",
+          icon: "mdi-pharmacy",
+          route: "",
+          subtitle: "Lorem ipsum dolor sit de amet..",
+        },
+        {
           text: "Radiology",
           icon: "mdi-radioactive",
           route: "",
           subtitle: "Lorem ipsum dolor sit de amet..",
         },
-         {
-          text: "In-Patient Management(ATD)",
-          icon: "mdi-home-roof",
-          route: "",
-          subtitle: "Lorem ipsum dolor sit de amet..",
-        },
-          {
-          text: "In-Patient Billing",
+
+        {
+          text: "Cash/billing Center",
           icon: "mdi-credit-card-wireless",
           route: "",
           subtitle: "Lorem ipsum dolor sit de amet..",
         },
-          {
+        {
+          text: "Print Receipt/Bills/Reports",
+          icon: "mdi-printer",
+          route: "",
+          subtitle: "Lorem ipsum dolor sit de amet..",
+        },
+        {
+          text: "Financial Account",
+          icon: "mdi-currency-usd-circle",
+          route: "",
+          subtitle: "Lorem ipsum dolor sit de amet..",
+        },
+        {
+          text: "Payroll Management",
+          icon: "mdi-currency-usd-circle-outline",
+          route: "",
+          subtitle: "Lorem ipsum dolor sit de amet..",
+        },
+        {
+          text: "Inventory & Stock",
+          icon: "mdi-hospital",
+          route: "",
+          subtitle: "Lorem ipsum dolor sit de amet..",
+        },
+
+        {
           text: "Nurse Station",
           icon: "mdi-zodiac-cancer",
           route: "",
           subtitle: "Lorem ipsum dolor sit de amet..",
         },
-          {
-          text: "Pharmacy",
-          icon: "mdi-pharmacy",
+        {
+          text: "Administration & Monitooring",
+          icon: "mdi-account-settings",
           route: "",
           subtitle: "Lorem ipsum dolor sit de amet..",
         },
-          {
-          text: "Mis Reports",
+        {
+          text: "MIS Reports",
           icon: "mdi-folder-text-outline",
           route: "",
           subtitle: "Lorem ipsum dolor sit de amet..",
         },
-          {
-          text: "Software Management (Setting)",
-          icon: "mdi-database-settings",
+        {
+          text: "Security Control",
+          icon: "mdi-lock",
           route: "",
           subtitle: "Lorem ipsum dolor sit de amet..",
         },
-          {
-          text: "User Management",
-          icon: "mdi-account-cog-outline",
-          route: "",
-          subtitle: "Lorem ipsum dolor sit de amet..",
-        }
       ],
       actions: [
         // { title: "View profile", icon: "mdi-account-circle" },
@@ -271,7 +295,7 @@ export default {
     },
   },
   beforeMount: function () {},
-  computed: { },
+  computed: {},
 };
 </script>
 <style>
@@ -293,5 +317,27 @@ export default {
 }
 .v-progress-circular {
   margin: 1rem;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey; 
+  border-radius: 10px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: red; 
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #b30000; 
 }
 </style>
