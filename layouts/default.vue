@@ -8,7 +8,7 @@
       overlay-color="primary"
       color="primary"
       clipped
-      :absolute="$vuetify.breakpoint.mdAndUp"
+     
       fixed
       app
       width="180"
@@ -26,7 +26,7 @@
               <v-icon color="default" v-text="item.icon" small></v-icon>
             </v-list-item-icon>
             <v-list-item-content class="ma-0 pa-0">
-              <v-list-item-title class="font-weight-light default--text" v-text="item.text"></v-list-item-title>
+              <v-list-item-title class="font-weight-normal default--text" v-text="item.text"></v-list-item-title>
             </v-list-item-content>
           </v-list-item>
 
@@ -44,8 +44,8 @@
         </v-list-item>
       </template>
     </v-navigation-drawer>
-    <v-app-bar absolute clipped-left fixed app dense short>
-      <v-toolbar-side-icon>
+    <v-app-bar flat clipped-left fixed app dense short color="primary">
+      <v-toolbar-side-icon @click="toggledrawer">
         <img width="30%" class="mt-1" src="../assets/images/logo.png" alt="Header Image" />
       </v-toolbar-side-icon>
 
@@ -54,7 +54,7 @@
         <template v-slot:activator="{ on }">
           <v-btn icon v-on="on" @click.stop="syncro()" x-small>
             <v-progress-circular v-if="sync" v-on="on" size="20" indeterminate color="white"></v-progress-circular>
-            <v-icon v-else small>mdi-sync</v-icon>
+            <v-icon v-else small >mdi-sync</v-icon>
           </v-btn>
         </template>
 
@@ -148,13 +148,14 @@ export default {
         {
           text: "Patient Registration",
           icon: "mdi-account-plus-outline",
-          route: "home",
+          route: "register",
+
           subtitle: "Lorem ipsum dolor sit de amet..",
         },
         {
           text: "Appointment & Scheduling",
           icon: "mdi-file-cabinet",
-          route: "home",
+          route: "appointments",
           subtitle: "Lorem ipsum dolor sit de amet ...",
         },
         {
@@ -276,8 +277,12 @@ export default {
           break;
       }
     },
+    toggledrawer: function(){
+      this.drawer = !this.drawer;
+    },
     logoutsession: function () {
-      this.$store.dispatch("logout");
+     // this.$store.dispatch("logout");
+     this.drawer = !this.drawer;
     },
     changemode: function () {
       this.dark = !this.dark;
@@ -332,7 +337,7 @@ export default {
  
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: red; 
+  background: rgb(194, 5, 5); 
   border-radius: 10px;
 }
 
