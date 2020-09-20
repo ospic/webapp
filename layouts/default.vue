@@ -1,5 +1,5 @@
 <template>
-  <v-app class="app">
+  <v-app class="app" v-bind:style="{ background: $vuetify.theme.dark ?  '#01242F' : '#055273' }">
     <!--NAVIGATION DRAWER-->
     <v-navigation-drawer
       v-model="drawer"
@@ -86,8 +86,10 @@
       </v-tooltip>
     </v-app-bar>
 
-    <v-main>
+    <v-main >
+      <v-container   fluid class="pa-5">
       <nuxt />
+      </v-container>
     </v-main>
   </v-app>
 </template>
