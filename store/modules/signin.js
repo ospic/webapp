@@ -35,7 +35,6 @@ const actions = {
     commit(mutation.SIGNIN);
     await this.$api.$post(`auth/signin`, payload)
       .then(response => {
-        console.log(response);
         if (response.accessToken != null) {
 
           commit(mutation.SIGNIN_SUCCESS, response);
@@ -57,6 +56,12 @@ const actions = {
         console.log(error);
 
       });
+  },
+  clearlocal({ commit }) {
+    window.localStorage.clear();
+    localStorage.removeItem('ospic.*');
+    sessionStorage.clear();
+    this.$router.push('/signin');
   },
   async logout({ commit }) {
     await this.$api.$get(`auth/signout`)

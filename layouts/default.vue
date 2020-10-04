@@ -169,7 +169,7 @@ export default {
         {
           text: "Patient Registration",
           icon: "mdi-account-plus-outline",
-          route: "register",
+          route: "registry",
 
           subtitle: "Lorem ipsum dolor sit de amet..",
         },
@@ -302,7 +302,7 @@ export default {
       this.drawer = !this.drawer;
     },
     logoutsession: function () {
-      this.$store.dispatch("logout");
+      this.$store.dispatch("clearlocal");
       this.drawer = !this.drawer;
     },
     changemode: function () {
