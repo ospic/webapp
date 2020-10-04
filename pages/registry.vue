@@ -1,8 +1,10 @@
 <template>
   <v-data-table
+    dense
     :headers="headers"
-    :items="desserts"
+    :items="datalist"
     :search="search"
+    :items-per-page="15"
     sort-by="calories"
     class="elevation-1"
   >
@@ -41,32 +43,56 @@
                 <v-row>
                   <v-col cols="12" sm="6" md="4">
                     <v-text-field
-                      v-model="editedItem.name"
-                      label="Dessert name"
+                      v-model="editedItem.suffix"
+                      label="Suffix"
                     ></v-text-field>
                   </v-col>
                   <v-col cols="12" sm="6" md="4">
                     <v-text-field
-                      v-model="editedItem.calories"
-                      label="Calories"
+                      v-model="editedItem.first_name"
+                      label="First name"
                     ></v-text-field>
                   </v-col>
                   <v-col cols="12" sm="6" md="4">
                     <v-text-field
-                      v-model="editedItem.fat"
-                      label="Fat (g)"
+                      v-model="editedItem.middle_name"
+                      label="Middle Name"
                     ></v-text-field>
                   </v-col>
                   <v-col cols="12" sm="6" md="4">
                     <v-text-field
-                      v-model="editedItem.carbs"
-                      label="Carbs (g)"
+                      v-model="editedItem.last_name"
+                      label="Last Name"
                     ></v-text-field>
                   </v-col>
                   <v-col cols="12" sm="6" md="4">
                     <v-text-field
-                      v-model="editedItem.protein"
-                      label="Protein (g)"
+                      v-model="editedItem.country"
+                      label="Country"
+                    ></v-text-field>
+                  </v-col>
+                  <v-col cols="12" sm="6" md="4">
+                    <v-text-field
+                      v-model="editedItem.ethnicity"
+                      label="Ethnicity"
+                    ></v-text-field>
+                  </v-col>
+                  <v-col cols="12" sm="6" md="4">
+                    <v-text-field
+                      v-model="editedItem.gender"
+                      label="Gender"
+                    ></v-text-field>
+                  </v-col>
+                  <v-col cols="12" sm="6" md="4">
+                    <v-text-field
+                      v-model="editedItem.dob"
+                      label="Date of Birth"
+                    ></v-text-field>
+                  </v-col>
+                  <v-col cols="12" sm="6" md="4">
+                    <v-text-field
+                      v-model="editedItem.principal_tribe"
+                      label="Tribe"
                     ></v-text-field>
                   </v-col>
                 </v-row>
@@ -82,7 +108,7 @@
         </v-dialog>
       </v-toolbar>
     </template>
-    <template v-slot:item.actions="{ item }">
+    <template v-slot:[`item.actions`]="{ item }">
       <v-icon small class="mr-2" @click="editItem(item)"> mdi-pencil </v-icon>
       <v-icon small @click="deleteItem(item)"> mdi-delete </v-icon>
     </template>
@@ -99,38 +125,57 @@ export default {
     search: "",
     headers: [
       {
-        text: "Full Name",
+        text: "Suffix",
         align: "start",
         sortable: false,
-        value: "name",
+        value: "suffix",
       },
-      { text: "Calories", value: "calories" },
-      { text: "Fat (g)", value: "fat" },
-      { text: "Carbs (g)", value: "carbs" },
-      { text: "Protein (g)", value: "protein" },
+      { text: "First Name", value: "first_name" },
+      { text: "Middle Name", value: "middle_name" },
+      { text: "LastName", value: "last_name" },
+      { text: "Gender", value: "gender", sortable: false },
+      { text: "Country", value: "country" },
+      { text: "Ethnicity", value: "ethnicity", sortable: false },
       { text: "Actions", value: "actions", sortable: false },
     ],
     desserts: [],
     editedIndex: -1,
     editedItem: {
-      name: "",
-      calories: 0,
-      fat: 0,
-      carbs: 0,
-      protein: 0,
+      first_name: 0,
+      middle_name: 0,
+      last_name: 0,
+      suffix: 0,
+      ethnicity: 0,
+      dob: 0,
+      gender: 0,
+      ssn: 0,
+      mdn: 0,
+      principal_tribe: 0,
+      country: 0,
     },
     defaultItem: {
-      name: "",
-      calories: 0,
-      fat: 0,
-      carbs: 0,
-      protein: 0,
+      first_name: 0,
+      middle_name: 0,
+      last_name: 0,
+      suffix: 0,
+      ethnicity: 0,
+      dob: 0,
+      gender: 0,
+      ssn: 0,
+      mdn: 0,
+      principal_tribe: 0,
+      country: 0,
     },
   }),
 
   computed: {
     formTitle() {
       return this.editedIndex === -1 ? "New Item" : "Edit Item";
+    },
+    datalist: {
+      get() {
+        return this.$store.getters.patients;
+      },
     },
   },
 
@@ -140,96 +185,19 @@ export default {
     },
   },
 
-  created() {
-    this.initialize();
-  },
+  created() {},
 
   methods: {
-    initialize() {
-      this.desserts = [
-        {
-          name: "Frozen Yogurt",
-          calories: 159,
-          fat: 6.0,
-          carbs: 24,
-          protein: 4.0,
-        },
-        {
-          name: "Ice cream sandwich",
-          calories: 237,
-          fat: 9.0,
-          carbs: 37,
-          protein: 4.3,
-        },
-        {
-          name: "Eclair",
-          calories: 262,
-          fat: 16.0,
-          carbs: 23,
-          protein: 6.0,
-        },
-        {
-          name: "Cupcake",
-          calories: 305,
-          fat: 3.7,
-          carbs: 67,
-          protein: 4.3,
-        },
-        {
-          name: "Gingerbread",
-          calories: 356,
-          fat: 16.0,
-          carbs: 49,
-          protein: 3.9,
-        },
-        {
-          name: "Jelly bean",
-          calories: 375,
-          fat: 0.0,
-          carbs: 94,
-          protein: 0.0,
-        },
-        {
-          name: "Lollipop",
-          calories: 392,
-          fat: 0.2,
-          carbs: 98,
-          protein: 0,
-        },
-        {
-          name: "Honeycomb",
-          calories: 408,
-          fat: 3.2,
-          carbs: 87,
-          protein: 6.5,
-        },
-        {
-          name: "Donut",
-          calories: 452,
-          fat: 25.0,
-          carbs: 51,
-          protein: 4.9,
-        },
-        {
-          name: "KitKat",
-          calories: 518,
-          fat: 26.0,
-          carbs: 65,
-          protein: 7,
-        },
-      ];
-    },
-
     editItem(item) {
-      this.editedIndex = this.desserts.indexOf(item);
+      this.editedIndex = this.datalist.indexOf(item);
       this.editedItem = Object.assign({}, item);
       this.dialog = true;
     },
 
     deleteItem(item) {
-      const index = this.desserts.indexOf(item);
+      const index = this.datalist.indexOf(item);
       confirm("Are you sure you want to delete this item?") &&
-        this.desserts.splice(index, 1);
+        this.datalist.splice(index, 1);
     },
 
     close() {
@@ -241,10 +209,12 @@ export default {
     },
 
     save() {
+      console.log(this.editedIndex);
       if (this.editedIndex > -1) {
-        Object.assign(this.desserts[this.editedIndex], this.editedItem);
+        Object.assign(this.datalist[this.editedIndex], this.editedItem);
       } else {
-        this.desserts.push(this.editedItem);
+        this.datalist.push(this.editedItem);
+        this.$store.dispatch("create_new_patient", this.editedItem);
       }
       this.close();
     },

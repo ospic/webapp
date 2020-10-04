@@ -21,6 +21,20 @@ const mutations = {
     state.patients = payload;
 
   },
+  [mutation.CREATE_PATIENTS](state) {
+    state.showLoader = true;
+  },
+  [mutation.CREATE_PATIENTS_FAILED](state) {
+    state.showLoader = false;
+  },
+  [mutation.CREATE_PATIENTS_ERROR](state) {
+    state.showLoader = false;
+  },
+  [mutation.CREATE_PATIENTS_SUCCESS](state, payload) {
+    state.showLoader = false;
+    state.patient = payload;
+
+  },
 
 }
 const actions = {
@@ -36,11 +50,24 @@ const actions = {
 
       });
 
+  },
+  async create_new_patient({ commit }, payload) {
+    commit(mutation.CREATE_PATIENTS);
+    await this.$api.$post(`patients/`, payload)
+      .then(response => {
+        commit(mutation.CREATE_PATIENTS_SUCCESS, response);
+
+      }).catch(error => {
+        commit(mutation.CREATE_PATIENTS_ERROR);
+        console.log(error);
+
+      });
+
   }
 }
 const getters = {
   patients: function (state) {
-    return state.patients;
+    return state.patients.reverse();
   }
 }
 
