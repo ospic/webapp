@@ -1,5 +1,8 @@
 <template>
-  <v-app class="app" v-bind:style="{ background: $vuetify.theme.dark ?  '#01242F' : '#055273' }">
+  <v-app
+    class="app"
+    v-bind:style="{ background: $vuetify.theme.dark ? '#01242F' : '#055273' }"
+  >
     <!--NAVIGATION DRAWER-->
     <v-navigation-drawer
       v-model="drawer"
@@ -8,7 +11,6 @@
       overlay-color="primary"
       color="primary"
       clipped
-     
       fixed
       app
       width="180"
@@ -26,7 +28,10 @@
               <v-icon color="default" v-text="item.icon" small></v-icon>
             </v-list-item-icon>
             <v-list-item-content class="ma-0 pa-0">
-              <v-list-item-title class="font-weight-normal default--text" v-text="item.text"></v-list-item-title>
+              <v-list-item-title
+                class="font-weight-normal default--text"
+                v-text="item.text"
+              ></v-list-item-title>
             </v-list-item-content>
           </v-list-item>
 
@@ -36,25 +41,39 @@
       <template v-slot:append>
         <v-list-item>
           <v-list-item-content>
-            <v-list-item-subtitle class="subtitle white--text font-weight-bold">Light/Dark</v-list-item-subtitle>
+            <v-list-item-subtitle class="subtitle white--text font-weight-bold"
+              >Light/Dark</v-list-item-subtitle
+            >
           </v-list-item-content>
           <v-list-item-action>
-            <v-switch :value="true" @change="toggle($event !== null)"></v-switch>
+            <v-switch
+              :value="true"
+              @change="toggle($event !== null)"
+            ></v-switch>
           </v-list-item-action>
         </v-list-item>
       </template>
     </v-navigation-drawer>
     <v-app-bar flat clipped-left fixed app dense short color="primary">
-      <v-toolbar-side-icon @click="toggledrawer">
-        <img width="30%" class="mt-1" src="../assets/images/logo.png" alt="Header Image" />
-      </v-toolbar-side-icon>
+      <img
+        width="10%"
+        class="mt-1"
+        src="../assets/images/logo.png"
+        alt="Header Image"
+      />
 
       <v-spacer></v-spacer>
       <v-tooltip bottom color="primary" open-on-hover open-delay="500">
         <template v-slot:activator="{ on }">
           <v-btn icon v-on="on" @click.stop="syncro()" x-small>
-            <v-progress-circular v-if="sync" v-on="on" size="20" indeterminate color="white"></v-progress-circular>
-            <v-icon v-else small >mdi-sync</v-icon>
+            <v-progress-circular
+              v-if="sync"
+              v-on="on"
+              size="20"
+              indeterminate
+              color="white"
+            ></v-progress-circular>
+            <v-icon v-else small>mdi-sync</v-icon>
           </v-btn>
         </template>
 
@@ -86,9 +105,9 @@
       </v-tooltip>
     </v-app-bar>
 
-    <v-main >
-      <v-container   fluid class="pa-5">
-      <nuxt />
+    <v-main>
+      <v-container fluid class="pa-5">
+        <nuxt />
       </v-container>
     </v-main>
   </v-app>
@@ -279,12 +298,12 @@ export default {
           break;
       }
     },
-    toggledrawer: function(){
+    toggledrawer: function () {
       this.drawer = !this.drawer;
     },
     logoutsession: function () {
-     // this.$store.dispatch("logout");
-     this.drawer = !this.drawer;
+      this.$store.dispatch("logout");
+      this.drawer = !this.drawer;
     },
     changemode: function () {
       this.dark = !this.dark;
@@ -333,18 +352,18 @@ export default {
 
 /* Track */
 ::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 5px grey; 
+  box-shadow: inset 0 0 5px grey;
   border-radius: 10px;
 }
- 
+
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: rgb(194, 5, 5); 
+  background: rgb(194, 5, 5);
   border-radius: 10px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #b30000; 
+  background: #b30000;
 }
 </style>

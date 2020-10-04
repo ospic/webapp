@@ -9,14 +9,14 @@ export default function ({ $axios, redirect }, inject) {
     },
   });
   api.onRequest((config) => {
-    if (localStorage.getItem("qAccessToken") != null) {
-      api.setHeader("x-access-token", localStorage.getItem("qAccessToken"));
-      api.setHeader(
-        "Access-Control-Allow-Headers",
-        "x-access-token, Origin, Content-Type, Accept"
-      );
-      api.setHeader("user-id", localStorage.getItem("uuId"));
+    if (localStorage.getItem("ospic.token") != null) {
+      api.setHeader("Authorization", localStorage.getItem("ospic.tokentype") + localStorage.getItem("ospic.token"));
     }
+    api.setHeader(
+      "Access-Control-Allow-Headers",
+      "x-access-token, Origin, Content-Type, Accept"
+    );
+    api.setHeader("Content-Type", "application/json")
   });
 
   api.onError((error) => {
