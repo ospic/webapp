@@ -55,12 +55,14 @@
       </template>
     </v-navigation-drawer>
     <v-app-bar flat clipped-left fixed app dense short color="primary">
-      <img
-        width="10%"
-        class="mt-1"
-        src="../assets/images/logo.png"
-        alt="Header Image"
-      />
+      <v-toolbar-side-icon @click="toggledrawer">
+        <img
+          width="40%"
+          class="mt-1"
+          src="../assets/images/logo.png"
+          alt="Header Image"
+        />
+      </v-toolbar-side-icon>
 
       <v-spacer></v-spacer>
       <v-tooltip bottom color="primary" open-on-hover open-delay="500">
