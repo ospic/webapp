@@ -4,25 +4,23 @@ export default function ({ $axios, redirect }, inject) {
   const api = $axios.create({
     headers: {
       common: {
-        Accept: "text/plain, */*",
+        Accept: "application/json, text/plain, */*",
       },
     },
   });
-  api.onRequest((config) => {
-    if (localStorage.getItem("ospic.token") != null) {
-      api.setHeader("Authorization", localStorage.getItem("ospic.tokentype") + localStorage.getItem("ospic.token"));
-    }
-    api.setHeader(
-      "Access-Control-Allow-Headers",
-      "x-access-token, Origin, Content-Type, Accept"
-    );
-    api.setHeader("Content-Type", "application/json")
+
+  api.onRequest(config => {
+    api.setHeader("Access-Control-Allow-Headers", "x-access-token, Origin, Content-Type, Accept");
+
   });
 
-  api.onError((error) => {
-    const code = parseInt(error.response && error.response.status);
+  api.onError(error => {
+    const code = parseInt(error.response.status);
     if (code === 400) {
       redirect("/400");
+    }
+    if (code === 500) {
+      redirect('/sorry')
     }
   });
   api.onResponseError((error) => {
@@ -38,6 +36,9 @@ export default function ({ $axios, redirect }, inject) {
       dangerMode: true,
     });
   });
+  api.setHeader('Content-Type', 'application/json', [post]);
+  api.setToken(localStorage.getItem("ospic.token"), localStorage.getItem("ospic.tokentype"));
+
 
   // Set baseURL to something different
   // eslint-disable-next-line no-console
