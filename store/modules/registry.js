@@ -36,6 +36,25 @@ const mutations = {
 
   },
 
+  [mutation.UPDATE_PATIENT_SUCCESS](state, payload) {
+    state.showLoader = false;
+    state.patients = payload;
+
+  },
+  [mutation.UPDATE_PATIENT](state) {
+    state.showLoader = true;
+  },
+  [mutation.UPDATE_PATIENT_FAILED](state) {
+    state.showLoader = false;
+  },
+  [mutation.UPDATE_PATIENT_ERROR](state) {
+    state.showLoader = false;
+  },
+  [mutation.UPDATE_PATIENT_SUCCESS](state, payload) {
+    state.showLoader = false;
+    state.patient = payload;
+  },
+
 }
 const actions = {
   async retrievepatients({ commit }) {
@@ -59,6 +78,19 @@ const actions = {
 
       }).catch(error => {
         commit(mutation.CREATE_PATIENTS_ERROR);
+        console.log(error);
+
+      });
+
+  },
+  async update_patient({ commit }, id, payload) {
+    commit(mutation.UPDATE_PATIENT);
+    await this.$api.$put(`patients/${id}`, payload)
+      .then(response => {
+        commit(mutation.UPDATE_PATIENT_SUCCESS, response);
+
+      }).catch(error => {
+        commit(mutation.UPDATE_PATIENT_ERROR);
         console.log(error);
 
       });

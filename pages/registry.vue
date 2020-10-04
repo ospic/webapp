@@ -140,6 +140,7 @@ export default {
     ],
     desserts: [],
     editedIndex: -1,
+    editedItemId: "",
     editedItem: {
       first_name: 0,
       middle_name: 0,
@@ -192,6 +193,7 @@ export default {
       this.editedIndex = this.datalist.indexOf(item);
       this.editedItem = Object.assign({}, item);
       this.dialog = true;
+      this.editedItemId = item.id;
     },
 
     deleteItem(item) {
@@ -209,15 +211,21 @@ export default {
     },
 
     save() {
-      console.log(this.editedIndex);
+      console.log(this.editedItemId);
       if (this.editedIndex > -1) {
         Object.assign(this.datalist[this.editedIndex], this.editedItem);
+        this.$store.dispatch(
+          "update_patient",
+          this.editedItemId,
+          this.editedItem
+        );
       } else {
         this.datalist.push(this.editedItem);
         this.$store.dispatch("create_new_patient", this.editedItem);
       }
       this.close();
     },
+    initialize: function () {},
   },
   beforeMount() {
     this.$store.dispatch("retrievepatients");
