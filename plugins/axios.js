@@ -36,7 +36,7 @@ export default function ({ $axios, redirect }, inject) {
       dangerMode: true,
     });
   });
-  api.setHeader('Content-Type', 'application/json', [post]);
+  api.setHeader('Content-Type', 'application/json');
   api.setToken(localStorage.getItem("ospic.token"), localStorage.getItem("ospic.tokentype"));
 
 
