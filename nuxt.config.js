@@ -3,10 +3,13 @@ import colors from 'vuetify/es5/util/colors'
 export default {
   // Disable server-side rendering (https://go.nuxtjs.dev/ssr-mode)
   ssr: false,
-  mode: "spa",
   router: {
     base: process.env.NODE_ENV === "production" ? "/webapp/" : "/",
     routerNameSplitter: "/"
+  },
+  env: {
+    baseUrl: process.env.BASE_URL || process.env.LOCAL_URL,
+    localUrl: process.env.LOCAL_URL
   },
 
   // Global page headers (https://go.nuxtjs.dev/config-head)
@@ -29,7 +32,12 @@ export default {
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
-    "@plugins/vuetify.js"
+    "~/plugins/i18n.js",
+    '@plugins/vuetify.js',
+    '~/plugins/axios',
+    '~/plugins/route',
+    '~/plugins/pwa.client.js',
+    { src: '~/plugins/localStorage.js', ssr: false }
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
@@ -46,7 +54,7 @@ export default {
   // Modules (https://go.nuxtjs.dev/config-modules)
   // https://go.nuxtjs.dev/axios
   // https://go.nuxtjs.dev/pwa
-  
+
   modules: [
     '@nuxtjs/axios',
     '@nuxtjs/pwa',

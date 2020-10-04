@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "nuxt-ts",
-    "build": "nuxt-ts build",
-    "start": "nuxt-ts start",
-    "generate": "nuxt-ts generate",
+    "dev": "NODE_ENV=dev nuxt-ts",
+    "build": "NODE_ENV=dev nuxt-ts build",
+    "start": "NODE_ENV=production nuxt-ts start",
+    "generate": "NODE_ENV=production nuxt-ts generate",
     "lint:js": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "lint": "npm run lint:js",
     "test": "jest"
@@ -17,9 +17,10 @@
     "@nuxtjs/pwa": "^3.0.2",
     "core-js": "^3.6.5",
     "nuxt": "^2.14.5",
-    "vue-i18n": "^8.15.1",
+    "nuxt-material-design-icons": "^1.0.4",
     "sweetalert": "^2.1.2",
-    "nuxt-material-design-icons": "^1.0.4"
+    "vue-i18n": "^8.15.1",
+    "vuex-persistedstate": "^3.1.0"
   },
   "devDependencies": {
     "@nuxt/types": "^2.14.5",

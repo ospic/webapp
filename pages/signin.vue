@@ -4,27 +4,37 @@
       <v-col cols="12" sm="4" md="4">
         <v-card class="elevation-12" max-width="400">
           <v-toolbar prominent :src="image" flat>
-            <v-toolbar-title color="white" dense >
-              <img height="100px"  width="100" class="mt-6" src="../assets/images/logo.png"/>
+            <v-toolbar-title color="white" dense>
+              <img
+                height="100px"
+                width="100"
+                class="mt-6"
+                src="../assets/images/logo.png"
+                alt=""
+              />
             </v-toolbar-title>
             <v-spacer></v-spacer>
           </v-toolbar>
           <v-card-text>
-            <v-form @submit.prevent="login" id="check-login-form" class="mt-3" v-model="valid">
+            <v-form
+              @submit.prevent="login"
+              id="check-login-form"
+              class="mt-3"
+              v-model="valid"
+            >
               <v-container>
                 <v-row>
                   <v-col cols="12" sm="12">
                     <v-text-field
-                     label="Username"
+                      label="Username"
                       placeholder="e.g. elirehema"
                       v-model="username"
                       prepend-inner-icon="person"
-                      :rules=" [rules.required]"
+                      :rules="[rules.required]"
                       required
                       outlined
-                      
                     ></v-text-field>
-                    
+
                     <v-text-field
                       v-model="password"
                       prepend-inner-icon="lock"
@@ -38,8 +48,7 @@
                       counter
                       @click:append="show1 = !show1"
                       required
-                       outlined
-                     
+                      outlined
                     ></v-text-field>
                   </v-col>
                 </v-row>
@@ -48,7 +57,13 @@
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn color="primary" type="submit" :disabled="!valid" form="check-login-form">Login</v-btn>
+            <v-btn
+              color="primary"
+              type="submit"
+              :disabled="!valid"
+              form="check-login-form"
+              >Login</v-btn
+            >
           </v-card-actions>
         </v-card>
       </v-col>
@@ -83,16 +98,18 @@ export default {
 
   },
   methods: {
-
     login() {
-    this.nativateToHere("")
+    this.$store.dispatch("login", {username: this.username, password: this.password})
     },
     nativateToHere(id) {
       this.$router.push('/' + id);
     },
   },
-  beforeMount() {
-
+ beforeMount() {
+    console.log(this.$store.getters.isLoggedIn);
+    if (this.$store.getters.isLoggedIn) {
+      this.$router.push("/");
+    }
   }
 };
 </script>
