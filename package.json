@@ -16,14 +16,18 @@
     "@nuxtjs/axios": "^5.12.2",
     "@nuxtjs/pwa": "^3.0.2",
     "core-js": "^3.6.5",
-    "nuxt": "^2.14.5",
+
     "nuxt-material-design-icons": "^1.0.4",
+
+    "nuxt": "^2.14.6",
+    "vue-i18n": "^8.15.1",
+
     "sweetalert": "^2.1.2",
     "vue-i18n": "^8.15.1",
     "vuex-persistedstate": "^3.1.0"
   },
   "devDependencies": {
-    "@nuxt/types": "^2.14.5",
+    "@nuxt/types": "^2.14.6",
     "@nuxt/typescript-build": "^2.0.3",
     "@nuxtjs/eslint-config": "^3.1.0",
     "@nuxtjs/eslint-config-typescript": "^3.0.0",
@@ -33,10 +37,10 @@
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "^10.1.0",
     "babel-jest": "^26.3.0",
-    "eslint": "^7.8.1",
+    "eslint": "^7.10.0",
     "eslint-plugin-nuxt": "^1.0.0",
     "jest": "^26.4.2",
-    "ts-jest": "^26.3.0",
+    "ts-jest": "^26.4.1",
     "vue-jest": "^3.0.4",
     "dotenv": "^8.2.0",
     "node-sass": "^4.13.1",
