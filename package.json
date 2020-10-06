@@ -39,7 +39,7 @@
     "babel-jest": "^26.3.0",
     "eslint": "^7.10.0",
     "eslint-plugin-nuxt": "^1.0.0",
-    "jest": "^26.4.2",
+    "jest": "^26.5.0",
     "ts-jest": "^26.4.1",
     "vue-jest": "^3.0.4",
     "dotenv": "^8.2.0",
