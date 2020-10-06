@@ -83,9 +83,9 @@ const actions = {
       });
 
   },
-  async update_patient({ commit }, id, payload) {
+  async update_patient({ commit }, payload) {
     commit(mutation.UPDATE_PATIENT);
-    await this.$api.$put(`patients/${id}`, payload)
+    await this.$api.$put(`patients/${payload.id}`, payload.body)
       .then(response => {
         commit(mutation.UPDATE_PATIENT_SUCCESS, response);
 

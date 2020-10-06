@@ -214,11 +214,11 @@ export default {
       console.log(this.editedItemId);
       if (this.editedIndex > -1) {
         Object.assign(this.datalist[this.editedIndex], this.editedItem);
-        this.$store.dispatch(
-          "update_patient",
-          this.editedItemId,
-          this.editedItem
-        );
+        console.log(this.editedItem);
+        this.$store.dispatch("update_patient", {
+          id: this.editedItemId,
+          body: this.editedItem,
+        });
       } else {
         this.datalist.push(this.editedItem);
         this.$store.dispatch("create_new_patient", this.editedItem);
