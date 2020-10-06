@@ -37,7 +37,9 @@ export default {
     '~/plugins/axios',
     '~/plugins/route',
     '~/plugins/pwa.client.js',
+    /*
     { src: '~/plugins/localStorage.js', ssr: false }
+    */
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
