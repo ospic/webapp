@@ -8,8 +8,8 @@ export default {
     routerNameSplitter: "/"
   },
   env: {
-    baseUrl: process.env.BASE_URL || process.env.LOCAL_URL,
-    localUrl: process.env.LOCAL_URL
+    baseUrl: 'http://localhost:8080/api/',
+    localUrl: 'http://localhost:8080/api/'
   },
 
   // Global page headers (https://go.nuxtjs.dev/config-head)
@@ -28,6 +28,7 @@ export default {
 
   // Global CSS (https://go.nuxtjs.dev/config-css)
   css: [
+    '@/assets/css/styles.css'
   ],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)

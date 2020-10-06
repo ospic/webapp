@@ -33,6 +33,7 @@ export default function ({ $axios, redirect }, inject) {
         "\n Status code :" +
         error.response.status,
       icon: "warning",
+      customClass: 'swal-wide',
       dangerMode: true,
     });
   });
