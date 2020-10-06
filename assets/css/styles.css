@@ -1,4 +1,8 @@
 body {
   font-family: 'Montserrat', sans-serif;
 }
+
+.swal-wide {
+  width: 50px !important;
+}
 /*# sourceMappingURL=styles.css.map */
