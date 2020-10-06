@@ -200,6 +200,7 @@ export default {
       const index = this.datalist.indexOf(item);
       confirm("Are you sure you want to delete this item?") &&
         this.datalist.splice(index, 1);
+      this.$store.dispatch("delete_patient", item.id);
     },
 
     close() {
