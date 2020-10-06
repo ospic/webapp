@@ -54,7 +54,21 @@ const mutations = {
     state.showLoader = false;
     state.patient = payload;
   },
+  //Delete Patient Mutations 
 
+  [mutation.DELETE_PATIENT](state) {
+    state.showLoader = true;
+  },
+  [mutation.DELETE_PATIENT_FAILED](state) {
+    state.showLoader = false;
+  },
+  [mutation.DELETE_PATIENT_ERROR](state) {
+    state.showLoader = false;
+  },
+  [mutation.DELETE_PATIENT_SUCCESS](state, payload) {
+    state.showLoader = false;
+    state.patient = payload;
+  },
 }
 const actions = {
   async retrievepatients({ commit }) {
@@ -91,6 +105,19 @@ const actions = {
 
       }).catch(error => {
         commit(mutation.UPDATE_PATIENT_ERROR);
+        console.log(error);
+
+      });
+
+  },
+  async delete_patient({ commit }, payload) {
+    commit(mutation.DELETE_PATIENT);
+    await this.$api.$delete(`patients/${payload}`)
+      .then(response => {
+        commit(mutation.DELETE_PATIENT_SUCCESS, response);
+
+      }).catch(error => {
+        commit(mutation.DELETE_PATIENT_ERROR);
         console.log(error);
 
       });
