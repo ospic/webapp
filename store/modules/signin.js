@@ -57,6 +57,7 @@ const actions = {
 
       });
   },
+
   clearlocal({ commit }) {
     window.localStorage.clear();
     localStorage.removeItem('ospic.*');
@@ -69,7 +70,6 @@ const actions = {
         if (response.result == 'OK') {
           commit(mutation.SIGNOUT);
           window.localStorage.clear();
-          localStorage.removeItem('ospic');
           sessionStorage.clear();
           this.$router.push('/signin');
         }
@@ -79,7 +79,8 @@ const actions = {
         commit(mutation.SIGNOUT_FAILED);
 
       });
-  }
+  },
+
 };
 const getters = {
   isLoggedIn: function (state) {

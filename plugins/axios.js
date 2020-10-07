@@ -1,6 +1,10 @@
 import swal from "sweetalert";
 export default function ({ $axios, redirect }, inject) {
   // Create a custom axios instance
+  $axios.setHeader('Content-Type', 'application/json');
+  $axios.setToken(localStorage.getItem("ospic.token"), localStorage.getItem("ospic.tokentype"));
+
+
   const api = $axios.create({
     headers: {
       common: {
@@ -37,9 +41,6 @@ export default function ({ $axios, redirect }, inject) {
       dangerMode: true,
     });
   });
-  api.setHeader('Content-Type', 'application/json');
-  api.setToken(localStorage.getItem("ospic.token"), localStorage.getItem("ospic.tokentype"));
-
 
   // Set baseURL to something different
   // eslint-disable-next-line no-console
