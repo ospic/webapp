@@ -8,7 +8,7 @@
 
           <v-card-actions>
             <v-spacer />
-            <v-btn color="primary" nuxt to="/registry"> Continue </v-btn>
+            <v-btn color="teal" nuxt to="/registry"> Continue </v-btn>
           </v-card-actions>
         </v-card>
       </v-col>

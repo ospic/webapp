@@ -1,7 +1,7 @@
 <template>
   <v-app
     class="app"
-    v-bind:style="{ background: $vuetify.theme.dark ? '#01242F' : '#055273' }"
+    v-bind:style="{ background: $vuetify.theme.dark ? '#FAFAFA' : '#FAFAFA' }"
   >
     <!--NAVIGATION DRAWER-->
     <v-navigation-drawer
@@ -25,11 +25,11 @@
             v-on:click="nativateToHere(item.route)"
           >
             <v-list-item-icon class="mr-0">
-              <v-icon color="default" v-text="item.icon" small></v-icon>
+              <v-icon v-text="item.icon" small></v-icon>
             </v-list-item-icon>
             <v-list-item-content class="ma-0 pa-0">
               <v-list-item-title
-                class="font-weight-normal default--text"
+                class="font-weight-normal"
                 v-text="item.text"
               ></v-list-item-title>
             </v-list-item-content>
@@ -38,7 +38,7 @@
           <v-divider light :key="i" :inset="item.inset"></v-divider>
         </template>
       </v-list>
-      <template v-slot:append>
+      <!-- <template v-slot:append>
         <v-list-item>
           <v-list-item-content>
             <v-list-item-subtitle class="subtitle white--text font-weight-bold"
@@ -52,17 +52,20 @@
             ></v-switch>
           </v-list-item-action>
         </v-list-item>
-      </template>
+      </template>-->
     </v-navigation-drawer>
     <v-app-bar flat clipped-left fixed app dense short color="primary">
-      <v-toolbar-side-icon @click="toggledrawer">
-        <img
-          width="40%"
-          class="mt-1"
-          src="../assets/images/logo.png"
-          alt="Header Image"
-        />
-      </v-toolbar-side-icon>
+      <v-img
+        @click="toggledrawer"
+        class="mx-2"
+        src="https://i.imgur.com/qgGY4tB.png"
+        max-height="40"
+        max-width="40"
+        contain
+      ></v-img>
+      <v-toolbar-title class="ml-2 title font-weight-bold">
+        Hospital Management System
+      </v-toolbar-title>
 
       <v-spacer></v-spacer>
       <v-tooltip bottom color="primary" open-on-hover open-delay="500">
@@ -327,45 +330,4 @@ export default {
 };
 </script>
 <style>
-#app {
-  font-family: "Lato", sans-serif;
-}
-
-.drawer .item:hover {
-  color: #01242f;
-  margin-left: 2px;
-  background-color: white;
-  border-radius: 20px 0px 0px 20px;
-}
-.drawer .item:active {
-  color: #01242f;
-  margin-left: 2px;
-  background-color: white;
-  border-radius: 20px 0px 0px 20px;
-}
-.v-progress-circular {
-  margin: 1rem;
-}
-
-/* width */
-::-webkit-scrollbar {
-  width: 10px;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 5px grey;
-  border-radius: 10px;
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: rgb(194, 5, 5);
-  border-radius: 10px;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #b30000;
-}
 </style>

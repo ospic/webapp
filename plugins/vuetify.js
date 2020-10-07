@@ -22,7 +22,7 @@ export default (ctx) => {
           milky: "#01242F",
         },
         light: {
-          primary: "#055273",
+          primary: "#F5F5F5",
           accent: "#e91e63",
           secondary: "#30b1dc",
           success: "#4CAF50",
@@ -31,6 +31,7 @@ export default (ctx) => {
           error: "#FF5252",
           default: "#FFFFFF",
           milky: "#FDFFF5",
+          teal: "#00897B",
         },
       },
     },
