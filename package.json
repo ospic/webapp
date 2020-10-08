@@ -16,10 +16,12 @@
     "@nuxtjs/axios": "^5.12.2",
     "@nuxtjs/pwa": "^3.1.2",
     "bulma": "^0.9.1",
+    "chart.js": "^2.9.3",
     "core-js": "^3.6.5",
     "nuxt": "^2.14.6",
     "nuxt-material-design-icons": "^1.0.4",
     "sweetalert": "^2.1.2",
+    "vue-chartjs": "^3.5.1",
     "vue-i18n": "^8.22.0",
     "vuex-persistedstate": "^3.1.0"
   },
