@@ -111,7 +111,7 @@
     </v-app-bar>
 
     <v-main>
-      <v-container fluid class="pa-5">
+      <v-container fluid>
         <nuxt />
       </v-container>
     </v-main>
@@ -119,33 +119,13 @@
 </template>
 
 <script>
-import ChapterDetails from "@/assets/data/chapterDetails.json";
-import FooterData from "@/assets/data/footer.json";
-import FooterComponent from "~/components/footer/FooterComponent.vue";
-import IndicatorsComponent from "~/components/indicators.component.vue";
-import NewsComponent from "~/components/news.component.vue";
-import SectorsComponent from "~/components/sectors.component.vue";
-import IndicatorSourceComponent from "~/components/indicator.sources.component.vue";
-import CurrentReleasesComponent from "~/components/current.releases.component.vue";
-import DisaggregationsComponent from "~/components/disaggregation.component.vue";
-
 export default {
   async fetch({ store, params }) {
     // await this.$store.dispatch("getProfile");
   },
-  components: {
-    FooterComponent,
-    "news-component": NewsComponent,
-    "indicators-component": IndicatorsComponent,
-    "sectors-component": SectorsComponent,
-    "indicatorsource-component": IndicatorSourceComponent,
-    "currentrelease-component": CurrentReleasesComponent,
-    "disaggregations-component": DisaggregationsComponent,
-  },
+  components: {},
   data() {
     return {
-      ChapterDetails: ChapterDetails,
-      FooterData: FooterData,
       clipped: false,
       drawer: true,
       fixed: false,
