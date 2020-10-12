@@ -20,7 +20,7 @@
       </v-col>
     </v-row>
     <v-row justify="center" align="center">
-      <v-col cols="12" sm="9">
+      <v-col cols="12" sm="12">
         <v-card>
           <basic-chart-column :data="basic_chart"></basic-chart-column>
         </v-card>
@@ -90,19 +90,19 @@ export default {
       series: [
         {
           name: "Net Profit",
-          data: [44, 55, 57, 56, 61, 58, 63, 60, 66, 71, 58, 54]
+          data: [44, 55, 57, 56, 61, 58, 63, 60, 66, 71, 58, 54, 51]
         },
         {
           name: "Revenue",
-          data: [76, 85, 101, 98, 87, 105, 91, 114, 94, 100, 89, 93]
+          data: [76, 85, 101, 98, 87, 105, 91, 114, 94, 100, 89, 93, 92]
         },
         {
           name: "Free Cash Flow",
-          data: [35, 41, 36, 26, 45, 48, 52, 53, 41, 34, 51, 47]
+          data: [35, 41, 36, 26, 45, 48, 52, 53, 41, 34, 51, 47, 74]
         },
         {
           name: "Free Cash In",
-          data: [52, 53, 41, 34, 51, 47, 35, 41, 36, 26, 45, 48]
+          data: [52, 53, 41, 34, 51, 47, 35, 41, 36, 26, 45, 48, 84]
         }
       ]
     },
