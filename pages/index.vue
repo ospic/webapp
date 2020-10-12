@@ -20,6 +20,11 @@
       </v-col>
     </v-row>
     <v-row justify="center" align="center">
+      <v-col cols="12" sm="9">
+        <v-card>
+          <basic-chart-column :data="basic_chart"></basic-chart-column>
+        </v-card>
+      </v-col>
       <v-col cols="12" sm="12" md="3">
         <v-card class="mx-auto">
           <bar-chart :data="apexdata"></bar-chart>
@@ -52,12 +57,14 @@ import PieChartComponent from "@/components/charts/PieChartComponent";
 import BarChartComponent from "@/components/charts/ApexLineChart";
 import SummaryCardComponent from "@/components/charts/summary-card";
 import DonutChartCompoent from "@/components/charts/DonutChartComponent";
+import BasicChartColumn from "@/components/charts/BasicColumnBarChart";
 export default {
   components: {
     "pie-chart": PieChartComponent,
     "bar-chart": BarChartComponent,
     summarycard: SummaryCardComponent,
-    donutchart: DonutChartCompoent
+    donutchart: DonutChartCompoent,
+    "basic-chart-column": BasicChartColumn
   },
   data: () => ({
     apexdata: {
@@ -78,6 +85,26 @@ export default {
       chartOptions: {
         labels: ["Apple", "Mango", "Orange", "Watermelon"]
       }
+    },
+    basic_chart: {
+      series: [
+        {
+          name: "Net Profit",
+          data: [44, 55, 57, 56, 61, 58, 63, 60, 66, 71, 58, 54]
+        },
+        {
+          name: "Revenue",
+          data: [76, 85, 101, 98, 87, 105, 91, 114, 94, 100, 89, 93]
+        },
+        {
+          name: "Free Cash Flow",
+          data: [35, 41, 36, 26, 45, 48, 52, 53, 41, 34, 51, 47]
+        },
+        {
+          name: "Free Cash In",
+          data: [52, 53, 41, 34, 51, 47, 35, 41, 36, 26, 45, 48]
+        }
+      ]
     },
     trend_items: [
       {
