@@ -111,7 +111,7 @@
     </v-app-bar>
 
     <v-main>
-      <v-container fluid>
+      <v-container style="background-color: #EAEAEA;" fluid>
         <nuxt />
       </v-container>
     </v-main>
@@ -138,10 +138,10 @@ export default {
         { title: "Sectors", icon: "mdi-eye" },
         { title: "Indicator Source", icon: "mdi-eye" },
         { title: "Current Release", icon: "mdi-eye" },
-        { title: "Disaggregations", icon: "mdi-eye" },
+        { title: "Disaggregations", icon: "mdi-eye" }
       ],
       titles: {
-        title: "Ospic",
+        title: "Ospic"
       },
 
       items: [
@@ -149,113 +149,113 @@ export default {
           text: "Dashboard",
           icon: "mdi-hospital-building",
           route: "",
-          subtitle: "Lorem ipsum dolor sit de amet..",
+          subtitle: "Lorem ipsum dolor sit de amet.."
         },
         {
           text: "Patient Registration",
           icon: "mdi-account-plus-outline",
           route: "registry",
 
-          subtitle: "Lorem ipsum dolor sit de amet..",
+          subtitle: "Lorem ipsum dolor sit de amet.."
         },
         {
           text: "Appointment & Scheduling",
           icon: "mdi-file-cabinet",
           route: "appointments",
-          subtitle: "Lorem ipsum dolor sit de amet ...",
+          subtitle: "Lorem ipsum dolor sit de amet ..."
         },
         {
           text: "OPD Center",
           icon: "mdi-zodiac-cancer",
           route: "",
-          subtitle: "Lorem ipsum dolor sit de amet..",
+          subtitle: "Lorem ipsum dolor sit de amet.."
         },
         {
           text: "IPD Center",
           icon: "mdi-bed-outline",
           route: "",
-          subtitle: "Lorem ipsum dolor sit de amet..",
+          subtitle: "Lorem ipsum dolor sit de amet.."
         },
         {
           text: "Laboratory",
           icon: "mdi-beaker-question-outline",
           route: "",
-          subtitle: "Lorem ipsum dolor sit de amet..",
+          subtitle: "Lorem ipsum dolor sit de amet.."
         },
         {
           text: "Pharmacy & Medicine",
           icon: "mdi-pharmacy",
           route: "",
-          subtitle: "Lorem ipsum dolor sit de amet..",
+          subtitle: "Lorem ipsum dolor sit de amet.."
         },
         {
           text: "Radiology",
           icon: "mdi-radioactive",
           route: "",
-          subtitle: "Lorem ipsum dolor sit de amet..",
+          subtitle: "Lorem ipsum dolor sit de amet.."
         },
 
         {
           text: "Cash/billing Center",
           icon: "mdi-credit-card-wireless",
           route: "",
-          subtitle: "Lorem ipsum dolor sit de amet..",
+          subtitle: "Lorem ipsum dolor sit de amet.."
         },
         {
           text: "Print Receipt/Bills/Reports",
           icon: "mdi-printer",
           route: "",
-          subtitle: "Lorem ipsum dolor sit de amet..",
+          subtitle: "Lorem ipsum dolor sit de amet.."
         },
         {
           text: "Financial Account",
           icon: "mdi-currency-usd-circle",
           route: "",
-          subtitle: "Lorem ipsum dolor sit de amet..",
+          subtitle: "Lorem ipsum dolor sit de amet.."
         },
         {
           text: "Payroll Management",
           icon: "mdi-currency-usd-circle-outline",
           route: "",
-          subtitle: "Lorem ipsum dolor sit de amet..",
+          subtitle: "Lorem ipsum dolor sit de amet.."
         },
         {
           text: "Inventory & Stock",
           icon: "mdi-hospital",
           route: "",
-          subtitle: "Lorem ipsum dolor sit de amet..",
+          subtitle: "Lorem ipsum dolor sit de amet.."
         },
 
         {
           text: "Nurse Station",
           icon: "mdi-zodiac-cancer",
           route: "",
-          subtitle: "Lorem ipsum dolor sit de amet..",
+          subtitle: "Lorem ipsum dolor sit de amet.."
         },
         {
           text: "Administration & Monitooring",
           icon: "mdi-account-settings",
           route: "",
-          subtitle: "Lorem ipsum dolor sit de amet..",
+          subtitle: "Lorem ipsum dolor sit de amet.."
         },
         {
           text: "MIS Reports",
           icon: "mdi-folder-text-outline",
           route: "",
-          subtitle: "Lorem ipsum dolor sit de amet..",
+          subtitle: "Lorem ipsum dolor sit de amet.."
         },
         {
           text: "Security Control",
           icon: "mdi-lock",
           route: "",
-          subtitle: "Lorem ipsum dolor sit de amet..",
-        },
+          subtitle: "Lorem ipsum dolor sit de amet.."
+        }
       ],
       actions: [
         // { title: "View profile", icon: "mdi-account-circle" },
         { title: "Settings", icon: "mdi-cog" },
         { title: "Help", icon: "mdi-help" },
-        { title: "Logout", icon: "mdi-logout-variant" },
+        { title: "Logout", icon: "mdi-logout-variant" }
       ],
       miniVariant: false,
       right: true,
@@ -264,13 +264,13 @@ export default {
       rightDrawer: false,
       year: new Date().getFullYear(),
       userdata: {
-        username: "Elirehema Paul",
-      },
+        username: "Elirehema Paul"
+      }
     };
   },
 
   methods: {
-    selectedItemAction: function (item) {
+    selectedItemAction: function(item) {
       switch (item) {
         case 0:
           //this.$router.push("/profile");
@@ -283,14 +283,14 @@ export default {
           break;
       }
     },
-    toggledrawer: function () {
+    toggledrawer: function() {
       this.drawer = !this.drawer;
     },
-    logoutsession: function () {
+    logoutsession: function() {
       this.$store.dispatch("clearlocal");
       this.drawer = !this.drawer;
     },
-    changemode: function () {
+    changemode: function() {
       this.dark = !this.dark;
       this.$vuetify.theme.dark = this.dark;
     },
@@ -303,11 +303,10 @@ export default {
       } else {
         this.$vuetify.theme.dark = false;
       }
-    },
+    }
   },
-  beforeMount: function () {},
-  computed: {},
+  beforeMount: function() {},
+  computed: {}
 };
 </script>
-<style>
-</style>
+<style></style>
