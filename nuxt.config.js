@@ -38,6 +38,8 @@ export default {
     '~/plugins/axios',
     '~/plugins/route',
     '~/plugins/pwa.client.js',
+    '~/plugins/vue-apexcharts.js',
+    '~/mixins/label_mixins.js',
     /*
     { src: '~/plugins/localStorage.js', ssr: false }
     */
