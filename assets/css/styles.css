@@ -55,4 +55,26 @@ canvas {
   width: 100%;
   height: 100%;
 }
+
+.data-card {
+  position: relative;
+  height: 330px;
+}
+
+.data-card > data-chart {
+  height: 100px;
+}
+
+.data-card > data-chart #pie-chart canvas {
+  height: 50px;
+  width: 50px;
+}
+
+.card {
+  /* Add shadows to create the "card" effect */
+  -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
 /*# sourceMappingURL=styles.css.map */
