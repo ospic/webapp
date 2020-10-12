@@ -11,9 +11,9 @@
 </template>
 <script lang="js">
 export default {
- 
+
   props:{
-   
+
     data:{
       type: Object,
       default: null
@@ -35,7 +35,7 @@ export default {
           },
           toolbar: {
             show: true,
-            offsetY: 20
+            offsetY: 25
           },
         },
         colors: ["#77B6EA", "#545454"],
@@ -51,7 +51,7 @@ export default {
           align: "left",
           margin: 10,
           offsetX: 0,
-          offsetY: 0,
+          offsetY: 2,
           floating: false,
           style:{
             fontSize: '14px'
@@ -85,7 +85,7 @@ export default {
                 size: 7,
               }
             },
-        
+
         xaxis: {
           categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"],
           title: {
@@ -98,7 +98,7 @@ export default {
           },
           min: 0,
         },
-         
+
         legend: {
           position: "top",
           horizontalAlign: "right",
@@ -110,9 +110,9 @@ export default {
             vertical: 15,
           },
         },
-        
+
       },
-     
+
     };
   },
 };

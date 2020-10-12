@@ -24,7 +24,7 @@ export default {
       options:{
          chart: {
           height: 350,
-          type: 'pie',
+          type: 'donut',
           toolbar: {
             show: true,
 
@@ -40,21 +40,31 @@ export default {
             dynamicAnimation: {
             enabled: true,
             speed: 350
-        }
+            }
+          },
+          dropShadow:{
+            enabled: true,
+            color: '#111',
+            top: -1,
+            left: 3,
+            blur: 3,
+            opacity: 0.2
           }
+        },
+        stroke:{
+          width: 0
         },
         labels: this.data.chartOptions.labels,
         dataLabels:{
           enabled: true,
-          dropShadow: {
-                blur: 3,
-                opacity: 0.8
-              }
+          dropShadow:{
+
+          }
         },
-        fill:{
+         fill:{
           type: 'gradient'
         },
-        plotOptions:{
+         plotOptions:{
           pie:{
             customScale: 0.8,
              startAngle: -45,
@@ -63,18 +73,17 @@ export default {
                 show:true,
                 total:{
                   showAlways: true,
-                  show: false
+                  show: true
                 }
               }
             }
 
           }
         },
-        legend: {
+          legend: {
           position: "bottom",
           show: true,
-        },
-
+          },
           title: {
               text: this.data.title,
               align: "left",
