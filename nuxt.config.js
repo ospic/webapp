@@ -53,7 +53,8 @@ export default {
     // https://go.nuxtjs.dev/typescript
     '@nuxt/typescript-build',
     // https://go.nuxtjs.dev/vuetify
-    '@nuxtjs/vuetify'
+    '@nuxtjs/vuetify',
+    '@nuxtjs/pwa',
   ],
 
   // Modules (https://go.nuxtjs.dev/config-modules)
@@ -66,6 +67,32 @@ export default {
     '@nuxtjs/axios',
     'nuxt-material-design-icons'
   ],
+  build: {
+    /*
+     ** You can extend webpack config here
+     */
+    publicPath: process.env.NODE_ENV === 'production' ? '/assets/' : '',
+    extend(config, ctx) { },
+    postcss: {
+      preset: {
+        features: {
+          customProperties: false
+        }
+      }
+    }
+  },
+  pwa: {
+    manifest: {
+      name: 'HMS',
+      lang: 'en'
+    },
+    meta: {
+      /* meta options */
+    },
+    icon: {
+      iconSrc: '/static/icon.png'
+    }
+  },
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
   axios: {},
