@@ -1,4 +1,8 @@
-# Ospic [![Build Status](https://travis-ci.com/ospic/webapp.svg?branch=master)](https://travis-ci.com/ospic/webapp) ![Auto Assign to Project(s)](https://github.com/ospic/webapp/workflows/Auto%20Assign%20to%20Project(s)/badge.svg)
+# Ospic [![Build Status](https://travis-ci.com/ospic/webapp.svg?branch=master)](https://travis-ci.com/ospic/webapp) ![Auto Assign to Project(s)](<https://github.com/ospic/webapp/workflows/Auto%20Assign%20to%20Project(s)/badge.svg>)
+
+## Demo server
+
+https://hmis.netlify.app/
 
 ## Build Setup
 
