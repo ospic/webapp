@@ -154,7 +154,7 @@ export default {
         {
           text: "Patient Registration",
           icon: "mdi-account-plus-outline",
-          route: "registry",
+          route: "patients",
 
           subtitle: "Lorem ipsum dolor sit de amet.."
         },
