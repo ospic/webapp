@@ -9,7 +9,7 @@
       :mini-variant="$vuetify.breakpoint.mdAndDown"
       :expand-on-hover="$vuetify.breakpoint.mdAndDown"
       overlay-color="primary"
-      color="primary"
+      color="whitish"
       clipped
       fixed
       app
@@ -38,23 +38,8 @@
           <v-divider light :key="i" :inset="item.inset"></v-divider>
         </template>
       </v-list>
-      <!-- <template v-slot:append>
-        <v-list-item>
-          <v-list-item-content>
-            <v-list-item-subtitle class="subtitle white--text font-weight-bold"
-              >Light/Dark</v-list-item-subtitle
-            >
-          </v-list-item-content>
-          <v-list-item-action>
-            <v-switch
-              :value="true"
-              @change="toggle($event !== null)"
-            ></v-switch>
-          </v-list-item-action>
-        </v-list-item>
-      </template>-->
     </v-navigation-drawer>
-    <v-app-bar flat clipped-left fixed app dense short color="primary">
+    <v-app-bar flat clipped-left fixed app dense short color="whitish">
       <v-img
         @click="toggledrawer"
         class="mx-2"
@@ -111,7 +96,7 @@
     </v-app-bar>
 
     <v-main>
-      <v-container style="background-color: #EAEAEA;" fluid>
+      <v-container style="background-color: #EAEAEA;" class="pa-2 ma-0" fluid>
         <nuxt />
       </v-container>
     </v-main>

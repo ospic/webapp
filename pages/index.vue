@@ -1,5 +1,5 @@
 <template>
-  <v-container class="ma-0 pa-0" fluid app>
+  <v-container class="ma-0 pa-0">
     <v-row justify="start" align="start">
       <summarycard
         v-for="(item, i) in summary_items"
