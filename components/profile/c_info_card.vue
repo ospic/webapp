@@ -235,7 +235,11 @@
                             </v-card>
                           </v-tab-item>
                           <v-tab-item>
-                            <v-card flat class="ma-3 pa-1">
+                            <v-card
+                              flat
+                              class="ma-3 pa-1"
+                              v-if="physician !== null"
+                            >
                               <template>
                                 <v-card class="mx-auto" max-width="434" tile>
                                   <v-img
