@@ -5,6 +5,7 @@
     :items="datalist"
     :search="search"
     :items-per-page="15"
+    :show-group-by="true"
     sort-by="calories"
     class="elevation-1"
   >
@@ -103,6 +104,7 @@
       </v-toolbar>
     </template>
     <template v-slot:[`item.actions`]="{ item }">
+      <v-icon x-small class="mr-2" @click="handleClick(item)">mdi-eye</v-icon>
       <v-icon small class="mr-2" @click="editItem(item)"> mdi-pencil </v-icon>
       <v-icon small color="warning" @click="deleteItem(item)">
         mdi-delete
@@ -124,7 +126,7 @@ export default {
         text: "Suffix",
         align: "start",
         sortable: false,
-        value: "suffix",
+        value: "suffix"
       },
       { text: "First Name", value: "first_name" },
       { text: "Middle Name", value: "middle_name" },
@@ -132,7 +134,7 @@ export default {
       { text: "Gender", value: "gender", sortable: false },
       { text: "Country", value: "country" },
       { text: "Ethnicity", value: "ethnicity", sortable: false },
-      { text: "Actions", value: "actions", sortable: false },
+      { text: "Actions", value: "actions", sortable: false }
     ],
     desserts: [],
     editedIndex: -1,
@@ -148,7 +150,7 @@ export default {
       ssn: 0,
       mdn: 0,
       principal_tribe: 0,
-      country: 0,
+      country: 0
     },
     defaultItem: {
       first_name: 0,
@@ -161,8 +163,8 @@ export default {
       ssn: 0,
       mdn: 0,
       principal_tribe: 0,
-      country: 0,
-    },
+      country: 0
+    }
   }),
 
   computed: {
@@ -172,14 +174,14 @@ export default {
     datalist: {
       get() {
         return this.$store.getters.patients;
-      },
-    },
+      }
+    }
   },
 
   watch: {
     dialog(val) {
       val || this.close();
-    },
+    }
   },
 
   created() {},
@@ -214,7 +216,7 @@ export default {
         console.log(this.editedItem);
         this.$store.dispatch("update_patient", {
           id: this.editedItemId,
-          body: this.editedItem,
+          body: this.editedItem
         });
       } else {
         this.datalist.push(this.editedItem);
@@ -222,10 +224,14 @@ export default {
       }
       this.close();
     },
-    initialize: function () {},
+    handleClick: function(value) {
+      console.log(value);
+      this.$router.push("/patients/" + value.id);
+    },
+    initialize: function() {}
   },
   beforeMount() {
     this.$store.dispatch("retrievepatients");
-  },
+  }
 };
 </script>
