@@ -84,7 +84,7 @@
           <v-container py-0>
             <v-layout wrap>
               <v-flex xs12 md12>
-                <v-list>
+                <v-list class="ma-0 pa-0">
                   <v-list-item-group color="primary">
                     <v-list-item two-line inactive :ripple="false">
                       <v-list-item-content>
@@ -235,10 +235,40 @@
                             </v-card>
                           </v-tab-item>
                           <v-tab-item>
-                            <v-card flat>
-                              <v-card-text>
-                                <p>{{ userdata.biography }}</p>
-                              </v-card-text>
+                            <v-card flat class="ma-3 pa-1">
+                              <template>
+                                <v-card class="mx-auto" max-width="434" tile>
+                                  <v-img
+                                    height="200"
+                                    src="https://wi.wallpapertip.com/wsimgs/11-119918_background-for-hospital-website.png"
+                                  ></v-img>
+                                  <v-col>
+                                    <v-avatar
+                                      size="100"
+                                      style="position:absolute; top: 130px"
+                                    >
+                                      <v-img
+                                        src="https://images.theconversation.com/files/304957/original/file-20191203-66986-im7o5.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&h=1200.0&fit=crop"
+                                      ></v-img>
+                                    </v-avatar>
+                                  </v-col>
+                                  <v-list-item
+                                    color="rgba(0, 0, 0, .4)"
+                                    v-if="physician !== null"
+                                  >
+                                    <v-list-item-content>
+                                      <v-list-item-title class="title"
+                                        >{{ physician.firstname }} &nbsp;{{
+                                          physician.lastname
+                                        }}</v-list-item-title
+                                      >
+                                      <v-list-item-subtitle
+                                        >Medical Doctor</v-list-item-subtitle
+                                      >
+                                    </v-list-item-content>
+                                  </v-list-item>
+                                </v-card>
+                              </template>
                             </v-card>
                           </v-tab-item>
                           <v-tab-item>
@@ -385,25 +415,14 @@ export default {
       fullIcon: 'mdi-star',
       halfIcon: 'mdi-star-half-full',
       address: null,
-      address1: {
-        location: "Spotify New York",
-        class: "Primary",
-        street_name: "170 William Street",
-        street_address: "New York, NY 10038-78 212-312-51\n"
-      },
-      address2: {
-        location: "Metropolitan Museum",
-        class: "Secondary",
-        street_name: "S45 E 68th Street",
-        street_address: "New York, NY 10038-78 212-312-51\n"
-      },
+      physician:null,
 
 
     }
   },
   created() {
     this.address = this.userdata.contactsInformation;
-
+    this.physician = this.userdata.physician;
   },
   methods: {
     async getThisUserPosts() {
