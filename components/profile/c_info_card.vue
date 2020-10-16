@@ -10,7 +10,7 @@
                   :src="entityThumbNail"
                   lazy-src="https://i.stack.imgur.com/l60Hf.png"
                   aspect-ratio="1"
-                  class="grey lighten-2"
+                  class="grey lighten-2 align-end"
                   height="400"
                   max-height="400"
                 >
@@ -26,6 +26,20 @@
                       ></v-progress-circular>
                     </v-row>
                   </template>
+                  <v-card-title>
+                    <div class="text-center">
+                      <div class="my-2" v-if="entityThumbNail != null">
+                        <v-btn color="warning" fab x-small dark>
+                          <v-icon small>mdi-delete-outline</v-icon>
+                        </v-btn>
+                      </div>
+                      <div class="my-2" v-else>
+                        <v-btn color="primary" fab x-small dark>
+                          <v-icon small>mdi-cloud-upload</v-icon>
+                        </v-btn>
+                      </div>
+                    </div>
+                  </v-card-title>
                 </v-img>
                 <v-card-title>
                   {{ userdata.first_name }}
@@ -430,7 +444,7 @@ export default {
   },
   computed:{
       entityThumbNail: function() {
-            return this.userdata.imageThumbnail ? this.userdata.imageThumbnail  : "https://i.stack.imgur.com/l60Hf.png";
+            return this.userdata.imageThumbnail;
     },
   },
   methods: {
