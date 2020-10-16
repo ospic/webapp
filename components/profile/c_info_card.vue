@@ -28,16 +28,80 @@
                   </template>
                   <v-card-title>
                     <div class="text-center">
-                      <div class="my-2" v-if="entityThumbNail != null">
+                      <!-- <div class="my-2" v-if="entityThumbNail != null">
                         <v-btn color="warning" fab x-small dark>
-                          <v-icon small>mdi-delete-outline</v-icon>
+                          <v-icon>mdi-delete-outline</v-icon>
                         </v-btn>
-                      </div>
-                      <div class="my-2" v-else>
-                        <v-btn color="primary" fab x-small dark>
-                          <v-icon small>mdi-cloud-upload</v-icon>
-                        </v-btn>
-                      </div>
+                      </div>-->
+                      <v-dialog
+                        v-model="uploaddialog"
+                        persistent
+                        max-width="600"
+                      >
+                        <template v-slot:activator="{ on, attrs }">
+                          <v-btn
+                            color="warning"
+                            fab
+                            x-small
+                            dark
+                            v-if="entityThumbNail != null"
+                          >
+                            <v-icon>mdi-delete-outline</v-icon>
+                          </v-btn>
+                          <v-btn
+                            v-else
+                            fab
+                            color="primary"
+                            dark
+                            v-bind="attrs"
+                            v-on="on"
+                            x-small
+                          >
+                            <v-icon>mdi-progress-upload</v-icon>
+                          </v-btn>
+                        </template>
+                        <v-card>
+                          <v-card-title class="headline">
+                            Changing {{ userdata.first_name }}&nbsp;{{
+                              userdata.last_name
+                            }}
+                            profile picture
+                          </v-card-title>
+                          <v-card-text>
+                            <v-file-input
+                              label="Profile picture"
+                              accept="image/png, image/jpeg, image/bmp"
+                              prepend-icon="mdi-camera"
+                              show-size
+                              @change="selectFile"
+                            >
+                              <template v-slot:selection="{ text }">
+                                <v-chip small label color="primary">
+                                  {{ text }}
+                                </v-chip>
+                              </template>
+                            </v-file-input>
+                          </v-card-text>
+                          <v-card-actions>
+                            <v-spacer></v-spacer>
+                            <v-btn
+                              color="primary"
+                              @click="uploaddialog = false"
+                              x-small
+                            >
+                              Cancel
+                            </v-btn>
+                            <v-btn
+                              color="warning"
+                              x-small
+                              shaped
+                              @click="uploadPatientImage()"
+                            >
+                              Save
+                            </v-btn>
+                          </v-card-actions>
+                        </v-card>
+                      </v-dialog>
                     </div>
                   </v-card-title>
                 </v-img>
@@ -132,7 +196,6 @@
                             <v-col xs="12" md="3" class="ma-1">
                               <v-btn
                                 v-if="userdata.is_following_me"
-                                @click.stop="unfollowThisPerson"
                                 small
                                 rounded
                                 cols="auto"
@@ -146,7 +209,6 @@
                                 rounded
                                 outlined
                                 cols="auto"
-                                @click.stop="followThisPerson"
                                 color="primary"
                                 block
                                 >Follow
@@ -421,6 +483,8 @@ export default {
   data() {
     return {
       dialog: false,
+      uploaddialog: false,
+      currentFile: undefined,
       rate: false,
       tab: null,
       rating: 2,
@@ -434,6 +498,9 @@ export default {
       halfIcon: 'mdi-star-half-full',
       address: null,
       physician:null,
+      rules: [
+        value => !value || value.size < 500 || 'Avatar size should be less than 500 KB!',
+      ],
 
 
     }
@@ -448,6 +515,11 @@ export default {
     },
   },
   methods: {
+
+    selectFile(file) {
+      this.progress = 0;
+      this.currentFile = file;
+    },
     async getThisUserPosts() {
       console.log("Clicked" + this.$route.params.id)
       return await this.$api.$get(`users/${this.$route.params.id}/posts/?type=post`)
@@ -468,11 +540,15 @@ export default {
 
         });
     },
-    async unfollowThisPerson() {
-      return await this.$api.$post(`/unfollow-user/`, {"id": this.$route.params.id})
+    async uploadPatientImage() {
+      const formData = new FormData();
+      formData.append("file", this.currentFile )
+
+      return await this.$api.$patch(`/patients/${this.$route.params.id}/images/`,formData)
         .then(response => {
           if (response !== null) {
-            this.$parent.viewusedata();
+            this.uploaddialog = false
+           // this.$parent.viewusedata();
           }
         }).catch(error => {
           console.log(error);
