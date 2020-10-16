@@ -7,8 +7,8 @@
             <v-flex xs12 md12 class="pa-0 ma-0">
               <v-card class="mx-auto" raised height="480">
                 <v-img
-                  src="https://render.fineartamerica.com/images/rendered/default/poster/8/10/break/images/artworkimages/medium/2/adelie-penguin-on-ice-theo-allofs.jpg"
-                  lazy-src="https://render.fineartamerica.com/images/rendered/default/poster/8/10/break/images/artworkimages/medium/2/adelie-penguin-on-ice-theo-allofs.jpg"
+                  :src="entityThumbNail"
+                  lazy-src="https://i.stack.imgur.com/l60Hf.png"
                   aspect-ratio="1"
                   class="grey lighten-2"
                   height="400"
@@ -427,6 +427,11 @@ export default {
   created() {
     this.address = this.userdata.contactsInformation;
     this.physician = this.userdata.physician;
+  },
+  computed:{
+      entityThumbNail: function() {
+            return this.userdata.imageThumbnail ? this.userdata.imageThumbnail  : "https://i.stack.imgur.com/l60Hf.png";
+    },
   },
   methods: {
     async getThisUserPosts() {
