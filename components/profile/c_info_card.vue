@@ -28,11 +28,6 @@
                   </template>
                   <v-card-title>
                     <div class="text-center">
-                      <!-- <div class="my-2" v-if="entityThumbNail != null">
-                        <v-btn color="warning" fab x-small dark>
-                          <v-icon>mdi-delete-outline</v-icon>
-                        </v-btn>
-                      </div>-->
                       <v-dialog
                         v-model="uploaddialog"
                         persistent
@@ -45,8 +40,9 @@
                             x-small
                             dark
                             v-if="entityThumbNail != null"
+                            @click.stop="deletePatientProfilePic()"
                           >
-                            <v-icon>mdi-delete-outline</v-icon>
+                            <v-icon>mdi-trash-can-outline</v-icon>
                           </v-btn>
                           <v-btn
                             v-else
@@ -86,7 +82,7 @@
                             <v-spacer></v-spacer>
                             <v-btn
                               color="primary"
-                              @click="uploaddialog = false"
+                              @click.stop="uploaddialog = false"
                               x-small
                             >
                               Cancel
@@ -548,7 +544,7 @@ export default {
         .then(response => {
           if (response !== null) {
             this.uploaddialog = false
-           // this.$parent.viewusedata();
+            this.$parent.viewusedata();
           }
         }).catch(error => {
           console.log(error);
@@ -556,8 +552,9 @@ export default {
         });
 
     },
-    async followThisPerson() {
-      return await this.$api.$post(`/follow-user/`, {"id": this.$route.params.id})
+    async deletePatientProfilePic() {
+      console.log(this.userdata.imageThumbnail.split('/').pop());
+      return await this.$api.$delete(`/patients/${this.$route.params.id}/images/${this.userdata.imageThumbnail.split('/').pop()}`)
         .then(response => {
           if (response !== null) {
             this.$parent.viewusedata();
@@ -566,6 +563,7 @@ export default {
           console.log(error);
 
         });
+
     },
     async getThisPersonFollowers() {
       return await this.$api.$get(`users/${this.$route.params.id}/follows/`)
