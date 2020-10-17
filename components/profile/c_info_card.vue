@@ -307,6 +307,33 @@
                             </v-card>
                           </v-tab-item>
                           <v-tab-item>
+                            <v-row justify="end" align="end">
+                              <v-col cols="12" sm="3" md="4">
+                                <v-select
+                                  dense
+                                  solo
+                                  :items="physicians"
+                                  v-model="selectedPhysicianId"
+                                  item-text="firstname"
+                                  item-value="id"
+                                  label="Select Physicians to assign"
+                                  persistent-hint
+                                  return-object
+                                  single-line
+                                  hint="Re/Assign Physicians"
+                                  @change="selectedPhysicianChanged()"
+                                >
+                                  <template slot="selection" slot-scope="data">
+                                    {{ data.item.firstname }},
+                                    {{ data.item.lastname }}
+                                  </template>
+                                  <template slot="item" slot-scope="data">
+                                    {{ data.item.firstname }},
+                                    {{ data.item.lastname }}
+                                  </template>
+                                </v-select>
+                              </v-col>
+                            </v-row>
                             <v-card
                               flat
                               class="ma-3 pa-1"
@@ -488,6 +515,7 @@ export default {
       comments: null,
       followers: null,
       followings: null,
+      selectedPhysicianId: null,
       text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
       emptyIcon: 'mdi-star-outline',
       fullIcon: 'mdi-star',
@@ -504,11 +532,18 @@ export default {
   created() {
     this.address = this.userdata.contactsInformation;
     this.physician = this.userdata.physician;
+
+    this.$store.dispatch("retrievephysicians");
   },
   computed:{
       entityThumbNail: function() {
             return this.userdata.imageThumbnail;
     },
+     physicians: {
+      get() {
+        return this.$store.getters.physicians;
+      }
+    }
   },
   methods: {
 
@@ -521,6 +556,18 @@ export default {
       return await this.$api.$get(`users/${this.$route.params.id}/posts/?type=post`)
         .then(response => {
           this.posts = response;
+        }).catch(error => {
+          console.log(error);
+
+        });
+    },
+    async selectedPhysicianChanged(){
+      console.log(this.selectedPhysicianId);
+      return await this.$api.$put(`patients/${this.$route.params.id}/${this.selectedPhysicianId.id}/`)
+        .then(response => {
+          if (response !== null) {
+             this.$parent.viewusedata();
+          }
         }).catch(error => {
           console.log(error);
 

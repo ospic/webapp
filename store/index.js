@@ -3,6 +3,7 @@ import Vuex from "vuex";
 import SignIn from "./modules/signin";
 import SignUp from "./modules/signup.module";
 import Registry from "./modules/registry";
+import Template from './modules/template'
 
 Vue.use(Vuex);
 const store = () => {
@@ -12,7 +13,7 @@ const store = () => {
     },
     modules: {
       SignIn, SignUp,
-      Registry
+      Registry, Template
     },
     /* plugins: [createPersistedState({
        storage: window.sessionStorage,
