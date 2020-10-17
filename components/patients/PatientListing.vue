@@ -24,7 +24,7 @@
           hide-details
         ></v-text-field
         >&nbsp;&nbsp;
-        <v-dialog v-model="dialog" max-width="500px">
+        <v-dialog v-model="dialog" max-width="900px">
           <template v-slot:activator="{ on, attrs }">
             <v-btn
               color="teal"
@@ -181,13 +181,6 @@ export default {
     formTitle() {
       return this.editedIndex === -1 ? "New Item" : "Edit Item";
     }
-    /*
-    datalist: {
-      get() {
-        return this.$store.getters.patients;
-      }
-    }
-    */
   },
 
   watch: {
@@ -239,12 +232,12 @@ export default {
     handleClick: function(value) {
       console.log(value);
       this.$router.push("/patients/" + value.id);
-    }
-  }
-  /*
+    },
+    initialize() {}
+  },
+
   beforeMount() {
     this.$store.dispatch("retrievepatients");
   }
-  */
 };
 </script>
