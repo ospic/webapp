@@ -137,7 +137,7 @@ export default {
           subtitle: "Lorem ipsum dolor sit de amet.."
         },
         {
-          text: "Patient Registration",
+          text: "Patient Registry",
           icon: "mdi-account-plus-outline",
           route: "patients",
 
