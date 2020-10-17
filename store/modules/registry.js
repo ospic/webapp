@@ -127,6 +127,12 @@ const actions = {
 const getters = {
   patients: function (state) {
     return state.patients.reverse();
+  },
+  assigned: function(state){
+    return state.patients.filter(patient => patient.physician  !== null);
+  },
+  unassigned: function(state) {
+    return state.patients.filter(patient => patient.physician  === null);
   }
 }
 

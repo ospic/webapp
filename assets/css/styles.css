@@ -1,5 +1,5 @@
 body {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
 
 .swal-wide {
@@ -42,13 +42,13 @@ body {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #00897B;
+  background: #00897b;
   border-radius: 10px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #00897B;
+  background: #00897b;
 }
 
 canvas {
@@ -76,5 +76,9 @@ canvas {
           box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   -webkit-transition: 0.3s;
   transition: 0.3s;
+}
+
+.v-tab {
+  text-transform: none !important;
 }
 /*# sourceMappingURL=styles.css.map */

@@ -1,68 +1,70 @@
 body {
-    font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
-.swal-wide{
-    width:50px !important;
+.swal-wide {
+  width: 50px !important;
 }
 #app {
-    font-family: "Lato", sans-serif;
-  }
-  
-  .drawer .item:hover {
-    color: #01242f;
-    margin-left: 2px;
-    background-color: white;
-    border-radius: 20px 0px 0px 20px;
-  }
-  .drawer .item:active {
-    color: #01242f;
-    margin-left: 2px;
-    background-color: white;
-    border-radius: 20px 0px 0px 20px;
-  }
-  .v-progress-circular {
-    margin: 1rem;
-  }
-  
-  /* width */
-  ::-webkit-scrollbar {
-    width: 10px;
-  }
-  
-  /* Track */
-  ::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 5px grey;
-    border-radius: 10px;
-  }
-  
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-    background: #00897B;
-    border-radius: 10px;
-  }
-  
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
-    background: #00897B;
-  }
-canvas{
-  width: 100%;
-   height: 100%;
+  font-family: "Lato", sans-serif;
 }
-.data-card{
+
+.drawer .item:hover {
+  color: #01242f;
+  margin-left: 2px;
+  background-color: white;
+  border-radius: 20px 0px 0px 20px;
+}
+.drawer .item:active {
+  color: #01242f;
+  margin-left: 2px;
+  background-color: white;
+  border-radius: 20px 0px 0px 20px;
+}
+.v-progress-circular {
+  margin: 1rem;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #00897b;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #00897b;
+}
+canvas {
+  width: 100%;
+  height: 100%;
+}
+.data-card {
   position: relative;
   height: 330px;
-  > data-chart{
+  > data-chart {
     height: 100px;
-   #pie-chart canvas{
+    #pie-chart canvas {
       height: 50px;
       width: 50px;
     }
-   }
-
+  }
 }
 .card {
   /* Add shadows to create the "card" effect */
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
+}
+.v-tab {
+  text-transform: none !important;
 }
