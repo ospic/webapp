@@ -1,18 +1,18 @@
 <template>
   <v-container fill-height fluid grid-list-xl>
     <v-layout justify-start wrap>
-      <v-flex xs12 md4 sm12 class="mt-0 ml-0 " style="background-color: white;">
+      <v-flex xs12 md4 sm12 class="mt-0 ml-0 ">
         <v-container py-0>
           <v-layout wrap>
             <v-flex xs12 md12 class="pa-0 ma-0">
-              <v-card class="mx-auto" raised height="480">
+              <v-card class="mx-auto" outlined>
                 <v-img
                   :src="entityThumbNail"
                   lazy-src="https://i.stack.imgur.com/l60Hf.png"
                   aspect-ratio="1"
                   class="grey lighten-2 align-end"
-                  height="400"
-                  max-height="400"
+                  height="200px"
+                  max-height="200px"
                 >
                   <template v-slot:placeholder>
                     <v-row
@@ -27,134 +27,122 @@
                     </v-row>
                   </template>
                   <v-card-title>
-                    <div class="text-center">
-                      <v-dialog
-                        v-model="uploaddialog"
-                        persistent
-                        max-width="600"
-                      >
-                        <template v-slot:activator="{ on, attrs }">
-                          <v-btn
-                            color="warning"
-                            fab
-                            x-small
-                            dark
-                            v-if="entityThumbNail != null"
-                            @click.stop="deletePatientProfilePic()"
-                          >
-                            <v-icon>mdi-trash-can-outline</v-icon>
-                          </v-btn>
-                          <v-btn
-                            v-else
-                            fab
-                            color="primary"
-                            dark
-                            v-bind="attrs"
-                            v-on="on"
-                            x-small
-                          >
-                            <v-icon>mdi-progress-upload</v-icon>
-                          </v-btn>
-                        </template>
-                        <v-card>
-                          <v-card-title class="headline">
-                            Changing {{ userdata.first_name }}&nbsp;{{
+                    <v-list three-line>
+                      <v-list-item>
+                        <v-list-item-avatar>
+                          <v-img :src="entityThumbNail"></v-img>
+                        </v-list-item-avatar>
+
+                        <v-list-item-content>
+                          <v-list-item-title>
+                            {{ userdata.first_name }}&nbsp;{{
                               userdata.last_name
-                            }}
-                            profile picture
-                          </v-card-title>
-                          <v-card-text>
-                            <v-file-input
-                              label="Profile picture"
-                              accept="image/png, image/jpeg, image/bmp"
-                              prepend-icon="mdi-camera"
-                              show-size
-                              @change="selectFile"
+                            }}</v-list-item-title
+                          >
+                          <v-list-item-subtitle
+                            v-if="userdata.contactsInformation"
+                            v-html="userdata.contactsInformation.city"
+                          ></v-list-item-subtitle>
+                          <v-list-item-subtitle
+                            v-else
+                            v-html="userdata.country"
+                          >
+                          </v-list-item-subtitle>
+                        </v-list-item-content>
+
+                        <v-list-item-icon>
+                          <div class="text-center">
+                            <v-dialog
+                              v-model="uploaddialog"
+                              persistent
+                              max-width="600"
                             >
-                              <template v-slot:selection="{ text }">
-                                <v-chip small label color="primary">
-                                  {{ text }}
-                                </v-chip>
+                              <template v-slot:activator="{ on, attrs }">
+                                <v-btn
+                                  color="warning"
+                                  fab
+                                  x-small
+                                  dark
+                                  v-if="entityThumbNail != null"
+                                  @click.stop="deletePatientProfilePic()"
+                                >
+                                  <v-icon>mdi-trash-can-outline</v-icon>
+                                </v-btn>
+                                <v-btn
+                                  v-else
+                                  fab
+                                  color="primary"
+                                  dark
+                                  v-bind="attrs"
+                                  v-on="on"
+                                  x-small
+                                >
+                                  <v-icon>mdi-progress-upload</v-icon>
+                                </v-btn>
                               </template>
-                            </v-file-input>
-                          </v-card-text>
-                          <v-card-actions>
-                            <v-spacer></v-spacer>
-                            <v-btn
-                              color="primary"
-                              @click.stop="uploaddialog = false"
-                              x-small
-                            >
-                              Cancel
-                            </v-btn>
-                            <v-btn
-                              color="warning"
-                              x-small
-                              shaped
-                              @click="uploadPatientImage()"
-                            >
-                              Save
-                            </v-btn>
-                          </v-card-actions>
-                        </v-card>
-                      </v-dialog>
-                    </div>
+                              <v-card>
+                                <v-card-title class="headline">
+                                  Changing {{ userdata.first_name }}&nbsp;{{
+                                    userdata.last_name
+                                  }}
+                                  profile picture
+                                </v-card-title>
+                                <v-card-text>
+                                  <v-file-input
+                                    label="Profile picture"
+                                    accept="image/png, image/jpeg, image/bmp"
+                                    prepend-icon="mdi-camera"
+                                    show-size
+                                    @change="selectFile"
+                                  >
+                                    <template v-slot:selection="{ text }">
+                                      <v-chip small label color="primary">
+                                        {{ text }}
+                                      </v-chip>
+                                    </template>
+                                  </v-file-input>
+                                </v-card-text>
+                                <v-card-actions>
+                                  <v-spacer></v-spacer>
+                                  <v-btn
+                                    color="primary"
+                                    @click.stop="uploaddialog = false"
+                                    x-small
+                                  >
+                                    Cancel
+                                  </v-btn>
+                                  <v-btn
+                                    color="warning"
+                                    x-small
+                                    shaped
+                                    @click="uploadPatientImage()"
+                                  >
+                                    Save
+                                  </v-btn>
+                                </v-card-actions>
+                              </v-card>
+                            </v-dialog>
+                          </div>
+                        </v-list-item-icon>
+                      </v-list-item>
+                    </v-list>
                   </v-card-title>
                 </v-img>
-                <v-card-title>
-                  {{ userdata.first_name }}
-                  <v-icon color="primary" size="20" v-show="true"
-                    >mdi-check-decagram</v-icon
-                  >
-                </v-card-title>
-                <v-card-subtitle>
-                  {{ userdata.role }}
-                </v-card-subtitle>
+                <v-card-text>
+                  <v-flex xs12 md12 class="ma-0 pa-0">
+                    <v-type-divider type="Info"></v-type-divider>
+                  </v-flex>
+                  <v-flex xs12 md12 class="ma-0 pa-0" v-if="address !== null">
+                    <v-address-card :address="address"></v-address-card>
+                  </v-flex>
+                </v-card-text>
               </v-card>
             </v-flex>
-
-            <v-flex xs12 md12 class="ma-0 pa-0">
-              <v-type-divider type="Info"></v-type-divider>
-            </v-flex>
-            <v-flex xs12 md12 class="ma-0 pa-0" v-if="address !== null">
-              <v-address-card :address="address"></v-address-card>
-            </v-flex>
-
-            <!--<v-flex xs12 md12 class="ma-0 pa-0">
-              <v-type-divider type="Work"></v-type-divider>
-            </v-flex>
-
-            <v-flex xs12 md12 class="ma-0 pa-0">
-              <v-address-card :address="address1"></v-address-card>
-            </v-flex>
-            <v-flex xs12 md12 class="ma-0 pa-0">
-              <v-address-card :address="address2"></v-address-card>
-            </v-flex>--
-            <v-flex xs12 md12 class="ma-0 pa-0">
-              <v-type-divider type="Skills"></v-type-divider>
-            </v-flex>
-            <v-flex xs12 md12>
-              <span class="text-caption font-weight-medium ">UI/UX</span>
-            </v-flex>
-            <v-flex xs12 md12>
-              <span class="text-caption font-weight-medium ">Branding</span>
-            </v-flex>
-            <v-flex xs12 md12>
-              <h6 class="text-caption font-weight-medium ">Web - Design</h6>
-            </v-flex>
-            <v-flex xs12 md12>
-              <span class="text-caption font-weight-medium ">Packaging</span>
-            </v-flex>
-            <v-flex xs12 md12>
-              <span class="text-caption font-weight-medium "
-                >Print & Editorial</span
-              >
-            </v-flex>-->
           </v-layout>
         </v-container>
       </v-flex>
-      <v-flex xs12 md8 sm12 class="mt-0 ml-0 primary lighten-2">
-        <v-card flat class="pa-1" tile>
+      <v-flex xs12 md8 sm12 class="mt-0 ml-0 lighten-2">
+        <v-card flat class="pa-0" tile>
           <v-container py-0>
             <v-layout wrap>
               <v-flex xs12 md12>
@@ -167,7 +155,10 @@
                             <v-col>
                               <span class="font-weight-bold text-h5">
                                 {{ userdata.first_name }}&nbsp;
-                                {{ userdata.last_name }}</span
+                                {{ userdata.last_name }}
+                                <v-icon color="primary" size="20" v-show="true"
+                                  >mdi-check-decagram</v-icon
+                                ></span
                               >
                             </v-col>
                             <v-col v-if="userdata.contactsInformation !== null">
@@ -185,60 +176,11 @@
                         </v-list-item-subtitle>
                       </v-list-item-content>
                     </v-list-item>
-                    <v-list-item inactive :ripple="false">
-                      <v-list-item-content>
-                        <v-container fluid>
-                          <v-row no-gutters>
-                            <v-col xs="12" md="3" class="ma-1">
-                              <v-btn
-                                v-if="userdata.is_following_me"
-                                small
-                                rounded
-                                cols="auto"
-                                color="primary"
-                                block
-                                >Following
-                              </v-btn>
-                              <v-btn
-                                v-else
-                                small
-                                rounded
-                                outlined
-                                cols="auto"
-                                color="primary"
-                                block
-                                >Follow
-                              </v-btn>
-                            </v-col>
-                            <v-col sm="12" md="3" class="ma-1">
-                              <v-btn small cols="auto" block>
-                                <v-icon small>mdi-check</v-icon>&nbsp; Contacts
-                              </v-btn>
-                            </v-col>
-                            <v-col sm="12" md="3" class="ma-1">
-                              <v-btn
-                                small
-                                text
-                                outlined
-                                color="primary"
-                                class="font-weight-normal"
-                                cols="auto"
-                                block
-                              >
-                                <v-icon small>mdi-bug</v-icon>&nbsp;Report User
-                              </v-btn>
-                            </v-col>
-                          </v-row>
-                        </v-container>
-                      </v-list-item-content>
-                    </v-list-item>
                     <v-list-item inactive class="ma-0 pa-0" :ripple="false">
                       <v-list-item-content class="ma-0 pa-0">
-                        <v-tabs right grow center-active class="elevation-2">
+                        <v-tabs left grow center-active class="elevation-2">
                           <v-tab class="font-weight-light">
-                            <span
-                              ><v-icon small left>mdi-eye</v-icon>Timeline</span
-                            >
+                            <span><v-icon small left>mdi-eye</v-icon>Bio</span>
                           </v-tab>
                           <v-tab class="font-weight-light">
                             <span
@@ -250,16 +192,14 @@
                             class="font-weight-light"
                             @click.stop="getThisUserPosts()"
                           >
-                            <v-icon small left
-                              >mdi-format-list-bulleted-triangle</v-icon
-                            >
-                            Posts
+                            <v-icon small left>mdi-medical-bag</v-icon>
+                            History
                           </v-tab>
                           <v-tab
                             class="font-weight-light"
                             @click.stop="getThisUserComments()"
                           >
-                            <v-icon small left>mdi-chat</v-icon>
+                            <v-icon small left>mdi-medical-bag</v-icon>
                             Comments
                           </v-tab>
                           <v-tab
