@@ -1,7 +1,7 @@
 <template>
   <v-container fill-height fluid grid-list-xl>
     <v-layout justify-start wrap>
-      <v-flex xs12 md4 sm12 class="mt-0 ml-0 ">
+      <v-flex xs12 md3 sm12 class="mt-0 ml-0 ">
         <v-container py-0>
           <v-layout wrap>
             <v-flex xs12 md12 class="pa-0 ma-0">
@@ -27,7 +27,7 @@
                     </v-row>
                   </template>
                   <v-card-title>
-                    <v-list three-line>
+                    <v-list three-line flat>
                       <v-list-item>
                         <v-list-item-avatar>
                           <v-img :src="entityThumbNail"></v-img>
@@ -35,9 +35,7 @@
 
                         <v-list-item-content>
                           <v-list-item-title>
-                            {{ userdata.first_name }}&nbsp;{{
-                              userdata.last_name
-                            }}</v-list-item-title
+                            {{ userdata.first_name }}</v-list-item-title
                           >
                           <v-list-item-subtitle
                             v-if="userdata.contactsInformation"
@@ -132,6 +130,12 @@
                   <v-flex xs12 md12 class="ma-0 pa-0">
                     <v-type-divider type="Info"></v-type-divider>
                   </v-flex>
+                  <v-flex xs12 md12 class="ma-0 pa-0">
+                    <v-btn x-small rounded>View contacts</v-btn>
+                    <v-btn x-small rounded>
+                      Add contacts
+                    </v-btn>
+                  </v-flex>
                   <v-flex xs12 md12 class="ma-0 pa-0" v-if="address !== null">
                     <v-address-card :address="address"></v-address-card>
                   </v-flex>
@@ -141,284 +145,267 @@
           </v-layout>
         </v-container>
       </v-flex>
-      <v-flex xs12 md8 sm12 class="mt-0 ml-0 lighten-2">
-        <v-card flat class="pa-0" tile>
-          <v-container py-0>
-            <v-layout wrap>
-              <v-flex xs12 md12>
-                <v-list class="ma-0 pa-0">
-                  <v-list-item-group color="primary">
-                    <v-list-item two-line inactive :ripple="false">
-                      <v-list-item-content>
-                        <v-list-item-title>
-                          <v-row>
-                            <v-col>
-                              <span class="font-weight-bold text-h5">
-                                {{ userdata.first_name }}&nbsp;
-                                {{ userdata.last_name }}
-                                <v-icon color="primary" size="20" v-show="true"
-                                  >mdi-check-decagram</v-icon
-                                ></span
-                              >
-                            </v-col>
-                            <v-col v-if="userdata.contactsInformation !== null">
-                              <span class="font-weight-light text-caption"
-                                ><v-icon>mdi-map-marker</v-icon
-                                >{{ userdata.contactsInformation.city }}</span
-                              >
-                            </v-col>
-                          </v-row>
-                        </v-list-item-title>
-                        <v-list-item-subtitle
-                          class="primary--text text-caption font-weight-medium"
+      <v-flex xs12 md9 sm12 class="ma-0 pa-0 lighten-2">
+        <v-card outlined flat class="pa-0">
+          <v-list class="ma-0 pa-0">
+            <v-list-item-group color="primary">
+              <v-list-item two-line inactive :ripple="false">
+                <v-list-item-content>
+                  <v-list-item-title>
+                    <v-row>
+                      <v-col>
+                        <span class="font-weight-bold text-h5">
+                          {{ userdata.first_name }}&nbsp;
+                          {{ userdata.last_name }}
+                          <v-icon color="primary" size="20" v-show="true"
+                            >mdi-check-decagram</v-icon
+                          ></span
                         >
-                          {{ userdata.role }}
-                        </v-list-item-subtitle>
-                      </v-list-item-content>
-                    </v-list-item>
-                    <v-list-item inactive class="ma-0 pa-0" :ripple="false">
-                      <v-list-item-content class="ma-0 pa-0">
-                        <v-tabs left grow center-active class="elevation-2">
-                          <v-tab class="font-weight-light">
-                            <span><v-icon small left>mdi-eye</v-icon>Bio</span>
-                          </v-tab>
-                          <v-tab class="font-weight-light">
-                            <span
-                              ><v-icon small left>mdi-account</v-icon
-                              >Doctor</span
-                            >
-                          </v-tab>
-                          <v-tab
-                            class="font-weight-light"
-                            @click.stop="getThisUserPosts()"
-                          >
-                            <v-icon small left>mdi-medical-bag</v-icon>
-                            History
-                          </v-tab>
-                          <v-tab
-                            class="font-weight-light"
-                            @click.stop="getThisUserComments()"
-                          >
-                            <v-icon small left>mdi-medical-bag</v-icon>
-                            Comments
-                          </v-tab>
-                          <v-tab
-                            class="font-weight-light"
-                            @click.stop="getThisPersonFollowers"
-                          >
-                            <v-icon small left
-                              >mdi-format-list-bulleted-triangle</v-icon
-                            >
-                            Followers
-                          </v-tab>
-                          <v-tab
-                            class="font-weight-light"
-                            @click.stop="getThisPersonFollowings()"
-                          >
-                            <v-icon small left>mdi-chat</v-icon>
-                            Followings
-                          </v-tab>
+                      </v-col>
+                      <v-col v-if="userdata.contactsInformation !== null">
+                        <span class="font-weight-light text-caption"
+                          ><v-icon>mdi-map-marker</v-icon
+                          >{{ userdata.contactsInformation.city }}</span
+                        >
+                      </v-col>
+                    </v-row>
+                  </v-list-item-title>
+                  <v-list-item-subtitle
+                    class="primary--text text-caption font-weight-medium"
+                  >
+                    {{ userdata.role }}
+                  </v-list-item-subtitle>
+                </v-list-item-content>
+              </v-list-item>
+              <v-list-item inactive class="ma-0 pa-0" :ripple="false">
+                <v-list-item-content class="ma-0 pa-0">
+                  <v-tabs left grow center-active class="elevation-2">
+                    <v-tab class="font-weight-light">
+                      <span><v-icon small left>mdi-eye</v-icon>Bio</span>
+                    </v-tab>
+                    <v-tab class="font-weight-light">
+                      <span><v-icon small left>mdi-account</v-icon>Doctor</span>
+                    </v-tab>
+                    <v-tab
+                      class="font-weight-light"
+                      @click.stop="getThisUserPosts()"
+                    >
+                      <v-icon small left>mdi-medical-bag</v-icon>
+                      History
+                    </v-tab>
+                    <v-tab
+                      class="font-weight-light"
+                      @click.stop="getThisUserComments()"
+                    >
+                      <v-icon small left>mdi-medical-bag</v-icon>
+                      Comments
+                    </v-tab>
+                    <v-tab
+                      class="font-weight-light"
+                      @click.stop="getThisPersonFollowers"
+                    >
+                      <v-icon small left
+                        >mdi-format-list-bulleted-triangle</v-icon
+                      >
+                      Followers
+                    </v-tab>
+                    <v-tab
+                      class="font-weight-light"
+                      @click.stop="getThisPersonFollowings()"
+                    >
+                      <v-icon small left>mdi-chat</v-icon>
+                      Followings
+                    </v-tab>
 
-                          <v-tab-item>
-                            <v-card flat>
-                              <v-card-text>
-                                <p>
-                                  Sed aliquam ultrices mauris. Donec posuere
-                                  vulputate arcu. Morbi ac felis. Etiam feugiat
-                                  lorem non metus. Sed a libero.
-                                </p>
+                    <v-tab-item>
+                      <v-card flat>
+                        <v-card-text>
+                          <p>
+                            Sed aliquam ultrices mauris. Donec posuere vulputate
+                            arcu. Morbi ac felis. Etiam feugiat lorem non metus.
+                            Sed a libero.
+                          </p>
 
-                                <p>
-                                  Nam ipsum risus, rutrum vitae, vestibulum eu,
-                                  molestie vel, lacus. Aenean tellus metus,
-                                  bibendum sed, posuere ac, mattis non, nunc.
-                                  Aliquam lobortis. Aliquam lobortis.
-                                  Suspendisse non nisl sit amet velit hendrerit
-                                  rutrum.
-                                </p>
+                          <p>
+                            Nam ipsum risus, rutrum vitae, vestibulum eu,
+                            molestie vel, lacus. Aenean tellus metus, bibendum
+                            sed, posuere ac, mattis non, nunc. Aliquam lobortis.
+                            Aliquam lobortis. Suspendisse non nisl sit amet
+                            velit hendrerit rutrum.
+                          </p>
 
-                                <p class="mb-0">
-                                  Phasellus dolor. Fusce neque. Fusce fermentum
-                                  odio nec arcu. Pellentesque libero tortor,
-                                  tincidunt et, tincidunt eget, semper nec,
-                                  quam. Phasellus blandit leo ut odio.
-                                </p>
-                              </v-card-text>
-                            </v-card>
-                          </v-tab-item>
-                          <v-tab-item>
-                            <v-row justify="end" align="end">
-                              <v-col cols="12" sm="3" md="4">
-                                <v-select
-                                  dense
-                                  solo
-                                  :items="physicians"
-                                  v-model="selectedPhysicianId"
-                                  item-text="firstname"
-                                  item-value="id"
-                                  label="Select Physicians to assign"
-                                  persistent-hint
-                                  return-object
-                                  single-line
-                                  hint="Re/Assign Physicians"
-                                  @change="selectedPhysicianChanged()"
-                                >
-                                  <template slot="selection" slot-scope="data">
-                                    {{ data.item.firstname }},
-                                    {{ data.item.lastname }}
-                                  </template>
-                                  <template slot="item" slot-scope="data">
-                                    {{ data.item.firstname }},
-                                    {{ data.item.lastname }}
-                                  </template>
-                                </v-select>
-                              </v-col>
-                            </v-row>
-                            <v-card
-                              flat
-                              class="ma-3 pa-1"
-                              v-if="physician !== null"
-                            >
-                              <template>
-                                <v-card class="mx-auto" max-width="434" tile>
+                          <p class="mb-0">
+                            Phasellus dolor. Fusce neque. Fusce fermentum odio
+                            nec arcu. Pellentesque libero tortor, tincidunt et,
+                            tincidunt eget, semper nec, quam. Phasellus blandit
+                            leo ut odio.
+                          </p>
+                        </v-card-text>
+                      </v-card>
+                    </v-tab-item>
+                    <v-tab-item>
+                      <v-row justify="start" align="start">
+                        <v-col cols="12" md="8" v-if="physician !== null">
+                          <v-card class="mx-auto ml-2" outlined>
+                            <v-list three-line>
+                              <v-list-item>
+                                <v-list-item-avatar width="80" height="80">
                                   <v-img
-                                    height="200"
-                                    src="https://wi.wallpapertip.com/wsimgs/11-119918_background-for-hospital-website.png"
+                                    max-height="150"
+                                    max-width="250"
+                                    src="https://www.nicepng.com/png/detail/26-260551_femscare-benifits-doctor-image-png-hd.png"
                                   ></v-img>
-                                  <v-col>
-                                    <v-avatar
-                                      size="100"
-                                      style="position:absolute; top: 130px"
-                                    >
-                                      <v-img
-                                        src="https://images.theconversation.com/files/304957/original/file-20191203-66986-im7o5.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&h=1200.0&fit=crop"
-                                      ></v-img>
-                                    </v-avatar>
-                                  </v-col>
-                                  <v-list-item
-                                    color="rgba(0, 0, 0, .4)"
-                                    v-if="physician !== null"
-                                  >
-                                    <v-list-item-content>
-                                      <v-list-item-title class="title"
-                                        >{{ physician.firstname }} &nbsp;{{
-                                          physician.lastname
-                                        }}</v-list-item-title
-                                      >
-                                      <v-list-item-subtitle
-                                        >Medical Doctor</v-list-item-subtitle
-                                      >
-                                    </v-list-item-content>
-                                  </v-list-item>
-                                </v-card>
-                              </template>
-                            </v-card>
-                          </v-tab-item>
-                          <v-tab-item>
-                            <v-row>
-                              <v-col align="center" v-if="posts === null">
-                                <v-progress-circular
-                                  :width="2"
-                                  color="primary"
-                                  size="20"
-                                  indeterminate
-                                ></v-progress-circular>
-                              </v-col>
-                              <v-col
-                                v-else-if="posts.results.length !== 0"
-                                cols="12"
-                                lg="6"
-                                md="6"
-                                sm="12"
-                                wrap
-                                v-for="(post, index) in posts.results"
+                                </v-list-item-avatar>
+
+                                <v-list-item-content>
+                                  <v-list-item-title class="title">
+                                    {{ physician.firstname }} &nbsp;{{
+                                      physician.lastname
+                                    }}
+                                  </v-list-item-title>
+                                  <v-list-item-subtitle>{{
+                                    physician.specialities
+                                  }}</v-list-item-subtitle>
+                                </v-list-item-content>
+                              </v-list-item>
+                            </v-list>
+                          </v-card>
+                        </v-col>
+                        <v-col cols="12" sm="3" md="4">
+                          <v-select
+                            dense
+                            solo
+                            :items="physicians"
+                            v-model="selectedPhysicianId"
+                            item-text="firstname"
+                            item-value="id"
+                            label="Select Physicians to assign"
+                            persistent-hint
+                            return-object
+                            single-line
+                            hint="Re/Assign Physicians"
+                            @change="selectedPhysicianChanged()"
+                          >
+                            <template slot="selection" slot-scope="data">
+                              {{ data.item.firstname }},
+                              {{ data.item.lastname }}
+                            </template>
+                            <template slot="item" slot-scope="data">
+                              {{ data.item.firstname }},
+                              {{ data.item.lastname }}
+                            </template>
+                          </v-select>
+                        </v-col>
+                      </v-row>
+                    </v-tab-item>
+                    <v-tab-item>
+                      <v-row>
+                        <v-col align="center" v-if="diagnoses === null">
+                          <v-progress-circular
+                            :width="2"
+                            color="primary"
+                            size="20"
+                            indeterminate
+                          ></v-progress-circular>
+                        </v-col>
+                        <v-col v-else-if="diagnoses.length !== 0">
+                          <v-timeline reverse dense class="ml-1 pl-1">
+                            <v-slide-x-reverse-transition group hide-on-leave>
+                              <v-timeline-item
+                                v-for="(diagnose, index) in diagnoses"
                                 :key="index"
+                                large
                               >
-                                <post-card :post="post"></post-card>
-                              </v-col>
-                              <p v-else></p>
-                            </v-row>
-                          </v-tab-item>
-                          <v-tab-item>
-                            <v-row>
-                              <v-col align="center" v-if="comments === null">
-                                <v-progress-circular
-                                  :width="2"
-                                  color="primary"
-                                  size="20"
-                                  indeterminate
-                                ></v-progress-circular>
-                              </v-col>
-                              <v-col
-                                v-else-if="comments.results.length !== 0"
-                                cols="12"
-                                lg="6"
-                                md="6"
-                                sm="12"
-                                wrap
-                                v-for="(comment, index) in comments.results"
-                                :key="index"
-                              >
-                                <post-card :post="comment"></post-card>
-                              </v-col>
-                              <p v-else></p>
-                            </v-row>
-                          </v-tab-item>
-                          <v-tab-item>
-                            <v-row>
-                              <v-col align="center" v-if="followers === null">
-                                <v-progress-circular
-                                  :width="2"
-                                  color="primary"
-                                  size="20"
-                                  indeterminate
-                                ></v-progress-circular>
-                              </v-col>
-                              <v-col
-                                v-else-if="followers.results.length !== 0"
-                                cols="12"
-                                lg="6"
-                                md="6"
-                                sm="12"
-                                wrap
-                                v-for="(follower, index) in followers.results"
-                                :key="index"
-                              >
-                                <v-follows :follow="follower"></v-follows>
-                              </v-col>
-                              <p v-else></p>
-                            </v-row>
-                          </v-tab-item>
-                          <v-tab-item>
-                            <v-row>
-                              <v-col align="center" v-if="followings === null">
-                                <v-progress-circular
-                                  :width="2"
-                                  color="primary"
-                                  size="20"
-                                  indeterminate
-                                ></v-progress-circular>
-                              </v-col>
-                              <v-col
-                                v-else-if="followings.results.length !== 0"
-                                sm="12"
-                                wrap
-                                v-for="(follow, index) in followings.results"
-                                :key="index"
-                              >
-                                <v-follows :follow="follow"></v-follows>
-                              </v-col>
-                              <p v-else></p>
-                            </v-row>
-                          </v-tab-item>
-                        </v-tabs>
-                      </v-list-item-content>
-                    </v-list-item>
-                  </v-list-item-group>
-                </v-list>
-              </v-flex>
-            </v-layout>
-          </v-container>
+                                <template v-slot:icon>
+                                  <v-avatar>
+                                    <img :src="entityThumbNail" alt="" />
+                                  </v-avatar>
+                                </template>
+                                <post-card :post="diagnose"></post-card>
+                              </v-timeline-item>
+                            </v-slide-x-reverse-transition>
+                          </v-timeline>
+                        </v-col>
+                        <p v-else></p>
+                      </v-row>
+                    </v-tab-item>
+                    <v-tab-item>
+                      <v-row>
+                        <v-col align="center" v-if="comments === null">
+                          <v-progress-circular
+                            :width="2"
+                            color="primary"
+                            size="20"
+                            indeterminate
+                          ></v-progress-circular>
+                        </v-col>
+                        <v-col
+                          v-else-if="comments.results.length !== 0"
+                          cols="12"
+                          lg="6"
+                          md="6"
+                          sm="12"
+                          wrap
+                          v-for="(comment, index) in comments.results"
+                          :key="index"
+                        >
+                          <post-card :post="comment"></post-card>
+                        </v-col>
+                        <p v-else></p>
+                      </v-row>
+                    </v-tab-item>
+                    <v-tab-item>
+                      <v-row>
+                        <v-col align="center" v-if="followers === null">
+                          <v-progress-circular
+                            :width="2"
+                            color="primary"
+                            size="20"
+                            indeterminate
+                          ></v-progress-circular>
+                        </v-col>
+                        <v-col
+                          v-else-if="followers.results.length !== 0"
+                          cols="12"
+                          lg="6"
+                          md="6"
+                          sm="12"
+                          wrap
+                          v-for="(follower, index) in followers.results"
+                          :key="index"
+                        >
+                          <v-follows :follow="follower"></v-follows>
+                        </v-col>
+                        <p v-else></p>
+                      </v-row>
+                    </v-tab-item>
+                    <v-tab-item>
+                      <v-row>
+                        <v-col align="center" v-if="followings === null">
+                          <v-progress-circular
+                            :width="2"
+                            color="primary"
+                            size="20"
+                            indeterminate
+                          ></v-progress-circular>
+                        </v-col>
+                        <v-col
+                          v-else-if="followings.results.length !== 0"
+                          sm="12"
+                          wrap
+                          v-for="(follow, index) in followings.results"
+                          :key="index"
+                        >
+                          <v-follows :follow="follow"></v-follows>
+                        </v-col>
+                        <p v-else></p>
+                      </v-row>
+                    </v-tab-item>
+                  </v-tabs>
+                </v-list-item-content>
+              </v-list-item>
+            </v-list-item-group>
+          </v-list>
         </v-card>
       </v-flex>
     </v-layout>
@@ -427,7 +414,7 @@
 <script lang="js">
 import c_type_divider from "@/components/profile/c_type_divider";
 import c_address_card from "@/components/profile/c_address_card";
-import postCard from "@/components/posts/p_post_card"
+import medicalInfoCard from "@/components/medical/medical_info_card"
 import c_follows from "@/components/follows/c_follows";
 
 export default {
@@ -438,7 +425,7 @@ export default {
     }
     },
   components: {
-    'post-card': postCard,
+    'post-card': medicalInfoCard,
     'v-type-divider': c_type_divider,
     'v-address-card': c_address_card,
     'v-follows': c_follows
@@ -462,6 +449,8 @@ export default {
       halfIcon: 'mdi-star-half-full',
       address: null,
       physician:null,
+      diagnoses: null,
+
       rules: [
         value => !value || value.size < 500 || 'Avatar size should be less than 500 KB!',
       ],
@@ -472,7 +461,7 @@ export default {
   created() {
     this.address = this.userdata.contactsInformation;
     this.physician = this.userdata.physician;
-
+    this.diagnoses = this.userdata.diagnoses;
     this.$store.dispatch("retrievephysicians");
   },
   computed:{

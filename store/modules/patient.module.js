@@ -133,6 +133,9 @@ const getters = {
   },
   unassigned: function(state) {
     return state.patients.filter(patient => patient.physician  === null);
+  },
+  patient: (state) => (id) => {
+    return state.patients.find(patient => patient.id === id )
   }
 }
 

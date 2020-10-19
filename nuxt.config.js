@@ -39,6 +39,7 @@ export default {
     '~/plugins/route',
     '~/plugins/pwa.client.js',
     '~/plugins/vue-apexcharts.js',
+    '~/plugins/vuelidate.js',
     '~/mixins/label_mixins.js',
     { src: '~plugins/ga.js', mode: 'client'},
     /*
