@@ -131,10 +131,30 @@
                     <v-type-divider type="Info"></v-type-divider>
                   </v-flex>
                   <v-flex xs12 md12 class="ma-0 pa-0">
-                    <v-btn x-small rounded>View contacts</v-btn>
-                    <v-btn x-small rounded>
+                    <v-btn
+                      x-small
+                      rounded
+                      color="primary"
+                      v-if="address"
+                      :to="`/patients/${userdata.id}/contacts/`"
+                      >View contacts</v-btn
+                    >
+                    <v-btn
+                      x-small
+                      rounded
+                      color="primary"
+                      v-else
+                      :to="`/patients/${userdata.id}/contacts/add`"
+                    >
                       Add contacts
                     </v-btn>
+                    <v-btn
+                      :to="`/patients/${userdata.id}/contacts/edit`"
+                      x-small
+                      rounded
+                      v-if="address"
+                      >Edit Contacts</v-btn
+                    >
                   </v-flex>
                   <v-flex xs12 md12 class="ma-0 pa-0" v-if="address !== null">
                     <v-address-card :address="address"></v-address-card>
