@@ -1,81 +1,95 @@
 <template>
-  <v-card>
-    <v-card-title> </v-card-title>
+  <v-card class="mx-auto" outlined>
+    <v-card-title> Add contact</v-card-title>
+    <v-divider></v-divider>
     <v-card-text>
-      <form>
+      <form ref="form" @submit.prevent="submit" method="put">
         <v-row no-gutters>
           <v-col cols="12" sm="12" md="4" class="pa-2">
             <v-text-field
+              dense
               outlined
-              v-model="state"
-              :error-messages="nameErrors"
+              v-model="formData.state"
               :counter="10"
               label="State/Country"
               required
-              @input="$v.name.$touch()"
-              @blur="$v.name.$touch()"
             ></v-text-field>
           </v-col>
           <v-col cols="12" sm="12" md="4" class="pa-2">
             <v-text-field
+              dense
               outlined
-              v-model="city"
-              :error-messages="nameErrors"
+              v-model="formData.city"
               :counter="10"
               label="City"
               required
-              @input="$v.name.$touch()"
-              @blur="$v.name.$touch()"
             ></v-text-field>
           </v-col>
           <v-col cols="12" sm="12" md="4" class="pa-2">
             <v-text-field
+              dense
               outlined
-              v-model="zipcode"
-              :error-messages="nameErrors"
+              v-model="formData.zipcode"
               :counter="10"
               label="Zip Code"
               required
-              @input="$v.zipcode.$touch()"
-              @blur="$v.zipcode.$touch()"
             ></v-text-field>
           </v-col>
 
           <v-col cols="12" sm="12" md="4" class="pa-2">
             <v-text-field
+              dense
               outlined
-              v-model="email"
-              :error-messages="emailErrors"
+              v-model="formData.email_address"
               label="E-mail"
               required
-              @input="$v.email.$touch()"
-              @blur="$v.email.$touch()"
             ></v-text-field>
           </v-col>
 
           <v-col cols="12" sm="12" md="4" class="pa-2">
             <v-text-field
               outlined
-              v-model="home_phone"
-              :error-messages="phoneErrors"
-              label="Home Mobile"
+              dense
+              v-model="formData.physical_address"
+              label="Physical Address"
+              hint="E.g Mbamba Bay "
+              required
             ></v-text-field>
           </v-col>
-          <v-checkbox
-            v-model="checkbox"
-            :error-messages="checkboxErrors"
-            label="Do you agree?"
-            required
-            @change="$v.checkbox.$touch()"
-            @blur="$v.checkbox.$touch()"
-          ></v-checkbox>
 
-          <v-btn class="mr-4" @click="submit">
-            submit
-          </v-btn>
-          <v-btn @click="clear">
-            clear
-          </v-btn>
+          <v-col cols="12" sm="12" md="4" class="pa-2">
+            <v-text-field
+              outlined
+              dense
+              v-model="formData.home_phone"
+              label="Desk phone"
+            ></v-text-field>
+          </v-col>
+          <v-col cols="12" sm="12" md="4" class="pa-2">
+            <v-text-field
+              outlined
+              dense
+              v-model="formData.work_phone"
+              label="Mobile Phone"
+            ></v-text-field>
+          </v-col>
+
+          <v-col cols="12" sm="12" md="4" class="pa-2">
+            <v-checkbox
+              v-model="formData.isReachable"
+              label="Is reachable?"
+              required
+            ></v-checkbox>
+          </v-col>
+
+          <v-col cols="12" sm="12" md="4" class="pa-2">
+            <v-btn class="mr-4" @click="submit">
+              submit
+            </v-btn>
+            <v-btn @click="clear">
+              clear
+            </v-btn>
+          </v-col>
         </v-row>
       </form>
     </v-card-text>
@@ -102,6 +116,15 @@ export default {
   data: () => ({
     name: "",
     email: "",
+    city: "",
+    formData: {
+      isReachable: false,
+      home_phone: "",
+      work_phone: "",
+      physical_address: "",
+      zipcode: "",
+      state: ""
+    },
     select: null,
     items: ["Item 1", "Item 2", "Item 3", "Item 4"],
     checkbox: false
@@ -134,12 +157,18 @@ export default {
       !this.$v.email.email && errors.push("Must be valid e-mail");
       !this.$v.email.required && errors.push("E-mail is required");
       return errors;
-    }
+    },
+    phoneErrors() {}
   },
 
   methods: {
     submit() {
-      this.$v.$touch();
+      console.log(this.formData);
+      this.$store.dispatch(
+        "update_patient_add_contacts",
+
+        this.formData
+      );
     },
     clear() {
       this.$v.$reset();

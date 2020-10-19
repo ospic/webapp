@@ -5,6 +5,7 @@ import SignUp from "./modules/signup.module";
 import Registry from "./modules/patient.module";
 import Template from './modules/template';
 import DocumentsModules from "./modules/documents.module";
+import ContactsModules from "./modules/contact.module"
 
 Vue.use(Vuex);
 const store = () => {
@@ -15,7 +16,7 @@ const store = () => {
     modules: {
       SignIn, SignUp,
       Registry, Template,
-      DocumentsModules
+      DocumentsModules,ContactsModules
     },
     /* plugins: [createPersistedState({
        storage: window.sessionStorage,

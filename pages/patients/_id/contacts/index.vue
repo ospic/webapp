@@ -1,5 +1,5 @@
 <template>
-  <v-card> </v-card>
+  <v-card> View</v-card>
 </template>
 <script>
 export default {
