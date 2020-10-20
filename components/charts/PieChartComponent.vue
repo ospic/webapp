@@ -47,12 +47,13 @@ export default {
         dataLabels:{
           enabled: true,
           dropShadow: {
-                blur: 3,
-                opacity: 0.8
+                blur: 0,
+                opacity: 0.0
               }
         },
         fill:{
-          type: 'gradient'
+          colors: ['#00897B', '#ED1C23'],
+          type: 'solid'
         },
         plotOptions:{
           pie:{
@@ -73,6 +74,9 @@ export default {
         legend: {
           position: "bottom",
           show: true,
+           markers:{
+            fillColors: ['#00897B', '#ED1C23']
+          },
         },
 
           title: {

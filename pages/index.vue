@@ -11,10 +11,10 @@
       <v-col v-for="(item, i) in trend_items" :key="i" cols="12" sm="6" md="3">
         <v-card>
           <v-card-text v-if="i % 2 === 0">
-            <pie-chart :data="item" :height="255"></pie-chart>
+            <pie-chart :data="item" :height="305"></pie-chart>
           </v-card-text>
           <v-card-text v-if="i % 2 !== 0">
-            <donutchart :data="item" :height="250"></donutchart>
+            <donutchart :data="item" :height="300"></donutchart>
           </v-card-text>
         </v-card>
       </v-col>
