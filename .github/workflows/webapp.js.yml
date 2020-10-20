@@ -5,19 +5,18 @@ name: Auto Assign to Project(s)
 
 on:
   push:
-    branches: [ master ]
+    branches: [master]
   pull_request:
-    branches: [ opened, labeled, master ]
+    branches: [opened, labeled, master]
   issues:
     types: [opened, labeled]
   #pull_request:
-   # types: [opened, labeled]
+  # types: [opened, labeled]
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUBTOKEN }}
   MY_GITHUB_TOKEN: ${{ secrets.GITHUBTOKEN }}
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     strategy:
@@ -25,46 +24,45 @@ jobs:
         node-version: [10.x, 12.x, 14.x]
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-    - run: npm i
-    - run: npm run build --if-present
-    - run: npm test
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: npm cache clean
+      - run: npm i --save
+      - run: npm run build --if-present
+      - run: npm test
 
   assign_one_project:
-
     runs-on: ubuntu-latest
     name: Assign to One Project
     steps:
-    - name: Assign NEW issues and NEW pull requests to CHILD project
-      uses: srggrs/assign-one-project-github-action@1.2.0
-      if: github.event.action == 'opened'
-      with:
-        project: 'https://github.com/ospic/webapp/projects/1'
+      - name: Assign NEW issues and NEW pull requests to CHILD project
+        uses: srggrs/assign-one-project-github-action@1.2.0
+        if: github.event.action == 'opened'
+        with:
+          project: "https://github.com/ospic/webapp/projects/1"
 
-    - name: Assign issues and pull requests with `enhancement` label to CHILD project
-      uses: srggrs/assign-one-project-github-action@1.2.0
-      if: |
-        contains(github.event.issue.labels.*.name, 'enhancement') ||
-        contains(github.event.pull_request.labels.*.name, 'enhancement')
-      with:
-        project: 'https://github.com/ospic/webapp/projects/1'
-        column_name: 'To do'
-    - name: Assign NEW issues and NEW pull requests to HEADER project
-      uses: srggrs/assign-one-project-github-action@1.2.0
-      if: github.event.action == 'opened'
-      with:
-        project: 'https://github.com/orgs/ospic/projects/1'
+      - name: Assign issues and pull requests with `enhancement` label to CHILD project
+        uses: srggrs/assign-one-project-github-action@1.2.0
+        if: |
+          contains(github.event.issue.labels.*.name, 'enhancement') ||
+          contains(github.event.pull_request.labels.*.name, 'enhancement')
+        with:
+          project: "https://github.com/ospic/webapp/projects/1"
+          column_name: "To do"
+      - name: Assign NEW issues and NEW pull requests to HEADER project
+        uses: srggrs/assign-one-project-github-action@1.2.0
+        if: github.event.action == 'opened'
+        with:
+          project: "https://github.com/orgs/ospic/projects/1"
 
-    - name: Assign issues and pull requests with `enhancement` label to HEADER project
-      uses: srggrs/assign-one-project-github-action@1.2.0
-      if: |
-        contains(github.event.issue.labels.*.name, 'enhancement') ||
-        contains(github.event.pull_request.labels.*.name, 'enhancement')
-      with:
-        project: 'https://github.com/orgs/ospic/projects/1'
-        column_name: 'To do' 
-
+      - name: Assign issues and pull requests with `enhancement` label to HEADER project
+        uses: srggrs/assign-one-project-github-action@1.2.0
+        if: |
+          contains(github.event.issue.labels.*.name, 'enhancement') ||
+          contains(github.event.pull_request.labels.*.name, 'enhancement')
+        with:
+          project: "https://github.com/orgs/ospic/projects/1"
+          column_name: "To do"
