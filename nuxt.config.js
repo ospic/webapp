@@ -2,7 +2,7 @@ import colors from 'vuetify/es5/util/colors'
 
 export default {
   // Disable server-side rendering (https://go.nuxtjs.dev/ssr-mode)
-  target: 'static',
+  //target: 'static',
   ssr: false,
   router: {
     base: process.env.NODE_ENV === "production" ? "/webapp/" : "/",
@@ -41,7 +41,7 @@ export default {
     '~/plugins/pwa.client.js',
     '~/plugins/vue-apexcharts.js',
     '~/mixins/label_mixins.js',
-    { src: '~plugins/ga.js', mode: 'client'},
+    { src: '~plugins/ga.js', mode: 'client' },
     /*
     { src: '~/plugins/localStorage.js', ssr: false }
     */
