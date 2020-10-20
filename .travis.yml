@@ -7,8 +7,6 @@ cache:
     - "node_modules"
 
 install:
-  - npm uninstall fibers
-  - npm install fibers
   - npm install
   - npm run build
 
