@@ -2,7 +2,17 @@
 
 ## Demo server
 
-https://hmis.netlify.app/
+Hosts
+
+- Netlify: https://hmis.netlify.app/
+- Github pages: https://ospic.github.io/webapp/
+
+Credentials:
+
+- Username: `demo`
+- Password: `password`
+
+---
 
 ## Build Setup
 
@@ -22,3 +32,10 @@ $ npm run generate
 ```
 
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+
+---
+
+## Contribution Guidlines:
+
+- Fork this repository
+- Create PR
