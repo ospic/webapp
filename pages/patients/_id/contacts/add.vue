@@ -164,10 +164,15 @@ export default {
   methods: {
     submit() {
       console.log(this.formData);
+      var object = {};
+      formData.forEach(function(value, key) {
+        object[key] = value;
+      });
+      var json = JSON.stringify(object);
       this.$store.dispatch(
         "update_patient_add_contacts",
 
-        this.formData
+        json
       );
     },
     clear() {
