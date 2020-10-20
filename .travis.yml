@@ -8,7 +8,7 @@ cache:
 
 install:
   - npm install
-  - npm run build
+  - npm run generate
 
 script:
   - echo "Skipping tests"
