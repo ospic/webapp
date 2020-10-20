@@ -42,14 +42,7 @@ export default {
             speed: 350
             }
           },
-          dropShadow:{
-            enabled: true,
-            color: '#111',
-            top: -1,
-            left: 3,
-            blur: 3,
-            opacity: 0.2
-          }
+
         },
         stroke:{
           width: 0
@@ -62,7 +55,8 @@ export default {
           }
         },
          fill:{
-          type: 'gradient'
+          type: 'solid',
+          colors: ['#00897B', '#ED1C23'],
         },
          plotOptions:{
           pie:{
@@ -80,9 +74,12 @@ export default {
 
           }
         },
-          legend: {
+        legend: {
           position: "bottom",
           show: true,
+          markers:{
+            fillColors: ['#00897B', '#ED1C23']
+          },
           },
           title: {
               text: this.data.title,
