@@ -29,7 +29,7 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - run: npm cache clean
+      - run: npm cache verify
       - run: npm i --save
       - run: npm run build --if-present
       - run: npm test
