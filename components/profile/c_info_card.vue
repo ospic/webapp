@@ -515,7 +515,7 @@ export default {
       return await this.$api.$put(`patients/${this.$route.params.id}/${this.selectedPhysicianId.id}/`)
         .then(response => {
           if (response !== null) {
-             this.$parent.viewusedata();
+             this.$router.push("/patients/" + this.$route.params.id);
           }
         }).catch(error => {
           console.log(error);
