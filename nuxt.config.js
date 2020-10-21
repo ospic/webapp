@@ -16,12 +16,19 @@ export default {
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
     titleTemplate: 'Ospic',
-    title: 'Ospic HMS',
+    title: 'Ospic-HMS',
     meta: [
       { charset: 'utf-8' },
+      /**Chrome, Firefox OS and Opera **/
+      { name: "theme-color", content: "#00897B" },
+      /**Windows phone **/
+      { name: "msapplication-navbutton-color", content: "#00897B" },
+      /**iOS Safari**/
+      { name: "apple-mobile-web-app-status-bar-style", content: "#00897B" },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'Open source Hospital Management System' }
-   
+      { hid: 'description', name: 'description', content: 'Open source Hospital Management System' },
+      { hid: 'og:image', property: 'og:image', content: "@/static/logo.png" || '' }
+
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
