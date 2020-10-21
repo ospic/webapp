@@ -27,7 +27,7 @@ export default {
       { name: "apple-mobile-web-app-status-bar-style", content: "#00897B" },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: 'Open source Hospital Management System' },
-      { hid: 'og:image', property: 'og:image', content: "@/static/logo.png" || '' }
+      { hid: 'og:image', property: 'og:image', content: "https://hmis.netlify.app/logo.png" || '' }
 
     ],
     link: [
