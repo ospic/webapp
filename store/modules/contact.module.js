@@ -23,10 +23,10 @@ const mutations = {
 
 }
 const actions = {
- 
+
   async update_patient_add_contacts({ commit }, id, payload) {
     commit(mutation.UPDATE_PATIENT_ADD_CONTACT);
-    await this.$api.$put(`contacts/6/`, payload)
+    await this.$api.$patch(`contacts/${id}/`, payload)
       .then(response => {
         console.log(response);
         commit(mutation.UPDATE_PATIENT_ADD_CONTACT_SUCCESS, response);
