@@ -1,5 +1,4 @@
-import colors from 'vuetify/es5/util/colors'
-import ogImage from '@/static/logo.png';
+import colors from 'vuetify/es5/util/colors';
 
 export default {
   // Disable server-side rendering (https://go.nuxtjs.dev/ssr-mode)
@@ -21,8 +20,7 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-     // { hid: 'description', name: 'description', content: 'Open source Hospital Management System' },
-      { hid: 'og:image', property: 'og:image', content:  ogImage }
+      { hid: 'description', name: 'description', content: 'Open source Hospital Management System' }
    
     ],
     link: [
