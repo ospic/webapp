@@ -40,16 +40,18 @@
       </v-list>
     </v-navigation-drawer>
     <v-app-bar flat clipped-left fixed app dense short color="whitish">
-      <v-img
+      <img
         @click="toggledrawer"
         class="mx-2"
-        src="https://i.imgur.com/qgGY4tB.png"
-        max-height="40"
+        src="@/assets/images/icon.png"
+        alt=""
+        height="40"
+        max-height="10px"
         max-width="40"
         contain
-      ></v-img>
-      <v-toolbar-title class="ml-2 title font-weight-bold">
-        Hospital Management System
+      />&nbsp;&nbsp;
+      <v-toolbar-title class="title font-weight-black green--text"
+        >Ospic HMS
       </v-toolbar-title>
 
       <v-spacer></v-spacer>
