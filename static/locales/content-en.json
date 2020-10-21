@@ -1,26 +1,7 @@
 {
-  "appName": "Nbs Administrator Dashboard",
-  "application": "Application",
-  "userName": "Username",
-  "qnNewToNbs Administrator Dashboard": "New to Nbs Administrator Dashboard ?",
-  "createAccount": "Create Account",
-  "homeDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
-  "homeDescriptionTitle": "What is Nbs Administrator Dashboard ",
-  "homePage": "Home",
-  "change": {
-    "languages": "Change Language"
-  },
   "label": {
     "heading": {
-      "repaymentschedule": "Repayment Schedule",
-
-      "loanrepaymentschedulecalculator": "Loan Repayment Schedule Calculator",
-      "contactus": "Contact Us",
-      "aboutus": "About Us",
-      "help": "Help",
-      "hompage": "Home Page",
-      "totalinterest": "Total Interest",
-      "totalprincipal": "Total Principal"
+      "applicationname": "Ospic HMIS"
     },
     "button": {
       "btncontactus": "Contact Us",
@@ -37,6 +18,25 @@
       "btnhome": "Home",
       "btnsave": "Save"
     },
+    "menu":{
+      "dashboard":"Dashboard",
+      "patientregistry":"Patient Registry",
+      "appointmentandschedule":"Appointments & schedule",
+      "opdcenter":"OPD Center",
+      "ipdcenter":"IPD Center",
+      "laboratory": "Laboratory",
+      "pharmacyandmedicine":"Parmarcy and Medicine",
+      "radiology":"Radiology",
+      "cashandbillingcenter":"Cash/Biling center",
+      "printreceiptbills":"Receipt Print/Bills/Payments",
+      "financialaccount":"Fincancial Account",
+      "payrollmanagement":"Payroll Management",
+      "inventoryandstock":"Inventory & Stock",
+      "nursestations":"Nurse Station",
+      "administrationsandmonitoring":"Administration & Monitoring",
+      "misreport":"MIS reports",
+      "securitycontrol":"Security Control"
+    },
     "message": {
       "aboutusmessage": "Nbs Administrator Dashboard Application is a Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
       "thanksmessage": "Thank you for developing with {{app_name}} and I look forward to bringing more exciting features in the future.",
@@ -52,7 +52,11 @@
     "tooltip": {
       "tooltiphello": "Hello there",
       "tooltipwelcometo": "Welcome to",
-      "loanrepaymentschedulecalculator": "Loan Repayment Schedule Calculator"
+      "loanrepaymentschedulecalculator": "Loan Repayment Schedule Calculator",
+      "settingsandconfigurations":"Settings Configuration",
+      "progresssynchronising":"Sync ....",
+      "synchronise":"Sync",
+      "clicktologout":"Click to logout"
     }
   }
 }

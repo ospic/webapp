@@ -25,13 +25,12 @@
             v-on:click="nativateToHere(item.route)"
           >
             <v-list-item-icon class="mr-0">
-              <v-icon v-text="item.icon" small></v-icon>
+              <v-icon color="green" v-text="item.icon" small></v-icon>
             </v-list-item-icon>
             <v-list-item-content class="ma-0 pa-0">
-              <v-list-item-title
-                class="font-weight-normal"
-                v-text="item.text"
-              ></v-list-item-title>
+              <v-list-item-title class="font-weight-normal">{{
+                $t(item.text)
+              }}</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
 
@@ -39,7 +38,16 @@
         </template>
       </v-list>
     </v-navigation-drawer>
-    <v-app-bar flat clipped-left fixed app dense short color="whitish">
+    <v-app-bar
+      clipped-left
+      flat
+      elevation="1"
+      fixed
+      app
+      dense
+      short
+      color="primary lighten-3"
+    >
       <img
         @click="toggledrawer"
         class="mx-2"
@@ -50,14 +58,24 @@
         max-width="40"
         contain
       />&nbsp;&nbsp;
-      <v-toolbar-title class="title font-weight-black green--text"
-        >Ospic HMS
+      <v-toolbar-title
+        v-if="$vuetify.breakpoint.mdAndUp"
+        class="title font-weight-black green--text"
+      >
+        {{ $t("label.heading.applicationname") }}
       </v-toolbar-title>
 
       <v-spacer></v-spacer>
       <v-tooltip bottom color="primary" open-on-hover open-delay="500">
         <template v-slot:activator="{ on }">
-          <v-btn icon v-on="on" @click.stop="syncro()" x-small>
+          <v-btn
+            fab
+            v-on="on"
+            @click.stop="syncro()"
+            elevation="1"
+            x-small
+            class="mr-2 primary"
+          >
             <v-progress-circular
               v-if="sync"
               v-on="on"
@@ -65,12 +83,14 @@
               indeterminate
               color="white"
             ></v-progress-circular>
-            <v-icon v-else small>mdi-sync</v-icon>
+            <v-icon v-else medium>mdi-sync</v-icon>
           </v-btn>
         </template>
 
-        <span v-if="sync" color="white">Sync ....</span>
-        <span v-else color="white">Sync</span>
+        <span v-if="sync" color="white">{{
+          $t("lable.tooltip.progresssynchronising")
+        }}</span>
+        <span v-else color="white">{{ $t("label.tooltip.synchronise") }}</span>
       </v-tooltip>
 
       <v-tooltip
@@ -81,19 +101,19 @@
         open-delay="500"
       >
         <template v-slot:activator="{ on }">
-          <v-btn icon v-on="on" x-small>
-            <v-icon small>mdi-cog</v-icon>
+          <v-btn fab v-on="on" elevation="1" x-small class="mr-2 green primary">
+            <v-icon medium>mdi-cog</v-icon>
           </v-btn>
         </template>
-        <span>Settings Configuration</span>
+        <span>{{ $t("label.tooltip.settingsandconfigurations") }}</span>
       </v-tooltip>
       <v-tooltip bottom color="primary" open-on-hover open-delay="500">
         <template v-slot:activator="{ on }">
-          <v-btn icon v-on="on" x-small>
-            <v-icon small @click="logoutsession">mdi-logout-variant</v-icon>
+          <v-btn fab v-on="on" x-small elevation="1" class="mr-2 primary">
+            <v-icon medium @click="logoutsession">mdi-power</v-icon>
           </v-btn>
         </template>
-        <span>Click to logout</span>
+        <span>{{ $t("label.tooltip.clicktologout") }}</span>
       </v-tooltip>
     </v-app-bar>
 
@@ -133,106 +153,106 @@ export default {
 
       items: [
         {
-          text: "Dashboard",
+          text: "label.menu.dashboard",
           icon: "mdi-hospital-building",
           route: "",
           subtitle: "Lorem ipsum dolor sit de amet.."
         },
         {
-          text: "Patient Registry",
+          text: "label.menu.patientregistry",
           icon: "mdi-account-plus-outline",
           route: "patients",
 
           subtitle: "Lorem ipsum dolor sit de amet.."
         },
         {
-          text: "Appointment & Scheduling",
+          text: "label.menu.appointmentandschedule",
           icon: "mdi-file-cabinet",
           route: "appointments",
           subtitle: "Lorem ipsum dolor sit de amet ..."
         },
         {
-          text: "OPD Center",
+          text: "label.menu.opdcenter",
           icon: "mdi-zodiac-cancer",
           route: "",
           subtitle: "Lorem ipsum dolor sit de amet.."
         },
         {
-          text: "IPD Center",
+          text: "label.menu.ipdcenter",
           icon: "mdi-bed-outline",
           route: "",
           subtitle: "Lorem ipsum dolor sit de amet.."
         },
         {
-          text: "Laboratory",
+          text: "label.menu.laboratory",
           icon: "mdi-beaker-question-outline",
           route: "",
           subtitle: "Lorem ipsum dolor sit de amet.."
         },
         {
-          text: "Pharmacy & Medicine",
+          text: "label.menu.pharmacyandmedicine",
           icon: "mdi-pharmacy",
           route: "",
           subtitle: "Lorem ipsum dolor sit de amet.."
         },
         {
-          text: "Radiology",
+          text: "label.menu.radiology",
           icon: "mdi-radioactive",
           route: "",
           subtitle: "Lorem ipsum dolor sit de amet.."
         },
 
         {
-          text: "Cash/billing Center",
+          text: "label.menu.cashandbillingcenter",
           icon: "mdi-credit-card-wireless",
           route: "",
           subtitle: "Lorem ipsum dolor sit de amet.."
         },
         {
-          text: "Print Receipt/Bills/Reports",
+          text: "label.menu.printreceiptbills",
           icon: "mdi-printer",
           route: "",
           subtitle: "Lorem ipsum dolor sit de amet.."
         },
         {
-          text: "Financial Account",
+          text: "label.menu.financialaccount",
           icon: "mdi-currency-usd-circle",
           route: "",
           subtitle: "Lorem ipsum dolor sit de amet.."
         },
         {
-          text: "Payroll Management",
+          text: "label.menu.payrollmanagement",
           icon: "mdi-currency-usd-circle-outline",
           route: "",
           subtitle: "Lorem ipsum dolor sit de amet.."
         },
         {
-          text: "Inventory & Stock",
+          text: "label.menu.inventoryandstock",
           icon: "mdi-hospital",
           route: "",
           subtitle: "Lorem ipsum dolor sit de amet.."
         },
 
         {
-          text: "Nurse Station",
+          text: "label.menu.nursestations",
           icon: "mdi-zodiac-cancer",
           route: "",
           subtitle: "Lorem ipsum dolor sit de amet.."
         },
         {
-          text: "Administration & Monitooring",
+          text: "label.menu.administrationsandmonitoring",
           icon: "mdi-account-settings",
           route: "",
           subtitle: "Lorem ipsum dolor sit de amet.."
         },
         {
-          text: "MIS Reports",
+          text: "label.menu.misreport",
           icon: "mdi-folder-text-outline",
           route: "",
           subtitle: "Lorem ipsum dolor sit de amet.."
         },
         {
-          text: "Security Control",
+          text: "label.menu.securitycontrol",
           icon: "mdi-lock",
           route: "",
           subtitle: "Lorem ipsum dolor sit de amet.."
