@@ -25,9 +25,9 @@ export default {
       { name: "msapplication-navbutton-color", content: "#00897B" },
       /**iOS Safari**/
       { name: "apple-mobile-web-app-status-bar-style", content: "#00897B" },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1.0' },
       { hid: 'description', name: 'description', content: 'Open source Hospital Management System' },
-      { hid: 'og:image', property: 'og:image', content: "https://hmis.netlify.app/logo.png" || '' }
+      { hid: 'og:image', property: 'og:image', content: "https://hmis.netlify.app/icon.png" || '' }
 
     ],
     link: [
