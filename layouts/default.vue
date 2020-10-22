@@ -310,7 +310,28 @@ export default {
       } else {
         this.$vuetify.theme.dark = false;
       }
+    },
+
+    syncro: async function() {
+      const vm = this;
+      vm.sync = !vm.sync;
+      await Promise.all([
+        vm.$store.dispatch("retrievepatients"),
+        vm.$store.dispatch("retrievephysicians")
+      ]).then(function() {
+        console.log("Loading complete...");
+      });
+      setTimeout(() => {
+        vm.sync = !vm.sync;
+      }, 2000);
     }
+  },
+  mounted: function() {
+    this.$nextTick(function() {
+      window.setInterval(() => {
+        this.syncro();
+      }, 60000);
+    });
   },
   beforeMount: function() {},
   computed: {}
