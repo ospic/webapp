@@ -135,75 +135,94 @@ export default {
         },
         title: "Patient Trends By"
       }
-    ],
-    summary_items: [
-      {
-        title: "Requests Rate",
-        subtitle: "Req rate on last time interval",
-        value: 0.0,
-        measure: "req/sec"
-      },
-      {
-        title: "Requests",
-        subtitle: "Total Request Received",
-        value: 89666
-      },
-      {
-        title: "Apex Score",
-        subtitle: "Overall Apex Score",
-        value: 0.48
-      },
-      {
-        title: " Error Rate",
-        subtitle: "Err rate on last time interval",
-        value: 0.0,
-        measure: "err/sec"
-      },
-      {
-        title: "CPU Usage",
-        subtitle: "Process CPU Usage %",
-        value: "0.59%"
-      },
-      {
-        title: "Memmory Usage",
-        subtitle: "Req rate on last time interval",
-        value: "38.48 MB"
-      },
-      {
-        title: "Errors",
-        subtitle: "Total Error Responses",
-        value: "13"
-      },
-      {
-        title: "Success",
-        subtitle: "Success Responses",
-        value: "4245"
-      },
-      {
-        title: "Success",
-        subtitle: "Success Responses",
-        value: "4245"
-      },
-      {
-        title: "Success",
-        subtitle: "Success Responses",
-        value: "4245"
-      },
-      {
-        title: "Success",
-        subtitle: "Success Responses",
-        value: "4245"
-      },
-      {
-        title: "Average HT",
-        subtitle: "Average Handle Time",
-        value: "30 MIN",
-        measure: "pt/min"
-      }
     ]
   }),
   methods: {},
-  computed: {},
+
+  computed: {
+    summary_items: {
+      get() {
+        return [
+          {
+            title: "Overall Total Patients",
+            subtitle: "Overall Total Patients",
+            value: this.$store.getters.patients.length,
+            icon: "mdi-account-group-outline"
+          },
+          {
+            title: "Assigned Patients",
+            subtitle: "Assigned patients",
+            measure: "p/d",
+            value: this.$store.getters.assigned.length,
+            icon: "mdi-account-group-outline"
+          },
+          {
+            title: "Unassigned Patients",
+            subtitle: "Unassigned Patients",
+            value: this.$store.getters.unassigned.length,
+            icon: "mdi-account-group-outline"
+          },
+          {
+            title: " OPD",
+            subtitle: "OPD  Patients",
+            value: this.$store.getters.opdpatients.length,
+            measure: "p/d",
+            icon: "mdi-account-group-outline"
+          },
+          {
+            title: "IPD ",
+            subtitle: "IPD  Patients",
+            measure: "p/d",
+            value: this.$store.getters.ipdpatients.length,
+            icon: "mdi-account-group-outline"
+          },
+          {
+            title: "Physicians",
+            subtitle: "No. of Physicians",
+            value: this.$store.getters.physicians.length,
+            icon: "mdi-account-multiple"
+          },
+          {
+            title: "Errors",
+            subtitle: "Total Error Responses",
+            value: "13",
+            icon: "mdi-select-group"
+          },
+          {
+            title: "Success",
+            subtitle: "Success Responses",
+            value: "4245",
+            icon: "mdi-select-group"
+          },
+          {
+            title: "Success",
+            subtitle: "Success Responses",
+            value: "4245",
+            icon: "mdi-select-group"
+          },
+          {
+            title: "Success",
+            subtitle: "Success Responses",
+            value: "4245",
+            icon: "mdi-select-group"
+          },
+          {
+            title: "Success",
+            subtitle: "Success Responses",
+            value: "4245",
+            icon: "mdi-select-group"
+          },
+          {
+            title: "Average HT",
+            subtitle: "Average Handle Time",
+            value: "30 MIN",
+            measure: "pt/min",
+            icon: "mdi-select-group"
+          }
+        ];
+      }
+    }
+  },
   created() {},
   mounted() {}
 };
