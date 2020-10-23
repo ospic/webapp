@@ -1,4 +1,8 @@
-# Ospic [![Build Status](https://travis-ci.com/ospic/webapp.svg?branch=master)](https://travis-ci.com/ospic/webapp) ![Auto Assign to Project(s)](<https://github.com/ospic/webapp/workflows/Auto%20Assign%20to%20Project(s)/badge.svg>) [![Netlify Status](https://api.netlify.com/api/v1/badges/cf6366b6-9ddb-4888-8a9e-3f892d87e038/deploy-status)](https://app.netlify.com/sites/hmis/deploys)
+# Ospic [![Build Status](https://travis-ci.com/ospic/webapp.svg?branch=master)](https://travis-ci.com/ospic/webapp) ![Auto Assign to Project(s)](<https://github.com/ospic/webapp/workflows/Auto%20Assign%20to%20Project(s)/badge.svg>) [![Netlify Status](https://api.netlify.com/api/v1/badges/cf6366b6-9ddb-4888-8a9e-3f892d87e038/deploy-status)](https://app.netlify.com/sites/hmis/deploys) [![Download ospic](https://sourceforge.net/sflogo.php?type=11&group_id=3283394)](https://sourceforge.net/p/ospic/)
+
+## SourceForge Dowload
+
+[![Download ospic](https://a.fsdn.com/con/app/sf-download-button)](https://sourceforge.net/projects/ospic/files/latest/download)
 
 ## Demo server
 
