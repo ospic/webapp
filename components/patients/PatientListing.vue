@@ -5,7 +5,6 @@
     :items="datalist"
     :search="search"
     :items-per-page="15"
-    :show-group-by="true"
     sort-by="calories"
     class="elevation-1"
   >
@@ -30,6 +29,7 @@
               color="teal"
               fab
               small
+              v-if="isAppointmentRoute"
               class="mb-2"
               v-bind="attrs"
               v-on="on"
@@ -113,15 +113,12 @@
       </v-toolbar>
     </template>
     <template v-slot:item.isAdmitted="{ item }">
-      <v-chip
-        class="ma-1 pa-1"
-        text-color="white"
-        color="primary"
-        x-small
-        v-if="item.isAdmitted"
-      >
-        <v-icon x-small>mdi-bed-outline</v-icon>
-      </v-chip>
+      <v-tooltip right v-if="item.isAdmitted" color="primary">
+        <template v-slot:activator="{ on, attrs }">
+          <v-icon v-bind="attrs" v-on="on" x-small>mdi-bed-outline</v-icon>
+        </template>
+        <span>Admitted</span>
+      </v-tooltip>
       <div v-else></div>
     </template>
     <template v-slot:[`item.actions`]="{ item }">
@@ -194,6 +191,11 @@ export default {
   computed: {
     formTitle() {
       return this.editedIndex === -1 ? "New Item" : "Edit Item";
+    },
+    isAppointmentRoute: {
+      get() {
+        return this.$router.currentRoute.name === "appointments";
+      }
     }
   },
 
