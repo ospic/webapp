@@ -6,7 +6,7 @@
         :pagetitle="pagetitle"
       ></patient-list>
     </div>
-    <div v-else>ZERo</div>
+    <div v-else>{{ $t("label.message.nodataavailable") }}</div>
   </div>
 </template>
 <script>

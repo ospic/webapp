@@ -47,12 +47,6 @@
                 <v-row>
                   <v-col cols="12" sm="6" md="4">
                     <v-text-field
-                      v-model="editedItem.suffix"
-                      label="Suffix"
-                    ></v-text-field>
-                  </v-col>
-                  <v-col cols="12" sm="6" md="4">
-                    <v-text-field
                       v-model="editedItem.first_name"
                       label="First name"
                     ></v-text-field>
@@ -82,10 +76,15 @@
                     ></v-text-field>
                   </v-col>
                   <v-col cols="12" sm="6" md="4">
-                    <v-text-field
+                    <v-select
                       v-model="editedItem.gender"
-                      label="Gender"
-                    ></v-text-field>
+                      :hint="` ${editedItem.gender.option}`"
+                      :items="genderoptions"
+                      label="Select"
+                      persistent-hint
+                      return-object
+                      single-line
+                    ></v-select>
                   </v-col>
                   <v-col cols="12" sm="6" md="4">
                     <v-text-field
@@ -98,6 +97,18 @@
                       v-model="editedItem.principal_tribe"
                       label="Tribe"
                     ></v-text-field>
+                  </v-col>
+                  <v-col cols="12" sm="6" md="4">
+                    <v-checkbox
+                      background-color="success lighten-4"
+                      on-icon="mdi-bed-outline"
+                      v-model="editedItem.isAdmitted"
+                      :label="
+                        editedItem.isAdmitted
+                          ? 'Patient Admitted'
+                          : 'Check to admit patient'
+                      "
+                    ></v-checkbox>
                   </v-col>
                 </v-row>
               </v-container>
@@ -159,33 +170,34 @@ export default {
     editedIndex: -1,
     editedItemId: "",
     editedItem: {
-      first_name: 0,
-      middle_name: 0,
-      last_name: 0,
-      suffix: 0,
-      ethnicity: 0,
-      dob: 0,
-      gender: 0,
-      ssn: 0,
-      mdn: 0,
-      principal_tribe: 0,
-      country: 0,
-      isAdmitted: 0
+      first_name: null,
+      middle_name: "",
+      last_name: "",
+      suffix: "",
+      ethnicity: "",
+      dob: "",
+      gender: "",
+      ssn: "",
+      mdn: "",
+      principal_tribe: "",
+      country: "",
+      isAdmitted: false
     },
     defaultItem: {
-      first_name: 0,
-      middle_name: 0,
-      last_name: 0,
-      suffix: 0,
-      ethnicity: 0,
-      dob: 0,
-      gender: 0,
-      ssn: 0,
-      mdn: 0,
-      principal_tribe: 0,
-      country: 0,
-      isAdmitted: 0
-    }
+      first_name: null,
+      middle_name: "",
+      last_name: "",
+      suffix: "",
+      ethnicity: "",
+      dob: "",
+      gender: "",
+      ssn: "",
+      mdn: "",
+      principal_tribe: "",
+      country: "",
+      isAdmitted: false
+    },
+    genderoptions: ["Male", "Female", "Others"]
   }),
 
   computed: {
@@ -234,6 +246,10 @@ export default {
       console.log(this.editedItemId);
       if (this.editedIndex > -1) {
         Object.assign(this.datalist[this.editedIndex], this.editedItem);
+
+        delete this.editedItem.contactsInformation;
+        delete this.editedItem.diagnoses;
+        delete this.editedItem.physician;
         console.log(this.editedItem);
         this.$store.dispatch("update_patient", {
           id: this.editedItemId,
