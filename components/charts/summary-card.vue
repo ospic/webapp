@@ -30,11 +30,9 @@
           </v-list-item-subtitle>
         </v-list-item-content>
 
-        <v-list-item-avatar class="ma-0 mt-1 pa-0" size="30" color="grey">
-          <v-icon dark>
-            mdi-account-circle
-          </v-icon></v-list-item-avatar
-        >
+        <v-list-item-avatar class="ma-0 mt-1 pa-0 " size="30" color="primary">
+          <v-icon dark v-text="data.icon" color="white"></v-icon
+        ></v-list-item-avatar>
       </v-list-item>
     </v-card>
   </v-col>
