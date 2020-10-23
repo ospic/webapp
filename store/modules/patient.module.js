@@ -128,14 +128,20 @@ const getters = {
   patients: function (state) {
     return state.patients.reverse();
   },
-  assigned: function(state){
-    return state.patients.filter(patient => patient.physician  !== null);
+  assigned: function (state) {
+    return state.patients.filter(patient => patient.physician !== null);
   },
-  unassigned: function(state) {
-    return state.patients.filter(patient => patient.physician  === null);
+  unassigned: function (state) {
+    return state.patients.filter(patient => patient.physician === null);
   },
   patient: (state) => (id) => {
-    return state.patients.find(patient => patient.id === id )
+    return state.patients.find(patient => patient.id === id)
+  },
+  opdpatients: function (state) {
+    return state.patients.filter(patient => !patient.isAdmitted);
+  },
+  ipdpatients: function (state) {
+    return state.patients.filter(patient => patient.isAdmitted);
   }
 }
 
