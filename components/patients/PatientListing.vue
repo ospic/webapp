@@ -112,6 +112,18 @@
         </v-dialog>
       </v-toolbar>
     </template>
+    <template v-slot:item.isAdmitted="{ item }">
+      <v-chip
+        class="ma-1 pa-1"
+        text-color="white"
+        color="primary"
+        x-small
+        v-if="item.isAdmitted"
+      >
+        <v-icon x-small>mdi-bed-outline</v-icon>
+      </v-chip>
+      <div v-else></div>
+    </template>
     <template v-slot:[`item.actions`]="{ item }">
       <v-icon x-small class="mr-2" @click="handleClick(item)">mdi-eye</v-icon>
       <v-icon small class="mr-2" @click="editItem(item)"> mdi-pencil </v-icon>
@@ -143,7 +155,7 @@ export default {
       { text: "LastName", value: "last_name" },
       { text: "Gender", value: "gender", sortable: false },
       { text: "Country", value: "country" },
-      { text: "Ethnicity", value: "ethnicity", sortable: false },
+      { text: "Status", value: "isAdmitted", sortable: true },
       { text: "Actions", value: "actions", sortable: false }
     ],
     desserts: [],
@@ -160,7 +172,8 @@ export default {
       ssn: 0,
       mdn: 0,
       principal_tribe: 0,
-      country: 0
+      country: 0,
+      isAdmitted: 0
     },
     defaultItem: {
       first_name: 0,
@@ -173,7 +186,8 @@ export default {
       ssn: 0,
       mdn: 0,
       principal_tribe: 0,
-      country: 0
+      country: 0,
+      isAdmitted: 0
     }
   }),
 

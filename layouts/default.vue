@@ -174,13 +174,13 @@ export default {
         {
           text: "label.menu.opdcenter",
           icon: "mdi-zodiac-cancer",
-          route: "",
+          route: "opd",
           subtitle: "Lorem ipsum dolor sit de amet.."
         },
         {
           text: "label.menu.ipdcenter",
           icon: "mdi-bed-outline",
-          route: "",
+          route: "ipd",
           subtitle: "Lorem ipsum dolor sit de amet.."
         },
         {
