@@ -58,6 +58,11 @@
       "progresssynchronising":"Sync ....",
       "synchronise":"Sync",
       "clicktologout":"Click to logout"
+    },
+    "titles":{
+      "settings":"Settings",
+      "roleandpermissions":"Roles and Permissions",
+      "usersettings":"Users settings"
     }
   }
 }

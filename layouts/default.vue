@@ -46,18 +46,21 @@
       app
       dense
       short
-      color="primary lighten-3"
+      color="primary "
     >
-      <img
-        @click="toggledrawer"
-        class="mx-2"
-        src="@/assets/images/icon.png"
-        alt=""
-        height="40"
-        max-height="10px"
-        max-width="40"
-        contain
-      />&nbsp;&nbsp;
+      <v-app-bar-nav-icon dense>
+        <img
+          @click="toggledrawer"
+          class="pa-0 ma-0"
+          src="@/assets/images/icon.png"
+          alt=""
+          height="40px"
+          max-height="40px"
+          max-width="40px"
+          contain
+        />
+      </v-app-bar-nav-icon>
+
       <v-toolbar-title
         v-if="$vuetify.breakpoint.mdAndUp"
         class="title font-weight-black green--text"
@@ -101,7 +104,14 @@
         open-delay="500"
       >
         <template v-slot:activator="{ on }">
-          <v-btn fab v-on="on" elevation="1" x-small class="mr-2 green primary">
+          <v-btn
+            fab
+            v-on="on"
+            elevation="1"
+            to="settings"
+            x-small
+            class="mr-2 green primary"
+          >
             <v-icon medium>mdi-cog</v-icon>
           </v-btn>
         </template>

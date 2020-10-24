@@ -1,0 +1,85 @@
+<template>
+  <v-row>
+    <v-col cols="12" md="4">
+      <v-list>
+        <v-list-item>
+          <v-list-item-icon>
+            <v-icon>mdi-account-circle</v-icon>
+          </v-list-item-icon>
+
+          <v-list-item-title>{{
+            $t("label.titles.usersettings")
+          }}</v-list-item-title>
+        </v-list-item>
+
+        <v-list-group :value="true" prepend-icon="mdi-shield-lock-outline">
+          <template v-slot:activator>
+            <v-list-item-title>{{
+              $t("label.titles.roleandpermissions")
+            }}</v-list-item-title>
+          </template>
+
+          <v-list-group :value="true" no-action sub-group>
+            <template v-slot:activator>
+              <v-list-item-content>
+                <v-list-item-title>Admin</v-list-item-title>
+              </v-list-item-content>
+            </template>
+            <v-list-item
+              v-for="([title, icon, route], i) in admins"
+              :key="i"
+              link
+              :to="route"
+            >
+              <v-list-item-title v-text="title"></v-list-item-title>
+
+              <v-list-item-icon>
+                <v-icon v-text="icon"></v-icon>
+              </v-list-item-icon>
+            </v-list-item>
+          </v-list-group>
+
+          <v-list-group no-action sub-group>
+            <template v-slot:activator>
+              <v-list-item-content>
+                <v-list-item-title>Actions</v-list-item-title>
+              </v-list-item-content>
+            </template>
+
+            <v-list-item v-for="([title, icon], i) in cruds" :key="i" link>
+              <v-list-item-title v-text="title"></v-list-item-title>
+
+              <v-list-item-icon>
+                <v-icon v-text="icon"></v-icon>
+              </v-list-item-icon>
+            </v-list-item>
+          </v-list-group>
+        </v-list-group>
+      </v-list>
+    </v-col>
+    <v-col cols="12" md="8">
+      <nuxt-child keep-alive="false" :key="this.$router.currentRoute.name" />
+    </v-col>
+  </v-row>
+</template>
+<script>
+export default {
+  data: () => ({
+    admins: [
+      ["Management", "mdi-account-multiple-outline", "/settings/users"],
+      ["Settings", "mdi-cog-outline", "/settings/admin"]
+    ],
+    cruds: [
+      ["Create", "mdi-plus-outline"],
+      ["Read", "mdi-file-outline"],
+      ["Update", "mdi-update"],
+      ["Delete", "mdi-delete"]
+    ]
+  })
+};
+</script>
+<style scoped>
+.nuxt-link-exact-active.nuxt-link-active li a {
+  text-decoration: none !important;
+}
+</style>
