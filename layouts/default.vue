@@ -118,7 +118,7 @@
     </v-app-bar>
 
     <v-main>
-      <v-container style="background-color: #FAFAFA;" class="pa-2 ma-0" fluid>
+      <v-container style="background-color: #efefef;" class="pa-2 ma-0" fluid>
         <nuxt />
       </v-container>
     </v-main>
