@@ -108,7 +108,7 @@
             fab
             v-on="on"
             elevation="1"
-            to="settings"
+            to="/settings"
             x-small
             class="mr-2 green primary"
           >
