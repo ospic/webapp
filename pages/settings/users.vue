@@ -100,7 +100,7 @@
         v-for="role in item.roles"
         :key="role.id"
         class="pa-1 mr-1"
-        :color="colors[item.id % 11]"
+        :color="getColor(role.name.substring(5).toLowerCase())"
         x-small
         >{{ role.name.substring(5).toLowerCase() }}</v-chip
       >
@@ -168,10 +168,16 @@ export default {
     this.$store.dispatch("retrieveAllusers");
   },
   methods: {
-    randomColors() {
-      this.currentColor = this.colors[
-        Math.floor(Math.random() * this.colors.length)
-      ];
+    getColor(role) {
+      if (role === "user") {
+        return "yellow";
+      } else if (role === "admin") {
+        return "red darken-3 white--text";
+      } else if (role === "moderator") {
+        return "green";
+      } else {
+        return "cyan";
+      }
     },
     editItem(item) {
       this.editedIndex = this.userslist.indexOf(item);
