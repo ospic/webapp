@@ -123,7 +123,7 @@
         </v-dialog>
       </v-toolbar>
     </template>
-    <template v-slot:item.isAdmitted="{ item }">
+    <template v-slot:[`item.isAdmitted`]="{ item }">
       <v-tooltip right v-if="item.isAdmitted" color="primary">
         <template v-slot:activator="{ on, attrs }">
           <v-icon v-bind="attrs" v-on="on" x-small>mdi-bed-outline</v-icon>

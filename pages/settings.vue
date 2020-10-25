@@ -1,6 +1,6 @@
 <template>
   <v-row>
-    <v-col cols="12" md="4">
+    <v-col cols="12" md="3">
       <v-list>
         <v-list-item>
           <v-list-item-icon>
@@ -22,7 +22,9 @@
           <v-list-group :value="true" no-action sub-group>
             <template v-slot:activator>
               <v-list-item-content>
-                <v-list-item-title>Admin</v-list-item-title>
+                <v-list-item-title>{{
+                  $t("label.titles.administrations")
+                }}</v-list-item-title>
               </v-list-item-content>
             </template>
             <v-list-item
@@ -31,7 +33,7 @@
               link
               :to="route"
             >
-              <v-list-item-title v-text="title"></v-list-item-title>
+              <v-list-item-title>{{ $t(title) }}</v-list-item-title>
 
               <v-list-item-icon>
                 <v-icon v-text="icon"></v-icon>
@@ -57,17 +59,22 @@
         </v-list-group>
       </v-list>
     </v-col>
-    <v-col cols="12" md="8">
-      <nuxt-child keep-alive="false" :key="this.$router.currentRoute.name" />
+    <v-col cols="12" md="9">
+      <nuxt-child :key="this.$router.currentRoute.name" />
     </v-col>
   </v-row>
 </template>
 <script>
 export default {
+  layout: "dashboard",
   data: () => ({
     admins: [
-      ["Management", "mdi-account-multiple-outline", "/settings/users"],
-      ["Settings", "mdi-cog-outline", "/settings/admin"]
+      [
+        "label.titles.usersmanagement",
+        "mdi-account-multiples-outline",
+        "/settings/users"
+      ],
+      ["label.titles.settings", "mdi-cog-outline", "/settings/admin"]
     ],
     cruds: [
       ["Create", "mdi-plus-outline"],

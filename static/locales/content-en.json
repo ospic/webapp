@@ -16,7 +16,9 @@
       "btnclear": "Clear",
       "btnback": "Back",
       "btnhome": "Home",
-      "btnsave": "Save"
+      "btnsave": "Save",
+      "btnyes":"Yes",
+      "btnno":"No"
     },
     "menu":{
       "dashboard":"Dashboard",
@@ -50,6 +52,9 @@
       "developer": "Developer",
       "slack": "slack community"
     },
+    "dialogs":{
+      "deleteconfirmdialog":"Are you sure you want to delete this item ?"
+    },
     "tooltip": {
       "tooltiphello": "Hello there",
       "tooltipwelcometo": "Welcome to",
@@ -62,7 +67,11 @@
     "titles":{
       "settings":"Settings",
       "roleandpermissions":"Roles and Permissions",
-      "usersettings":"Users settings"
+      "usersettings":"Users settings",
+      "administrations":"Administrations",
+      "usersmanagement":"Users Management",
+      "newuser":"New User",
+      "edituser":"Edit User"
     }
   }
 }

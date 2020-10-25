@@ -91,7 +91,7 @@
         </template>
 
         <span v-if="sync" color="white">{{
-          $t("lable.tooltip.progresssynchronising")
+          $t("label.tooltip.progresssynchronising")
         }}</span>
         <span v-else color="white">{{ $t("label.tooltip.synchronise") }}</span>
       </v-tooltip>
