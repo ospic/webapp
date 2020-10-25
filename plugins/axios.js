@@ -15,6 +15,7 @@ export default function ({ $axios, redirect }, inject) {
 
   api.onRequest(config => {
     api.setHeader("Access-Control-Allow-Headers", "x-access-token, Origin, Content-Type, Accept");
+    // api.setHeader("Access-Control-Allow-Origin", "*");
 
   });
 

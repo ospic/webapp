@@ -1,5 +1,12 @@
 <template>
-  <h2>Admin Page</h2>
+  <div class="center">
+    <v-card outlined>
+      <v-card-title>This is title</v-card-title>
+      <v-card-text>
+        <h4>This is Admin Page</h4>
+      </v-card-text>
+    </v-card>
+  </div>
 </template>
 
 <script>
@@ -11,9 +18,8 @@ export default {
 </script>
 
 <style scoped>
-h2 {
-  text-align: center;
-  margin-top: 100px;
+.center {
+  margin: auto;
   font-family: sans-serif;
 }
 </style>
