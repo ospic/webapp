@@ -1,6 +1,5 @@
 <template>
   <v-app
-    dark
     class="app"
     v-bind:style="{ background: $vuetify.theme.dark ? '#FAFAFA' : '#FAFAFA' }"
   >
@@ -15,8 +14,8 @@
       app
       width="270"
     >
-      <v-list nav dense subheader tile class="mt-0 pa-0">
-        <v-list-item class="ma-0" dense to="/">
+      <v-list shaped nav dense subheader tile>
+        <v-list-item class="ma-0 pa-0" dense to="/">
           <v-list-item-icon>
             <v-icon>mdi-home</v-icon>
           </v-list-item-icon>
@@ -27,7 +26,9 @@
         <template v-for="(setting, ind) in settings">
           <v-list-group :value="true" :prepend-icon="setting.icon" :key="ind">
             <template v-slot:activator>
-              <v-list-item-title>{{ setting.title }}</v-list-item-title>
+              <v-list-item-title class="black--text">{{
+                $t(setting.title)
+              }}</v-list-item-title>
             </template>
 
             <template v-for="(menu, index) in setting.menus">
@@ -39,7 +40,7 @@
               <v-list-group :value="true" no-action sub-group :key="index">
                 <template v-slot:activator>
                   <v-list-item-content>
-                    <v-list-item-title>{{ menu.title }}</v-list-item-title>
+                    <v-list-item-title>{{ $t(menu.title) }}</v-list-item-title>
                   </v-list-item-content>
                 </template>
                 <v-list-item
@@ -47,10 +48,11 @@
                   :key="i"
                   link
                   :to="sub.to"
-                  class="ma-0"
+                  class="ma-0 pa-0"
                   dense
+                  round
                 >
-                  <v-list-item-title>{{ sub.title }}</v-list-item-title>
+                  <v-list-item-title>{{ $t(sub.title) }}</v-list-item-title>
 
                   <v-list-item-icon>
                     <v-icon v-text="sub.icon"></v-icon>
@@ -122,7 +124,7 @@ export default {
       dark: false,
       sync: false,
       pagetitle: "Administrator Dashboard",
-      locales: ["English", "Kiswahili"],
+
       admins: [
         [
           "label.titles.usersmanagement",
@@ -139,48 +141,51 @@ export default {
       ],
       settings: [
         {
-          title: "Roles And Permissions",
+          title: "label.titles.roleandpermissions",
           icon: "mdi-shield-lock-outline",
           menus: [
             {
-              title: "No Administrations",
+              title: "label.titles.administrations",
               submenus: [
                 {
-                  title: "Users Managements",
+                  title: "label.titles.usersmanagement",
                   to: "/settings/users",
                   icon: "mdi-account-settings"
                 },
                 {
-                  title: "Administrator",
+                  title: "label.titles.administrations",
                   to: "/settings/admin",
                   icon: "mdi-account-cog-outline"
                 }
               ]
             },
             {
-              title: "Actions",
+              title: "label.titles.actions",
               submenus: [
-                { title: "Create", icon: "mdi-plus-outline", to: "/" },
-                { title: "Read", icon: "mdi-file-outline", to: "/" },
-                { title: "Update", icon: "mdi-update", to: "/" },
-                { title: "Delete", icon: "mdi-delete", to: "/" }
+                {
+                  title: "label.menu.create",
+                  icon: "mdi-plus-outline",
+                  to: "/"
+                },
+                { title: "label.menu.read", icon: "mdi-file-outline", to: "/" },
+                { title: "label.menu.update", icon: "mdi-update", to: "/" },
+                { title: "label.menu.delete", icon: "mdi-delete", to: "/" }
               ]
             }
           ]
         },
         {
-          title: "Users Settings",
+          title: "label.titles.system",
           icon: "mdi-account-outline",
           menus: [
             {
-              title: "Administrations",
+              title: "label.titles.configurations",
               submenus: [
                 {
-                  title: "Users Managements",
-                  to: "/settings/users",
-                  icon: "mdi-account-multiples-outline"
-                },
-                { title: "Settings", to: "/", icon: "mdi-cog-outline" }
+                  title: "label.titles.settings",
+                  to: "/settings/",
+                  icon: "mdi-cogs"
+                }
               ]
             }
           ]

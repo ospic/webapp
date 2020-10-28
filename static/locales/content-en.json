@@ -38,7 +38,11 @@
       "nursestations":"Nurse Station",
       "administrationsandmonitoring":"Administration & Monitoring",
       "misreport":"MIS reports",
-      "securitycontrol":"Security Control"
+      "securitycontrol":"Security Control",
+      "create":"Create",
+      "read":"Read",
+      "update":"Update",
+      "delete":"Delete"
     },
     "message": {
       "nodataavailable":"No Data available ...",
@@ -73,10 +77,14 @@
       "usersmanagement":"Users Management",
       "users":"Users",
       "roles":"Roles",
-      
+      "system":"System",
       "newuser":"New User",
       "edituser":"Edit User",
-      "home":"Home"
+      "home":"Home",
+      "configurations":"Configurations",
+      "language":"Languages",
+      "themesettings":"Themes",
+      "actions":"Actions"
     }
   }
 }
