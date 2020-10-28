@@ -10,6 +10,11 @@ install:
   - npm ci
   - npm run generate
 
+# Keep the npm cache around to speed up installs
+cache:
+  directories:
+    - "$HOME/.npm"
+
 script:
   - echo "Skipping tests"
 
