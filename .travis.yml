@@ -1,14 +1,17 @@
 language: node_js
 node_js:
-  - "node"
+  - "6"
+  - "10"
+  - "12"
+  - "14"
+
+install:
+  - npm ci
+  - npm run generate
 
 cache:
   directories:
-    - "node_modules"
-
-install:
-  - npm install
-  - npm run generate
+    - "$HOME/.npm"
 
 script:
   - echo "Skipping tests"
