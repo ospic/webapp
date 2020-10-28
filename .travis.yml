@@ -6,6 +6,7 @@ node_js:
   - "14"
 
 install:
+  - npm install
   - npm ci
   - npm run generate
 
