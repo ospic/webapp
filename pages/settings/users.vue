@@ -47,11 +47,22 @@
                       type="password"
                     ></v-text-field>
                   </v-col>
-                  <v-col cols="12" sm="12" md="12">
+                  <v-col cols="12" sm="6" md="6">
                     <v-text-field
-                      v-model="editedItem.roles"
-                      label="Roles"
+                      v-model="editedItem.email"
+                      label="Email Address"
+                      type="email"
                     ></v-text-field>
+                  </v-col>
+                  <v-col cols="12" sm="6" md="6">
+                    <v-select
+                      v-model="editedItem.role"
+                      :items="roles"
+                      attach
+                      chips
+                      label="Chips"
+                      multiple
+                    ></v-select>
                   </v-col>
                 </v-row>
               </v-container>
@@ -97,8 +108,8 @@
     </template>
     <template v-slot:[`item.roles`]="{ item }">
       <v-chip
-        v-for="role in item.roles"
-        :key="role.id"
+        v-for="(role, i) in item.roles"
+        :key="i"
         class="pa-1 mr-1"
         :color="getColor(role.name.substring(5).toLowerCase())"
         x-small
@@ -137,14 +148,16 @@ export default {
     editedItem: {
       id: "",
       username: "",
-      password: 0,
-      roles: ""
+      email: "",
+      password: "",
+      role: []
     },
     defaultItem: {
       id: "",
       username: "",
-      password: 0,
-      roles: ""
+      email: "",
+      password: "",
+      role: []
     },
     colors: [
       "red",
@@ -159,7 +172,8 @@ export default {
       "blue-grey",
       "cyan"
     ],
-    currentColor: ""
+    currentColor: "",
+    roles: ["mod", "admin"]
   }),
   created() {
     console.log("Dispating");
@@ -214,9 +228,13 @@ export default {
 
     save() {
       if (this.editedIndex > -1) {
-        Object.assign(this.userslist[this.editedIndex], this.editedItem);
+        console.log(this.editedItem);
+        // Object.assign(this.userslist[this.editedIndex], this.editedItem);
       } else {
-        this.userslist.push(this.editedItem);
+        delete this.editedItem.id;
+        this.$store.dispatch("create_new_user", this.editedItem);
+
+        // this.userslist.push(this.editedItem);
       }
       this.close();
     }

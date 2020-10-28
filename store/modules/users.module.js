@@ -6,7 +6,6 @@ const state = () => ({
 });
 
 const mutations = {
-
   [mutation.FETCH_APPLICATION_USERS](state) {
     state.showLoader = true;
   },
@@ -19,7 +18,19 @@ const mutations = {
   [mutation.FETCH_APPLICATION_USERS_SUCCESS](state, payload) {
     state.showLoader = false;
     state.users = payload;
-
+  },
+  [mutation.CREATE_NEW_USER](state) {
+    state.showLoader = true;
+  },
+  [mutation.CREATE_NEW_USER_FAILED](state) {
+    state.showLoader = false;
+  },
+  [mutation.CREATE_NEW_USER_ERROR](state) {
+    state.showLoader = false;
+  },
+  [mutation.CREATE_NEW_USER_SUCCESS](state, payload) {
+    state.showLoader = false;
+    state.users.push(payload)
   },
 
 }
@@ -29,10 +40,26 @@ const actions = {
     await this.$api.$get(`auth/users/`)
       .then(response => {
         commit(mutation.FETCH_APPLICATION_USERS_SUCCESS, response);
-        console.log(response);
+
 
       }).catch(error => {
         commit(mutation.FETCH_APPLICATION_USERS_FAILED);
+        console.log(error);
+
+      });
+
+  }
+  , async create_new_user({ commit }, payload) {
+    commit(mutation.CREATE_NEW_USER);
+    await this.$api.$post(`auth/signup/`, payload)
+      .then(response => {
+        console.log(response);
+        if (response.statusCode === 200) {
+          commit(mutation.CREATE_NEW_USER_SUCCESS, response);
+        }
+
+      }).catch(error => {
+        commit(mutation.CREATE_NEW_USER_FAILED);
         console.log(error);
 
       });
