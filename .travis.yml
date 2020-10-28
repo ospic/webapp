@@ -9,10 +9,6 @@ install:
   - npm ci
   - npm run generate
 
-cache:
-  directories:
-    - "$HOME/.npm"
-
 script:
   - echo "Skipping tests"
 
