@@ -31,7 +31,7 @@ export default {
 
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico?v2' }
     ]
   },
 
@@ -109,8 +109,7 @@ export default {
 
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
-  build: {
-  },
+
   server: {
     port: 8000, // default: 3000
     host: "0.0.0.0" // default: localhost
