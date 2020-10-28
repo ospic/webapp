@@ -71,6 +71,9 @@
       "usersettings":"Users settings",
       "administrations":"Administrations",
       "usersmanagement":"Users Management",
+      "users":"Users",
+      "roles":"Roles",
+      
       "newuser":"New User",
       "edituser":"Edit User",
       "home":"Home"

@@ -4,8 +4,8 @@
 <script>
 export default {
   layout: "settings"
-};
-</script>
+</template>
+<script>
 <style scoped>
 .nuxt-link-exact-active.nuxt-link-active li a {
   text-decoration: none !important;
