@@ -69,6 +69,7 @@
       </v-toolbar-title>
 
       <v-spacer></v-spacer>
+
       <v-tooltip bottom color="primary" open-on-hover open-delay="500">
         <template v-slot:activator="{ on }">
           <v-btn
@@ -79,14 +80,8 @@
             x-small
             class="mr-2 primary"
           >
-            <v-progress-circular
-              v-if="sync"
-              v-on="on"
-              size="20"
-              indeterminate
-              color="white"
-            ></v-progress-circular>
-            <v-icon v-else medium>mdi-sync</v-icon>
+            <v-icon v-on="on" v-if="sync" medium>mdi-progress-clock</v-icon>
+            <v-icon v-else medium>mdi-progress-check</v-icon>
           </v-btn>
         </template>
 
@@ -112,7 +107,7 @@
             x-small
             class="mr-2 green primary"
           >
-            <v-icon medium>mdi-cog</v-icon>
+            <v-icon medium>mdi-cog-outline</v-icon>
           </v-btn>
         </template>
         <span>{{ $t("label.tooltip.settingsandconfigurations") }}</span>
@@ -132,6 +127,16 @@
         <nuxt />
       </v-container>
     </v-main>
+    <v-footer>
+      <v-progress-linear
+        v-if="sync"
+        width="100"
+        color="teal"
+        buffer-value="0"
+        value="20"
+        stream
+      ></v-progress-linear>
+    </v-footer>
   </v-app>
 </template>
 
@@ -149,6 +154,8 @@ export default {
       picture: true,
       dark: false,
       sync: false,
+      interval: {},
+      value: 0,
       tabs: [
         { title: "News", icon: "news-component" },
         { title: "Indicators", icon: "mdi-eye" },
@@ -336,12 +343,21 @@ export default {
       }, 2000);
     }
   },
+  beforeDestroy() {
+    clearInterval(this.interval);
+  },
   mounted: function() {
     this.$nextTick(function() {
       window.setInterval(() => {
         this.syncro();
       }, 60000);
     });
+    this.interval = setInterval(() => {
+      if (this.value === 100) {
+        return (this.value = 0);
+      }
+      this.value += 10;
+    }, 2000);
   },
   beforeMount: function() {},
   computed: {}
