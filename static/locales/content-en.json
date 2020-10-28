@@ -1,7 +1,8 @@
 {
   "label": {
     "heading": {
-      "applicationname": "Ospic HMIS"
+      "applicationname": "Ospic HMIS",
+      "applicationsettings":"Ospic Settings"
     },
     "button": {
       "btncontactus": "Contact Us",
@@ -74,7 +75,8 @@
       "roles":"Roles",
       
       "newuser":"New User",
-      "edituser":"Edit User"
+      "edituser":"Edit User",
+      "home":"Home"
     }
   }
 }
