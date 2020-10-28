@@ -8,7 +8,7 @@
 
 Hosts
 
-- Netlify: https://hmis.netlify.app/
+- Netlify: https://ospic.netlify.app/
 - Github pages: https://ospic.github.io/webapp/
 
 Credentials:
