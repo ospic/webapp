@@ -1,59 +1,46 @@
 <template>
   <v-row>
     <v-col cols="12" md="3">
-      <v-list>
-        <v-list-item>
-          <v-list-item-icon>
-            <v-icon>mdi-account-circle</v-icon>
-          </v-list-item-icon>
-
-          <v-list-item-title>{{
-            $t("label.titles.usersettings")
-          }}</v-list-item-title>
-        </v-list-item>
-
-        <v-list-group :value="true" prepend-icon="mdi-shield-lock-outline">
+      <v-list rounded>
+        <v-list-group
+          v-for="(listitem, index) in menuitems"
+          :key="index"
+          :value="true"
+          :prepend-icon="listitem.icon"
+        >
           <template v-slot:activator>
-            <v-list-item-title>{{
-              $t("label.titles.roleandpermissions")
+            <v-list-item-title class="text-caption">{{
+              $t(listitem.title)
             }}</v-list-item-title>
           </template>
 
-          <v-list-group :value="true" no-action sub-group>
+          <v-list-group
+            v-for="menu in listitem.menus"
+            :key="menu.title"
+            :value="true"
+            no-action
+            sub-group
+          >
             <template v-slot:activator>
               <v-list-item-content>
-                <v-list-item-title>{{
-                  $t("label.titles.administrations")
+                <v-list-item-title class="text-caption">{{
+                  $t(menu.title)
                 }}</v-list-item-title>
               </v-list-item-content>
             </template>
             <v-list-item
-              v-for="([title, icon, route], i) in admins"
+              dense
+              v-for="(submenu, i) in menu.submenu"
               :key="i"
               link
-              :to="route"
+              :to="submenu.to"
             >
-              <v-list-item-title>{{ $t(title) }}</v-list-item-title>
-
               <v-list-item-icon>
-                <v-icon v-text="icon"></v-icon>
+                <v-icon v-text="submenu.icon"></v-icon>
               </v-list-item-icon>
-            </v-list-item>
-          </v-list-group>
-
-          <v-list-group no-action sub-group>
-            <template v-slot:activator>
-              <v-list-item-content>
-                <v-list-item-title>Actions</v-list-item-title>
-              </v-list-item-content>
-            </template>
-
-            <v-list-item v-for="([title, icon], i) in cruds" :key="i" link>
-              <v-list-item-title v-text="title"></v-list-item-title>
-
-              <v-list-item-icon>
-                <v-icon v-text="icon"></v-icon>
-              </v-list-item-icon>
+              <v-list-item-content class="text-caption">{{
+                $t(submenu.title)
+              }}</v-list-item-content>
             </v-list-item>
           </v-list-group>
         </v-list-group>
@@ -81,6 +68,45 @@ export default {
       ["Read", "mdi-file-outline"],
       ["Update", "mdi-update"],
       ["Delete", "mdi-delete"]
+    ],
+    menuitems: [
+      {
+        title: "label.titles.roleandpermissions",
+        icon: "mdi-shield-lock-outline",
+        menus: [
+          {
+            title: "label.titles.administrations",
+            submenu: [
+              {
+                title: "label.titles.users",
+                to: "/settings/users",
+                icon: "mdi-account-group-outline"
+              },
+              {
+                title: "label.titles.roles",
+                to: "/settings/roles",
+                icon: "mdi-lock-outline"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        title: "Actions and Users",
+        icon: "mdi-cog",
+        menus: [
+          {
+            title: "Users actions",
+            submenu: [
+              {
+                title: "User  Actions",
+                to: "/settings/users",
+                icon: "mdi-cog"
+              }
+            ]
+          }
+        ]
+      }
     ]
   })
 };
