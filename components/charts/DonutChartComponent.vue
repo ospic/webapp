@@ -67,7 +67,7 @@ export default {
                 show:true,
                 total:{
                   showAlways: true,
-                  show: true
+                  show: false
                 }
               }
             }

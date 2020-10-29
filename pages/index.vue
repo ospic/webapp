@@ -116,7 +116,9 @@ export default {
   }),
   methods: {
     percentCalculation: function(percent, total) {
-      return (percent / total) * 100;
+      var number = (percent / total) * 100;
+
+      return +number.toFixed(2);
     }
   },
 
@@ -148,7 +150,7 @@ export default {
             title: "OPD Vs IPD in (%)"
           },
           {
-            series: [13, 33],
+            series: [45, 62],
             chartOptions: {
               labels: ["Male", "Female"]
             },
