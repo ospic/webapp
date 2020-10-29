@@ -1,6 +1,6 @@
 <template>
   <v-col class="pa-1" cols="12" xs="4" sm="3" md="2" xl="1">
-    <v-card class="mx-auto" color="white" elevation="1">
+    <v-card class="mx-auto" color="primary lighten-4" elevation="1">
       <v-card-title class="font-weight-bold caption py-2   ma-0 pr-1 "
         >{{ data.title }}<v-spacer></v-spacer
         ><v-btn

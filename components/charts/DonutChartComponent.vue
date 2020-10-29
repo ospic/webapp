@@ -1,7 +1,7 @@
 <template>
   <apexchart
     :height="height"
-    width="100%"
+    width="90%"
     :options="options"
     :series="data.series"
   ></apexchart>
@@ -84,12 +84,12 @@ export default {
           title: {
               text: this.data.title,
               align: "left",
-              margin: 10,
+              margin: 0,
               offsetX: 0,
               offsetY: 0,
               floating: true,
               style:{
-            fontSize: '14px',
+            fontSize: '10px',
             color: '#263238'
           }
             },
