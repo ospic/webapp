@@ -43,13 +43,13 @@ export default {
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
     "~/plugins/i18n.js",
-    '@plugins/vuetify.js',
+    '~/plugins/vuetify.js',
     '~/plugins/axios',
     '~/plugins/route',
     '~/plugins/pwa.client.js',
     '~/plugins/vue-apexcharts.js',
     '~/mixins/label_mixins.js',
-    { src: '~plugins/ga.js', mode: 'client' },
+    { src: '~/plugins/ga.js', mode: 'client' },
     /*
     { src: '~/plugins/localStorage.js', ssr: false }
     */
@@ -93,8 +93,10 @@ export default {
   },
   pwa: {
     manifest: {
-      name: 'HMS',
-      lang: 'en'
+      name: 'Ospic Hospital Management System',
+      short_name: 'Ospic Hms',
+      lang: 'en',
+      useWebmanifestExtension: false
     },
     meta: {
       /* meta options */

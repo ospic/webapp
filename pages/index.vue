@@ -8,13 +8,20 @@
       ></summarycard>
     </v-row>
     <v-row justify="start" align="start">
-      <v-col v-for="(item, i) in trend_items" :key="i" cols="12" sm="6" md="3">
-        <v-card>
+      <v-col
+        v-for="(item, i) in trend_items"
+        :key="i"
+        cols="12"
+        sm="6"
+        md="2"
+        class="ma-0 pa-0 mt-1"
+      >
+        <v-card class="mr-1 ml-1" dense color="#FFFFFF">
           <v-card-text v-if="i % 2 === 0">
-            <pie-chart :data="item" :height="305"></pie-chart>
+            <pie-chart :data="item" :height="265"></pie-chart>
           </v-card-text>
           <v-card-text v-if="i % 2 !== 0">
-            <donutchart :data="item" :height="300"></donutchart>
+            <donutchart :data="item" :height="260"></donutchart>
           </v-card-text>
         </v-card>
       </v-col>
@@ -105,41 +112,72 @@ export default {
           data: [52, 53, 41, 34, 51, 47, 35, 41, 36, 26, 45, 48, 84]
         }
       ]
-    },
-    trend_items: [
-      {
-        series: [44, 13],
-        chartOptions: {
-          labels: ["Male", "Female"]
-        },
-        title: "Male Vs Female"
-      },
-      {
-        series: [44, 33],
-        chartOptions: {
-          labels: ["Allowed", "Admitted"]
-        },
-        title: "Allowed Vs Admitted"
-      },
-      {
-        series: [13, 33],
-        chartOptions: {
-          labels: ["Male", "Female"]
-        },
-        title: "Overall Sex Trends"
-      },
-      {
-        series: [44, 55],
-        chartOptions: {
-          labels: ["Male", "Female"]
-        },
-        title: "Patient Trends By"
-      }
-    ]
+    }
   }),
-  methods: {},
+  methods: {
+    percentCalculation: function(percent, total) {
+      return (percent / total) * 100;
+    }
+  },
 
   computed: {
+    trend_items: {
+      get() {
+        return [
+          {
+            series: [44, 13],
+            chartOptions: {
+              labels: ["Male", "Female"]
+            },
+            title: "Male Vs Female"
+          },
+          {
+            series: [
+              this.percentCalculation(
+                this.$store.getters.ipdpatients.length,
+                this.$store.getters.patients.length
+              ),
+              this.percentCalculation(
+                this.$store.getters.opdpatients.length,
+                this.$store.getters.patients.length
+              )
+            ],
+            chartOptions: {
+              labels: ["IPD", "OPD"]
+            },
+            title: "OPD Vs IPD in (%)"
+          },
+          {
+            series: [13, 33],
+            chartOptions: {
+              labels: ["Male", "Female"]
+            },
+            title: "Overall Sex Trends"
+          },
+          {
+            series: [44, 55],
+            chartOptions: {
+              labels: ["Male", "Female"]
+            },
+            title: "Patient Trends By"
+          },
+          {
+            series: [44, 55, 27],
+            chartOptions: {
+              labels: ["Male", "Female"]
+            },
+            title: "Patient Trends By"
+          },
+          {
+            series: [44, 55, 27, 45],
+            chartOptions: {
+              labels: ["Male", "Female"]
+            },
+            title: "Patient Trends By"
+          }
+        ];
+      }
+    },
     summary_items: {
       get() {
         return [
