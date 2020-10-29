@@ -142,6 +142,15 @@ const getters = {
   },
   ipdpatients: function (state) {
     return state.patients.filter(patient => patient.isAdmitted);
+  },
+  malepatients: function (state) {
+    return state.patients.filter(patient => patient.gender.id === 1)
+  },
+  femalepatients: function (state) {
+    return state.patients.filter(patient => patient.gender.id === 2)
+  },
+  otherpatients: function (state) {
+    return state.patients.filter(patient => patient.gender.id === 3)
   }
 }
 
