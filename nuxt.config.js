@@ -100,6 +100,21 @@ export default {
     },
     meta: {
       /* meta options */
+      name: "Ospic Hospital Management System",
+      author: "Ospic",
+      description: "Open source Hospital Management System",
+      lang: "en",
+      ogType: "website",
+      ogSiteName: "Ospic Hms",
+      ogTitle: "Ospic Hospital Management system",
+      ogDescription: "Open source Hospital Management System",
+      ogHost: "http://ospic.github.io/webapp/",
+      ogImage: "https://a.fsdn.com/con/app/proj/ospic/screenshots/Screenshot%20from%202020-10-23%2020-03-21.png/max/max/1",
+      ogUrl: "",
+      twitterCard: "Ospic",
+      twitterSite: "elixml",
+
+
     },
     icon: {
       iconSrc: '/static/icon.png'
