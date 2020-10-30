@@ -34,8 +34,9 @@ $ npm run start
 # generate static project
 $ npm run generate
 ```
-
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+[![Code Now! (Gitpod)](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/ospic/webapp)
+to start contributing to this project in the online web-based IDE GitPod.io right away!
+It's of course also possible to contribute with a "traditional" local development environment.
 
 ---
 
