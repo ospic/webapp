@@ -56,7 +56,7 @@ export default {
         },
          fill:{
           type: 'solid',
-          colors: ['#00897B', '#ED1C23'],
+          //colors: ['#00897B', '#ED1C23'],
         },
          plotOptions:{
           pie:{
@@ -78,7 +78,7 @@ export default {
           position: "bottom",
           show: true,
           markers:{
-            fillColors: ['#00897B', '#ED1C23']
+           // fillColors: ['#00897B', '#ED1C23']
           },
           },
           title: {
