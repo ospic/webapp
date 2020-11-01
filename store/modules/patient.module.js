@@ -75,7 +75,7 @@ const actions = {
     commit(mutation.GET_PATIENTS);
     await this.$api.$get(`patients/`)
       .then(response => {
-        commit(mutation.GET_PATIENTS_SUCCESS, response);
+        commit(mutation.GET_PATIENTS_SUCCESS, response.body);
 
       }).catch(error => {
         commit(mutation.GET_PATIENTS_ERROR);
@@ -144,13 +144,13 @@ const getters = {
     return state.patients.filter(patient => patient.isAdmitted);
   },
   malepatients: function (state) {
-    return state.patients.filter(patient => patient.gender.id === 1)
+    return state.patients.filter(patient => patient.gender === "M")
   },
   femalepatients: function (state) {
-    return state.patients.filter(patient => patient.gender.id === 2)
+    return state.patients.filter(patient => patient.gender === "F")
   },
   otherpatients: function (state) {
-    return state.patients.filter(patient => patient.gender.id === 3)
+    return state.patients.filter(patient => patient.gender === "O")
   }
 }
 

@@ -67,7 +67,10 @@
       "settingsandconfigurations":"Settings Configuration",
       "progresssynchronising":"Sync ....",
       "synchronise":"Sync",
-      "clicktologout":"Click to logout"
+      "clicktologout":"Click to logout",
+      "gendermale":"Male",
+      "genderfemale":"Female",
+      "genderother":"Other"
     },
     "titles":{
       "settings":"Settings",
