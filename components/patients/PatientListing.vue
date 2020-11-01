@@ -123,6 +123,38 @@
         </v-dialog>
       </v-toolbar>
     </template>
+    <template v-slot:[`item.gender`]="{ item }">
+      <v-tooltip top v-if="item.gender == 'F'" color="green">
+        <template v-slot:activator="{ on, attrs }">
+          <v-icon v-bind="attrs" v-on="on" small color="green darken-2"
+            >mdi-gender-female
+          </v-icon>
+        </template>
+        <span>{{ $t("label.tooltip.genderfemale") }}</span>
+      </v-tooltip>
+      <v-tooltip top v-if="item.gender == 'M'" color="primary">
+        <template v-slot:activator="{ on, attrs }">
+          <v-icon v-bind="attrs" v-on="on" small color="primary darken-2"
+            >mdi-gender-male
+          </v-icon>
+        </template>
+        <span>{{ $t("label.tooltip.gendermale") }}</span>
+      </v-tooltip>
+      <v-tooltip top v-if="item.gender == 'O'" color="cyan">
+        <template v-slot:activator="{ on, attrs }">
+          <v-icon v-bind="attrs" v-on="on" small color="cyan darken-2"
+            >mdi-gender-male-female
+          </v-icon>
+        </template>
+        <span>{{ $t("label.tooltip.genderother") }}</span>
+      </v-tooltip>
+    </template>
+    <template v-slot:[`item.name`]="{ item }">
+      <p>
+        {{ item.last_name }}, &nbsp;{{ item.first_name }} &nbsp;
+        {{ item.middle_name }}
+      </p>
+    </template>
     <template v-slot:[`item.isAdmitted`]="{ item }">
       <v-tooltip right v-if="item.isAdmitted" color="primary">
         <template v-slot:activator="{ on, attrs }">
@@ -158,9 +190,8 @@ export default {
         sortable: false,
         value: "suffix"
       },
-      { text: "First Name", value: "first_name" },
-      { text: "Middle Name", value: "middle_name" },
-      { text: "LastName", value: "last_name" },
+
+      { text: "Name", value: "name" },
       { text: "Gender", value: "gender", sortable: false },
       { text: "Country", value: "country" },
       { text: "Status", value: "isAdmitted", sortable: true },
