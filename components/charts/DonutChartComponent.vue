@@ -1,7 +1,7 @@
 <template>
   <apexchart
     :height="height"
-    width="90%"
+    width="100%"
     :options="options"
     :series="data.series"
   ></apexchart>
@@ -24,10 +24,11 @@ export default {
       options:{
          chart: {
           height: 350,
+          width: '100%',
           type: 'donut',
+          background: 'transparent',
           toolbar: {
             show: true,
-
           },
           animation:{
             enabled: true,
@@ -90,7 +91,8 @@ export default {
               floating: true,
               style:{
             fontSize: '10px',
-            color: '#263238'
+            color: '#263238',
+            fontWeight: '12'
           }
             },
 
