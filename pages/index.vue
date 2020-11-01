@@ -18,12 +18,12 @@
         md="2"
         class="ma-0 pa-0 mt-1"
       >
-        <v-card class="mr-1 ml-1" dense color="#FFFFFF">
-          <v-card-text v-if="i % 2 === 0">
-            <pie-chart :data="item" :height="265"></pie-chart>
+        <v-card class="mr-1 ml-1 " dense color="#FFFFFF">
+          <v-card-text v-if="i % 2 === 0" class="ma-0 ">
+            <pie-chart :data="item" :height="275"></pie-chart>
           </v-card-text>
-          <v-card-text v-if="i % 2 !== 0">
-            <donutchart :data="item" :height="260"></donutchart>
+          <v-card-text v-else class="ma-0 ">
+            <donutchart :data="item" :height="273"></donutchart>
           </v-card-text>
         </v-card>
       </v-col>

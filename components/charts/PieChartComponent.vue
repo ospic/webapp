@@ -24,7 +24,9 @@ export default {
       options:{
          chart: {
           height: 350,
+          width: '100%',
           type: 'pie',
+          background: 'transparent',
           toolbar: {
             show: true,
 
@@ -41,7 +43,11 @@ export default {
             enabled: true,
             speed: 350
         }
-          }
+          },
+
+        },
+        stroke:{
+          width: 0
         },
         labels: this.data.chartOptions.labels,
         dataLabels:{
@@ -88,7 +94,8 @@ export default {
               floating: true,
               style:{
             fontSize: '10px',
-            color: '#263238'
+            color: '#263238',
+            fontWeight: '12'
           }
             },
 
