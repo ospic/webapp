@@ -1,11 +1,13 @@
 <template>
   <v-container class="ma-0 pa-0 px-2" fluid>
     <v-row justify="start" align="start">
-      <summarycard
-        v-for="(item, i) in summary_items"
-        :key="i"
-        :data="item"
-      ></summarycard>
+      <template v-for="(item, i) in summary_items">
+        <summarycard
+          :key="i"
+          :data="item"
+          v-if="item.value !== 0"
+        ></summarycard>
+      </template>
     </v-row>
     <v-row justify="start" align="start">
       <v-col
@@ -127,11 +129,24 @@ export default {
       get() {
         return [
           {
-            series: [44, 13],
+            series: [
+              this.percentCalculation(
+                this.$store.getters.malepatients.length,
+                this.$store.getters.patients.length
+              ),
+              this.percentCalculation(
+                this.$store.getters.femalepatients.length,
+                this.$store.getters.patients.length
+              ),
+              this.percentCalculation(
+                this.$store.getters.otherpatients.length,
+                this.$store.getters.patients.length
+              )
+            ],
             chartOptions: {
-              labels: ["Male", "Female"]
+              labels: ["Me", "Ke", "Other"]
             },
-            title: "Male Vs Female"
+            title: "Gender Composition"
           },
           {
             series: [
@@ -223,22 +238,22 @@ export default {
             icon: "mdi-account-multiple"
           },
           {
-            title: "Errors",
-            subtitle: "Total Error Responses",
-            value: "13",
-            icon: "mdi-select-group"
+            title: "Males",
+            subtitle: "Male Patients",
+            value: this.$store.getters.malepatients.length,
+            icon: "mdi-gender-male"
           },
           {
-            title: "Success",
-            subtitle: "Success Responses",
-            value: "4245",
-            icon: "mdi-select-group"
+            title: "Females",
+            subtitle: "Female patients",
+            value: this.$store.getters.femalepatients.length,
+            icon: "mdi-gender-female"
           },
           {
-            title: "Success",
-            subtitle: "Success Responses",
-            value: "4245",
-            icon: "mdi-select-group"
+            title: "Others",
+            subtitle: "Special Gender",
+            value: this.$store.getters.otherpatients.length,
+            icon: "mdi-gender-male-female"
           },
           {
             title: "Success",

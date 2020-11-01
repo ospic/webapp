@@ -52,7 +52,7 @@ export default {
               }
         },
         fill:{
-          colors: ['#00897B', '#ED1C23'],
+          //colors: ['#00897B', '#ED1C23'],
           type: 'solid'
         },
         plotOptions:{
@@ -75,7 +75,7 @@ export default {
           position: "bottom",
           show: true,
            markers:{
-            fillColors: ['#00897B', '#ED1C23']
+           // fillColors: ['#00897B', '#ED1C23']
           },
         },
 
@@ -87,7 +87,7 @@ export default {
               offsetY: 0,
               floating: true,
               style:{
-            fontSize: '12px',
+            fontSize: '10px',
             color: '#263238'
           }
             },
