@@ -277,10 +277,24 @@ export default {
       console.log(this.editedItemId);
       if (this.editedIndex > -1) {
         Object.assign(this.datalist[this.editedIndex], this.editedItem);
-
+        var gender = null;
         delete this.editedItem.contactsInformation;
         delete this.editedItem.diagnoses;
         delete this.editedItem.physician;
+        switch (this.editedItem.gender.toLowerCase()) {
+          case "male":
+            gender = "M";
+            break;
+          case "female":
+            gender = "F";
+            break;
+          case "others":
+            gender = "O";
+            break;
+          default:
+            gender = "O";
+        }
+        this.editedItem.gender = gender;
         console.log(this.editedItem);
         this.$store.dispatch("update_patient", {
           id: this.editedItemId,
