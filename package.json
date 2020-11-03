@@ -45,7 +45,7 @@
     "eslint-plugin-nuxt": "^1.0.0",
     "jest": "^26.6.1",
     "node-sass": "^5.0.0",
-    "sass-loader": "^10.0.4",
+    "sass-loader": "^10.0.5",
     "ts-jest": "^26.4.3",
     "vue-jest": "^3.0.4"
   }
