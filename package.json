@@ -19,7 +19,7 @@
     "@nuxtjs/pwa": "^3.2.2",
     "apexcharts": "^3.22.1",
     "bulma": "^0.9.1",
-    "core-js": "^3.6.5",
+    "core-js": "^3.7.0",
     "fibers": "^5.0.0",
     "nuxt": "^2.14.7",
     "nuxt-material-design-icons": "^1.0.4",
