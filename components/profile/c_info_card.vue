@@ -481,7 +481,7 @@ export default {
   created() {
     this.address = this.userdata.contactsInformation;
     this.physician = this.userdata.physician;
-    this.diagnoses = this.userdata.diagnoses;
+
     this.$store.dispatch("retrievephysicians");
   },
   computed:{
@@ -502,9 +502,9 @@ export default {
     },
     async getThisUserPosts() {
       console.log("Clicked" + this.$route.params.id)
-      return await this.$api.$get(`users/${this.$route.params.id}/posts/?type=post`)
+      return await this.$api.$get(`diagnoses/${this.$route.params.id}/`)
         .then(response => {
-          this.posts = response;
+          this.diagnoses = response;
         }).catch(error => {
           console.log(error);
 
