@@ -47,32 +47,20 @@
                 <v-row>
                   <v-col cols="12" sm="6" md="4">
                     <v-text-field
-                      v-model="editedItem.first_name"
-                      label="First name"
+                      v-model="editedItem.name"
+                      label="Full Name"
                     ></v-text-field>
                   </v-col>
                   <v-col cols="12" sm="6" md="4">
                     <v-text-field
-                      v-model="editedItem.middle_name"
-                      label="Middle Name"
+                      v-model="editedItem.phone"
+                      label="Phone"
                     ></v-text-field>
                   </v-col>
                   <v-col cols="12" sm="6" md="4">
                     <v-text-field
-                      v-model="editedItem.last_name"
-                      label="Last Name"
-                    ></v-text-field>
-                  </v-col>
-                  <v-col cols="12" sm="6" md="4">
-                    <v-text-field
-                      v-model="editedItem.country"
-                      label="Country"
-                    ></v-text-field>
-                  </v-col>
-                  <v-col cols="12" sm="6" md="4">
-                    <v-text-field
-                      v-model="editedItem.ethnicity"
-                      label="Ethnicity"
+                      v-model="editedItem.address"
+                      label="Address"
                     ></v-text-field>
                   </v-col>
                   <v-col cols="12" sm="6" md="4">
@@ -88,14 +76,14 @@
                   </v-col>
                   <v-col cols="12" sm="6" md="4">
                     <v-text-field
-                      v-model="editedItem.dob"
-                      label="Date of Birth"
+                      v-model="editedItem.age"
+                      label="Age"
                     ></v-text-field>
                   </v-col>
                   <v-col cols="12" sm="6" md="4">
                     <v-text-field
-                      v-model="editedItem.principal_tribe"
-                      label="Tribe"
+                      v-model="editedItem.guardianName"
+                      label="Guardain Name"
                     ></v-text-field>
                   </v-col>
                   <v-col cols="12" sm="6" md="4">
@@ -149,12 +137,7 @@
         <span>{{ $t("label.tooltip.genderother") }}</span>
       </v-tooltip>
     </template>
-    <template v-slot:[`item.name`]="{ item }">
-      <p>
-        {{ item.last_name }}, &nbsp;{{ item.first_name }} &nbsp;
-        {{ item.middle_name }}
-      </p>
-    </template>
+
     <template v-slot:[`item.isAdmitted`]="{ item }">
       <v-tooltip right v-if="item.isAdmitted" color="primary">
         <template v-slot:activator="{ on, attrs }">
@@ -172,7 +155,7 @@
       </v-icon>
     </template>
     <template v-slot:no-data>
-      <v-btn color="primary" @click="initialize">Reset</v-btn>
+      <h3>No Data available ...</h3>
     </template>
   </v-data-table>
 </template>
@@ -184,30 +167,24 @@ export default {
     dialog: false,
     search: "",
     headers: [
-      {
-        text: "Suffix",
-        align: "start",
-        sortable: false,
-        value: "suffix"
-      },
-
       { text: "Name", value: "name" },
       { text: "Gender", value: "gender", sortable: false },
-      { text: "Country", value: "country" },
+      { text: "Guardian", value: "guardianName" },
       { text: "Status", value: "isAdmitted", sortable: true },
+      { text: "Address", value: "address", sortable: true },
+      { text: "Phone", value: "phone" },
       { text: "Actions", value: "actions", sortable: false }
     ],
     desserts: [],
     editedIndex: -1,
     editedItemId: "",
     editedItem: {
-      first_name: null,
-      middle_name: "",
-      last_name: "",
-      suffix: "",
-      ethnicity: "",
-      dob: "",
+      name: "",
+      phone: "",
+      address: "",
+      age: "",
       gender: "",
+      guardianName: "",
       ssn: "",
       mdn: "",
       principal_tribe: "",
@@ -215,13 +192,12 @@ export default {
       isAdmitted: false
     },
     defaultItem: {
-      first_name: null,
-      middle_name: "",
-      last_name: "",
-      suffix: "",
-      ethnicity: "",
-      dob: "",
+      name: "",
+      phone: "",
+      address: "",
+      age: "",
       gender: "",
+      guardianName: "",
       ssn: "",
       mdn: "",
       principal_tribe: "",
