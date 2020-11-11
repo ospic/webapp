@@ -79,7 +79,7 @@ export default {
         },
         legend: {
           position: "bottom",
-          show: true,
+          show: false,
            markers:{
            // fillColors: ['#00897B', '#ED1C23']
           },
