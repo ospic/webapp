@@ -1,4 +1,5 @@
 import colors from 'vuetify/es5/util/colors';
+const open = require('opn');
 
 export default {
   // Disable server-side rendering (https://go.nuxtjs.dev/ssr-mode)
@@ -7,6 +8,11 @@ export default {
   router: {
     base: process.env.NODE_ENV === "production" ? "/webapp/" : "/",
     routerNameSplitter: "/"
+  },
+  hooks: {
+    listen(server, { host, port }) {
+      open(`http://${host}:${port}`)
+    }
   },
   env: {
     baseUrl: 'https://ospicapi.herokuapp.com/api/',

@@ -1,6 +1,6 @@
 <template>
   <v-tabs color="deep-purple accent-4" right>
-    <v-tab>
+    <v-tab v-if="unassigned.length > 0">
       <v-badge
         color="green"
         :content="unassigned.length"
@@ -9,7 +9,7 @@
         Un-Assigned
       </v-badge>
     </v-tab>
-    <v-tab
+    <v-tab v-if="assigned.length > 0"
       ><v-badge
         color="green"
         :content="assigned.length"
@@ -18,7 +18,7 @@
         >Assigned</v-badge
       ></v-tab
     >
-    <v-tab
+    <v-tab v-if="datalist.length > 0"
       ><v-badge
         color="green"
         :content="datalist.length"
