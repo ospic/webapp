@@ -169,34 +169,6 @@
         <v-card outlined flat class="pa-0">
           <v-list class="ma-0 pa-0">
             <v-list-item-group color="primary">
-              <v-list-item two-line inactive :ripple="false">
-                <v-list-item-content>
-                  <v-list-item-title>
-                    <v-row>
-                      <v-col>
-                        <span class="font-weight-bold text-h5">
-                          {{ userdata.first_name }}&nbsp;
-                          {{ userdata.last_name }}
-                          <v-icon color="primary" size="20" v-show="true"
-                            >mdi-check-decagram</v-icon
-                          ></span
-                        >
-                      </v-col>
-                      <v-col v-if="userdata.contactsInformation !== null">
-                        <span class="font-weight-light text-caption"
-                          ><v-icon>mdi-map-marker</v-icon
-                          >{{ userdata.contactsInformation.city }}</span
-                        >
-                      </v-col>
-                    </v-row>
-                  </v-list-item-title>
-                  <v-list-item-subtitle
-                    class="primary--text text-caption font-weight-medium"
-                  >
-                    {{ userdata.role }}
-                  </v-list-item-subtitle>
-                </v-list-item-content>
-              </v-list-item>
               <v-list-item inactive class="ma-0 pa-0" :ripple="false">
                 <v-list-item-content class="ma-0 pa-0">
                   <v-tabs left grow center-active class="elevation-2">
@@ -211,7 +183,7 @@
                       @click.stop="getThisUserPosts()"
                     >
                       <v-icon small left>mdi-medical-bag</v-icon>
-                      History
+                      Diagnoses
                     </v-tab>
                     <v-tab
                       class="font-weight-light"
@@ -341,7 +313,9 @@
                                     <img :src="entityThumbNail" alt="" />
                                   </v-avatar>
                                 </template>
-                                <post-card :post="diagnose"></post-card>
+                                <diagnosis-info-card
+                                  :post="diagnose"
+                                ></diagnosis-info-card>
                               </v-timeline-item>
                             </v-slide-x-reverse-transition>
                           </v-timeline>
@@ -369,7 +343,9 @@
                           v-for="(comment, index) in comments.results"
                           :key="index"
                         >
-                          <post-card :post="comment"></post-card>
+                          <diagnosis-info-card
+                            :post="comment"
+                          ></diagnosis-info-card>
                         </v-col>
                         <p v-else></p>
                       </v-row>
@@ -445,7 +421,7 @@ export default {
     }
     },
   components: {
-    'post-card': medicalInfoCard,
+    'diagnosis-info-card': medicalInfoCard,
     'v-type-divider': c_type_divider,
     'v-address-card': c_address_card,
     'v-follows': c_follows

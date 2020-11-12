@@ -3,20 +3,14 @@
     <v-card-title class="font-weight-normal pa-1">
       {{ post.diagnosisReport }}
     </v-card-title>
-    <v-card-subtitle class="pa-2 text-caption font-weight-light ">
-      Created By: {{ post.createdBy }}&nbsp;On
-      {{ post.createdDate | DateFormat }} &nbsp; Modified By:
-      {{ post.lastModifiedBy }}&nbsp;On
-      {{ post.lastModifiedDate | DateFormat }}
+    <v-card-subtitle class="pa-2 text-caption font-weight-light "
+      >On: {{ post.date | DateFormat }}
     </v-card-subtitle>
 
     <v-divider></v-divider>
     <v-card-text class="text--primary ma-0 mt-2 py-0">
       <ul>
-        <li>{{ post.diagnosisReport }}</li>
-        <li>{{ post.treatmentType }}</li>
-        <li>{{ post.medicineNames }}</li>
-        <li>{{ post.laboratoryTests }}</li>
+        <li>{{ post.symptoms }}</li>
       </ul>
     </v-card-text>
   </v-card>
@@ -29,14 +23,7 @@ export default {
   props: ["post"],
   data: () => ({
     view: false,
-    images:[
-      "https://freepsdmock-up.com/wp-content/uploads/2018/06/Free-Wine-Bottle-Label-Mockups-1.jpg",
-      "https://wpepitome.com/wp-content/uploads/2019/07/29_wine-bottle-mockups.jpg",
-      "https://worldbranddesign.com/wp-content/uploads/2020/02/design-for-vida-wine-brand.jpg",
-      "https://s23444.pcdn.co/wp-content/uploads/2020/01/Africa-general-pic.jpg.optimal.jpg",
-      "https://dibonphuong.files.wordpress.com/2019/09/most-beautiful-landscapes-in-europe-hallstatt-copyright-canadastock-european-best-destinations.jpg",
-      "https://secure.img1-fg.wfcdn.com/im/80685197/resize-h800-w800%5Ecompr-r85/3073/30739909/Siera+4+Bottle+Wall+Mounted+Wine+Bottle+and+Glass+Rack+in+White.jpg"
-    ]
+
 
   }),
   methods: {

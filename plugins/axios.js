@@ -1,8 +1,18 @@
 import swal from "sweetalert";
+function check_cookie_name(name) {
+  var match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+  if (match) {
+    // console.log(match[2]);
+    return match[2];
+  }
+  else {
+    console.log('--something went wrong---');
+  }
+}
 export default function ({ $axios, redirect }, inject) {
   // Create a custom axios instance
   $axios.setHeader('Content-Type', 'application/json');
-  $axios.setToken(localStorage.getItem("ospic.token"), localStorage.getItem("ospic.tokentype"));
+  $axios.setToken(check_cookie_name("ospic.token"), check_cookie_name("ospic.tokentype"));
 
 
   const api = $axios.create({
@@ -31,16 +41,17 @@ export default function ({ $axios, redirect }, inject) {
   api.onResponseError((error) => {
     swal({
       title: error.response.statusText + " !!",
-      text:
-        error.response.data.message +
-        " \n In accessing " +
-        error.config.url +
-        "\n Status code :" +
-        error.response.status,
+      text: error.response.data.message + " \n In accessing " + error.config.url + "\n Status code :" + error.response.status,
       icon: "warning",
       customClass: 'swal-wide',
+      buttons: true,
       dangerMode: true,
-    });
+    })
+      .then((willDelete) => {
+        if (willDelete) {
+          window.location.reload();
+        }
+      });
   });
 
   // Set baseURL to something different
@@ -58,3 +69,4 @@ export default function ({ $axios, redirect }, inject) {
   // Inject to context as $api
   inject("api", api);
 }
+

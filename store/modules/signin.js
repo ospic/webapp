@@ -46,6 +46,12 @@ const actions = {
           localStorage.setItem('ospic.uid', response.id);
           localStorage.setItem('ospic.username', response.username);
           sessionStorage.setItem('ospic.token', response.accessToken)
+          this.$cookies.set('ospic.tokentype', response.tokenType, { path: '/', maxAge: 60 * 60 * 24 * 1 });
+          this.$cookies.set('ospic.token', response.accessToken, { path: '/', maxAge: 60 * 60 * 24 * 1 });
+          //this.$router.app.refresh()
+
+          // console.log(localStorage.getItem('ospic.token'))
+
           this.$router.push('/');
         }
 
