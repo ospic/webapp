@@ -9,11 +9,13 @@ export default {
     base: process.env.NODE_ENV === "production" ? "/webapp/" : "/",
     routerNameSplitter: "/"
   },
+  /** 
   hooks: {
     listen(server, { host, port }) {
       open(`http://${host}:${port}`)
     }
   },
+  **/
   env: {
     baseUrl: 'https://ospicapi.herokuapp.com/api/',
     localUrl: 'http://localhost:8080/api/'
@@ -81,7 +83,8 @@ export default {
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
     '@nuxtjs/axios',
-    'nuxt-material-design-icons'
+    'nuxt-material-design-icons',
+    ['cookie-universal-nuxt', { parseJSON: false }],
   ],
   build: {
     /*
