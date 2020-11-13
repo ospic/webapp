@@ -209,7 +209,7 @@ export default {
         {
           text: "label.menu.pharmacyandmedicine",
           icon: "mdi-pharmacy",
-          route: "",
+          route: "pharmacy",
           subtitle: "Lorem ipsum dolor sit de amet.."
         },
         {
