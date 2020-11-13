@@ -7,6 +7,7 @@ import Template from './modules/template';
 import DocumentsModules from "./modules/documents.module";
 import ContactsModules from "./modules/contact.module";
 import UsersManagementModule from "./modules/users.module";
+import MedicineModule from "./modules/pharmacy.medicine";
 
 Vue.use(Vuex);
 const store = () => {
@@ -17,7 +18,7 @@ const store = () => {
     modules: {
       SignIn, SignUp,
       Registry, Template,
-      DocumentsModules, ContactsModules, UsersManagementModule
+      DocumentsModules, ContactsModules, UsersManagementModule, MedicineModule
     },
     /* plugins: [createPersistedState({
        storage: window.sessionStorage,

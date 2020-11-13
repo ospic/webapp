@@ -122,6 +122,7 @@
   </v-data-table>
 </template>
 <script>
+import { mapGetters } from "vuex";
 export default {
   data: () => ({
     dialog: false,
@@ -240,9 +241,10 @@ export default {
     }
   },
   computed: {
-    userslist() {
-      return this.$store.getters.users;
-    },
+    ...mapGetters({
+      userslist: "users"
+    }),
+
     formTitle() {
       return this.editedIndex === -1
         ? "label.titles.newuser"
