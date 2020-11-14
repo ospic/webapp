@@ -68,3 +68,9 @@ canvas {
 .v-tab {
   text-transform: none !important;
 }
+.theme--light.v-data-table tbody tr:nth-of-type(even) {
+  background-color: rgba(227, 255, 235);
+}
+.theme--dark.v-data-table tbody tr:nth-of-type(even) {
+  background-color: rgba(227, 255, 235);
+}

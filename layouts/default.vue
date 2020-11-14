@@ -9,7 +9,7 @@
       :mini-variant="$vuetify.breakpoint.mdAndDown"
       :expand-on-hover="$vuetify.breakpoint.mdAndDown"
       overlay-color="primary"
-      color="whitish"
+      color="#EAFFF2"
       clipped
       fixed
       app
@@ -41,12 +41,12 @@
     <v-app-bar
       clipped-left
       flat
-      elevation="1"
+      elevation="0"
       fixed
       app
       dense
       short
-      color="primary "
+      color="#EAFFF2"
     >
       <v-app-bar-nav-icon dense>
         <img
@@ -123,7 +123,7 @@
     </v-app-bar>
 
     <v-main>
-      <v-container style="background-color: #efefef;" class="pa-2 ma-0" fluid>
+      <v-container style="background-color: #EAFFF2;" class="pa-2 ma-0" fluid>
         <nuxt />
       </v-container>
     </v-main>
