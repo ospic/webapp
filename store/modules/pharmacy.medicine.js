@@ -7,18 +7,18 @@ const state = () => ({
 
 const mutations = {
 
-  [mutation.FETCH_MEDICINE](state) {
+  [mutation.GET_MEDICINE_PRODUCTS](state) {
     state.showLoader = true;
   },
-  [mutation.FETCH_MEDICINE_FAILED](state) {
+  [mutation.GET_MEDICINE_PRODUCTS_FAILED](state) {
     state.showLoader = false;
   },
-  [mutation.FETCH_MEDICINE_ERROR](state) {
+  [mutation.GET_MEDICINE_PRODUCTS_ERROR](state) {
     state.showLoader = false;
   },
-  [mutation.FETCH_MEDICINE_SUCCESS](state, payload) {
+  [mutation.GET_MEDICINE_PRODUCTS_SUCCESS](state, payload) {
     state.showLoader = false;
-    this.medicines = payload;
+    state.medicines = payload;
 
   },
 
@@ -26,14 +26,13 @@ const mutations = {
 const actions = {
 
   async getmedicines({ commit }) {
-    commit(mutation.FETCH_MEDICINE);
-    await this.$api.$get(`pharmacy/medicine/`)
+    commit(mutation.GET_MEDICINE_PRODUCTS);
+    await this.$api.$get(`pharmacy/medicines/`)
       .then(response => {
-        console.log(response);
-        commit(mutation.FETCH_MEDICINE_SUCCESS, response);
+        commit(mutation.GET_MEDICINE_PRODUCTS_SUCCESS, response);
 
       }).catch(error => {
-        commit(mutation.FETCH_MEDICINE_ERROR);
+        commit(mutation.GET_MEDICINE_PRODUCTS_ERROR);
         console.log(error);
 
       });
