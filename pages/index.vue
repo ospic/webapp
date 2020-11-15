@@ -20,15 +20,15 @@
       >
         <v-card class="mr-1 ml-1 " dense color="#FFFFFF">
           <v-card-text v-if="i % 2 === 0" class="ma-0 ">
-            <pie-chart :data="item" :height="235"></pie-chart>
+            <pie-chart :data="item" :height="200"></pie-chart>
           </v-card-text>
           <v-card-text v-else class="ma-0 ">
-            <donutchart :data="item" :height="235"></donutchart>
+            <donutchart :data="item" :height="200"></donutchart>
           </v-card-text>
         </v-card>
       </v-col>
     </v-row>
-    <v-row justify="center" align="center"3
+    <v-row justify="center" align="center">
       <v-col cols="12" sm="12">
         <v-card>
           <basic-chart-column :data="basic_chart"></basic-chart-column>
@@ -144,7 +144,11 @@ export default {
               )
             ],
             chartOptions: {
-              labels: ["Male Composition", "Female Composition", "Others Composition"]
+              labels: [
+                "Male Composition",
+                "Female Composition",
+                "Others Composition"
+              ]
             },
             title: "Gender Composition"
           },
@@ -160,7 +164,10 @@ export default {
               )
             ],
             chartOptions: {
-              labels: ["Out Patient Department(OPD)","In Patient Department (IPD) "]
+              labels: [
+                "Out Patient Department(OPD)",
+                "In Patient Department (IPD) "
+              ]
             },
             title: "OPD Vs IPD in (%)"
           },
@@ -179,7 +186,7 @@ export default {
             title: "Patient Trends By"
           },
           {
-            series: [44, 55, 27],
+            series: [12, 20, 37],
             chartOptions: {
               labels: ["Male", "Female"]
             },

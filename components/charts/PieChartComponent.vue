@@ -58,7 +58,7 @@ export default {
               }
         },
         fill:{
-          //colors: ['#00897B', '#ED1C23'],
+          colors: ['#44FF07', '#58508D','#BC5090', '#FF6361', '#FFA600'],
           type: 'solid'
         },
         plotOptions:{
