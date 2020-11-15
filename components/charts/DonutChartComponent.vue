@@ -57,7 +57,7 @@ export default {
         },
          fill:{
           type: 'solid',
-          //colors: ['#00897B', '#ED1C23'],
+          colors: ['#44FF07', '#58508D','#BC5090', '#FF6361', '#FFA600']
         },
          plotOptions:{
           pie:{

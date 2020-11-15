@@ -1,7 +1,7 @@
 <template>
   <v-app
     class="app"
-    v-bind:style="{ background: $vuetify.theme.dark ? '#FAFAFA' : '#FAFAFA' }"
+    v-bind:style="{ background: $vuetify.theme.dark ? '#d7f4fa' : '#d7f4fa' }"
   >
     <!--NAVIGATION DRAWER-->
     <v-navigation-drawer
@@ -20,11 +20,10 @@
               src="https://randomuser.me/api/portraits/women/85.jpg"
             ></v-img>
           </v-list-item-avatar>
+          <p class="title mt-0 pa-0 ma-0">{{ username }}</p>
           <v-spacer></v-spacer>
         </v-list-item>
       </v-list>
-
-      <v-divider></v-divider>
       <v-list nav dense subheader tile class="mt-0 pa-0">
         <v-divider light></v-divider>
         <template v-for="(item, i) in items">
@@ -80,7 +79,7 @@
         light
         prepend-inner-icon="search"
         class="shrink pa-0 ma-0"
-        height="10"
+        height="10px"
       ></v-text-field>
       &nbsp;&nbsp;
       <v-tooltip bottom color="primary" open-on-hover open-delay="500">
@@ -271,20 +270,8 @@ export default {
           subtitle: "Lorem ipsum dolor sit de amet.."
         },
         {
-          text: "label.menu.administrationsandmonitoring",
-          icon: "mdi-account-settings",
-          route: "",
-          subtitle: "Lorem ipsum dolor sit de amet.."
-        },
-        {
           text: "label.menu.misreport",
           icon: "mdi-folder-text-outline",
-          route: "",
-          subtitle: "Lorem ipsum dolor sit de amet.."
-        },
-        {
-          text: "label.menu.securitycontrol",
-          icon: "mdi-lock",
           route: "",
           subtitle: "Lorem ipsum dolor sit de amet.."
         }

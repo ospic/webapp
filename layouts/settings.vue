@@ -156,6 +156,11 @@ export default {
                   title: "label.titles.administrations",
                   to: "/settings/admin",
                   icon: "mdi-account-cog-outline"
+                },
+                {
+                  title: "label.menu.securitycontrol",
+                  icon: "mdi-lock",
+                  to: ""
                 }
               ]
             },
