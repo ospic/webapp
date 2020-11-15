@@ -27,7 +27,7 @@ body {
 
 /* width */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 5px;
 }
 
 /* Track */
@@ -70,8 +70,8 @@ canvas {
   text-transform: none !important;
 }
 .theme--light.v-data-table tbody tr:nth-of-type(even) {
-  background-color: rgba(227, 255, 235);
+  background-color: rgba(227, 255, 235, 0);
 }
 .theme--dark.v-data-table tbody tr:nth-of-type(even) {
-  background-color: rgba(227, 255, 235);
+  background-color: rgba(227, 255, 235, 0);
 }

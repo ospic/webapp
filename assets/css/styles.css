@@ -1,5 +1,6 @@
 body {
   font-family: "Montserrat", sans-serif;
+  background-color: #eafff2;
 }
 
 .swal-wide {
@@ -30,7 +31,7 @@ body {
 
 /* width */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 5px;
 }
 
 /* Track */
@@ -83,10 +84,10 @@ canvas {
 }
 
 .theme--light.v-data-table tbody tr:nth-of-type(even) {
-  background-color: rgba(129, 97, 97, 0.03);
+  background-color: rgba(227, 255, 235, 0);
 }
 
 .theme--dark.v-data-table tbody tr:nth-of-type(even) {
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(227, 255, 235, 0);
 }
 /*# sourceMappingURL=styles.css.map */
