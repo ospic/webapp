@@ -48,7 +48,16 @@
         </template>
       </v-list>
     </v-navigation-drawer>
-    <v-app-bar flat elevation="0" fixed app dense short color="#d7f4fa">
+    <v-app-bar
+      flat
+      elevation="0"
+      hide-on-scroll
+      fixed
+      app
+      dense
+      short
+      color="#d7f4fa"
+    >
       <v-toolbar-title
         v-if="$vuetify.breakpoint.mdAndUp"
         class="title font-weight-black indigo--text"
