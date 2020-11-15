@@ -6,15 +6,25 @@
     <!--NAVIGATION DRAWER-->
     <v-navigation-drawer
       v-model="drawer"
-      :mini-variant="$vuetify.breakpoint.mdAndDown"
-      :expand-on-hover="$vuetify.breakpoint.mdAndDown"
+      permanent
+      :mini-variant.sync="mini"
       overlay-color="primary"
-      color="#EAFFF2"
-      clipped
-      fixed
+      color="#d7f4fa"
       app
       width="180"
     >
+      <v-list>
+        <v-list-item class="px-2">
+          <v-list-item-avatar>
+            <v-img
+              src="https://randomuser.me/api/portraits/women/85.jpg"
+            ></v-img>
+          </v-list-item-avatar>
+          <v-spacer></v-spacer>
+        </v-list-item>
+      </v-list>
+
+      <v-divider></v-divider>
       <v-list nav dense subheader tile class="mt-0 pa-0">
         <v-divider light></v-divider>
         <template v-for="(item, i) in items">
@@ -24,7 +34,7 @@
             :key="`${i}-${item.route}`"
             v-on:click="nativateToHere(item.route)"
           >
-            <v-list-item-icon class="mr-0">
+            <v-list-item-icon class="ml-1">
               <v-icon color="green" v-text="item.icon" small></v-icon>
             </v-list-item-icon>
             <v-list-item-content class="ma-0 pa-0">
@@ -38,38 +48,32 @@
         </template>
       </v-list>
     </v-navigation-drawer>
-    <v-app-bar
-      clipped-left
-      flat
-      elevation="0"
-      fixed
-      app
-      dense
-      short
-      color="#EAFFF2"
-    >
-      <v-app-bar-nav-icon dense>
-        <img
-          @click="toggledrawer"
-          class="pa-0 ma-0"
-          src="@/assets/images/icon.png"
-          alt=""
-          height="40px"
-          max-height="40px"
-          max-width="40px"
-          contain
-        />
-      </v-app-bar-nav-icon>
-
+    <v-app-bar flat elevation="0" fixed app dense short color="#d7f4fa">
       <v-toolbar-title
         v-if="$vuetify.breakpoint.mdAndUp"
-        class="title font-weight-black green--text"
+        class="title font-weight-black indigo--text"
       >
-        {{ $t("label.heading.applicationname") }}
+        <v-btn x-small icon @click.stop="mini = !mini">
+          <v-icon v-if="mini">mdi-arrow-right</v-icon>
+          <v-icon v-else>mdi-arrow-left</v-icon> </v-btn
+        >&nbsp;&nbsp;&nbsp; Welcome, {{ username }}
       </v-toolbar-title>
 
-      <v-spacer></v-spacer>
-
+      <v-spacer class="hidden-xs-only"></v-spacer>
+      <v-text-field
+        rounded
+        dense
+        outlined
+        hide-details
+        single-line
+        placeholder="Search keyword..."
+        background-color="white"
+        light
+        prepend-inner-icon="search"
+        class="shrink pa-0 ma-0"
+        height="10"
+      ></v-text-field>
+      &nbsp;&nbsp;
       <v-tooltip bottom color="primary" open-on-hover open-delay="500">
         <template v-slot:activator="{ on }">
           <v-btn
@@ -123,7 +127,7 @@
     </v-app-bar>
 
     <v-main>
-      <v-container style="background-color: #EAFFF2;" class="pa-2 ma-0" fluid>
+      <v-container style="background-color: #d7f4fa;" class="pa-2 ma-0" fluid>
         <nuxt />
       </v-container>
     </v-main>
@@ -149,6 +153,7 @@ export default {
   data() {
     return {
       clipped: false,
+      mini: true,
       drawer: true,
       fixed: false,
       picture: true,
@@ -360,7 +365,14 @@ export default {
     }, 2000);
   },
   beforeMount: function() {},
-  computed: {}
+  computed: {
+    username() {
+      return localStorage.getItem("ospic.username");
+    },
+    email() {
+      return localStorage.getItem("ospic.email");
+    }
+  }
 };
 </script>
 <style></style>
