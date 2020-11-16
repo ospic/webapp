@@ -71,15 +71,12 @@
       <v-text-field
         rounded
         dense
-        outlined
         hide-details
         single-line
         placeholder="Search keyword..."
-        background-color="white"
-        light
-        prepend-inner-icon="search"
-        class="shrink pa-0 ma-0"
-        height="10px"
+        background-color="#FFFFFF"
+        class="shrink pa-0 ma-0 text--overline"
+        height="30"
       ></v-text-field>
       &nbsp;&nbsp;
       <v-tooltip bottom color="primary" open-on-hover open-delay="500">

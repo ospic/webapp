@@ -77,7 +77,7 @@
                         :items="template.medicineGroupOptions"
                         label="Group"
                         item-text="name"
-                        item-value="id"
+                        :item-value="'id'"
                       ></v-select>
                     </v-col>
                     <v-col cols="12" sm="6" md="4">
@@ -85,9 +85,15 @@
                         v-model="editedItem.category"
                         :items="template.medicineCategoriesOptions"
                         label="Medical Category"
-                        item-text="name"
-                        item-value="id"
-                      ></v-select>
+                        :item-value="'id'"
+                      >
+                        <template slot="selection" slot-scope="{ item }">
+                          {{ item.name }} - {{ item.id }}
+                        </template>
+                        <template slot="item" slot-scope="{ item }">
+                          {{ item.id }} - {{ item.name }}
+                        </template>
+                      </v-select>
                     </v-col>
                   </v-row>
                 </v-container>
@@ -185,9 +191,8 @@ export default {
     save() {
       if (this.editedIndex > -1) {
         Object.assign(this.medicines[this.editedIndex], this.editedItem);
-        this.$store.dispatch("update_medicine_product", {
-          body: this.editedItem
-        });
+        console.log(this.editedItem);
+        this.$store.dispatch("update_medicine_product", this.editedItem);
       } else {
         this.medicines.push(this.editedItem);
         this.$store.dispatch("add_new_medicine", this.editedItem);

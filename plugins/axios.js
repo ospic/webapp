@@ -32,10 +32,10 @@ export default function ({ $axios, redirect }, inject) {
   api.onError(error => {
     const code = parseInt(error.response.status);
     if (code === 400) {
-      redirect("/400");
+      redirect("/");
     }
     if (code === 500) {
-      redirect('/sorry')
+      redirect('/')
     }
   });
   api.onResponseError((error) => {
