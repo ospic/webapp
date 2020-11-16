@@ -139,7 +139,7 @@
         <nuxt />
       </v-container>
     </v-main>
-    <v-footer>
+    <v-footer color="#d7f4fa">
       <v-progress-linear
         v-if="sync"
         width="100"
