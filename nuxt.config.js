@@ -9,6 +9,11 @@ export default {
     base: process.env.NODE_ENV === "production" ? "/webapp/" : "/",
     routerNameSplitter: "/"
   },
+  loadingIndicator: {
+    name: 'cube-grid',
+    color: '#00897B',
+    background: '#d7f4fa'
+  },
   /** 
   hooks: {
     listen(server, { host, port }) {
@@ -39,7 +44,9 @@ export default {
 
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { href: 'https://fonts.googleapis.com/css?family=Lato:100', rel: 'stylesheet', type: 'text/css' },
+      { href: 'https://fonts.googleapis.com/css?family=Lato:100italic', rel: 'stylesheet', type: 'text/css' }
     ]
   },
 
