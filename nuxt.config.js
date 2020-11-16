@@ -44,9 +44,7 @@ export default {
 
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { href: 'https://fonts.googleapis.com/css?family=Lato:100', rel: 'stylesheet', type: 'text/css' },
-      { href: 'https://fonts.googleapis.com/css?family=Lato:100italic', rel: 'stylesheet', type: 'text/css' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
 

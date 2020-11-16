@@ -130,18 +130,9 @@ export default {
         return [
           {
             series: [
-              this.percentCalculation(
-                this.$store.getters.malepatients.length,
-                this.$store.getters.patients.length
-              ),
-              this.percentCalculation(
-                this.$store.getters.femalepatients.length,
-                this.$store.getters.patients.length
-              ),
-              this.percentCalculation(
-                this.$store.getters.otherpatients.length,
-                this.$store.getters.patients.length
-              )
+              this.$store.getters.malepatients.length,
+              this.$store.getters.femalepatients.length,
+              this.$store.getters.otherpatients.length
             ],
             chartOptions: {
               labels: [
