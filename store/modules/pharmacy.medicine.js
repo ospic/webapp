@@ -34,6 +34,20 @@ const mutations = {
   },
 
 
+  [mutation.UPDATE_MEDICINE_PRODUCT](state) {
+    state.showLoader = true;
+  },
+  [mutation.UPDATE_MEDICINE_PRODUCT_FAILED](state) {
+    state.showLoader = false;
+  },
+  [mutation.UPDATE_MEDICINE_PRODUCT_ERROR](state) {
+    state.showLoader = false;
+  },
+  [mutation.UPDATE_MEDICINE_PRODUCT_SUCCESS](state, payload) {
+    state.showLoader = false;
+  },
+
+
 
 }
 const actions = {
@@ -61,7 +75,20 @@ const actions = {
         console.log(error);
 
       });
-  }
+  },
+
+  async update_medicine_product({ commit }, payload) {
+    commit(mutation.UPDATE_MEDICINE_PRODUCT);
+    await this.$api.$put(`pharmacy/medicines/${payload.id}`, payload)
+      .then(response => {
+        commit(mutation.UPDATE_MEDICINE_PRODUCT_SUCCESS, response);
+
+      }).catch(error => {
+        commit(mutation.UPDATE_MEDICINE_PRODUCT_ERROR);
+        console.log(error);
+
+      });
+  },
 
 }
 const getters = {
