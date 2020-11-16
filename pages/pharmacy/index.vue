@@ -11,20 +11,23 @@
       <template v-slot:top>
         <v-toolbar flat color="white">
           <v-toolbar-title><h3>Medicines</h3></v-toolbar-title>
-          <v-divider class="mx-4" inset vertical></v-divider>
           <v-spacer></v-spacer>
           <v-text-field
             v-model="search"
-            append-icon="search"
-            label="Search"
+            label="Search by name/company/composition"
             single-line
             hide-details
+            background-color="#EFEFEF"
+            rounded
+            height="40"
+            class="shrink"
           ></v-text-field
           >&nbsp;&nbsp;
           <v-dialog v-model="dialog" max-width="900px">
             <template v-slot:activator="{ on, attrs }">
               <v-btn
                 color="teal"
+                elevation="1"
                 fab
                 small
                 class="mb-2"
@@ -69,16 +72,22 @@
                       ></v-text-field>
                     </v-col>
                     <v-col cols="12" sm="6" md="4">
-                      <v-text-field
+                      <v-select
                         v-model="editedItem.group"
+                        :items="template.medicineGroupOptions"
                         label="Group"
-                      ></v-text-field>
+                        item-text="name"
+                        item-value="id"
+                      ></v-select>
                     </v-col>
                     <v-col cols="12" sm="6" md="4">
-                      <v-text-field
+                      <v-select
                         v-model="editedItem.category"
-                        label="Category"
-                      ></v-text-field>
+                        :items="template.medicineCategoriesOptions"
+                        label="Medical Category"
+                        item-text="name"
+                        item-value="id"
+                      ></v-select>
                     </v-col>
                   </v-row>
                 </v-container>
@@ -130,6 +139,7 @@ export default {
     editedIndex: -1,
     editedItemId: "",
     editedItem: {
+      id: 0,
       name: "",
       company: "",
       compositions: "",
@@ -138,6 +148,7 @@ export default {
       units: 0
     },
     defaultItem: {
+      id: 0,
       name: "",
       company: "",
       compositions: "",
@@ -174,8 +185,7 @@ export default {
     save() {
       if (this.editedIndex > -1) {
         Object.assign(this.medicines[this.editedIndex], this.editedItem);
-        this.$store.dispatch("update_medicines", {
-          id: this.editedItemId,
+        this.$store.dispatch("update_medicine_product", {
           body: this.editedItem
         });
       } else {
@@ -192,10 +202,14 @@ export default {
   watch: {
     dialog(val) {
       val || this.close();
+      this.$store.dispatch("retrieve_medicine_template");
     }
   },
   computed: {
-    ...mapGetters({ medicines: "medicines" }),
+    ...mapGetters({
+      medicines: "medicines",
+      template: "medicine_templates"
+    }),
     formTitle() {
       return this.editedIndex === -1 ? "New Item" : "Edit Item";
     }
