@@ -4,7 +4,7 @@
       <template v-for="(item, i) in summary_items">
         <summarycard
           :key="i"
-          :data="item"
+          :item="item"
           v-if="item.value !== 0"
         ></summarycard>
       </template>
@@ -64,7 +64,7 @@
 <script>
 import PieChartComponent from "@/components/charts/PieChartComponent";
 import BarChartComponent from "@/components/charts/ApexLineChart";
-import SummaryCardComponent from "@/components/charts/summary-card";
+import SummaryCardComponent from "@/components/statistics/dashboard_card";
 import DonutChartCompoent from "@/components/charts/DonutChartComponent";
 import BasicChartColumn from "@/components/charts/BasicColumnBarChart";
 export default {
@@ -200,77 +200,89 @@ export default {
             title: "Overall Total Patients",
             subtitle: "Overall Total Patients",
             value: this.$store.getters.patients.length,
-            icon: "mdi-account-group-outline"
+            icon: "mdi-account-group-outline",
+            color: "blue"
           },
           {
             title: "Assigned Patients",
             subtitle: "Assigned patients",
             measure: "p/d",
             value: this.$store.getters.assigned.length,
-            icon: "mdi-account-group-outline"
+            icon: "mdi-account-group-outline",
+            color: "red"
           },
           {
             title: "Unassigned Patients",
             subtitle: "Unassigned Patients",
             value: this.$store.getters.unassigned.length,
-            icon: "mdi-account-group-outline"
+            icon: "mdi-account-group-outline",
+            color: "teal"
           },
           {
             title: " OPD",
             subtitle: "OPD  Patients",
             value: this.$store.getters.opdpatients.length,
             measure: "p/d",
-            icon: "mdi-account-group-outline"
+            icon: "mdi-account-group-outline",
+            color: "lime"
           },
           {
             title: "IPD ",
             subtitle: "IPD  Patients",
             measure: "p/d",
             value: this.$store.getters.ipdpatients.length,
-            icon: "mdi-account-group-outline"
+            icon: "mdi-account-group-outline",
+            color: "green"
           },
           {
             title: "Physicians",
             subtitle: "No. of Physicians",
             value: this.$store.getters.physicians.length,
-            icon: "mdi-account-multiple"
+            icon: "mdi-account-multiple",
+            color: "light-blue"
           },
           {
             title: "Males",
             subtitle: "Male Patients",
             value: this.$store.getters.malepatients.length,
-            icon: "mdi-gender-male"
+            icon: "mdi-gender-male",
+            color: "indigo"
           },
           {
             title: "Females",
             subtitle: "Female patients",
             value: this.$store.getters.femalepatients.length,
-            icon: "mdi-gender-female"
+            icon: "mdi-gender-female",
+            color: "deep-orange"
           },
           {
             title: "Others",
             subtitle: "Special Gender",
             value: this.$store.getters.otherpatients.length,
-            icon: "mdi-gender-male-female"
+            icon: "mdi-gender-male-female",
+            color: "orange"
           },
           {
             title: "Success",
             subtitle: "Success Responses",
             value: "4245",
-            icon: "mdi-select-group"
+            icon: "mdi-select-group",
+            color: "brown"
           },
           {
             title: "Success",
             subtitle: "Success Responses",
             value: "4245",
-            icon: "mdi-select-group"
+            icon: "mdi-select-group",
+            color: "grey"
           },
           {
             title: "Average HT",
             subtitle: "Average Handle Time",
             value: "30 MIN",
             measure: "pt/min",
-            icon: "mdi-select-group"
+            icon: "mdi-select-group",
+            color: "cyan"
           }
         ];
       }
