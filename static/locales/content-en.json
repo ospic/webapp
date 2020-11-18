@@ -87,7 +87,8 @@
       "configurations":"Configurations",
       "language":"Languages",
       "themesettings":"Themes",
-      "actions":"Actions"
+      "actions":"Actions",
+      "changelanguage":"Change language"
     }
   }
 }
