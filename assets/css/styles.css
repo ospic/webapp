@@ -90,4 +90,15 @@ canvas {
 .theme--dark.v-data-table tbody tr:nth-of-type(even) {
   background-color: rgba(227, 255, 235, 0);
 }
+
+.page-enter-active,
+.page-leave-active {
+  -webkit-transition: opacity 0.3s;
+  transition: opacity 0.3s;
+}
+
+.page-enter,
+.page-leave-to {
+  opacity: 0;
+}
 /*# sourceMappingURL=styles.css.map */

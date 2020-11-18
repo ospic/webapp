@@ -1,6 +1,6 @@
 <template>
   <v-col class="pa-1" cols="12" xs="4" sm="6" md="2" xl="1">
-    <v-card class="mx-auto " elevation="1">
+    <v-card class="mx-auto " elevation="1" color="#FFFFFF">
       <v-list-item>
         <v-list-item-avatar
           height="45"
