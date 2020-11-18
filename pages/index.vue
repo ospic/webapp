@@ -145,14 +145,8 @@ export default {
           },
           {
             series: [
-              this.percentCalculation(
-                this.$store.getters.opdpatients.length,
-                this.$store.getters.patients.length
-              ),
-              this.percentCalculation(
-                this.$store.getters.ipdpatients.length,
-                this.$store.getters.patients.length
-              )
+              this.$store.getters.opdpatients.length,
+              this.$store.getters.ipdpatients.length
             ],
             chartOptions: {
               labels: [
