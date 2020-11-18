@@ -19,7 +19,7 @@
       <v-col cols="12" sm="12">
         <v-card>
           <v-card-title>
-            Select changeLanguage
+            {{ $t("label.titles.changelanguage") }}
             <v-spacer></v-spacer>
             <v-select
               v-model="select"
