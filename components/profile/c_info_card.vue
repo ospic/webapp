@@ -171,7 +171,14 @@
             <v-list-item-group color="primary">
               <v-list-item inactive class="ma-0 pa-0" :ripple="false">
                 <v-list-item-content class="ma-0 pa-0">
-                  <v-tabs left grow center-active class="elevation-2">
+                  <v-tabs
+                    slider-color="indigo"
+                    slider-size="3"
+                    color="green"
+                    left
+                    v-model="tab"
+                    class="elevation-2"
+                  >
                     <v-tab class="font-weight-light">
                       <span><v-icon small left>mdi-eye</v-icon>Bio</span>
                     </v-tab>
@@ -208,7 +215,8 @@
                       <v-icon small left>mdi-chat</v-icon>
                       Followings
                     </v-tab>
-
+                  </v-tabs>
+                  <v-tabs-items vertical v-model="tab">
                     <v-tab-item>
                       <v-card flat>
                         <v-card-text>
@@ -236,8 +244,13 @@
                       </v-card>
                     </v-tab-item>
                     <v-tab-item>
-                      <v-row justify="start" align="start">
-                        <v-col cols="12" md="8" v-if="physician !== null">
+                      <v-row justify="start" align="start" fluid>
+                        <v-col
+                          cols="12"
+                          sm="12"
+                          md="6"
+                          v-if="physician !== null"
+                        >
                           <v-card class="mx-auto ml-2" outlined>
                             <v-list three-line>
                               <v-list-item>
@@ -263,6 +276,7 @@
                             </v-list>
                           </v-card>
                         </v-col>
+                        <v-col cols="12" sm="12" md="2"></v-col>
                         <v-col cols="12" sm="3" md="4">
                           <v-select
                             dense
@@ -275,6 +289,9 @@
                             persistent-hint
                             return-object
                             single-line
+                            class="mr-2 d-flex"
+                            background-color="primary"
+                            dark
                             hint="Re/Assign Physicians"
                             @change="selectedPhysicianChanged()"
                           >
@@ -301,6 +318,108 @@
                           ></v-progress-circular>
                         </v-col>
                         <v-col v-else-if="diagnoses.length !== 0">
+                          <div class="d-flex justify-start ">
+                            <v-row justify="start" class="mt-3 ml-3">
+                              <v-dialog
+                                v-model="dialog"
+                                persistent
+                                max-width="600px"
+                              >
+                                <template v-slot:activator="{ on, attrs }">
+                                  <v-btn
+                                    color="primary"
+                                    v-on="on"
+                                    v-bind="attrs"
+                                  >
+                                    <v-icon left>
+                                      mdi-reorder-horizontal
+                                    </v-icon>
+                                    Add new Diagnosis</v-btn
+                                  >
+                                </template>
+                                <v-card>
+                                  <v-card-title>
+                                    <span class="headline">Diagnosis Form</span>
+                                  </v-card-title>
+                                  <v-divider></v-divider>
+                                  <v-card-text>
+                                    <v-container>
+                                      <v-menu
+                                        ref="menu"
+                                        v-model="menu"
+                                        :close-on-content-click="false"
+                                        :return-value.sync="date"
+                                        transition="scale-transition"
+                                        offset-y
+                                        max-width="290px"
+                                        min-width="290px"
+                                      >
+                                        <template
+                                          v-slot:activator="{ on, attrs }"
+                                        >
+                                          <v-text-field
+                                            v-model="diagnosisFormData.date"
+                                            label="Date"
+                                            prepend-icon="mdi-calendar"
+                                            readonly
+                                            v-bind="attrs"
+                                            v-on="on"
+                                          ></v-text-field>
+                                        </template>
+                                        <v-date-picker
+                                          v-model="date"
+                                          type="month"
+                                          no-title
+                                          scrollable
+                                        >
+                                          <v-spacer></v-spacer>
+                                          <v-btn
+                                            text
+                                            color="primary"
+                                            @click="menu = false"
+                                          >
+                                            Cancel
+                                          </v-btn>
+                                          <v-btn
+                                            text
+                                            color="primary"
+                                            @click="$refs.menu.save(date)"
+                                          >
+                                            OK
+                                          </v-btn>
+                                        </v-date-picker>
+                                      </v-menu>
+                                      <v-textarea
+                                        outlined
+                                        label="Symptoms *"
+                                        class=" ma-0 mt-4"
+                                        placeholder="Patient symptoms on th specified date"
+                                        v-model="diagnosisFormData.symptoms"
+                                      ></v-textarea>
+                                    </v-container>
+                                    <small>*indicates required field</small>
+                                  </v-card-text>
+                                  <v-card-actions>
+                                    <v-spacer></v-spacer>
+                                    <v-btn
+                                      color="blue darken-1"
+                                      text
+                                      @click="dialog = false"
+                                    >
+                                      Close
+                                    </v-btn>
+                                    <v-btn
+                                      color="blue darken-1"
+                                      text
+                                      @click="dialog = false"
+                                    >
+                                      Save
+                                    </v-btn>
+                                  </v-card-actions>
+                                </v-card>
+                              </v-dialog>
+                            </v-row>
+                          </div>
                           <v-timeline reverse dense class="ml-1 pl-1">
                             <v-slide-x-reverse-transition group hide-on-leave>
                               <v-timeline-item
@@ -320,7 +439,7 @@
                             </v-slide-x-reverse-transition>
                           </v-timeline>
                         </v-col>
-                        <p v-else></p>
+                        <p v-else>No Data available</p>
                       </v-row>
                     </v-tab-item>
                     <v-tab-item>
@@ -397,7 +516,7 @@
                         <p v-else></p>
                       </v-row>
                     </v-tab-item>
-                  </v-tabs>
+                  </v-tabs-items>
                 </v-list-item-content>
               </v-list-item>
             </v-list-item-group>
@@ -439,6 +558,9 @@ export default {
       followers: null,
       followings: null,
       selectedPhysicianId: null,
+      date: new Date().toISOString().substr(0, 7),
+      menu: false,
+      modal: false,
       text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
       emptyIcon: 'mdi-star-outline',
       fullIcon: 'mdi-star',
@@ -450,6 +572,10 @@ export default {
       rules: [
         value => !value || value.size < 500 || 'Avatar size should be less than 500 KB!',
       ],
+      diagnosisFormData:{
+        date: '',
+        symptoms: ''
+      },
 
 
     }
@@ -588,5 +714,10 @@ export default {
 
 .basil--text {
   color: #356859 !important;
+}
+.v-window,
+.v-item-group .v-window__container,
+.v-window-item {
+  width: 100%;
 }
 </style>
