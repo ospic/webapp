@@ -10,6 +10,7 @@ import UsersManagementModule from "./modules/users.module";
 import MedicineModule from "./modules/pharmacy.medicine";
 import TemplateModule from "./modules/templates.module";
 import DiagnosesModule from "./modules/diagnosis.module";
+import InventoryWardModule from "./modules/inventory.ward"
 
 
 Vue.use(Vuex);
@@ -22,7 +23,7 @@ const store = () => {
       SignIn, SignUp,
       Registry, Template,
       DocumentsModules, ContactsModules, UsersManagementModule, MedicineModule,
-      TemplateModule, DiagnosesModule
+      TemplateModule, DiagnosesModule, InventoryWardModule
     },
     /* plugins: [createPersistedState({
        storage: window.sessionStorage,

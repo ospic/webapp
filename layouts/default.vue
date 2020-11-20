@@ -256,7 +256,7 @@ export default {
         {
           text: "label.menu.inventoryandstock",
           icon: "mdi-hospital",
-          route: "",
+          route: "inventory",
           subtitle: "Lorem ipsum dolor sit de amet.."
         },
 
