@@ -88,7 +88,12 @@
       "language":"Languages",
       "themesettings":"Themes",
       "actions":"Actions",
-      "changelanguage":"Change language"
+      "changelanguage":"Change language",
+      "wardandbeds":"Wards and Beds",
+      "wards": "Wards",
+      "beds":"Beds",
+      "medicalstock":"Medical Stock",
+      "medicine":"Medicine"
     }
   }
 }
