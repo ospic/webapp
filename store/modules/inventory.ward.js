@@ -57,7 +57,6 @@ const actions = {
     commit(mutation.RETRIEVE_WARDS);
     await this.$api.$get(`wards/`)
       .then(response => {
-        console.log(response)
         commit(mutation.GET_BEDS_SUCCESS, response);
 
       }).catch(error => {
@@ -75,7 +74,10 @@ const getters = {
   },
   beds: function (state) {
     return state.beds;
-  }
+  },
+  getWard: (state) => (id) => {
+    return state.beds.find(bed => bed.id === id)
+  },
 
 }
 export default {
