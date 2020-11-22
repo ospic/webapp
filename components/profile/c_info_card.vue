@@ -454,7 +454,7 @@
                         <v-col
                           v-else-if="admissions.length !== 0"
                           cols="12"
-                          lg="6"
+                          lg="3"
                           md="3"
                           sm="12"
                           wrap
