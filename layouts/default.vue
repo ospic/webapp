@@ -150,6 +150,9 @@
 </template>
 
 <script>
+import Vue from "vue";
+import Vuex from "vuex";
+Vue.use(Vuex);
 export default {
   async fetch({ store, params }) {
     // await this.$store.dispatch("getProfile");
