@@ -194,22 +194,16 @@
                     </v-tab>
                     <v-tab
                       class="font-weight-light"
-                      @click.stop="getThisUserComments()"
+                      @click.stop="getPatientAdmissions()"
                     >
+                      <v-icon small left>mdi-history</v-icon>
+                      Admission History
+                    </v-tab>
+                    <v-tab class="font-weight-light">
                       <v-icon small left>mdi-plus</v-icon>
                       More
                     </v-tab>
-                    <v-tab
-                      class="font-weight-light"
-                      @click.stop="getThisPersonFollowers"
-                    >
-                      <v-icon small left>mdi-plus</v-icon>
-                      More
-                    </v-tab>
-                    <v-tab
-                      class="font-weight-light"
-                      @click.stop="getThisPersonFollowings()"
-                    >
+                    <v-tab class="font-weight-light">
                       <v-icon small left>mdi-plus</v-icon>
                       More
                     </v-tab>
@@ -431,7 +425,7 @@
                               <v-timeline-item
                                 v-for="(diagnose, index) in diagnoses"
                                 :key="index"
-                                large
+                                small
                               >
                                 <template v-slot:icon>
                                   <v-avatar>
@@ -449,7 +443,7 @@
                     </v-tab-item>
                     <v-tab-item>
                       <v-row>
-                        <v-col align="center" v-if="comments === null">
+                        <v-col align="center" v-if="admissions === null">
                           <v-progress-circular
                             :width="2"
                             color="primary"
@@ -458,18 +452,16 @@
                           ></v-progress-circular>
                         </v-col>
                         <v-col
-                          v-else-if="comments.results.length !== 0"
+                          v-else-if="admissions.length !== 0"
                           cols="12"
                           lg="6"
-                          md="6"
+                          md="3"
                           sm="12"
                           wrap
-                          v-for="(comment, index) in comments.results"
+                          v-for="(admission, index) in admissions"
                           :key="index"
                         >
-                          <diagnosis-info-card
-                            :post="comment"
-                          ></diagnosis-info-card>
+                          <admission-card :data="admission"></admission-card>
                         </v-col>
                         <p v-else></p>
                       </v-row>
@@ -532,6 +524,7 @@
   </v-container>
 </template>
 <script lang="js">
+import c_admission_info from "@/components/medical/admission_info_card"
 import c_type_divider from "@/components/profile/c_type_divider";
 import c_address_card from "@/components/profile/c_address_card";
 import medicalInfoCard from "@/components/medical/medical_info_card"
@@ -548,7 +541,8 @@ export default {
     'diagnosis-info-card': medicalInfoCard,
     'v-type-divider': c_type_divider,
     'v-address-card': c_address_card,
-    'v-follows': c_follows
+    'v-follows': c_follows,
+    'admission-card':c_admission_info
   },
   data() {
     return {
@@ -561,8 +555,9 @@ export default {
       rating: 2,
       posts: null,
       comments: null,
-      followers: null,
+      admissions: null,
       followings: null,
+      followers: null,
       selectedPhysicianId: null,
       date: new Date().toISOString().substr(0, 7),
       menu: false,
@@ -593,7 +588,6 @@ export default {
   created() {
     this.address = this.userdata.contactsInformation;
     this.physician = this.userdata.physician;
-
     this.$store.dispatch("retrievephysicians");
   },
   computed:{
@@ -634,16 +628,7 @@ export default {
 
         });
     },
-    async getThisUserComments() {
-      console.log("Clicked" + this.$route.params.id)
-      return await this.$api.$get(`users/${this.$route.params.id}/comments/`)
-        .then(response => {
-          this.comments = response;
-        }).catch(error => {
-          console.log(error);
 
-        });
-    },
     async uploadPatientImage() {
       const formData = new FormData();
       formData.append("file", this.currentFile )
@@ -673,11 +658,11 @@ export default {
         });
 
     },
-    async getThisPersonFollowers() {
-      return await this.$api.$get(`users/${this.$route.params.id}/follows/`)
+    async getPatientAdmissions() {
+      return await this.$api.$get(`admissions/`)
         .then(response => {
           if (response !== null) {
-            this.followers = response;
+            this.admissions = response;
           }
         }).catch(error => {
           console.log(error);
