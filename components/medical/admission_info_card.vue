@@ -5,7 +5,9 @@
         background-color="green"
         class="font-weight-bold caption py-2   ma-0 pr-1 "
         >{{ data.fromDateTime }}<v-spacer></v-spacer>
-        <v-icon small v-show="data.isActive" color="red">mdi-circle</v-icon>
+        <v-icon small v-show="data.isActive" color="red"
+          >mdi-check-circle</v-icon
+        >
       </v-card-title>
       <v-divider></v-divider>
       <v-list-item>
