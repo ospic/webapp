@@ -6,8 +6,10 @@ export default {
   //target: 'static',
   ssr: false,
   router: {
+    mode: 'hash',
     base: process.env.NODE_ENV === "production" ? "/webapp/" : "/",
-    routerNameSplitter: "/"
+    routerNameSplitter: "/",
+    middleware: ['router']
   },
   loadingIndicator: {
     name: 'cube-grid',
@@ -58,7 +60,6 @@ export default {
     "~/plugins/i18n.js",
     '~/plugins/vuetify.js',
     '~/plugins/axios',
-    '~/plugins/route',
     '~/plugins/pwa.client.js',
     '~/plugins/vue-apexcharts.js',
     '~/mixins/label_mixins.js',
