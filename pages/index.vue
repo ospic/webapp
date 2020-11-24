@@ -28,10 +28,13 @@
         </v-card>
       </v-col>
     </v-row>
-    <v-row justify="center" align="center">
-      <v-col cols="12" sm="12">
-        <v-card>
-          <basic-chart-column :data="basic_chart"></basic-chart-column>
+    <v-row justify="start" align="start">
+      <v-col cols="12" sm="12" v-if="bsc_size > 0" class="ma-0 pa-0 mt-3">
+        <v-card class="mr-1 ml-1 " dense>
+          <basic-chart-column
+            :data="bsc_chart"
+            class="ma-0 "
+          ></basic-chart-column>
         </v-card>
       </v-col>
       <v-col cols="12" sm="12" md="3">
@@ -94,26 +97,6 @@ export default {
       chartOptions: {
         labels: ["Apple", "Mango", "Orange", "Watermelon"]
       }
-    },
-    basic_chart: {
-      series: [
-        {
-          name: "Net Profit",
-          data: [44, 55, 57, 56, 61, 58, 63, 60, 66, 71, 58, 54, 51]
-        },
-        {
-          name: "Revenue",
-          data: [76, 85, 101, 98, 87, 105, 91, 114, 94, 100, 89, 93, 92]
-        },
-        {
-          name: "Free Cash Flow",
-          data: [35, 41, 36, 26, 45, 48, 52, 53, 41, 34, 51, 47, 74]
-        },
-        {
-          name: "Free Cash In",
-          data: [52, 53, 41, 34, 51, 47, 35, 41, 36, 26, 45, 48, 84]
-        }
-      ]
     }
   }),
   methods: {
@@ -279,6 +262,52 @@ export default {
             color: "cyan"
           }
         ];
+      }
+    },
+    bsc_size: {
+      get() {
+        return this.$store.getters.trends.length;
+      }
+    },
+    bsc_chart: {
+      get() {
+        var item = this.$store.getters.trends;
+        var datatotal = new Array();
+        var datamale = new Array();
+        var datafemale = new Array();
+        var dataother = new Array();
+        var categories = new Array();
+
+        item.forEach(element => {
+          datatotal.push(element.total);
+          datamale.push(element.male);
+          datafemale.push(element.female);
+          dataother.push(element.other);
+          categories.push(element.date);
+        });
+        var data = {
+          series: [
+            {
+              name: "Total",
+              data: datatotal
+            },
+            {
+              name: "Male",
+              data: datamale
+            },
+            {
+              name: "Female",
+              data: datafemale
+            },
+            {
+              name: "Other",
+              data: dataother
+            }
+          ],
+          categories: categories
+        };
+
+        return data;
       }
     }
   },

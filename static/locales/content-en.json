@@ -93,7 +93,8 @@
       "wards": "Wards",
       "beds":"Beds",
       "medicalstock":"Medical Stock",
-      "medicine":"Medicine"
+      "medicine":"Medicine",
+      "pharmacy":"Pharmacy"
     }
   }
 }

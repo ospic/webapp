@@ -70,6 +70,11 @@ export default {
           icon: "mdi-home-group",
           menus: [
             {
+              title: "label.titles.pharmacy",
+              to: "/inventory/",
+              icon: "mdi-pharmacy"
+            },
+            {
               title: "label.titles.wards",
               to: "/inventory/ward",
               icon: "mdi-home-floor-1"

@@ -68,17 +68,7 @@
       </v-toolbar-title>
 
       <v-spacer class="hidden-xs-only"></v-spacer>
-      <v-text-field
-        rounded
-        dense
-        hide-details
-        single-line
-        placeholder="Search keyword..."
-        background-color="#FFFFFF"
-        class="shrink pa-0 ma-0 text--overline"
-        height="30"
-      ></v-text-field>
-      &nbsp;&nbsp;
+
       <v-tooltip bottom color="primary" open-on-hover open-delay="500">
         <template v-slot:activator="{ on }">
           <v-btn
@@ -335,7 +325,8 @@ export default {
       vm.sync = !vm.sync;
       await Promise.all([
         vm.$store.dispatch("retrievepatients"),
-        vm.$store.dispatch("retrievephysicians")
+        vm.$store.dispatch("retrievephysicians"),
+        vm.$store.dispatch("get_patient_trends")
       ]).then(function() {
         console.log("Loading complete...");
       });

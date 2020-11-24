@@ -77,9 +77,9 @@ const actions = {
       });
   },
 
-  async update_medicine_product({ commit }, id, payload) {
+  async update_medicine_product({ commit }, payload) {
     commit(mutation.UPDATE_MEDICINE_PRODUCT);
-    await this.$api.$put(`pharmacy/medicines/${id}`, payload)
+    await this.$api.$put(`pharmacy/medicines/${payload.id}`, payload)
       .then(response => {
         commit(mutation.UPDATE_MEDICINE_PRODUCT_SUCCESS, response);
 
