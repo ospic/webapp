@@ -31,10 +31,10 @@
     <v-row justify="start" align="start">
       <v-col cols="12" sm="12" v-if="bsc_size > 0" class="ma-0 pa-0 mt-3">
         <v-card class="mr-1 ml-1 " dense>
-          <basic-chart-column
+          <area-chart-spline
             :data="bsc_chart"
             class="ma-0 "
-          ></basic-chart-column>
+          ></area-chart-spline>
         </v-card>
       </v-col>
       <v-col cols="12" sm="12" md="3">
@@ -69,14 +69,14 @@ import PieChartComponent from "@/components/charts/PieChartComponent";
 import BarChartComponent from "@/components/charts/ApexLineChart";
 import SummaryCardComponent from "@/components/statistics/dashboard_card";
 import DonutChartCompoent from "@/components/charts/DonutChartComponent";
-import BasicChartColumn from "@/components/charts/BasicColumnBarChart";
+import AreaChartSpline from "@/components/charts/area_chart_spline";
 export default {
   components: {
     "pie-chart": PieChartComponent,
     "bar-chart": BarChartComponent,
     summarycard: SummaryCardComponent,
     donutchart: DonutChartCompoent,
-    "basic-chart-column": BasicChartColumn
+    "area-chart-spline": AreaChartSpline
   },
   data: () => ({
     apexdata: {
@@ -84,12 +84,11 @@ export default {
         {
           name: "Trends",
           data: [28, 29, 33, 36, 32, 32, 33]
-        }
-        /*{
-          name: "Low - 2013",
-          data: [12, 11, 14, 18, 17, 13, 13],
         },
-        */
+        {
+          name: "Low - 2013",
+          data: [12, 11, 14, 18, 17, 13, 13]
+        }
       ]
     },
     pie_options: {
@@ -285,6 +284,7 @@ export default {
           dataother.push(element.other);
           categories.push(element.date);
         });
+        categories.push(0);
         var data = {
           series: [
             {

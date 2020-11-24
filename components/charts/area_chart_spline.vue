@@ -35,10 +35,11 @@ export default {
         },
         stroke: {
           show: true,
-          width: 2,
-          colors: ["transparent"]
+          curve: "smooth",
+          width: 1
         },
         xaxis: {
+          type: "date",
           categories: this.data.categories
         },
         yaxis: {
@@ -54,6 +55,9 @@ export default {
             formatter: function(val) {
               return "" + val + "";
             }
+          },
+          x: {
+            format: "dd/MM/yy"
           }
         }
       }
