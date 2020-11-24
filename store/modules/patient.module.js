@@ -2,7 +2,8 @@ import * as mutation from './mutation-types';
 const state = () => ({
   showLoader: Boolean,
   patient: {},
-  patients: []
+  patients: [],
+  trends: []
 });
 
 const mutations = {
@@ -19,6 +20,20 @@ const mutations = {
   [mutation.GET_PATIENTS_SUCCESS](state, payload) {
     state.showLoader = false;
     state.patients = payload;
+
+  },
+  [mutation.GET_PATIENT_TRENDS](state) {
+    state.showLoader = true;
+  },
+  [mutation.GET_PATIENT_TRENDS_FAILED](state) {
+    state.showLoader = false;
+  },
+  [mutation.GET_PATIENT_TRENDS_ERROR](state) {
+    state.showLoader = false;
+  },
+  [mutation.GET_PATIENT_TRENDS_SUCCESS](state, payload) {
+    state.showLoader = false;
+    state.trends = payload;
 
   },
   [mutation.CREATE_PATIENTS](state) {
@@ -79,6 +94,19 @@ const actions = {
 
       }).catch(error => {
         commit(mutation.GET_PATIENTS_ERROR);
+        console.log(error);
+
+      });
+
+  },
+  async get_patient_trends({ commit }) {
+    commit(mutation.GET_PATIENTS);
+    await this.$api.$get(`patients/?command=trends`)
+      .then(response => {
+        commit(mutation.GET_PATIENT_TRENDS_SUCCESS, response);
+
+      }).catch(error => {
+        commit(mutation.GET_PATIENT_TRENDS_ERROR);
         console.log(error);
 
       });
@@ -151,6 +179,9 @@ const getters = {
   },
   otherpatients: function (state) {
     return state.patients.filter(patient => patient.gender === "O")
+  },
+  trends: function (state) {
+    return state.trends;
   }
 }
 

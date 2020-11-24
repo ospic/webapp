@@ -1,8 +1,8 @@
 <template>
   <div id="chart">
     <apexchart
-      type="bar"
-      height="250"
+      type="area"
+      height="280"
       :options="chartOptions"
       :series="data.series"
     ></apexchart>
@@ -39,24 +39,11 @@ export default {
           colors: ["transparent"]
         },
         xaxis: {
-          categories: [
-            "Feb",
-            "Mar",
-            "Apr",
-            "May",
-            "Jun",
-            "Jul",
-            "Aug",
-            "Sep",
-            "Oct",
-            "Nov",
-            "Dec",
-            "Jan"
-          ]
+          categories: this.data.categories
         },
         yaxis: {
           title: {
-            text: "$ (thousands)"
+            text: "Total"
           }
         },
         fill: {
@@ -65,7 +52,7 @@ export default {
         tooltip: {
           y: {
             formatter: function(val) {
-              return "$ " + val + " thousands";
+              return "" + val + "";
             }
           }
         }
