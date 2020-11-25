@@ -66,14 +66,25 @@ export default {
       ],
       settings: [
         {
-          title: "label.titles.wardandbeds",
-          icon: "mdi-home-group",
+          title: "label.titles.medicalstock",
+          icon: "mdi-store",
           menus: [
             {
               title: "label.titles.pharmacy",
               to: "/inventory/",
               icon: "mdi-pharmacy"
             },
+            {
+              title: "label.titles.medicine",
+              to: "/inventory/medicine",
+              icon: "mdi-pill"
+            }
+          ]
+        },
+        {
+          title: "label.titles.wardandbeds",
+          icon: "mdi-home-group",
+          menus: [
             {
               title: "label.titles.wards",
               to: "/inventory/ward",
@@ -83,17 +94,6 @@ export default {
               title: "label.titles.beds",
               to: "/inventory/bed",
               icon: "mdi-bunk-bed-outline"
-            }
-          ]
-        },
-        {
-          title: "label.titles.medicalstock",
-          icon: "mdi-store",
-          menus: [
-            {
-              title: "label.titles.medicine",
-              to: "/inventory/medicine",
-              icon: "mdi-pill"
             }
           ]
         }

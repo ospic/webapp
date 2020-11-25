@@ -16,6 +16,7 @@
       :items-per-page="15"
       sort-by="calories"
       class="elevation-1"
+      @click:row="navigateToWard"
     >
       <template v-slot:top>
         <v-toolbar flat color="white">
@@ -48,6 +49,12 @@ export default {
       { text: "No. of Beds", value: "numberOfBeds" }
     ]
   }),
+  methods: {
+    navigateToWard(item) {
+      console.log(item);
+      this.$router.push("/inventory/ward/" + item.id);
+    }
+  },
   computed: {
     wards() {
       return this.$store.getters.wards;
