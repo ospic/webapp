@@ -7,6 +7,7 @@
     :items-per-page="15"
     sort-by="calories"
     class="elevation-1"
+    @click:row="handleClick"
   >
     <template v-slot:top>
       <v-toolbar flat color="white">
@@ -148,9 +149,10 @@
       <div v-else></div>
     </template>
     <template v-slot:[`item.actions`]="{ item }">
-      <v-icon x-small class="mr-2" @click="handleClick(item)">mdi-eye</v-icon>
-      <v-icon small class="mr-2" @click="editItem(item)"> mdi-pencil </v-icon>
-      <v-icon small color="warning" @click="deleteItem(item)">
+      <v-icon small class="mr-2" color="primary" @click="editItem(item)">
+        mdi-pencil
+      </v-icon>
+      <v-icon small color="red" @click="deleteItem(item)">
         mdi-delete
       </v-icon>
     </template>
@@ -283,7 +285,6 @@ export default {
       this.close();
     },
     handleClick: function(value) {
-      console.log(value);
       this.$router.push("/patients/" + value.id);
     },
     initialize() {}
