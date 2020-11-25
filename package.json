@@ -29,7 +29,7 @@
     "sweetalert": "^2.1.2",
     "vue-apexcharts": "^1.6.0",
     "vue-i18n": "^8.22.2",
-    "vuetify": "^2.3.18",
+    "vuetify": "^2.3.19",
     "vuex-persistedstate": "^3.1.0"
   },
   "devDependencies": {
