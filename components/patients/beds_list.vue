@@ -13,7 +13,7 @@
             </v-btn>
             <v-btn class="ma-2" outlined v-else color="green">
               {{ bed.identifier }}&nbsp;&nbsp;
-              <v-icon>mdi-bed-outline</v-icon>
+              <v-icon>mdi-bed-queen-outline</v-icon>
             </v-btn>
           </v-col>
         </v-row>
