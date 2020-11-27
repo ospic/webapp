@@ -84,6 +84,21 @@ const mutations = {
     state.showLoader = false;
     state.patient = payload;
   },
+
+  //Admit patient
+  [mutation.ADMIT_PATIENT](state) {
+    state.showLoader = true;
+  },
+  [mutation.ADMIT_PATIENT_FAILED](state) {
+    state.showLoader = false;
+  },
+  [mutation.ADMIT_PATIENT_ERROR](state) {
+    state.showLoader = false;
+  },
+  [mutation.ADMIT_PATIENT_SUCCESS](state, payload) {
+    state.showLoader = false;
+    console.log(payload)
+  },
 }
 const actions = {
   async retrievepatients({ commit }) {
@@ -146,6 +161,19 @@ const actions = {
 
       }).catch(error => {
         commit(mutation.DELETE_PATIENT_ERROR);
+        console.log(error);
+
+      });
+
+  },
+  async admit_patient({ commit }, payload) {
+    commit(mutation.ADMIT_PATIENT);
+    await this.$api.$post(`admissions/`, payload)
+      .then(response => {
+        commit(mutation.ADMIT_PATIENT_SUCCESS, response);
+
+      }).catch(error => {
+        commit(mutation.ADMIT_PATIENT_ERROR);
         console.log(error);
 
       });
