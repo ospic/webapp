@@ -201,7 +201,7 @@
                     </v-tab>
                     <v-tab class="font-weight-light">
                       <v-icon small left>mdi-plus</v-icon>
-                      More
+                      Actions
                     </v-tab>
                     <v-tab class="font-weight-light">
                       <v-icon small left>mdi-plus</v-icon>
@@ -442,7 +442,13 @@
                       </v-row>
                     </v-tab-item>
                     <v-tab-item>
-                      <v-row>
+                      <v-btn color="primary" class="ml-5 my-2 " :to="`/patients/${this.$route.params.id}/admit`">
+                        <v-icon left>
+                          mdi-reorder-horizontal
+                        </v-icon>
+                        Admit Patient</v-btn
+                      >
+                      <v-row justify="start">
                         <v-col align="center" v-if="admissions === null">
                           <v-progress-circular
                             :width="2"
