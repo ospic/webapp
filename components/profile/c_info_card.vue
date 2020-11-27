@@ -442,7 +442,11 @@
                       </v-row>
                     </v-tab-item>
                     <v-tab-item>
-                      <v-btn color="primary" class="ml-5 my-2 " :to="`/patients/${this.$route.params.id}/admit`">
+                      <v-btn
+                        color="primary"
+                        class="ml-5 my-2 "
+                        :to="`/patients/${this.$route.params.id}/admit`"
+                      >
                         <v-icon left>
                           mdi-reorder-horizontal
                         </v-icon>
@@ -450,12 +454,20 @@
                       >
                       <v-row justify="start">
                         <v-col align="center" v-if="admissions === null">
-                          <v-progress-circular
-                            :width="2"
-                            color="primary"
-                            size="20"
-                            indeterminate
-                          ></v-progress-circular>
+                          <v-row>
+                            <v-col
+                              cols="12"
+                              md="3"
+                              v-for="i in 4"
+                              :key="i"
+                              wrap
+                            >
+                              <v-skeleton-loader
+                                v-bind="attrs"
+                                type="article, actions"
+                              ></v-skeleton-loader>
+                            </v-col>
+                          </v-row>
                         </v-col>
                         <v-col
                           v-else-if="admissions.length !== 0"
@@ -464,6 +476,7 @@
                           md="3"
                           sm="12"
                           wrap
+                          class="mx-2"
                           v-for="(admission, index) in admissions"
                           :key="index"
                         >
@@ -575,6 +588,12 @@ export default {
       address: null,
       physician:null,
       diagnoses: null,
+        attrs: {
+        class: 'mb-6',
+        boilerplate: true,
+        elevation: 2,
+      },
+
 
       rules: [
         value => !value || value.size < 500 || 'Avatar size should be less than 500 KB!',
