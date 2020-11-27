@@ -659,7 +659,7 @@ export default {
 
     },
     async getPatientAdmissions() {
-      return await this.$api.$get(`admissions/`)
+      return await this.$api.$get(`admissions/${this.$route.params.id}/?command=patient`)
         .then(response => {
           if (response !== null) {
             this.admissions = response;
