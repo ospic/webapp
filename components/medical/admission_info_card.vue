@@ -5,12 +5,12 @@
       :outlined="!data.isActive"
       :elevation="data.isActive ? 2 : 0"
       :raised="data.isActive"
-      :to="`/inventory/ward/${data.wardId}`"
+      :to="`/admission/${data.id}`"
     >
       <v-card-title
         background-color="green"
         class="font-weight-bold caption py-2   ma-0 pr-1 "
-        >{{ data.startDate }}<v-spacer></v-spacer>
+        >{{ data.id }}<v-spacer></v-spacer>{{ data.startDate }}&nbsp;&nbsp;
         <v-icon small v-show="data.isActive" color="red"
           >mdi-check-circle</v-icon
         >
