@@ -443,6 +443,7 @@
                     </v-tab-item>
                     <v-tab-item>
                       <v-btn
+                        v-if="!userdata.isAdmitted"
                         color="primary"
                         class="ml-5 my-2 "
                         :to="`/patients/${this.$route.params.id}/admit`"

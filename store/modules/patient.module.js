@@ -97,7 +97,21 @@ const mutations = {
   },
   [mutation.ADMIT_PATIENT_SUCCESS](state, payload) {
     state.showLoader = false;
-    console.log(payload)
+    this.$router.push('/patients/' + payload);
+  },
+  //End patient admission
+  [mutation.END_ADMISSION](state) {
+    state.showLoader = true;
+  },
+  [mutation.END_ADMISSION_FAILED](state) {
+    state.showLoader = false;
+  },
+  [mutation.END_ADMISSION_ERROR](state) {
+    state.showLoader = false;
+  },
+  [mutation.END_ADMISSION_SUCCESS](state, payload) {
+    state.showLoader = false;
+    this.$router.push('/patients/' + payload);
   },
 }
 const actions = {
@@ -170,10 +184,28 @@ const actions = {
     commit(mutation.ADMIT_PATIENT);
     await this.$api.$post(`admissions/`, payload)
       .then(response => {
-        commit(mutation.ADMIT_PATIENT_SUCCESS, response);
+        if (response.message !== null) {
+          commit(mutation.ADMIT_PATIENT_SUCCESS, payload.patientId);
 
+        }
       }).catch(error => {
         commit(mutation.ADMIT_PATIENT_ERROR);
+        console.log(error);
+
+      });
+
+  },
+  async end_patient_admission({ commit }, payload) {
+    commit(mutation.END_ADMISSION);
+    await this.$api.$post(`admissions/end`, payload)
+      .then(response => {
+        if (response.message !== null) {
+          commit(mutation.END_ADMISSION_SUCCESS, payload.patientId);
+
+        }
+
+      }).catch(error => {
+        commit(mutation.END_ADMISSION_ERROR);
         console.log(error);
 
       });

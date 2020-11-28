@@ -1,6 +1,20 @@
 <template>
   <v-card class="pa-3">
-    <v-card-title> Admission No. {{ this.$route.params.id }}</v-card-title>
+    <v-card-title v-if="admissions !== null">
+      <p>Admission No. {{ this.$route.params.id }}</p>
+      <v-spacer></v-spacer>
+      <v-btn
+        v-if="admissions.isActive"
+        color="primary"
+        @click="_end_this_admission"
+      >
+        <v-icon left>
+          mdi-reorder-horizontal
+        </v-icon>
+        End this admission</v-btn
+      >
+    </v-card-title>
+
     <v-divider></v-divider>
     <v-card-text>
       <div v-if="admissions !== null">
@@ -119,7 +133,9 @@
 <script>
 export default {
   data: () => ({
-    admissions: null
+    admissions: null,
+    endrequest: {},
+    date: new Date().toISOString().substr(0, 10)
   }),
   methods: {
     async _get_admission_by_id() {
@@ -131,6 +147,28 @@ export default {
         .catch(error => {
           console.log(error);
         });
+    },
+    _end_this_admission() {
+      //var request_data =
+      this.$store.dispatch("end_patient_admission", {
+        patientId: this.admissions.patientId,
+        admissionId: this.admissions.id,
+        bedId: this.admissions.bedId,
+        endDateTime: this.date
+      });
+
+      /**return await this.$api
+        .$post(`admissions/end/`, request_data)
+        .then(response => {
+          console.log(response);
+          if (response !== null) {
+            this._get_admission_by_id();
+          }
+        })
+        .catch(error => {
+          console.log(error);
+        });
+        **/
     }
   },
   created() {
