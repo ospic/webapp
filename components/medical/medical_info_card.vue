@@ -4,7 +4,7 @@
       {{ post.diagnosisReport }}
     </v-card-title>
     <v-card-subtitle class="pa-2 text-caption font-weight-light "
-      >On: {{ post.date | DateFormat }}
+      >On: {{ post.date }}
     </v-card-subtitle>
 
     <v-divider></v-divider>
