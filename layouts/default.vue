@@ -1,7 +1,7 @@
 <template>
   <v-app
     class="app"
-    v-bind:style="{ background: $vuetify.theme.dark ? '#d7f4fa' : '#d7f4fa' }"
+    v-bind:style="{ background: $vuetify.theme.dark ? 'white' : 'white' }"
   >
     <!--NAVIGATION DRAWER-->
     <v-navigation-drawer
@@ -9,41 +9,46 @@
       permanent
       :mini-variant.sync="mini"
       overlay-color="primary"
-      color="#d7f4fa"
+      color="white"
       app
       width="180"
     >
-      <v-list>
-        <v-list-item class="px-2">
-          <v-list-item-avatar>
-            <v-img
-              src="https://randomuser.me/api/portraits/women/85.jpg"
-            ></v-img>
-          </v-list-item-avatar>
-          <p class="title mt-0 pa-0 ma-0">{{ username }}</p>
+      <v-list nav dense subheader tile class="mt-0 pa-0 py-1">
+        <v-list-item dense class="ma-0">
+          <v-list-item-icon class="ml-1 mr-1">
+            <v-icon medium color="indigo lighten-1">mdi-plus-box</v-icon>
+          </v-list-item-icon>
+
+          <v-list-item-content class="tile ma-0 pa-0">
+            <v-list-item-title
+              class="font-weight-bold text-overline indigo--text mt-1"
+            >
+              {{ username }}
+            </v-list-item-title>
+          </v-list-item-content>
           <v-spacer></v-spacer>
         </v-list-item>
       </v-list>
       <v-list nav dense subheader tile class="mt-0 pa-0">
-        <v-divider light></v-divider>
+        <v-divider></v-divider>
         <template v-for="(item, i) in items">
           <v-list-item
-            class="ma-0"
+            class="list-item ma-0"
             dense
             :key="`${i}-${item.route}`"
             v-on:click="nativateToHere(item.route)"
           >
-            <v-list-item-icon class="ml-1">
-              <v-icon color="green" v-text="item.icon" small></v-icon>
+            <v-list-item-icon class="ml-1 mr-1">
+              <v-icon color="gray lighten-3" v-text="item.icon" small></v-icon>
             </v-list-item-icon>
-            <v-list-item-content class="ma-0 pa-0">
-              <v-list-item-title class="font-weight-normal">{{
-                $t(item.text)
-              }}</v-list-item-title>
+            <v-list-item-content class="tile ma-0 pa-0">
+              <v-list-item-title
+                color="#8C93F5"
+                class="font-weight-light text-caption "
+                >{{ $t(item.text) }}</v-list-item-title
+              >
             </v-list-item-content>
           </v-list-item>
-
-          <v-divider light :key="i" :inset="item.inset"></v-divider>
         </template>
       </v-list>
     </v-navigation-drawer>
@@ -55,7 +60,7 @@
       app
       dense
       short
-      color="#d7f4fa"
+      color="white"
     >
       <v-toolbar-title
         v-if="$vuetify.breakpoint.mdAndUp"
@@ -122,11 +127,11 @@
     </v-app-bar>
 
     <v-main>
-      <v-container style="background-color: #d7f4fa;" class="pa-2 ma-0" fluid>
+      <v-container style="background-color: #EAECEE ;" class="pa-2 ma-0" fluid>
         <nuxt />
       </v-container>
     </v-main>
-    <v-footer color="#d7f4fa">
+    <v-footer color="white">
       <v-progress-linear
         v-if="sync"
         width="100"
@@ -174,39 +179,45 @@ export default {
       items: [
         {
           text: "label.menu.dashboard",
-          icon: "mdi-hospital-building",
+          icon: "mdi-view-grid",
           route: "",
           subtitle: "Lorem ipsum dolor sit de amet.."
         },
         {
-          text: "label.menu.patientregistry",
-          icon: "mdi-account-plus-outline",
+          text: "label.menu.patients",
+          icon: "mdi-account-multiple",
           route: "patients",
 
           subtitle: "Lorem ipsum dolor sit de amet.."
         },
         {
           text: "label.menu.appointmentandschedule",
-          icon: "mdi-file-cabinet",
+          icon: "mdi-alarm-multiple",
           route: "appointments",
           subtitle: "Lorem ipsum dolor sit de amet ..."
         },
         {
+          text: "label.menu.staff",
+          icon: "mdi-account-hard-hat",
+          route: "staffs",
+          subtitle: "Lorem ipsum dolor sit de amet ..."
+        },
+        {
           text: "label.menu.opdcenter",
-          icon: "mdi-zodiac-cancer",
+          icon: "mdi-alpha-o-circle",
           route: "opd",
           subtitle: "Lorem ipsum dolor sit de amet.."
         },
         {
           text: "label.menu.ipdcenter",
-          icon: "mdi-bed-outline",
+          icon: "mdi-bed-queen",
           route: "ipd",
           subtitle: "Lorem ipsum dolor sit de amet.."
         },
         {
           text: "label.menu.laboratory",
-          icon: "mdi-beaker-question-outline",
-          route: "",
+          icon: "mdi-octagon",
+          route: "lab",
           subtitle: "Lorem ipsum dolor sit de amet.."
         },
         {
@@ -215,54 +226,37 @@ export default {
           route: "pharmacy",
           subtitle: "Lorem ipsum dolor sit de amet.."
         },
+
         {
-          text: "label.menu.radiology",
-          icon: "mdi-radioactive",
-          route: "",
+          text: "label.menu.finance",
+          icon: "mdi-finance",
+          route: "finance",
           subtitle: "Lorem ipsum dolor sit de amet.."
         },
 
         {
-          text: "label.menu.cashandbillingcenter",
-          icon: "mdi-credit-card-wireless",
-          route: "",
-          subtitle: "Lorem ipsum dolor sit de amet.."
-        },
-        {
-          text: "label.menu.printreceiptbills",
-          icon: "mdi-printer",
-          route: "",
-          subtitle: "Lorem ipsum dolor sit de amet.."
-        },
-        {
-          text: "label.menu.financialaccount",
-          icon: "mdi-currency-usd-circle",
-          route: "",
-          subtitle: "Lorem ipsum dolor sit de amet.."
-        },
-        {
-          text: "label.menu.payrollmanagement",
-          icon: "mdi-currency-usd-circle-outline",
-          route: "",
-          subtitle: "Lorem ipsum dolor sit de amet.."
-        },
-        {
           text: "label.menu.inventoryandstock",
-          icon: "mdi-hospital",
+          icon: "mdi-store-24-hour",
           route: "inventory",
           subtitle: "Lorem ipsum dolor sit de amet.."
         },
 
         {
-          text: "label.menu.nursestations",
-          icon: "mdi-zodiac-cancer",
-          route: "",
+          text: "label.menu.stations",
+          icon: "mdi-adjust",
+          route: "stations",
           subtitle: "Lorem ipsum dolor sit de amet.."
         },
         {
-          text: "label.menu.misreport",
-          icon: "mdi-folder-text-outline",
-          route: "",
+          text: "label.menu.calendar",
+          icon: "mdi-calendar-month",
+          route: "calendar",
+          subtitle: "Lorem ipsum dolor sit de amet.."
+        },
+        {
+          text: "label.menu.reports",
+          icon: "mdi-clipboard-file",
+          route: "reports",
           subtitle: "Lorem ipsum dolor sit de amet.."
         }
       ],
@@ -362,4 +356,11 @@ export default {
   }
 };
 </script>
-<style></style>
+<style scoped>
+.list-item .tile {
+  color: #566573;
+}
+.list-item:hover .tile:hover {
+  color: #4a56ff;
+}
+</style>
