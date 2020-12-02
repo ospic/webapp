@@ -14,7 +14,7 @@
       width="180"
     >
       <v-list nav dense subheader tile class="mt-0 pa-0 py-1">
-        <v-list-item dense class="ma-0">
+        <v-list-item dense class="ma-0" to="me">
           <v-list-item-icon class="ml-1 mr-1">
             <v-icon medium color="indigo lighten-1">mdi-plus-box</v-icon>
           </v-list-item-icon>
