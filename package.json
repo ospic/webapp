@@ -23,7 +23,7 @@
     "cookie-universal-nuxt": "^2.1.4",
     "core-js": "^3.8.0",
     "fibers": "^5.0.0",
-    "nuxt": "^2.14.7",
+    "nuxt": "^2.14.8",
     "nuxt-material-design-icons": "^1.0.4",
     "opn": "^6.0.0",
     "sweetalert": "^2.1.2",
