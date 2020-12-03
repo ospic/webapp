@@ -21,6 +21,20 @@ const mutations = {
 
   },
 
+  [mutation.UPDATE_PASSWORD](state) {
+    state.showLoader = true;
+  },
+  [mutation.UPDATE_PASSWORD_FAILED](state) {
+    state.showLoader = false;
+  },
+  [mutation.UPDATE_PASSWORD_ERROR](state) {
+    state.showLoader = false;
+  },
+  [mutation.UPDATE_PASSWORD_SUCCESS](state, payload) {
+    state.showLoader = false;
+
+  },
+
 }
 const actions = {
   async retrieve_profile({ commit }) {
@@ -29,12 +43,28 @@ const actions = {
       .then(response => {
         commit(mutation.GET_PROFILE_SUCCESS, response);
 
+
       }).catch(error => {
         commit(mutation.GET_PROFILE_ERROR);
         console.log(error);
 
       });
 
+  },
+  async _update_user_password({ commit }, payload) {
+    commit(mutation.UPDATE_PASSWORD);
+    await this.$api.$post("auth/password", payload)
+      .then(response => {
+        commit(mutation.UPDATE_PASSWORD_SUCCESS, response);
+        if (response.httpStatus === 'OK') {
+          commit(mutation.SIGNOUT_SUCCESS)
+        }
+
+      }).catch(error => {
+        commit(mutation.UPDATE_PASSWORD_ERROR);
+        console.log(error);
+
+      });
   }
 }
 const getters = {

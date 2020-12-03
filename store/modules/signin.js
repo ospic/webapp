@@ -25,6 +25,9 @@ const mutations = {
   [mutation.SIGNOUT_SUCCESS](state) {
     state.showLoader = false;
     state.userdata = null;
+    window.localStorage.clear();
+    sessionStorage.clear();
+    this.$router.push('/signin');
   },
   [mutation.SIGNOUT_FAILED](state) {
     state.showLoader = false;
@@ -75,10 +78,8 @@ const actions = {
     await this.$api.$get(`auth/signout`)
       .then(response => {
         if (response.result == 'OK') {
-          commit(mutation.SIGNOUT);
-          window.localStorage.clear();
-          sessionStorage.clear();
-          this.$router.push('/signin');
+          commit(mutation.SIGNOUT_SUCCESS);
+
         }
 
 
