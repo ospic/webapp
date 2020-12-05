@@ -125,7 +125,15 @@
         <span>{{ $t("label.tooltip.clicktologout") }}</span>
       </v-tooltip>
     </v-app-bar>
-
+    <a
+      class="github-fork-ribbon right-bottom fixed "
+      href="https://github.com/ospic/webapp"
+      target="_blank"
+      rel="noopener noreferrer"
+      data-ribbon="Fork me on GitHub"
+      title="Fork me on GitHub"
+      >Fork me on GitHub</a
+    >
     <v-main>
       <v-container style="background-color: #efefef;" class="pa-2 ma-0" fluid>
         <nuxt />
