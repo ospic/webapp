@@ -1,4 +1,3 @@
-
 <template>
   <v-app
     class="aspire"
@@ -8,12 +7,20 @@
     background: linear-gradient(to right, #FFAF7B, #D76D77, #3A1C71);
   "
   >
+    <a
+      class="github-fork-ribbon"
+      href="https://github.com/ospic/webapp"
+      target="_blank"
+      rel="noopener noreferrer"
+      data-ribbon="Fork me on GitHub"
+      title="Fork me on GitHub"
+      >Fork me on GitHub</a
+    >
     <v-main>
       <nuxt />
     </v-main>
   </v-app>
 </template>
-
 
 <script>
 export default {
@@ -29,5 +36,4 @@ export default {
   }
 };
 </script>
-<style scoped>
-</style>
+<style scoped></style>
