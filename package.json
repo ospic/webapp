@@ -21,7 +21,7 @@
     "apexcharts": "^3.22.3",
     "bulma": "^0.9.1",
     "cookie-universal-nuxt": "^2.1.4",
-    "core-js": "^3.8.0",
+    "core-js": "^3.8.1",
     "fibers": "^5.0.0",
     "nuxt": "^2.14.9",
     "nuxt-material-design-icons": "^1.0.4",
