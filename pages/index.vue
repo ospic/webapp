@@ -18,14 +18,23 @@
         md="2"
         class="ma-0 pa-0 mt-1"
       >
-        <v-card class="mr-1 ml-1 " dense color="#FFFFFF">
-          <v-card-text v-if="i % 2 === 0" class="ma-0 ">
-            <pie-chart :data="item" :height="200"></pie-chart>
-          </v-card-text>
-          <v-card-text v-else class="ma-0 ">
-            <donutchart :data="item" :height="200"></donutchart>
-          </v-card-text>
-        </v-card>
+        <v-hover>
+          <template v-slot:default="{ hover }">
+            <v-card
+              class="mr-1 ml-1 mx-auto "
+              :elevation="hover ? 3 : 1"
+              dense
+              color="#FFFFFF"
+            >
+              <v-card-text v-if="i % 2 === 0" class="ma-0 ">
+                <pie-chart :data="item" :height="200"></pie-chart>
+              </v-card-text>
+              <v-card-text v-else class="ma-0 ">
+                <donutchart :data="item" :height="200"></donutchart>
+              </v-card-text>
+            </v-card>
+          </template>
+        </v-hover>
       </v-col>
     </v-row>
     <v-row justify="start" align="start">
