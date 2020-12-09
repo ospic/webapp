@@ -7,11 +7,96 @@
       <v-container fluid>
         <v-row align="start" align-content="stretch" justify="start" dense>
           <v-col v-for="(bed, i) in ward.beds" cols="12" sm="6" md="2" :key="i">
-            <v-btn class="ma-2" v-if="bed.isOccupied" color="primary">
-              {{ bed.identifier }}&nbsp;&nbsp;
-              <v-icon>mdi-bed</v-icon>
-            </v-btn>
-            <v-btn class="ma-2" outlined v-else color="green">
+            <v-tooltip
+              v-if="bed.isOccupied"
+              right
+              min-width="230px"
+              color="primary "
+            >
+              <template v-slot:activator="{ on, attrs }">
+                <v-btn
+                  class="ma-2"
+                  v-bind="attrs"
+                  v-on="on"
+                  :key="bed.id"
+                  @mouseenter.stop="callfunction(bed.id)"
+                  color="primary"
+                  >{{ bed.identifier }}&nbsp;&nbsp;
+                  <v-icon>mdi-bed</v-icon>
+                </v-btn>
+              </template>
+              <div>
+                <v-progress-circular
+                  v-if="patient == null"
+                  indeterminate
+                  color="grey lighten-5"
+                  size="16"
+                ></v-progress-circular>
+                <div v-else>
+                  <v-list-item>
+                    <v-list-item-avatar color="green">
+                      <v-img :src="patient.patientPhoto"></v-img>
+                    </v-list-item-avatar>
+
+                    <v-list-item-content>
+                      <v-list-item-title class="white--text"
+                        ><strong>Name:</strong>&nbsp;&nbsp;{{
+                          patient.name
+                        }}</v-list-item-title
+                      >
+                      <v-list-item-subtitle class="white--text"
+                        ><strong>Id:</strong>&nbsp;&nbsp;
+                        {{ patient.id }}</v-list-item-subtitle
+                      >
+                    </v-list-item-content>
+                  </v-list-item>
+                  <table style="width:100%; text-align: start">
+                    <tr>
+                      <td id="gender">Gender:</td>
+                      <td>{{ patient.gender }}</td>
+                    </tr>
+                    <tr>
+                      <td id="gender">Height:</td>
+                      <td>{{ patient.height }}</td>
+                    </tr>
+                    <tr>
+                      <td id="gender">Weight:</td>
+                      <td>{{ patient.weight }}</td>
+                    </tr>
+                    <tr>
+                      <td id="gender">Blood Pressure:</td>
+                      <td>{{ patient.bloodPressure }}</td>
+                    </tr>
+                    <tr>
+                      <td id="gender">Blood Group:</td>
+                      <td>{{ patient.bloodGroup }}</td>
+                    </tr>
+                    <tr>
+                      <td id="gender">Age:</td>
+                      <td>{{ patient.age }}</td>
+                    </tr>
+                    <tr v-if="patient.martiaStatus">
+                      <td id="gender">Mariage Status:</td>
+                      <td>{{ patient.martiaStatus }}</td>
+                    </tr>
+                    <tr>
+                      <td id="gender">Guardian:</td>
+                      <td>{{ patient.guardianName }}</td>
+                    </tr>
+                    <tr>
+                      <td id="gender">Phone:</td>
+                      <td>{{ patient.phone }}</td>
+                    </tr>
+                    <tr>
+                      <td id="gender">Email:</td>
+                      <td>{{ patient.email }}</td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </v-tooltip>
+
+            <v-btn v-else class="ma-2" outlined color="green">
               {{ bed.identifier }}&nbsp;&nbsp;
               <v-icon>mdi-bed-queen-outline</v-icon>
             </v-btn>
@@ -29,7 +114,24 @@ export default {
       default: null
     }
   },
-  data: () => ({})
+  data: () => ({
+    patient: null,
+    active: false
+  }),
+  methods: {
+    async callfunction(val) {
+      console.log("Call function" + val);
+      this.patient = null;
+      return await this.$api
+        .$get(`admissions/inbed/${val}/`)
+        .then(response => {
+          this.patient = response[0];
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    }
+  }
 };
 </script>
 <style scoped>
