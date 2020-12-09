@@ -116,7 +116,8 @@ export default {
   },
   data: () => ({
     patient: null,
-    active: false
+    active: false,
+    total: 0
   }),
   methods: {
     async callfunction(val) {
