@@ -16,6 +16,7 @@ const mutations = {
     state.showLoader = false;
   },
   [mutation.SIGNIN_SUCCESS](state, payload) {
+    this.$toast.success('Welcome, ' + payload.username);
     state.showLoader = false;
     state.userdata = payload;
     var response = payload;

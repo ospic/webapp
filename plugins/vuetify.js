@@ -32,7 +32,7 @@ export default (ctx) => {
           default: "#FFFFFF",
           milky: "#FDFFF5",
           teal: "#00897B",
-          whitish:"F5F5F5",
+          whitish: "F5F5F5",
         },
       },
     },
