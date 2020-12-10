@@ -47,7 +47,8 @@ const mutations = {
   },
   [mutation.CREATE_PATIENTS_SUCCESS](state, payload) {
     state.showLoader = false;
-    state.patient = payload;
+
+    this.$router.push('/patients/' + payload.id);
 
   },
 
@@ -68,6 +69,7 @@ const mutations = {
   [mutation.UPDATE_PATIENT_SUCCESS](state, payload) {
     state.showLoader = false;
     state.patient = payload;
+
   },
   //Delete Patient Mutations 
 
@@ -145,7 +147,9 @@ const actions = {
     commit(mutation.CREATE_PATIENTS);
     await this.$api.$post(`patients/`, payload)
       .then(response => {
-        commit(mutation.CREATE_PATIENTS_SUCCESS, response);
+        if (response.id !== null) {
+          commit(mutation.CREATE_PATIENTS_SUCCESS, response);
+        }
 
       }).catch(error => {
         commit(mutation.CREATE_PATIENTS_ERROR);

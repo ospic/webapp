@@ -27,7 +27,7 @@
                     </v-row>
                   </template>
                   <v-card-title>
-                    <v-list three-line flat width="100%" color="#efefef">
+                    <v-list three-line flat width="100%">
                       <v-list-item>
                         <v-list-item-avatar>
                           <v-img :src="entityThumbNail"></v-img>
@@ -35,7 +35,7 @@
 
                         <v-list-item-content>
                           <v-list-item-title>
-                            {{ userdata.first_name }}</v-list-item-title
+                            {{ userdata.name }}</v-list-item-title
                           >
                           <v-list-item-subtitle
                             v-if="userdata.contactsInformation"
@@ -181,7 +181,7 @@
                     class="elevation-2"
                   >
                     <v-tab class="ffont-weight-normal">
-                      <span><v-icon small left>mdi-eye</v-icon>Bio</span>
+                      <span><v-icon small left>mdi-eye</v-icon>Biography</span>
                     </v-tab>
                     <v-tab class="font-weight-normal">
                       <span><v-icon small left>mdi-account</v-icon>Doctor</span>
@@ -211,7 +211,7 @@
                   </v-tabs>
                   <v-tabs-items vertical v-model="tab">
                     <v-tab-item>
-                      <tb-biograph></tb-biograph>
+                      <tb-biograph :patient="userdata"></tb-biograph>
                     </v-tab-item>
                     <v-tab-item>
                       <tb-doctor

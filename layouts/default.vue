@@ -126,7 +126,7 @@
       </v-tooltip>
     </v-app-bar>
     <a
-      class="github-fork-ribbon right-bottom fixed "
+      class="github-fork-ribbon left-bottom fixed "
       href="https://github.com/ospic/webapp"
       target="_blank"
       rel="noopener noreferrer"
@@ -304,7 +304,7 @@ export default {
       this.drawer = !this.drawer;
     },
     logoutsession: function() {
-      this.$store.dispatch("authentication/_clear_local_storage_and_sign_out");
+      this.$store.dispatch("_clear_local_storage_and_sign_out");
       this.drawer = !this.drawer;
     },
     changemode: function() {
