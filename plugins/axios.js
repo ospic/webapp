@@ -1,4 +1,9 @@
+import Vue from 'vue';
+import VueToasted from 'vue-toasted';
 import swal from "sweetalert";
+Vue.use(VueToasted, {
+  iconPack: 'mdi' // set your iconPack, defaults to material. material|fontawesome|custom-class
+})
 function check_cookie_name(name) {
   var match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
   if (match) {
@@ -9,10 +14,10 @@ function check_cookie_name(name) {
     console.log('--something went wrong---');
   }
 }
-export default function ({ $axios, redirect }, inject) {
+export default function ({ $axios, redirect, $toast }, inject) {
   // Create a custom axios instance
   $axios.setHeader('Content-Type', 'application/json');
-  $axios.setToken(check_cookie_name("ospic.token"), check_cookie_name("ospic.tokentype"));
+  $axios.setToken(window.localStorage.getItem("ospic.token"), window.localStorage.getItem("ospic.tokentype"));
 
 
   const api = $axios.create({
@@ -38,20 +43,20 @@ export default function ({ $axios, redirect }, inject) {
       redirect('/')
     }
   });
+  api.onResponse(response => {
+    Vue.toasted.show('Success !!', { icon: 'check-circle' });
+  });
   api.onResponseError((error) => {
-    swal({
-      title: error.response.statusText + " !!",
-      text: error.response.data.message + " \n In accessing " + error.config.url + "\n Status code :" + error.response.status,
-      icon: "warning",
-      customClass: 'swal-wide',
-      buttons: true,
-      dangerMode: true,
-    })
-      .then((willDelete) => {
-        if (willDelete) {
+    Vue.toasted.show('Failed. Try to reload page or re-login & reload ', {
+      icon: 'close-circle', action: {
+        text: 'Reload',
+        onClick: (e, toastObject) => {
           window.location.reload();
+          toastObject.goAway(600);
         }
-      });
+      }
+    });
+
   });
 
   // Set baseURL to something different

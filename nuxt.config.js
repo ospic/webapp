@@ -89,9 +89,17 @@ export default {
   modules: [
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
+    '@nuxtjs/toast',
     'nuxt-material-design-icons',
     ['cookie-universal-nuxt', { parseJSON: false }],
   ],
+  toast: {
+    position: 'bottom-right',
+    duration: 4000,
+    theme: 'bubble',
+    singleton: true,
+    iconPack: 'mdi'
+  },
   build: {
     /*
      ** You can extend webpack config here
