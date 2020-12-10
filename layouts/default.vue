@@ -304,7 +304,7 @@ export default {
       this.drawer = !this.drawer;
     },
     logoutsession: function() {
-      this.$store.dispatch("clearlocal");
+      this.$store.dispatch("authentication/_clear_local_storage_and_sign_out");
       this.drawer = !this.drawer;
     },
     changemode: function() {
