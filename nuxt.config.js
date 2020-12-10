@@ -89,7 +89,6 @@ export default {
   modules: [
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
-    '@nuxtjs/axios',
     'nuxt-material-design-icons',
     ['cookie-universal-nuxt', { parseJSON: false }],
   ],

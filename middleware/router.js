@@ -1,8 +1,8 @@
 export default ({ app, route, from, store, redirect }) => {
   app.router.beforeEach((to, from, next) => {
-    if (localStorage.getItem("ospic.token") === null && to.path !== "/signin" && to.path !== "/") {
+    if (localStorage.getItem("ospic.token") === null && to.path !== "/signin") {
 
-      next("/");
+      next("/signin");
     } else {
       console.log("Entering the route:  " + to.path);
       next();
