@@ -1,7 +1,7 @@
 <template>
   <v-container fluid>
     <v-card class="mx-auto">
-      <v-toolbar color="primary">
+      <v-toolbar color="primary" flat>
         <v-toolbar-title> User Profile</v-toolbar-title>
 
         <v-spacer></v-spacer>

@@ -1,4 +1,5 @@
 import * as mutation from './mutation-types';
+
 const state = () => ({
   userdata: {},
 });
@@ -53,7 +54,7 @@ const mutations = {
   },
 };
 const actions = {
-  async login({ commit }, payload) {
+  async _authenticate_then_login({ commit }, payload) {
     commit(mutation.SIGNIN);
     await this.$api.$post(`auth/signin`, payload)
       .then(response => {
@@ -71,7 +72,7 @@ const actions = {
       });
   },
 
-  clearlocal({ commit }) {
+  _clear_local_storage_and_sign_out({ commit }) {
     window.localStorage.clear();
     localStorage.removeItem('ospic.*');
     sessionStorage.clear();

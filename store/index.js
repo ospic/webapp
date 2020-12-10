@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import SignIn from "./modules/signin";
+import authentication from "./modules/authentication";
 import SignUp from "./modules/signup.module";
 import Registry from "./modules/patient.module";
 import Template from './modules/template';
@@ -17,11 +17,8 @@ import ProfileModule from "./modules/profile"
 Vue.use(Vuex);
 const store = () => {
   return new Vuex.Store({
-    state: {
-
-    },
     modules: {
-      SignIn, SignUp,
+      authentication, SignUp,
       Registry, Template,
       DocumentsModules, ContactsModules, UsersManagementModule, MedicineModule,
       TemplateModule, DiagnosesModule, InventoryWardModule, ProfileModule
