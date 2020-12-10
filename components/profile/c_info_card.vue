@@ -5,7 +5,7 @@
         <v-container py-0>
           <v-layout wrap>
             <v-flex xs12 md12 class="pa-0 ma-0">
-              <v-card class="mx-auto" outlined>
+              <v-card class="mx-auto" flat>
                 <v-img
                   :src="entityThumbNail"
                   lazy-src="https://i.stack.imgur.com/l60Hf.png"
@@ -166,7 +166,7 @@
         </v-container>
       </v-flex>
       <v-flex xs12 md9 sm12 class="ma-0 pa-0 lighten-2">
-        <v-card outlined flat class="ma-0 pa-0">
+        <v-card flat class="ma-0 pa-0">
           <v-list class="ma-0 pa-0">
             <v-list-item-group color="primary">
               <v-list-item inactive class="ma-0 pa-0" :ripple="false">
