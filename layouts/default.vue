@@ -356,10 +356,10 @@ export default {
   beforeMount: function() {},
   computed: {
     username() {
-      return localStorage.getItem("ospic.username");
+      return window.localStorage.getItem("ospic.username");
     },
     email() {
-      return localStorage.getItem("ospic.email");
+      return window.localStorage.getItem("ospic.email");
     }
   }
 };

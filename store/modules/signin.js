@@ -17,7 +17,26 @@ const mutations = {
   [mutation.SIGNIN_SUCCESS](state, payload) {
     state.showLoader = false;
     state.userdata = payload;
-    //this.$toast.success('Logged In!')
+    var response = payload;
+    if (window.localStorage) {
+      console.log("Window loaded")
+
+      window.localStorage.setItem('ospic.token', response.accessToken);
+      window.localStorage.setItem('ospic.roles', response.roles);
+      window.localStorage.setItem('ospic.email', response.email);
+      window.localStorage.setItem('ospic.tokentype', response.tokenType);
+      window.localStorage.setItem('ospic.uid', response.id);
+      window.localStorage.setItem('ospic.username', response.username);
+      sessionStorage.setItem('ospic.token', response.accessToken)
+      window.localStorage.setItem("ospic.time", new Date());
+      this.$cookies.set('ospic.tokentype', response.tokenType, { path: '/', maxAge: 60 * 60 * 24 * 1 });
+      this.$cookies.set('ospic.token', response.accessToken, { path: '/', maxAge: 60 * 60 * 24 * 1 });
+    }
+    //this.$router.app.refresh()
+
+    // console.log(localStorage.getItem('ospic.token'))
+
+    this.$router.push('/');
   },
   [mutation.SIGNOUT](state) {
     state.showLoader = true;
@@ -39,24 +58,8 @@ const actions = {
     await this.$api.$post(`auth/signin`, payload)
       .then(response => {
         if (response.accessToken != null) {
-
           commit(mutation.SIGNIN_SUCCESS, response);
 
-          localStorage.setItem('ospic.token', response.accessToken);
-          localStorage.setItem('ospic.roles', response.roles);
-          localStorage.setItem('ospic.email', response.email);
-          localStorage.setItem('ospic.tokentype', response.tokenType);
-          localStorage.setItem('ospic.uid', response.id);
-          localStorage.setItem('ospic.username', response.username);
-          sessionStorage.setItem('ospic.token', response.accessToken)
-          localStorage.setItem("ospic.time", new Date());
-          this.$cookies.set('ospic.tokentype', response.tokenType, { path: '/', maxAge: 60 * 60 * 24 * 1 });
-          this.$cookies.set('ospic.token', response.accessToken, { path: '/', maxAge: 60 * 60 * 24 * 1 });
-          //this.$router.app.refresh()
-
-          // console.log(localStorage.getItem('ospic.token'))
-
-          this.$router.push('/');
         }
 
 
@@ -92,7 +95,7 @@ const actions = {
 };
 const getters = {
   isLoggedIn: function (state) {
-    return (localStorage.getItem('ospic.token') && localStorage.getItem('ospic.tokentype')) !== null;
+    return (window.localStorage.getItem('ospic.token') && window.localStorage.getItem('ospic.tokentype')) !== null;
   },
   userInfos: function (state) {
     return state.userdata;

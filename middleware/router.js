@@ -1,6 +1,6 @@
 export default ({ app, route, from, store, redirect }) => {
   app.router.beforeEach((to, from, next) => {
-    if (localStorage.getItem("ospic.token") === null && to.path !== "/signin") {
+    if (window.localStorage.getItem("ospic.token") === null && to.path !== "/signin") {
 
       next("/signin");
     } else {
