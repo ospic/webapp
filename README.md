@@ -6,11 +6,7 @@ It is a simple Single-Page-Application(SPA) written in moderne standard web tech
 
 ## Usefulness (Why is this project useful?)
 
----
-
 The health system is one of essential socio-economic activities; therefore, it requires rational and effective management. Hospital management systems allows us the ability to optimize and digitize all the processes within the institution, which will help to improve customer service, reduce process costs, streamline the search of medical records, bills, patients, doctors, etc.; thus, having a database of each module implemented. Having a hospital management system in place will benefit an organization with <b>Tract financials better</b>,<b>Secure your data i.e hospital and patient datas</b>,<b>Eradicate Errors (esp. Human Errors)</b>,<b>Make Diagnosis and Treatment Easier</b>,<b>Increase Patient Satisfaction</b>,<b>Improve Hospital Quality Ratings</b> and [More](https://electronichealthreporter.com/importance-of-the-hospital-management-system/)
-
----
 
 ## Getting started using
 
@@ -23,8 +19,6 @@ Login Credentials:
  Username: `demo`
  Password: `password`
 ```
-
----
 
 ## Getting started (Developing)
 
@@ -91,8 +85,6 @@ $ npm run generate
 to start contributing to this project in the online web-based IDE GitPod.io right away!
 It's of course also possible to contribute with a "traditional" local development environment.
 
----
-
 ## Contribution Guidlines:
 
 First of all, thank you for considering contributing to this Opsic HMS project. It takes a one good person like you to change the world and toward simplification of our own medical data na histories.
@@ -100,8 +92,6 @@ First of all, thank you for considering contributing to this Opsic HMS project. 
 - For development, read our [contribution guidlines](https://github.com/ospic/webapp/blob/master/CONTRIBUTING.md)
 - To report a bug use [bug reporting template](https://github.com/ospic/webapp/issues/new?assignees=&labels=enhancement&template=bug_report.md&title=)
 - To request a new feature or chnages use [Feature request template](https://github.com/ospic/webapp/issues/new?assignees=&labels=&template=feature_request.md&title=)
-
----
 
 ## Where can I get more help, if I need it?
 
