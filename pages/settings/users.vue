@@ -111,9 +111,9 @@
         v-for="(role, i) in item.roles"
         :key="i"
         class="pa-1 mr-1"
-        :color="getColor(role.name.substring(5).toLowerCase())"
+        :color="getColor(role.name.toLowerCase())"
         x-small
-        >{{ role.name.substring(5).toLowerCase() }}</v-chip
+        >{{ role.name.toLowerCase() }}</v-chip
       >
     </template>
     <template v-slot:no-data>

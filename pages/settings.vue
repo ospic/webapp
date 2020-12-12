@@ -101,7 +101,7 @@ export default {
                 {
                   title: "label.menu.securitycontrol",
                   icon: "mdi-lock",
-                  to: "/settings"
+                  to: "/settings/security"
                 }
               ]
             },

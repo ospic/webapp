@@ -138,9 +138,9 @@
                   v-for="(role, i) in user.roles"
                   :key="i"
                   class="pa-1 mr-1 "
-                  :color="getColor(role.name.substring(5).toLowerCase())"
+                  :color="getColor(role.name.toLowerCase())"
                   small
-                  >{{ role.name.substring(5).toLowerCase() }}</v-chip
+                  >{{ role.name.toLowerCase() }}</v-chip
                 >
               </v-col>
             </v-row>
