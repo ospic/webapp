@@ -65,6 +65,7 @@ export default {
     '~/plugins/pwa.client.js',
     '~/plugins/vue-apexcharts.js',
     '~/mixins/label_mixins.js',
+    '~/plugins/vuepersistence.js',
     { src: '~plugins/ga.js', mode: 'client' },
     /*
     { src: '~/plugins/localStorage.js', ssr: false }
