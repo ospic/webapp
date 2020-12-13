@@ -36,19 +36,10 @@ export default function ({ $axios, redirect, store }, inject) {
     }
   });
   api.onResponse(response => {
-    Vue.toasted.show('Success !!', { icon: 'check-circle' });
+    Vue.toasted.show('Success ', { icon: 'check-circle', type: 'success' });
   });
   api.onResponseError((error) => {
-    Vue.toasted.show('Failed. Try to reload page or re-login & reload ', {
-      icon: 'close-circle', action: {
-        text: 'Reload',
-        onClick: (e, toastObject) => {
-          window.location.reload();
-          toastObject.goAway(600);
-        }
-      }
-    });
-
+    Vue.toasted.show('Failed !!!', { icon: 'close-circle', type: 'error' });
   });
 
   // Set baseURL to something different
