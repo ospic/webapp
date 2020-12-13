@@ -7,7 +7,7 @@ Vue.use(VueToasted, {
 
 export default function ({ $axios, redirect, store }, inject) {
   $axios.setHeader('Content-Type', 'application/json');
-  $axios.setToken(store.getters.accessToken, window.localStorage.getItem("ospic.tokentype"));
+  $axios.setToken(store.getters.accessToken, store.getters.accessTokenType);
 
 
   const api = $axios.create({
@@ -19,9 +19,7 @@ export default function ({ $axios, redirect, store }, inject) {
   });
 
   api.onRequest(config => {
-
     var token = store.getters.accessToken;
-    console.log(token)
     api.setHeader("Authorization", "Bearer  " + token);
     api.setHeader("Access-Control-Allow-Headers", "x-access-token, Origin, Content-Type, Accept");
     api.setHeader("Access-Control-Allow-Origin", "*");
