@@ -2,6 +2,8 @@ import * as mutation from './mutation-types';
 
 const state = () => ({
   userdata: {},
+  accessToken: "",
+  accessTokenType: ""
 });
 
 const mutations = {
@@ -20,6 +22,8 @@ const mutations = {
     state.showLoader = false;
     state.userdata = payload;
     var response = payload;
+    state.accessToken = response.accessToken;
+    state.accessTokenType = response.tokenType;
     if (window.localStorage) {
       console.log("Window loaded")
 
@@ -101,6 +105,14 @@ const getters = {
   },
   userInfos: function (state) {
     return state.userdata;
+  },
+  accessToken: function (state) {
+    var token = state.userdata.accessToken;
+    if (typeof something != "undefined") {
+      return token;
+    } else {
+      return window.localStorage.getItem('ospic.token');
+    }
   }
 };
 export default {

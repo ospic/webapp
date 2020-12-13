@@ -1,23 +1,13 @@
 import Vue from 'vue';
 import VueToasted from 'vue-toasted';
-import swal from "sweetalert";
 Vue.use(VueToasted, {
   iconPack: 'mdi' // set your iconPack, defaults to material. material|fontawesome|custom-class
 })
-function check_cookie_name(name) {
-  var match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
-  if (match) {
-    // console.log(match[2]);
-    return match[2];
-  }
-  else {
-    console.log('--something went wrong---');
-  }
-}
-export default function ({ $axios, redirect, $toast }, inject) {
-  // Create a custom axios instance
+
+
+export default function ({ $axios, redirect, store }, inject) {
   $axios.setHeader('Content-Type', 'application/json');
-  $axios.setToken(window.localStorage.getItem("ospic.token"), window.localStorage.getItem("ospic.tokentype"));
+  $axios.setToken(store.getters.accessToken, window.localStorage.getItem("ospic.tokentype"));
 
 
   const api = $axios.create({
@@ -29,8 +19,12 @@ export default function ({ $axios, redirect, $toast }, inject) {
   });
 
   api.onRequest(config => {
+
+    var token = store.getters.accessToken;
+    console.log(token)
+    api.setHeader("Authorization", "Bearer  " + token);
     api.setHeader("Access-Control-Allow-Headers", "x-access-token, Origin, Content-Type, Accept");
-    // api.setHeader("Access-Control-Allow-Origin", "*");
+    api.setHeader("Access-Control-Allow-Origin", "*");
 
   });
 
