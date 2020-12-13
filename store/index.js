@@ -13,6 +13,7 @@ import inventory from "./modules/inventory"
 import profile from "./modules/profile"
 
 
+
 Vue.use(Vuex);
 const store = () => {
   return new Vuex.Store({
@@ -20,10 +21,7 @@ const store = () => {
       authentication, SignUp, patients, documents, contacts, users, pharmacy,
       templates, diagnoses, inventory, profile
     },
-    /* plugins: [createPersistedState({
-       storage: window.sessionStorage,
-     })]
-     */
+
   });
 };
 
