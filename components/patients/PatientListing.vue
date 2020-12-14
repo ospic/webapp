@@ -4,10 +4,11 @@
     :headers="headers"
     :items="datalist"
     :search="search"
-    :items-per-page="15"
-    sort-by="calories"
-    class="elevation-1"
+    :options="body.options"
+    :pagination="body.pagination"
+    mobile-breakpoint="100"
     @click:row="handleClick"
+    @update:page="updatePagination"
   >
     <template v-slot:top>
       <v-toolbar flat color="white">
@@ -132,7 +133,14 @@ export default {
       note: "",
       marriageStatus: ""
     },
-    genderoptions: ["Male", "Female", "Others"]
+    genderoptions: ["Male", "Female", "Others"],
+    body: {
+      options: {
+        page: 1,
+        itemsPerPage: 5,
+        sortBy: ["name"]
+      }
+    }
   }),
 
   computed: {
@@ -165,7 +173,10 @@ export default {
     handleClick: function(value) {
       this.$router.push("/patients/" + value.id);
     },
-    initialize() {}
+    initialize() {},
+    updatePagination: function(val) {
+      console.log(val);
+    }
   },
 
   beforeMount() {
