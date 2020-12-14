@@ -62,10 +62,7 @@
       short
       color="white"
     >
-      <v-toolbar-title
-        v-if="$vuetify.breakpoint.mdAndUp"
-        class="title font-weight-black indigo--text"
-      >
+      <v-toolbar-title class="title font-weight-black indigo--text">
         <v-btn x-small icon @click.stop="mini = !mini">
           <v-icon v-if="mini">mdi-arrow-right</v-icon>
           <v-icon v-else>mdi-arrow-left</v-icon> </v-btn
@@ -78,6 +75,7 @@
         <template v-slot:activator="{ on }">
           <v-btn
             fab
+            v-if="$vuetify.breakpoint.mdAndUp"
             v-on="on"
             @click.stop="syncro()"
             elevation="1"
