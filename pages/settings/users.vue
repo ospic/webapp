@@ -142,7 +142,7 @@ export default {
         value: "username"
       },
       { text: "Email", value: "email" },
-      { text: "Last updated", value: "lastModifiedDate" },
+      { text: "Is Staff ?", value: "isStaff" },
       { text: "Roles", value: "roles" },
       { text: "Actions", value: "actions", sortable: false }
     ],
