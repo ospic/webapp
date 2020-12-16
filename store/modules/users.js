@@ -2,7 +2,8 @@ import * as mutation from './mutation-types';
 const state = () => ({
   showLoader: Boolean,
   user: {},
-  users: []
+  users: [],
+  staffs: []
 });
 
 const mutations = {
@@ -32,6 +33,19 @@ const mutations = {
     state.showLoader = false;
     state.users.push(payload)
   },
+  [mutation.FETCH_STAFFS](state) {
+    state.showLoader = true;
+  },
+  [mutation.FETCH_STAFFS_FAILED](state) {
+    state.showLoader = false;
+  },
+  [mutation.FETCH_STAFFS_ERROR](state) {
+    state.showLoader = false;
+  },
+  [mutation.FETCH_STAFFS_SUCCESS](state, payload) {
+    state.showLoader = false;
+    state.staffs = payload
+  },
 
 }
 const actions = {
@@ -48,8 +62,8 @@ const actions = {
 
       });
 
-  }
-  , async create_new_user({ commit }, payload) {
+  },
+  async create_new_user({ commit }, payload) {
     commit(mutation.CREATE_NEW_USER);
     await this.$api.$post(`auth/signup/`, payload)
       .then(response => {
@@ -64,12 +78,27 @@ const actions = {
 
       });
 
+  },
+  async fetchAllStaffs({ commit }) {
+    commit(mutation.FETCH_STAFFS);
+    await this.$api.$get(`staffs/`)
+      .then(response => {
+        if (response != null) {
+          commit(mutation.FETCH_STAFFS_SUCCESS, response);
+        }
+
+      }).catch(error => {
+        commit(mutation.FETCH_STAFFS_FAILED);
+        console.log(error);
+
+      });
   }
 }
 const getters = {
   users: function (state) {
     return state.users.reverse();
-  }
+  },
+  staffs: function (state) { return state.staffs }
 }
 
 export default {

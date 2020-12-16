@@ -313,7 +313,7 @@ export default {
     },
      physicians: {
       get() {
-        return this.$store.getters.physicians;
+        return this.$store.getters.staffs;
       }
     }
   },

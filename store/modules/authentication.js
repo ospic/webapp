@@ -2,6 +2,7 @@ import * as mutation from './mutation-types';
 
 const state = () => ({
   userdata: {},
+  roles: [],
   accessToken: "",
   accessTokenType: ""
 });
@@ -57,6 +58,19 @@ const mutations = {
   [mutation.SIGNOUT_FAILED](state) {
     state.showLoader = false;
   },
+  [mutation.FETCH_ROLES](state) {
+    state.showLoader = true;
+  },
+  [mutation.FETCH_ROLES_ERROR](state) {
+    state.showLoader = false;
+  },
+  [mutation.FETCH_ROLES_FAILED](state) {
+    state.showLoader = false;
+  },
+  [mutation.FETCH_ROLES_SUCCESS](state, payload) {
+    state.showLoader = false;
+    state.roles = payload;
+  }
 };
 const actions = {
   async _authenticate_then_login({ commit }, payload) {
@@ -67,7 +81,6 @@ const actions = {
           commit(mutation.SIGNIN_SUCCESS, response);
 
         }
-
 
       }).catch(error => {
         commit(mutation.SIGNIN_ERROR);
@@ -97,6 +110,18 @@ const actions = {
 
       });
   },
+  async fetchuserroles({ commit }) {
+    commit(mutation.FETCH_ROLES);
+    await this.$api.$get(`auth/roles/`).then(response => {
+      if (response != null) {
+        commit(mutation.FETCH_ROLES_SUCCESS, response)
+      }
+    }).catch(error => {
+      commit(mutation.FETCH_ROLES_FAILED);
+      console.log(error);
+
+    });
+  }
 
 };
 const getters = {
@@ -105,6 +130,9 @@ const getters = {
   },
   userInfos: function (state) {
     return state.userdata;
+  },
+  userroles: function (state) {
+    return state.roles;
   },
   accessToken: function (state) {
     var token = state.userdata.accessToken;
