@@ -64,6 +64,13 @@
                       multiple
                     ></v-select>
                   </v-col>
+                  <v-col cols="12" sm="12" md="4" class="pa-2">
+                    <v-checkbox
+                      v-model="editedItem.isStaff"
+                      label="Is Staff?"
+                      required
+                    ></v-checkbox>
+                  </v-col>
                 </v-row>
               </v-container>
             </v-card-text>
@@ -149,6 +156,7 @@ export default {
     editedItem: {
       id: "",
       username: "",
+      isStaff: false,
       email: "",
       password: "",
       role: []
@@ -156,6 +164,7 @@ export default {
     defaultItem: {
       id: "",
       username: "",
+      isStaff: false,
       email: "",
       password: "",
       role: []
@@ -233,7 +242,8 @@ export default {
         // Object.assign(this.userslist[this.editedIndex], this.editedItem);
       } else {
         delete this.editedItem.id;
-        this.$store.dispatch("create_new_user", this.editedItem);
+        console.log(this.editedItem);
+        //this.$store.dispatch("create_new_user", this.editedItem);
 
         // this.userslist.push(this.editedItem);
       }
