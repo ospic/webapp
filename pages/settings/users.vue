@@ -13,7 +13,7 @@
         }}</v-toolbar-title>
         <v-divider class="mx-4" inset vertical></v-divider>
         <v-spacer></v-spacer>
-        <v-dialog v-model="dialog" max-width="500px">
+        <v-dialog v-model="dialog" max-width="700px">
           <template v-slot:activator="{ on, attrs }">
             <v-btn
               color="primary"
@@ -27,51 +27,63 @@
             >
           </template>
           <v-card>
-            <v-card-title>
-              <span class="headline">{{ $t(formTitle) }}</span>
+            <v-card-title class="primary">
+              <span>{{ $t(formTitle) }}</span>
             </v-card-title>
 
             <v-card-text>
               <v-container>
-                <v-row>
-                  <v-col cols="12" sm="6" md="6">
-                    <v-text-field
-                      v-model="editedItem.username"
-                      label="Username"
-                    ></v-text-field>
-                  </v-col>
-                  <v-col cols="12" sm="6" md="6">
-                    <v-text-field
-                      v-model="editedItem.password"
-                      label="Password"
-                      type="password"
-                    ></v-text-field>
-                  </v-col>
-                  <v-col cols="12" sm="6" md="6">
-                    <v-text-field
-                      v-model="editedItem.email"
-                      label="Email Address"
-                      type="email"
-                    ></v-text-field>
-                  </v-col>
-                  <v-col cols="12" sm="6" md="6">
-                    <v-select
-                      v-model="editedItem.role"
-                      :items="roles"
-                      attach
-                      chips
-                      label="Chips"
-                      multiple
-                    ></v-select>
-                  </v-col>
-                  <v-col cols="12" sm="12" md="4" class="pa-2">
-                    <v-checkbox
-                      v-model="editedItem.isStaff"
-                      label="Is Staff?"
-                      required
-                    ></v-checkbox>
-                  </v-col>
-                </v-row>
+                <v-form ref="form" v-model="valid" lazy-validation>
+                  <v-row>
+                    <v-col cols="12" sm="6" md="6">
+                      <v-text-field
+                        v-model="editedItem.username"
+                        :rules="nameRules"
+                        label="Username"
+                        required
+                      ></v-text-field>
+                    </v-col>
+                    <v-col cols="12" sm="6" md="6">
+                      <v-text-field
+                        v-model="editedItem.password"
+                        label="Password"
+                        type="password"
+                        required
+                      ></v-text-field>
+                    </v-col>
+                    <v-col cols="12" sm="6" md="6">
+                      <v-text-field
+                        v-model="editedItem.email"
+                        :rules="emailRules"
+                        label="Email Address"
+                        type="email"
+                        required
+                      ></v-text-field>
+                    </v-col>
+                    <v-col cols="12" sm="6" md="6">
+                      <v-select
+                        v-model="editedItem.role"
+                        :items="userroles"
+                        item-text="roleId"
+                        item-value="id"
+                        attach
+                        chips
+                        :rules="[
+                          v => !!v || 'You must select one to continue!'
+                        ]"
+                        label="Chips"
+                        required
+                      ></v-select>
+                    </v-col>
+                    <v-col cols="12" sm="12" md="4" class="pa-2">
+                      <v-checkbox
+                        v-model="editedItem.isStaff"
+                        label="Is Staff?"
+                        required
+                      ></v-checkbox>
+                    </v-col>
+                  </v-row>
+                </v-form>
               </v-container>
             </v-card-text>
 
@@ -183,12 +195,22 @@ export default {
       "cyan"
     ],
     currentColor: "",
-    roles: ["mod", "admin"]
+    valid: true,
+
+    nameRules: [
+      v => !!v || "Name is required",
+      v => (v && v.length > 5) || "Name must be less than 5 characters"
+    ],
+    emailRules: [
+      v => !!v || "E-mail is required",
+      v => /.+@.+\..+/.test(v) || "E-mail must be valid"
+    ]
   }),
   created() {
     console.log("Dispating");
   },
   beforeMount() {
+    this.$store.dispatch("fetchuserroles");
     this.$store.dispatch("retrieveAllusers");
   },
   methods: {
@@ -226,6 +248,7 @@ export default {
         this.editedItem = Object.assign({}, this.defaultItem);
         this.editedIndex = -1;
       });
+      this.$refs.form.reset();
     },
 
     closeDelete() {
@@ -240,19 +263,22 @@ export default {
       if (this.editedIndex > -1) {
         console.log(this.editedItem);
         // Object.assign(this.userslist[this.editedIndex], this.editedItem);
+        this.close();
       } else {
         delete this.editedItem.id;
-        console.log(this.editedItem);
-        //this.$store.dispatch("create_new_user", this.editedItem);
+        if (this.$refs.form.validate()) {
+          this.$store.dispatch("create_new_user", this.editedItem);
+          this.close();
+        }
 
         // this.userslist.push(this.editedItem);
       }
-      this.close();
     }
   },
   computed: {
     ...mapGetters({
-      userslist: "users"
+      userslist: "users",
+      userroles: "userroles"
     }),
 
     formTitle() {

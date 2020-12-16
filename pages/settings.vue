@@ -10,7 +10,6 @@
               :prepend-icon="setting.icon"
               :key="ind"
             >
-              <v-divider :key="ind"></v-divider>
               <template v-slot:activator>
                 <v-list-item-title class="black--text">{{
                   $t(setting.title)
@@ -18,7 +17,12 @@
               </template>
 
               <template v-for="(menu, index) in setting.menus">
-                <v-list-group :value="true" no-action sub-group :key="index">
+                <v-list-group
+                  :value="true"
+                  no-action
+                  sub-group
+                  :key="menu.title"
+                >
                   <template v-slot:activator>
                     <v-list-item-content>
                       <v-list-item-title>{{
@@ -27,7 +31,7 @@
                     </v-list-item-content>
                   </template>
                   <template v-for="(sub, i) in menu.submenus">
-                    <v-list-item :key="i" :to="sub.to">
+                    <v-list-item :key="sub.to" :to="sub.to">
                       <v-list-item-content>
                         <v-list-item-title>
                           <v-icon
@@ -111,11 +115,23 @@ export default {
                 {
                   title: "label.menu.create",
                   icon: "mdi-plus-outline",
-                  to: "/"
+                  to: "/create"
                 },
-                { title: "label.menu.read", icon: "mdi-file-outline", to: "/" },
-                { title: "label.menu.update", icon: "mdi-update", to: "/" },
-                { title: "label.menu.delete", icon: "mdi-delete", to: "/" }
+                {
+                  title: "label.menu.read",
+                  icon: "mdi-file-outline",
+                  to: "/read"
+                },
+                {
+                  title: "label.menu.update",
+                  icon: "mdi-update",
+                  to: "/update"
+                },
+                {
+                  title: "label.menu.delete",
+                  icon: "mdi-delete",
+                  to: "/delete"
+                }
               ]
             }
           ]
