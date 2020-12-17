@@ -47,6 +47,19 @@ const mutations = {
     state.staffs = payload
   },
 
+  [mutation.UPDATE_STAFF](state) {
+    state.showLoader = true;
+  },
+  [mutation.UPDATE_STAFF_FAILED](state) {
+    state.showLoader = false;
+  },
+  [mutation.UPDATE_STAFF_ERROR](state) {
+    state.showLoader = false;
+  },
+  [mutation.UPDATE_STAFF_SUCCESS](state, payload) {
+    state.showLoader = false;
+  },
+
 }
 const actions = {
   async retrieveAllusers({ commit }) {
@@ -89,6 +102,20 @@ const actions = {
 
       }).catch(error => {
         commit(mutation.FETCH_STAFFS_FAILED);
+        console.log(error);
+
+      });
+  },
+  async updatestaff({ commit }, payload) {
+    commit(mutation.UPDATE_STAFF);
+    await this.$api.$put(`staffs/${payload.id}`, payload)
+      .then(response => {
+        if (response != null) {
+          commit(mutation.UPDATE_STAFF_SUCCESS, response);
+        }
+
+      }).catch(error => {
+        commit(mutation.UPDATE_STAFF_ERROR);
         console.log(error);
 
       });
