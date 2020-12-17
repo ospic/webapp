@@ -25,7 +25,7 @@
           </v-list-item-subtitle>
         </v-list-item-content>
         <v-list-item-action class="ml-2 pa-0">
-          <v-icon v-if="index % 3 === 0" color="primary"
+          <v-icon v-if="staff.user.isStaff" color="primary"
             >mdi-badge-account-alert</v-icon
           >
         </v-list-item-action>

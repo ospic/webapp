@@ -19,7 +19,7 @@
 
             <v-card-text class="pa-4">
               <v-form
-                @submit.prevent="update"
+                @submit.prevent="updatepasssword"
                 id="check-login-form"
                 class="mt-3"
                 v-model="valid"
@@ -132,7 +132,7 @@
                   :readonly="readonly"
                 ></v-text-field>
               </v-col>
-              <v-col cols="12" sm="12" md="12">
+              <v-col cols="12" sm="12" md="6">
                 <h5>Roles:</h5>
                 <v-chip
                   v-for="(role, i) in user.roles"
@@ -142,6 +142,13 @@
                   small
                   >{{ role.name.toLowerCase() }}</v-chip
                 >
+              </v-col>
+              <v-col cols="12" sm="12" md="6">
+                <v-checkbox
+                  label="Edit"
+                  v-model="edit"
+                  v-if="user.isStaff"
+                ></v-checkbox>
               </v-col>
             </v-row>
           </v-container>
@@ -156,6 +163,75 @@
         ></v-progress-circular>
       </v-card-text>
     </v-card>
+
+    <v-card class="mt-4" v-if="edit" tile outlined>
+      <v-card-title>
+        Edit profile
+      </v-card-title>
+      <v-card-text>
+        <v-form
+          @submit.prevent="updateprofile"
+          id="check-update-profile-form"
+          class="mt-3"
+        >
+          <v-container>
+            <v-row>
+              <v-col cols="12" sm="12" md="4">
+                <v-text-field
+                  :value="user.staff.username"
+                  label="Username"
+                  :readonly="readonly"
+                ></v-text-field>
+              </v-col>
+              <v-col cols="12" sm="12" md="4">
+                <v-text-field
+                  :value="user.staff.fullName"
+                  label="Full name"
+                ></v-text-field>
+              </v-col>
+              <v-col cols="12" sm="12" md="4">
+                <v-text-field
+                  :value="user.staff.contacts"
+                  label="Phone"
+                ></v-text-field>
+              </v-col>
+              <v-col cols="12" sm="12" md="4">
+                <v-text-field
+                  :value="user.staff.level"
+                  label="Level"
+                ></v-text-field>
+              </v-col>
+              <v-col cols="12" sm="12" md="4">
+                <v-text-field
+                  :value="user.staff.email"
+                  label="Email "
+                ></v-text-field>
+              </v-col>
+
+              <v-col cols="12" sm="12" md="4">
+                <v-text-field
+                  :value="user.staff.imageUrl"
+                  label="Thumbnail link"
+                  readonly
+                ></v-text-field>
+              </v-col>
+            </v-row>
+          </v-container>
+        </v-form>
+      </v-card-text>
+      <v-card-actions>
+        <v-spacer></v-spacer>
+
+        <v-btn
+          color="warning"
+          small
+          type="submit"
+          form="check-update-profile-form"
+        >
+          Update
+        </v-btn>
+      </v-card-actions>
+    </v-card>
   </v-container>
 </template>
 <script>
@@ -168,6 +244,7 @@ export default {
     show2: false,
     show3: false,
     show4: false,
+    edit: false,
 
     confirmPassword: "",
     rules: {
@@ -184,8 +261,13 @@ export default {
     this.$store.dispatch("retrieve_profile");
   },
   methods: {
-    update() {
+    updatepasssword() {
       this.$store.dispatch("_update_user_password", this.form_data);
+    },
+    updateprofile() {
+      console.log(this.user.staff);
+      delete this.user.staff.user;
+      this.$store.dispatch("updatestaff", this.user.staff);
     },
     getColor(role) {
       if (role === "user") {
