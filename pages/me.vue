@@ -178,39 +178,39 @@
             <v-row>
               <v-col cols="12" sm="12" md="4">
                 <v-text-field
-                  :value="user.staff.username"
+                  v-model="user.staff.username"
                   label="Username"
                   :readonly="readonly"
                 ></v-text-field>
               </v-col>
               <v-col cols="12" sm="12" md="4">
                 <v-text-field
-                  :value="user.staff.fullName"
+                  v-model="user.staff.fullName"
                   label="Full name"
                 ></v-text-field>
               </v-col>
               <v-col cols="12" sm="12" md="4">
                 <v-text-field
-                  :value="user.staff.contacts"
+                  v-model="user.staff.contacts"
                   label="Phone"
                 ></v-text-field>
               </v-col>
               <v-col cols="12" sm="12" md="4">
                 <v-text-field
-                  :value="user.staff.level"
+                  v-model="user.staff.level"
                   label="Level"
                 ></v-text-field>
               </v-col>
               <v-col cols="12" sm="12" md="4">
                 <v-text-field
-                  :value="user.staff.email"
+                  v-model="user.staff.email"
                   label="Email "
                 ></v-text-field>
               </v-col>
 
               <v-col cols="12" sm="12" md="4">
                 <v-text-field
-                  :value="user.staff.imageUrl"
+                  v-model="user.staff.imageUrl"
                   label="Thumbnail link"
                   readonly
                 ></v-text-field>
@@ -267,7 +267,10 @@ export default {
     updateprofile() {
       console.log(this.user.staff);
       delete this.user.staff.user;
-      this.$store.dispatch("updatestaff", this.user.staff);
+      this.$store.dispatch("updatestaff", this.user.staff).then(() => {
+        this.$store.dispatch("retrieve_profile");
+        this.edit = false;
+      });
     },
     getColor(role) {
       if (role === "user") {
