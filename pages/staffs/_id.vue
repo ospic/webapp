@@ -15,7 +15,11 @@
                 alt="user"
                 height="100%"
                 width="100%"
-                src="https://cache.moviestillsdb.com/i/500x/uawbx6ps/prison-break-lg.jpg"
+                :src="
+                  staffdata.imageUrl == null
+                    ? 'https://boylancode.com/wp-content/uploads/2018/09/Man-Placeholder-Headshot.png'
+                    : staffdata.imageUrl
+                "
               />
             </v-avatar>
           </v-card-title>
@@ -41,7 +45,70 @@
       </v-col>
       <v-col cols="12" md="9">
         <v-card outlined tile>
-          <h2>Info</h2>
+          <v-list class="ma-0 pa-0">
+            <v-list-item-group color="primary">
+              <v-list-item inactive class="ma-0 pa-0" :ripple="false">
+                <v-list-item-content class="ma-0 pa-0">
+                  <v-tabs
+                    slider-color="primary"
+                    slider-size="3"
+                    color="primary"
+                    left
+                    v-model="tab"
+                    class="elevation-2"
+                  >
+                    <v-tab class="ffont-weight-normal">
+                      <span><v-icon small left>mdi-eye</v-icon>Profile</span>
+                    </v-tab>
+                    <v-tab class="font-weight-normal">
+                      <span
+                        ><v-icon small left>mdi-account</v-icon>Payroll</span
+                      >
+                    </v-tab>
+                    <v-tab class="font-weight-normal">
+                      <span>
+                        <v-icon small left>mdi-medical-bag</v-icon> Leaves</span
+                      >
+                    </v-tab>
+                    <v-tab class="font-weight-normal">
+                      <span
+                        ><v-icon small left>mdi-history</v-icon>
+                        Attandence</span
+                      >
+                    </v-tab>
+                    <v-tab class="font-weight-normal">
+                      <span><v-icon small left>mdi-plus</v-icon> Document</span>
+                    </v-tab>
+                    <v-tab class="font-weight-normal">
+                      <span>
+                        <v-icon small left>mdi-plus</v-icon> Timeline</span
+                      >
+                    </v-tab>
+                  </v-tabs>
+                  <v-tabs-items vertical v-model="tab">
+                    <v-tab-item>
+                      <h2 class="ma-8">Profile</h2>
+                    </v-tab-item>
+                    <v-tab-item>
+                      <h2 class="ma-8">Payrol</h2>
+                    </v-tab-item>
+                    <v-tab-item>
+                      <h2 class="ma-8">Leaves</h2>
+                    </v-tab-item>
+                    <v-tab-item>
+                      <h2 class="ma-8">Attendance</h2>
+                    </v-tab-item>
+                    <v-tab-item>
+                      <h1 class="ma-8">Document</h1>
+                    </v-tab-item>
+                    <v-tab-item>
+                      <h1 class="ma-8">Timeline</h1>
+                    </v-tab-item>
+                  </v-tabs-items>
+                </v-list-item-content>
+              </v-list-item>
+            </v-list-item-group>
+          </v-list>
         </v-card>
       </v-col>
     </v-row>
@@ -51,7 +118,9 @@
 export default {
   data() {
     return {
-      staffdata: null
+      staffdata: null,
+      staffpatients: [],
+      tab: null
     };
   },
   methods: {
@@ -60,6 +129,16 @@ export default {
         .$get(`staffs/${this.$route.params.id}/`)
         .then(response => {
           this.staffdata = response;
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    },
+    async getStaffPatinets() {
+      return await this.$api
+        .$get(`staffs/${this.$route.params.id}/patients`)
+        .then(response => {
+          this.staffpatients = response;
         })
         .catch(error => {
           console.log(error);
