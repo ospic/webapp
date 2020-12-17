@@ -8,7 +8,7 @@
               <v-card class="mx-auto" flat>
                 <v-img
                   :src="entityThumbNail"
-                  lazy-src="https://i.stack.imgur.com/l60Hf.png"
+                  lazy-src="https://boylancode.com/wp-content/uploads/2018/09/Man-Placeholder-Headshot.png"
                   aspect-ratio="1"
                   class="grey lighten-2 align-end"
                   height="200px"
@@ -215,8 +215,8 @@
                     </v-tab-item>
                     <v-tab-item>
                       <tb-doctor
-                        v-bind:physician="physician"
-                        v-bind:physicians="physicians"
+                        v-bind:staff="staff"
+                        v-bind:staffs="staffs"
                       ></tb-doctor>
                     </v-tab-item>
                     <v-tab-item>
@@ -282,7 +282,7 @@ export default {
       admissions: null,
       followings: null,
       followers: null,
-      selectedPhysicianId: null,
+      selectedstaffId: null,
       date: new Date().toISOString().substr(0, 7),
       menu: false,
       modal: false,
@@ -290,7 +290,7 @@ export default {
       fullIcon: 'mdi-star',
       halfIcon: 'mdi-star-half-full',
       address: null,
-      physician:null,
+      staff:null,
       diagnoses: null,
         attrs: {
         class: 'mb-6',
@@ -304,14 +304,14 @@ export default {
   },
   created() {
     this.address = this.userdata.contactsInformation;
-    this.physician = this.userdata.physician;
-    this.$store.dispatch("retrievephysicians");
+    this.staff = this.userdata.staff;
+    this.$store.dispatch("fetchAllStaffs");
   },
   computed:{
       entityThumbNail: function() {
             return this.userdata.patientPhoto;
     },
-     physicians: {
+     staffs: {
       get() {
         return this.$store.getters.staffs;
       }

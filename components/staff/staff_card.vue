@@ -2,12 +2,12 @@
   <v-card class="ma-1 pa-0" link :to="`/staffs/${staff.id}`">
     <v-card-title>
       <v-list-item class="ma-0 pa-0">
-        <v-list-item-avatar color="green lighten-1">
+        <v-list-item-avatar height="90" width="90" color="blue lighten-4">
           <v-img
             :src="
-              index % 3 == 0
-                ? 'https://i.pinimg.com/originals/67/8a/f8/678af8696e02e3e421768e553a43f525.jpg'
-                : 'https://pngimg.com/uploads/doctor/doctor_PNG15980.png'
+              staff.imageUrl == null
+                ? 'https://boylancode.com/wp-content/uploads/2018/09/Man-Placeholder-Headshot.png'
+                : staff.imageUrl
             "
           ></v-img>
         </v-list-item-avatar>
