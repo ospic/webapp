@@ -68,7 +68,8 @@
       "clicktologout":"Click to logout",
       "gendermale":"Male",
       "genderfemale":"Female",
-      "genderother":"Other"
+      "genderother":"Other",
+      "edit":"Edit"
     },
     "titles":{
       "settings":"Settings",
@@ -92,7 +93,8 @@
       "beds":"Beds",
       "medicalstock":"Medical Stock",
       "medicine":"Medicine",
-      "pharmacy":"Pharmacy"
+      "pharmacy":"Pharmacy",
+      "bloodbank":"Blood Bank"
     }
   }
 }
