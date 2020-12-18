@@ -10,7 +10,8 @@ import users from "./modules/users";
 import pharmacy from "./modules/pharmacy.medicine";
 import diagnoses from "./modules/diagnosis";
 import inventory from "./modules/inventory"
-import profile from "./modules/profile"
+import profile from "./modules/profile";
+import bloodbank from "./modules/bloods";
 
 
 
@@ -19,7 +20,7 @@ const store = () => {
   return new Vuex.Store({
     modules: {
       authentication, SignUp, patients, documents, contacts, users, pharmacy,
-      templates, diagnoses, inventory, profile
+      templates, diagnoses, inventory, profile, bloodbank
     },
 
   });

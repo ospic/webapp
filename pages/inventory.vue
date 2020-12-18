@@ -78,6 +78,11 @@ export default {
               title: "label.titles.medicine",
               to: "/inventory/medicine",
               icon: "mdi-pill"
+            },
+            {
+              title: "label.titles.bloodbank",
+              to: "/inventory/bloods",
+              icon: "mdi-blood-bag"
             }
           ]
         },
