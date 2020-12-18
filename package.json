@@ -24,7 +24,7 @@
     "cookie-universal-nuxt": "^2.1.4",
     "core-js": "^3.8.1",
     "fibers": "^5.0.0",
-    "nuxt": "^2.14.11",
+    "nuxt": "^2.14.12",
     "nuxt-material-design-icons": "^1.0.4",
     "opn": "^6.0.0",
     "secure-ls": "^1.2.6",
