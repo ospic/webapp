@@ -24,7 +24,7 @@
           </v-col>
         </v-row>
         <v-dialog v-model="dialog" max-width="900px">
-          <template v-slot:activator="{ on, attrs }">
+          <!--<template v-slot:activator="{ on, attrs }">
             <v-btn
               color="teal"
               elevation="1"
@@ -36,7 +36,7 @@
               dark
               ><v-icon>mdi-plus</v-icon></v-btn
             >
-          </template>
+          </template>-->
           <v-card>
             <v-card-title>
               <span class="headline">Update Group {{ editedItem.group }}</span>
