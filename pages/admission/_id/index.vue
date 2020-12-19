@@ -4,6 +4,7 @@
       <p>Admission No. {{ this.$route.params.id }}</p>
       <v-spacer></v-spacer>
       <v-btn
+        class="ml-1"
         v-if="admissions.isActive"
         color="primary"
         @click="_end_this_admission"
@@ -12,6 +13,27 @@
           mdi-reorder-horizontal
         </v-icon>
         End this admission</v-btn
+      >
+      <v-btn
+        class="ml-1"
+        v-if="admissions.isActive"
+        color="primary"
+        :to="`/admission/${this.$route.params.id}/visit`"
+      >
+        <v-icon left>
+          mdi-tag-plus
+        </v-icon>
+        Visit admission</v-btn
+      >
+      <v-btn
+        class="ml-1"
+        color="primary"
+        :to="`/admission/${this.$route.params.id}/visits`"
+      >
+        <v-icon left>
+          mdi-eye
+        </v-icon>
+        Admission Visits</v-btn
       >
     </v-card-title>
 
