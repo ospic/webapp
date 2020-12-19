@@ -45,7 +45,7 @@ export default {
       return await this.$api
         .$get(`admissions/${this.$route.params.id}/visits`)
         .then(response => {
-          this.visits = response;
+          this.visits = response.reverse();
         })
         .catch(error => {
           console.log(error);
