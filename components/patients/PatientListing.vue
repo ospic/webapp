@@ -11,31 +11,24 @@
   >
     <template v-slot:top>
       <v-toolbar flat color="white">
-        <v-row no-gutters>
-          <v-col cols="12" md="2" align-self="center">
-            <h3 class="title">{{ pagetitle }}</h3>
-          </v-col>
-          <v-col cols="12" md="4">
-            <v-text-field
-              v-model="search"
-              append-icon="search"
-              label="Enter search text ..."
-              solo
-              single-line
-              hide-details
-            ></v-text-field>
-          </v-col>
-          <v-col cols="12" md="3" align-self="center">
-            &nbsp;&nbsp;<v-btn
-              medium
-              dense
-              v-if="isAppointmentRoute"
-              class=" primary"
-              to="/patients/add"
-              ><v-icon>mdi-plus</v-icon>Add new patient</v-btn
-            >
-          </v-col>
-        </v-row>
+        <v-text-field
+          v-model="search"
+          append-icon="search"
+          label="Enter search text ..."
+          dense
+          single-line
+          hide-details
+        ></v-text-field>
+
+        <v-spacer></v-spacer>
+        <v-btn
+          medium
+          dense
+          v-if="isAppointmentRoute"
+          class="primary"
+          to="/patients/add"
+          ><v-icon>mdi-plus</v-icon>Add new patient</v-btn
+        >
       </v-toolbar>
     </template>
     <template v-slot:[`item.gender`]="{ item }">
@@ -183,3 +176,8 @@ export default {
   }
 };
 </script>
+<style scoped>
+.v-text-field__slot {
+  width: 20px;
+}
+</style>
