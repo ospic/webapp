@@ -155,7 +155,7 @@ export default {
       return this.isEmpty(this.contact);
     },
     itemThumbnail: function() {
-      return this.contact.patient.imageThumbnail;
+      return this.contact.patient.patientPhoto;
     },
     username: function() {
       return this.contact.patient.first_name;

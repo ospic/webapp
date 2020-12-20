@@ -117,9 +117,9 @@ export default {
       const vm = this;
       vm.sync = !vm.sync;
       await Promise.all([
-        vm.$store.dispatch("retrievepatients"),
         vm.$store.dispatch("retrievephysicians"),
-        vm.$store.dispatch("get_patient_trends")
+        vm.$store.dispatch("get_patient_trends"),
+        vm.$store.dispatch("get_patient_statistics")
       ]).then(function() {
         console.log("Loading complete...");
       });
@@ -138,9 +138,9 @@ export default {
         return [
           {
             series: [
-              this.$store.getters.malepatients.length,
-              this.$store.getters.femalepatients.length,
-              this.$store.getters.otherpatients.length
+              this.$store.getters.statistic.totalMale,
+              this.$store.getters.statistic.totalFemale,
+              this.$store.getters.statistic.totalUnspecified
             ],
             chartOptions: {
               labels: [
@@ -153,8 +153,8 @@ export default {
           },
           {
             series: [
-              this.$store.getters.opdpatients.length,
-              this.$store.getters.ipdpatients.length
+              this.$store.getters.statistic.totalOpd,
+              this.$store.getters.statistic.totalIpd
             ],
             chartOptions: {
               labels: [
@@ -201,7 +201,7 @@ export default {
           {
             title: "Overall Total Patients",
             subtitle: "Overall Total Patients",
-            value: this.$store.getters.patients.length,
+            value: this.$store.getters.statistic.total,
             icon: "mdi-account-group-outline",
             color: "blue"
           },
@@ -209,21 +209,21 @@ export default {
             title: "Assigned Patients",
             subtitle: "Assigned patients",
             measure: "p/d",
-            value: this.$store.getters.assigned.length,
+            value: this.$store.getters.statistic.totalAssigned,
             icon: "mdi-account-group-outline",
             color: "red"
           },
           {
             title: "Unassigned Patients",
             subtitle: "Unassigned Patients",
-            value: this.$store.getters.unassigned.length,
+            value: this.$store.getters.statistic.totalUnassigned,
             icon: "mdi-account-group-outline",
             color: "teal"
           },
           {
             title: " OPD",
             subtitle: "OPD  Patients",
-            value: this.$store.getters.opdpatients.length,
+            value: this.$store.getters.statistic.totalOpd,
             measure: "p/d",
             icon: "mdi-account-group-outline",
             color: "lime"
@@ -232,7 +232,7 @@ export default {
             title: "IPD ",
             subtitle: "IPD  Patients",
             measure: "p/d",
-            value: this.$store.getters.ipdpatients.length,
+            value: this.$store.getters.statistic.totalIpd,
             icon: "mdi-account-group-outline",
             color: "green"
           },
@@ -246,21 +246,21 @@ export default {
           {
             title: "Males",
             subtitle: "Male Patients",
-            value: this.$store.getters.malepatients.length,
+            value: this.$store.getters.statistic.totalMale,
             icon: "mdi-gender-male",
             color: "indigo"
           },
           {
             title: "Females",
             subtitle: "Female patients",
-            value: this.$store.getters.femalepatients.length,
+            value: this.$store.getters.statistic.totalFemale,
             icon: "mdi-gender-female",
             color: "deep-orange"
           },
           {
             title: "Others",
             subtitle: "Special Gender",
-            value: this.$store.getters.otherpatients.length,
+            value: this.$store.getters.statistic.totalUnspecified,
             icon: "mdi-gender-male-female",
             color: "orange"
           },
