@@ -64,7 +64,7 @@ export default {
     '~/plugins/axios',
     '~/plugins/pwa.client.js',
     '~/plugins/vue-apexcharts.js',
-    '~/mixins/label_mixins.js',
+    '~/mixins/mixins.js',
     '~/plugins/vuepersistence.js',
     { src: '~plugins/ga.js', mode: 'client' },
     /*
