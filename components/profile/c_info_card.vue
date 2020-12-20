@@ -188,7 +188,7 @@
                     </v-tab>
                     <v-tab
                       class="font-weight-normal"
-                      @click.stop="getThisUserPosts()"
+                      @click.stop="getPatientDiagnoses()"
                     >
                       <v-icon small left>mdi-medical-bag</v-icon>
                       Diagnoses
@@ -323,7 +323,7 @@ export default {
       this.progress = 0;
       this.currentFile = file;
     },
-    async getThisUserPosts() {
+    async getPatientDiagnoses() {
       console.log("Clicked" + this.$route.params.id)
       return await this.$api.$get(`diagnoses/${this.$route.params.id}/`)
         .then(response => {
@@ -342,7 +342,7 @@ export default {
         .then(response => {
           if (response !== null) {
             this.uploaddialog = false
-            this.$parent.viewusedata();
+            this.fetchclientdata(this.$route.params.id);
           }
         }).catch(error => {
           console.log(error);
@@ -355,7 +355,7 @@ export default {
       return await this.$api.$delete(`/patients/${this.$route.params.id}/images/${this.userdata.patientPhoto.split('/').pop()}`)
         .then(response => {
           if (response !== null) {
-            this.$parent.viewusedata();
+            this.fetchclientdata(this.$route.params.id);
           }
         }).catch(error => {
           console.log(error);

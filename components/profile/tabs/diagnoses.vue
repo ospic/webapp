@@ -100,7 +100,7 @@
         ></v-progress-circular>
       </v-col>
       <v-col v-else-if="diagnoses.length !== 0">
-        <v-timeline reverse dense class="ml-1 pl-1">
+        <v-timeline align-top dense class="ml-1 pl-1">
           <v-slide-x-reverse-transition group hide-on-leave>
             <v-timeline-item
               v-for="(diagnose, index) in diagnoses"
@@ -157,8 +157,8 @@ export default {
         .then(response => {
           console.log(response)
           if (response !== null) {
-            //this.$parent.getThisUserPosts();
             this.dialog = false;
+            this.getPatientDiagnoses(this.$route.params.id)
           }
         }).catch(error => {
           console.log(error);

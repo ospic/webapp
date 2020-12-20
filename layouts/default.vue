@@ -350,11 +350,8 @@ export default {
     clearInterval(this.interval);
   },
   beforeUpdate() {
-    console.log("Before Update");
     this.check_cookie_name("ospic.token");
   },
-  mounted: function() {},
-  beforeMount: function() {},
   computed: {
     username() {
       return window.localStorage.getItem("ospic.username");

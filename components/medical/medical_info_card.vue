@@ -1,17 +1,10 @@
 <template>
-  <v-card outlined dense class="mx-auto pa-1">
-    <v-card-title class="font-weight-normal pa-1">
-      {{ post.diagnosisReport }}
+  <v-card outlined dense class="mx-auto" color="#EAEAEA">
+    <v-card-title class="font-weight-regular py-1 pb-0" dense>
+      <p class="font-weight-regular">On: {{ post.date }}</p>
     </v-card-title>
-    <v-card-subtitle class="pa-2 text-caption font-weight-light "
-      >On: {{ post.date }}
-    </v-card-subtitle>
-
-    <v-divider></v-divider>
-    <v-card-text class="text--primary ma-0 mt-2 py-0">
-      <ul>
-        <li>{{ post.symptoms }}</li>
-      </ul>
+    <v-card-text class="white text--primary py-2">
+      {{ post.symptoms }}
     </v-card-text>
   </v-card>
 </template>

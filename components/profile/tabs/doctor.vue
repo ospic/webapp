@@ -77,12 +77,12 @@ export default {
   }),
   methods: {
     async _assign_staff() {
-      console.log(this.selectedstaffId);
       return await this.$api
         .$put(`patients/${this.$route.params.id}/${this.selectedstaffId.id}/`)
         .then(response => {
           if (response !== null) {
             this.$router.push("/patients/" + this.$route.params.id);
+            this.fetchclientdata(this.$route.params.id);
           }
         })
         .catch(error => {
