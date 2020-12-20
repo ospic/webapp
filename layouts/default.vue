@@ -319,6 +319,17 @@ export default {
         this.$vuetify.theme.dark = false;
       }
     },
+    check_cookie_name: function(name) {
+      var match = document.cookie.match(
+        new RegExp("(^| )" + name + "=([^;]+)")
+      );
+      if (match) {
+        return match[2];
+      } else {
+        this.logoutsession();
+        console.log("--something went wrong---");
+      }
+    },
 
     syncro: async function() {
       const vm = this;
@@ -338,19 +349,11 @@ export default {
   beforeDestroy() {
     clearInterval(this.interval);
   },
-  mounted: function() {
-    this.$nextTick(function() {
-      window.setInterval(() => {
-        this.syncro();
-      }, 60000);
-    });
-    this.interval = setInterval(() => {
-      if (this.value === 100) {
-        return (this.value = 0);
-      }
-      this.value += 10;
-    }, 2000);
+  beforeUpdate() {
+    console.log("Before Update");
+    this.check_cookie_name("ospic.token");
   },
+  mounted: function() {},
   beforeMount: function() {},
   computed: {
     username() {
