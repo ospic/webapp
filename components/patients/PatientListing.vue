@@ -5,7 +5,6 @@
     :items="datalist"
     :search="search"
     :options="body.options"
-    :pagination="body.pagination"
     mobile-breakpoint="100"
     @click:row="handleClick"
     @update:page="updatePagination"

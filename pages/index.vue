@@ -112,7 +112,24 @@ export default {
       var number = (percent / total) * 100;
 
       return +number.toFixed(2);
+    },
+    syncro: async function() {
+      const vm = this;
+      vm.sync = !vm.sync;
+      await Promise.all([
+        vm.$store.dispatch("retrievepatients"),
+        vm.$store.dispatch("retrievephysicians"),
+        vm.$store.dispatch("get_patient_trends")
+      ]).then(function() {
+        console.log("Loading complete...");
+      });
+      setTimeout(() => {
+        vm.sync = !vm.sync;
+      }, 2000);
     }
+  },
+  mounted: function() {
+    this.syncro();
   },
 
   computed: {
@@ -320,7 +337,6 @@ export default {
       }
     }
   },
-  created() {},
-  mounted() {}
+  created() {}
 };
 </script>
