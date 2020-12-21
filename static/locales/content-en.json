@@ -40,7 +40,8 @@
       "create":"Create",
       "read":"Read",
       "update":"Update",
-      "delete":"Delete"
+      "delete":"Delete",
+      "organization":"Organization"
     },
     "message": {
       "nodataavailable":"No Data available ...",
