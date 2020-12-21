@@ -1,7 +1,7 @@
 <template>
   <v-container class="fill-height" fluid>
     <v-row>
-      <v-col cols="12" sm="3" class="pa-2">
+      <!-- <v-col cols="12" sm="3" class="pa-2">
         <v-list nav dense subheader tile>
           <template v-for="(setting, ind) in settings">
             <v-list-group
@@ -30,8 +30,8 @@
             </v-list-group>
           </template>
         </v-list>
-      </v-col>
-      <v-col cols="12" sm="9" class="pa-2">
+      </v-col>-->
+      <v-col cols="12" sm="12" class="pa-2">
         <nuxt-child :key="this.$router.currentRoute.name" />
       </v-col>
     </v-row>

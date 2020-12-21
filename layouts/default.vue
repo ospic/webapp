@@ -11,7 +11,7 @@
       overlay-color="primary"
       color="white"
       app
-      width="180"
+      width="280"
     >
       <v-list nav dense subheader tile class="mt-0 pa-0 py-1">
         <v-list-item dense class="ma-0" to="me">
@@ -31,6 +31,59 @@
       </v-list>
       <v-list nav dense subheader tile class="mt-0 pa-0">
         <v-divider></v-divider>
+        <v-list-item class="list-item ma-0" dense to="/">
+          <v-list-item-icon class="ml-1 mr-1">
+            <v-icon color="gray lighten-3" small>mdi-view-grid</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content class="tile ma-0 pa-0">
+            <v-list-item-title
+              color="#8C93F5"
+              class="font-weight-light text-caption "
+              >{{ $t("label.menu.dashboard") }}</v-list-item-title
+            >
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
+
+      <v-list nav dense subheader tile class="mt-0 pa-0">
+        <template v-for="(setting, ind) in settings">
+          <v-list-group
+            :value="true"
+            no-action
+            ripple="true"
+            :prepend-icon="setting.icon"
+            :key="ind"
+          >
+            <template v-slot:activator>
+              <v-list-item-title
+                color="#8C93F5"
+                class="font-weight-light text-caption "
+              >
+                {{ $t(setting.title) }}</v-list-item-title
+              >
+            </template>
+
+            <template v-for="(menu, index) in setting.menus">
+              <v-list-item :key="index" :to="menu.to">
+                <v-list-item-content>
+                  <v-list-item-title
+                    color="#8C93F5"
+                    class="font-weight-light text-caption ma-0 pa-0"
+                  >
+                    <v-icon
+                      small
+                      color="gray lighten-3"
+                      v-html="menu.icon"
+                    ></v-icon>
+                    &nbsp;&nbsp;{{ $t(menu.title) }}</v-list-item-title
+                  >
+                </v-list-item-content>
+              </v-list-item>
+            </template>
+          </v-list-group>
+        </template>
+      </v-list>
+      <v-list nav dense subheader tile class="mt-0 pa-0">
         <template v-for="(item, i) in items">
           <v-list-item
             class="list-item ma-0"
@@ -170,83 +223,115 @@ export default {
       sync: false,
       interval: {},
       value: 0,
-      tabs: [
-        { title: "News", icon: "news-component" },
-        { title: "Indicators", icon: "mdi-eye" },
-        { title: "Sectors", icon: "mdi-eye" },
-        { title: "Indicator Source", icon: "mdi-eye" },
-        { title: "Current Release", icon: "mdi-eye" },
-        { title: "Disaggregations", icon: "mdi-eye" }
-      ],
+
       titles: {
         title: "Ospic"
       },
+      settings: [
+        {
+          title: "label.menu.patients",
+          icon: "mdi-account-multiple",
+          menus: [
+            {
+              title: "label.menu.patients",
+              to: "/patients",
+              icon: "mdi-account-multiple"
+            },
+            {
+              title: "label.menu.opdcenter",
+              icon: "mdi-alpha-o-circle",
+              to: "/opd",
+              subtitle: "Lorem ipsum dolor sit de amet.."
+            },
+            {
+              title: "label.menu.ipdcenter",
+              icon: "mdi-bed-queen",
+              to: "/ipd",
+              subtitle: "Lorem ipsum dolor sit de amet.."
+            },
+            {
+              title: "label.menu.appointmentandschedule",
+              icon: "mdi-alarm-multiple",
+              to: "/appointments",
+              subtitle: "Lorem ipsum dolor sit de amet ..."
+            }
+          ]
+        },
+        {
+          title: "label.menu.inventoryandstock",
+          icon: "mdi-store-24-hour",
+          menus: [
+            {
+              title: "label.titles.pharmacy",
+              to: "/inventory/",
+              icon: "mdi-pharmacy"
+            },
+            {
+              title: "label.titles.medicine",
+              to: "/inventory/medicine",
+              icon: "mdi-pill"
+            },
+            {
+              title: "label.titles.bloodbank",
+              to: "/inventory/bloods",
+              icon: "mdi-blood-bag"
+            },
+            {
+              title: "label.titles.wards",
+              to: "/inventory/ward",
+              icon: "mdi-home-floor-1"
+            },
+            {
+              title: "label.titles.beds",
+              to: "/inventory/bed",
+              icon: "mdi-bunk-bed-outline"
+            }
+          ]
+        },
+        {
+          title: "label.menu.laboratory",
+          icon: "mdi-octagon",
+          menus: [
+            {
+              title: "label.menu.laboratory",
+              icon: "mdi-octagon",
+              to: "/laboratory",
+              subtitle: "Lorem ipsum dolor sit de amet.."
+            },
+            {
+              title: "label.menu.radiology",
+              icon: "mdi-radioactive",
+              to: "/laboratory/radiology",
+              subtitle: "Lorem ipsum dolor sit de amet.."
+            }
+          ]
+        },
+        {
+          title: "label.menu.organization",
+          icon: "mdi-store-24-hour",
+          menus: [
+            {
+              title: "label.menu.staff",
+              to: "/staffs",
+              icon: "mdi-account-hard-hat"
+            }
+          ]
+        },
+        {
+          title: "label.menu.finance",
+          icon: "mdi-finance",
+          menus: [
+            {
+              title: "label.menu.finance",
+              icon: "mdi-finance",
+              to: "/finance",
+              subtitle: "Lorem ipsum dolor sit de amet.."
+            }
+          ]
+        }
+      ],
 
       items: [
-        {
-          text: "label.menu.dashboard",
-          icon: "mdi-view-grid",
-          route: "",
-          subtitle: "Lorem ipsum dolor sit de amet.."
-        },
-        {
-          text: "label.menu.patients",
-          icon: "mdi-account-multiple",
-          route: "patients",
-
-          subtitle: "Lorem ipsum dolor sit de amet.."
-        },
-        {
-          text: "label.menu.appointmentandschedule",
-          icon: "mdi-alarm-multiple",
-          route: "appointments",
-          subtitle: "Lorem ipsum dolor sit de amet ..."
-        },
-        {
-          text: "label.menu.staff",
-          icon: "mdi-account-hard-hat",
-          route: "staffs",
-          subtitle: "Lorem ipsum dolor sit de amet ..."
-        },
-        {
-          text: "label.menu.opdcenter",
-          icon: "mdi-alpha-o-circle",
-          route: "opd",
-          subtitle: "Lorem ipsum dolor sit de amet.."
-        },
-        {
-          text: "label.menu.ipdcenter",
-          icon: "mdi-bed-queen",
-          route: "ipd",
-          subtitle: "Lorem ipsum dolor sit de amet.."
-        },
-        {
-          text: "label.menu.laboratory",
-          icon: "mdi-octagon",
-          route: "lab",
-          subtitle: "Lorem ipsum dolor sit de amet.."
-        },
-        {
-          text: "label.menu.pharmacyandmedicine",
-          icon: "mdi-pharmacy",
-          route: "pharmacy",
-          subtitle: "Lorem ipsum dolor sit de amet.."
-        },
-
-        {
-          text: "label.menu.finance",
-          icon: "mdi-finance",
-          route: "finance",
-          subtitle: "Lorem ipsum dolor sit de amet.."
-        },
-
-        {
-          text: "label.menu.inventoryandstock",
-          icon: "mdi-store-24-hour",
-          route: "inventory",
-          subtitle: "Lorem ipsum dolor sit de amet.."
-        },
-
         {
           text: "label.menu.stations",
           icon: "mdi-adjust",
