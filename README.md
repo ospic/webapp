@@ -96,3 +96,7 @@ First of all, thank you for considering contributing to this Opsic HMS project. 
 ## Where can I get more help, if I need it?
 
 You are welcome to discuss with us in discussion [channel](https://github.com/ospic/webapp/discussions)
+
+## What you can contribute
+
+We have provided some highlight in [here](https://github.com/ospic/webapp/blob/master/WORKFLOW.md)
