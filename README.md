@@ -83,144 +83,21 @@ $ npm run generate
 
 [![Code Now! (Gitpod)](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/ospic/webapp)
 to start contributing to this project in the online web-based IDE GitPod.io right away!
-27
-   [`git`](https://git-scm.com/downloads)
-28
-​
-29
-   [`npm`](https://nodejs.org/en/download/)
-30
-​
-31
-2. Install [vuejs and vue-cli](https://vuejs.org/v2/guide/installation.html).
-32
-​
-33
-3. Clone th project
-34
-​
-35
-```
-36
-git clone https://github.com/ospic/webapp.git
-37
-```
-38
-​
-39
-4. `cd` into project root directory and make sure you are on the master branch.
-40
-​
-41
-5. Install the dependencies.
-42
-​
-43
-```
-44
-npm install
-45
-```
-46
-​
-47
-6. To preview the app, run `npm run dev` and navigate to `http://localhost:8000` in your browser.
-48
-7. In your project go to `plugins/axios.js` and un-comment this line.
-49
-​
-50
-```
-51
-/* api.setBaseURL(  process.env.baseUrl ); */
-52
-```
-53
-​
-54
-and comment this line.
-55
-​
-56
-```
-57
-  api.setBaseURL(process.env.NODE_ENV === "production" ? process.env.baseUrl : process.env.localUrl);
-58
-```
-59
-​
-60
-Refresh page and the application is using the development server with basic authentication by default. The credentials for the same are:
-61
-​
-62
-```
-63
-   Username - demo
-64
-   Password - password
-65
-```
-66
-​
-67
-## Build Setup
-68
-​
-69
-```bash
-70
-# install dependencies
-71
-$ npm install
-72
-​
-73
-# serve with hot reload at localhost:3000
-74
-$ npm run dev
-75
-​
-76
-# build for production and launch server
-77
-$ npm run build
-78
-$ npm run start
-79
-​
-80
-# generate static project
-81
-$ npm run generate
-82
-```
-83
-​
-84
-[![Code Now! (Gitpod)](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/ospic/webapp)
-85
-to start contributing to this project in the online web-based IDE GitPod.io right away!
-86
-It's of course also possible to contribute with a "traditional" local development environment.
-87
-​
-88
+
 ## Contribution Guidlines:
-89
+
 ​
-90
 First of all, thank you for considering contributing to this Opsic HMS project. It takes a one good person like you to change the world and toward simplification of our own medical data na histories.
-91
+
 ​
-92
+
 - For development, read our [contribution guidlines](https://github.com/ospic/webapp/blob/master/CONTRIBUTING.md)
-93
+
 - To report a bug use [bug reporting template](https://github.com/ospic/webapp/issues/new?assignees=&labels=enhancement&template=bug_report.md&title=)
-94
+
 - To request a new feature or chnages use [Feature request template](https://github.com/ospic/webapp/issues/new?assignees=&labels=&template=feature_request.md&title=)
-95
-​
+
+  ​
 
 It's of course also possible to contribute with a "traditional" local development environment.
 
