@@ -238,4 +238,4 @@ You are welcome to discuss with us in discussion [channel](https://github.com/os
 
 ## What you can contribute
 
-We have provided some highlight in [here](https://github.com/ospic/webapp/blob/master/WOKFLOW.md)
+We have provided some highlight in [here](https://github.com/ospic/webapp/blob/master/WOKFLOW.md){:target="_blank"}
