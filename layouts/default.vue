@@ -50,7 +50,7 @@
           <v-list-group
             :value="true"
             no-action
-            ripple="true"
+            ripple
             :prepend-icon="setting.icon"
             :key="ind"
           >

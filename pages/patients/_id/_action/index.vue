@@ -154,7 +154,7 @@ export default {
     modal: false,
     admission: {
       bedId: "",
-      patientId: 0,
+      serviceId: 0,
       isActive: 1,
       endDateTime: null,
       startDateTime: null
@@ -190,7 +190,7 @@ export default {
     }
   },
   created() {
-    this.admission.patientId = this.$route.params.id;
+    this.admission.serviceId = this.$route.params.id;
   },
   beforeCreate() {
     this.$store.dispatch("retrieve_all_wards");

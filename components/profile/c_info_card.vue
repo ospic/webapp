@@ -183,56 +183,30 @@
                     <v-tab class="ffont-weight-normal">
                       <span><v-icon small left>mdi-eye</v-icon>Biography</span>
                     </v-tab>
-                    <v-tab class="font-weight-normal">
-                      <span><v-icon small left>mdi-account</v-icon>Doctor</span>
-                    </v-tab>
+
                     <v-tab
                       class="font-weight-normal"
-                      @click.stop="getPatientDiagnoses()"
+                      @click.stop="getPatientServices()"
                     >
-                      <v-icon small left>mdi-medical-bag</v-icon>
-                      Diagnoses
-                    </v-tab>
-                    <v-tab
-                      class="font-weight-normal"
-                      @click.stop="getPatientAdmissions()"
-                    >
-                      <v-icon small left>mdi-history</v-icon>
-                      Admission History
-                    </v-tab>
-                    <v-tab class="font-weight-normal">
                       <v-icon small left>mdi-plus</v-icon>
-                      Actions
-                    </v-tab>
-                    <v-tab class="font-weight-normal">
-                      <v-icon small left>mdi-plus</v-icon>
-                      More
+                      Services
                     </v-tab>
                   </v-tabs>
                   <v-tabs-items vertical v-model="tab">
                     <v-tab-item>
                       <tb-biograph :patient="userdata"></tb-biograph>
                     </v-tab-item>
+
                     <v-tab-item>
-                      <tb-doctor
-                        v-bind:staff="staff"
-                        v-bind:staffs="staffs"
-                      ></tb-doctor>
-                    </v-tab-item>
-                    <v-tab-item>
-                      <tb-diagnoses v-bind:diagnoses="diagnoses"></tb-diagnoses>
-                    </v-tab-item>
-                    <v-tab-item>
-                      <tb-admissions
-                        :admissions="admissions"
-                        :userdata="userdata"
-                      ></tb-admissions>
-                    </v-tab-item>
-                    <v-tab-item>
-                      <h1>More</h1>
-                    </v-tab-item>
-                    <v-tab-item>
-                      <h1>More</h1>
+                      <div class="pa-2 ma-2">
+                        <v-btn
+                          class="primary small"
+                          v-if="!userdata.isActive"
+                          @click.stop="initiateServiceInstance()"
+                          >Initiate service</v-btn
+                        >
+                        <tb-services :services="services"></tb-services>
+                      </div>
                     </v-tab-item>
                   </v-tabs-items>
                 </v-list-item-content>
@@ -246,12 +220,9 @@
 </template>
 <script lang="js">
 
-import DoctorTab from "@/components/profile/tabs/doctor"
 import BiographTab from "@/components/profile/tabs/biograph"
-import DiagnosesTab from "@/components/profile/tabs/diagnoses"
-import AdmissionsTab from "@/components/profile/tabs/admissions"
 import c_type_divider from "@/components/profile/c_type_divider";
-import AddressCard from "@/components/profile/c_address_card";
+import ServicesTab from "@/components/profile/tabs/services";
 
 export default {
   props: {
@@ -262,11 +233,8 @@ export default {
     },
   components: {
     'v-type-divider': c_type_divider,
-    'v-address-card': AddressCard,
     'tb-biograph': BiographTab,
-    'tb-doctor': DoctorTab,
-    'tb-diagnoses': DiagnosesTab,
-    'tb-admissions': AdmissionsTab
+    'tb-services':ServicesTab
   },
   data() {
     return {
@@ -291,6 +259,7 @@ export default {
       halfIcon: 'mdi-star-half-full',
       address: null,
       staff:null,
+      services: null,
       diagnoses: null,
         attrs: {
         class: 'mb-6',
@@ -323,16 +292,7 @@ export default {
       this.progress = 0;
       this.currentFile = file;
     },
-    async getPatientDiagnoses() {
-      console.log("Clicked" + this.$route.params.id)
-      return await this.$api.$get(`diagnoses/${this.$route.params.id}/`)
-        .then(response => {
-          this.diagnoses = response.reverse();
-        }).catch(error => {
-          console.log(error);
 
-        });
-    },
 
     async uploadPatientImage() {
       const formData = new FormData();
@@ -363,11 +323,23 @@ export default {
         });
 
     },
-    async getPatientAdmissions() {
-      return await this.$api.$get(`admissions/${this.$route.params.id}/?command=patient`)
+    async initiateServiceInstance(){
+        return await this.$api.$post(`services/${this.$route.params.id}`)
         .then(response => {
           if (response !== null) {
-            this.admissions = response;
+            this.getPatientServices()
+          }
+        }).catch(error => {
+          console.log(error);
+
+        });
+
+    },
+    async getPatientServices(){
+        return await this.$api.$get(`services/patient/${this.$route.params.id}`)
+        .then(response => {
+          if (response !== null) {
+            this.services = response;
           }
         }).catch(error => {
           console.log(error);
