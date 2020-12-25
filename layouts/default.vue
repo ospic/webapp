@@ -35,55 +35,53 @@
           <v-list-item-icon class="ml-1 mr-1">
             <v-icon color="gray lighten-3" small>mdi-view-grid</v-icon>
           </v-list-item-icon>
-          <v-list-item-content class="tile ma-0 pa-0">
+          <v-list-item-title
+            color="#8C93F5"
+            class="font-weight-light text-caption "
+            >{{ $t("label.menu.dashboard") }}</v-list-item-title
+          >
+        </v-list-item>
+
+        <v-list-group
+          v-for="(setting, ind) in settings"
+          :value="false"
+          no-action
+          ripple
+          :key="ind"
+        >
+          <v-icon
+            slot="prependIcon"
+            v-html="setting.icon"
+            small
+            class="ml-1"
+            color="gray"
+          ></v-icon>
+          <template v-slot:activator>
             <v-list-item-title
               color="#8C93F5"
-              class="font-weight-light text-caption "
-              >{{ $t("label.menu.dashboard") }}</v-list-item-title
+              class="font-weight-light text-caption pa-0 ma-0 "
             >
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
+              {{ $t(setting.title) }}</v-list-item-title
+            >
+          </template>
 
-      <v-list nav dense subheader tile class="mt-0 pa-0">
-        <template v-for="(setting, ind) in settings">
-          <v-list-group
-            :value="true"
-            no-action
-            ripple
-            :prepend-icon="setting.icon"
-            :key="ind"
-          >
-            <template v-slot:activator>
+          <template v-for="(menu, index) in setting.menus">
+            <v-list-item :key="index" :to="menu.to">
               <v-list-item-title
                 color="#8C93F5"
-                class="font-weight-light text-caption "
+                class="font-weight-light text-caption"
               >
-                {{ $t(setting.title) }}</v-list-item-title
+                <v-icon
+                  small
+                  color="gray lighten-3"
+                  v-html="menu.icon"
+                ></v-icon>
+                &nbsp;&nbsp;{{ $t(menu.title) }}</v-list-item-title
               >
-            </template>
+            </v-list-item>
+          </template>
+        </v-list-group>
 
-            <template v-for="(menu, index) in setting.menus">
-              <v-list-item :key="index" :to="menu.to">
-                <v-list-item-content>
-                  <v-list-item-title
-                    color="#8C93F5"
-                    class="font-weight-light text-caption ma-0 pa-0"
-                  >
-                    <v-icon
-                      small
-                      color="gray lighten-3"
-                      v-html="menu.icon"
-                    ></v-icon>
-                    &nbsp;&nbsp;{{ $t(menu.title) }}</v-list-item-title
-                  >
-                </v-list-item-content>
-              </v-list-item>
-            </template>
-          </v-list-group>
-        </template>
-      </v-list>
-      <v-list nav dense subheader tile class="mt-0 pa-0">
         <template v-for="(item, i) in items">
           <v-list-item
             class="list-item ma-0"
@@ -94,13 +92,11 @@
             <v-list-item-icon class="ml-1 mr-1">
               <v-icon color="gray lighten-3" v-text="item.icon" small></v-icon>
             </v-list-item-icon>
-            <v-list-item-content class="tile ma-0 pa-0">
-              <v-list-item-title
-                color="#8C93F5"
-                class="font-weight-light text-caption "
-                >{{ $t(item.text) }}</v-list-item-title
-              >
-            </v-list-item-content>
+            <v-list-item-title
+              color="#8C93F5"
+              class="font-weight-light text-caption "
+              >{{ $t(item.text) }}</v-list-item-title
+            >
           </v-list-item>
         </template>
       </v-list>
