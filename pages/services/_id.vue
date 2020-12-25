@@ -5,8 +5,8 @@
         <v-progress-circular
           v-if="service == null"
           indeterminate
-          color="grey lighten-5"
-          size="16"
+          color="grey "
+          size="32"
         ></v-progress-circular>
         <div v-else>
           <v-card-title>
@@ -14,6 +14,13 @@
               <v-col cols="12" md="4">
                 <v-icon :color="service.isActive ? 'green' : 'gray'"
                   >mdi-circle</v-icon
+                >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <v-btn
+                  small
+                  v-if="service.isActive"
+                  class="primary"
+                  @click.stop="endThisService"
+                  >End service</v-btn
                 >
               </v-col>
               <v-col cols="12" md="4">
@@ -122,9 +129,6 @@
                       ></tb-admissions>
                     </v-tab-item>
                     <v-tab-item>
-                      <h1>Service Charges</h1>
-                    </v-tab-item>
-                    <v-tab-item>
                       <h1 class="pa-2">
                         List of all service charges from
                         <a
@@ -132,6 +136,11 @@
                           target="_blank"
                           >Master price database table</a
                         >, written in General Ledger
+                      </h1>
+                    </v-tab-item>
+                    <v-tab-item>
+                      <h1 class="pa-2">
+                        Medicines
                       </h1>
                     </v-tab-item>
                   </v-tabs-items>
@@ -182,6 +191,18 @@ export default {
         .then(response => {
           if (response !== null) {
             this.service = response;
+          }
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    },
+    async endThisService() {
+      return await this.$api
+        .$put(`services/${this.$route.params.id}`)
+        .then(response => {
+          if (response !== null) {
+            this.getServiceById();
           }
         })
         .catch(error => {

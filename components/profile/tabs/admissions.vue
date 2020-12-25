@@ -1,7 +1,7 @@
 <template>
   <v-container fluid>
     <v-btn
-      v-if="!userdata.isAdmitted"
+      v-if="!userdata.isAdmitted && userdata.isActive"
       color="primary"
       class="ml-5 my-2 "
       :to="`/patients/${this.$route.params.id}/admit`"

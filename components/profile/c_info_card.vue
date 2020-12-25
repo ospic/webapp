@@ -201,6 +201,7 @@
                       <div class="pa-2 ma-2">
                         <v-btn
                           class="primary small"
+                          small
                           v-if="!userdata.isActive"
                           @click.stop="initiateServiceInstance()"
                           >Initiate service</v-btn

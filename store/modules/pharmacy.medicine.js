@@ -17,7 +17,7 @@ const mutations = {
   },
   [mutation.GET_MEDICINE_PRODUCTS_SUCCESS](state, payload) {
     state.showLoader = false;
-    state.medicines = payload;
+    state.medicines = payload.body;
   },
 
   [mutation.CREATE_NEW_MEDICINE_PRODUCT](state) {
@@ -93,7 +93,7 @@ const actions = {
 }
 const getters = {
   medicines: function (state, getters) {
-    return state.medicines.reverse();
+    return state.medicines
   },
 
 }

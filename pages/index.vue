@@ -1,6 +1,6 @@
 <template>
-  <v-container class="ma-0 pa-0 px-2" fluid>
-    <v-row justify="start" align="start">
+  <v-container class="ma-2 pa-0 px-2" fluid>
+    <v-row justify="start" align="start" class="mt-2">
       <template v-for="(item, i) in summary_items">
         <summarycard
           :key="i"
@@ -9,7 +9,7 @@
         ></summarycard>
       </template>
     </v-row>
-    <v-row justify="start" align="start">
+    <v-row justify="start" align="start" class="mt-3">
       <v-col
         v-for="(item, i) in trend_items"
         :key="i"
@@ -37,7 +37,7 @@
         </v-hover>
       </v-col>
     </v-row>
-    <v-row justify="start" align="start">
+    <v-row justify="start" align="start" class="mt-3">
       <v-col cols="12" sm="12" v-if="bsc_size > 0" class="ma-0 pa-0 mt-3">
         <v-card class="mr-1 ml-1 " dense>
           <area-chart-spline

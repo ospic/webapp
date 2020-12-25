@@ -3,8 +3,8 @@
     <v-progress-circular
       v-if="services == null"
       indeterminate
-      color="grey lighten-5"
-      size="16"
+      color="grey"
+      size="24"
     ></v-progress-circular>
     <div v-else>
       <v-data-table
