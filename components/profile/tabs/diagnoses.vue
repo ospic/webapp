@@ -4,7 +4,7 @@
       <v-row justify="start" class="ml-5 my-2 ">
         <v-dialog v-model="dialog" persistent max-width="600px">
           <template v-slot:activator="{ on, attrs }">
-            <v-btn color="primary" v-on="on" v-bind="attrs">
+            <v-btn color="primary" v-on="on" v-bind="attrs" v-if="isActive">
               <v-icon left>
                 mdi-reorder-horizontal
               </v-icon>
@@ -130,7 +130,11 @@ export default {
     diagnoses:{
       type: Array,
       default: null
-    }
+    },
+    isActive:{
+      type:Boolean,
+      default: true
+    },
   },
   data: () => ({
     dialog: false,

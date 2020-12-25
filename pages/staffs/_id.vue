@@ -84,13 +84,22 @@
                         <v-icon small left>mdi-plus</v-icon> Timeline</span
                       >
                     </v-tab>
+                    <v-tab
+                      class="font-weight-normal"
+                      @click="getHistoricalAssignedServices"
+                    >
+                      <span>
+                        <v-icon small left>mdi-plus</v-icon>Service
+                        History</span
+                      >
+                    </v-tab>
                   </v-tabs>
                   <v-tabs-items vertical v-model="tab">
                     <v-tab-item>
                       <h2 class="ma-8">Profile</h2>
                     </v-tab-item>
                     <v-tab-item>
-                      <h2 class="ma-8">Payrol</h2>
+                      <service-card :services="services"></service-card>
                     </v-tab-item>
                     <v-tab-item>
                       <h2 class="ma-8">Leaves</h2>
@@ -104,6 +113,15 @@
                     <v-tab-item>
                       <h1 class="ma-8">Timeline</h1>
                     </v-tab-item>
+                    <v-tab-item>
+                      <v-progress-circular
+                        v-if="allservices == null"
+                      ></v-progress-circular>
+                      <service-card
+                        v-else
+                        :services="allservices"
+                      ></service-card>
+                    </v-tab-item>
                   </v-tabs-items>
                 </v-list-item-content>
               </v-list-item>
@@ -115,11 +133,17 @@
   </v-container>
 </template>
 <script>
+import ServiceCard from "@/components/profile/card_service";
 export default {
+  components: {
+    "service-card": ServiceCard
+  },
   data() {
     return {
       staffdata: null,
       staffpatients: [],
+      services: [],
+      allservices: null,
       tab: null
     };
   },
@@ -143,10 +167,41 @@ export default {
         .catch(error => {
           console.log(error);
         });
+    },
+    async getAcitveAssignedServices() {
+      return await this.$api
+        .$get(`services/staff/${this.$route.params.id}/?active=true`)
+        .then(response => {
+          if (response !== null) {
+            this.services = response;
+          }
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    },
+    async getHistoricalAssignedServices() {
+      return await this.$api
+        .$get(`services/staff/${this.$route.params.id}/?`)
+        .then(response => {
+          if (response !== null) {
+            this.allservices = response;
+          }
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    },
+    handleClick: function(value) {
+      this.$router.push("/services/" + value.id);
+    },
+    updatePagination: function(val) {
+      console.log(val);
     }
   },
   created() {
     this.getStaffById();
+    this.getAcitveAssignedServices();
   },
   computed: {
     desserts: {

@@ -2,7 +2,7 @@
   <v-row justify="start" align="start" fluid>
     <v-col cols="12" sm="12" md="6" v-if="staff == null"></v-col>
     <v-col cols="12" sm="12" md="6" v-if="staff !== null">
-      <v-card class="mx-auto ml-2" outlined>
+      <!-- <v-card class="mx-auto ml-2" outlined>
         <v-list three-line>
           <v-list-item>
             <v-list-item-avatar width="80" height="80">
@@ -21,7 +21,8 @@
             </v-list-item-content>
           </v-list-item>
         </v-list>
-      </v-card>
+      </v-card>-->
+      <staff-card :staff="staff"></staff-card>
     </v-col>
     <v-col cols="12" sm="12" md="2"></v-col>
     <v-col cols="12" sm="12" md="4">
@@ -61,7 +62,11 @@
   </v-row>
 </template>
 <script>
+import StaffCard from "@/components/staff/staff_card";
 export default {
+  components: {
+    "staff-card": StaffCard
+  },
   props: {
     staff: {
       type: Object,
@@ -78,10 +83,10 @@ export default {
   methods: {
     async _assign_staff() {
       return await this.$api
-        .$put(`patients/${this.$route.params.id}/${this.selectedstaffId.id}/`)
+        .$put(`services/${this.$route.params.id}/${this.selectedstaffId.id}/`)
         .then(response => {
           if (response !== null) {
-            this.$router.push("/patients/" + this.$route.params.id);
+            this.$router.push("/services/" + this.$route.params.id);
             this.fetchclientdata(this.$route.params.id);
           }
         })

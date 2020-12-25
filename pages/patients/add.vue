@@ -224,13 +224,13 @@ export default {
     genderoptions: [
       { name: "Male", value: 1 },
       { name: "Female", value: 2 },
-      { name: "Other", value: 0 }
+      { name: "Unspecified", value: 0 }
     ]
   }),
   methods: {
     close() {},
     save() {
-      this.editedItem.gender = this.editedItem.gender.value;
+      this.editedItem.gender = this.editedItem.gender.name;
       console.log(this.editedItem);
       var state = this.$refs.form.validate();
       this.$refs.form.validate();
