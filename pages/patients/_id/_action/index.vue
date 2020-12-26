@@ -179,6 +179,7 @@ export default {
       var state = this.$refs.form.validate();
       this.$refs.form.validate();
       if (state) {
+        this.admission.serviceId = this.$route.params.id;
         this.$store.dispatch("admit_patient", this.admission);
       }
     },

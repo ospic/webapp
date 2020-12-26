@@ -173,7 +173,7 @@ export default {
     _end_this_admission() {
       //var request_data =
       this.$store.dispatch("end_patient_admission", {
-        patientId: this.admissions.patientId,
+        serviceId: this.admissions.serviceId,
         admissionId: this.admissions.id,
         bedId: this.admissions.bedId,
         endDateTime: this.date
