@@ -5,8 +5,8 @@
         <v-progress-circular
           v-if="service == null"
           indeterminate
-          color="grey "
-          size="32"
+          color="grey lighten-5"
+          size="16"
         ></v-progress-circular>
         <div v-else>
           <v-card-title>
@@ -15,18 +15,59 @@
                 <v-icon :color="service.isActive ? 'green' : 'gray'"
                   >mdi-circle</v-icon
                 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <v-btn
-                  small
-                  v-if="service.isActive"
-                  class="primary"
-                  @click.stop="endThisService"
-                  >End service</v-btn
-                >
+                <v-dialog v-model="dialog" persistent max-width="500">
+                  <template v-slot:activator="{ on, attrs }">
+                    <v-btn
+                      small
+                      v-if="service.isActive"
+                      class="primary"
+                      v-bind="attrs"
+                      v-on="on"
+                      >End service</v-btn
+                    >
+                  </template>
+                  <v-card>
+                    <v-card-title class="headline">
+                      Are you sure you want to end this service?
+                    </v-card-title>
+                    <v-card-text>
+                      Ending this service will make this service instance
+                      <strong class="font-weight-black">
+                        No. {{ service.id }}
+                      </strong>
+                      &nbsp;for client
+                      <strong class="font-weight-black">{{
+                        service.patient.name
+                      }}</strong
+                      >&nbsp;as inactive for new admissions, diagnoses,
+                      admission visits, Service costs etc. Click agree if you
+                      are okay with this or Disagree to cancel this operation
+                    </v-card-text>
+                    <v-card-actions>
+                      <v-spacer></v-spacer>
+                      <v-btn
+                        color="green darken-1"
+                        text
+                        @click="dialog = false"
+                      >
+                        Disagree
+                      </v-btn>
+                      <v-btn
+                        color="green darken-1"
+                        text
+                        @click.stop="endThisService"
+                      >
+                        Agree
+                      </v-btn>
+                    </v-card-actions>
+                  </v-card>
+                </v-dialog>
               </v-col>
               <v-col cols="12" md="4">
                 <table
                   style="width:60%; text-align: start; background-color: #FAFAFA"
                   class="pa-0"
+                  summary="New York City Marathon Results 2013"
                 >
                   <tr v-if="service.patient.id">
                     <td id="Patient" class="font-weight-black">Patient</td>
@@ -114,6 +155,7 @@
                       <tb-doctor
                         v-bind:staff="service.staff"
                         v-bind:staffs="staffs"
+                        v-on:update-service="onServiceUpdate"
                       ></tb-doctor>
                     </v-tab-item>
                     <v-tab-item>
@@ -129,6 +171,9 @@
                       ></tb-admissions>
                     </v-tab-item>
                     <v-tab-item>
+                      <h1>Service Charges</h1>
+                    </v-tab-item>
+                    <v-tab-item>
                       <h1 class="pa-2">
                         List of all service charges from
                         <a
@@ -136,11 +181,6 @@
                           target="_blank"
                           >Master price database table</a
                         >, written in General Ledger
-                      </h1>
-                    </v-tab-item>
-                    <v-tab-item>
-                      <h1 class="pa-2">
-                        Medicines
                       </h1>
                     </v-tab-item>
                   </v-tabs-items>
@@ -181,7 +221,8 @@ export default {
   data: function() {
     return {
       tab: null,
-      service: null
+      service: null,
+      dialog: false
     };
   },
   methods: {
@@ -197,7 +238,11 @@ export default {
           console.log(error);
         });
     },
+    onServiceUpdate: function() {
+      this.getServiceById();
+    },
     async endThisService() {
+      this.dialog = false;
       return await this.$api
         .$put(`services/${this.$route.params.id}`)
         .then(response => {

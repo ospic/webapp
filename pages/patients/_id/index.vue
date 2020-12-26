@@ -1,7 +1,10 @@
 <template>
   <v-card>
     <div v-if="userdata !== null">
-      <card-info :userdata="userdata"></card-info>
+      <card-info
+        :userdata="userdata"
+        v-on:update-profile="reUpdateProfile"
+      ></card-info>
     </div>
     <div v-else>
       <div height="500" flat>
@@ -42,6 +45,9 @@ export default {
         .catch(error => {
           console.log(error);
         });
+    },
+    reUpdateProfile: function() {
+      this.viewusedata();
     }
   },
   created() {

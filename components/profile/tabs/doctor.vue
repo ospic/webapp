@@ -2,26 +2,6 @@
   <v-row justify="start" align="start" fluid>
     <v-col cols="12" sm="12" md="6" v-if="staff == null"></v-col>
     <v-col cols="12" sm="12" md="6" v-if="staff !== null">
-      <!-- <v-card class="mx-auto ml-2" outlined>
-        <v-list three-line>
-          <v-list-item>
-            <v-list-item-avatar width="80" height="80">
-              <v-img
-                max-height="150"
-                max-width="250"
-                src="https://www.nicepng.com/png/detail/26-260551_femscare-benifits-doctor-image-png-hd.png"
-              ></v-img>
-            </v-list-item-avatar>
-
-            <v-list-item-content>
-              <v-list-item-title class="title">
-                {{ staff.fullName == null ? staff.username : staff.fullName }}
-              </v-list-item-title>
-              <v-list-item-subtitle>{{ staff.role }}</v-list-item-subtitle>
-            </v-list-item-content>
-          </v-list-item>
-        </v-list>
-      </v-card>-->
       <staff-card :staff="staff"></staff-card>
     </v-col>
     <v-col cols="12" sm="12" md="2"></v-col>
@@ -86,8 +66,7 @@ export default {
         .$put(`services/${this.$route.params.id}/${this.selectedstaffId.id}/`)
         .then(response => {
           if (response !== null) {
-            this.$router.push("/services/" + this.$route.params.id);
-            this.fetchclientdata(this.$route.params.id);
+            this.$emit("update-service");
           }
         })
         .catch(error => {

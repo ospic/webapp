@@ -303,7 +303,7 @@ export default {
         .then(response => {
           if (response !== null) {
             this.uploaddialog = false
-            this.fetchclientdata(this.$route.params.id);
+            this.$emit('update-profile');
           }
         }).catch(error => {
           console.log(error);
@@ -316,7 +316,7 @@ export default {
       return await this.$api.$delete(`/patients/${this.$route.params.id}/images/${this.userdata.patientPhoto.split('/').pop()}`)
         .then(response => {
           if (response !== null) {
-            this.fetchclientdata(this.$route.params.id);
+            this.$emit('update-profile');
           }
         }).catch(error => {
           console.log(error);
@@ -329,6 +329,7 @@ export default {
         .then(response => {
           if (response !== null) {
             this.getPatientServices()
+            this.$emit('update-profile');
           }
         }).catch(error => {
           console.log(error);
