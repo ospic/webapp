@@ -19,13 +19,20 @@
         <template v-slot:[`item.isActive`]="{ item }">
           <v-tooltip right v-if="item.isActive" color="primary">
             <template v-slot:activator="{ on, attrs }">
-              <v-icon v-bind="attrs" v-on="on" small color="red lighten-2"
+              <v-icon v-bind="attrs" v-on="on" small color="blue lighten-2"
                 >mdi-stop-circle</v-icon
               >
             </template>
             <span>Active</span>
           </v-tooltip>
-          <div v-else></div>
+          <v-tooltip right v-else color="warning">
+            <template v-slot:activator="{ on, attrs }">
+              <v-icon v-bind="attrs" v-on="on" small color="red lighten-2"
+                >mdi-close-circle</v-icon
+              >
+            </template>
+            <span>Closed</span>
+          </v-tooltip>
         </template>
         <template v-slot:[`item.patientName`]="{ item }">
           {{ item.patientName }} ( {{ item.patientId }})
