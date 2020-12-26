@@ -341,7 +341,7 @@ export default {
         return await this.$api.$get(`services/patient/${this.$route.params.id}`)
         .then(response => {
           if (response !== null) {
-            this.services = response;
+            this.services = response.sort(function(a,b){return b.isActive - a.isActive});
           }
         }).catch(error => {
           console.log(error);
