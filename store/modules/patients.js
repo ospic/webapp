@@ -205,7 +205,7 @@ const actions = {
     await this.$api.$post(`admissions/`, payload)
       .then(response => {
         if (response.message !== null) {
-          commit(mutation.ADMIT_PATIENT_SUCCESS, payload.patientId);
+          commit(mutation.ADMIT_PATIENT_SUCCESS, payload.serviceId);
 
         }
       }).catch(error => {
@@ -220,7 +220,7 @@ const actions = {
     await this.$api.$post(`admissions/end`, payload)
       .then(response => {
         if (response.message !== null) {
-          commit(mutation.END_ADMISSION_SUCCESS, payload.patientId);
+          commit(mutation.END_ADMISSION_SUCCESS, payload.serviceId);
 
         }
 

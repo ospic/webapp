@@ -134,7 +134,10 @@
                       <v-icon small left>mdi-medical-bag</v-icon>
                       Diagnoses
                     </v-tab>
-                    <v-tab class="font-weight-normal">
+                    <v-tab
+                      class="font-weight-normal"
+                      @click="getServiceAdmissions"
+                    >
                       <v-icon small left>mdi-history</v-icon>
                       Admission History
                     </v-tab>
@@ -166,7 +169,7 @@
                     </v-tab-item>
                     <v-tab-item>
                       <tb-admissions
-                        :admissions="service.admissions"
+                        :admissions="admissions"
                         :userdata="service.patient"
                       ></tb-admissions>
                     </v-tab-item>
@@ -222,7 +225,8 @@ export default {
     return {
       tab: null,
       service: null,
-      dialog: false
+      dialog: false,
+      admissions: null
     };
   },
   methods: {
@@ -240,6 +244,18 @@ export default {
     },
     onServiceUpdate: function() {
       this.getServiceById();
+    },
+    async getServiceAdmissions() {
+      return await this.$api
+        .$get(`admissions/${this.$route.params.id}/?command=service`)
+        .then(response => {
+          if (response !== null) {
+            this.admissions = response;
+          }
+        })
+        .catch(error => {
+          console.log(error);
+        });
     },
     async endThisService() {
       this.dialog = false;

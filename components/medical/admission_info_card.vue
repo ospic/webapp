@@ -19,16 +19,16 @@
       <v-list-item>
         <v-list-item-content class="mt-1">
           <v-list-item-subtitle class="font-weight-normal light-black--text ">
-            <strong>From date: </strong>{{ data.fromDateTime }}
+            <strong>From date: </strong>{{ data.startDate }}
           </v-list-item-subtitle>
           <v-list-item-subtitle class="font-weight-normal light-black--text ">
-            <strong>To date:</strong> {{ data.toDateTime }}
+            <strong>To date:</strong> {{ data.endDate }}
           </v-list-item-subtitle>
           <v-list-item-subtitle>
-            <strong> Ward: </strong>{{ data.beds[0].identifier }}
+            <strong> Ward: </strong>{{ data.wardName }}
           </v-list-item-subtitle>
           <v-list-item-subtitle>
-            <strong> Bed: </strong>{{ data.beds[0].id }}
+            <strong> Bed: </strong>{{ data.bedIdentifier }}
           </v-list-item-subtitle>
         </v-list-item-content>
       </v-list-item>
