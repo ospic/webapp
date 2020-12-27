@@ -16,9 +16,7 @@
             </h3></v-toolbar-title
           >
           <v-spacer></v-spacer>
-          <v-btn small class="error mx-2 " rounded
-            >Edit and Delete is Under development</v-btn
-          >
+
           <v-text-field
             v-model="search"
             label="Search by name/company/composition"

@@ -12,7 +12,7 @@
         <v-toolbar flat color="white">
           <v-toolbar-title
             ><h3>
-              List of Available medicine with it's quantities
+              List medicines
             </h3></v-toolbar-title
           >
           <v-spacer></v-spacer>
