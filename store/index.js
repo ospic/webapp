@@ -7,7 +7,7 @@ import templates from './modules/template';
 import documents from "./modules/documents";
 import contacts from "./modules/contacts";
 import users from "./modules/users";
-import pharmacy from "./modules/pharmacy.medicine";
+import pharmacy from "./modules/pharmacy";
 import diagnoses from "./modules/diagnosis";
 import inventory from "./modules/inventory"
 import profile from "./modules/profile";
