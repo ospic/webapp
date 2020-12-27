@@ -1,5 +1,10 @@
 <template>
   <div>
+    <v-alert dense text type="success">
+      Medicine groups and categories editing and deleting functionality is under
+
+      <strong>developmet</strong>
+    </v-alert>
     <v-tabs v-model="tab" background-color="primary" dark>
       <v-tab
         v-for="item in items"
