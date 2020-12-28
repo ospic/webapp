@@ -3,6 +3,7 @@ import * as mutation from './mutation-types';
 const state = () => ({
   userdata: {},
   roles: [],
+  privileges: [],
   accessToken: "",
   accessTokenType: ""
 });
@@ -58,6 +59,7 @@ const mutations = {
   [mutation.SIGNOUT_FAILED](state) {
     state.showLoader = false;
   },
+  /**User roles */
   [mutation.FETCH_ROLES](state) {
     state.showLoader = true;
   },
@@ -70,6 +72,20 @@ const mutations = {
   [mutation.FETCH_ROLES_SUCCESS](state, payload) {
     state.showLoader = false;
     state.roles = payload;
+  },
+  /** Role privileges */
+  [mutation.REQUEST_PRIVILEGES](state) {
+    state.showLoader = true;
+  },
+  [mutation.REQUEST_PRIVILEGES_ERROR](state) {
+    state.showLoader = false;
+  },
+  [mutation.REQUEST_PRIVILEGES_FAILED](state) {
+    state.showLoader = false;
+  },
+  [mutation.REQUEST_PRIVILEGES_SUCCESS](state, payload) {
+    state.showLoader = false;
+    state.privileges = payload;
   }
 };
 const actions = {
@@ -121,6 +137,16 @@ const actions = {
       console.log(error);
 
     });
+  },
+  async request_role_privileges({ commit }) {
+    commit(mutation.REQUEST_PRIVILEGES);
+    await this.$api.$get(`auth/authorities/`).then(response => {
+      commit(mutation.REQUEST_PRIVILEGES_SUCCESS, response)
+    }).catch(error => {
+      commit(mutation.REQUEST_PRIVILEGES_FAILED);
+      console.log(error);
+
+    });
   }
 
 };
@@ -133,6 +159,12 @@ const getters = {
   },
   userroles: function (state) {
     return state.roles;
+  },
+  privileges: function (state) {
+    return state.privileges;
+  },
+  role: (state) => (id) => {
+    return state.roles.find(role => role.id === id)
   },
   accessToken: function (state) {
     var token = state.userdata.accessToken;
