@@ -41,7 +41,8 @@
       "read":"Read",
       "update":"Update",
       "delete":"Delete",
-      "organization":"Organization"
+      "organization":"Organization",
+      "rolesandprivileges":"Roles & Authorities"
     },
     "message": {
       "nodataavailable":"No Data available ...",

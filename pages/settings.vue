@@ -98,18 +98,18 @@ export default {
                   icon: "mdi-account-settings"
                 },
                 {
-                  title: "label.titles.administrations",
-                  to: "/settings/admin",
-                  icon: "mdi-account-cog-outline"
+                  title: "label.menu.rolesandprivileges",
+                  icon: "mdi-cog-outline",
+                  to: "/settings/roles"
                 },
                 {
-                  title: "label.menu.securitycontrol",
-                  icon: "mdi-lock",
-                  to: "/settings/roles"
+                  title: "label.titles.administrations",
+                  to: "/settings/admin",
+                  icon: "mdi-lock"
                 }
               ]
-            },
-            {
+            }
+            /**{
               title: "label.titles.actions",
               submenus: [
                 {
@@ -134,6 +134,7 @@ export default {
                 }
               ]
             }
+            **/
           ]
         },
         {
