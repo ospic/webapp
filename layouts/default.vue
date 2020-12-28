@@ -6,19 +6,20 @@
     <!--NAVIGATION DRAWER-->
     <v-navigation-drawer
       v-model="drawer"
-      permanent
-      :mini-variant.sync="mini"
+      mini-variant.sync="mini"
       overlay-color="primary"
       color="white"
       app
-      width="280"
+      expand-on-hover
+      width="220"
     >
       <v-list nav dense subheader tile class="mt-0 pa-0 py-1">
-        <v-list-item dense class="ma-0" to="me">
-          <v-list-item-icon class="ml-1 mr-1">
-            <v-icon medium color="indigo lighten-1">mdi-plus-box</v-icon>
-          </v-list-item-icon>
-
+        <v-list-item dense class="px-2" to="/me">
+          <v-list-item-avatar>
+            <v-img
+              src="https://st3.depositphotos.com/4111759/13425/v/600/depositphotos_134255626-stock-illustration-avatar-male-profile-gray-person.jpg"
+            ></v-img>
+          </v-list-item-avatar>
           <v-list-item-content class="tile ma-0 pa-0">
             <v-list-item-title
               class="font-weight-bold text-overline indigo--text mt-1"
@@ -26,10 +27,8 @@
               {{ username }}
             </v-list-item-title>
           </v-list-item-content>
-          <v-spacer></v-spacer>
         </v-list-item>
-      </v-list>
-      <v-list nav dense subheader tile class="mt-0 pa-0">
+
         <v-divider></v-divider>
         <v-list-item class="list-item ma-0" dense to="/">
           <v-list-item-icon class="ml-1 mr-1">
@@ -112,10 +111,7 @@
       color="white"
     >
       <v-toolbar-title class="title font-weight-black indigo--text">
-        <v-btn x-small icon @click.stop="mini = !mini">
-          <v-icon v-if="mini">mdi-arrow-right</v-icon>
-          <v-icon v-else>mdi-arrow-left</v-icon> </v-btn
-        >&nbsp;&nbsp;&nbsp; Welcome, {{ username }}
+        Hospital Management System
       </v-toolbar-title>
 
       <v-spacer class="hidden-xs-only"></v-spacer>
