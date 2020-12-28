@@ -64,9 +64,8 @@
                       <v-select
                         v-model="editedItem.role"
                         :items="userroles"
-                        item-text="roleId"
+                        item-text="name"
                         item-value="id"
-                        attach
                         chips
                         :rules="[
                           v => !!v || 'You must select one to continue!'
