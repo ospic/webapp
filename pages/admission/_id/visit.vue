@@ -1,5 +1,17 @@
 <template>
   <div>
+    <div class="breadcrumb flat ">
+      <router-link to="/">Dashboard</router-link>
+      <router-link to="/patients">Patients</router-link>
+      <router-link :to="`/admission/${this.$route.params.id}`"
+        >Admission ({{ this.$route.params.id }})</router-link
+      >
+      <router-link
+        :to="`/admission/${this.$route.params.id}/visit`"
+        class="active"
+        >Visit Admission</router-link
+      >
+    </div>
     <v-card>
       <v-form ref="form" v-model="valid" lazy-validation>
         <v-card-title>

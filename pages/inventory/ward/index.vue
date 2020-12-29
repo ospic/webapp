@@ -1,5 +1,10 @@
 <template>
   <div>
+    <div class="breadcrumb flat ">
+      <router-link to="/">Dashboard</router-link>
+      <router-link to="/inventory">Inventory</router-link>
+      <router-link to="/inventory/ward" class="active">Wards</router-link>
+    </div>
     <v-progress-circular
       v-if="wards === null"
       :width="2"

@@ -224,6 +224,7 @@
 import BiographTab from "@/components/profile/tabs/biograph"
 import c_type_divider from "@/components/profile/c_type_divider";
 import ServicesTab from "@/components/profile/tabs/services";
+import AddressCard from "@/components/profile/c_address_card.vue";
 
 export default {
   props: {
@@ -235,7 +236,8 @@ export default {
   components: {
     'v-type-divider': c_type_divider,
     'tb-biograph': BiographTab,
-    'tb-services':ServicesTab
+    'tb-services':ServicesTab,
+    'v-address-card': AddressCard
   },
   data() {
     return {

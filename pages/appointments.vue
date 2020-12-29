@@ -1,37 +1,43 @@
 <template>
-  <v-tabs color="deep-purple accent-4" right>
-    <v-tab v-if="unassigned.length > 0">
-      <v-badge
-        color="green"
-        :content="unassigned.length"
-        :value="unassigned.length"
+  <div>
+    <div class="breadcrumb flat ">
+      <router-link to="/">Dashboard</router-link>
+      <router-link to="/oppointemnts" class="active">Appointments</router-link>
+    </div>
+    <v-tabs color="deep-purple accent-4" right>
+      <v-tab v-if="unassigned.length > 0">
+        <v-badge
+          color="green"
+          :content="unassigned.length"
+          :value="unassigned.length"
+        >
+          Un-Assigned
+        </v-badge>
+      </v-tab>
+      <v-tab v-if="assigned.length > 0" ripple
+        ><v-badge
+          color="green"
+          :content="assigned.length"
+          :value="assigned.length"
+          class="lowercase"
+          >Assigned</v-badge
+        ></v-tab
       >
-        Un-Assigned
-      </v-badge>
-    </v-tab>
-    <v-tab v-if="assigned.length > 0" ripple
-      ><v-badge
-        color="green"
-        :content="assigned.length"
-        :value="assigned.length"
-        class="lowercase"
-        >Assigned</v-badge
-      ></v-tab
-    >
 
-    <v-tab-item>
-      <patient-list
-        :datalist="unassigned"
-        :pagetitle="un_assigned_pagetitle"
-      ></patient-list>
-    </v-tab-item>
-    <v-tab-item>
-      <patient-list
-        :datalist="assigned"
-        :pagetitle="assigned_pagetitle"
-      ></patient-list>
-    </v-tab-item>
-  </v-tabs>
+      <v-tab-item>
+        <patient-list
+          :datalist="unassigned"
+          :pagetitle="un_assigned_pagetitle"
+        ></patient-list>
+      </v-tab-item>
+      <v-tab-item>
+        <patient-list
+          :datalist="assigned"
+          :pagetitle="assigned_pagetitle"
+        ></patient-list>
+      </v-tab-item>
+    </v-tabs>
+  </div>
 </template>
 
 <script>

@@ -1,5 +1,12 @@
 <template>
   <div>
+    <div class="breadcrumb flat " v-if="admission != null">
+      <router-link to="/">Dashboard</router-link>
+      <router-link to="/patients">Patients</router-link>
+      <router-link :to="`/admission/${this.$route.params.id}`" class="active"
+        >Admission ({{ this.$route.params.id }})</router-link
+      >
+    </div>
     <v-progress-circular v-if="admission == null" size="34" color="gray">
     </v-progress-circular>
 

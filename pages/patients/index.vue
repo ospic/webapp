@@ -1,10 +1,9 @@
 <template>
   <div>
-    <v-breadcrumbs :items="items" divider=">">
-      <v-breadcrumbs-item slot="item" slot-scope="{ item }" exact :to="item.to">
-        {{ item.text }}
-      </v-breadcrumbs-item>
-    </v-breadcrumbs>
+    <div class="breadcrumb flat ">
+      <router-link to="/">Dashboard</router-link>
+      <router-link to="/patients" class="active">Patients</router-link>
+    </div>
 
     <v-tabs color="deep-purple accent-4" right>
       <v-tab v-if="unassigned.length > 0">
@@ -67,19 +66,7 @@ export default {
     search: "",
     un_assigned_pagetitle: "Un-Assigned Patients",
     assigned_pagetitle: "Assigned Patients",
-    all_pagetitle: "All Patients",
-    items: [
-      {
-        text: "Dashboard",
-        disabled: false,
-        to: "/"
-      },
-      {
-        text: "Patients",
-        disabled: false,
-        to: "/patients"
-      }
-    ]
+    all_pagetitle: "All Patients"
   }),
 
   computed: {

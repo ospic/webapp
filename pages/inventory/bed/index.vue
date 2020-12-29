@@ -1,18 +1,25 @@
 <template>
-  <v-list flat>
-    <v-subheader>WARDS AND BEDS</v-subheader>
-    <v-list-item-group v-model="selectedItem" color="primary">
-      <v-list-item
-        v-for="(ward, i) in wards"
-        :key="i"
-        :to="`/inventory/ward/${ward.id}`"
-      >
-        <v-list-item-content>
-          <beds-list :ward="ward"></beds-list>
-        </v-list-item-content>
-      </v-list-item>
-    </v-list-item-group>
-  </v-list>
+  <div>
+    <div class="breadcrumb flat ">
+      <router-link to="/">Dashboard</router-link>
+      <router-link to="/inventory">Inventory</router-link>
+      <router-link to="/inventory/bed" class="active">Beds</router-link>
+    </div>
+    <v-list flat>
+      <v-subheader>WARDS AND BEDS</v-subheader>
+      <v-list-item-group v-model="selectedItem" color="primary">
+        <v-list-item
+          v-for="(ward, i) in wards"
+          :key="i"
+          :to="`/inventory/ward/${ward.id}`"
+        >
+          <v-list-item-content>
+            <beds-list :ward="ward"></beds-list>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list-item-group>
+    </v-list>
+  </div>
 </template>
 <script>
 import _bedsList from "~/components/patients/beds_list";
