@@ -1,10 +1,13 @@
 <template>
   <div>
-    <v-breadcrumbs :items="items" divider=">">
-      <v-breadcrumbs-item slot="item" slot-scope="{ item }" exact :to="item.to">
-        {{ item.text }}
-      </v-breadcrumbs-item>
-    </v-breadcrumbs>
+    <div class="breadcrumb flat" v-if="userdata != null">
+      <router-link to="/">Dashboard</router-link>
+      <router-link to="/patients">Patients</router-link>
+      <router-link :to="`/patients/${this.$route.params.id}}`" class="active">{{
+        username
+      }}</router-link>
+    </div>
+
     <v-card>
       <div v-if="userdata !== null">
         <card-info
@@ -64,25 +67,6 @@ export default {
   computed: {
     username() {
       return this.userdata == null ? "" : this.userdata.name;
-    },
-    items() {
-      return [
-        {
-          text: "Dashboard",
-          disabled: false,
-          to: "/"
-        },
-        {
-          text: "Patients",
-          disabled: false,
-          to: "/patients"
-        },
-        {
-          text: this.username,
-          disabled: false,
-          to: "/patients"
-        }
-      ];
     }
   }
 };

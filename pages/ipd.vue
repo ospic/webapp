@@ -1,5 +1,11 @@
 <template>
   <div>
+    <div class="breadcrumb flat ">
+      <router-link to="/">Dashboard</router-link>
+      <router-link to="/ipd" class="active"
+        >Inpatient Department(IPD)</router-link
+      >
+    </div>
     <div v-if="ipdpatients.length !== 0">
       <patient-list
         :datalist="ipdpatients"

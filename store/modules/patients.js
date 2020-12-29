@@ -258,7 +258,7 @@ const getters = {
     return state.patients.filter(patient => !patient.isActive);
   },
   patient: (state) => (id) => {
-    return state.patients.find(patient => patient.id === id)
+    return state.patients.find(patient => patient.id == id)
   },
   opdpatients: function (state) {
     return state.patients.filter(patient => !patient.isAdmitted);

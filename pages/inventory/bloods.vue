@@ -1,30 +1,38 @@
 <template>
-  <v-data-table
-    :headers="headers"
-    :items="groups"
-    :search="search"
-    :options="body.options"
-    mobile-breakpoint="100"
-  >
-    <template v-slot:top>
-      <v-toolbar flat color="white">
-        <v-row no-gutters>
-          <v-col cols="12" md="2" align-self="center">
-            <h3 class="title">Blood Bank</h3>
-          </v-col>
-          <v-col cols="12" md="4">
-            <v-text-field
-              v-model="search"
-              append-icon="search"
-              label="Enter search text ..."
-              solo
-              single-line
-              hide-details
-            ></v-text-field>
-          </v-col>
-        </v-row>
-        <v-dialog v-model="dialog" max-width="900px">
-          <!--<template v-slot:activator="{ on, attrs }">
+  <div>
+    <div class="breadcrumb flat" v-if="groups != null">
+      <router-link to="/">Dashboard</router-link>
+      <router-link to="/pharmacy">Pharmacy</router-link>
+      <router-link to="/inventory/bloods" class="active"
+        >Blood bank</router-link
+      >
+    </div>
+    <v-data-table
+      :headers="headers"
+      :items="groups"
+      :search="search"
+      :options="body.options"
+      mobile-breakpoint="100"
+    >
+      <template v-slot:top>
+        <v-toolbar flat color="white">
+          <v-row no-gutters>
+            <v-col cols="12" md="2" align-self="center">
+              <h3 class="title">Blood Bank</h3>
+            </v-col>
+            <v-col cols="12" md="4">
+              <v-text-field
+                v-model="search"
+                append-icon="search"
+                label="Enter search text ..."
+                solo
+                single-line
+                hide-details
+              ></v-text-field>
+            </v-col>
+          </v-row>
+          <v-dialog v-model="dialog" max-width="900px">
+            <!--<template v-slot:activator="{ on, attrs }">
             <v-btn
               color="teal"
               elevation="1"
@@ -37,63 +45,66 @@
               ><v-icon>mdi-plus</v-icon></v-btn
             >
           </template>-->
-          <v-card>
-            <v-card-title>
-              <span class="headline">Update Group {{ editedItem.group }}</span>
-            </v-card-title>
-            <v-divider></v-divider>
-            <v-card-text>
-              <v-container>
-                <v-row>
-                  <v-col cols="12" sm="6" md="4">
-                    <v-text-field
-                      v-model="editedItem.group"
-                      label="Group"
-                      readonly
-                    ></v-text-field>
-                  </v-col>
-                  <v-col cols="12" sm="6" md="4">
-                    <v-text-field
-                      v-model="editedItem.added"
-                      value="0"
-                      type="number"
-                      label="Counts(To be added)"
-                    ></v-text-field>
-                  </v-col>
-                  <v-col cols="12" sm="6" md="4">
-                    <v-text-field
-                      :value="summation"
-                      type="number"
-                      readonly
-                      label="Counts(In total)"
-                    ></v-text-field>
-                  </v-col>
-                </v-row>
-              </v-container>
-            </v-card-text>
+            <v-card>
+              <v-card-title>
+                <span class="headline"
+                  >Update Group {{ editedItem.group }}</span
+                >
+              </v-card-title>
+              <v-divider></v-divider>
+              <v-card-text>
+                <v-container>
+                  <v-row>
+                    <v-col cols="12" sm="6" md="4">
+                      <v-text-field
+                        v-model="editedItem.group"
+                        label="Group"
+                        readonly
+                      ></v-text-field>
+                    </v-col>
+                    <v-col cols="12" sm="6" md="4">
+                      <v-text-field
+                        v-model="editedItem.added"
+                        value="0"
+                        type="number"
+                        label="Counts(To be added)"
+                      ></v-text-field>
+                    </v-col>
+                    <v-col cols="12" sm="6" md="4">
+                      <v-text-field
+                        :value="summation"
+                        type="number"
+                        readonly
+                        label="Counts(In total)"
+                      ></v-text-field>
+                    </v-col>
+                  </v-row>
+                </v-container>
+              </v-card-text>
 
-            <v-card-actions>
-              <v-spacer></v-spacer>
-              <v-btn color="blue darken-1" text @click="close">Cancel</v-btn>
-              <v-btn color="blue darken-1" text @click="save">Save</v-btn>
-            </v-card-actions>
-          </v-card>
-        </v-dialog>
-      </v-toolbar>
-    </template>
-    <template v-slot:[`item.group`]="{ item }">
-      <p class="font-weight-bold">{{ item.group }}</p>
-    </template>
-    <template v-slot:[`item.actions`]="{ item }">
-      <v-icon @click="editItem(item)" small color="blue darken-2"
-        >mdi-lead-pencil</v-icon
-      >
-    </template>
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn color="blue darken-1" text @click="close">Cancel</v-btn>
+                <v-btn color="blue darken-1" text @click="save">Save</v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-dialog>
+        </v-toolbar>
+      </template>
+      <template v-slot:[`item.group`]="{ item }">
+        <p class="font-weight-bold">{{ item.group }}</p>
+      </template>
+      <template v-slot:[`item.actions`]="{ item }">
+        <v-icon @click="editItem(item)" small color="blue darken-2"
+          >mdi-lead-pencil</v-icon
+        >
+      </template>
 
-    <template v-slot:no-data>
-      <h3>No Data available ...</h3>
-    </template>
-  </v-data-table>
+      <template v-slot:no-data>
+        <h3>No Data available ...</h3>
+      </template>
+    </v-data-table>
+  </div>
 </template>
 <script>
 export default {

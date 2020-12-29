@@ -1,36 +1,46 @@
 <template>
-  <v-container fluid style="background-color: white">
-    <div>
-      <v-row no-gutters>
-        <v-spacer></v-spacer>
-        <v-col cols="12" sm="3" class="">
-          <v-text-field
-            v-model="total"
-            type="number"
-            outlined
-            dense
-            hide-details
-            placeholder="No. of beds to add"
-          ></v-text-field>
-        </v-col>
-        <v-col cols="12" sm="2">
-          <v-btn
-            small
-            shaped
-            class="primary mt-1 ml-2"
-            @click.stop="_addmorebeds()"
-            >Add more beds</v-btn
-          >
-        </v-col>
-      </v-row>
+  <div>
+    <div class="breadcrumb flat" v-if="ward != null">
+      <router-link to="/">Dashboard</router-link>
+      <router-link to="/inventory">Inventory</router-link>
+      <router-link to="/inventory/ward">Wards</router-link>
+      <router-link to="/inventory/ward" class="active">{{
+        ward.name
+      }}</router-link>
     </div>
-    <v-progress-linear
-      indeterminate
-      color="primary"
-      v-if="ward == null"
-    ></v-progress-linear>
-    <beds-list v-else :ward="ward"></beds-list>
-  </v-container>
+    <v-container fluid style="background-color: white">
+      <div>
+        <v-row no-gutters>
+          <v-spacer></v-spacer>
+          <v-col cols="12" sm="3" class="">
+            <v-text-field
+              v-model="total"
+              type="number"
+              outlined
+              dense
+              hide-details
+              placeholder="No. of beds to add"
+            ></v-text-field>
+          </v-col>
+          <v-col cols="12" sm="2">
+            <v-btn
+              small
+              shaped
+              class="primary mt-1 ml-2"
+              @click.stop="_addmorebeds()"
+              >Add more beds</v-btn
+            >
+          </v-col>
+        </v-row>
+      </div>
+      <v-progress-linear
+        indeterminate
+        color="primary"
+        v-if="ward == null"
+      ></v-progress-linear>
+      <beds-list v-else :ward="ward"></beds-list>
+    </v-container>
+  </div>
 </template>
 <script>
 import Beds_list from "~/components/patients/beds_list.vue";

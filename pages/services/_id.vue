@@ -1,10 +1,16 @@
 <template>
   <div>
-    <v-breadcrumbs v-if="service" :items="breadcrumbs" divider=">">
-      <v-breadcrumbs-item slot="item" slot-scope="{ item }" exact :to="item.to">
-        {{ item.text }}
-      </v-breadcrumbs-item>
-    </v-breadcrumbs>
+    <div class="breadcrumb flat" v-if="service != null">
+      <router-link to="/">Dashboard</router-link>
+      <router-link to="/patients">Patients</router-link>
+      <router-link :to="`/patients/${service.patient.id}`">{{
+        service.patient.name
+      }}</router-link>
+      <router-link :to="`/services/${this.$route.params.id}`" class="active"
+        >service ({{ this.$route.params.id }})</router-link
+      >
+    </div>
+
     <v-flex class="ma-0 pa-0 lighten-2">
       <v-card flat class="ma-0 pa-0">
         <v-list class="ma-0 pa-0">
@@ -288,35 +294,6 @@ export default {
       get() {
         return this.$store.getters.staffs;
       }
-    },
-    breadcrumbs() {
-      return [
-        {
-          text: "Dashboard",
-          disabled: false,
-          to: "/"
-        },
-        {
-          text: "Patients",
-          disabled: false,
-          to: "/patients"
-        },
-        {
-          text: this.service == null ? "" : this.service.patient.name,
-          disabled: false,
-          to: `/patients/${this.service.patient.id}`
-        },
-        {
-          text: "Services",
-          disabled: false,
-          to: "/services"
-        },
-        {
-          text: `${this.$route.params.id}`,
-          disabled: false,
-          to: ""
-        }
-      ];
     }
   }
 };
