@@ -34,6 +34,13 @@ jobs:
       - run: npm run build --if-present
       - run: npm test
 
+      - name: Deploy to gihub pages 🚀
+        uses: JamesIves/github-pages-deploy-action@releases/v3
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUBTOKEN }}
+          BRANCH: gh-pages # The branch the action should deploy to.
+          FOLDER: dist # The folder the action should deploy.
+
   assign_one_project:
     runs-on: ubuntu-latest
     name: Assign to One Project
