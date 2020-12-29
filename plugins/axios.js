@@ -28,15 +28,16 @@ export default function ({ $axios, redirect, store }, inject) {
 
   api.onError(error => {
     const code = parseInt(error.response.status);
-    if (code === 400) {
-      redirect("/");
+    console.log(code)
+    /**if (code === 400) {
+      //redirect("/");
     }
     if (code === 500) {
-      redirect('/')
-    }
+      //redirect('/')
+    }**/
   });
   api.onResponse(response => {
-    // Vue.toasted.show('Success ', { icon: 'check-circle', type: 'success' });
+    Vue.toasted.show('Success ', { icon: 'check-circle', type: 'success' });
   });
   api.onResponseError((error) => {
     Vue.toasted.show('Failed !!!', { icon: 'close-circle', type: 'error' });
