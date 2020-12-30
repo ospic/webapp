@@ -1,77 +1,79 @@
 <template>
-  <v-data-table
-    dense
-    :headers="headers"
-    :items="datalist"
-    :search="search"
-    :options="body.options"
-    mobile-breakpoint="100"
-    @click:row="handleClick"
-    @update:page="updatePagination"
-  >
-    <template v-slot:top>
-      <v-toolbar flat color="white">
-        <v-text-field
-          v-model="search"
-          append-icon="search"
-          label="Enter search text ..."
-          dense
-          single-line
-          hide-details
-        ></v-text-field>
+  <v-card>
+    <v-data-table
+      dense
+      :headers="headers"
+      :items="datalist"
+      :search="search"
+      :options="body.options"
+      mobile-breakpoint="100"
+      @click:row="handleClick"
+      @update:page="updatePagination"
+    >
+      <template v-slot:top>
+        <v-toolbar flat color="white">
+          <v-text-field
+            v-model="search"
+            append-icon="search"
+            label="Enter search text ..."
+            dense
+            single-line
+            hide-details
+          ></v-text-field>
 
-        <v-spacer></v-spacer>
-        <v-btn
-          medium
-          dense
-          v-if="isAppointmentRoute"
-          class="primary"
-          to="/patients/add"
-          ><v-icon>mdi-plus</v-icon>Add new patient</v-btn
-        >
-      </v-toolbar>
-    </template>
-    <template v-slot:[`item.gender`]="{ item }">
-      <v-tooltip top v-if="item.gender == 'F'" color="green">
-        <template v-slot:activator="{ on, attrs }">
-          <v-icon v-bind="attrs" v-on="on" small color="green darken-2"
-            >mdi-gender-female
-          </v-icon>
-        </template>
-        <span>{{ $t("label.tooltip.genderfemale") }}</span>
-      </v-tooltip>
-      <v-tooltip top v-if="item.gender == 'M'" color="primary">
-        <template v-slot:activator="{ on, attrs }">
-          <v-icon v-bind="attrs" v-on="on" small color="primary darken-2"
-            >mdi-gender-male
-          </v-icon>
-        </template>
-        <span>{{ $t("label.tooltip.gendermale") }}</span>
-      </v-tooltip>
-      <v-tooltip top v-if="item.gender == 'O'" color="cyan">
-        <template v-slot:activator="{ on, attrs }">
-          <v-icon v-bind="attrs" v-on="on" small color="cyan darken-2"
-            >mdi-gender-male-female
-          </v-icon>
-        </template>
-        <span>{{ $t("label.tooltip.genderother") }}</span>
-      </v-tooltip>
-    </template>
+          <v-spacer></v-spacer>
+          <v-btn
+            medium
+            dense
+            v-if="isAppointmentRoute"
+            class="primary"
+            to="/patients/add"
+            ><v-icon>mdi-plus</v-icon>Add new patient</v-btn
+          >
+        </v-toolbar>
+      </template>
+      <template v-slot:[`item.gender`]="{ item }">
+        <v-tooltip top v-if="item.gender == 'F'" color="green">
+          <template v-slot:activator="{ on, attrs }">
+            <v-icon v-bind="attrs" v-on="on" small color="green darken-2"
+              >mdi-gender-female
+            </v-icon>
+          </template>
+          <span>{{ $t("label.tooltip.genderfemale") }}</span>
+        </v-tooltip>
+        <v-tooltip top v-if="item.gender == 'M'" color="primary">
+          <template v-slot:activator="{ on, attrs }">
+            <v-icon v-bind="attrs" v-on="on" small color="primary darken-2"
+              >mdi-gender-male
+            </v-icon>
+          </template>
+          <span>{{ $t("label.tooltip.gendermale") }}</span>
+        </v-tooltip>
+        <v-tooltip top v-if="item.gender == 'O'" color="cyan">
+          <template v-slot:activator="{ on, attrs }">
+            <v-icon v-bind="attrs" v-on="on" small color="cyan darken-2"
+              >mdi-gender-male-female
+            </v-icon>
+          </template>
+          <span>{{ $t("label.tooltip.genderother") }}</span>
+        </v-tooltip>
+      </template>
 
-    <template v-slot:[`item.isAdmitted`]="{ item }">
-      <v-tooltip right v-if="item.isAdmitted" color="primary">
-        <template v-slot:activator="{ on, attrs }">
-          <v-icon v-bind="attrs" v-on="on" x-small>mdi-bed-outline</v-icon>
-        </template>
-        <span>Admitted</span>
-      </v-tooltip>
-      <div v-else></div>
-    </template>
+      <template v-slot:[`item.isAdmitted`]="{ item }">
+        <v-tooltip right v-if="item.isAdmitted" color="primary">
+          <template v-slot:activator="{ on, attrs }">
+            <v-icon v-bind="attrs" v-on="on" x-small>mdi-bed-outline</v-icon>
+          </template>
+          <span>Admitted</span>
+        </v-tooltip>
+        <div v-else></div>
+      </template>
 
-    <template v-slot:no-data>
-      <h3>No Data available ...</h3>
-    </template>
-  </v-data-table>
+      <template v-slot:no-data>
+        <h3>No Data available ...</h3>
+      </template>
+    </v-data-table>
+  </v-card>
 </template>
 
 <script>

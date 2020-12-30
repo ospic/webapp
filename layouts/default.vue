@@ -1,14 +1,13 @@
 <template>
   <v-app
-    class="app"
-    v-bind:style="{ background: $vuetify.theme.dark ? 'white' : 'white' }"
+    style="
+    background: rgba(0,0,0,0);"
   >
     <!--NAVIGATION DRAWER-->
     <v-navigation-drawer
       v-model="drawer"
       mini-variant.sync="mini"
       overlay-color="primary"
-      color="white"
       app
       expand-on-hover
       width="220"
@@ -22,7 +21,7 @@
           </v-list-item-avatar>
           <v-list-item-content class="tile ma-0 pa-0">
             <v-list-item-title
-              class="font-weight-bold text-overline indigo--text mt-1"
+              class="font-weight-bold text-overline primary--text mt-1"
             >
               {{ username }}
             </v-list-item-title>
@@ -32,7 +31,7 @@
         <v-divider></v-divider>
         <v-list-item class="list-item ma-0" dense to="/">
           <v-list-item-icon class="ml-1 mr-1">
-            <v-icon color="gray lighten-3" small>mdi-view-grid</v-icon>
+            <v-icon color="primary" small>mdi-view-grid</v-icon>
           </v-list-item-icon>
           <v-list-item-title
             color="#8C93F5"
@@ -53,7 +52,7 @@
             v-html="setting.icon"
             small
             class="ml-1"
-            color="gray"
+            color="primary"
           ></v-icon>
           <template v-slot:activator>
             <v-list-item-title
@@ -70,11 +69,7 @@
                 color="#8C93F5"
                 class="font-weight-light text-caption"
               >
-                <v-icon
-                  small
-                  color="gray lighten-3"
-                  v-html="menu.icon"
-                ></v-icon>
+                <v-icon small color="primary" v-html="menu.icon"></v-icon>
                 &nbsp;&nbsp;{{ $t(menu.title) }}</v-list-item-title
               >
             </v-list-item>
@@ -89,7 +84,7 @@
             v-on:click="nativateToHere(item.route)"
           >
             <v-list-item-icon class="ml-1 mr-1">
-              <v-icon color="gray lighten-3" v-text="item.icon" small></v-icon>
+              <v-icon color="primary" v-text="item.icon" small></v-icon>
             </v-list-item-icon>
             <v-list-item-title
               color="#8C93F5"
@@ -108,9 +103,9 @@
       app
       dense
       short
-      color="white"
+      color="transparent"
     >
-      <v-toolbar-title class="title font-weight-black indigo--text">
+      <v-toolbar-title class="title font-weight-black primary--text">
         Hospital Management System
       </v-toolbar-title>
 
@@ -178,11 +173,15 @@
       >Fork me on GitHub</a
     >
     <v-main>
-      <v-container style="background-color: #efefef;" class="pa-2 ma-0" fluid>
+      <v-container
+        style="background-color: transparent;"
+        class="pa-2 ma-0"
+        fluid
+      >
         <nuxt />
       </v-container>
     </v-main>
-    <v-footer color="white">
+    <v-footer color="transparent">
       <v-progress-linear
         v-if="sync"
         width="100"
