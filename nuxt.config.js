@@ -12,9 +12,9 @@ export default {
     middleware: ['router']
   },
   loadingIndicator: {
-    name: 'cube-grid',
-    color: '#00897B',
-    background: '#d7f4fa'
+    name: 'pulse',
+    color: ' #63DD6F',
+    background: '#00A756'
   },
   /** 
   hooks: {
