@@ -1,8 +1,5 @@
 <template>
-  <v-app
-    class="app"
-    v-bind:style="{ background: $vuetify.theme.dark ? '#FAFAFA' : '#FAFAFA' }"
-  >
+  <v-app class="app">
     <v-navigation-drawer
       v-model="drawer"
       :mini-variant="$vuetify.breakpoint.mdAndDown"

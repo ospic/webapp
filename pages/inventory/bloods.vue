@@ -15,7 +15,7 @@
       mobile-breakpoint="100"
     >
       <template v-slot:top>
-        <v-toolbar flat color="white">
+        <v-toolbar flat>
           <v-row no-gutters>
             <v-col cols="12" md="2" align-self="center">
               <h3 class="title">Blood Bank</h3>
@@ -32,19 +32,6 @@
             </v-col>
           </v-row>
           <v-dialog v-model="dialog" max-width="900px">
-            <!--<template v-slot:activator="{ on, attrs }">
-            <v-btn
-              color="teal"
-              elevation="1"
-              fab
-              small
-              class="mb-2"
-              v-bind="attrs"
-              v-on="on"
-              dark
-              ><v-icon>mdi-plus</v-icon></v-btn
-            >
-          </template>-->
             <v-card>
               <v-card-title>
                 <span class="headline"

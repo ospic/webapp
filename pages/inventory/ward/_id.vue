@@ -10,7 +10,7 @@
         ward.name
       }}</router-link>
     </div>
-    <v-container fluid style="background-color: white">
+    <v-container fluid>
       <div>
         <v-row no-gutters>
           <v-spacer></v-spacer>

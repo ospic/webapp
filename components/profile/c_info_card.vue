@@ -170,10 +170,9 @@
               <v-list-item inactive class="ma-0 pa-0" :ripple="false">
                 <v-list-item-content class="ma-0 pa-0">
                   <v-tabs
-                    slider-color="primary"
-                    background-color="#FAFAFA"
-                    slider-size="3"
-                    color="primary"
+                    slider-color="secondary"
+                    background-color="primary"
+                    color="secondary"
                     left
                     v-model="tab"
                     class="elevation-2"

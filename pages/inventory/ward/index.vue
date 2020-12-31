@@ -24,7 +24,7 @@
       @click:row="navigateToWard"
     >
       <template v-slot:top>
-        <v-toolbar flat color="white">
+        <v-toolbar flat>
           <v-toolbar-title
             ><h3>{{ title }}</h3></v-toolbar-title
           >

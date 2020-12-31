@@ -9,10 +9,7 @@
           </v-btn></v-col
         >
         <v-col cols="12" md="12" sm="12">
-          <table
-            style="width:100%; text-align: start; background-color: #FAFAFA"
-            class="pa-2"
-          >
+          <table style="width:100%; text-align: start; " class="pa-2">
             <tr v-if="patient.id">
               <td id="id" class="font-weight-black">ID:</td>
               <td>{{ patient.id }}</td>
