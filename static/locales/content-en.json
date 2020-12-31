@@ -19,7 +19,10 @@
       "btnhome": "Home",
       "btnsave": "Save",
       "btnyes":"Yes",
-      "btnno":"No"
+      "btnno":"No",
+      "addnewgroup":"New medicine group",
+      "addnewmedicine":"New Medicine",
+      "addnewcategory":"New medicine category"
     },
     "menu":{
       "dashboard":"Dashboard",

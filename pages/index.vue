@@ -25,7 +25,6 @@
                 class="mr-1 ml-1 mx-auto "
                 :elevation="hover ? 3 : 1"
                 dense
-                color="#FFFFFF"
               >
                 <v-card-text v-if="i % 2 === 0" class="ma-0 ">
                   <pie-chart :data="item" :height="200"></pie-chart>

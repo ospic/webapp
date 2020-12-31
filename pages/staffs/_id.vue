@@ -54,94 +54,69 @@
           </v-card>
         </v-col>
         <v-col cols="12" md="9">
-          <v-card outlined tile>
-            <v-list class="ma-0 pa-0">
-              <v-list-item-group color="primary">
-                <v-list-item inactive class="ma-0 pa-0" :ripple="false">
-                  <v-list-item-content class="ma-0 pa-0">
-                    <v-tabs
-                      slider-color="secondary"
-                      background-color="primary"
-                      :show-arrows="this.$vuetify.breakpoint.mobile"
-                      color="secondary"
-                      left
-                      v-model="tab"
-                      class="elevation-2"
-                    >
-                      <v-tab class="ffont-weight-normal">
-                        <span><v-icon small left>mdi-eye</v-icon>Profile</span>
-                      </v-tab>
-                      <v-tab class="font-weight-normal">
-                        <span
-                          ><v-icon small left>mdi-account</v-icon>Payroll</span
-                        >
-                      </v-tab>
-                      <v-tab class="font-weight-normal">
-                        <span>
-                          <v-icon small left>mdi-medical-bag</v-icon>
-                          Leaves</span
-                        >
-                      </v-tab>
-                      <v-tab class="font-weight-normal">
-                        <span
-                          ><v-icon small left>mdi-history</v-icon>
-                          Attandence</span
-                        >
-                      </v-tab>
-                      <v-tab class="font-weight-normal">
-                        <span
-                          ><v-icon small left>mdi-plus</v-icon> Document</span
-                        >
-                      </v-tab>
-                      <v-tab class="font-weight-normal">
-                        <span>
-                          <v-icon small left>mdi-plus</v-icon> Timeline</span
-                        >
-                      </v-tab>
-                      <v-tab
-                        class="font-weight-normal"
-                        @click="getHistoricalAssignedServices"
-                      >
-                        <span>
-                          <v-icon small left>mdi-plus</v-icon>Service
-                          History</span
-                        >
-                      </v-tab>
-                    </v-tabs>
-                    <v-tabs-items vertical v-model="tab">
-                      <v-tab-item>
-                        <h2 class="ma-8">Profile</h2>
-                      </v-tab-item>
-                      <v-tab-item>
-                        <service-card :services="services"></service-card>
-                      </v-tab-item>
-                      <v-tab-item>
-                        <h2 class="ma-8">Leaves</h2>
-                      </v-tab-item>
-                      <v-tab-item>
-                        <h2 class="ma-8">Attendance</h2>
-                      </v-tab-item>
-                      <v-tab-item>
-                        <h1 class="ma-8">Document</h1>
-                      </v-tab-item>
-                      <v-tab-item>
-                        <h1 class="ma-8">Timeline</h1>
-                      </v-tab-item>
-                      <v-tab-item>
-                        <v-progress-circular
-                          v-if="allservices == null"
-                        ></v-progress-circular>
-                        <service-card
-                          v-else
-                          :services="allservices"
-                        ></service-card>
-                      </v-tab-item>
-                    </v-tabs-items>
-                  </v-list-item-content>
-                </v-list-item>
-              </v-list-item-group>
-            </v-list>
-          </v-card>
+          <v-tabs
+            slider-color="secondary"
+            background-color="primary"
+            :show-arrows="this.$vuetify.breakpoint.mobile"
+            color="secondary"
+            left
+            v-model="tab"
+            class="elevation-2"
+          >
+            <v-tab class="ffont-weight-normal">
+              <span><v-icon small left>mdi-eye</v-icon>Profile</span>
+            </v-tab>
+            <v-tab class="font-weight-normal">
+              <span><v-icon small left>mdi-account</v-icon>Payroll</span>
+            </v-tab>
+            <v-tab class="font-weight-normal">
+              <span>
+                <v-icon small left>mdi-medical-bag</v-icon>
+                Leaves</span
+              >
+            </v-tab>
+            <v-tab class="font-weight-normal">
+              <span><v-icon small left>mdi-history</v-icon> Attandence</span>
+            </v-tab>
+            <v-tab class="font-weight-normal">
+              <span><v-icon small left>mdi-plus</v-icon> Document</span>
+            </v-tab>
+            <v-tab class="font-weight-normal">
+              <span> <v-icon small left>mdi-plus</v-icon> Timeline</span>
+            </v-tab>
+            <v-tab
+              class="font-weight-normal"
+              @click="getHistoricalAssignedServices"
+            >
+              <span> <v-icon small left>mdi-plus</v-icon>Service History</span>
+            </v-tab>
+          </v-tabs>
+          <v-tabs-items vertical v-model="tab">
+            <v-tab-item>
+              <h2 class="ma-8">Profile</h2>
+            </v-tab-item>
+            <v-tab-item>
+              <service-card :services="services"></service-card>
+            </v-tab-item>
+            <v-tab-item>
+              <h2 class="ma-8">Leaves</h2>
+            </v-tab-item>
+            <v-tab-item>
+              <h2 class="ma-8">Attendance</h2>
+            </v-tab-item>
+            <v-tab-item>
+              <h1 class="ma-8">Document</h1>
+            </v-tab-item>
+            <v-tab-item>
+              <h1 class="ma-8">Timeline</h1>
+            </v-tab-item>
+            <v-tab-item>
+              <v-progress-circular
+                v-if="allservices == null"
+              ></v-progress-circular>
+              <service-card v-else :services="allservices"></service-card>
+            </v-tab-item>
+          </v-tabs-items>
         </v-col>
       </v-row>
     </v-container>

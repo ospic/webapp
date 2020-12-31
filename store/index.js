@@ -12,6 +12,7 @@ import diagnoses from "./modules/diagnosis";
 import inventory from "./modules/inventory"
 import profile from "./modules/profile";
 import bloodbank from "./modules/bloods";
+import theme from "./modules/theme";
 
 
 
@@ -20,7 +21,7 @@ const store = () => {
   return new Vuex.Store({
     modules: {
       authentication, SignUp, patients, documents, contacts, users, pharmacy,
-      templates, diagnoses, inventory, profile, bloodbank
+      templates, diagnoses, inventory, profile, bloodbank, theme
     },
 
   });

@@ -2,12 +2,12 @@
   <v-col class="pa-1" cols="12" xs="4" sm="6" md="2" xl="1">
     <v-hover>
       <template v-slot:default="{ hover }">
-        <v-card class="mx-auto " :elevation="hover ? 3 : 1" color="#FFFFFF">
+        <v-card class="mx-auto " :elevation="hover ? 3 : 1">
           <v-list-item>
             <v-list-item-avatar
               height="45"
               rounded
-              :class="`${item.color} lighten-5`"
+              :class="`${item.color} lighten-4`"
             >
               <v-icon
                 :color="`${item.color} darken-2`"

@@ -1,8 +1,14 @@
 <template>
   <v-card flat>
     <v-card-text>
-      <v-row no-gutters>
-        <v-col cols="12" md="11" sm="11">
+      <v-row>
+        <v-spacer></v-spacer>
+        <v-col cols="12" md="1" sm="1">
+          <v-btn color="primary" class="mb-1" fab small @click="edit = !edit">
+            <v-icon>mdi-account-edit</v-icon>
+          </v-btn></v-col
+        >
+        <v-col cols="12" md="12" sm="12">
           <table
             style="width:100%; text-align: start; background-color: #FAFAFA"
             class="pa-2"
@@ -152,12 +158,6 @@
             </tr>
           </table>
         </v-col>
-
-        <v-col cols="12" md="1" sm="1">
-          <v-btn color="primary" fab small @click="edit = !edit">
-            <v-icon>mdi-pencil</v-icon>
-          </v-btn></v-col
-        >
       </v-row>
     </v-card-text>
   </v-card>

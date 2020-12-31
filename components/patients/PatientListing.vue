@@ -11,7 +11,7 @@
       @update:page="updatePagination"
     >
       <template v-slot:top>
-        <v-toolbar flat color="white">
+        <v-toolbar flat>
           <v-text-field
             v-model="search"
             append-icon="search"
