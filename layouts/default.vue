@@ -95,6 +95,17 @@
           </v-list-item>
         </template>
       </v-list>
+      <template v-slot:append>
+        <v-switch
+          :value="true"
+          v-model="dark"
+          class="ma-2"
+          :label="dark ? 'Dark' : 'Light'"
+          inset
+          color="primary"
+          @change="toggle($event !== null)"
+        ></v-switch>
+      </template>
     </v-navigation-drawer>
     <v-app-bar
       flat
@@ -143,7 +154,7 @@
       </v-tooltip>
     </v-app-bar>
     <a
-      class="github-fork-ribbon left-bottom fixed "
+      class="github-fork-ribbon right-bottom fixed "
       href="https://github.com/ospic/webapp"
       target="_blank"
       rel="noopener noreferrer"
@@ -372,11 +383,16 @@ export default {
     nativateToHere(id) {
       this.$router.push("/" + id);
     },
-    toggle(value) {
-      if (`${value}` === "true") {
+    toggle(mode) {
+      if (`${mode}` === "true") {
         this.$vuetify.theme.dark = true;
+        this.$store.dispatch("change_to_dark");
+        document.body.style.background = "#354141";
       } else {
+        this.$store.dispatch("change_to_light");
         this.$vuetify.theme.dark = false;
+        document.body.style.backgroundImage =
+          "url(https://cdn.hipwallpaper.com/i/50/79/MSsZP2.jpg)";
       }
     },
     check_cookie_name: function(name) {

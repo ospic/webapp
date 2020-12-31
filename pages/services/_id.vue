@@ -79,7 +79,7 @@
                 </v-col>
                 <v-col cols="12" md="4">
                   <table
-                    style="width:100%; text-align: start; background-color: #FAFAFA"
+                    style="width:100%; text-align: start;"
                     class="pa-0"
                     summary="Patient infos"
                   >
@@ -109,7 +109,7 @@
                 </v-col>
                 <v-col cols="12" md="4" v-if="service.staff">
                   <table
-                    style="width:100%; text-align: start; background-color: #FAFAFA"
+                    style="width:100%; text-align: start; "
                     class="pa-0"
                     summary="Staff infos"
                   >
