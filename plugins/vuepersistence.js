@@ -7,7 +7,7 @@ export default ({ store }) => {
     createPersistedState({
       paths: [
         "authentication", "inventory", "profile", "diagnoses",
-        "templates", "users", "patients", "documents", "statistics",],
+        "templates", "users", "patients", "documents", "statistics", "theme"],
       /**storage: {
         getItem: key => ls.get(key),
         setItem: (key, value) => ls.set(key, value),

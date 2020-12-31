@@ -22,7 +22,6 @@
             label="Search by name/company/composition"
             single-line
             hide-details
-            background-color="#EFEFEF"
             rounded
             height="40"
             class="shrink"
@@ -31,15 +30,15 @@
           <v-dialog v-model="dialog" max-width="900px">
             <template v-slot:activator="{ on, attrs }">
               <v-btn
-                color="teal"
+                color="primary"
                 elevation="1"
-                fab
-                small
-                class="mb-2"
+                medium
+                class="mb-2 font-weight-normal"
                 v-bind="attrs"
                 v-on="on"
                 dark
-                ><v-icon>mdi-plus</v-icon></v-btn
+                ><v-icon left>mdi-plus</v-icon>
+                {{ $t("label.button.addnewcategory") }}</v-btn
               >
             </template>
             <v-card>

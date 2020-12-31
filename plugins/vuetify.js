@@ -11,7 +11,7 @@ export default (ctx) => {
       dark: false,
       themes: {
         dark: {
-          primary: '#354141',
+          primary: '#00A756',
           accent: '#0000',
           secondary: '#ffffff',
           success: '#4CAF50',

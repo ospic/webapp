@@ -6,18 +6,18 @@
       color="grey lighten-5"
       size="16"
     ></v-progress-circular>
-    <div v-else>
+    <div md12 v-else>
       <v-data-table
         dense
         :headers="headers"
         :items="services"
         :search="search"
-        mobile-breakpoint="100"
+        width="100%"
         @click:row="handleClick"
         @update:page="updatePagination"
       >
         <template v-slot:top>
-          <v-toolbar flat color="white">
+          <v-toolbar flat>
             <v-spacer></v-spacer>
             <v-text-field
               v-model="search"

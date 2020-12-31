@@ -9,7 +9,7 @@
       class="elevation-0 "
     >
       <template v-slot:top>
-        <v-toolbar flat color="white">
+        <v-toolbar flat>
           <v-toolbar-title
             ><h3>
               List medicines
@@ -21,7 +21,6 @@
             label="Search by name/company/composition"
             single-line
             hide-details
-            background-color="#EFEFEF"
             rounded
             height="40"
             class="shrink"
@@ -30,15 +29,16 @@
           <v-dialog v-model="dialog" max-width="900px">
             <template v-slot:activator="{ on, attrs }">
               <v-btn
-                color="teal"
+                color="primary"
                 elevation="1"
-                fab
-                small
+                medium
+                prepend-icon="mdi-plus"
                 class="mb-2"
                 v-bind="attrs"
                 v-on="on"
                 dark
-                ><v-icon>mdi-plus</v-icon></v-btn
+                ><v-icon left>mdi-plus</v-icon
+                >{{ $t("label.button.addnewmedicine") }}</v-btn
               >
             </template>
             <v-card>

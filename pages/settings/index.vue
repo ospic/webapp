@@ -9,6 +9,7 @@
             <v-spacer></v-spacer>
             <v-switch
               :value="true"
+              v-model="isDark"
               inset
               color="primary"
               @change="toggle($event !== null)"
@@ -45,7 +46,7 @@ export default {
   data() {
     return {
       mode: 0,
-
+      switch1: true,
       select: { locale: "English", lang: "en" },
       locales: [
         {
@@ -71,14 +72,26 @@ export default {
     toggle(mode) {
       if (`${mode}` === "true") {
         this.$vuetify.theme.dark = true;
+        this.$store.dispatch("change_to_dark");
+        document.body.style.background = "#354141";
       } else {
+        this.$store.dispatch("change_to_light");
         this.$vuetify.theme.dark = false;
+        document.body.style.backgroundImage =
+          "url(https://cdn.hipwallpaper.com/i/50/79/MSsZP2.jpg)";
       }
     },
     changeLanguage(lang) {
       // Change the i18n context object's locale
       // This makes it so the correct locale file is used
       this.$i18n.locale = lang;
+    }
+  },
+  created() {},
+
+  computed: {
+    isDark() {
+      return this.$store.getters.isDark;
     }
   }
 };
