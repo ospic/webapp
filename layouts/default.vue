@@ -11,6 +11,7 @@
       app
       expand-on-hover
       width="220"
+      height="100%"
     >
       <v-list nav dense subheader tile class="mt-0 pa-0 py-1">
         <v-list-item dense class="px-2" to="/me">
@@ -109,7 +110,7 @@
         Hospital Management System
       </v-toolbar-title>
 
-      <v-spacer class="hidden-xs-only"></v-spacer>
+      <v-spacer></v-spacer>
 
       <v-tooltip bottom color="primary" open-on-hover open-delay="500">
         <template v-slot:activator="{ on }">
@@ -132,28 +133,6 @@
         }}</span>
         <span v-else color="white">{{ $t("label.tooltip.synchronise") }}</span>
       </v-tooltip>
-
-      <v-tooltip
-        bottom
-        color="primary"
-        v-if="$vuetify.breakpoint.smAndUp"
-        open-on-hover
-        open-delay="500"
-      >
-        <template v-slot:activator="{ on }">
-          <v-btn
-            fab
-            v-on="on"
-            elevation="1"
-            to="/settings"
-            x-small
-            class="mr-2 green primary"
-          >
-            <v-icon medium>mdi-cog-outline</v-icon>
-          </v-btn>
-        </template>
-        <span>{{ $t("label.tooltip.settingsandconfigurations") }}</span>
-      </v-tooltip>
       <v-tooltip bottom color="primary" open-on-hover open-delay="500">
         <template v-slot:activator="{ on }">
           <v-btn fab v-on="on" x-small elevation="1" class="mr-2 primary">
@@ -175,7 +154,7 @@
     <v-main>
       <v-container
         style="background-color: transparent;"
-        class="pa-2 ma-0"
+        class="pa-0 px-3  ma-0 mt-2"
         fluid
       >
         <nuxt />
@@ -340,6 +319,11 @@ export default {
           icon: "mdi-clipboard-file",
           route: "reports",
           subtitle: "Lorem ipsum dolor sit de amet.."
+        },
+        {
+          text: "label.tooltip.settingsandconfigurations",
+          icon: "mdi-cog-outline",
+          route: "settings"
         }
       ],
       actions: [

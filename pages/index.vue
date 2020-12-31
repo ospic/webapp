@@ -1,75 +1,84 @@
 <template>
   <v-container class="ma-2 pa-0 px-2" fluid>
-    <v-row justify="start" align="start" class="mt-2">
-      <template v-for="(item, i) in summary_items">
-        <summarycard
+    <div v-if="statistics">
+      <v-row justify="start" align="start" class="mt-2">
+        <template v-for="(item, i) in summary_items">
+          <summarycard
+            :key="i"
+            :item="item"
+            v-if="item.value !== 0"
+          ></summarycard>
+        </template>
+      </v-row>
+      <v-row justify="start" align="start" class="mt-3">
+        <v-col
+          v-for="(item, i) in trend_items"
           :key="i"
-          :item="item"
-          v-if="item.value !== 0"
-        ></summarycard>
-      </template>
-    </v-row>
-    <v-row justify="start" align="start" class="mt-3">
-      <v-col
-        v-for="(item, i) in trend_items"
-        :key="i"
-        cols="12"
-        sm="6"
-        md="2"
-        class="ma-0 pa-0 mt-1"
-      >
-        <v-hover>
-          <template v-slot:default="{ hover }">
-            <v-card
-              class="mr-1 ml-1 mx-auto "
-              :elevation="hover ? 3 : 1"
-              dense
-              color="#FFFFFF"
-            >
-              <v-card-text v-if="i % 2 === 0" class="ma-0 ">
-                <pie-chart :data="item" :height="200"></pie-chart>
-              </v-card-text>
-              <v-card-text v-else class="ma-0 ">
-                <donutchart :data="item" :height="200"></donutchart>
-              </v-card-text>
-            </v-card>
-          </template>
-        </v-hover>
-      </v-col>
-    </v-row>
-    <v-row justify="start" align="start" class="mt-3">
-      <v-col cols="12" sm="12" v-if="bsc_size > 0" class="ma-0 pa-0 mt-3">
-        <v-card class="mr-1 ml-1 " dense>
-          <area-chart-spline
-            :data="bsc_chart"
-            class="ma-0 "
-          ></area-chart-spline>
-        </v-card>
-      </v-col>
-      <v-col cols="12" sm="12" md="3">
-        <v-card class="mx-auto">
-          <bar-chart :data="apexdata"></bar-chart>
-        </v-card>
-      </v-col>
-      <v-col cols="12" sm="12" md="3">
-        <v-card class="mx-auto">
-          <bar-chart :data="apexdata"></bar-chart>
-        </v-card>
-      </v-col>
+          cols="12"
+          sm="6"
+          md="2"
+          class="ma-0 pa-0 mt-1"
+        >
+          <v-hover>
+            <template v-slot:default="{ hover }">
+              <v-card
+                class="mr-1 ml-1 mx-auto "
+                :elevation="hover ? 3 : 1"
+                dense
+                color="#FFFFFF"
+              >
+                <v-card-text v-if="i % 2 === 0" class="ma-0 ">
+                  <pie-chart :data="item" :height="200"></pie-chart>
+                </v-card-text>
+                <v-card-text v-else class="ma-0 ">
+                  <donutchart :data="item" :height="200"></donutchart>
+                </v-card-text>
+              </v-card>
+            </template>
+          </v-hover>
+        </v-col>
+      </v-row>
+      <v-row justify="start" align="start" class="mt-3">
+        <v-col cols="12" sm="12" v-if="bsc_size > 0" class="ma-0 pa-0 mt-3">
+          <v-card class="mr-1 ml-1 " dense>
+            <area-chart-spline
+              :data="bsc_chart"
+              class="ma-0 "
+            ></area-chart-spline>
+          </v-card>
+        </v-col>
+        <v-col cols="12" sm="12" md="3">
+          <v-card class="mx-auto">
+            <bar-chart :data="apexdata"></bar-chart>
+          </v-card>
+        </v-col>
+        <v-col cols="12" sm="12" md="3">
+          <v-card class="mx-auto">
+            <bar-chart :data="apexdata"></bar-chart>
+          </v-card>
+        </v-col>
 
-      <v-col cols="12" sm="12" md="3">
-        <v-card class="mx-auto" min-height="365">
-          <pie-chart :data="pie_options" :height="300"></pie-chart>
-        </v-card>
-      </v-col>
-      <v-col cols="12" sm="12" md="3">
-        <v-card class="mx-auto">
-          <v-card-text>
-            <pie-chart :data="pie_options" style="height: 200px"></pie-chart>
-          </v-card-text>
-        </v-card>
-      </v-col>
-    </v-row>
+        <v-col cols="12" sm="12" md="3">
+          <v-card class="mx-auto" min-height="365">
+            <pie-chart :data="pie_options" :height="300"></pie-chart>
+          </v-card>
+        </v-col>
+        <v-col cols="12" sm="12" md="3">
+          <v-card class="mx-auto">
+            <v-card-text>
+              <pie-chart :data="pie_options" style="height: 200px"></pie-chart>
+            </v-card-text>
+          </v-card>
+        </v-col>
+      </v-row>
+    </div>
+    <div v-else>
+      <v-progress-circular
+        indeterminate
+        color="grey lighten-5"
+        size="16"
+      ></v-progress-circular>
+    </div>
   </v-container>
 </template>
 
@@ -133,14 +142,17 @@ export default {
   },
 
   computed: {
+    statistics() {
+      return this.$store.getters.statistic;
+    },
     trend_items: {
       get() {
         return [
           {
             series: [
-              this.$store.getters.statistic.totalMale,
-              this.$store.getters.statistic.totalFemale,
-              this.$store.getters.statistic.totalUnspecified
+              this.statistics.totalMale,
+              this.statistics.totalFemale,
+              this.statistics.totalUnspecified
             ],
             chartOptions: {
               labels: [
@@ -152,10 +164,7 @@ export default {
             title: "Gender Composition"
           },
           {
-            series: [
-              this.$store.getters.statistic.totalOpd,
-              this.$store.getters.statistic.totalIpd
-            ],
+            series: [this.statistics.totalOpd, this.statistics.totalIpd],
             chartOptions: {
               labels: [
                 "Out Patient Department(OPD)",
@@ -201,7 +210,7 @@ export default {
           {
             title: "Overall Total Patients",
             subtitle: "Overall Total Patients",
-            value: this.$store.getters.statistic.total,
+            value: this.statistics.total,
             icon: "mdi-account-group-outline",
             color: "blue"
           },
@@ -209,21 +218,21 @@ export default {
             title: "Assigned Patients",
             subtitle: "Assigned patients",
             measure: "p/d",
-            value: this.$store.getters.statistic.totalAssigned,
+            value: this.statistics.totalAssigned,
             icon: "mdi-account-group-outline",
             color: "red"
           },
           {
             title: "Unassigned Patients",
             subtitle: "Unassigned Patients",
-            value: this.$store.getters.statistic.totalUnassigned,
+            value: this.statistics.totalUnassigned,
             icon: "mdi-account-group-outline",
             color: "teal"
           },
           {
             title: " OPD",
             subtitle: "OPD  Patients",
-            value: this.$store.getters.statistic.totalOpd,
+            value: this.statistics.totalOpd,
             measure: "p/d",
             icon: "mdi-account-group-outline",
             color: "lime"
@@ -232,7 +241,7 @@ export default {
             title: "IPD ",
             subtitle: "IPD  Patients",
             measure: "p/d",
-            value: this.$store.getters.statistic.totalIpd,
+            value: this.statistics.totalIpd,
             icon: "mdi-account-group-outline",
             color: "green"
           },
@@ -246,21 +255,21 @@ export default {
           {
             title: "Males",
             subtitle: "Male Patients",
-            value: this.$store.getters.statistic.totalMale,
+            value: this.statistics.totalMale,
             icon: "mdi-gender-male",
             color: "indigo"
           },
           {
             title: "Females",
             subtitle: "Female patients",
-            value: this.$store.getters.statistic.totalFemale,
+            value: this.statistics.totalFemale,
             icon: "mdi-gender-female",
             color: "deep-orange"
           },
           {
             title: "Others",
             subtitle: "Special Gender",
-            value: this.$store.getters.statistic.totalUnspecified,
+            value: this.statistics.totalUnspecified,
             icon: "mdi-gender-male-female",
             color: "orange"
           },

@@ -7,12 +7,13 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   box-shadow: inset 0 0 0 1000px rgba(63, 203, 98, 0);
+  zoom: 75%;
 }
 .swal-wide {
   width: 50px !important;
 }
 #app {
-  font-family: "Lato", sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
 
 .drawer .item:hover {

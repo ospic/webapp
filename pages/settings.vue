@@ -1,61 +1,69 @@
 <template>
-  <v-container class="fill-height" fluid>
-    <v-row>
-      <v-col cols="12" sm="3" class="pa-2">
-        <v-list nav dense subheader tile>
-          <template v-for="(setting, ind) in settings">
-            <v-list-group
-              :value="true"
-              color="green"
-              :prepend-icon="setting.icon"
-              :key="ind"
-            >
-              <template v-slot:activator>
-                <v-list-item-title class="black--text">{{
-                  $t(setting.title)
-                }}</v-list-item-title>
-              </template>
+  <div>
+    <div class="breadcrumb ">
+      <router-link to="/">Dashboard</router-link>
+      <router-link to="/settings" class="active"
+        >Setting & Configurations</router-link
+      >
+    </div>
+    <v-container class="fill-height" fluid>
+      <v-row>
+        <v-col cols="12" sm="3" class="pa-2">
+          <v-list nav dense subheader tile>
+            <template v-for="(setting, ind) in settings">
+              <v-list-group
+                :value="true"
+                color="green"
+                :prepend-icon="setting.icon"
+                :key="ind"
+              >
+                <template v-slot:activator>
+                  <v-list-item-title class="black--text">{{
+                    $t(setting.title)
+                  }}</v-list-item-title>
+                </template>
 
-              <template v-for="(menu, index) in setting.menus">
-                <v-list-group
-                  :value="true"
-                  no-action
-                  sub-group
-                  :key="menu.title"
-                >
-                  <template v-slot:activator>
-                    <v-list-item-content>
-                      <v-list-item-title>{{
-                        $t(menu.title)
-                      }}</v-list-item-title>
-                    </v-list-item-content>
-                  </template>
-                  <template v-for="(sub, i) in menu.submenus">
-                    <v-list-item :key="sub.to" :to="sub.to">
+                <template v-for="(menu, index) in setting.menus">
+                  <v-list-group
+                    :value="true"
+                    no-action
+                    sub-group
+                    :key="menu.title"
+                  >
+                    <template v-slot:activator>
                       <v-list-item-content>
-                        <v-list-item-title>
-                          <v-icon
-                            small
-                            color="green"
-                            v-html="sub.icon"
-                          ></v-icon>
-                          {{ $t(sub.title) }}
-                        </v-list-item-title>
+                        <v-list-item-title>{{
+                          $t(menu.title)
+                        }}</v-list-item-title>
                       </v-list-item-content>
-                    </v-list-item>
-                    <v-divider class="ml-12" :key="i"></v-divider>
-                  </template>
-                </v-list-group>
-              </template>
-            </v-list-group>
-          </template>
-        </v-list>
-      </v-col>
-      <v-col cols="12" sm="9" class="pa-2">
-        <nuxt-child :key="this.$router.currentRoute.name" />
-      </v-col>
-    </v-row>
-  </v-container>
+                    </template>
+                    <template v-for="(sub, i) in menu.submenus">
+                      <v-list-item :key="sub.to" :to="sub.to">
+                        <v-list-item-content>
+                          <v-list-item-title>
+                            <v-icon
+                              small
+                              color="green"
+                              v-html="sub.icon"
+                            ></v-icon>
+                            {{ $t(sub.title) }}
+                          </v-list-item-title>
+                        </v-list-item-content>
+                      </v-list-item>
+                      <v-divider class="ml-12" :key="i"></v-divider>
+                    </template>
+                  </v-list-group>
+                </template>
+              </v-list-group>
+            </template>
+          </v-list>
+        </v-col>
+        <v-col cols="12" sm="9" class="pa-2">
+          <nuxt-child :key="this.$router.currentRoute.name" />
+        </v-col>
+      </v-row>
+    </v-container>
+  </div>
 </template>
 
 <script>

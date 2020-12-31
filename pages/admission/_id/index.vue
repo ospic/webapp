@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="breadcrumb flat " v-if="admission != null">
+    <div class="breadcrumb  " v-if="admission != null">
       <router-link to="/">Dashboard</router-link>
       <router-link to="/patients">Patients</router-link>
       <router-link :to="`/admission/${this.$route.params.id}`" class="active"

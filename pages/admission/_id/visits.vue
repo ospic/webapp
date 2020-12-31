@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="breadcrumb flat ">
+    <div class="breadcrumb ">
       <router-link to="/">Dashboard</router-link>
       <router-link to="/patients">Patients</router-link>
       <router-link :to="`/admission/${this.$route.params.id}`"

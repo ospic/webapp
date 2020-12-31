@@ -2,10 +2,7 @@
   <v-app
     class="aspire"
     style="
-    background: #3A1C71;
-    background: -webkit-linear-gradient(to right, #FFAF7B, #D76D77, #3A1C71);
-    background: linear-gradient(to right, #FFAF7B, #D76D77, #3A1C71);
-  "
+    background: transparent;"
   >
     <a
       class="github-fork-ribbon"

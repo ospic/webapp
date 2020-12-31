@@ -15,10 +15,7 @@
       <v-col align="center" v-if="admissions === null">
         <v-row>
           <v-col cols="12" md="3" v-for="i in 4" :key="i" wrap>
-            <v-skeleton-loader
-              v-bind="attrs"
-              type="article, actions"
-            ></v-skeleton-loader>
+            <v-skeleton-loader type="article, actions"></v-skeleton-loader>
           </v-col>
         </v-row>
       </v-col>

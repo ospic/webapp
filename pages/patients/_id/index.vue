@@ -1,9 +1,9 @@
 <template>
   <div>
-    <div class="breadcrumb flat" v-if="userdata != null">
+    <div class="breadcrumb" v-if="userdata != null">
       <router-link to="/">Dashboard</router-link>
       <router-link to="/patients">Patients</router-link>
-      <router-link :to="`/patients/${this.$route.params.id}}`" class="active">{{
+      <router-link :to="`/patients/${this.$route.params.id}`" class="active">{{
         username
       }}</router-link>
     </div>
