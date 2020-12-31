@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="breadcrumb flat" v-if="groups != null">
+    <div class="breadcrumb" v-if="groups != null">
       <router-link to="/">Dashboard</router-link>
       <router-link to="/pharmacy">Pharmacy</router-link>
       <router-link to="/inventory/bloods" class="active"

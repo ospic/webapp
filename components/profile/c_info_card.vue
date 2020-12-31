@@ -127,21 +127,17 @@
                   </v-card-title>
                 </v-img>
                 <v-card-text>
-                  <v-flex xs12 md12 class="ma-0 pa-0">
-                    <v-type-divider type="Info"></v-type-divider>
-                  </v-flex>
-                  <v-flex xs12 md12 class="ma-0 pa-0">
+                  <v-divider></v-divider>
+                  <v-flex xs12 md12 class=" d-flex justify-space-around">
                     <v-btn
-                      x-small
-                      rounded
+                      small
                       color="primary"
                       v-if="address"
                       :to="`/patients/${userdata.id}/contacts/`"
                       >View contacts</v-btn
                     >
                     <v-btn
-                      x-small
-                      rounded
+                      small
                       color="primary"
                       v-else
                       :to="`/patients/${userdata.id}/contacts/add`"
@@ -150,11 +146,13 @@
                     </v-btn>
                     <v-btn
                       :to="`/patients/${userdata.id}/contacts/edit`"
-                      x-small
-                      rounded
+                      small
                       v-if="address"
                       >Edit Contacts</v-btn
                     >
+                  </v-flex>
+                  <v-flex xs12 md12 class="ma-0 pa-0">
+                    <v-type-divider type="Info"></v-type-divider>
                   </v-flex>
                   <v-flex xs12 md12 class="ma-0 pa-0" v-if="address !== null">
                     <v-address-card :address="address"></v-address-card>

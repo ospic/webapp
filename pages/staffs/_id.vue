@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="breadcrumb flat " v-if="staffdata != null">
+    <div class="breadcrumb " v-if="staffdata != null">
       <router-link to="/">Dashboard</router-link>
       <router-link to="/staffs">Staffs</router-link>
       <router-link :to="`/staffs/${this.$route.params.id}`" class="active">{{
@@ -60,9 +60,10 @@
                 <v-list-item inactive class="ma-0 pa-0" :ripple="false">
                   <v-list-item-content class="ma-0 pa-0">
                     <v-tabs
-                      slider-color="primary"
-                      slider-size="3"
-                      color="primary"
+                      slider-color="secondary"
+                      background-color="primary"
+                      :show-arrows="this.$vuetify.breakpoint.mobile"
+                      color="secondary"
                       left
                       v-model="tab"
                       class="elevation-2"

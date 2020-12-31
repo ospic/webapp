@@ -25,7 +25,7 @@ export default {
   **/
   env: {
     baseUrl: 'https://ospicapi.herokuapp.com/api/',
-    localUrl: 'http://localhost:8080/api/'
+    localUrl: 'http://192.168.43.11:8080/api/'
   },
 
   // Global page headers (https://go.nuxtjs.dev/config-head)
@@ -35,11 +35,11 @@ export default {
     meta: [
       { charset: 'utf-8' },
       /**Chrome, Firefox OS and Opera **/
-      { name: "theme-color", content: "#00897B" },
+      { name: "theme-color", content: "#00A756" },
       /**Windows phone **/
-      { name: "msapplication-navbutton-color", content: "#00897B" },
+      { name: "msapplication-navbutton-color", content: "#00A756" },
       /**iOS Safari**/
-      { name: "apple-mobile-web-app-status-bar-style", content: "#00897B" },
+      { name: "apple-mobile-web-app-status-bar-style", content: "#00A756" },
       { name: 'viewport', content: 'width=device-width, initial-scale=1.0' },
       { hid: 'description', name: 'description', content: 'Open source Hospital Management System' },
       { hid: 'og:image', property: 'og:image', content: "https://hmis.netlify.app/icon.png" || '' },

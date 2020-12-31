@@ -1,8 +1,10 @@
 <template>
   <div>
-    <div class="breadcrumb flat" v-if="service != null">
+    <div class="breadcrumb " v-if="service != null">
       <router-link to="/">Dashboard</router-link>
-      <router-link to="/patients">Patients</router-link>
+      <router-link v-show="!this.$vuetify.breakpoint.mobile" to="/patients"
+        >Patients</router-link
+      >
       <router-link :to="`/patients/${service.patient.id}`">{{
         service.patient.name
       }}</router-link>
@@ -23,7 +25,7 @@
           <div v-else>
             <v-card-title>
               <v-row no-gutters>
-                <v-col cols="12" md="4">
+                <v-col cols="12" md="3">
                   <v-icon :color="service.isActive ? 'green' : 'gray'"
                     >mdi-circle</v-icon
                   >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -32,7 +34,7 @@
                       <v-btn
                         small
                         v-if="service.isActive"
-                        class="primary"
+                        class="primary mb-1"
                         v-bind="attrs"
                         v-on="on"
                         >End service</v-btn
@@ -44,11 +46,11 @@
                       </v-card-title>
                       <v-card-text>
                         Ending this service will make this service instance
-                        <strong class="font-weight-black">
+                        <strong class="font-weight-normal">
                           No. {{ service.id }}
                         </strong>
                         &nbsp;for client
-                        <strong class="font-weight-black">{{
+                        <strong class="font-weight-normal">{{
                           service.patient.name
                         }}</strong
                         >&nbsp;as inactive for new admissions, diagnoses,
@@ -77,32 +79,42 @@
                 </v-col>
                 <v-col cols="12" md="4">
                   <table
-                    style="width:60%; text-align: start; background-color: #FAFAFA"
+                    style="width:100%; text-align: start; background-color: #FAFAFA"
                     class="pa-0"
-                    summary="New York City Marathon Results 2013"
+                    summary="Patient infos"
                   >
                     <tr v-if="service.patient.id">
-                      <td id="Patient" class="font-weight-black">Patient</td>
-                      <td>{{ service.patient.name }}</td>
+                      <td id="Patient" class="font-weight-normal">Patient</td>
+                      <td>
+                        <small>{{ service.patient.name }}</small>
+                      </td>
                     </tr>
 
                     <tr>
-                      <td id="Phone" class="font-weight-black">Weight</td>
-                      <td>{{ service.patient.weight }}</td>
+                      <td id="Phone" class="font-weight-normal">Weight</td>
+                      <td>
+                        <small>{{ service.patient.weight }} </small>
+                      </td>
                     </tr>
                     <tr>
-                      <td id="Phone" class="font-weight-black">BP</td>
-                      <td>{{ service.patient.bloodPressure }}</td>
+                      <td id="Phone" class="font-weight-normal">BP</td>
+                      <td>
+                        <small>{{ service.patient.bloodPressure }} </small>
+                      </td>
                     </tr>
                   </table>
                 </v-col>
+                <v-col cols="12" md="1">
+                  <br />
+                </v-col>
                 <v-col cols="12" md="4" v-if="service.staff">
                   <table
-                    style="width:60%; text-align: start; background-color: #FAFAFA"
+                    style="width:100%; text-align: start; background-color: #FAFAFA"
                     class="pa-0"
+                    summary="Staff infos"
                   >
                     <tr v-if="service.patient.id">
-                      <td id="Patient" class="font-weight-black">Staff</td>
+                      <td id="Patient" class="font-weight-normal">Staff</td>
                       <td>
                         {{
                           service.staff.fullName == null
@@ -112,98 +124,93 @@
                       </td>
                     </tr>
                     <tr>
-                      <td id="Phone" class="font-weight-black">Phone</td>
-                      <td>{{ service.staff.contacts }}</td>
+                      <td id="Phone" class="font-weight-normal">Phone</td>
+                      <td>
+                        <small>{{ service.staff.contacts }} </small>
+                      </td>
                     </tr>
                     <tr>
-                      <td id="Phone" class="font-weight-black">Email</td>
-                      <td>{{ service.staff.email }}</td>
+                      <td id="Phone" class="font-weight-normal">Email</td>
+                      <td>
+                        <small>{{ service.staff.email }} </small>
+                      </td>
                     </tr>
                   </table>
                 </v-col>
               </v-row>
             </v-card-title>
             <v-card-text>
-              <v-list-item-group color="primary">
-                <v-list-item inactive class="ma-0 pa-0" :ripple="false">
-                  <v-list-item-content class="ma-0 pa-0">
-                    <v-tabs
-                      slider-color="primary"
-                      background-color="#FAFAFA"
-                      slider-size="3"
-                      color="primary"
-                      left
-                      v-model="tab"
-                      class="elevation-2"
-                    >
-                      <v-tab class="ffont-weight-normal">
-                        <span
-                          ><v-icon small left>mdi-eye</v-icon>Biography</span
-                        >
-                      </v-tab>
-                      <v-tab class="font-weight-normal">
-                        <span><v-icon small left>mdi-bag</v-icon>Staff</span>
-                      </v-tab>
-                      <v-tab class="font-weight-normal">
-                        <v-icon small left>mdi-medical-bag</v-icon>
-                        Diagnoses
-                      </v-tab>
-                      <v-tab
-                        class="font-weight-normal"
-                        @click="getServiceAdmissions"
-                      >
-                        <v-icon small left>mdi-history</v-icon>
-                        Admission History
-                      </v-tab>
-                      <v-tab class="font-weight-normal">
-                        <v-icon small left>mdi-credit-card</v-icon>
-                        Charges & Costs
-                      </v-tab>
-                      <v-tab class="font-weight-normal">
-                        <v-icon small left>mdi-plus</v-icon>
-                        Medicines
-                      </v-tab>
-                    </v-tabs>
-                    <v-tabs-items vertical v-model="tab">
-                      <v-tab-item>
-                        <tb-biograph :patient="service.patient"></tb-biograph>
-                      </v-tab-item>
-                      <v-tab-item>
-                        <tb-doctor
-                          v-bind:staff="service.staff"
-                          v-bind:staffs="staffs"
-                          v-on:update-service="onServiceUpdate"
-                        ></tb-doctor>
-                      </v-tab-item>
-                      <v-tab-item>
-                        <tb-diagnoses
-                          v-bind:diagnoses="service.diagnoses"
-                          :isActive="service.isActive"
-                        ></tb-diagnoses>
-                      </v-tab-item>
-                      <v-tab-item>
-                        <tb-admissions
-                          :admissions="admissions"
-                          :userdata="service.patient"
-                        ></tb-admissions>
-                      </v-tab-item>
-                      <v-tab-item>
-                        <h1>Service Charges</h1>
-                      </v-tab-item>
-                      <v-tab-item>
-                        <h1 class="pa-2">
-                          List of all service charges from
-                          <a
-                            href="https://github.com/ospic/platform/issues/139"
-                            target="_blank"
-                            >Master price database table</a
-                          >, written in General Ledger
-                        </h1>
-                      </v-tab-item>
-                    </v-tabs-items>
-                  </v-list-item-content>
-                </v-list-item>
-              </v-list-item-group>
+              <v-tabs
+                slider-color="white"
+                background-color="primary"
+                slider-size="3"
+                color="white"
+                left
+                v-model="tab"
+                class="elevation-2"
+                show-arrows-on-hover="true"
+                :show-arrows="$vuetify.breakpoint.mobile"
+              >
+                <v-tab class="ffont-weight-normal">
+                  <span><v-icon small left>mdi-eye</v-icon>Biography</span>
+                </v-tab>
+                <v-tab class="font-weight-normal">
+                  <span><v-icon small left>mdi-bag</v-icon>Staff</span>
+                </v-tab>
+                <v-tab class="font-weight-normal">
+                  <v-icon small left>mdi-medical-bag</v-icon>
+                  Diagnoses
+                </v-tab>
+                <v-tab class="font-weight-normal" @click="getServiceAdmissions">
+                  <v-icon small left>mdi-history</v-icon>
+                  Admission History
+                </v-tab>
+                <v-tab class="font-weight-normal">
+                  <v-icon small left>mdi-credit-card</v-icon>
+                  Charges & Costs
+                </v-tab>
+                <v-tab class="font-weight-normal">
+                  <v-icon small left>mdi-plus</v-icon>
+                  Medicines
+                </v-tab>
+              </v-tabs>
+              <v-tabs-items vertical v-model="tab">
+                <v-tab-item>
+                  <tb-biograph :patient="service.patient"></tb-biograph>
+                </v-tab-item>
+                <v-tab-item>
+                  <tb-doctor
+                    v-bind:staff="service.staff"
+                    v-bind:staffs="staffs"
+                    v-on:update-service="onServiceUpdate"
+                  ></tb-doctor>
+                </v-tab-item>
+                <v-tab-item>
+                  <tb-diagnoses
+                    v-bind:diagnoses="service.diagnoses"
+                    :isActive="service.isActive"
+                  ></tb-diagnoses>
+                </v-tab-item>
+                <v-tab-item>
+                  <tb-admissions
+                    :admissions="admissions"
+                    :userdata="service.patient"
+                  ></tb-admissions>
+                </v-tab-item>
+                <v-tab-item>
+                  <h1>Service Charges</h1>
+                </v-tab-item>
+                <v-tab-item>
+                  <h1 class="pa-2">
+                    List of all service charges from
+                    <a
+                      href="https://github.com/ospic/platform/issues/139"
+                      target="_blank"
+                      >Master price database table</a
+                    >, written in General Ledger
+                  </h1>
+                </v-tab-item>
+              </v-tabs-items>
             </v-card-text>
           </div>
         </v-list>

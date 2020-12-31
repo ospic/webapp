@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="breadcrumb flat ">
+    <div class="breadcrumb ">
       <router-link to="/">Dashboard</router-link>
       <router-link to="/oppointemnts" class="active">Appointments</router-link>
     </div>

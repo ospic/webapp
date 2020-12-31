@@ -4,8 +4,8 @@
       <v-row no-gutters>
         <v-col cols="12" md="11" sm="11">
           <table
-            style="width:60%; text-align: start; background-color: #FAFAFA"
-            class="pa-3"
+            style="width:100%; text-align: start; background-color: #FAFAFA"
+            class="pa-2"
           >
             <tr v-if="patient.id">
               <td id="id" class="font-weight-black">ID:</td>

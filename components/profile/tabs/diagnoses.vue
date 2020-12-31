@@ -1,7 +1,7 @@
-<template
-  ><v-container fluid>
+<template>
+  <v-container fluid class="">
     <div class="d-flex justify-start ">
-      <v-row justify="start" class="ml-5 my-2 ">
+      <v-row justify="start" class="ml-5 ma-4 ">
         <v-dialog v-model="dialog" persistent max-width="600px">
           <template v-slot:activator="{ on, attrs }">
             <v-btn color="primary" v-on="on" v-bind="attrs" v-if="isActive">

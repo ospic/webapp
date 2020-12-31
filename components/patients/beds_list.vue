@@ -5,8 +5,8 @@
         <h3>{{ ward.name }}</h3>
       </legend>
       <v-container fluid>
-        <v-row align="start" align-content="stretch" justify="start" dense>
-          <v-col v-for="(bed, i) in ward.beds" cols="12" sm="6" md="2" :key="i">
+        <v-row align="start" align-content="start" justify="start" dense wrap>
+          <v-col v-for="(bed, i) in ward.beds" cols="12" sm="4" md="2" :key="i">
             <v-tooltip
               v-if="bed.isOccupied"
               right
@@ -96,7 +96,7 @@
               </div>
             </v-tooltip>
 
-            <v-btn v-else class="ma-2" outlined color="green">
+            <v-btn v-else class="ma-0" outlined color="green">
               {{ bed.identifier }}&nbsp;&nbsp;
               <v-icon>mdi-bed-queen-outline</v-icon>
             </v-btn>

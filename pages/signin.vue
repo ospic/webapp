@@ -1,8 +1,8 @@
 <template>
   <v-container class="fill-height" fluid>
-    <v-row align="center" class="justify-center" justify="center">
-      <v-col cols="12" sm="4" md="4">
-        <v-card class="elevation-12" max-width="400">
+    <v-row align="center" class="justify-center" justify="center" no-gutters>
+      <v-col cols="12" class="d-flex justify-space-around">
+        <v-card class="elevation-12">
           <v-toolbar prominent :src="image" flat>
             <v-toolbar-title color="white" dense>
               <img

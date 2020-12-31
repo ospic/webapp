@@ -1,8 +1,10 @@
 <template>
   <div>
-    <div class="breadcrumb flat" v-if="ward != null">
+    <div class="breadcrumb" v-if="ward != null">
       <router-link to="/">Dashboard</router-link>
-      <router-link to="/inventory">Inventory</router-link>
+      <router-link v-show="!this.$vuetify.breakpoint.mobile" to="/inventory"
+        >Inventory</router-link
+      >
       <router-link to="/inventory/ward">Wards</router-link>
       <router-link to="/inventory/ward" class="active">{{
         ward.name
