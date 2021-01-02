@@ -3,7 +3,8 @@
     dense
     :headers="headers"
     :items="smsconfigurations"
-    sort-by="id"
+    sort-by="isActive"
+    sort-desc="true"
     class="elevation-1"
   >
     <template v-slot:top>
@@ -88,6 +89,7 @@
               <v-btn color="warning" x-small @click="deleteItemConfirm">{{
                 $t("label.button.btnyes")
               }}</v-btn>
+
               <v-spacer></v-spacer>
             </v-card-actions>
           </v-card>
@@ -95,6 +97,29 @@
       </v-toolbar>
     </template>
     <template v-slot:[`item.actions`]="{ item }">
+      <v-tooltip bottom v-if="!item.isActive">
+        <template v-slot:activator="{ on, attrs }">
+          <v-icon v-bind="attrs" v-on="on" small @click="activateItem(item.id)">
+            mdi-power
+          </v-icon>
+        </template>
+        <span>{{ $t("label.tooltip.activate") }}</span>
+      </v-tooltip>
+      <v-tooltip bottom v-else>
+        <template v-slot:activator="{ on, attrs }">
+          <v-icon
+            v-bind="attrs"
+            v-on="on"
+            color="warning"
+            small
+            @click="activateItem(item.id)"
+          >
+            mdi-circle
+          </v-icon>
+        </template>
+        <span>{{ $t("label.tooltip.active") }}</span>
+      </v-tooltip>
+
       <v-icon small class="mr-2" @click="editItem(item)">
         mdi-pencil
       </v-icon>
@@ -169,6 +194,12 @@ export default {
       this.editedIndex = this.smsconfigurations.indexOf(item);
       this.editedItem = Object.assign({}, item);
       this.dialogDelete = true;
+    },
+    activateItem(id) {
+      console.log(id);
+      this.$store.dispatch("activate_sms_configuration", id).then(() => {
+        this.updatedata();
+      });
     },
 
     deleteItemConfirm() {

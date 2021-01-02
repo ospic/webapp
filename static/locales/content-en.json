@@ -74,7 +74,9 @@
       "gendermale":"Male",
       "genderfemale":"Female",
       "genderother":"Other",
-      "edit":"Edit"
+      "edit":"Edit",
+      "activate":"Activate",
+      "active":"Active"
     },
     "titles":{
       "settings":"Settings",
