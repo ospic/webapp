@@ -8,16 +8,16 @@ const state = () => ({
 });
 
 const mutations = {
-  [mutation.RETRIEVE_WARDS](state) {
+  [mutation.GET_WARDS](state) {
     state.showLoader = true;
   },
-  [mutation.RETRIEVE_WARDS_FAILED](state) {
+  [mutation.GET_WARDS_FAILED](state) {
     state.showLoader = false;
   },
-  [mutation.RETRIEVE_WARDS_ERROR](state) {
+  [mutation.GET_WARDS_ERROR](state) {
     state.showLoader = false;
   },
-  [mutation.RETRIEVE_WARDS_SUCCESS](state, payload) {
+  [mutation.GET_WARDS_SUCCESS](state, payload) {
     state.showLoader = false;
     state.wards = payload;
 
@@ -41,20 +41,20 @@ const mutations = {
 
 const actions = {
   async retrieve_all_wards({ commit }) {
-    commit(mutation.RETRIEVE_WARDS);
+    commit(mutation.GET_WARDS);
     await this.$api.$get(`wards/beds/`)
       .then(response => {
-        commit(mutation.RETRIEVE_WARDS_SUCCESS, response);
+        commit(mutation.GET_WARDS_SUCCESS, response);
 
       }).catch(error => {
-        commit(mutation.RETRIEVE_WARDS_ERROR);
+        commit(mutation.GET_WARDS_ERROR);
         console.log(error);
 
       });
 
   },
   async retrieve_all_ward_with_beds({ commit }) {
-    commit(mutation.RETRIEVE_WARDS);
+    commit(mutation.GET_WARDS);
     await this.$api.$get(`wards/`)
       .then(response => {
         commit(mutation.GET_BEDS_SUCCESS, response);
