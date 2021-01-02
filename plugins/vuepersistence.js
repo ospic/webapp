@@ -8,12 +8,12 @@ export default ({ store }) => {
       paths: [
         "authentication", "inventory", "profile", "diagnoses",
         "templates", "users", "patients", "documents", "statistics", "theme", "smsconfiguration"],
-      /**storage: {
+      storage: {
         getItem: key => ls.get(key),
         setItem: (key, value) => ls.set(key, value),
         removeItem: key => ls.remove(key)
       }
-      **/
+
     })(store);
   });
 };
