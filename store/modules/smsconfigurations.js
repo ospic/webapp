@@ -35,6 +35,36 @@ const mutations = {
     state.showLoader = false;
   },
 
+  /**Update SMS configurations */
+  [mutation.UPDATE_SMS_CONFIG](state) {
+    state.showLoader = true;
+  },
+  [mutation.UPDATE_SMS_CONFIG_FAILED](state) {
+    state.showLoader = false;
+  },
+  [mutation.UPDATE_SMS_CONFIG_ERROR](state) {
+    state.showLoader = false;
+  },
+  [mutation.UPDATE_SMS_CONFIG_SUCCESS](state, payload) {
+    state.showLoader = false;
+  },
+
+  /**Activate SMS configurations */
+
+  /**Update SMS configurations */
+  [mutation.ACTIVATE_SMS_CONFIG](state) {
+    state.showLoader = true;
+  },
+  [mutation.ACTIVATE_SMS_CONFIG_FAILED](state) {
+    state.showLoader = false;
+  },
+  [mutation.ACTIVATE_SMS_CONFIG_ERROR](state) {
+    state.showLoader = false;
+  },
+  [mutation.ACTIVATE_SMS_CONFIG_SUCCESS](state, payload) {
+    state.showLoader = false;
+  },
+
 }
 const actions = {
   async fetch_sms_configurations({ commit }) {
@@ -57,6 +87,30 @@ const actions = {
         commit(mutation.CREATE_SMS_CONFIG_SUCCESS, response);
       }).catch(error => {
         commit(mutation.CREATE_SMS_CONFIG_FAILED);
+        console.log(error);
+
+      });
+
+  },
+  async update_sms_configuration({ commit }, payload) {
+    commit(mutation.UPDATE_SMS_CONFIG);
+    await this.$api.$put(`configurations/sms/${payload.id}/`, payload)
+      .then(response => {
+        commit(mutation.UPDATE_SMS_CONFIG_SUCCESS, response);
+      }).catch(error => {
+        commit(mutation.UPDATE_SMS_CONFIG_FAILED);
+        console.log(error);
+
+      });
+
+  },
+  async activate_sms_configuration({ commit }, id) {
+    commit(mutation.ACTIVATE_SMS_CONFIG);
+    await this.$api.$put(`configurations/sms/${id}/activate`)
+      .then(response => {
+        commit(mutation.ACTIVATE_SMS_CONFIG_SUCCESS, response);
+      }).catch(error => {
+        commit(mutation.ACTIVATE_SMS_CONFIG_FAILED);
         console.log(error);
 
       });

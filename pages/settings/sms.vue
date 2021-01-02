@@ -32,38 +32,35 @@
 
             <v-card-text>
               <v-container>
-                <v-form ref="form" v-model="valid" lazy-validation>
-                  <v-row>
-                    <v-col cols="12" sm="6" md="6">
-                      <v-text-field
-                        v-model="editedItem.name"
-                        label="Name"
-                        required
-                      ></v-text-field>
-                    </v-col>
-                    <v-col cols="12" sm="6" md="6">
-                      <v-text-field
-                        v-model="editedItem.sid"
-                        label="SID"
-                        required
-                      ></v-text-field>
-                    </v-col>
-                    <v-col cols="12" sm="6" md="6">
-                      <v-text-field
-                        v-model="editedItem.token"
-                        label="Token"
-                        required
-                      ></v-text-field>
-                    </v-col>
-                    <v-col cols="12" sm="6" md="6">
-                      <v-text-field
-                        v-model="editedItem.phoneNumber"
-                        label="Phone number"
-                        required
-                      ></v-text-field>
-                    </v-col>
-                  </v-row>
-                </v-form>
+                <v-row>
+                  <v-col cols="12" sm="6" md="6">
+                    <v-text-field
+                      v-model="editedItem.name"
+                      label="Name"
+                    ></v-text-field>
+                  </v-col>
+                  <v-col cols="12" sm="6" md="6">
+                    <v-text-field
+                      v-model="editedItem.sid"
+                      label="SID"
+                      required
+                    ></v-text-field>
+                  </v-col>
+                  <v-col cols="12" sm="6" md="6">
+                    <v-text-field
+                      v-model="editedItem.token"
+                      label="Token"
+                      required
+                    ></v-text-field>
+                  </v-col>
+                  <v-col cols="12" sm="6" md="6">
+                    <v-text-field
+                      v-model="editedItem.phoneNumber"
+                      label="Phone number"
+                      required
+                    ></v-text-field>
+                  </v-col>
+                </v-row>
               </v-container>
             </v-card-text>
 
@@ -118,7 +115,6 @@ export default {
     dialog: false,
     dialogDelete: false,
     editedIndex: -1,
-    valid: true,
     headers: [
       {
         text: "ID",
@@ -160,6 +156,9 @@ export default {
     this.$store.dispatch("fetch_sms_configurations");
   },
   methods: {
+    updatedata() {
+      this.$store.dispatch("fetch_sms_configurations");
+    },
     editItem(item) {
       this.editedIndex = this.smsconfigurations.indexOf(item);
       this.editedItem = Object.assign({}, item);
@@ -183,7 +182,6 @@ export default {
         this.editedItem = Object.assign({}, this.defaultItem);
         this.editedIndex = -1;
       });
-      this.$refs.form.reset();
     },
 
     closeDelete() {
@@ -196,16 +194,20 @@ export default {
 
     save() {
       if (this.editedIndex > -1) {
-        console.log(this.editedItem);
-        // Object.assign(this.smsconfigurations[this.editedIndex], this.editedItem);
+        this.$store
+          .dispatch("update_sms_configuration", this.editedItem)
+          .then(() => {
+            this.updatedata();
+          });
         this.close();
       } else {
         delete this.editedItem.id;
-        if (this.$refs.form.validate()) {
-          console.log(this.editedItem);
-          // this.$store.dispatch("create_sms_configuration", this.editedItem);
-          this.close();
-        }
+        this.$store
+          .dispatch("create_sms_configuration", this.editedItem)
+          .then(() => {
+            this.updatedata();
+          });
+        this.close();
       }
     }
   },
