@@ -99,7 +99,11 @@
       "medicalstock":"Medical Stock",
       "medicine":"Medicine",
       "pharmacy":"Pharmacy",
-      "bloodbank":"Blood Bank"
+      "bloodbank":"Blood Bank",
+      "smsconfigurations":"SMS Configurations",
+      "newsmsconfigurations":"New SMS Configuration",
+      "updatesmsconfigurations":"Update SMS Configuration"
+      
     }
   }
 }
