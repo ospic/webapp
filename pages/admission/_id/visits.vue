@@ -14,7 +14,7 @@
       >
     </div>
     <v-container fluid>
-      <v-card class="mx-auto ">
+      <v-card class="mx-auto default">
         <v-card-title class="primary white--text">
           <span class="title"
             >Admission {{ this.$route.params.id }} Visits</span

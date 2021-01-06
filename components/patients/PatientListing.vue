@@ -2,6 +2,7 @@
   <v-card>
     <v-data-table
       dense
+      class="default"
       :headers="headers"
       :items="datalist"
       :search="search"
@@ -11,7 +12,7 @@
       @update:page="updatePagination"
     >
       <template v-slot:top>
-        <v-toolbar flat>
+        <v-toolbar flat class="default">
           <v-text-field
             v-model="search"
             append-icon="search"

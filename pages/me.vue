@@ -5,7 +5,7 @@
       <router-link to="/me" class="active">Profile</router-link>
     </div>
     <v-container fluid>
-      <v-card class="mx-auto">
+      <v-card class="mx-auto default">
         <v-toolbar color="primary" flat>
           <v-toolbar-title> User Profile</v-toolbar-title>
 

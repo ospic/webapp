@@ -8,7 +8,7 @@
       }}</router-link>
     </div>
 
-    <v-card>
+    <v-card class="mx-auto default">
       <div v-if="userdata !== null">
         <card-info
           :userdata="userdata"

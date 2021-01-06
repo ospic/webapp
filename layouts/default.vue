@@ -389,7 +389,7 @@ export default {
       if (`${mode}` === "true") {
         this.$vuetify.theme.dark = true;
         this.$store.dispatch("change_to_dark");
-        document.body.style.background = "#354141";
+        document.body.style.background = "#1d3333";
       } else {
         this.$store.dispatch("change_to_light");
         this.$vuetify.theme.dark = false;

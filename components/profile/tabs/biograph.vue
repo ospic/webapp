@@ -1,5 +1,5 @@
 <template>
-  <v-card flat>
+  <v-card flat class="mx-auto default">
     <v-card-text>
       <v-row>
         <v-spacer></v-spacer>

@@ -1,7 +1,7 @@
 <template>
   <v-col class="pa-1" cols="12">
     <v-card
-      class="mx-auto"
+      class="mx-auto default darken-1"
       :outlined="!data.isActive"
       :elevation="data.isActive ? 2 : 0"
       :raised="data.isActive"

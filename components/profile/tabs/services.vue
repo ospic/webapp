@@ -9,6 +9,7 @@
     <div v-else>
       <v-data-table
         dense
+        class="default"
         :headers="headers"
         :items="services"
         :search="search"

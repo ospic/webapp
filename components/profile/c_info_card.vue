@@ -5,7 +5,7 @@
         <v-container py-0>
           <v-layout wrap>
             <v-flex xs12 md12 class="pa-0 ma-0">
-              <v-card class="mx-auto" flat>
+              <v-card class="mx-auto default" flat>
                 <v-img
                   :src="entityThumbNail"
                   lazy-src="https://boylancode.com/wp-content/uploads/2018/09/Man-Placeholder-Headshot.png"
@@ -27,7 +27,7 @@
                     </v-row>
                   </template>
                   <v-card-title>
-                    <v-list three-line flat width="100%">
+                    <v-list three-line flat width="100%" class="default">
                       <v-list-item>
                         <v-list-item-avatar>
                           <v-img :src="entityThumbNail"></v-img>
@@ -152,7 +152,10 @@
                     >
                   </v-flex>
                   <v-flex xs12 md12 class="ma-0 pa-0">
-                    <v-type-divider type="Info"></v-type-divider>
+                    <v-type-divider
+                      type="Info"
+                      class="default"
+                    ></v-type-divider>
                   </v-flex>
                   <v-flex xs12 md12 class="ma-0 pa-0" v-if="address !== null">
                     <v-address-card :address="address"></v-address-card>
@@ -163,55 +166,41 @@
           </v-layout>
         </v-container>
       </v-flex>
-      <v-flex xs12 md9 sm12 class="ma-0 pa-0 lighten-2">
-        <v-card flat class="ma-0 pa-0">
-          <v-list class="ma-0 pa-0">
-            <v-list-item-group color="primary">
-              <v-list-item inactive class="ma-0 pa-0" :ripple="false">
-                <v-list-item-content class="ma-0 pa-0">
-                  <v-tabs
-                    slider-color="secondary"
-                    background-color="primary"
-                    color="secondary"
-                    left
-                    v-model="tab"
-                    class="elevation-2"
-                  >
-                    <v-tab class="ffont-weight-normal">
-                      <span><v-icon small left>mdi-eye</v-icon>Biography</span>
-                    </v-tab>
+      <v-flex xs12 md9 sm12 class="ma-0 pa-0 default">
+        <v-tabs
+          slider-color="primary"
+          background-color="default"
+          left
+          v-model="tab"
+          class="elevation-2"
+        >
+          <v-tab class="ffont-weight-normal">
+            <span><v-icon small left>mdi-eye</v-icon>Biography</span>
+          </v-tab>
 
-                    <v-tab
-                      class="font-weight-normal"
-                      @click.stop="getPatientServices()"
-                    >
-                      <v-icon small left>mdi-plus</v-icon>
-                      Services
-                    </v-tab>
-                  </v-tabs>
-                  <v-tabs-items vertical v-model="tab">
-                    <v-tab-item>
-                      <tb-biograph :patient="userdata"></tb-biograph>
-                    </v-tab-item>
+          <v-tab class="font-weight-normal" @click.stop="getPatientServices()">
+            <v-icon small left>mdi-plus</v-icon>
+            Services
+          </v-tab>
+        </v-tabs>
+        <v-tabs-items vertical v-model="tab">
+          <v-tab-item class="default">
+            <tb-biograph :patient="userdata"></tb-biograph>
+          </v-tab-item>
 
-                    <v-tab-item>
-                      <div class="pa-2 ma-2">
-                        <v-btn
-                          class="primary small"
-                          small
-                          v-if="!userdata.isActive"
-                          @click.stop="initiateServiceInstance()"
-                          >Initiate service</v-btn
-                        >
-                        <tb-services :services="services"></tb-services>
-                      </div>
-                    </v-tab-item>
-                  </v-tabs-items>
-                </v-list-item-content>
-              </v-list-item>
-            </v-list-item-group>
-          </v-list>
-        </v-card>
+          <v-tab-item class="default">
+            <div class="">
+              <v-btn
+                class="primary small ma-2"
+                small
+                v-if="!userdata.isActive"
+                @click.stop="initiateServiceInstance()"
+                >Initiate service</v-btn
+              >
+              <tb-services :services="services"></tb-services>
+            </div>
+          </v-tab-item>
+        </v-tabs-items>
       </v-flex>
     </v-layout>
   </v-container>

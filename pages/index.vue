@@ -22,7 +22,7 @@
           <v-hover>
             <template v-slot:default="{ hover }">
               <v-card
-                class="mr-1 ml-1 mx-auto "
+                class="mr-1 ml-1 mx-auto default"
                 :elevation="hover ? 3 : 1"
                 dense
               >
@@ -39,7 +39,7 @@
       </v-row>
       <v-row justify="start" align="start" class="mt-3">
         <v-col cols="12" sm="12" v-if="bsc_size > 0" class="ma-0 pa-0 mt-3">
-          <v-card class="mr-1 ml-1 " dense>
+          <v-card class="mr-1 ml-1 mx-auto default " dense>
             <area-chart-spline
               :data="bsc_chart"
               class="ma-0 "
@@ -47,23 +47,23 @@
           </v-card>
         </v-col>
         <v-col cols="12" sm="12" md="3">
-          <v-card class="mx-auto">
+          <v-card class=" mx-auto default">
             <bar-chart :data="apexdata"></bar-chart>
           </v-card>
         </v-col>
         <v-col cols="12" sm="12" md="3">
-          <v-card class="mx-auto">
+          <v-card class="mx-auto default">
             <bar-chart :data="apexdata"></bar-chart>
           </v-card>
         </v-col>
 
         <v-col cols="12" sm="12" md="3">
-          <v-card class="mx-auto" min-height="365">
+          <v-card class="mx-auto default" min-height="365">
             <pie-chart :data="pie_options" :height="300"></pie-chart>
           </v-card>
         </v-col>
         <v-col cols="12" sm="12" md="3">
-          <v-card class="mx-auto">
+          <v-card class="mx-auto default">
             <v-card-text>
               <pie-chart :data="pie_options" style="height: 200px"></pie-chart>
             </v-card-text>
