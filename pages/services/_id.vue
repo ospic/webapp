@@ -14,7 +14,7 @@
     </div>
 
     <v-flex class="ma-0 pa-0 default">
-      <v-card flat class="ma-0 pa-0 mx-auto default">
+      <v-card flat class="ma-0 pa-0 mx-auto ">
         <v-list class="ma-0 pa-0">
           <v-progress-circular
             v-if="service == null"
@@ -29,7 +29,7 @@
                   <v-icon :color="service.isActive ? 'green' : 'gray'"
                     >mdi-circle</v-icon
                   >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <v-dialog v-model="dialog" persistent max-width="500">
+                  <v-dialog v-model="dialog" persistent dark max-width="500">
                     <template v-slot:activator="{ on, attrs }">
                       <v-btn
                         small
@@ -40,38 +40,43 @@
                         >End service</v-btn
                       >
                     </template>
-                    <v-card>
-                      <v-card-title class="headline">
-                        Are you sure you want to end this service?
+                    <v-card flat class=" text-xs-center">
+                      <v-card-title primary-title class="justify-center">
+                        <div>
+                          <h2 class="font-weight-black">End service ?</h2>
+                        </div>
                       </v-card-title>
+
                       <v-card-text>
-                        Ending this service will make this service instance
-                        <strong class="font-weight-normal">
-                          No. {{ service.id }}
-                        </strong>
-                        &nbsp;for client
-                        <strong class="font-weight-normal">{{
-                          service.patient.name
-                        }}</strong
-                        >&nbsp;as inactive for new admissions, diagnoses,
-                        admission visits, Service costs etc. Click agree if you
-                        are okay with this or Disagree to cancel this operation
+                        <p class="text-justify font-weight-normal">
+                          Ending this service will make this service instance
+                          <strong> No. {{ service.id }} </strong>
+                          &nbsp;for client
+                          <strong class="font-weight-normal">{{
+                            service.patient.name
+                          }}</strong
+                          >&nbsp;as inactive for new admissions, diagnoses,
+                          admission visits, Service costs etc. Click agree if
+                          you are okay with this or Disagree to cancel this
+                          operation
+                        </p>
                       </v-card-text>
                       <v-card-actions>
                         <v-spacer></v-spacer>
                         <v-btn
-                          color="green darken-1"
-                          text
                           @click="dialog = false"
+                          class="font-weight-bold"
+                          large
                         >
-                          Disagree
+                          Discard
                         </v-btn>
                         <v-btn
-                          color="green darken-1"
-                          text
+                          color="primary darken-2"
+                          class="font-weight-bold"
                           @click.stop="endThisService"
+                          large
                         >
-                          Agree
+                          End service
                         </v-btn>
                       </v-card-actions>
                     </v-card>
