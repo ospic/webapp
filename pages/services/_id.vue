@@ -43,7 +43,11 @@
                     <v-card flat class=" text-xs-center">
                       <v-card-title primary-title class="justify-center">
                         <div>
-                          <h2 class="font-weight-black">End service ?</h2>
+                          <h2 class="font-weight-black">
+                            <v-icon size="48" color="yellow"
+                              >mdi-alert-octagon-outline</v-icon
+                            >&nbsp;&nbsp;End service ?
+                          </h2>
                         </div>
                       </v-card-title>
 
