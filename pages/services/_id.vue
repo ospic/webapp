@@ -13,8 +13,8 @@
       >
     </div>
 
-    <v-flex class="ma-0 pa-0 lighten-2">
-      <v-card flat class="ma-0 pa-0">
+    <v-flex class="ma-0 pa-0 default">
+      <v-card flat class="ma-0 pa-0 mx-auto default">
         <v-list class="ma-0 pa-0">
           <v-progress-circular
             v-if="service == null"
@@ -141,10 +141,9 @@
             </v-card-title>
             <v-card-text>
               <v-tabs
-                slider-color="white"
-                background-color="primary"
+                slider-color="primary"
+                background-color="default"
                 slider-size="3"
-                color="white"
                 left
                 v-model="tab"
                 class="elevation-2"
@@ -174,7 +173,7 @@
                   Medicines
                 </v-tab>
               </v-tabs>
-              <v-tabs-items vertical v-model="tab">
+              <v-tabs-items vertical v-model="tab" class="default">
                 <v-tab-item>
                   <tb-biograph :patient="service.patient"></tb-biograph>
                 </v-tab-item>

@@ -5,8 +5,8 @@
       <router-link to="/patients" class="active">Patients</router-link>
     </div>
 
-    <v-card>
-      <v-tabs color="deep-purple accent-4" right>
+    <v-card class="mx-auto default">
+      <v-tabs background-color="default" right>
         <v-tab v-if="unassigned.length > 0">
           <v-badge
             color="green"

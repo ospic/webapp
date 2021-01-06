@@ -7,7 +7,7 @@
         >Create new Patient</router-link
       >
     </div>
-    <v-card class="mx-auto">
+    <v-card class="mx-auto default ">
       <tool-bar :title="title"></tool-bar>
 
       <v-form ref="form" v-model="valid" lazy-validation>

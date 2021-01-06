@@ -1,5 +1,5 @@
 <template>
-  <v-card class="mx-auto">
+  <v-card class="mx-auto default ">
     <v-progress-circular
       v-if="services.length == null"
       indeterminate

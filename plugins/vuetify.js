@@ -18,7 +18,7 @@ export default (ctx) => {
           info: '#2196F3',
           warning: '#FB8C00',
           error: '#9D0000',
-          default: "#FFFFFF",
+          default: "#354141",
           milky: "#01242F",
         },
         light: {
