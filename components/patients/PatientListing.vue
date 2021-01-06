@@ -89,7 +89,11 @@ export default {
       { text: "Guardian", value: "guardianName" },
       { text: "Status", value: "isAdmitted", sortable: true },
       { text: "Address", value: "address", sortable: true },
-      { text: "Phone", value: "phone" }
+      { text: "Phone", value: "phone" },
+      { text: "Created On", value: "createdDate" },
+      { text: "Updated On", value: "lastModifiedDate" },
+      { text: "Created By", value: "createdBy" },
+      { text: "Updated By", value: "lastModifiedBy" }
     ],
     desserts: [],
     editedIndex: -1,
