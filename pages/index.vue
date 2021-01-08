@@ -392,7 +392,7 @@ export default {
 
     bsc_size: {
       get() {
-        return this.patienttrends.length;
+        return this.patienttrends == undefined ? 0 : this.patienttrends.length;
       }
     },
     bsc_chart: {
