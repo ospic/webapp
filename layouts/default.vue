@@ -414,8 +414,7 @@ export default {
       vm.sync = !vm.sync;
       await Promise.all([
         vm.$store.dispatch("retrievepatients"),
-        vm.$store.dispatch("retrievephysicians"),
-        vm.$store.dispatch("get_patient_trends")
+        vm.$store.dispatch("retrievephysicians")
       ]).then(function() {
         console.log("Loading complete...");
       });

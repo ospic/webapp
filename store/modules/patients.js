@@ -4,7 +4,6 @@ const state = () => ({
   patient: {},
   patients: [],
   trends: [],
-  statistics: []
 });
 
 const mutations = {
@@ -117,20 +116,6 @@ const mutations = {
     this.$router.push('/services/' + payload);
   },
 
-  //End patient admission
-  [mutation.STATISTICS](state) {
-    state.showLoader = true;
-  },
-  [mutation.STATISTICS_FAILED](state) {
-    state.showLoader = false;
-  },
-  [mutation.STATISTICS_ERROR](state) {
-    state.showLoader = false;
-  },
-  [mutation.STATISTICS_SUCCESS](state, payload) {
-    state.showLoader = false;
-    state.statistics = payload;
-  },
 }
 const actions = {
   async retrievepatients({ commit }) {
@@ -231,25 +216,11 @@ const actions = {
       });
 
   },
-  async get_patient_statistics({ commit }) {
-    commit(mutation.STATISTICS);
-    await this.$api.$get('patients/statistics')
-      .then(response => {
-        commit(mutation.STATISTICS_SUCCESS, response);
-      }).catch(error => {
-        commit(mutation.STATISTICS_ERROR);
-        console.log(error);
 
-      });
-
-  }
 }
 const getters = {
   patients: function (state) {
     return state.patients.reverse();
-  },
-  statistic: function (state) {
-    return state.statistics[0];
   },
   assigned: function (state) {
     return state.patients.filter(patient => patient.isActive);
