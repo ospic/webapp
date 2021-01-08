@@ -1,34 +1,23 @@
 <template>
-  <div>
-    <div class="breadcrumb  ">
-      <router-link to="/">Dashboard</router-link>
-      <router-link to="/opd" class="active"
-        >Outpatient Department(OPD)</router-link
-      >
-    </div>
-    <div v-if="opdpatients.length !== 0">
-      <patient-list
-        :datalist="opdpatients"
-        :pagetitle="pagetitle"
-      ></patient-list>
-    </div>
-    <div v-else>{{ $t("label.message.nodataavailable") }}</div>
-  </div>
+  <v-progress-circular v-if="services == undefined"></v-progress-circular>
+  <servicescard-component v-else :services="services"></servicescard-component>
 </template>
 <script>
-import PatientListing from "@/components/patients/PatientListing";
+import ServiceCard from "@/components/profile/card_service";
 export default {
   components: {
-    "patient-list": PatientListing
+    "servicescard-component": ServiceCard
   },
-  data: () => ({
-    pagetitle: "OPD Center"
-  }),
+  data: function() {
+    return {};
+  },
+  created() {
+    this.$store.dispatch("retrieve_active_opd_services");
+  },
   computed: {
-    opdpatients: {
-      get() {
-        return this.$store.getters.opdpatients;
-      }
+    services() {
+      var data = this.$store.getters.opds;
+      return data;
     }
   }
 };

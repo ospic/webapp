@@ -1,34 +1,23 @@
 <template>
-  <div>
-    <div class="breadcrumb ">
-      <router-link to="/">Dashboard</router-link>
-      <router-link to="/ipd" class="active"
-        >Inpatient Department(IPD)</router-link
-      >
-    </div>
-    <div v-if="ipdpatients.length !== 0">
-      <patient-list
-        :datalist="ipdpatients"
-        :pagetitle="pagetitle"
-      ></patient-list>
-    </div>
-    <div v-else>{{ $t("label.message.nodataavailable") }}</div>
-  </div>
+  <v-progress-circular v-if="services == undefined"></v-progress-circular>
+  <servicescard-component v-else :services="services"></servicescard-component>
 </template>
 <script>
-import PatientListing from "@/components/patients/PatientListing";
+import ServiceCard from "@/components/profile/card_service";
 export default {
   components: {
-    "patient-list": PatientListing
+    "servicescard-component": ServiceCard
   },
-  data: () => ({
-    pagetitle: "IPD Center"
-  }),
+  data: function() {
+    return {};
+  },
+  created() {
+    this.$store.dispatch("retrieve_active_ipd_services");
+  },
   computed: {
-    ipdpatients: {
-      get() {
-        return this.$store.getters.ipdpatients;
-      }
+    services() {
+      var data = this.$store.getters.ipds;
+      return data;
     }
   }
 };
