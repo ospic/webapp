@@ -2,17 +2,50 @@
   <v-container class="ma-2 pa-0 px-2" fluid>
     <div v-if="statistics">
       <v-row justify="start" align="start" class="mt-2">
-        <template v-for="(item, i) in summary_items">
+        <template>
+          <v-progress-circular
+            v-if="patient == undefined"
+          ></v-progress-circular>
           <summarycard
+            v-else
+            v-for="(item, i) in patient_items"
             :key="i"
             :item="item"
-            v-if="item.value !== 0"
+          ></summarycard>
+          <v-progress-circular
+            v-if="services == undefined"
+          ></v-progress-circular>
+          <summarycard
+            v-else
+            v-for="(item, i) in service_items"
+            :key="item.title"
+            :item="item"
+          ></summarycard>
+
+          <v-progress-circular v-if="users == undefined"></v-progress-circular>
+
+          <summarycard
+            v-else
+            v-for="(item, i) in user_items"
+            :key="item.title"
+            :item="item"
+          ></summarycard>
+
+          <v-progress-circular
+            v-if="ward == null || ward == undefined"
+          ></v-progress-circular>
+
+          <summarycard
+            v-else
+            v-for="(item, i) in ward_bed"
+            :key="item.title"
+            :item="item"
           ></summarycard>
         </template>
       </v-row>
-      <v-row justify="start" align="start" class="mt-3">
+      <v-row justify="start" align="start" class="mt-3" v-if="patienttrends">
         <v-col
-          v-for="(item, i) in trend_items"
+          v-for="(item, i) in patient_trends"
           :key="i"
           cols="12"
           sm="6"
@@ -87,6 +120,7 @@ import BarChartComponent from "@/components/charts/ApexLineChart";
 import SummaryCardComponent from "@/components/statistics/dashboard_card";
 import DonutChartCompoent from "@/components/charts/DonutChartComponent";
 import AreaChartSpline from "@/components/charts/area_chart_spline";
+import { mapGetters } from "vuex";
 export default {
   components: {
     "pie-chart": PieChartComponent,
@@ -126,8 +160,7 @@ export default {
       vm.sync = !vm.sync;
       await Promise.all([
         vm.$store.dispatch("retrievephysicians"),
-        vm.$store.dispatch("get_patient_trends"),
-        vm.$store.dispatch("get_patient_statistics")
+        vm.$store.dispatch("retrieve_statistics")
       ]).then(function() {
         console.log("Loading complete...");
       });
@@ -141,29 +174,30 @@ export default {
   },
 
   computed: {
+    ...mapGetters({
+      staffs: "staffStatistics",
+      servicetrends: "serviceTrends",
+      users: "userStatistics",
+      patient: "patientStatistics",
+      ward: "wardstatistics",
+      services: "servicestatistics",
+      patienttrends: "patienttrends"
+    }),
     statistics() {
-      return this.$store.getters.statistic;
+      return this.$store.getters.statistics;
     },
-    trend_items: {
+    patient_trends: {
       get() {
         return [
           {
-            series: [
-              this.statistics.totalMale,
-              this.statistics.totalFemale,
-              this.statistics.totalUnspecified
-            ],
+            series: [this.patient.totalMale, this.patient.totalFemale],
             chartOptions: {
-              labels: [
-                "Male Composition",
-                "Female Composition",
-                "Others Composition"
-              ]
+              labels: ["Male Composition", "Female Composition"]
             },
             title: "Gender Composition"
           },
           {
-            series: [this.statistics.totalOpd, this.statistics.totalIpd],
+            series: [this.services.totalOpd, this.services.totalIpd],
             chartOptions: {
               labels: [
                 "Out Patient Department(OPD)",
@@ -203,44 +237,116 @@ export default {
         ];
       }
     },
-    summary_items: {
+    patient_items: {
       get() {
         return [
           {
             title: "Overall Total Patients",
             subtitle: "Overall Total Patients",
-            value: this.statistics.total,
+            value: this.patient.total,
             icon: "mdi-account-group-outline",
             color: "blue"
           },
           {
-            title: "Assigned Patients",
-            subtitle: "Assigned patients",
+            title: "Males",
+            subtitle: "Male Patients",
+            value: this.patient.totalMale,
+            icon: "mdi-gender-male",
+            color: "indigo"
+          },
+          {
+            title: "Females",
+            subtitle: "Female patients",
+            value: this.patient.totalFemale,
+            icon: "mdi-gender-female",
+            color: "deep-orange"
+          },
+          {
+            title: "Others",
+            subtitle: "Special Gender",
+            value: this.patient.totalUnspecified,
+            icon: "mdi-gender-male-female",
+            color: "orange"
+          }
+        ];
+      }
+    },
+    user_items: {
+      get() {
+        return [
+          {
+            title: "Users",
+            subtitle: "Users",
+            value: this.users.totalUsers,
+            icon: "mdi-gender-male-female",
+            color: "orange"
+          },
+          {
+            title: "Staff's",
+            subtitle: "Staff's",
+            value: this.users.totalStaffs,
+            icon: "mdi-gender-male-female",
+            color: "orange"
+          }
+        ];
+      }
+    },
+    service_items: {
+      get() {
+        return [
+          /**Servrices */
+          {
+            title: "Total services",
+            subtitle: "Total services",
             measure: "p/d",
-            value: this.statistics.totalAssigned,
+            value: this.services.total,
             icon: "mdi-account-group-outline",
             color: "red"
           },
           {
-            title: "Unassigned Patients",
-            subtitle: "Unassigned Patients",
-            value: this.statistics.totalUnassigned,
+            title: "Active services",
+            subtitle: "Active services",
+            measure: "p/d",
+            value: this.services.totalActive,
+            icon: "mdi-account-group-outline",
+            color: "red"
+          },
+          {
+            title: "Inactive services",
+            subtitle: "Inactive services",
+            measure: "p/d",
+            value: this.services.totalInActive,
+            icon: "mdi-account-group-outline",
+            color: "red"
+          },
+          {
+            title: "Assigned services",
+            subtitle: "Assigned services",
+            measure: "p/d",
+            value: this.services.totalAssigned,
+            icon: "mdi-account-group-outline",
+            color: "red"
+          },
+          {
+            title: "Unassigned services",
+            subtitle: "Unassigned services",
+            value: this.services.totalUnAssigned,
             icon: "mdi-account-group-outline",
             color: "teal"
           },
           {
             title: " OPD",
-            subtitle: "OPD  Patients",
-            value: this.statistics.totalOpd,
+            subtitle: "OPD  services",
+            value: this.services.totalOpd,
             measure: "p/d",
             icon: "mdi-account-group-outline",
             color: "lime"
           },
           {
             title: "IPD ",
-            subtitle: "IPD  Patients",
+            subtitle: "IPD  services",
             measure: "p/d",
-            value: this.statistics.totalIpd,
+            value: this.services.totalIpd,
             icon: "mdi-account-group-outline",
             color: "green"
           },
@@ -250,46 +356,32 @@ export default {
             value: this.$store.getters.physicians.length,
             icon: "mdi-account-multiple",
             color: "light-blue"
-          },
+          }
+          /**Ward bed */
+        ];
+      }
+    },
+    ward_bed: {
+      get() {
+        return [
           {
-            title: "Males",
-            subtitle: "Male Patients",
-            value: this.statistics.totalMale,
-            icon: "mdi-gender-male",
-            color: "indigo"
-          },
-          {
-            title: "Females",
-            subtitle: "Female patients",
-            value: this.statistics.totalFemale,
-            icon: "mdi-gender-female",
-            color: "deep-orange"
-          },
-          {
-            title: "Others",
-            subtitle: "Special Gender",
-            value: this.statistics.totalUnspecified,
-            icon: "mdi-gender-male-female",
-            color: "orange"
-          },
-          {
-            title: "Success",
-            subtitle: "Success Responses",
-            value: "4245",
+            title: "Total beds",
+            subtitle: "Total beds",
+            value: this.ward.totalCount,
             icon: "mdi-select-group",
             color: "brown"
           },
           {
-            title: "Success",
-            subtitle: "Success Responses",
-            value: "4245",
+            title: "Occupied beds",
+            subtitle: "Occupied beds",
+            value: this.ward.totalOccupied,
             icon: "mdi-select-group",
             color: "grey"
           },
           {
-            title: "Average HT",
-            subtitle: "Average Handle Time",
-            value: "30 MIN",
+            title: "Un-Occupied beds",
+            subtitle: "Un-Occupied beds",
+            value: this.ward.totalUnOccupied,
             measure: "pt/min",
             icon: "mdi-select-group",
             color: "cyan"
@@ -297,6 +389,7 @@ export default {
         ];
       }
     },
+
     bsc_size: {
       get() {
         return this.$store.getters.trends.length;
