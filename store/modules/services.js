@@ -41,7 +41,7 @@ const actions = {
 
   async retrieve_active_opd_services({ commit }) {
     commit(mutation.GET_OPDSERVICES);
-    await this.$api.$get('services/?active=opdactive')
+    await this.$api.$get('services/?active=activeopd')
       .then(response => {
         console.log(response)
         commit(mutation.GET_OPDSERVICES_SUCCESS, response.body);
