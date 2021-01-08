@@ -392,12 +392,12 @@ export default {
 
     bsc_size: {
       get() {
-        return this.$store.getters.trends.length;
+        return this.patienttrends.length;
       }
     },
     bsc_chart: {
       get() {
-        var item = this.$store.getters.trends;
+        var item = this.patienttrends;
         var datatotal = new Array();
         var datamale = new Array();
         var datafemale = new Array();
