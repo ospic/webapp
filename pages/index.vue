@@ -59,11 +59,8 @@
                 :elevation="hover ? 3 : 1"
                 dense
               >
-                <v-card-text v-if="i % 2 === 0" class="ma-0 ">
+                <v-card-text class="ma-0 ">
                   <pie-chart :data="item" :height="200"></pie-chart>
-                </v-card-text>
-                <v-card-text v-else class="ma-0 ">
-                  <donutchart :data="item" :height="200"></donutchart>
                 </v-card-text>
               </v-card>
             </template>
@@ -192,7 +189,7 @@ export default {
           {
             series: [this.patient.totalMale, this.patient.totalFemale],
             chartOptions: {
-              labels: ["Male Composition", "Female Composition"]
+              labels: ["Male ", "Female"]
             },
             title: "Gender Composition"
           },
@@ -207,18 +204,21 @@ export default {
             title: "OPD Vs IPD in (%)"
           },
           {
-            series: [45, 62],
+            series: [this.services.totalActive, this.services.totalInActive],
             chartOptions: {
-              labels: ["Male", "Female"]
+              labels: ["Active", "Inactive"]
             },
-            title: "Overall Sex Trends"
+            title: "Service distributions"
           },
           {
-            series: [44, 55],
+            series: [
+              this.services.totalAssigned,
+              this.services.totalUnAssigned
+            ],
             chartOptions: {
-              labels: ["Male", "Female"]
+              labels: ["Assigned", "Un-Assigned"]
             },
-            title: "Patient Trends By"
+            title: "Service assignment"
           },
           {
             series: [12, 20, 37],

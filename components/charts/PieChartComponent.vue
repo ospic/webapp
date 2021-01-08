@@ -93,10 +93,10 @@ export default {
               offsetY: 0,
               floating: true,
               style:{
-            fontSize: '10px',
-            color: '#263238',
-            fontWeight: '12'
-          }
+                fontSize: '10px',
+                color: '#263238',
+                fontWeight: '12'
+                }
             },
 
       },
