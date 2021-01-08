@@ -1,6 +1,10 @@
 <template>
   <v-progress-circular v-if="services == undefined"></v-progress-circular>
-  <servicescard-component v-else :services="services"></servicescard-component>
+  <servicescard-component
+    v-else
+    :services="services"
+    title="Active OPD services"
+  ></servicescard-component>
 </template>
 <script>
 import ServiceCard from "@/components/profile/card_service";

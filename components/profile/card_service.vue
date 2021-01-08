@@ -18,6 +18,9 @@
       >
         <template v-slot:top>
           <v-toolbar flat>
+            <h2>
+              <strong>{{ title }}</strong>
+            </h2>
             <v-spacer></v-spacer>
             <v-text-field
               v-model="search"
@@ -57,6 +60,10 @@ export default {
     services: {
       type: Array,
       default: null
+    },
+    title: {
+      type: String,
+      default: "Services"
     }
   },
   data: () => ({
