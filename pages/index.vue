@@ -68,35 +68,17 @@
         </v-col>
       </v-row>
       <v-row justify="start" align="start" class="mt-3">
+        <v-col cols="12" sm="12" class="ma-0 pa-0 mt-2 ">
+          <v-card class="mr-1 ml-1 mx-auto default " dense>
+            <bar-chart :data="service_trends"></bar-chart>
+          </v-card>
+        </v-col>
         <v-col cols="12" sm="12" v-if="bsc_size > 0" class="ma-0 pa-0 mt-3">
           <v-card class="mr-1 ml-1 mx-auto default " dense>
             <area-chart-spline
               :data="bsc_chart"
               class="ma-0 "
             ></area-chart-spline>
-          </v-card>
-        </v-col>
-        <v-col cols="12" sm="12" md="3">
-          <v-card class=" mx-auto default">
-            <bar-chart :data="apexdata"></bar-chart>
-          </v-card>
-        </v-col>
-        <v-col cols="12" sm="12" md="3">
-          <v-card class="mx-auto default">
-            <bar-chart :data="apexdata"></bar-chart>
-          </v-card>
-        </v-col>
-
-        <v-col cols="12" sm="12" md="3">
-          <v-card class="mx-auto default" min-height="365">
-            <pie-chart :data="pie_options" :height="300"></pie-chart>
-          </v-card>
-        </v-col>
-        <v-col cols="12" sm="12" md="3">
-          <v-card class="mx-auto default">
-            <v-card-text>
-              <pie-chart :data="pie_options" style="height: 200px"></pie-chart>
-            </v-card-text>
           </v-card>
         </v-col>
       </v-row>
@@ -113,7 +95,7 @@
 
 <script>
 import PieChartComponent from "@/components/charts/PieChartComponent";
-import BarChartComponent from "@/components/charts/ApexLineChart";
+import BasicBarChartComponent from "@/components/charts/BasicBarChart";
 import SummaryCardComponent from "@/components/statistics/dashboard_card";
 import DonutChartCompoent from "@/components/charts/DonutChartComponent";
 import AreaChartSpline from "@/components/charts/area_chart_spline";
@@ -121,7 +103,7 @@ import { mapGetters } from "vuex";
 export default {
   components: {
     "pie-chart": PieChartComponent,
-    "bar-chart": BarChartComponent,
+    "bar-chart": BasicBarChartComponent,
     summarycard: SummaryCardComponent,
     donutchart: DonutChartCompoent,
     "area-chart-spline": AreaChartSpline
@@ -221,18 +203,22 @@ export default {
             title: "Service assignment"
           },
           {
-            series: [12, 20, 37],
+            series: [
+              this.ward.totalCount,
+              this.ward.totalOccupied,
+              this.ward.totalUnOccupied
+            ],
             chartOptions: {
-              labels: ["Male", "Female"]
+              labels: ["Total beds", "Occupied beds", "Free beds"]
             },
-            title: "Patient Trends By"
+            title: "Beds distributions"
           },
           {
-            series: [44, 55, 27, 45],
+            series: [this.users.totalUsers, this.users.totalStaffs],
             chartOptions: {
-              labels: ["Male", "Female"]
+              labels: ["Users", "Staffs"]
             },
-            title: "Patient Trends By"
+            title: "System users Vs Staff's"
           }
         ];
       }
@@ -434,6 +420,29 @@ export default {
           categories: categories
         };
 
+        return data;
+      }
+    },
+    service_trends: {
+      get() {
+        var item = this.servicetrends;
+        var datas = new Array();
+        var categories = new Array();
+        if (item !== undefined) {
+          item.forEach(element => {
+            datas.push(element.total);
+            categories.push(element.date);
+          });
+        }
+        var data = {
+          series: [
+            {
+              name: "Service  issued",
+              data: datas
+            }
+          ],
+          categories: categories
+        };
         return data;
       }
     }
