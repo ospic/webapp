@@ -44,7 +44,7 @@ const actions = {
     await this.$api.$get('services/?active=activeopd')
       .then(response => {
         console.log(response)
-        commit(mutation.GET_OPDSERVICES_SUCCESS, response.body);
+        commit(mutation.GET_OPDSERVICES_SUCCESS, response);
       }).catch(error => {
         commit(mutation.GET_OPDSERVICES_ERROR);
         console.log(error);
