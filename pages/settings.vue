@@ -104,38 +104,12 @@ export default {
                   to: "/settings/roles"
                 },
                 {
-                  title: "label.titles.administrations",
-                  to: "/settings/admin",
+                  title: "label.titles.departments",
+                  to: "/settings/departments",
                   icon: "mdi-lock"
                 }
               ]
             }
-            /**{
-              title: "label.titles.actions",
-              submenus: [
-                {
-                  title: "label.menu.create",
-                  icon: "mdi-plus-outline",
-                  to: "/create"
-                },
-                {
-                  title: "label.menu.read",
-                  icon: "mdi-file-outline",
-                  to: "/read"
-                },
-                {
-                  title: "label.menu.update",
-                  icon: "mdi-update",
-                  to: "/update"
-                },
-                {
-                  title: "label.menu.delete",
-                  icon: "mdi-delete",
-                  to: "/delete"
-                }
-              ]
-            }
-            **/
           ]
         },
         {
