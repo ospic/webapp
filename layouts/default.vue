@@ -301,7 +301,7 @@ export default {
             {
               title: "label.titles.departments",
               to: "/departments",
-              icon: "mdi-block"
+              icon: "mdi-office-building"
             }
           ]
         },
