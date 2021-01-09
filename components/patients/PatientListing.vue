@@ -29,7 +29,7 @@
             v-if="isAppointmentRoute"
             class="primary"
             to="/patients/add"
-            ><v-icon>mdi-plus</v-icon>Add new patient</v-btn
+            ><v-icon>mdi-plus</v-icon>New patient</v-btn
           >
         </v-toolbar>
       </template>
