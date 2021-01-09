@@ -71,7 +71,7 @@
                           ></v-text-field>
                         </v-col>
 
-                        <v-col cols="12" sm="12" md="6">
+                        <v-col cols="12" sm="12" md="6" v-if="editedItem.id != 1">
                           <v-select
                             v-model="editedItem.parent"
                             :items="departments"
