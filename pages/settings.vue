@@ -102,11 +102,6 @@ export default {
                   title: "label.menu.rolesandprivileges",
                   icon: "mdi-cog-outline",
                   to: "/settings/roles"
-                },
-                {
-                  title: "label.titles.departments",
-                  to: "/settings/departments",
-                  icon: "mdi-lock"
                 }
               ]
             }

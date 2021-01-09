@@ -29,7 +29,11 @@
               dense
               single-line
               hide-details
-            ></v-text-field>
+            ></v-text-field
+            >&nbsp;&nbsp;
+            <v-btn medium dense class="primary" to="/patients/add"
+              ><v-icon>mdi-list</v-icon>New department</v-btn
+            >
           </v-toolbar>
         </template>
       </v-data-table>
@@ -43,6 +47,7 @@ export default {
   data: function() {
     return {
       search: null,
+      title: "Departments",
       headers: [
         { text: "ID", value: "id" },
         { text: "Department name", value: "name", sortable: false },

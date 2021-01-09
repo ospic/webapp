@@ -297,6 +297,11 @@ export default {
               title: "label.menu.staff",
               to: "/staffs",
               icon: "mdi-account-hard-hat"
+            },
+            {
+              title: "label.titles.departments",
+              to: "/departments",
+              icon: "mdi-block"
             }
           ]
         },
