@@ -22,7 +22,8 @@
       "btnno":"No",
       "addnewgroup":"New medicine group",
       "addnewmedicine":"New Medicine",
-      "addnewcategory":"New medicine category"
+      "addnewcategory":"New medicine category",
+      "newdepartment":"New department"
     },
     "menu":{
       "dashboard":"Dashboard",
