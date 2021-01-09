@@ -104,7 +104,8 @@
       "bloodbank":"Blood Bank",
       "smsconfigurations":"SMS Configurations",
       "newsmsconfigurations":"New SMS Configuration",
-      "updatesmsconfigurations":"Update SMS Configuration"
+      "updatesmsconfigurations":"Update SMS Configuration",
+      "departments":"Departments"
       
     }
   }
