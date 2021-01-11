@@ -13,8 +13,8 @@ export default {
   },
   loadingIndicator: {
     name: 'pulse',
-    color: ' #63DD6F',
-    background: '#00A756'
+    color: ' #00A756',
+    background: '#FAFAFA'
   },
   /** 
   hooks: {
