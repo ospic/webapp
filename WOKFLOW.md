@@ -7,7 +7,7 @@
   - Patient managements
   - Staff managements
   - Inventory Managements
-  - Financial controls
+  - Financial management
   - Insurance Managements
   - Reports managements
   - Patient self-service
