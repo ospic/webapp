@@ -34,7 +34,7 @@ export default {
         .$get(`services/`)
         .then(response => {
           if (response !== null) {
-            this.services = response.body.sort(function(a, b) {
+            this.services = response.sort(function(a, b) {
               return b.isActive - a.isActive;
             });
           }
