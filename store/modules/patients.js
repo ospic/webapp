@@ -122,7 +122,7 @@ const actions = {
     commit(mutation.GET_PATIENTS);
     await this.$api.$get(`patients/`)
       .then(response => {
-        commit(mutation.GET_PATIENTS_SUCCESS, response.body);
+        commit(mutation.GET_PATIENTS_SUCCESS, response);
 
       }).catch(error => {
         commit(mutation.GET_PATIENTS_ERROR);
