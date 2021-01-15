@@ -107,16 +107,7 @@
         ></v-switch>
       </template>
     </v-navigation-drawer>
-    <v-app-bar
-      flat
-      elevation="0"
-      hide-on-scroll
-      fixed
-      app
-      dense
-      short
-      color="transparent"
-    >
+    <v-app-bar hide-on-scroll fixed app>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
 
       <v-toolbar-title class="title font-weight-black primary--text">
@@ -167,7 +158,7 @@
     <v-main>
       <v-container
         style="background-color: transparent;"
-        class="pa-0 px-3  ma-0 mt-2"
+        class="pa-0 px-3  ma-0 mt-5"
         fluid
       >
         <nuxt />

@@ -16,7 +16,7 @@ export default {
     color: ' #00A756',
     background: '#FAFAFA'
   },
-  /** 
+  /**
   hooks: {
     listen(server, { host, port }) {
       open(`http://${host}:${port}`)
@@ -25,7 +25,7 @@ export default {
   **/
   env: {
     baseUrl: 'https://ospicapi.herokuapp.com/api/',
-    localUrl: 'http://192.168.43.11:8080/api/'
+    localUrl: 'http://localhost:8080/api/'
   },
 
   // Global page headers (https://go.nuxtjs.dev/config-head)
