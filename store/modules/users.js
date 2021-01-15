@@ -60,6 +60,20 @@ const mutations = {
     state.showLoader = false;
   },
 
+  /** Asign staff to department */
+  [mutation.ASSIGN_STAFF_TO_DEPARTMENT](state) {
+    state.showLoader = true;
+  },
+  [mutation.ASSIGN_STAFF_TO_DEPARTMENT_FAILED](state) {
+    state.showLoader = false;
+  },
+  [mutation.ASSIGN_STAFF_TO_DEPARTMENT_ERROR](state) {
+    state.showLoader = false;
+  },
+  [mutation.ASSIGN_STAFF_TO_DEPARTMENT_SUCCESS](state, payload) {
+    state.showLoader = false;
+  },
+
 }
 const actions = {
   async retrieveAllusers({ commit }) {
@@ -116,6 +130,20 @@ const actions = {
 
       }).catch(error => {
         commit(mutation.UPDATE_STAFF_ERROR);
+        console.log(error);
+
+      });
+  },
+  async assign_staff_to_departemnt({ commit }, payload) {
+    commit(mutation.ASSIGN_STAFF_TO_DEPARTMENT);
+    await this.$api.$post(`staffs/assign`, payload)
+      .then(response => {
+        if (response != null) {
+          commit(mutation.ASSIGN_STAFF_TO_DEPARTMENT_SUCCESS, response);
+        }
+
+      }).catch(error => {
+        commit(mutation.ASSIGN_STAFF_TO_DEPARTMENT_ERROR);
         console.log(error);
 
       });
