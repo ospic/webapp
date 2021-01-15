@@ -114,6 +114,51 @@
             </v-card-actions>
           </v-card>
         </v-dialog>
+        <v-dialog v-model="assignDepartmentDialog" max-width="500px">
+          <v-card>
+            <v-card-title>Assing staff to this department ? </v-card-title>
+            <v-card-text class="pa-3">
+              <v-select
+                dense
+                :items="departments"
+                v-model="departmentId"
+                item-text="name"
+                item-value="id"
+                label="Re/Assign to department"
+                persistent-hint
+                return-object
+                single-line
+                class="ma-2 d-flex"
+                hint="Re/Assign staffs"
+              >
+                <template slot="selection" slot-scope="data">
+                  {{
+                    data.item.name === null ? data.item.name : data.item.name
+                  }}
+                </template>
+                <template slot="item" slot-scope="data">
+                  {{
+                    data.item.name === null ? data.item.name : data.item.name
+                  }}
+                </template>
+              </v-select>
+            </v-card-text>
+
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn color="primary" medium @click="closeDelete">{{
+                $t("label.button.decline")
+              }}</v-btn>
+              <v-btn
+                color="dlue"
+                dark
+                medium
+                @click.stop="assignStaffConfirm"
+                >{{ $t("label.button.assign") }}</v-btn
+              >
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
       </v-toolbar>
     </template>
     <template v-slot:[`item.actions`]="{ item }">
@@ -122,6 +167,15 @@
       </v-icon>
       <v-icon small @click="deleteItem(item)">
         mdi-delete
+      </v-icon>
+
+      <v-icon
+        v-if="item.id != 1"
+        small
+        @click="assignDepartment(item)"
+        color="dlue"
+      >
+        mdi-cog-transfer
       </v-icon>
     </template>
     <template v-slot:[`item.roles`]="{ item }">
@@ -134,6 +188,7 @@
         >{{ role.name.toLowerCase() }}</v-chip
       >
     </template>
+
     <template v-slot:no-data>
       <p>No Data available</p>
     </template>
@@ -146,6 +201,8 @@ export default {
     dialog: false,
     dialogDelete: false,
     editedIndex: -1,
+    departmentId: 0,
+    assignDepartmentDialog: false,
     headers: [
       {
         text: "ID",
@@ -211,6 +268,7 @@ export default {
   beforeMount() {
     this.$store.dispatch("fetchuserroles");
     this.$store.dispatch("retrieveAllusers");
+    this.$store.dispatch("retrieve_departments");
   },
   methods: {
     getColor(role) {
@@ -240,6 +298,19 @@ export default {
       this.userslist.splice(this.editedIndex, 1);
       this.closeDelete();
     },
+    assignDepartment(item) {
+      this.editedItem = Object.assign({}, item);
+      this.assignDepartmentDialog = true;
+    },
+
+    assignStaffConfirm() {
+      var data = {
+        departmentId: this.departmentId.id,
+        staffId: this.editedItem.id
+      };
+      this.$store.dispatch("assign_staff_to_departemnt", data);
+      this.assignDepartmentDialog = false;
+    },
 
     close() {
       this.dialog = false;
@@ -252,6 +323,7 @@ export default {
 
     closeDelete() {
       this.dialogDelete = false;
+      this.assignDepartmentDialog = false;
       this.$nextTick(() => {
         this.editedItem = Object.assign({}, this.defaultItem);
         this.editedIndex = -1;
@@ -277,7 +349,8 @@ export default {
   computed: {
     ...mapGetters({
       userslist: "users",
-      userroles: "userroles"
+      userroles: "userroles",
+      departments: "departments"
     }),
 
     formTitle() {

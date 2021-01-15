@@ -20,7 +20,7 @@ export default (ctx) => {
           error: '#9D0000',
           default: "#354141",
           milky: "#01242F",
-          dblue: "#1520A6"
+          dlue: "#1520A6",
         },
         light: {
           primary: '#00A756',
@@ -34,6 +34,7 @@ export default (ctx) => {
           milky: "#FDFFF5",
           teal: "#00897B",
           whitish: "F5F5F5",
+          dlue: "#1520A6",
         }
 
       },

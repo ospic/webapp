@@ -20,6 +20,8 @@
       "btnsave": "Save",
       "btnyes":"Yes",
       "btnno":"No",
+      "assign":"Assign",
+      "decline":"Decline",
       "addnewgroup":"New medicine group",
       "addnewmedicine":"New Medicine",
       "addnewcategory":"New medicine category",
