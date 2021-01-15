@@ -44,7 +44,7 @@
                   <tbody>
                     <tr v-for="item in desserts" :key="item.name">
                       <td class="font-weight-bold">{{ item.name }}</td>
-                      <td>{{ item.calories }}</td>
+                      <td>{{ item.value }}</td>
                     </tr>
                     <tr></tr>
                   </tbody>
@@ -199,60 +199,62 @@ export default {
         return [
           {
             name: "Name",
-            calories:
+            value:
               this.staffdata.fullName == null
                 ? this.staffdata.username
                 : this.staffdata.fullName
           },
           {
             name: "Role",
-            calories:
+            value:
               this.staffdata.user == "undefined"
                 ? "No role"
                 : this.staffdata.user.roles[0].name.toLowerCase()
           },
           {
             name: "Depatment",
-            calories: ""
+            value:
+              this.staffdata.department == null
+                ? "Un-Assigned"
+                : this.staffdata.department.name
           },
           {
             name: "Work Shift",
-            calories: ""
+            value: "6:00AM - 12:01PM"
           },
           {
             name: "Location",
-            calories: ""
+            value:
+              this.staffdata.department == null
+                ? "Not available"
+                : this.staffdata.department.extraId
           },
-          {
-            name: "Jelly bean",
-            calories: 375
-          },
+
           {
             name: "Is Staff",
-            calories:
+            value:
               this.staffdata.user.isStaff == "undefined"
                 ? ""
                 : this.staffdata.user.isStaff
           },
           {
             name: "Level",
-            calories:
-              this.staffdata.level == null ? "None" : this.staffdata.level
+            value: this.staffdata.level == null ? "None" : this.staffdata.level
           },
           {
             name: "Phone",
-            calories:
+            value:
               this.staffdata.contacts == null
                 ? "None "
                 : this.staffdata.contacts
           },
           {
             name: "Email",
-            calories: this.staffdata.email
+            value: this.staffdata.email
           },
           {
             name: "Joining Date",
-            calories: new Date().toISOString().slice(0, 10)
+            value: new Date().toISOString().slice(0, 10)
           }
         ];
       }
