@@ -1,4 +1,4 @@
-<h1 align="center">HMS</h1>
+<h1 align="center">HMS :hospital:</h1>
 <p align="center">Open source Hospital Management System (HMS) <p>
 
 <p align="center">
