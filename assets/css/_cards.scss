@@ -1,0 +1,28 @@
+.v-card.neo {
+  background: linear-gradient(145deg, #cacaca, #ffffff);
+  box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
+}
+.swal-wide {
+  width: 50px !important;
+}
+
+canvas {
+  width: 100%;
+  height: 100%;
+}
+.data-card {
+  position: relative;
+  height: 330px;
+  > data-chart {
+    height: 100px;
+    #pie-chart canvas {
+      height: 50px;
+      width: 50px;
+    }
+  }
+}
+.card {
+  /* Add shadows to create the "card" effect */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+}

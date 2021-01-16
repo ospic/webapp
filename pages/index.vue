@@ -55,7 +55,7 @@
           <v-hover>
             <template v-slot:default="{ hover }">
               <v-card
-                class="mr-1 ml-1 mx-auto default"
+                class="mr-1 ml-1 mx-auto default neo"
                 :elevation="hover ? 3 : 1"
                 dense
               >

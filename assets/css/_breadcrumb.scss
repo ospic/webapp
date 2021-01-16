@@ -1,0 +1,114 @@
+/*since the first link does not have a triangle before it we can reduce the left padding to make it look consistent with other links*/
+/*hover/active styles*/
+/*adding the arrows for the breadcrumbs using rotated pseudo elements*/
+/*we dont need an arrow after the last link*/
+/*we will use the :before element to show numbers*/
+.breadcrumb {
+  display: inline-block;
+  box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.35);
+  overflow: hidden;
+  border-radius: 5px;
+  counter-reset: flag;
+  a {
+    text-decoration: none;
+    outline: none;
+    display: block;
+    float: left;
+    font-size: 12px;
+    line-height: 36px;
+    color: $color_white;
+    padding: 0 10px 0 60px;
+    background: #666;
+    background: linear-gradient(#666, #333);
+    position: relative;
+    &:first-child {
+      padding-left: 46px;
+      border-radius: 5px 0 0 5px;
+      &:before {
+        left: 14px;
+      }
+    }
+    &:last-child {
+      border-radius: 0 5px 5px 0;
+      padding-right: 20px;
+      &:after {
+        content: none;
+      }
+    }
+    &:hover {
+      background: #333;
+      background: linear-gradient(#333, #000);
+      &:after {
+        background: #333;
+        background: linear-gradient(135deg, #333, #000);
+      }
+    }
+    &:after {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: -18px;
+      width: 36px;
+      height: 36px;
+      transform: scale(0.707) rotate(45deg);
+      z-index: 1;
+      background: #666;
+      background: linear-gradient(135deg, #666, #333);
+      box-shadow: 2px -2px 0 2px rgba(0, 0, 0, 0.4),
+        3px -3px 0 2px rgba(255, 255, 255, 0.1);
+      border-radius: 0 5px 0 50px;
+    }
+    &:before {
+      content: counter(flag);
+      counter-increment: flag;
+      border-radius: 100%;
+      text-align: center;
+      width: 20px;
+      height: 20px;
+      line-height: 20px;
+      margin: 8px 0;
+      position: absolute;
+      top: 0;
+      left: 30px;
+      background: #444;
+      background: linear-gradient(#444, #222);
+      font-weight: bold;
+    }
+  }
+  a.active {
+    background: #333;
+    background: linear-gradient(#333, #000);
+    &:after {
+      background: #333;
+      background: linear-gradient(135deg, #333, #000);
+    }
+  }
+}
+.flat {
+  a {
+    background: white;
+    color: black;
+    transition: all 0.5s;
+    &:after {
+      background: white;
+      color: black;
+      transition: all 0.5s;
+    }
+    &:before {
+      background: white;
+      box-shadow: 0 0 0 1px #ccc;
+    }
+    &:hover {
+      background: #9eeb62;
+      &:after {
+        background: #9eeb62;
+      }
+    }
+  }
+  a.active {
+    background: #9eeb62;
+    &:after {
+      background: #9eeb62;
+    }
+  }
+}

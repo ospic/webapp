@@ -1,0 +1,22 @@
+.v-tab {
+  text-transform: none !important;
+}
+.theme--light.v-data-table tbody tr:nth-of-type(even) {
+  background-color: rgba(227, 255, 235, 0);
+}
+.theme--dark.v-data-table tbody tr:nth-of-type(even) {
+  background-color: rgba(227, 255, 235, 0);
+}
+.page-enter-active,
+.page-leave-active {
+  transition: opacity 0.3s;
+}
+.page-enter,
+.page-leave-to {
+  opacity: 0;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}

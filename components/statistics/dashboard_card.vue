@@ -2,7 +2,7 @@
   <v-col class="pa-1" xs="6" sm="6" md="2" xl="1">
     <v-hover>
       <template v-slot:default="{ hover }">
-        <v-card class=" default" :elevation="hover ? 3 : 1">
+        <v-card class="default" :elevation="hover ? 3 : 0">
           <v-list-item>
             <v-list-item-avatar
               height="45"
