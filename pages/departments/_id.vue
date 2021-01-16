@@ -11,7 +11,13 @@
     </div>
 
     <v-container fluid>
-      <v-card class="pa-2">
+      <v-progress-circular
+        v-if="staffs == null || department == null"
+        indeterminate
+        size="50"
+        color="indigo"
+      ></v-progress-circular>
+      <v-card class="pa-2" v-else>
         <v-card-title
           ><div>
             <table
@@ -56,9 +62,10 @@
             </table>
           </div>
         </v-card-title>
+
         <v-card-text>
           <h3><strong>Staffs:</strong></h3>
-          <v-row no-gutters v-if="staffs != null && staffs.length > 0">
+          <v-row no-gutters v-if="staffs.length > 0">
             <v-col
               v-for="(staff, n) in staffs"
               :key="n"
