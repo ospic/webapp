@@ -71,7 +71,12 @@
                           ></v-text-field>
                         </v-col>
 
-                        <v-col cols="12" sm="12" md="6" v-if="editedItem.id != 1">
+                        <v-col
+                          cols="12"
+                          sm="12"
+                          md="6"
+                          v-if="editedItem.id != 1"
+                        >
                           <v-select
                             v-model="editedItem.parent"
                             :items="departments"
@@ -99,20 +104,26 @@
 
                   <v-card-actions>
                     <v-spacer></v-spacer>
-                    <v-btn color="blue darken-1" text @click="close"
+                    <v-btn color="blue darken-1" text @click.stop="close"
                       >Cancel</v-btn
                     >
-                    <v-btn color="blue darken-1" text @click="save">Save</v-btn>
+                    <v-btn color="blue darken-1" text @click.stop="save"
+                      >Save</v-btn
+                    >
                   </v-card-actions>
                 </v-card>
               </v-dialog>
             </v-toolbar>
           </template>
           <template v-slot:[`item.actions`]="{ item }">
-            <v-icon small class="mr-2" @click="editItem(item)">
+            <v-icon small class="mr-2" @click.stop="editItem(item)">
               mdi-pencil
             </v-icon>
-            <v-icon small color="indigo darken-4" @click="deleteItem(item)">
+            <v-icon
+              small
+              color="indigo darken-4"
+              @click.stop="deleteItem(item)"
+            >
               mdi-delete
             </v-icon>
           </template>
@@ -170,6 +181,9 @@ export default {
       this.editedItem = Object.assign({}, item);
       this.dialog = true;
       this.editedItemId = item.id;
+    },
+    deleteItem(item) {
+      console.log(item);
     },
     close() {
       this.dialog = false;
