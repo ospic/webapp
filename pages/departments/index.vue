@@ -116,6 +116,9 @@
             </v-toolbar>
           </template>
           <template v-slot:[`item.actions`]="{ item }">
+            <v-icon small color="primary" @click.stop="navigateTo(item.id)">
+              mdi-eye </v-icon
+            >&nbsp;
             <v-icon small class="mr-2" @click.stop="editItem(item)">
               mdi-pencil
             </v-icon>
@@ -184,6 +187,9 @@ export default {
     },
     deleteItem(item) {
       console.log(item);
+    },
+    navigateTo: function(id) {
+      this.$router.push(`/departments/${id}`);
     },
     close() {
       this.dialog = false;
