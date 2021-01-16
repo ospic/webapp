@@ -25,7 +25,6 @@
           <v-spacer></v-spacer>
           <v-btn
             medium
-            dense
             v-if="isAppointmentRoute"
             class="primary"
             to="/patients/add"

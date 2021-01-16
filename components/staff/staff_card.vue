@@ -1,5 +1,5 @@
 <template>
-  <v-card class="ma-1 pa-0" link :to="`/staffs/${staff.id}`">
+  <v-card class="neo ma-1 pa-0" link :to="`/staffs/${staff.id}`">
     <v-card-title class="d-flex flex-row justify-center mb-2">
       <v-avatar size="82">
         <img
