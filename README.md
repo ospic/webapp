@@ -1,8 +1,10 @@
 <h1 align="center">HMS</h1>
 <p align="center">Open source Hospital Management System (HMS) <p>
-<!--<p align="center"><a href="https://github.com/JasonEtco/create-an-issue"><img alt="GitHub Actions status" src="https://github.com/JasonEtco/create-an-issue/workflows/Node%20CI/badge.svg"></a> <a href="https://codecov.io/gh/JasonEtco/create-an-issue/"><img src="https://badgen.now.sh/codecov/c/github/JasonEtco/create-an-issue" alt="Codecov"></a></p>-->
 
- [![Build Status](https://travis-ci.com/ospic/webapp.svg?branch=master)](https://travis-ci.com/ospic/webapp) ![Auto Assign to Project(s)](<https://github.com/ospic/webapp/workflows/Auto%20Assign%20to%20Project(s)/badge.svg>)[![Netlify Status](https://api.netlify.com/api/v1/badges/0c2790ca-2220-4b39-90c5-791c769e744b/deploy-status)](https://app.netlify.com/sites/ospic/deploys) [![Download ospic](https://sourceforge.net/sflogo.php?type=11&group_id=3283394)](https://sourceforge.net/p/ospic/)
+<p align="center">
+<a href="https://travis-ci.com/ospic/webapp"><img alt="Travis CI status" src="https://travis-ci.com/ospic/webapp.svg?branch=master"></a><a href="https://github.com/ospic/actions" target="_blank"><img alt="GitHub Actions " src="https://github.com/ospic/webapp/workflows/Auto%20Assign%20to%20Project(s)/badge.svg"></a> <a href="https://app.netlify.com/sites/ospic/deploys"><img src="https://api.netlify.com/api/v1/badges/0c2790ca-2220-4b39-90c5-791c769e744b/deploy-status" alt="Netlify"></a><a href="https://sourceforge.net/p/ospic/"><img src="https://sourceforge.net/sflogo.php?type=11&group_id=3283394" alt="SourceForge"></a>
+</p>
+
 
 Ospic Web App is the renovated version of the Ospic applications, an effective hospital resource and patient management system and a default web application for its built on top of its own [platform](https://github.com/ospic/platform).
 
