@@ -116,19 +116,26 @@
             </v-toolbar>
           </template>
           <template v-slot:[`item.actions`]="{ item }">
-            <v-icon small color="primary" @click.stop="navigateTo(item.id)">
-              mdi-eye </v-icon
-            >&nbsp;
-            <v-icon small class="mr-2" @click.stop="editItem(item)">
-              mdi-pencil
-            </v-icon>
-            <v-icon
-              small
-              color="indigo darken-4"
-              @click.stop="deleteItem(item)"
-            >
-              mdi-delete
-            </v-icon>
+            <v-menu bottom left>
+              <template v-slot:activator="{ on, attrs }">
+                <v-btn dark icon v-bind="attrs" v-on="on">
+                  <v-icon color="grey darken-3">mdi-dots-vertical</v-icon>
+                </v-btn>
+              </template>
+
+              <v-list dense>
+                <v-list-item link v-for="(it, i) in items" :key="i">
+                  <v-list-item-icon
+                    ><v-icon :color="it.color"
+                      >mdi-{{ it.icon }}</v-icon
+                    ></v-list-item-icon
+                  >
+                  <v-list-item-title @click="getSelected(it, item)">{{
+                    it.title
+                  }}</v-list-item-title>
+                </v-list-item>
+              </v-list>
+            </v-menu>
           </template>
           <template v-slot:no-data>
             <v-progress-linear indeterminate color="cyan"></v-progress-linear>
@@ -152,6 +159,11 @@ export default {
         { text: "Description", value: "descriptions" },
         { text: "Opening date", value: "openingDate" },
         { text: "Actions", value: "actions", sortable: false }
+      ],
+      items: [
+        { title: "View", icon: "eye", color: "grey" },
+        { title: "Edit", icon: "circle-edit-outline", color: "blue" },
+        { title: "Delete", icon: "delete", color: "red" }
       ],
       editedIndex: -1,
       editedItemId: "",
@@ -178,6 +190,19 @@ export default {
   methods: {
     fetchdata() {
       this.$store.dispatch("retrieve_departments");
+    },
+    getSelected: function(it, item) {
+      if (it.title == "Edit") {
+        this.editItem(item);
+      }
+      if (it.title == "Delete") {
+        this.deleteItem(item);
+      }
+      if (it.title == "View") {
+        this.navigateTo(item.id);
+      }
+      console.log(it);
+      console.log(item);
     },
     editItem(item) {
       this.editedIndex = this.departments.indexOf(item);
