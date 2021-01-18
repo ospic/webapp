@@ -7,7 +7,7 @@ Vue.use(VueToasted, {
 
 export default function ({ $axios, redirect, store }, inject) {
   $axios.setHeader('Content-Type', 'application/json');
-  $axios.setToken(store.getters.accessToken, store.getters.accessTokenType);
+  //$axios.setToken(store.getters.accessToken, store.getters.accessTokenType);
 
 
   const api = $axios.create({
@@ -20,22 +20,21 @@ export default function ({ $axios, redirect, store }, inject) {
 
   api.onRequest(config => {
     var token = store.getters.accessToken;
-    api.setHeader("Authorization", "Bearer  " + token);
+    if (config.url != 'auth/signin') {
+      api.setHeader("Authorization", "Bearer  " + token);
+    }
     api.setHeader("Access-Control-Allow-Headers", "x-access-token, Origin, Content-Type, Accept");
     api.setHeader("Access-Control-Allow-Origin", "*");
 
   });
 
   api.onError(error => {
-    const code = parseInt(error.response.status);
-    console.log(code)
-    /**if (code === 400) {
-      //redirect("/");
-    }
-    if (code === 500) {
-      //redirect('/')
-    }**/
-  });
+    nuxtError({
+      statusCode: error.response.status,
+      message: error.message,
+    });
+    return Promise.resolve(false);
+  })
   api.onResponse(response => {
     Vue.toasted.show('Success ', { icon: 'check-circle', type: 'success' });
   });
