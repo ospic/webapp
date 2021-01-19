@@ -171,14 +171,6 @@ const getters = {
   },
   accessToken: function (state) {
     return state.accessToken;
-  },
-  accessTokenType: function (state) {
-    var token = state.userdata.accessTokenType;
-    if (typeof something != "undefined") {
-      return token;
-    } else {
-      return window.localStorage.getItem('ospic.tokentype');
-    }
   }
 };
 export default {
