@@ -152,7 +152,7 @@ const actions = {
 };
 const getters = {
   isLoggedIn: function (state) {
-    return state.isAuthenticated == true && typeof state.accessToken !== 'undefined';
+    return state.isAuthenticated && state.accessToken !== null;
   },
   exipireddate: function (state) {
     return state.exipiredate;
