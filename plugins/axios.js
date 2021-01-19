@@ -7,7 +7,7 @@ Vue.use(VueToasted, {
 
 export default function ({ $axios, redirect, store }, inject) {
   $axios.setHeader('Content-Type', 'application/json');
-  //$axios.setToken(store.getters.accessToken, store.getters.accessTokenType);
+  //$axios.setToken(store.getters.accessToken, 'Bearer');
 
 
   const api = $axios.create({
@@ -29,10 +29,7 @@ export default function ({ $axios, redirect, store }, inject) {
   });
 
   api.onError(error => {
-    nuxtError({
-      statusCode: error.response.status,
-      message: error.message,
-    });
+    console.log(error)
     return Promise.resolve(false);
   })
   api.onResponse(response => {
