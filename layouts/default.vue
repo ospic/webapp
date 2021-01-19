@@ -145,6 +145,23 @@
         </template>
         <span>{{ $t("label.tooltip.clicktologout") }}</span>
       </v-tooltip>
+      <v-btn
+        fab
+        x-small
+        color="primary"
+        class="pa-1 "
+        @click="(dark = !dark), toggle(dark)"
+      >
+        <v-icon
+          medium
+          :color="dark ? 'yellow' : 'white'"
+          v-html="
+            dark
+              ? 'mdi-lightbulb-on mdi-rotate-180'
+              : 'mdi-lightbulb-outline mdi-rotate-180'
+          "
+        ></v-icon>
+      </v-btn>
     </v-app-bar>
     <a
       class="github-fork-ribbon right-bottom fixed "
@@ -386,9 +403,11 @@ export default {
         this.$vuetify.theme.dark = true;
         this.$store.dispatch("change_to_dark");
         document.body.style.background = "#1d3333";
+        this.dark = true;
       } else {
         this.$store.dispatch("change_to_light");
         this.$vuetify.theme.dark = false;
+        this.dark = false;
         document.body.style.backgroundImage =
           "url(https://cdn.hipwallpaper.com/i/50/79/MSsZP2.jpg)";
       }
