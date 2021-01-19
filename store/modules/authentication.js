@@ -35,6 +35,9 @@ const mutations = {
     state.userdata = payload;
     var response = payload;
     state.accessToken = response.accessToken;
+    if (window.localStorage) {
+      window.localStorage.setItem('date', mil);
+    }
     this.$router.push('/');
   },
   [mutation.SIGNOUT](state) {
@@ -152,7 +155,8 @@ const actions = {
 };
 const getters = {
   isLoggedIn: function (state) {
-    return state.isAuthenticated && state.accessToken !== null;
+    const status = ((typeof exipire == 'undefined' ? new Date().getTime() - 2 : exipire) - new Date().getTime()) > 0;
+    return status;
   },
   exipireddate: function (state) {
     return state.exipiredate;
