@@ -41,7 +41,7 @@ const mutations = {
     state.showLoader = true;
     state.userdata = null;
     state.isAuthenticated = false;
-    sessionStorage.clear();
+
     this.$router.push('/signin');
   },
   [mutation.SIGNOUT_SUCCESS](state) {
