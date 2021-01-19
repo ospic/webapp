@@ -300,7 +300,7 @@ export default {
             subtitle: "Active services",
             measure: "p/d",
             value: this.services.totalActive,
-            icon: "mdi-account-group-outline",
+            icon: "mdi-order-alphabetical-ascending",
             color: "red"
           },
           {
@@ -308,7 +308,7 @@ export default {
             subtitle: "Inactive services",
             measure: "p/d",
             value: this.services.totalInActive,
-            icon: "mdi-account-group-outline",
+            icon: "mdi-order-bool-ascending",
             color: "red"
           },
           {
@@ -316,14 +316,14 @@ export default {
             subtitle: "Assigned services",
             measure: "p/d",
             value: this.services.totalAssigned,
-            icon: "mdi-account-group-outline",
+            icon: "mdi-order-numeric-descending",
             color: "red"
           },
           {
             title: "Unassigned services",
             subtitle: "Unassigned services",
             value: this.services.totalUnAssigned,
-            icon: "mdi-account-group-outline",
+            icon: "mdi-order-bool-ascending",
             color: "teal"
           },
           {
@@ -339,14 +339,14 @@ export default {
             subtitle: "IPD  services",
             measure: "p/d",
             value: this.services.totalIpd,
-            icon: "mdi-account-group-outline",
+            icon: "mdi-bed",
             color: "green"
           },
           {
             title: "Physicians",
             subtitle: "No. of Physicians",
             value: this.$store.getters.physicians.length,
-            icon: "mdi-account-multiple",
+            icon: "mdi-doctor",
             color: "light-blue"
           }
           /**Ward bed */
@@ -360,14 +360,14 @@ export default {
             title: "Total beds",
             subtitle: "Total beds",
             value: this.ward.totalCount,
-            icon: "mdi-select-group",
+            icon: "mdi-bed-single",
             color: "brown"
           },
           {
             title: "Occupied beds",
             subtitle: "Occupied beds",
             value: this.ward.totalOccupied,
-            icon: "mdi-select-group",
+            icon: "mdi-bunk-bed",
             color: "grey"
           },
           {
@@ -375,7 +375,7 @@ export default {
             subtitle: "Un-Occupied beds",
             value: this.ward.totalUnOccupied,
             measure: "pt/min",
-            icon: "mdi-select-group",
+            icon: "mdi-bed-empty",
             color: "cyan"
           }
         ];
