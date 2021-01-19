@@ -10,38 +10,40 @@
         ward.name
       }}</router-link>
     </div>
-    <v-container fluid>
-      <div>
-        <v-row no-gutters>
-          <v-spacer></v-spacer>
-          <v-col cols="12" sm="3" class="">
-            <v-text-field
-              v-model="total"
-              type="number"
-              outlined
-              dense
-              hide-details
-              placeholder="No. of beds to add"
-            ></v-text-field>
-          </v-col>
-          <v-col cols="12" sm="2">
-            <v-btn
-              small
-              shaped
-              class="primary mt-1 ml-2"
-              @click.stop="_addmorebeds()"
-              >Add more beds</v-btn
-            >
-          </v-col>
-        </v-row>
-      </div>
-      <v-progress-linear
-        indeterminate
-        color="primary"
-        v-if="ward == null"
-      ></v-progress-linear>
-      <beds-list v-else :ward="ward"></beds-list>
-    </v-container>
+    <v-card class="mx-auto">
+      <v-container fluid>
+        <div>
+          <v-row no-gutters>
+            <v-spacer></v-spacer>
+            <v-col cols="12" sm="3" class="">
+              <v-text-field
+                v-model="total"
+                type="number"
+                outlined
+                dense
+                hide-details
+                placeholder="No. of beds to add"
+              ></v-text-field>
+            </v-col>
+            <v-col cols="12" sm="2">
+              <v-btn
+                small
+                shaped
+                class="primary mt-1 ml-2"
+                @click.stop="_addmorebeds()"
+                >Add more beds</v-btn
+              >
+            </v-col>
+          </v-row>
+        </div>
+        <v-progress-linear
+          indeterminate
+          color="primary"
+          v-if="ward == null"
+        ></v-progress-linear>
+        <beds-list v-else :ward="ward"></beds-list>
+      </v-container>
+    </v-card>
   </div>
 </template>
 <script>

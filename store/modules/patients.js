@@ -47,9 +47,7 @@ const mutations = {
   },
   [mutation.CREATE_PATIENTS_SUCCESS](state, payload) {
     state.showLoader = false;
-
     this.$router.push('/patients/' + payload.id);
-
   },
 
   [mutation.UPDATE_PATIENT_SUCCESS](state, payload) {
@@ -237,15 +235,7 @@ const getters = {
   ipdpatients: function (state) {
     return state.patients.filter(patient => patient.isAdmitted);
   },
-  malepatients: function (state) {
-    return state.patients.filter(patient => patient.gender === "M")
-  },
-  femalepatients: function (state) {
-    return state.patients.filter(patient => patient.gender === "F")
-  },
-  otherpatients: function (state) {
-    return state.patients.filter(patient => patient.gender === "O")
-  },
+
   trends: function (state) {
     return state.trends;
   }
