@@ -1,11 +1,13 @@
 import * as mutation from './mutation-types';
 
 const state = () => ({
+  showLoader: Boolean,
+  isAuthenticated: Boolean,
   userdata: {},
   roles: [],
+  exipiredate: '',
   privileges: [],
   accessToken: "",
-  accessTokenType: ""
 });
 
 const mutations = {
@@ -20,34 +22,27 @@ const mutations = {
     state.showLoader = false;
   },
   [mutation.SIGNIN_SUCCESS](state, payload) {
-    this.$toast.success('Welcome, ' + payload.username);
+    state.isAuthenticated = true;
     state.showLoader = false;
+
+    this.$toast.success('Welcome, ' + payload.username);
+    var d = new Date();
+    var n = d.getTime();
+    var mil = n + 86400000;
+    var date = new Date(mil);
+
+    state.exipiredate = date;
     state.userdata = payload;
     var response = payload;
     state.accessToken = response.accessToken;
-    state.accessTokenType = response.tokenType;
-    if (window.localStorage) {
-      console.log("Window loaded")
-
-      window.localStorage.setItem('ospic.token', response.accessToken);
-      window.localStorage.setItem('ospic.roles', response.roles);
-      window.localStorage.setItem('ospic.email', response.email);
-      window.localStorage.setItem('ospic.tokentype', response.tokenType);
-      window.localStorage.setItem('ospic.uid', response.id);
-      window.localStorage.setItem('ospic.username', response.username);
-      sessionStorage.setItem('ospic.token', response.accessToken)
-      window.localStorage.setItem("ospic.time", new Date());
-      this.$cookies.set('ospic.tokentype', response.tokenType, { path: '/', maxAge: 60 * 60 * 24 * 1 });
-      this.$cookies.set('ospic.token', response.accessToken, { path: '/', maxAge: 60 * 60 * 24 * 1 });
-    }
-    //this.$router.app.refresh()
-
-    // console.log(localStorage.getItem('ospic.token'))
-
     this.$router.push('/');
   },
   [mutation.SIGNOUT](state) {
     state.showLoader = true;
+    state.userdata = null;
+    state.isAuthenticated = false;
+    sessionStorage.clear();
+    this.$router.push('/signin');
   },
   [mutation.SIGNOUT_SUCCESS](state) {
     state.showLoader = false;
@@ -59,6 +54,8 @@ const mutations = {
   [mutation.SIGNOUT_FAILED](state) {
     state.showLoader = false;
   },
+
+
   /**User roles */
   [mutation.FETCH_ROLES](state) {
     state.showLoader = true;
@@ -73,6 +70,8 @@ const mutations = {
     state.showLoader = false;
     state.roles = payload;
   },
+
+
   /** Role privileges */
   [mutation.REQUEST_PRIVILEGES](state) {
     state.showLoader = true;
@@ -93,15 +92,14 @@ const actions = {
     commit(mutation.SIGNIN);
     await this.$api.$post(`auth/signin`, payload)
       .then(response => {
-        if (response.accessToken != null) {
+        if (response) {
           commit(mutation.SIGNIN_SUCCESS, response);
 
         }
 
       }).catch(error => {
         commit(mutation.SIGNIN_ERROR);
-        localStorage.removeItem('ospic');
-        console.log(error);
+        localStorage.clear();
 
       });
   },
@@ -113,7 +111,8 @@ const actions = {
     this.$router.push('/signin');
   },
   async logout({ commit }) {
-    await this.$api.$get(`auth/signout`)
+    commit(mutation.SIGNOUT)
+    /**await this.$api.$get(`auth/signout`)
       .then(response => {
         if (response.result == 'OK') {
           commit(mutation.SIGNOUT_SUCCESS);
@@ -125,6 +124,7 @@ const actions = {
         commit(mutation.SIGNOUT_FAILED);
 
       });
+    **/
   },
   async fetchuserroles({ commit }) {
     commit(mutation.FETCH_ROLES);
@@ -152,7 +152,10 @@ const actions = {
 };
 const getters = {
   isLoggedIn: function (state) {
-    return (window.localStorage.getItem('ospic.token') && window.localStorage.getItem('ospic.tokentype')) !== null;
+    return state.isAuthenticated == true && typeof state.accessToken !== 'undefined';
+  },
+  exipireddate: function (state) {
+    return state.exipiredate;
   },
   userInfos: function (state) {
     return state.userdata;
@@ -167,12 +170,7 @@ const getters = {
     return state.roles.find(role => role.id === id)
   },
   accessToken: function (state) {
-    var token = state.userdata.accessToken;
-    if (typeof something != "undefined") {
-      return token;
-    } else {
-      return window.localStorage.getItem('ospic.token');
-    }
+    return state.accessToken;
   },
   accessTokenType: function (state) {
     var token = state.userdata.accessTokenType;
