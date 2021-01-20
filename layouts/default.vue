@@ -96,15 +96,18 @@
         </template>
       </v-list>
       <template v-slot:append>
-        <!-- <v-switch
-          :value="true"
-          v-model="dark"
-          class="ma-2"
-          :label="dark ? 'Dark' : 'Light'"
-          inset
-          color="primary"
-          @change="toggle($event !== null)"
-        ></v-switch>-->
+        <v-select
+          v-model="select"
+          :items="locales"
+          item-text="locale"
+          item-value="lang"
+          persistent-hint
+          return-object
+          single-line
+          dense
+          class="font-weight-light ma-2"
+          @change="changeLanguage(select.lang)"
+        ></v-select>
       </template>
     </v-navigation-drawer>
     <v-app-bar hide-on-scroll fixed app>
@@ -358,6 +361,25 @@ export default {
         { title: "Help", icon: "mdi-help" },
         { title: "Logout", icon: "mdi-logout-variant" }
       ],
+      select: { locale: "English", lang: "en" },
+      locales: [
+        {
+          locale: "English",
+          lang: "en"
+        },
+        {
+          locale: "Kiswahili",
+          lang: "sw"
+        },
+        {
+          locale: "French",
+          lang: "fr"
+        },
+        {
+          locale: "Arab",
+          lang: "ar"
+        }
+      ],
       miniVariant: false,
       right: true,
       shaped: true,
@@ -425,6 +447,9 @@ export default {
       setTimeout(() => {
         vm.sync = !vm.sync;
       }, 2000);
+    },
+    changeLanguage(lang) {
+      this.$i18n.locale = lang;
     }
   },
   beforeDestroy() {

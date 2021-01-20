@@ -1,5 +1,6 @@
 <template>
-  <v-container>
+  <users-component></users-component>
+  <!-- <v-container>
     <v-row justify="space-around">
       <v-col cols="12" sm="12">
         <v-card>
@@ -38,11 +39,15 @@
         </v-card>
       </v-col>
     </v-row>
-  </v-container>
+  </v-container>-->
 </template>
 
 <script>
+import UsersComponent from "./users";
 export default {
+  components: {
+    "users-component": UsersComponent
+  },
   data() {
     return {
       mode: 0,

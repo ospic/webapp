@@ -118,6 +118,11 @@ export default {
                   title: "label.titles.smsconfigurations",
                   to: "/settings/sms",
                   icon: "mdi-message-cog-outline"
+                },
+                {
+                  title: "label.titles.emailconfigurations",
+                  to: "#",
+                  icon: "mdi-mailbox-outline"
                 }
               ]
             }

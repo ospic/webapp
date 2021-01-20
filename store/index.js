@@ -1,7 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import authentication from "./modules/authentication";
-import SignUp from "./modules/signup.module";
+import SignUp from "./modules/signup";
 import patients from "./modules/patients";
 import templates from './modules/template';
 import documents from "./modules/documents";
@@ -11,7 +11,7 @@ import pharmacy from "./modules/pharmacy";
 import diagnoses from "./modules/diagnosis";
 import inventory from "./modules/inventory"
 import profile from "./modules/profile";
-import bloodbank from "./modules/bloods";
+import bloodbank from "./modules/bloodbank";
 import theme from "./modules/theme";
 import smsconfiguration from "./modules/smsconfigurations";
 import statisitics from "./modules/statistics";
