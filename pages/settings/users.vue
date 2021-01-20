@@ -62,11 +62,12 @@
                     </v-col>
                     <v-col cols="12" sm="6" md="6">
                       <v-select
-                        v-model="editedItem.role"
+                        v-model="editedItem.roles"
                         :items="userroles"
                         item-text="name"
                         item-value="id"
                         chips
+                        multiple
                         :rules="[
                           v => !!v || 'You must select one to continue!'
                         ]"
@@ -145,6 +146,7 @@ export default {
   data: () => ({
     dialog: false,
     dialogDelete: false,
+    role: 0,
     editedIndex: -1,
     headers: [
       {
@@ -170,7 +172,7 @@ export default {
       isStaff: false,
       email: "",
       password: "",
-      role: []
+      roles: []
     },
     defaultItem: {
       id: "",
@@ -178,7 +180,7 @@ export default {
       isStaff: false,
       email: "",
       password: "",
-      role: []
+      roles: []
     },
     colors: [
       "red",
@@ -265,6 +267,10 @@ export default {
         this.close();
       } else {
         delete this.editedItem.id;
+        /**this.editedItem.roles = [];
+        this.editedItem.roles.push(this.role);
+        **/
+        console.log(this.editedItem);
         if (this.$refs.form.validate()) {
           this.$store.dispatch("create_new_user", this.editedItem);
           this.$store.dispatch("retrieveAllusers");
