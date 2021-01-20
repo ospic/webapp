@@ -267,6 +267,7 @@ export default {
         delete this.editedItem.id;
         if (this.$refs.form.validate()) {
           this.$store.dispatch("create_new_user", this.editedItem);
+          this.$store.dispatch("retrieveAllusers");
           this.close();
         }
 
