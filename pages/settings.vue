@@ -95,7 +95,7 @@ export default {
               submenus: [
                 {
                   title: "label.titles.usersmanagement",
-                  to: "/settings/users",
+                  to: "/settings",
                   icon: "mdi-account-settings"
                 },
                 {
