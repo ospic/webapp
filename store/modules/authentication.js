@@ -155,6 +155,7 @@ const actions = {
 };
 const getters = {
   isLoggedIn: function (state) {
+    const exipire = window.localStorage.getItem('date');
     const status = ((typeof exipire == 'undefined' ? new Date().getTime() - 2 : exipire) - new Date().getTime()) > 0;
     return status;
   },
