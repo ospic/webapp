@@ -8,7 +8,7 @@
 Ospic Web App is the renovated version of the Ospic applications, an effective hospital resource and patient management system and a default web application for its built on top of its own [platform](https://github.com/ospic/platform).
 
 It is a simple SPA written in modern standard web technologies such as [HTML5](http://whatwg.org/html), [SCSS](http://sass-lang.com) and [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript). It grasp the popular [VueJs](https://vuejs.org/) framework and [Nuxt](https://nuxtjs.org/), a free and open source web application framework for VueJs, NodeJs and Webpack
-<a><img src="https://i2.wp.com/www.tfir.io/wp-content/uploads/2020/08/pod.jpg?resize=1280%2C800&ssl=1"/></a>
+<a href="http://ospic.github.io/webapp/" target="_blank"><img src="https://github.com/ospic/webapp/blob/master/assets/images/screenshot.png?raw=true"/></a>
 
 ## Usefulness
 
