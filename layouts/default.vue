@@ -96,7 +96,7 @@
         </template>
       </v-list>
       <template v-slot:append>
-        <v-switch
+        <!-- <v-switch
           :value="true"
           v-model="dark"
           class="ma-2"
@@ -104,7 +104,7 @@
           inset
           color="primary"
           @change="toggle($event !== null)"
-        ></v-switch>
+        ></v-switch>-->
       </template>
     </v-navigation-drawer>
     <v-app-bar hide-on-scroll fixed app>
@@ -412,17 +412,6 @@ export default {
           "url(https://cdn.hipwallpaper.com/i/50/79/MSsZP2.jpg)";
       }
     },
-    check_cookie_name: function(name) {
-      var match = document.cookie.match(
-        new RegExp("(^| )" + name + "=([^;]+)")
-      );
-      if (match) {
-        return match[2];
-      } else {
-        this.logoutsession();
-        console.log("--something went wrong---");
-      }
-    },
 
     syncro: async function() {
       const vm = this;
@@ -441,9 +430,7 @@ export default {
   beforeDestroy() {
     clearInterval(this.interval);
   },
-  beforeUpdate() {
-    this.check_cookie_name("ospic.token");
-  },
+
   computed: {
     username() {
       return window.localStorage.getItem("ospic.username");
