@@ -18,7 +18,7 @@ When contributing to this repository, please first discuss the change you wish t
 - Clone the project locally into your system.
 
 ```
-git clone https://github.com/your-username/webapp.git
+git clone https://github.com/{{Your-username}}/webapp.git
 ```
 
 - Make sure you are in the `master` branch.
@@ -30,7 +30,7 @@ git checkout master
 - Create a new branch with a meaningful name before adding and commiting your changes.
 
 ```
-git checkout -b branch-name
+git checkout -b {{ YOUR NEW BRANCH NAME }}
 ```
 
 - Add the files you changed. (avoid using `git add .`)
@@ -151,3 +151,5 @@ git branch -D branch-name
 ```
 git pull upstream master
 ```
+
+This is it.
