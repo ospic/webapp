@@ -108,7 +108,9 @@
       "smsconfigurations":"SMS Configurations",
       "newsmsconfigurations":"New SMS Configuration",
       "updatesmsconfigurations":"Update SMS Configuration",
-      "departments":"Departments"
+      "departments":"Departments",
+      "emailconfigurations":"Email configurations",
+      "rolesmanagement":"Roles Management"
       
     }
   }

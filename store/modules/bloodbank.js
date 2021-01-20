@@ -8,6 +8,7 @@ const state = () => ({
 
 const mutations = {
 
+  /**Populate blood bank  */
   [mutation.FETCH_BLOODS](state) {
     state.showLoader = true;
   },
@@ -22,6 +23,7 @@ const mutations = {
     state.bloods = payload;
   },
 
+  /**Update blood bank  */
   [mutation.UPDATE_BLOOD](state) {
     state.showLoader = true;
   },
@@ -49,22 +51,18 @@ const actions = {
         console.log(error);
 
       });
-
   },
   async updatebloodgroup({ commit }, payload) {
     commit(mutation.UPDATE_BLOOD);
     await this.$api.$patch(`bloods/`, payload).then(response => {
       commit(mutation.UPDATE_BLOOD_SUCCESS, response);
-
     }).catch(error => {
       commit(mutation.UPDATE_BLOOD_ERROR);
       console.log(error);
-
     });
-
   },
-
 }
+
 const getters = {
   groups: function (state) {
     return state.bloods;
