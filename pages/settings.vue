@@ -121,7 +121,7 @@ export default {
                 },
                 {
                   title: "label.titles.emailconfigurations",
-                  to: "#",
+                  to: "/settings/config/email",
                   icon: "mdi-mailbox-outline"
                 }
               ]
