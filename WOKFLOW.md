@@ -3,14 +3,14 @@
 ### What the system should and shouldn't be able to do
 
 - Development steps
-  - Appointment managements
-  - Patient managements
-  - Staff managements
-  - Inventory Managements
+  - Appointment managements :heavy_check_mark:
+  - Patient managements :heavy_check_mark:
+  - Staff managements :heavy_check_mark:
+  - Inventory Managements :heavy_check_mark:
   - Financial management
   - Insurance Managements
   - Reports managements
-  - Patient self-service
+  - Patient self-service :heavy_check_mark:
 
 Due to insufficient manpower we are currently working with the first four sections.
 
