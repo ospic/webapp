@@ -110,7 +110,9 @@
       "updatesmsconfigurations":"Update SMS Configuration",
       "departments":"Departments",
       "emailconfigurations":"Email configurations",
-      "rolesmanagement":"Roles Management"
+      "rolesmanagement":"Roles Management",
+      "newrole":"Create new role",
+      "editrole":"Edit role"
       
     }
   }
