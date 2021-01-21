@@ -29,7 +29,7 @@
             </template>
             <v-card>
               <v-card-title class="primary">
-                <span>Edit Role privileges</span>
+                <span>{{ $t(formTitle) }}</span>
               </v-card-title>
 
               <v-card-text>
@@ -41,7 +41,6 @@
                           v-model="editedItem.name"
                           label="Name"
                           required
-                          readonly
                         ></v-text-field>
                       </v-col>
 
@@ -98,6 +97,7 @@ import { mapGetters } from "vuex";
 export default {
   data: function() {
     return {
+      editedIndex: -1,
       headers: [
         {
           text: "ID",
@@ -140,7 +140,8 @@ export default {
     },
     save() {
       if (this.editedIndex > -1) {
-        console.log(this.editedItem.privileges);
+        //console.log(this.editedIndex);
+        //console.log(this.editedItem.privileges);
         this.update_role_privileges(
           this.editedItem.id,
           this.editedItem.privileges
@@ -169,7 +170,12 @@ export default {
     ...mapGetters({
       authorities: "privileges",
       roles: "userroles"
-    })
+    }),
+    formTitle() {
+      return this.editedIndex === -1
+        ? "label.titles.newrole"
+        : "label.titles.editrole";
+    }
   }
 };
 </script>
