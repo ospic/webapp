@@ -27,7 +27,7 @@
           ></v-text-field
           >&nbsp;&nbsp;
           <v-dialog v-model="dialog" max-width="900px">
-            <template v-slot:activator="{ on, attrs }">
+            <template v-if="showaction" v-slot:activator="{ on, attrs }">
               <v-btn
                 color="primary"
                 elevation="1"
@@ -130,7 +130,7 @@
       <template v-slot:[`item.category`]="{ item }">
         <p>{{ item.group.name }}</p>
       </template>
-      <template v-slot:[`item.actions`]="{ item }">
+      <template v-if="showaction" v-slot:[`item.actions`]="{ item }">
         <v-icon small class="mr-2" @click="editItem(item)"> mdi-pencil </v-icon>
         <v-icon small color="indigo darken-4" @click="deleteItem(item)">
           mdi-delete
@@ -149,6 +149,10 @@ export default {
     medicines: {
       type: Array,
       default: null
+    },
+    showaction: {
+      type: Boolean,
+      default: true
     }
   },
   data: () => ({

@@ -227,6 +227,12 @@ export default {
           icon: "mdi-account-multiple",
           menus: [
             {
+              title: "label.menu.appointmentandschedule",
+              icon: "mdi-alarm-multiple",
+              to: "/appointments",
+              subtitle: "Lorem ipsum dolor sit de amet ..."
+            },
+            {
               title: "label.menu.patients",
               to: "/patients",
               icon: "mdi-account-multiple"
@@ -242,12 +248,6 @@ export default {
               icon: "mdi-bed-queen",
               to: "/ipd",
               subtitle: "Lorem ipsum dolor sit de amet.."
-            },
-            {
-              title: "label.menu.appointmentandschedule",
-              icon: "mdi-alarm-multiple",
-              to: "/appointments",
-              subtitle: "Lorem ipsum dolor sit de amet ..."
             }
           ]
         },

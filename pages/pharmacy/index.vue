@@ -84,9 +84,9 @@ export default {
       units: 0
     },
     items: [
-      { id: 1, tab: "Medicines", content: "Tab 1" },
+      { id: 3, tab: "Medicine Groups", content: "Tab 2 Content" },
       { id: 2, tab: "Medicine Categories", content: "Tab 2 Content" },
-      { id: 3, tab: "Medicine Groups", content: "Tab 2 Content" }
+      { id: 1, tab: "Medicines", content: "Tab 1" }
     ]
   }),
   created() {},
