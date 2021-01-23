@@ -4,11 +4,7 @@
       <router-link to="/">Dashboard</router-link>
       <router-link to="/pharmacy" class="active">Pharmacy</router-link>
     </div>
-    <v-alert dense text type="success">
-      Medicine groups and categories editing and deleting functionality is under
 
-      <strong>developmet</strong>
-    </v-alert>
     <v-tabs v-model="tab" show-arrows background-color="primary" dark>
       <v-tab
         v-for="item in items"
