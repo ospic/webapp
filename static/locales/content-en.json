@@ -22,6 +22,8 @@
       "btnno":"No",
       "assign":"Assign",
       "decline":"Decline",
+      "btnedit":"Edit",
+      "btndelete":"Delete",
       "addnewgroup":"New medicine group",
       "addnewmedicine":"New Medicine",
       "addnewcategory":"New medicine category",
