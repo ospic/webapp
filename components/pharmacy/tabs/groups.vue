@@ -56,7 +56,7 @@
               <v-card-title>
                 <span class="headline">{{ formTitle }}</span>
               </v-card-title>
-
+              <v-divider></v-divider>
               <v-card-text>
                 <v-container>
                   <v-row>

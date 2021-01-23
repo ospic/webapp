@@ -57,7 +57,7 @@
               <v-card-title>
                 <span class="headline">{{ formTitle }}</span>
               </v-card-title>
-
+              <v-divider></v-divider>
               <v-card-text>
                 <v-container>
                   <v-row>
@@ -244,7 +244,7 @@ export default {
       template: "medicine_templates"
     }),
     formTitle() {
-      return this.editedIndex === -1 ? "New Item" : "Edit Item";
+      return this.editedIndex === -1 ? "New medicine" : "Edit medicine";
     }
   }
 };
