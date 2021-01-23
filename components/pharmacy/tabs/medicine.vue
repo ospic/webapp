@@ -12,7 +12,7 @@
         <v-toolbar flat>
           <v-toolbar-title
             ><h3>
-              List medicines
+              Medicines
             </h3></v-toolbar-title
           >
           <v-spacer></v-spacer>
