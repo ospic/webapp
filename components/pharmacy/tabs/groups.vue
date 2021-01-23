@@ -147,6 +147,10 @@ export default {
     },
     close: function() {
       this.dialog = false;
+      this.$nextTick(() => {
+        this.editedItem = Object.assign({}, this.defaultItem);
+        this.editedIndex = -1;
+      });
     },
     editItem: function(item) {
       this.editedIndex = this.groups.indexOf(item);
