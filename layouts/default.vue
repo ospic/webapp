@@ -110,7 +110,7 @@
         ></v-select>
       </template>
     </v-navigation-drawer>
-    <v-app-bar hide-on-scroll fixed app>
+    <v-app-bar hide-on-scroll dense fixed app>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
 
       <v-toolbar-title class="title font-weight-black primary--text">
@@ -153,6 +153,7 @@
         x-small
         color="primary"
         class="pa-1 "
+        elevation="1"
         @click="(dark = !dark), toggle(dark)"
       >
         <v-icon
