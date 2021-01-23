@@ -84,6 +84,23 @@
               </v-card-actions>
             </v-card>
           </v-dialog>
+          <v-dialog v-model="dialogDelete" max-width="500px">
+            <v-card>
+              <v-card-title class="headline"
+                >Are you sure you want to delete this item?</v-card-title
+              >
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn color="blue darken-1" text @click="closeDelete"
+                  >Cancel</v-btn
+                >
+                <v-btn color="blue darken-1" text @click="deleteItemConfirm"
+                  >OK</v-btn
+                >
+                <v-spacer></v-spacer>
+              </v-card-actions>
+            </v-card>
+          </v-dialog>
         </v-toolbar>
       </template>
       <template v-slot:[`item.actions`]="{ item }">
@@ -111,6 +128,7 @@ export default {
       editedIndex: -1,
       editedItemId: "",
       dialog: false,
+      dialogDelete: false,
       search: "",
       headers: [
         { text: "ID", value: "id" },
@@ -145,6 +163,10 @@ export default {
     },
     close: function() {
       this.dialog = false;
+      this.$nextTick(() => {
+        this.editedItem = Object.assign({}, this.defaultItem);
+        this.editedIndex = -1;
+      });
     },
     editItem: function(item) {
       this.editedIndex = this.categories.indexOf(item);
@@ -152,13 +174,38 @@ export default {
       this.dialog = true;
       this.editedItemId = item.id;
     },
-    deleteItem: function() {}
+    deleteItem: function(item) {
+      this.editedIndex = this.categories.indexOf(item);
+      this.editedItem = Object.assign({}, item);
+      this.dialogDelete = true;
+    },
+    deleteItemConfirm: function() {
+      this.closeDelete();
+    },
+    closeDelete: function() {
+      this.dialogDelete = false;
+      this.$nextTick(() => {
+        this.editedItem = Object.assign({}, this.defaultItem);
+        this.editedIndex = -1;
+      });
+    }
+  },
+  watch: {
+    dialog(val) {
+      val || this.close();
+    },
+    dialogDelete(val) {
+      val || this.closeDelete();
+    }
   },
   computed: {
     formTitle() {
       return this.editedIndex === -1
         ? "New medicine  category"
         : "Edit medicine category";
+    },
+    datas() {
+      return this.categories;
     }
   }
 };
