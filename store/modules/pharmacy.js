@@ -8,6 +8,7 @@ const state = () => ({
 });
 
 const mutations = {
+  /** Get medicine's  products */
   [mutation.GET_MEDICINE_PRODUCTS](state) {
     state.showLoader = true;
   },
@@ -22,6 +23,8 @@ const mutations = {
     state.medicines = payload.body;
   },
 
+
+  /**Create medicine products */
   [mutation.CREATE_NEW_MEDICINE_PRODUCT](state) {
     state.showLoader = true;
   },
@@ -35,7 +38,7 @@ const mutations = {
     state.showLoader = false;
   },
 
-
+  /**Update medicne product */
   [mutation.UPDATE_MEDICINE_PRODUCT](state) {
     state.showLoader = true;
   },
@@ -62,6 +65,20 @@ const mutations = {
   [mutation.FETCH_MEDICINE_GROUPS_SUCCESS](state, payload) {
     state.showLoader = false;
     state.medicinegroups = payload;
+  },
+
+  /** UPDATE Medicine group */
+  [mutation.UPDATE_MEDICINE_GROUP](state) {
+    state.showLoader = true;
+  },
+  [mutation.UPDATE_MEDICINE_GROUP_FAILED](state) {
+    state.showLoader = false;
+  },
+  [mutation.UPDATE_MEDICINE_GROUP_ERROR](state) {
+    state.showLoader = false;
+  },
+  [mutation.UPDATE_MEDICINE_GROUP_SUCCESS](state, payload) {
+    state.showLoader = false;
   },
 
 
@@ -91,6 +108,20 @@ const mutations = {
     state.showLoader = false;
   },
   [mutation.CREATE_MEDICINE_CATEGORY_SUCCESS](state, payload) {
+    state.showLoader = false;
+  },
+
+  /** UPDATE medicine categories */
+  [mutation.UPDATE_MEDICINE_CATEGORY](state) {
+    state.showLoader = true;
+  },
+  [mutation.UPDATE_MEDICINE_CATEGORY_FAILED](state) {
+    state.showLoader = false;
+  },
+  [mutation.UPDATE_MEDICINE_CATEGORY_ERROR](state) {
+    state.showLoader = false;
+  },
+  [mutation.UPDATE_MEDICINE_CATEGORY_SUCCESS](state, payload) {
     state.showLoader = false;
   },
   /** Create medicine group */
@@ -189,6 +220,31 @@ const actions = {
 
       }).catch(error => {
         commit(mutation.FETCH_MEDICINE_CATEGORIES_ERROR);
+        console.log(error);
+
+      });
+  },
+
+  async update_medicine_group({ commit }, payload) {
+    commit(mutation.UPDATE_MEDICINE_GROUP);
+    await this.$api.$put(`pharmacy/medicines/groups/${payload.id}`, payload)
+      .then(response => {
+        commit(mutation.UPDATE_MEDICINE_GROUP_SUCCESS, response);
+
+      }).catch(error => {
+        commit(mutation.UPDATE_MEDICINE_GROUP_ERROR);
+        console.log(error);
+
+      });
+  },
+  async update_medicine_category({ commit }, payload) {
+    commit(mutation.UPDATE_MEDICINE_CATEGORY);
+    await this.$api.$put(`pharmacy/medicines/categories/${payload.id}`, payload)
+      .then(response => {
+        commit(mutation.UPDATE_MEDICINE_CATEGORY_SUCCESS, response);
+
+      }).catch(error => {
+        commit(mutation.UPDATE_MEDICINE_CATEGORY_ERROR);
         console.log(error);
 
       });

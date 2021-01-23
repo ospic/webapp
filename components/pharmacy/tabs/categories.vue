@@ -79,25 +79,31 @@
 
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn color="blue darken-1" text @click="close">Cancel</v-btn>
-                <v-btn color="blue darken-1" text @click="save">Save</v-btn>
+                <v-btn color="blue darken-1" text @click="close">{{
+                  $t("label.button.decline")
+                }}</v-btn>
+                <v-btn color="warning" medium @click="save">{{
+                  $t("label.button.btnedit")
+                }}</v-btn>
               </v-card-actions>
             </v-card>
           </v-dialog>
-          <v-dialog v-model="dialogDelete" max-width="500px">
+          <v-dialog v-model="dialogDelete" dark max-width="500px">
             <v-card>
               <v-card-title class="headline"
                 >Are you sure you want to delete this item?</v-card-title
               >
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn color="blue darken-1" text @click="closeDelete"
-                  >Cancel</v-btn
+                <v-btn color="indigo" class="py-2" @click="closeDelete()">{{
+                  $t("label.button.decline")
+                }}</v-btn>
+                <v-btn
+                  color="warning darken-1"
+                  class="py-2"
+                  @click="deleteItemConfirm()"
+                  >{{ $t("label.button.btndelete") }}</v-btn
                 >
-                <v-btn color="blue darken-1" text @click="deleteItemConfirm"
-                  >OK</v-btn
-                >
-                <v-spacer></v-spacer>
               </v-card-actions>
             </v-card>
           </v-dialog>
@@ -153,7 +159,8 @@ export default {
       if (this.editedIndex > -1) {
         Object.assign(this.categories[this.editedIndex], this.editedItem);
         console.log(this.editedItem);
-        //this.$store.dispatch("update_medicine_category", this.editedItem);
+        this.$store.dispatch("update_medicine_category", this.editedItem);
+        this.$emit("update");
       } else {
         this.categories.push(this.editedItem);
         this.$store.dispatch("add_new_medicine_category", this.editedItem);

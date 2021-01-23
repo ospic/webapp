@@ -35,11 +35,12 @@
                 class="mb-2"
                 v-bind="attrs"
                 v-on="on"
-                dark v-if="isMdAndUp"
+                dark
+                v-if="isMdAndUp"
                 ><v-icon left>mdi-plus</v-icon
                 >{{ $t("label.button.addnewgroup") }}</v-btn
               >
-                  <v-btn
+              <v-btn
                 v-else
                 color="primary"
                 fab
@@ -77,7 +78,9 @@
 
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn color="blue darken-1" text @click="close">Cancel</v-btn>
+                <v-btn color="blue darken-1" text @click="close">{{
+                  $t("label.button.decline")
+                }}</v-btn>
                 <v-btn color="blue darken-1" text @click="save">Save</v-btn>
               </v-card-actions>
             </v-card>
@@ -133,7 +136,8 @@ export default {
       if (this.editedIndex > -1) {
         Object.assign(this.groups[this.editedIndex], this.editedItem);
         console.log(this.editedItem);
-        //this.$store.dispatch("update_medicine_category", this.editedItem);
+        this.$store.dispatch("update_medicine_group", this.editedItem);
+        this.$emit("update");
       } else {
         this.groups.push(this.editedItem);
         this.$store.dispatch("add_new_medicine_group", this.editedItem);

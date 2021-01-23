@@ -21,19 +21,19 @@
 
     <v-tabs-items v-model="tab">
       <v-tab-item>
-        <tab-medicine :medicines="medicines"></tab-medicine>
+        <tab-med-groups
+          :groups="groups"
+          @update="fetchGroups()"
+        ></tab-med-groups>
       </v-tab-item>
       <v-tab-item>
         <tab-med-categories
           :categories="categories"
-          v-on:update="fetchCategories"
+          @update="fetchCategories()"
         ></tab-med-categories>
       </v-tab-item>
       <v-tab-item>
-        <tab-med-groups
-          :groups="groups"
-          v-on:update="fetchCategories"
-        ></tab-med-groups>
+        <tab-medicine :medicines="medicines"></tab-medicine>
       </v-tab-item>
     </v-tabs-items>
   </div>
