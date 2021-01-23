@@ -35,10 +35,21 @@
                 class="mb-2"
                 v-bind="attrs"
                 v-on="on"
-                dark
+                dark v-if="isMdAndUp"
                 ><v-icon left>mdi-plus</v-icon
                 >{{ $t("label.button.addnewgroup") }}</v-btn
               >
+                  <v-btn
+                v-else
+                color="primary"
+                fab
+                small
+                class="mb-2 font-weight-normal"
+                v-bind="attrs"
+                v-on="on"
+                dark
+                ><v-icon>mdi-plus</v-icon>
+              </v-btn>
             </template>
             <v-card>
               <v-card-title>

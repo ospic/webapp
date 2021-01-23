@@ -33,6 +33,7 @@
                 color="primary"
                 elevation="1"
                 medium
+                v-if="isMdAndUp"
                 class="mb-2 font-weight-normal"
                 v-bind="attrs"
                 v-on="on"
@@ -40,6 +41,17 @@
                 ><v-icon left>mdi-plus</v-icon>
                 {{ $t("label.button.addnewcategory") }}</v-btn
               >
+              <v-btn
+                v-else
+                color="primary"
+                fab
+                small
+                class="mb-2 font-weight-normal"
+                v-bind="attrs"
+                v-on="on"
+                dark
+                ><v-icon>mdi-plus</v-icon>
+              </v-btn>
             </template>
             <v-card>
               <v-card-title>
