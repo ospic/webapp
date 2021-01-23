@@ -1,36 +1,6 @@
 <template>
   <v-container class="fill-height" fluid>
     <v-row>
-      <!-- <v-col cols="12" sm="3" class="pa-2">
-        <v-list nav dense subheader tile>
-          <template v-for="(setting, ind) in settings">
-            <v-list-group
-              :value="true"
-              color="green"
-              no-action
-              :prepend-icon="setting.icon"
-              :key="ind"
-            >
-              <template v-slot:activator>
-                <v-list-item-title class="black--text">{{
-                  $t(setting.title)
-                }}</v-list-item-title>
-              </template>
-
-              <template v-for="(menu, index) in setting.menus">
-                <v-list-item :key="index" :to="menu.to">
-                  <v-list-item-content>
-                    <v-list-item-title>
-                      <v-icon small color="green" v-html="menu.icon"></v-icon>
-                      &nbsp;&nbsp;{{ $t(menu.title) }}</v-list-item-title
-                    >
-                  </v-list-item-content>
-                </v-list-item>
-              </template>
-            </v-list-group>
-          </template>
-        </v-list>
-      </v-col>-->
       <v-col cols="12" sm="12" class="pa-2">
         <nuxt-child :key="this.$router.currentRoute.name" />
       </v-col>

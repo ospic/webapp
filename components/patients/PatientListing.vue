@@ -23,13 +23,15 @@
           ></v-text-field>
 
           <v-spacer></v-spacer>
-          <v-btn
-            medium
-            v-if="isAppointmentRoute"
-            class="primary"
-            to="/patients/add"
-            ><v-icon>mdi-plus</v-icon>New patient</v-btn
-          >
+          <div v-if="isAppointmentRoute">
+            <v-btn medium v-if="isMdAndUp" class="primary" to="/patients/add"
+              ><v-icon>mdi-plus</v-icon
+              >{{ $t("label.button.btnnewpatient") }}</v-btn
+            >
+            <v-btn small fab v-else class="primary" to="/patients/add"
+              ><v-icon>mdi-plus</v-icon></v-btn
+            >
+          </div>
         </v-toolbar>
       </template>
       <template v-slot:[`item.gender`]="{ item }">

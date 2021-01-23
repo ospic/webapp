@@ -20,6 +20,7 @@ import departments from "./modules/departments"
 
 
 Vue.use(Vuex);
+Vue.config.devtools = true
 const store = () => {
   return new Vuex.Store({
     modules: {

@@ -3,7 +3,12 @@ export default {
   data() {
     return {};
   },
-  computed: {},
+  computed: {
+    isMdAndUp() {
+      return $vuetify.breakpoint.mdAndUp;
+    }
+
+  },
   methods: {
     async delete_selected_item(dipatch, item) {
       const willDelete = await swal({

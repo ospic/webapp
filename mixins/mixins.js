@@ -41,5 +41,11 @@ Vue.mixin({
 
         });
     },
-  }
+  },
+  computed: {
+    isMdAndUp() {
+      return this.$vuetify.breakpoint.mdAndUp;
+    }
+
+  },
 });

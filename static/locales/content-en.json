@@ -25,7 +25,13 @@
       "addnewgroup":"New medicine group",
       "addnewmedicine":"New Medicine",
       "addnewcategory":"New medicine category",
-      "newdepartment":"New department"
+      "newdepartment":"New department",
+      "btnnewpatient":"Add new patient",
+      "btncreatenewuser": "Add new user",
+      "btnaddnewrole":"Add new role",
+      "btnnewsmsconfig":"Add new SMS configuration",
+      "btnaddnewmedicine":"Add new medicine"
+      
     },
     "menu":{
       "dashboard":"Dashboard",

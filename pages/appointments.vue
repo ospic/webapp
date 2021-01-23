@@ -4,7 +4,7 @@
       <router-link to="/">Dashboard</router-link>
       <router-link to="/oppointemnts" class="active">Appointments</router-link>
     </div>
-    <v-tabs color="deep-purple accent-4" right>
+    <v-tabs color="deep-purple accent-4 pa-3" right>
       <v-tab v-if="unassigned.length > 0">
         <v-badge
           color="green"

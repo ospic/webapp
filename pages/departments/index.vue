@@ -46,9 +46,24 @@
                     v-bind="attrs"
                     v-on="on"
                     dark
+                    v-if="isMdAndUp"
                     ><v-icon left>mdi-plus</v-icon
                     >{{ $t("label.button.newdepartment") }}</v-btn
                   >
+                  <v-btn
+                    v-else
+                    class="mx-2"
+                    v-bind="attrs"
+                    v-on="on"
+                    fab
+                    dark
+                    small
+                    color="primary"
+                  >
+                    <v-icon dark>
+                      mdi-plus
+                    </v-icon>
+                  </v-btn>
                 </template>
                 <v-card>
                   <v-card-title>
@@ -104,38 +119,28 @@
 
                   <v-card-actions>
                     <v-spacer></v-spacer>
-                    <v-btn color="blue darken-1" text @click.stop="close"
-                      >Cancel</v-btn
-                    >
-                    <v-btn color="blue darken-1" text @click.stop="save"
-                      >Save</v-btn
-                    >
+                    <v-btn color="primary" medium @click.stop="close">{{
+                      $t("label.button.decline")
+                    }}</v-btn>
+                    <v-btn color="warning" medium @click.stop="save">{{
+                      $t("label.button.btnsave")
+                    }}</v-btn>
                   </v-card-actions>
                 </v-card>
               </v-dialog>
             </v-toolbar>
           </template>
           <template v-slot:[`item.actions`]="{ item }">
-            <v-menu bottom left>
-              <template v-slot:activator="{ on, attrs }">
-                <v-btn dark icon v-bind="attrs" v-on="on">
-                  <v-icon color="grey darken-3">mdi-dots-vertical</v-icon>
-                </v-btn>
-              </template>
-
-              <v-list dense>
-                <v-list-item link v-for="(it, i) in items" :key="i">
-                  <v-list-item-icon
-                    ><v-icon :color="it.color"
-                      >mdi-{{ it.icon }}</v-icon
-                    ></v-list-item-icon
-                  >
-                  <v-list-item-title @click="getSelected(it, item)">{{
-                    it.title
-                  }}</v-list-item-title>
-                </v-list-item>
-              </v-list>
-            </v-menu>
+            <v-icon
+              x-small
+              :color="it.color"
+              class="mr-2"
+              v-for="(it, i) in items"
+              :key="i"
+              @click="getSelected(it, item)"
+            >
+              mdi-{{ it.icon }}
+            </v-icon>
           </template>
           <template v-slot:no-data>
             <v-progress-linear indeterminate color="cyan"></v-progress-linear>
@@ -162,7 +167,7 @@ export default {
       ],
       items: [
         { title: "View", icon: "eye", color: "grey" },
-        { title: "Edit", icon: "circle-edit-outline", color: "blue" },
+        { title: "Edit", icon: "lead-pencil", color: "blue" },
         { title: "Delete", icon: "delete", color: "red" }
       ],
       editedIndex: -1,

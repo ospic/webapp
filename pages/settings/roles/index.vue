@@ -18,8 +18,20 @@
             <template v-slot:activator="{ on, attrs }">
               <v-btn
                 color="primary"
+                medium
+                class="mb-2"
+                v-bind="attrs"
+                v-on="on"
+                v-if="isMdAndUp"
+                dark
+                ><v-icon small>mdi-plus</v-icon>
+                {{ $t("label.button.btnaddnewrole") }}</v-btn
+              >
+              <v-btn
+                v-else
+                color="primary"
                 fab
-                x-small
+                small
                 class="mb-2"
                 v-bind="attrs"
                 v-on="on"
