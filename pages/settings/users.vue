@@ -17,14 +17,27 @@
           <template v-slot:activator="{ on, attrs }">
             <v-btn
               color="primary"
+              class="mb-2"
+              medium
+              v-bind="attrs"
+              v-on="on"
+              dark
+              v-if="isMdAndUp"
+              ><v-icon>mdi-plus</v-icon>
+              {{ $t("label.button.btncreatenewuser") }}</v-btn
+            >
+
+            <v-btn
+              v-else
+              color="primary"
               fab
-              x-small
+              small
               class="mb-2"
               v-bind="attrs"
               v-on="on"
               dark
-              ><v-icon>mdi-plus</v-icon></v-btn
-            >
+              ><v-icon>mdi-plus</v-icon>
+            </v-btn>
           </template>
           <v-card>
             <v-card-title class="primary">
