@@ -9,7 +9,7 @@
 
       <strong>developmet</strong>
     </v-alert>
-    <v-tabs v-model="tab" background-color="primary" dark>
+    <v-tabs v-model="tab" show-arrows background-color="primary" dark>
       <v-tab
         v-for="item in items"
         :key="item.tab"
