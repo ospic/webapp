@@ -57,7 +57,7 @@
               <v-card-title>
                 <span class="headline">{{ formTitle }}</span>
               </v-card-title>
-
+              <v-divider></v-divider>
               <v-card-text>
                 <v-container>
                   <v-row>
@@ -83,7 +83,7 @@
                   $t("label.button.decline")
                 }}</v-btn>
                 <v-btn color="warning" medium @click="save">{{
-                  $t("label.button.btnedit")
+                  $t("label.button.btnsave")
                 }}</v-btn>
               </v-card-actions>
             </v-card>
