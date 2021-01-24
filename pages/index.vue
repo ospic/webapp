@@ -43,13 +43,7 @@
           ></summarycard>
         </template>
       </v-row>
-      <v-row
-        justify="start"
-        align="start"
-        class="mt-3"
-        no-gutters
-        v-if="patienttrends"
-      >
+      <v-row justify="start" align="start" class="mt-3" v-if="patienttrends">
         <v-col
           v-for="(item, i) in patient_trends"
           :key="i"
@@ -60,11 +54,7 @@
         >
           <v-hover>
             <template v-slot:default="{ hover }">
-              <v-card
-                class=" mx-auto default neo"
-                :elevation="hover ? 3 : 1"
-                dense
-              >
+              <v-card class="default mx-1" :elevation="hover ? 3 : 1" dense>
                 <v-card-text class="ma-0">
                   <pie-chart :data="item" :height="200"></pie-chart>
                 </v-card-text>

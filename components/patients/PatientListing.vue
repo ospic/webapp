@@ -7,6 +7,8 @@
       :items="datalist"
       :search="search"
       :options="body.options"
+      sort-by="isActive"
+      :sort-desc="sortDesc"
       mobile-breakpoint="100"
       @click:row="handleClick"
       @update:page="updatePagination"
@@ -70,6 +72,11 @@
         </v-tooltip>
         <div v-else></div>
       </template>
+      <template v-slot:[`item.isActive`]="{ item }">
+        <v-icon class=" font-weight-black" color="primary" v-if="item.isActive">
+          mdi-check
+        </v-icon>
+      </template>
 
       <template v-slot:no-data>
         <h3>No Data available ...</h3>
@@ -84,13 +91,15 @@ export default {
   data: () => ({
     dialog: false,
     search: "",
+    sortDesc: false,
     headers: [
       { text: "Name", value: "name" },
       { text: "Gender", value: "gender", sortable: false },
       { text: "Guardian", value: "guardianName" },
       { text: "Status", value: "isAdmitted", sortable: true },
-      { text: "Address", value: "address", sortable: true },
-      { text: "Phone", value: "phone" },
+      { text: "Address", value: "address" },
+      { text: "Phone", value: "phone", sortable: true },
+      { text: "Is Active?", value: "isActive" },
       { text: "Created On", value: "createdDate" },
       { text: "Updated On", value: "lastModifiedDate" },
       { text: "Created By", value: "createdBy" },
