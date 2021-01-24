@@ -36,7 +36,7 @@
           <v-tooltip right v-if="item.isActive" color="primary">
             <template v-slot:activator="{ on, attrs }">
               <v-icon v-bind="attrs" v-on="on" small color="red lighten-2"
-                >mdi-stop-circle</v-icon
+                >mdi-check</v-icon
               >
             </template>
             <span>Active</span>
