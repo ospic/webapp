@@ -80,20 +80,37 @@
                         item-text="name"
                         item-value="id"
                         chips
+                        small-chips
                         multiple
                         :rules="[
                           v => !!v || 'You must select one to continue!'
                         ]"
-                        label="Chips"
+                        label="Role"
                         required
                       ></v-select>
                     </v-col>
-                    <v-col cols="12" sm="12" md="4" class="pa-2">
+                    <v-col cols="12" sm="6" md="6" class="pa-2">
                       <v-checkbox
                         v-model="editedItem.isStaff"
                         label="Is Staff?"
                         required
                       ></v-checkbox>
+                    </v-col>
+                    <v-col cols="12" sm="6" md="6">
+                      <v-select
+                        v-model="editedItem.departmentId"
+                        :items="departments"
+                        item-text="name"
+                        item-value="id"
+                        chips
+                        small-chips
+                        v-if="editedItem.isStaff"
+                        :rules="[
+                          v => !!v || 'You must select one to continue!'
+                        ]"
+                        label="Department"
+                        @click="_fetch_departments"
+                      ></v-select>
                     </v-col>
                   </v-row>
                 </v-form>
@@ -190,6 +207,7 @@ export default {
       isStaff: false,
       email: "",
       password: "",
+      departmentId: 0,
       roles: []
     },
     defaultItem: {
@@ -198,6 +216,7 @@ export default {
       isStaff: false,
       email: "",
       password: "",
+      departmentId: 0,
       roles: []
     },
     colors: [
@@ -226,9 +245,6 @@ export default {
     ]
   }),
   created() {
-    console.log("Dispating");
-  },
-  beforeMount() {
     this.$store.dispatch("fetchuserroles");
     this.$store.dispatch("retrieveAllusers");
   },
@@ -245,6 +261,7 @@ export default {
       }
     },
     editItem(item) {
+      delete item.staff;
       this.editedIndex = this.userslist.indexOf(item);
       this.editedItem = Object.assign({}, item);
       this.dialog = true;
@@ -281,28 +298,25 @@ export default {
     save() {
       if (this.editedIndex > -1) {
         console.log(this.editedItem);
-        // Object.assign(this.userslist[this.editedIndex], this.editedItem);
         this.close();
       } else {
         delete this.editedItem.id;
-        /**this.editedItem.roles = [];
-        this.editedItem.roles.push(this.role);
-        **/
-        console.log(this.editedItem);
         if (this.$refs.form.validate()) {
           this.$store.dispatch("create_new_user", this.editedItem);
           this.$store.dispatch("retrieveAllusers");
           this.close();
         }
-
-        // this.userslist.push(this.editedItem);
       }
+    },
+    _fetch_departments() {
+      this.$store.dispatch("retrieve_departments");
     }
   },
   computed: {
     ...mapGetters({
       userslist: "users",
-      userroles: "userroles"
+      userroles: "userroles",
+      departments: "departments"
     }),
 
     formTitle() {
