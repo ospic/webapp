@@ -1,0 +1,6 @@
+tbody tr {
+  cursor: pointer;
+}
+tbody tr td.none-clickable {
+  cursor: auto;
+}

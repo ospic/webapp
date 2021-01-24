@@ -131,16 +131,18 @@
             </v-toolbar>
           </template>
           <template v-slot:[`item.actions`]="{ item }">
-            <v-icon
-              x-small
-              :color="it.color"
-              class="mr-2"
-              v-for="(it, i) in items"
-              :key="i"
-              @click="getSelected(it, item)"
-            >
-              mdi-{{ it.icon }}
-            </v-icon>
+            <td @click.stop class="none-clickable">
+              <v-icon
+                x-small
+                :color="it.color"
+                class="mr-2"
+                v-for="(it, i) in items"
+                :key="i"
+                @click="getSelected(it, item)"
+              >
+                mdi-{{ it.icon }}
+              </v-icon>
+            </td>
           </template>
           <template v-slot:no-data>
             <v-progress-linear indeterminate color="cyan"></v-progress-linear>
@@ -166,7 +168,6 @@ export default {
         { text: "Actions", value: "actions", sortable: false }
       ],
       items: [
-        { title: "View", icon: "eye", color: "grey" },
         { title: "Edit", icon: "lead-pencil", color: "blue" },
         { title: "Delete", icon: "delete", color: "red" }
       ],
@@ -233,8 +234,8 @@ export default {
       }
       this.close();
     },
-    handleClick: function(value) {
-      console.log(value);
+    handleClick: function(item) {
+      this.navigateTo(item.id);
     }
   },
   watch: {
@@ -256,3 +257,11 @@ export default {
   }
 };
 </script>
+<style lang="scss" scoped>
+:v-deep tbody tr {
+  cursor: pointer;
+}
+:v-deep tbody tr td.none-clickable {
+  cursor: auto;
+}
+</style>
