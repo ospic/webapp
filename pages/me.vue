@@ -277,6 +277,7 @@ export default {
     updateprofile() {
       console.log(this.user.staff);
       delete this.user.staff.user;
+      delete this.user.staff.department;
       this.$store.dispatch("updatestaff", this.user.staff).then(() => {
         this.$store.dispatch("retrieve_profile");
         this.edit = false;

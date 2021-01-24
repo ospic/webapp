@@ -4,7 +4,7 @@
     :headers="headers"
     :items="smsconfigurations"
     sort-by="isActive"
-    sort-desc="true"
+    :sort-desc="sortDesc"
     class="elevation-1"
   >
     <template v-slot:top>
@@ -152,6 +152,7 @@ export default {
     dialog: false,
     dialogDelete: false,
     editedIndex: -1,
+    sortDesc: false,
     headers: [
       {
         text: "ID",

@@ -151,7 +151,7 @@ const actions = {
 }
 const getters = {
   users: function (state) {
-    return state.users.reverse();
+    return state.users;
   },
   staffs: function (state) { return state.staffs }
 }
