@@ -1,49 +1,45 @@
 <template>
-  <v-card class="neo ma-1 pa-0" link :to="`/staffs/${staff.id}`">
-    <v-card-title class="d-flex flex-row justify-center mb-2">
-      <v-avatar size="82">
-        <img
-          alt="user"
-          height="100%"
-          width="100%"
+  <v-card class="ma-1 pa-0" flat elevation="1" color="grey lighten-4">
+    <v-list-item ripple="staff.id" :to="`/staffs/${staff.id}`">
+      <v-list-item-content>
+        <v-list-item-title
+          class=" font-weight-black "
+          v-html="staff.fullName == null ? staff.username : staff.fullName"
+        ></v-list-item-title>
+
+        <v-list-item-subtitle
+          class="light-blue--text font-italic"
+          v-html="staff.email"
+        ></v-list-item-subtitle>
+      </v-list-item-content>
+      <v-list-item-avatar size="60">
+        <v-img
           :src="
             staff.imageUrl == null
               ? 'https://avataaars.io/?avatarStyle=Circle&topType=ShortHairSides&accessoriesType=Round&hairColor=BrownDark&facialHairType=BeardLight&facialHairColor=BrownDark&clotheType=BlazerShirt&eyeType=Default&eyebrowType=Default&mouthType=Default&skinColor=Light'
               : staff.imageUrl
           "
-        />
-      </v-avatar>
-    </v-card-title>
-    <div class="d-flex flex-row justify-center mb-0">
-      <strong
-        ><h3>
-          {{ staff.fullName === null ? staff.username : staff.fullName }}
-        </h3></strong
-      >
-    </div>
+        ></v-img>
+      </v-list-item-avatar>
+    </v-list-item>
 
-    <v-card-text>
-      <v-row no-gutters>
-        <v-col cols="12" sm="12" md="12" align="center" class="mt-0">
-          <p class="subtitle mt-0">
-            {{ staff.user.roles[0].name.toLowerCase() }}
-          </p>
-          <p class="font-weight-light text-caption blue--text">
-            {{ staff.email }}
-          </p>
-          <v-icon color="blue" x-small>mdi-check-circle</v-icon>
-          <v-icon color="green" x-small>mdi-close-circle-outline</v-icon>
+    <v-card-text class="ma-0 pa-0">
+      <v-row no-gutters class="ma-0 pa-0">
+        <v-col cols="12" sm="12" md="7" align="center" class="mt-0 pa-0">
+          <v-btn small fab text
+            ><v-icon color="blue" small>mdi-facebook</v-icon></v-btn
+          >
+          <v-btn small fab text
+            ><v-icon color="purple darken-4" small>mdi-instagram</v-icon></v-btn
+          >
+          <v-btn small fab text
+            ><v-icon color="blue" small>mdi-twitter</v-icon></v-btn
+          >
         </v-col>
-        <v-col cols="12" sm="12" md="12" align="center">
-          <v-btn small fab text
-            ><v-icon color="blue">mdi-facebook</v-icon></v-btn
-          >
-          <v-btn small fab text
-            ><v-icon color="purple darken-4">mdi-instagram</v-icon></v-btn
-          >
-          <v-btn small fab text
-            ><v-icon color="blue">mdi-twitter</v-icon></v-btn
-          >
+
+        <v-col cols="12" sm="12" align="center" md="5" class="mt-2 ">
+          <v-icon color="blue" class="ml-4" x-small>mdi-check-circle</v-icon>
+          <v-icon color="green" x-small>mdi-close-circle-outline</v-icon>
         </v-col>
       </v-row>
     </v-card-text>

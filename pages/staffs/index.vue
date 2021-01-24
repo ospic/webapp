@@ -5,7 +5,8 @@
       <router-link to="/staffs" class="active">Staffs</router-link>
     </div>
     <v-container fluid>
-      <v-card class="py-2 pl-1">
+      <v-card class="py-2 pl-1" flat>
+        <v-card-title>{{ $t("label.titles.staffs") }}</v-card-title>
         <v-row no-gutters>
           <v-col v-for="(staff, n) in staffs" :key="n" sm="3" md="2">
             <staff-card :staff="staff"></staff-card>
