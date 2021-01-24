@@ -73,28 +73,32 @@
               sm="12"
               md="2"
             >
-              <v-list-item :key="staff.id" :to="`/staffs/${staff.id}`">
-                <v-list-item-avatar>
-                  <v-img
-                    :src="
-                      staff.imageUrl == null
-                        ? 'https://avataaars.io/?avatarStyle=Circle&topType=ShortHairSides&accessoriesType=Round&hairColor=BrownDark&facialHairType=BeardLight&facialHairColor=BrownDark&clotheType=BlazerShirt&eyeType=Default&eyebrowType=Default&mouthType=Default&skinColor=Light'
-                        : staff.imageUrl
-                    "
-                  ></v-img>
-                </v-list-item-avatar>
+              <v-card outlined flat class="ma-1" :to="`/staffs/${staff.id}`">
+                <v-list-item :key="staff.id">
+                  <v-list-item-avatar>
+                    <v-img
+                      :src="
+                        staff.imageUrl == null
+                          ? 'https://avataaars.io/?avatarStyle=Circle&topType=ShortHairSides&accessoriesType=Round&hairColor=BrownDark&facialHairType=BeardLight&facialHairColor=BrownDark&clotheType=BlazerShirt&eyeType=Default&eyebrowType=Default&mouthType=Default&skinColor=Light'
+                          : staff.imageUrl
+                      "
+                    ></v-img>
+                  </v-list-item-avatar>
 
-                <v-list-item-content>
-                  <v-list-item-title
-                    v-html="
-                      staff.fullName == null ? staff.username : staff.fullName
-                    "
-                  ></v-list-item-title>
-                  <v-list-item-subtitle
-                    v-html="staff.user.roles[0].name.toLowerCase()"
-                  ></v-list-item-subtitle>
-                </v-list-item-content>
-              </v-list-item>
+                  <v-list-item-content>
+                    <v-list-item-title
+                      class=" font-weight-medium light-blue--text"
+                      v-html="
+                        staff.fullName == null ? staff.username : staff.fullName
+                      "
+                    ></v-list-item-title>
+                    <v-list-item-subtitle
+                      class="font-italic"
+                      v-html="staff.user.roles[0].name.toLowerCase()"
+                    ></v-list-item-subtitle>
+                  </v-list-item-content>
+                </v-list-item>
+              </v-card>
             </v-col>
           </v-row>
           <v-alert v-else dense text type="error">
