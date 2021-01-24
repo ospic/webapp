@@ -220,12 +220,7 @@ const getters = {
   patients: function (state) {
     return state.patients.reverse();
   },
-  assigned: function (state) {
-    return state.patients.filter(patient => patient.isActive);
-  },
-  unassigned: function (state) {
-    return state.patients.filter(patient => !patient.isActive);
-  },
+
   patient: (state) => (id) => {
     return state.patients.find(patient => patient.id == id)
   },

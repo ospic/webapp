@@ -105,7 +105,13 @@ const getters = {
   },
   services: function (state) {
     return state.services;
-  }
+  },
+  assigned: function (state) {
+    return state.services.filter(service => (service.isActive && service.staffName != null));
+  },
+  unassigned: function (state) {
+    return state.services.filter(service => (service.isActive && service.staffName == null));
+  },
 
 
 }

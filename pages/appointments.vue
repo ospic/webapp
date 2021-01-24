@@ -5,7 +5,7 @@
       <router-link to="/oppointemnts" class="active">Appointments</router-link>
     </div>
     <v-tabs color="deep-purple accent-4 pa-3" right>
-      <v-tab v-if="unassigned.length > 0">
+      <v-tab>
         <v-badge
           color="green"
           :content="unassigned.length"
@@ -14,7 +14,7 @@
           Un-Assigned
         </v-badge>
       </v-tab>
-      <v-tab v-if="assigned.length > 0" ripple
+      <v-tab ripple
         ><v-badge
           color="green"
           :content="assigned.length"
@@ -25,16 +25,16 @@
       >
 
       <v-tab-item>
-        <patient-list
-          :datalist="unassigned"
-          :pagetitle="un_assigned_pagetitle"
-        ></patient-list>
+        <servicescard-component
+          :services="unassigned"
+          title="Un-assigned services"
+        ></servicescard-component>
       </v-tab-item>
       <v-tab-item>
-        <patient-list
-          :datalist="assigned"
-          :pagetitle="assigned_pagetitle"
-        ></patient-list>
+        <servicescard-component
+          :services="assigned"
+          title="Assigned services"
+        ></servicescard-component>
       </v-tab-item>
     </v-tabs>
   </div>
