@@ -42,9 +42,12 @@
 
 <script>
 import PatientListing from "@/components/patients/PatientListing";
+import ServiceCard from "@/components/profile/card_service";
+import { mapGetters } from "vuex";
 export default {
   components: {
-    "patient-list": PatientListing
+    "patient-list": PatientListing,
+    "servicescard-component": ServiceCard
   },
   data: () => ({
     dialog: false,
@@ -66,21 +69,12 @@ export default {
         return this.$router.path === "appointments";
       }
     },
-    datalist: {
-      get() {
-        return this.$store.getters.patients;
-      }
-    },
-    assigned: {
-      get() {
-        return this.$store.getters.assigned;
-      }
-    },
-    unassigned: {
-      get() {
-        return this.$store.getters.unassigned;
-      }
-    }
+
+    ...mapGetters({
+      datalist: "patients",
+      assigned: "assigned",
+      unassigned: "unassigned"
+    })
   },
   beforeMount() {
     this.$store.dispatch("retrievepatients");

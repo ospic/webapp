@@ -2,7 +2,8 @@ import * as mutation from './mutation-types';
 const state = () => ({
   showLoader: Boolean,
   ipdservices: [],
-  opdservices: []
+  opdservices: [],
+  services: []
 });
 
 const mutations = {
@@ -35,6 +36,21 @@ const mutations = {
     state.showLoader = false;
     state.ipdservices = payload;
   },
+
+  //GET ALLSERVICES
+  [mutation.SERVICES](state) {
+    state.showLoader = true;
+  },
+  [mutation.SERVICES_FAILED](state) {
+    state.showLoader = false;
+  },
+  [mutation.SERVICES_ERROR](state) {
+    state.showLoader = false;
+  },
+  [mutation.SERVICES_SUCCESS](state, payload) {
+    state.showLoader = false;
+    state.services = payload;
+  },
 }
 
 const actions = {
@@ -64,7 +80,21 @@ const actions = {
 
       });
 
-  }
+  },
+  async fetch_all_services({ commit }) {
+    commit(mutation.SERVICES);
+    return await this.$api
+      .$get(`services/`)
+      .then(response => {
+        if (response !== null) {
+          commit(mutation.SERVICES_SUCCESS, response);
+        }
+      })
+      .catch(error => {
+        commit(mutation.SERVICES_ERROR);
+
+      });
+  },
 }
 const getters = {
   opds: function (state) {
@@ -73,6 +103,10 @@ const getters = {
   ipds: function (state) {
     return state.ipdservices;
   },
+  services: function (state) {
+    return state.services;
+  }
+
 
 }
 

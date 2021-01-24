@@ -158,7 +158,7 @@ export default {
     },
     isAppointmentRoute: {
       get() {
-        return this.$router.currentRoute.name === "appointments";
+        return this.$router.currentRoute.name === "patients";
       }
     }
   },
