@@ -6,6 +6,7 @@
       :items="roles"
       sort-by="id"
       class="elevation-1"
+      @click:row="handleClick"
     >
       <template v-slot:top>
         <v-toolbar flat>
@@ -94,12 +95,11 @@
         </v-toolbar>
       </template>
       <template v-slot:[`item.actions`]="{ item }">
-        <v-icon small class="mr-2" @click="editItem(item)">
-          mdi-pencil
-        </v-icon>
-        <v-icon small @click="handleClick(item)">
-          mdi-eye
-        </v-icon>
+        <td @click.stop>
+          <v-icon small class="mr-2" @click="editItem(item)">
+            mdi-pencil
+          </v-icon>
+        </td>
       </template>
     </v-data-table>
   </v-container>
@@ -135,8 +135,8 @@ export default {
     };
   },
   methods: {
-    handleClick: function(value) {
-      this.$router.push("roles/" + value.id);
+    handleClick: function(item) {
+      this.$router.push("roles/" + item.id);
     },
     editItem(item) {
       this.editedIndex = this.roles.indexOf(item);
@@ -145,6 +145,10 @@ export default {
     },
     close() {
       this.dialog = false;
+      this.$nextTick(() => {
+        this.editedItem = Object.assign({}, this.defaultItem);
+        this.editedIndex = -1;
+      });
     },
     request_data() {
       this.$store.dispatch("request_role_privileges");
@@ -152,8 +156,6 @@ export default {
     },
     save() {
       if (this.editedIndex > -1) {
-        //console.log(this.editedIndex);
-        //console.log(this.editedItem.privileges);
         this.update_role_privileges(
           this.editedItem.id,
           this.editedItem.privileges
