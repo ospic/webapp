@@ -130,6 +130,11 @@
         </v-dialog>
       </v-toolbar>
     </template>
+    <template v-slot:[`item.isStaff`]="{ item }">
+      <v-icon class=" font-weight-black" color="primary" v-if="item.isStaff">
+        mdi-check
+      </v-icon>
+    </template>
     <template v-slot:[`item.actions`]="{ item }">
       <v-icon small class="mr-2" @click="editItem(item)">
         mdi-pencil
