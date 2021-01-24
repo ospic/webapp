@@ -120,7 +120,8 @@
       "emailconfigurations":"Email configurations",
       "rolesmanagement":"Roles Management",
       "newrole":"Create new role",
-      "editrole":"Edit role"
+      "editrole":"Edit role",
+      "staffs":"Staffs"
       
     }
   }
