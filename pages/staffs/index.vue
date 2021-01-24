@@ -7,7 +7,7 @@
     <v-container fluid>
       <v-card class="py-2 pl-1">
         <v-row no-gutters>
-          <v-col v-for="(staff, n) in staffs" :key="n" cols="12" sm="12" md="2">
+          <v-col v-for="(staff, n) in staffs" :key="n" sm="3" md="2">
             <staff-card :staff="staff"></staff-card>
           </v-col>
         </v-row>

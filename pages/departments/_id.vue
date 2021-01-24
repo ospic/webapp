@@ -64,7 +64,7 @@
         </v-card-title>
 
         <v-card-text>
-          <h3><strong>Staffs:</strong></h3>
+          <h3><strong>Members:</strong></h3>
           <v-row no-gutters v-if="staffs.length > 0">
             <v-col
               v-for="(staff, n) in staffs"
@@ -73,7 +73,28 @@
               sm="12"
               md="2"
             >
-              <staff-card :staff="staff"></staff-card>
+              <v-list-item :key="staff.id" :to="`/staffs/${staff.id}`">
+                <v-list-item-avatar>
+                  <v-img
+                    :src="
+                      staff.imageUrl == null
+                        ? 'https://avataaars.io/?avatarStyle=Circle&topType=ShortHairSides&accessoriesType=Round&hairColor=BrownDark&facialHairType=BeardLight&facialHairColor=BrownDark&clotheType=BlazerShirt&eyeType=Default&eyebrowType=Default&mouthType=Default&skinColor=Light'
+                        : staff.imageUrl
+                    "
+                  ></v-img>
+                </v-list-item-avatar>
+
+                <v-list-item-content>
+                  <v-list-item-title
+                    v-html="
+                      staff.fullName == null ? staff.username : staff.fullName
+                    "
+                  ></v-list-item-title>
+                  <v-list-item-subtitle
+                    v-html="staff.user.roles[0].name.toLowerCase()"
+                  ></v-list-item-subtitle>
+                </v-list-item-content>
+              </v-list-item>
             </v-col>
           </v-row>
           <v-alert v-else dense text type="error">
