@@ -152,7 +152,7 @@ export default {
     dialog: false,
     dialogDelete: false,
     editedIndex: -1,
-    sortDesc: false,
+    sortDesc: true,
     headers: [
       {
         text: "ID",
