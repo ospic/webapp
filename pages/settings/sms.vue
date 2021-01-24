@@ -139,6 +139,11 @@
         mdi-delete
       </v-icon>
     </template>
+    <template v-slot:[`item.isActive`]="{ item }">
+      <v-icon class=" font-weight-black" color="primary" v-if="item.isActive">
+        mdi-check
+      </v-icon>
+    </template>
 
     <template v-slot:no-data>
       <p>No Data available</p>
