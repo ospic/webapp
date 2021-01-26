@@ -77,7 +77,7 @@ export default {
     })
   },
   beforeMount() {
-    this.$store.dispatch("retrievepatients");
+    this.$store.dispatch("fetch_all_services");
   }
 };
 </script>
