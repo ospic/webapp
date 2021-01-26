@@ -16,36 +16,6 @@ env:
   GITHUB_TOKEN: ${{ secrets.GITHUBTOKEN }}
   MY_GITHUB_TOKEN: ${{ secrets.GITHUBTOKEN }}
 jobs:
-  build:
-    runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [14.x]
-
-    steps:
-      - uses: actions/checkout@v2
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
-    
-        with:
-          node-version: ${{ matrix.node-version }}
-      - run: npm cache verify
-      - name: Install typescript
-        run: npm install -D typescript
-      - name: Install ts-node
-        run: npm install -D ts-node
-      - run: npm i --save
-      - run: npm run generate
-      - run: npm test
-
-      - name: Deploy to gihub pages 🚀
-        uses: JamesIves/github-pages-deploy-action@releases/v3
-        with:
-          GITHUB_TOKEN: ${{ secrets.GITHUBTOKEN }}
-          BRANCH: gh-pages # The branch the action should deploy to.
-          FOLDER: dist # The folder the action should deploy.
-
   assign_one_project:
     runs-on: ubuntu-latest
     name: Assign to One Project
@@ -78,3 +48,33 @@ jobs:
         with:
           project: "https://github.com/orgs/ospic/projects/1"
           column_name: "To do"
+
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [14.x]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: npm cache verify
+      - name: Install typescript
+        run: npm install -D typescript
+      - name: Install ts-node
+        run: npm install -D ts-node
+      - run: npm i --save
+      - run: npm run generate
+      - run: npm test
+
+      - name: Deploy to gihub pages 🚀
+        uses: JamesIves/github-pages-deploy-action@releases/v3
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUBTOKEN }}
+          BRANCH: gh-pages # The branch the action should deploy to.
+          FOLDER: dist # The folder the action should deploy.
