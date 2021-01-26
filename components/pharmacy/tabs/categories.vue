@@ -140,6 +140,8 @@ export default {
         { text: "ID", value: "id" },
         { text: "Name", value: "name" },
         { text: "Descriptions", value: "descriptions", sortable: false },
+
+        { text: "Unit of measurement", value: "measureName" },
         { text: "Actions", value: "actions", sortable: false }
       ],
       editedItem: {
