@@ -66,7 +66,7 @@ const actions = {
 }
 const getters = {
   physicians: function (state) {
-    return state.physicians.reverse();
+    return state.physicians;
   },
   medicine_templates: function (state) {
     return state.medicine_template;

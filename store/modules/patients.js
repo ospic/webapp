@@ -218,7 +218,7 @@ const actions = {
 }
 const getters = {
   patients: function (state) {
-    return state.patients.reverse();
+    return state.patients;
   },
 
   patient: (state) => (id) => {
