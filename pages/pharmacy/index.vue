@@ -32,7 +32,7 @@
         <tab-medicine :medicines="medicines"></tab-medicine>
       </v-tab-item>
       <v-tab-item>
-        <tab-med-measurement :measures="medicinemeasurements"></tab-med-measurement>
+        <tab-med-measurement :measures="medicinemeasurements" @update="fetchMedicineMeasureUnits()"></tab-med-measurement>
       </v-tab-item>
     </v-tabs-items>
   </div>
@@ -112,6 +112,9 @@ export default {
     fetchGroups: function() {
       this.$store.dispatch("getmedicinesgroups");
     },
+    fetchMedicineMeasureUnits: function(){
+      this.$store.dispatch("fetch_medicine_measurements");
+    },
     handleTabNavigation: function(val) {
       switch (val.id) {
         case 1:
@@ -124,7 +127,7 @@ export default {
           this.fetchGroups();
           break;
         case 4:
-          this.$store.dispatch("fetch_medicine_measurements");
+          this.fetchMedicineMeasureUnits();
           break;
       }
     },

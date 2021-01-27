@@ -168,8 +168,7 @@ export default {
         this.$store.dispatch("update_medicine_measures", this.editedItem);
         this.$emit("update");
       } else {
-        this.measures.push(this.editedItem);
-        this.$store.dispatch("add_new_medicine_measure", this.editedItem);
+        this.$store.dispatch("create_medicine_measurement", this.editedItem);
         this.$emit("update");
       }
       this.close();

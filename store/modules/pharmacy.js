@@ -139,7 +139,7 @@ const mutations = {
     state.showLoader = false;
   },
 
-  /** Create medicine measurement units */
+  /** Fetch medicine measurement units */
   [mutation.GET_MEDICINE_MEASURES](state) {
     state.showLoader = true;
   },
@@ -153,6 +153,21 @@ const mutations = {
     state.showLoader = false;
     state.medicinemeasurements = payload;
   },
+
+  /** Create new medicine measurement units */
+  ["CREATE_MEDICINE_MEASURES"](state) {
+    state.showLoader = true;
+  },
+  ["CREATE_MEDICINE_MEASURES_FAILED"](state) {
+    state.showLoader = false;
+  },
+  ["CREATE_MEDICINE_MEASURES_ERROR"](state) {
+    state.showLoader = false;
+  },
+  ["CREATE_MEDICINE_MEASURES_SUCCESS"](state, payload) {
+    state.showLoader = false;
+  },
+
 }
 const actions = {
 
@@ -273,6 +288,18 @@ const actions = {
 
       }).catch(error => {
         commit(mutation.GET_MEDICINE_MEASURES_ERROR);
+        console.log(error);
+
+      });
+  },
+   async create_medicine_measurement({ commit }, payload) {
+    commit("CREATE_MEDICINE_MEASURES");
+    await this.$api.$post(`pharmacy/measures/`, payload)
+      .then(response => {
+        commit("CREATE_MEDICINE_MEASURES_SUCCESS", response);
+
+      }).catch(error => {
+        commit("CREATE_MEDICINE_MEASURES_ERROR");
         console.log(error);
 
       });
