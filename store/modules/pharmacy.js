@@ -4,7 +4,8 @@ const state = () => ({
   medicine: {},
   medicines: [],
   medicinecategories: [],
-  medicinegroups: []
+  medicinegroups: [],
+  medicinemeasurements: [],
 });
 
 const mutations = {
@@ -137,6 +138,21 @@ const mutations = {
   [mutation.CREATE_MEDICINE_GROUP_SUCCESS](state, payload) {
     state.showLoader = false;
   },
+
+  /** Create medicine measurement units */
+  [mutation.GET_MEDICINE_MEASURES](state) {
+    state.showLoader = true;
+  },
+  [mutation.GET_MEDICINE_MEASURES_FAILED](state) {
+    state.showLoader = false;
+  },
+  [mutation.GET_MEDICINE_MEASURES_ERROR](state) {
+    state.showLoader = false;
+  },
+  [mutation.GET_MEDICINE_MEASURES_SUCCESS](state, payload) {
+    state.showLoader = false;
+    state.medicinemeasurements = payload;
+  },
 }
 const actions = {
 
@@ -249,6 +265,18 @@ const actions = {
 
       });
   },
+  async fetch_medicine_measurements({ commit }) {
+    commit(mutation.GET_MEDICINE_MEASURES);
+    await this.$api.$get(`pharmacy/measures/`)
+      .then(response => {
+        commit(mutation.GET_MEDICINE_MEASURES_SUCCESS, response);
+
+      }).catch(error => {
+        commit(mutation.GET_MEDICINE_MEASURES_ERROR);
+        console.log(error);
+
+      });
+  }
 
 }
 const getters = {
@@ -260,7 +288,11 @@ const getters = {
   },
   medicinecategories: function (state) {
     return state.medicinecategories;
+  },
+  medicinemeasurements: function (state) {
+    return state.medicinemeasurements;
   }
+
 
 }
 
