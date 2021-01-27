@@ -160,9 +160,9 @@ export default {
     save() {
       if (this.editedIndex > -1) {
         Object.assign(this.categories[this.editedIndex], this.editedItem);
-        console.log(this.editedItem);
+       
         this.$store.dispatch("update_medicine_category", this.editedItem);
-        this.$emit("update");
+        //this.$emit("update");
       } else {
         this.categories.push(this.editedItem);
         this.$store.dispatch("add_new_medicine_category", this.editedItem);

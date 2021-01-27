@@ -167,6 +167,19 @@ const mutations = {
   ["CREATE_MEDICINE_MEASURES_SUCCESS"](state, payload) {
     state.showLoader = false;
   },
+   /** Update medicine measurement units */
+  ["UpdateMM"](state) {
+    state.showLoader = true;
+  },
+  ["UpdateMMFailed"](state) {
+    state.showLoader = false;
+  },
+  ["UpdateMMError"](state) {
+    state.showLoader = false;
+  },
+  ["UpdateMMSuccess"](state, payload) {
+    state.showLoader = false;
+  },
 
 }
 const actions = {
@@ -303,7 +316,19 @@ const actions = {
         console.log(error);
 
       });
-  }
+  },
+    async update_medicine_measure({ commit }, payload) {
+    commit("UpdateMM");
+    await this.$api.$put(`pharmacy/measures/${payload.id}`, payload)
+      .then(response => {
+        commit("UpdateMMSuccess", response);
+
+      }).catch(error => {
+        commit("UpdateMMError");
+        console.log(error);
+
+      });
+  },
 
 }
 const getters = {
