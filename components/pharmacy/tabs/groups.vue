@@ -93,9 +93,6 @@
           mdi-delete
         </v-icon>
       </template>
-      <template v-slot:no-data>
-        <v-progress-linear indeterminate color="cyan"></v-progress-linear>
-      </template>
     </v-data-table>
   </div>
 </template>

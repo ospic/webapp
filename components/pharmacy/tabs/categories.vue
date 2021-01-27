@@ -67,7 +67,25 @@
                         label="Name"
                       ></v-text-field>
                     </v-col>
-                    <v-col cols="12" sm="6" md="8">
+                    <v-col cols="12" sm="6" md="6">
+                        <v-select
+                          v-model="select"
+                          :items="measures"
+                          item-text="unit"
+                          item-value="id"
+                          chips
+                          small-chips
+                          @click="fetch_measures"
+                          :rules="[
+                            v => !!v || 'You must select one to continue!'
+                          ]"
+                          label="Measure unit"
+                          required
+                          persistent-hint
+                          single-line
+                        ></v-select>
+                      </v-col>
+                    <v-col cols="12" sm="12" md="12">
                       <v-text-field
                         v-model="editedItem.descriptions"
                         label="Descriptions"
@@ -122,6 +140,7 @@
   </div>
 </template>
 <script>
+import { mapGetters } from "vuex";
 export default {
   props: {
     categories: {
@@ -136,6 +155,7 @@ export default {
       dialog: false,
       dialogDelete: false,
       search: "",
+      select: null,
       headers: [
         { text: "ID", value: "id" },
         { text: "Name", value: "name" },
@@ -147,11 +167,13 @@ export default {
       editedItem: {
         id: 0,
         name: "",
+        measurementId:0,
         descriptions: ""
       },
       defaultItem: {
         id: 0,
         name: "",
+        measurementId: 0,
         descriptions: ""
       }
     };
@@ -160,11 +182,15 @@ export default {
     save() {
       if (this.editedIndex > -1) {
         Object.assign(this.categories[this.editedIndex], this.editedItem);
-       
+       delete this.editedItem.measureName;
+      
+       this.editedItem.measurementId = this.select;
         this.$store.dispatch("update_medicine_category", this.editedItem);
         //this.$emit("update");
       } else {
         this.categories.push(this.editedItem);
+        delete this.editedItem.id;
+        this.editedItem.measurementId = this.select;
         this.$store.dispatch("add_new_medicine_category", this.editedItem);
         this.$emit("update");
       }
@@ -197,6 +223,9 @@ export default {
         this.editedItem = Object.assign({}, this.defaultItem);
         this.editedIndex = -1;
       });
+    },
+    fetch_measures:function(){
+      this.$store.dispatch("fetch_medicine_measurements");
     }
   },
   watch: {
@@ -208,6 +237,9 @@ export default {
     }
   },
   computed: {
+     ...mapGetters({
+      measures: "medicinemeasurements"
+    }),
     formTitle() {
       return this.editedIndex === -1
         ? "New medicine  category"
@@ -215,7 +247,8 @@ export default {
     },
     datas() {
       return this.categories;
-    }
+    },
+   
   }
 };
 </script>
