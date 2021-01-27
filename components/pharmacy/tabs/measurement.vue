@@ -136,6 +136,7 @@ export default {
   data: function() {
     return {
     dialog: false,
+    dialogDelete:false,
     search: "",
     editedIndex: -1,
     editedItem: {
@@ -164,9 +165,8 @@ export default {
     save() {
       if (this.editedIndex > -1) {
         Object.assign(this.measures[this.editedIndex], this.editedItem);
-        console.log(this.editedItem);
-        this.$store.dispatch("update_medicine_measures", this.editedItem);
-        this.$emit("update");
+        this.$store.dispatch("update_medicine_measure", this.editedItem);
+        //this.$emit("update");
       } else {
         this.$store.dispatch("create_medicine_measurement", this.editedItem);
         this.$emit("update");

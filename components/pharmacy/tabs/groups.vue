@@ -135,9 +135,9 @@ export default {
     save() {
       if (this.editedIndex > -1) {
         Object.assign(this.groups[this.editedIndex], this.editedItem);
-        console.log(this.editedItem);
+       
         this.$store.dispatch("update_medicine_group", this.editedItem);
-        this.$emit("update");
+       // this.$emit("update");
       } else {
         this.groups.push(this.editedItem);
         this.$store.dispatch("add_new_medicine_group", this.editedItem);
