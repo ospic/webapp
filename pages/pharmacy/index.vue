@@ -31,6 +31,9 @@
       <v-tab-item>
         <tab-medicine :medicines="medicines"></tab-medicine>
       </v-tab-item>
+      <v-tab-item>
+        <tab-med-measurement :measures="medicinemeasurements"></tab-med-measurement>
+      </v-tab-item>
     </v-tabs-items>
   </div>
 </template>
@@ -39,11 +42,13 @@ import { mapGetters } from "vuex";
 import medicineTab from "@/components/pharmacy/tabs/medicine";
 import medicineGroupsTab from "@/components/pharmacy/tabs/groups";
 import medicineCategoriesTab from "@/components/pharmacy/tabs/categories";
+import measurementTab from "@/components/pharmacy/tabs/measurement";
 export default {
   components: {
     "tab-medicine": medicineTab,
     "tab-med-groups": medicineGroupsTab,
-    "tab-med-categories": medicineCategoriesTab
+    "tab-med-categories": medicineCategoriesTab,
+    "tab-med-measurement": measurementTab
   },
   data: () => ({
     dialog: false,
@@ -82,7 +87,8 @@ export default {
     items: [
       { id: 3, tab: "Medicine Groups", content: "Tab 2 Content" },
       { id: 2, tab: "Medicine Categories", content: "Tab 2 Content" },
-      { id: 1, tab: "Medicines", content: "Tab 1" }
+      { id: 1, tab: "Medicines", content: "Tab 1" },
+      { id: 4, tab: "Measurement units", content: "Tab measures "}
     ]
   }),
   created() {},
@@ -117,6 +123,9 @@ export default {
         case 3:
           this.fetchGroups();
           break;
+        case 4:
+          this.$store.dispatch("fetch_medicine_measurements");
+          break;
       }
     },
 
@@ -136,7 +145,8 @@ export default {
       medicines: "medicines",
       categories: "medicinecategories",
       groups: "medicinegroups",
-      template: "medicine_templates"
+      template: "medicine_templates",
+      medicinemeasurements: "medicinemeasurements"
     }),
     formTitle() {
       return this.editedIndex === -1 ? "New Item" : "Edit Item";

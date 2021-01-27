@@ -19,10 +19,12 @@
       "btnhome": "Home",
       "btnsave": "Save",
       "btnyes":"Yes",
+      "btnyesdelete":"Yes Delete",
       "btnno":"No",
       "assign":"Assign",
       "decline":"Decline",
       "btnedit":"Edit",
+      "btnedityes":"Yes Edit",
       "btndelete":"Delete",
       "addnewgroup":"New medicine group",
       "addnewmedicine":"New Medicine",
@@ -32,7 +34,8 @@
       "btncreatenewuser": "Add new user",
       "btnaddnewrole":"Add new role",
       "btnnewsmsconfig":"Add new SMS configuration",
-      "btnaddnewmedicine":"Add new medicine"
+      "btnaddnewmedicine":"Add new medicine",
+      "addnewmeasure":"Add new measurement unit"
       
     },
     "menu":{
