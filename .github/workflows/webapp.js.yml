@@ -34,7 +34,7 @@ jobs:
       - name: Install typescript
         run: npm install -D typescript
       - name: Install fibers
-        run: npm unistall fibers
+        run: npm uninstall fibers
       - run: npm install fibers
       - name: Install ts-node
         run: npm install -D ts-node
