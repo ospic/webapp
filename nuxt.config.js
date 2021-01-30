@@ -4,6 +4,7 @@ const open = require('opn');
 export default {
   // Disable server-side rendering (https://go.nuxtjs.dev/ssr-mode)
   //target: 'static',
+  telemetry: true,
   ssr: false,
   router: {
     mode: 'hash',
