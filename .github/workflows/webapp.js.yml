@@ -17,7 +17,7 @@ env:
   MY_GITHUB_TOKEN: ${{ secrets.GITHUBTOKEN }}
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     strategy:
       matrix:
