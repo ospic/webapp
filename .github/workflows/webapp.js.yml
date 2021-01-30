@@ -33,8 +33,9 @@ jobs:
       - run: npm cache verify
       - name: Install typescript
         run: npm install -D typescript
-      - name: Install fabric
-        run: npm i fabric
+      - name: Install fibers
+        run: npm unistall fibers
+      - run: npm install fibers
       - name: Install ts-node
         run: npm install -D ts-node
       - run: npm i --save
