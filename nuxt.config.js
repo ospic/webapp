@@ -115,6 +115,9 @@ export default {
           customProperties: false
         }
       }
+    },
+    terser: {
+      extractComments: false // default was LICENSES
     }
   },
   pwa: {
