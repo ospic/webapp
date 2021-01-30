@@ -4,9 +4,9 @@
   "private": true,
   "description": "Open source Hospital Management System",
   "scripts": {
-    "dev": "NODE_ENV=dev nuxt-ts",
-    "build": "NODE_ENV=dev nuxt-ts build",
-    "start": "NODE_ENV=production nuxt-ts start",
+    "dev": "NODE_ENV=dev nuxt",
+    "build": "NODE_ENV=dev nuxt build",
+    "start": "NODE_ENV=production nuxt start",
     "devi": "backpack dev",
     "generate": "NODE_ENV=production nuxt-ts generate",
     "lint:js": "eslint --ext .js,.vue --ignore-path .gitignore .",
