@@ -18,7 +18,7 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
-   # runs-on: self-hosted
+    # runs-on: self-hosted
 
     strategy:
       matrix:
@@ -32,13 +32,13 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: npm cache verify
-      - name: Install typescript
-        run: npm install -D typescript
-      - name: Install fibers
-        run: npm uninstall fibers
-      - run: npm install fibers
-      - name: Install ts-node
-        run: npm install -D ts-node
+      #- name: Install typescript
+      #  run: npm install -D typescript
+      #- name: Install fibers
+      #  run: npm uninstall fibers
+      #- run: npm install fibers
+      #- name: Install ts-node
+      #  run: npm install -D ts-node
       - run: npm i --save
       - run: npm run deploy
       - run: npm test
