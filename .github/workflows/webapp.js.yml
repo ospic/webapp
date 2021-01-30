@@ -39,7 +39,7 @@ jobs:
       - name: Install ts-node
         run: npm install -D ts-node
       - run: npm i --save
-      - run: npm run build
+      - run: npm run deploy
       - run: npm test
   #    - name: Deploy to gihub pages 🚀
   #      uses: JamesIves/github-pages-deploy-action@releases/v3
