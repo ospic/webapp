@@ -146,6 +146,10 @@ export default {
   },
   mounted: function() {
     this.syncro();
+    const exipire = window.localStorage.getItem("date");
+    if (exipire === null) {
+      this.$store.dispatch("logout");
+    }
   },
 
   computed: {
