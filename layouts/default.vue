@@ -182,9 +182,12 @@
         class="pa-0 px-3  ma-0 mt-5"
         fluid
       >
-        <v-alert v-if="!domain" dense color="green lighten-3" type="info">
+        <v-alert v-if="!domain" dense color="green lighten-1" type="info">
           This application is no longer supported in this domain. I have being
-          moved to <a href="http://demo.ospicx.com/">demo.ospicx.com</a>
+          moved to
+          <a style="color: blue" href="http://app.ospicx.com/"
+            >app.ospicx.com</a
+          >
         </v-alert>
         <nuxt />
       </v-container>
@@ -469,7 +472,7 @@ export default {
       return window.localStorage.getItem("ospic.email");
     },
     domain() {
-      return window.location.hostname === "demo.ospicx.com";
+      return window.location.hostname === "app.ospicx.com";
     }
   }
 };
