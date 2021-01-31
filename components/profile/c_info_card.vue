@@ -180,7 +180,7 @@
 
           <v-tab class="font-weight-normal" @click.stop="getPatientServices()">
             <v-icon small left>mdi-plus</v-icon>
-            Services
+            Consultations
           </v-tab>
         </v-tabs>
         <v-tabs-items vertical v-model="tab">
@@ -195,7 +195,7 @@
                 small
                 v-if="!userdata.isActive"
                 @click.stop="initiateServiceInstance()"
-                >Initiate service</v-btn
+                >New consultation</v-btn
               >
               <tb-services :services="services"></tb-services>
             </div>
