@@ -37,7 +37,7 @@
                         class="primary mb-1"
                         v-bind="attrs"
                         v-on="on"
-                        >End service</v-btn
+                        >Close consultation</v-btn
                       >
                     </template>
                     <v-card flat class=" text-xs-center">
