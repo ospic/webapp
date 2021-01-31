@@ -186,7 +186,7 @@ export default {
             chartOptions: {
               labels: ["Active", "Inactive"]
             },
-            title: "Service distributions"
+            title: "Consultations distribution"
           },
           {
             series: [
@@ -196,16 +196,12 @@ export default {
             chartOptions: {
               labels: ["Assigned", "Un-Assigned"]
             },
-            title: "Service assignment"
+            title: "Consultations assignment"
           },
           {
-            series: [
-              this.ward.totalCount,
-              this.ward.totalOccupied,
-              this.ward.totalUnOccupied
-            ],
+            series: [this.ward.totalOccupied, this.ward.totalUnOccupied],
             chartOptions: {
-              labels: ["Total beds", "Occupied beds", "Free beds"]
+              labels: ["Occupied beds", "Free beds"]
             },
             title: "Beds distributions"
           },
@@ -278,47 +274,47 @@ export default {
         return [
           /**Servrices */
           {
-            title: "Total services",
-            subtitle: "Total services",
+            title: "Total consultations",
+            subtitle: "Total consultations",
             measure: "p/d",
             value: this.services.total,
             icon: "mdi-account-group-outline",
             color: "red"
           },
           {
-            title: "Active services",
-            subtitle: "Active services",
+            title: "Active consultations",
+            subtitle: "Active consultations",
             measure: "p/d",
             value: this.services.totalActive,
             icon: "mdi-order-alphabetical-ascending",
             color: "red"
           },
           {
-            title: "Inactive services",
-            subtitle: "Inactive services",
+            title: "Inactive consultations",
+            subtitle: "Inactive consultations",
             measure: "p/d",
             value: this.services.totalInActive,
             icon: "mdi-order-bool-ascending",
             color: "red"
           },
           {
-            title: "Assigned services",
-            subtitle: "Assigned services",
+            title: "Assigned consultations",
+            subtitle: "Assigned consultations",
             measure: "p/d",
             value: this.services.totalAssigned,
             icon: "mdi-order-numeric-descending",
             color: "red"
           },
           {
-            title: "Unassigned services",
-            subtitle: "Unassigned services",
+            title: "Unassigned consultations",
+            subtitle: "Unassigned consultations",
             value: this.services.totalUnAssigned,
             icon: "mdi-order-bool-ascending",
             color: "teal"
           },
           {
             title: " OPD",
-            subtitle: "OPD  services",
+            subtitle: "OPD  consultations",
             value: this.services.totalOpd,
             measure: "p/d",
             icon: "mdi-account-group-outline",
@@ -326,7 +322,7 @@ export default {
           },
           {
             title: "IPD ",
-            subtitle: "IPD  services",
+            subtitle: "IPD  consultations",
             measure: "p/d",
             value: this.services.totalIpd,
             icon: "mdi-bed",
