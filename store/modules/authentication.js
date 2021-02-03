@@ -93,7 +93,7 @@ const mutations = {
 const actions = {
   async _authenticate_then_login({ commit }, payload) {
     commit(mutation.SIGNIN);
-    await this.$api.$post(`auth/signin`, payload)
+    await this.$authapi.$post(`auth/signin`, payload)
       .then(response => {
         if (response) {
           commit(mutation.SIGNIN_SUCCESS, response);

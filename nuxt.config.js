@@ -64,6 +64,7 @@ export default {
     "~/plugins/i18n.js",
     '~/plugins/vuetify.js',
     '~/plugins/axios',
+    '~/plugins/authaxios',
     '~/plugins/pwa.client.js',
     '~/plugins/vue-apexcharts.js',
     '~/mixins/mixins.js',
