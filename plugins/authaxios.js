@@ -19,8 +19,6 @@ export default function ({ $axios, redirect, store }, inject) {
   });
 
   api.onRequest(config => {
-    var token = store.getters.accessToken;
-    api.setHeader("Authorization", "Bearer  " + token);
     api.setHeader("Access-Control-Allow-Headers", "x-access-token, Origin, Content-Type, Accept");
     api.setHeader("Access-Control-Allow-Origin", "*");
 
@@ -51,6 +49,6 @@ export default function ({ $axios, redirect, store }, inject) {
   /**For production */
   api.setBaseURL(process.env.NODE_ENV === "production" ? process.env.baseUrl : process.env.localUrl);
   // Inject to context as $api
-  inject("api", api);
+  inject("authapi", api);
 }
 
