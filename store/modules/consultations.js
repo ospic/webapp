@@ -57,7 +57,7 @@ const actions = {
 
   async retrieve_active_opd_services({ commit }) {
     commit(mutation.GET_OPDSERVICES);
-    await this.$api.$get('services/?active=activeopd')
+    await this.$api.$get('consultations/?active=activeopd')
       .then(response => {
         console.log(response)
         commit(mutation.GET_OPDSERVICES_SUCCESS, response);
@@ -71,7 +71,7 @@ const actions = {
 
   async retrieve_active_ipd_services({ commit }) {
     commit(mutation.GET_IPDSERVICES);
-    await this.$api.$get('services/?active=activeipd')
+    await this.$api.$get('consultations/?active=activeipd')
       .then(response => {
         commit(mutation.GET_IPDSERVICES_SUCCESS, response);
       }).catch(error => {
