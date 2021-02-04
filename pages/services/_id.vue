@@ -262,7 +262,7 @@ export default {
   methods: {
     async getServiceById() {
       return await this.$api
-        .$get(`services/${this.$route.params.id}`)
+        .$get(`consultations/${this.$route.params.id}`)
         .then(response => {
           if (response !== null) {
             this.service = response;
@@ -290,7 +290,7 @@ export default {
     async endThisService() {
       this.dialog = false;
       return await this.$api
-        .$put(`services/${this.$route.params.id}`)
+        .$put(`consultations/${this.$route.params.id}`)
         .then(response => {
           if (response !== null) {
             this.getServiceById();

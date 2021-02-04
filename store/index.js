@@ -15,7 +15,7 @@ import bloodbank from "./modules/bloodbank";
 import theme from "./modules/theme";
 import smsconfiguration from "./modules/smsconfigurations";
 import statisitics from "./modules/statistics";
-import services from "./modules/services";
+import consultations from "./modules/consultations";
 import departments from "./modules/departments"
 
 
@@ -26,7 +26,7 @@ const store = () => {
     modules: {
       authentication, SignUp, patients, documents, contacts, users, pharmacy,
       templates, diagnoses, inventory, profile, bloodbank, theme, smsconfiguration, statisitics,
-      departments, services
+      departments, consultations
     },
 
   });
