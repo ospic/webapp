@@ -27,3 +27,11 @@
   src: local("MontSerrat"),
     url(../fonts/motserrat/Montserrat-Regular.ttf) format("truetype");
 }
+
+@font-face {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  src: local("Roboto"),
+    url(../fonts/roboto/Roboto-Regular.ttf) format("truetype");
+}
