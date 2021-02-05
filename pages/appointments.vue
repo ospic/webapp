@@ -42,7 +42,7 @@
 
 <script>
 import PatientListing from "@/components/patients/PatientListing";
-import ServiceCard from "@/components/profile/card_service";
+import ServiceCard from "@/components/profile/consultation_card";
 import { mapGetters } from "vuex";
 export default {
   components: {

@@ -125,7 +125,7 @@
   </div>
 </template>
 <script>
-import ServiceCard from "@/components/profile/card_service";
+import ServiceCard from "@/components/profile/consultation_card";
 export default {
   components: {
     "service-card": ServiceCard

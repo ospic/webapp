@@ -3,7 +3,7 @@ const state = () => ({
   showLoader: Boolean,
   ipdservices: [],
   opdservices: [],
-  services: []
+  consultations: []
 });
 
 const mutations = {
@@ -49,7 +49,7 @@ const mutations = {
   },
   [mutation.SERVICES_SUCCESS](state, payload) {
     state.showLoader = false;
-    state.services = payload;
+    state.consultations = payload;
   },
 }
 
@@ -103,8 +103,8 @@ const getters = {
   ipds: function (state) {
     return state.ipdservices;
   },
-  services: function (state) {
-    return state.services;
+  consultations: function (state) {
+    return state.consultations;
   },
   assigned: function (state) {
     return state.services.filter(service => (service.isActive && service.staffName != null));
