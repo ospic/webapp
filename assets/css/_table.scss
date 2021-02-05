@@ -1,0 +1,16 @@
+tr:nth-child(odd) {
+  background: #eaeaea;
+}
+
+tr:nth-child(even) {
+  background: white;
+}
+
+th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: $color_primary;
+  font-weight: b;
+  color: white;
+}
