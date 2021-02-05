@@ -184,6 +184,10 @@
                 </v-tab>
                 <v-tab class="font-weight-normal">
                   <v-icon small left>mdi-plus</v-icon>
+                  Medical services
+                </v-tab>
+                <v-tab class="font-weight-normal">
+                  <v-icon small left>mdi-plus</v-icon>
                   Medicines
                 </v-tab>
               </v-tabs>
@@ -214,6 +218,9 @@
                   <tb-charges :transaction="service_transactions"></tb-charges>
                 </v-tab-item>
                 <v-tab-item>
+                  <h1>Medical services</h1>
+                </v-tab-item>
+                <v-tab-item>
                   <h1 class="pa-2">
                     List of all service charges from
                     <a
@@ -238,7 +245,7 @@ import DiagnosesTab from "@/components/profile/tabs/diagnoses";
 import AdmissionsTab from "@/components/profile/tabs/admissions";
 import c_type_divider from "@/components/profile/c_type_divider";
 import AddressCard from "@/components/profile/c_address_card";
-import ConsultationsTab from "@/components/profile/tabs/services";
+import ConsultationsTab from "@/components/profile/tabs/consultations";
 import ChargesAndConstsTab from "@/components/profile/tabs/charges";
 
 export default {
@@ -255,7 +262,7 @@ export default {
     "tb-doctor": DoctorTab,
     "tb-diagnoses": DiagnosesTab,
     "tb-admissions": AdmissionsTab,
-    "tb-services": ConsultationsTab,
+    "tb-consultations": ConsultationsTab,
     "tb-charges": ChargesAndConstsTab
   },
   data: function() {
