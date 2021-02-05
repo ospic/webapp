@@ -175,20 +175,21 @@
                   <v-icon small left>mdi-history</v-icon>
                   Admission History
                 </v-tab>
-                <v-tab
-                  class="font-weight-normal"
-                  @click="getServiceChargesAndCosts"
-                >
-                  <v-icon small left>mdi-credit-card</v-icon>
-                  Charges & Costs
-                </v-tab>
-                <v-tab class="font-weight-normal">
+              
+                <v-tab class="font-weight-normal" @click="getMedicalServices">
                   <v-icon small left>mdi-plus</v-icon>
                   Medical services
                 </v-tab>
                 <v-tab class="font-weight-normal">
                   <v-icon small left>mdi-plus</v-icon>
                   Medicines
+                </v-tab>
+                  <v-tab
+                  class="font-weight-normal"
+                  @click="getServiceChargesAndCosts"
+                >
+                  <v-icon small left>mdi-credit-card</v-icon>
+                  Charges & Costs
                 </v-tab>
               </v-tabs>
               <v-tabs-items vertical v-model="tab" class="default">
@@ -214,11 +215,9 @@
                     :userdata="service.patient"
                   ></tb-admissions>
                 </v-tab-item>
+                
                 <v-tab-item>
-                  <tb-charges :transaction="service_transactions"></tb-charges>
-                </v-tab-item>
-                <v-tab-item>
-                  <h1>Medical services</h1>
+                  <tb-medical-services></tb-medical-services>
                 </v-tab-item>
                 <v-tab-item>
                   <h1 class="pa-2">
@@ -229,6 +228,9 @@
                       >Master price database table</a
                     >, written in General Ledger
                   </h1>
+                </v-tab-item>
+                <v-tab-item>
+                  <tb-charges :transaction="service_transactions"></tb-charges>
                 </v-tab-item>
               </v-tabs-items>
             </v-card-text>
@@ -247,6 +249,7 @@ import c_type_divider from "@/components/profile/c_type_divider";
 import AddressCard from "@/components/profile/c_address_card";
 import ConsultationsTab from "@/components/profile/tabs/consultations";
 import ChargesAndConstsTab from "@/components/profile/tabs/charges";
+import MedicalServicesTab from "@/components/profile/tabs/medicalservices";
 
 export default {
   props: {
@@ -263,7 +266,8 @@ export default {
     "tb-diagnoses": DiagnosesTab,
     "tb-admissions": AdmissionsTab,
     "tb-consultations": ConsultationsTab,
-    "tb-charges": ChargesAndConstsTab
+    "tb-charges": ChargesAndConstsTab,
+    "tb-medical-services": MedicalServicesTab
   },
   data: function() {
     return {
@@ -326,6 +330,9 @@ export default {
         .catch(error => {
           console.log(error);
         });
+    },
+    getMedicalServices() {
+      this.$store.dispatch("get_medical_services");
     }
   },
   created() {
