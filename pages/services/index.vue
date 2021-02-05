@@ -162,7 +162,8 @@ export default {
     },
     save() {
       if (this.editedIndex > -1) {
-        console.log("NONE");
+        console.log(this.editedItem);
+        this.$store.dispatch("update_medical_service", this.editedItem);
       } else {
         delete this.editedItem.id;
         this.$store.dispatch("create_new_medical_service", this.editedItem);
