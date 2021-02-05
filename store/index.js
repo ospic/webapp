@@ -16,7 +16,8 @@ import theme from "./modules/theme";
 import smsconfiguration from "./modules/smsconfigurations";
 import statisitics from "./modules/statistics";
 import consultations from "./modules/consultations";
-import departments from "./modules/departments"
+import departments from "./modules/departments";
+import medicalservices from "./modules/medicalservices";
 
 
 Vue.use(Vuex);
@@ -26,7 +27,7 @@ const store = () => {
     modules: {
       authentication, SignUp, patients, documents, contacts, users, pharmacy,
       templates, diagnoses, inventory, profile, bloodbank, theme, smsconfiguration, statisitics,
-      departments, consultations
+      departments, consultations, medicalservices
     },
 
   });
