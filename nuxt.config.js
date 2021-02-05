@@ -55,7 +55,6 @@ export default {
 
   // Global CSS (https://go.nuxtjs.dev/config-css)
   css: [
-    '@/assets/fonts/montserrat.css',
     '@/assets/css/styles.css'
   ],
 
