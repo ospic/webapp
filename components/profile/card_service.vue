@@ -86,7 +86,7 @@ export default {
   }),
   methods: {
     handleClick: function(value) {
-      this.$router.push("/services/" + value.id);
+      this.$router.push("/consultations/" + value.id);
     },
     updatePagination: function(val) {
       console.log(val);

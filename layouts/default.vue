@@ -315,6 +315,11 @@ export default {
               title: "label.titles.departments",
               to: "/departments",
               icon: "mdi-office-building"
+            },
+            {
+              title: "label.titles.services",
+              to: "/services",
+              icon: "mdi-office-building"
             }
           ]
         },

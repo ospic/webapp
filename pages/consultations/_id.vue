@@ -8,7 +8,9 @@
       <router-link :to="`/patients/${service.patient.id}`">{{
         service.patient.name
       }}</router-link>
-      <router-link :to="`/services/${this.$route.params.id}`" class="active"
+      <router-link
+        :to="`/consultations/${this.$route.params.id}`"
+        class="active"
         >service ({{ this.$route.params.id }})</router-link
       >
     </div>
