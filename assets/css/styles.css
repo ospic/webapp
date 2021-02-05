@@ -225,4 +225,21 @@ tbody tr {
 tbody tr td.none-clickable {
   cursor: auto;
 }
+
+tr:nth-child(odd) {
+  background: #eaeaea;
+}
+
+tr:nth-child(even) {
+  background: white;
+}
+
+th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #00a756;
+  font-weight: b;
+  color: white;
+}
 /*# sourceMappingURL=styles.css.map */
