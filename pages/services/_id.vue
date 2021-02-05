@@ -173,7 +173,10 @@
                   <v-icon small left>mdi-history</v-icon>
                   Admission History
                 </v-tab>
-                <v-tab class="font-weight-normal">
+                <v-tab
+                  class="font-weight-normal"
+                  @click="getServiceChargesAndCosts"
+                >
                   <v-icon small left>mdi-credit-card</v-icon>
                   Charges & Costs
                 </v-tab>
@@ -206,7 +209,7 @@
                   ></tb-admissions>
                 </v-tab-item>
                 <v-tab-item>
-                  <h1>Service Charges</h1>
+                  <tb-charges :transaction="service_transactions"></tb-charges>
                 </v-tab-item>
                 <v-tab-item>
                   <h1 class="pa-2">
@@ -233,7 +236,8 @@ import DiagnosesTab from "@/components/profile/tabs/diagnoses";
 import AdmissionsTab from "@/components/profile/tabs/admissions";
 import c_type_divider from "@/components/profile/c_type_divider";
 import AddressCard from "@/components/profile/c_address_card";
-import ServicesTab from "@/components/profile/tabs/services";
+import ConsultationsTab from "@/components/profile/tabs/services";
+import ChargesAndConstsTab from "@/components/profile/tabs/charges";
 
 export default {
   props: {
@@ -249,14 +253,16 @@ export default {
     "tb-doctor": DoctorTab,
     "tb-diagnoses": DiagnosesTab,
     "tb-admissions": AdmissionsTab,
-    "tb-services": ServicesTab
+    "tb-services": ConsultationsTab,
+    "tb-charges": ChargesAndConstsTab
   },
   data: function() {
     return {
       tab: null,
       service: null,
       dialog: false,
-      admissions: null
+      admissions: null,
+      service_transactions: null
     };
   },
   methods: {
@@ -281,6 +287,18 @@ export default {
         .then(response => {
           if (response !== null) {
             this.admissions = response;
+          }
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    },
+    async getServiceChargesAndCosts() {
+      return await this.$api
+        .$get(`transactions/${this.$route.params.id}/consultation`)
+        .then(response => {
+          if (response !== null) {
+            this.service_transactions = response;
           }
         })
         .catch(error => {
