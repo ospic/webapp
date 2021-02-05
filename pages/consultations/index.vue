@@ -2,7 +2,9 @@
   <div>
     <div class="breadcrumb " v-if="services != null">
       <router-link to="/">Dashboard</router-link>
-      <router-link to="/services" class="active">service </router-link>
+      <router-link to="/consultations" class="active"
+        >Consultation
+      </router-link>
     </div>
 
     <service-card :services="services"></service-card>

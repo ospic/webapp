@@ -124,7 +124,8 @@
       "rolesmanagement":"Roles Management",
       "newrole":"Create new role",
       "editrole":"Edit role",
-      "staffs":"Staffs"
+      "staffs":"Staffs",
+      "services":"Services"
       
     }
   }

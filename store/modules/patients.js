@@ -97,7 +97,7 @@ const mutations = {
   },
   [mutation.ADMIT_PATIENT_SUCCESS](state, payload) {
     state.showLoader = false;
-    this.$router.push('/services/' + payload);
+    this.$router.push('/consultations/' + payload);
   },
   //End patient admission
   [mutation.END_ADMISSION](state) {
@@ -111,7 +111,7 @@ const mutations = {
   },
   [mutation.END_ADMISSION_SUCCESS](state, payload) {
     state.showLoader = false;
-    this.$router.push('/services/' + payload);
+    this.$router.push('/consultations/' + payload);
   },
 
 }
