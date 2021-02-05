@@ -145,7 +145,7 @@ export default {
       this.$router.push("roles/" + item.id);
     },
     editItem(item) {
-      this.editedIndex = this.roles.indexOf(item);
+      this.editedIndex = this.medicalservices.indexOf(item);
       this.editedItem = Object.assign({}, item);
       this.dialog = true;
     },

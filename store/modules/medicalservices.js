@@ -20,6 +20,21 @@ const mutations = {
     state.medicalservice = payload;
   },
 
+  /** Update medical service */
+  ["UPDATE_MEDICAL_SERVICE"](state) {
+    state.showLoader = true;
+  },
+  ["UPDATE_MEDICAL_SERVICE_FAILED"](state) {
+    state.showLoader = false;
+  },
+  ["UPDATE_MEDICAL_SERVICE_ERROR"](state) {
+    state.showLoader = false;
+  },
+  ["UPDATE_MEDICAL_SERVICE_SUCCESS"](state, payload) {
+    state.showLoader = false;
+    state.medicalservice = payload;
+  },
+
   //GET MEDICAL SERVICES
   ["GET_MEDICAL_SERVICES"](state) {
     state.showLoader = true;
@@ -45,6 +60,18 @@ const actions = {
         commit("CREATE_MEDICAL_SERVICE_SUCCESS", response);
       }).catch(error => {
         commit("CREATE_MEDICAL_SERVICE_ERROR");
+        console.log(error);
+
+      });
+
+  },
+  async update_medical_service({ commit }, payload) {
+    commit("UPDATE_MEDICAL_SERVICE");
+    await this.$api.$put(`services/${payload.id}/`, payload)
+      .then(response => {
+        commit("UPDATE_MEDICAL_SERVICE_SUCCESS", response);
+      }).catch(error => {
+        commit("UPDATE_MEDICAL_SERVICE_ERROR");
         console.log(error);
 
       });
