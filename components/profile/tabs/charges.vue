@@ -4,17 +4,22 @@
     v-if="transaction == null"
   ></v-progress-linear>
   <v-container fluid v-else class="ma-2">
-    <div>
+    <v-row justify="end" class="mb-2" no-gutters>
       <v-spacer></v-spacer>
-      <h1>{{ transaction.totalAmount }}</h1>
-    </div>
+      <v-col style="background-color: green" md="4">
+        <v-card class="pa-2" elevation="1" outlined tile>
+          <h3>Total amount: {{ transaction.totalAmount }}</h3>
+        </v-card>
+      </v-col>
+    </v-row>
     <v-data-table
       dense
       class="default"
       :headers="headers"
       :items="transaction.transactions"
       mobile-breakpoint="100"
-    ></v-data-table>
+    >
+    </v-data-table>
   </v-container>
 </template>
 <script>
