@@ -7,7 +7,7 @@
   ></servicescard-component>
 </template>
 <script>
-import ServiceCard from "@/components/profile/card_service";
+import ServiceCard from "@/components/profile/consultation_card";
 export default {
   components: {
     "servicescard-component": ServiceCard

@@ -7,15 +7,15 @@
       </router-link>
     </div>
 
-    <service-card :services="services"></service-card>
+    <consultation-card :services="consultations"></consultation-card>
   </div>
 </template>
 <script>
-import ServiceCard from "@/components/profile/card_service";
+import ConsultationCard from "@/components/profile/consultation_card";
 import { mapGetters } from "vuex";
 export default {
   components: {
-    "service-card": ServiceCard
+    "consultation-card": ConsultationCard
   },
   data: function() {
     return {};
@@ -26,7 +26,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      services: "services"
+      consultations: "consultations"
     })
   }
 };
