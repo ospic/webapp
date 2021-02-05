@@ -160,7 +160,7 @@ export default {
     },
     async getAcitveAssignedServices() {
       return await this.$api
-        .$get(`services/staff/${this.$route.params.id}/?active=true`)
+        .$get(`consultations/staff/${this.$route.params.id}/?active=true`)
         .then(response => {
           if (response !== null) {
             this.services = response;
@@ -172,7 +172,7 @@ export default {
     },
     async getHistoricalAssignedServices() {
       return await this.$api
-        .$get(`services/staff/${this.$route.params.id}/?`)
+        .$get(`consultations/staff/${this.$route.params.id}/?`)
         .then(response => {
           if (response !== null) {
             this.allservices = response;

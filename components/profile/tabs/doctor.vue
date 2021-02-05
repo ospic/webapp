@@ -63,7 +63,7 @@ export default {
   methods: {
     async _assign_staff() {
       return await this.$api
-        .$put(`services/${this.$route.params.id}/${this.selectedstaffId.id}/`)
+        .$put(`consultations/${this.$route.params.id}/${this.selectedstaffId.id}/`)
         .then(response => {
           if (response !== null) {
             this.$emit("update-service");

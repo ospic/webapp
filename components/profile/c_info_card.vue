@@ -313,7 +313,7 @@ export default {
 
     },
     async initiateServiceInstance(){
-        return await this.$api.$post(`services/${this.$route.params.id}`)
+        return await this.$api.$post(`consultations/${this.$route.params.id}`)
         .then(response => {
           if (response !== null) {
             this.getPatientServices()
@@ -326,7 +326,7 @@ export default {
 
     },
     async getPatientServices(){
-        return await this.$api.$get(`services/patient/${this.$route.params.id}`)
+        return await this.$api.$get(`consultations/patient/${this.$route.params.id}`)
         .then(response => {
           if (response !== null) {
             this.services = response.sort(function(a,b){return b.isActive - a.isActive});
