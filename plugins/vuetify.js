@@ -24,7 +24,7 @@ export default (ctx) => {
         },
         light: {
           primary: '#00A756',
-          accent: '#0000',
+          accent: '#000000',
           secondary: '#ffffff',
           success: '#4CAF50',
           info: '#2196F3',

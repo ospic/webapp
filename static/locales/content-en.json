@@ -35,7 +35,8 @@
       "btnaddnewrole":"Add new role",
       "btnnewsmsconfig":"Add new SMS configuration",
       "btnaddnewmedicine":"Add new medicine",
-      "addnewmeasure":"Add new measurement unit"
+      "addnewmeasure":"Add new measurement unit",
+      "btnaddnewservice":"Add new medical service"
       
     },
     "menu":{
@@ -125,7 +126,10 @@
       "newrole":"Create new role",
       "editrole":"Edit role",
       "staffs":"Staffs",
-      "services":"Services"
+      "services":"Services",
+      "newservice":"Add medical service",
+      "editservice":"Edit medical service",
+      "servicesmanagement":"Services Management"
       
     }
   }
