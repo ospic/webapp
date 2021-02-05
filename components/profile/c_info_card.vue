@@ -209,7 +209,7 @@
 
 import BiographTab from "@/components/profile/tabs/biograph"
 import c_type_divider from "@/components/profile/c_type_divider";
-import ServicesTab from "@/components/profile/tabs/services";
+import ConsultationsTab from "@/components/profile/tabs/consultations";
 import AddressCard from "@/components/profile/c_address_card.vue";
 
 export default {
@@ -222,7 +222,7 @@ export default {
   components: {
     'v-type-divider': c_type_divider,
     'tb-biograph': BiographTab,
-    'tb-services':ServicesTab,
+    'tb-services': ConsultationsTab,
     'v-address-card': AddressCard
   },
   data() {
