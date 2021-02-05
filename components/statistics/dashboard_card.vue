@@ -21,7 +21,7 @@
                 v-html="item.value"
               ></v-list-item-title>
               <v-list-item-subtitle
-                :class="`${item.color}--text font-weight-normal text-caption `"
+                :class="`${item.color}--text font-weight-normal `"
                 v-html="item.title"
               ></v-list-item-subtitle>
             </v-list-item-content>
