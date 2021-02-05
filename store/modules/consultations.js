@@ -84,7 +84,7 @@ const actions = {
   async fetch_all_services({ commit }) {
     commit(mutation.SERVICES);
     return await this.$api
-      .$get(`services/`)
+      .$get(`consultations/`)
       .then(response => {
         if (response !== null) {
           commit(mutation.SERVICES_SUCCESS, response);
