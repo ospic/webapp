@@ -88,7 +88,9 @@
               class="font-weight-normal"
               @click="getHistoricalAssignedServices"
             >
-              <span> <v-icon small left>mdi-plus</v-icon>Service History</span>
+              <span>
+                <v-icon small left>mdi-plus</v-icon>Consultations History</span
+              >
             </v-tab>
           </v-tabs>
           <v-tabs-items vertical v-model="tab">
