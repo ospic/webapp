@@ -1,5 +1,6 @@
 <template>
   <v-app
+    class="app"
     style="
     background: rgba(0,0,0,0);"
   >

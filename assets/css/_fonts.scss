@@ -35,3 +35,7 @@
   src: local("Roboto"),
     url(../fonts/roboto/Roboto-Regular.ttf) format("truetype");
 }
+
+#__nuxt .app {
+  font-family: "FiraSans";
+}
