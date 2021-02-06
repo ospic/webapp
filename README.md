@@ -1,4 +1,4 @@
-<h1 align="center">HMS :hospital:</h1>
+<h1 align="center">HMS :hospital: </h1>
 <p align="center">Open source Hospital Management System (HMS) <p>
 
 <p align="center">
@@ -108,3 +108,5 @@ $ npm run start
 # generate static project
 $ npm run generate
 ```
+
+[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/donate?business=HE3L345WEKRWJ&item_name=Support+Ospic+an+open+source++Hospital+Management+system+developers+team.&currency_code=USD)
