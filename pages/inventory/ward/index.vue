@@ -35,9 +35,16 @@
             label="Search"
             single-line
             dense
-            class="shrink"
             hide-details
           ></v-text-field>
+          <v-spacer></v-spacer>
+          <v-btn medium v-if="isMdAndUp" class="primary"
+            ><v-icon>mdi-plus</v-icon
+            >{{ $t("label.button.btncreateward") }}</v-btn
+          >
+          <v-btn small fab v-else class="primary"
+            ><v-icon>mdi-plus</v-icon></v-btn
+          >
         </v-toolbar>
       </template>
     </v-data-table>
@@ -51,7 +58,8 @@ export default {
     headers: [
       { text: "ID", value: "id" },
       { text: "Name", value: "name", sortable: false },
-      { text: "No. of Beds", value: "numberOfBeds" }
+      { text: "No. of Beds", value: "numberOfBeds" },
+      { text: "Actions", value: "actions", sortable: false }
     ]
   }),
   methods: {
