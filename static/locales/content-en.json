@@ -130,7 +130,9 @@
       "services":"Services",
       "newservice":"Add medical service",
       "editservice":"Edit medical service",
-      "servicesmanagement":"Services Management"
+      "servicesmanagement":"Services Management",
+      "newward":"New ward",
+      "editward":"Edit ward"
       
     }
   }

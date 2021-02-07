@@ -8,6 +8,20 @@ const state = () => ({
 });
 
 const mutations = {
+
+  ["CREATE_WARD"](state) {
+    state.showLoader = true;
+  },
+  ["CREATE_WARD_FAILED"](state) {
+    state.showLoader = false;
+  },
+  ["CREATE_WARD_ERROR"](state) {
+    state.showLoader = false;
+  },
+  ["CREATE_WARD_SUCCESS"](state, payload) {
+    state.showLoader = false;
+  },
+
   [mutation.GET_WARDS](state) {
     state.showLoader = true;
   },
@@ -20,7 +34,6 @@ const mutations = {
   [mutation.GET_WARDS_SUCCESS](state, payload) {
     state.showLoader = false;
     state.wards = payload;
-
   },
 
   [mutation.GET_BEDS](state) {
@@ -40,6 +53,19 @@ const mutations = {
 }
 
 const actions = {
+  async create_new_ward({ commit }, payload) {
+    commit("CREATE_WARD");
+    await this.$api.$post(`wards/`, payload)
+      .then(response => {
+        commit("CREATE_WARD_SUCCESS", response);
+
+      }).catch(error => {
+        commit("CREATE_WARD_ERROR");
+        console.log(error);
+
+      });
+  },
+
   async retrieve_all_wards({ commit }) {
     commit(mutation.GET_WARDS);
     await this.$api.$get(`wards/beds/`)
