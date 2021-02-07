@@ -36,7 +36,8 @@
       "btnnewsmsconfig":"Add new SMS configuration",
       "btnaddnewmedicine":"Add new medicine",
       "addnewmeasure":"Add new measurement unit",
-      "btnaddnewservice":"Add new medical service"
+      "btnaddnewservice":"Add new medical service",
+      "btncreateward":"Create new ward"
       
     },
     "menu":{
