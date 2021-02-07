@@ -107,10 +107,10 @@ const getters = {
     return state.consultations;
   },
   assigned: function (state) {
-    return state.services.filter(service => (service.isActive && service.staffName != null));
+    return state.consultations.filter(service => (service.isActive && service.staffName != null));
   },
   unassigned: function (state) {
-    return state.services.filter(service => (service.isActive && service.staffName == null));
+    return state.consultations.filter(service => (service.isActive && service.staffName == null));
   },
 
 
