@@ -175,7 +175,7 @@
                   <v-icon small left>mdi-history</v-icon>
                   Admission History
                 </v-tab>
-              
+
                 <v-tab class="font-weight-normal" @click="getMedicalServices">
                   <v-icon small left>mdi-plus</v-icon>
                   Medical services
@@ -184,7 +184,7 @@
                   <v-icon small left>mdi-plus</v-icon>
                   Medicines
                 </v-tab>
-                  <v-tab
+                <v-tab
                   class="font-weight-normal"
                   @click="getServiceChargesAndCosts"
                 >
@@ -215,7 +215,7 @@
                     :userdata="service.patient"
                   ></tb-admissions>
                 </v-tab-item>
-                
+
                 <v-tab-item>
                   <tb-medical-services></tb-medical-services>
                 </v-tab-item>

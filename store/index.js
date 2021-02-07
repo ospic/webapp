@@ -18,6 +18,7 @@ import statisitics from "./modules/statistics";
 import consultations from "./modules/consultations";
 import departments from "./modules/departments";
 import medicalservices from "./modules/medicalservices";
+import transactionservice from "./modules/transactions";
 
 
 Vue.use(Vuex);
@@ -27,7 +28,7 @@ const store = () => {
     modules: {
       authentication, SignUp, patients, documents, contacts, users, pharmacy,
       templates, diagnoses, inventory, profile, bloodbank, theme, smsconfiguration, statisitics,
-      departments, consultations, medicalservices
+      departments, consultations, medicalservices, transactionservice
     },
 
   });

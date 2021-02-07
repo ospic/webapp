@@ -53,20 +53,11 @@ export default {
     fetch_medical_services() {
       this.$store.dispatch("get_medical_services");
     },
-    async save() {
-      return await this.$api
-        .$post("transactions", {
-          consultationId: 40,
-          medicalServices: [1]
-        })
-        .then(response => {
-          if (response !== null) {
-            this.dialog = false;
-          }
-        })
-        .catch(error => {
-          console.log(error);
-        });
+    save() {
+      this.$store.dispatch("initiate_medical_transaction", {
+        consultationId: 40,
+        medicalServices: [1]
+      });
     }
   },
   computed: {
