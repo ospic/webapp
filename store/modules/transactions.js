@@ -23,7 +23,7 @@ const actions = {
 
   async initiate_medical_transaction({ commit }, payload) {
     commit("INITIATE_TRANSACTION");
-    await this.$api.$post('transactions/', payload)
+    await this.$api.$post(`transactions/${payload.id}`, payload.services)
       .then(response => {
         commit("INITIATE_TRANSACTION_SUCCESS", response);
       }).catch(error => {
