@@ -16,6 +16,7 @@ Ospic seems the health system is one of essential socio-economic activities; the
 
 ## Getting started using
 
+- Live server [Click Here](http://app.ospicx.com/)
 - Netlify: [Click Here](https://ospic.netlify.app/)
 - Github pages: [Click Here](https://ospic.github.io/webapp/)
 

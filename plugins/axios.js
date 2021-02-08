@@ -34,6 +34,7 @@ export default function ({ $axios, redirect, store }, inject) {
     // Vue.toasted.show('Success ', { icon: 'check-circle', type: 'success' });
   });
   api.onResponseError((error) => {
+    console.log(error)
     Vue.toasted.show('Failed !!!', { icon: 'close-circle', type: 'error' });
   });
 
