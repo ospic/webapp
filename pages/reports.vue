@@ -8,7 +8,7 @@
       <h1>Example of reports (Under development)</h1>
       <div name="link" id="link"></div>
       <div>
-        <pdf :src="response_url"></pdf>
+        <pdf :src="getpdf()"></pdf>
       </div>
     </v-card>
   </div>
@@ -26,10 +26,14 @@ export default {
     };
   },
   methods: {
+    getpdf() {
+      return this.$api.defaults.baseURL + "test/view";
+    },
     async load_pdf() {
       return await this.$api
         .$get(`test/view`)
         .then(response => {
+          console.log(response);
           this.response_data = response;
           this.response_url = this.$api.defaults.baseURL + "test/view";
         })

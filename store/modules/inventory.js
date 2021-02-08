@@ -66,6 +66,20 @@ const actions = {
       });
   },
 
+  async update_ward({ commit }, payload) {
+    // commit("UPDATE_WARD");
+    await this.$api.$put(`wards/${payload.id}`, payload)
+      .then(response => {
+        //commit("UPDATE_WARD_SUCCESS", response);
+
+      }).catch(error => {
+        // commit("UPDATE_WARD_ERROR");
+        console.log(error);
+
+      });
+  },
+
+
   async retrieve_all_wards({ commit }) {
     commit(mutation.GET_WARDS);
     await this.$api.$get(`wards/beds/`)
