@@ -176,7 +176,13 @@
                   Admission History
                 </v-tab>
 
-                <v-tab class="font-weight-normal" @click="getMedicalServices">
+                <v-tab
+                  class="font-weight-normal"
+                  @click="
+                    getMedicalServices();
+                    getServiceChargesAndCosts();
+                  "
+                >
                   <v-icon small left>mdi-plus</v-icon>
                   Medical services
                 </v-tab>
@@ -217,7 +223,9 @@
                 </v-tab-item>
 
                 <v-tab-item>
-                  <tb-medical-services></tb-medical-services>
+                  <tb-medical-services
+                    :transaction="service_transactions"
+                  ></tb-medical-services>
                 </v-tab-item>
                 <v-tab-item>
                   <h1 class="pa-2">

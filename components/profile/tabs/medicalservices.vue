@@ -37,21 +37,56 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
+    <div>
+      <v-progress-linear
+        indeterminate
+        v-if="transaction == null"
+      ></v-progress-linear>
+      <v-container fluid v-else class="ma-2">
+        <v-data-table
+          dense
+          class="default"
+          :headers="headers"
+          :items="transaction.transactions"
+          mobile-breakpoint="100"
+        >
+        </v-data-table>
+      </v-container>
+    </div>
   </v-container>
 </template>
 <script>
 import { mapGetters } from "vuex";
+import Charges from "./charges.vue";
 export default {
+  components: {
+    charges: Charges
+  },
   props: {
     consultationsservices: {
       type: Array,
+      default: null
+    },
+    transaction: {
+      type: Object,
       default: null
     }
   },
   data: () => ({
     select: [],
-    dialog: false
+    dialog: false,
+    service_transactions: null,
+    headers: [
+      { text: "ID", value: "id" },
+      { text: "Service", value: "medicalServiceName", sortable: true },
+      { text: "Department", value: "departmentName" },
+      { text: "Amount", value: "amount", sortable: false },
+      { text: "Currency", value: "currencyCode" },
+      { text: "Reversed", value: "isReversed", sortable: true },
+      { text: "Transaction Date", value: "transactionDate" }
+    ]
   }),
+
   methods: {
     fetch_medical_services() {
       this.$store.dispatch("get_medical_services");
@@ -64,6 +99,7 @@ export default {
       this.dialog = false;
     }
   },
+
   computed: {
     ...mapGetters({
       medicalservices: "medicalservices"

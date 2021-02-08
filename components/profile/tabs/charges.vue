@@ -33,12 +33,12 @@ export default {
   data: () => ({
     headers: [
       { text: "ID", value: "id" },
+      { text: "Service", value: "medicalServiceName", sortable: true },
+      { text: "Department", value: "departmentName" },
       { text: "Amount", value: "amount", sortable: false },
       { text: "Currency", value: "currencyCode" },
       { text: "Reversed", value: "isReversed", sortable: true },
-      { text: "Transaction Date", value: "transactionDate" },
-      { text: "Service", value: "medicalServiceName", sortable: true },
-      { text: "Department", value: "departmentName" }
+      { text: "Transaction Date", value: "transactionDate" }
     ]
   })
 };
