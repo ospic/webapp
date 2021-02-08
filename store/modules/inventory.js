@@ -22,6 +22,33 @@ const mutations = {
     state.showLoader = false;
   },
 
+
+  ["UPDATE_WARD"](state) {
+    state.showLoader = true;
+  },
+  ["UPDATE_WARD_FAILED"](state) {
+    state.showLoader = false;
+  },
+  ["UPDATE_WARD_ERROR"](state) {
+    state.showLoader = false;
+  },
+  ["UPDATE_WARD_SUCCESS"](state, payload) {
+    state.showLoader = false;
+  },
+
+  ["DELETE_WARD"](state) {
+    state.showLoader = true;
+  },
+  ["DELETE_WARD_FAILED"](state) {
+    state.showLoader = false;
+  },
+  ["DELETE_WARD_ERROR"](state) {
+    state.showLoader = false;
+  },
+  ["DELETE_WARD_SUCCESS"](state, payload) {
+    state.showLoader = false;
+  },
+
   [mutation.GET_WARDS](state) {
     state.showLoader = true;
   },
@@ -67,13 +94,26 @@ const actions = {
   },
 
   async update_ward({ commit }, payload) {
-    // commit("UPDATE_WARD");
+    commit("UPDATE_WARD");
     await this.$api.$put(`wards/${payload.id}`, payload)
       .then(response => {
-        //commit("UPDATE_WARD_SUCCESS", response);
+        commit("UPDATE_WARD_SUCCESS", response);
 
       }).catch(error => {
-        // commit("UPDATE_WARD_ERROR");
+        commit("UPDATE_WARD_ERROR");
+        console.log(error);
+
+      });
+  },
+
+  async delete_ward({ commit }, id) {
+    commit("DELETE_WARD");
+    await this.$api.$put(`wards/${id}`)
+      .then(response => {
+        commit("DELETE_WARD_SUCCESS", response);
+
+      }).catch(error => {
+        commit("DELETE_WARD_ERROR");
         console.log(error);
 
       });
