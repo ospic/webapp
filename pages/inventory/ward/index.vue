@@ -140,7 +140,7 @@ export default {
     deleteItem: function() {},
     save: function() {
       if (this.editedIndex > -1) {
-        //You are updating
+        this.$store.dispatch("update_ward", this.editedItem);
         this.close();
       } else {
         //Create new item
