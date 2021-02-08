@@ -130,6 +130,7 @@ export default {
       this.$nextTick(() => {
         this.editedItem = Object.assign({}, this.defaultItem);
         this.editedIndex = -1;
+        this.$store.dispatch("retrieve_all_wards");
       });
     },
     editItem: function(item) {
@@ -149,7 +150,6 @@ export default {
         delete this.editedItem.id;
         this.$store.dispatch("create_new_ward", this.editedItem);
         this.close();
-        this.$store.dispatch("retrieve_all_wards");
       }
     }
   },
