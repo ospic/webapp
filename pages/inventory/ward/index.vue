@@ -137,7 +137,9 @@ export default {
       this.editedItem = Object.assign({}, item);
       this.dialog = true;
     },
-    deleteItem: function() {},
+    deleteItem: function(item) {
+      this.$store.dispatch("delete_ward", item.id);
+    },
     save: function() {
       if (this.editedIndex > -1) {
         this.$store.dispatch("update_ward", this.editedItem);
