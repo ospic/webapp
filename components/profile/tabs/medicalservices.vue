@@ -76,6 +76,7 @@ export default {
     select: [],
     dialog: false,
     service_transactions: null,
+    type: "service",
     headers: [
       { text: "ID", value: "id" },
       { text: "Service", value: "medicalServiceName", sortable: true },
@@ -94,7 +95,8 @@ export default {
     save() {
       this.$store.dispatch("initiate_medical_transaction", {
         id: this.$route.params.id,
-        services: this.select
+        services: this.select,
+        type: this.type
       });
       this.dialog = false;
     }
