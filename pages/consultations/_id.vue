@@ -186,7 +186,10 @@
                   <v-icon small left>mdi-plus</v-icon>
                   Medical services
                 </v-tab>
-                <v-tab class="font-weight-normal">
+                <v-tab
+                  class="font-weight-normal"
+                  @click="getServiceChargesAndCosts()"
+                >
                   <v-icon small left>mdi-plus</v-icon>
                   Medicines
                 </v-tab>
@@ -228,14 +231,9 @@
                   ></tb-medical-services>
                 </v-tab-item>
                 <v-tab-item>
-                  <h1 class="pa-2">
-                    List of all service charges from
-                    <a
-                      href="https://github.com/ospic/platform/issues/139"
-                      target="_blank"
-                      >Master price database table</a
-                    >, written in General Ledger
-                  </h1>
+                  <tb-medicines
+                    :transaction="service_transactions"
+                  ></tb-medicines>
                 </v-tab-item>
                 <v-tab-item>
                   <tb-charges :transaction="service_transactions"></tb-charges>
@@ -258,6 +256,7 @@ import AddressCard from "@/components/profile/c_address_card";
 import ConsultationsTab from "@/components/profile/tabs/consultations";
 import ChargesAndConstsTab from "@/components/profile/tabs/charges";
 import MedicalServicesTab from "@/components/profile/tabs/medicalservices";
+import MedicineServiceTab from "@/components/profile/tabs/medicines";
 
 export default {
   props: {
@@ -275,7 +274,8 @@ export default {
     "tb-admissions": AdmissionsTab,
     "tb-consultations": ConsultationsTab,
     "tb-charges": ChargesAndConstsTab,
-    "tb-medical-services": MedicalServicesTab
+    "tb-medical-services": MedicalServicesTab,
+    "tb-medicines": MedicineServiceTab
   },
   data: function() {
     return {
