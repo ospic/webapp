@@ -69,6 +69,12 @@
                     </v-col>
                     <v-col cols="12" sm="6" md="4">
                       <v-text-field
+                        v-model="editedItem.price"
+                        label="Unit price"
+                      ></v-text-field>
+                    </v-col>
+                    <v-col cols="12" sm="6" md="4">
+                      <v-text-field
                         v-model="editedItem.company"
                         label="Company"
                       ></v-text-field>
@@ -164,8 +170,9 @@ export default {
       { text: "Name", value: "name" },
       { text: "Company", value: "company", sortable: false },
       { text: "Composition", value: "compositions" },
-      { text: "Units", value: "units", sortable: true },
+      { text: "Quantity left", value: "units", sortable: true },
       { text: "Group", value: "group", sortable: true },
+      { text: "Price per unit", value: "price" },
       { text: "Category", value: "category", sortable: true },
       { text: "Actions", value: "actions", sortable: false }
     ],
@@ -178,7 +185,8 @@ export default {
       compositions: "",
       category: "",
       group: "",
-      units: 0
+      units: 0,
+      price: 0.0
     },
     defaultItem: {
       id: 0,
@@ -187,7 +195,8 @@ export default {
       compositions: "",
       category: "",
       group: "",
-      units: 0
+      units: 0,
+      price: 0.0
     }
   }),
   created() {},
