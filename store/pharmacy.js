@@ -167,7 +167,7 @@ const mutations = {
   ["CREATE_MEDICINE_MEASURES_SUCCESS"](state, payload) {
     state.showLoader = false;
   },
-   /** Update medicine measurement units */
+  /** Update medicine measurement units */
   ["UpdateMM"](state) {
     state.showLoader = true;
   },
@@ -305,7 +305,7 @@ const actions = {
 
       });
   },
-   async create_medicine_measurement({ commit }, payload) {
+  async create_medicine_measurement({ commit }, payload) {
     commit("CREATE_MEDICINE_MEASURES");
     await this.$api.$post(`pharmacy/measures/`, payload)
       .then(response => {
@@ -317,7 +317,7 @@ const actions = {
 
       });
   },
-    async update_medicine_measure({ commit }, payload) {
+  async update_medicine_measure({ commit }, payload) {
     commit("UpdateMM");
     await this.$api.$put(`pharmacy/measures/${payload.id}`, payload)
       .then(response => {
@@ -349,6 +349,7 @@ const getters = {
 }
 
 export default {
+  namespaced: false,
   state,
   mutations,
   actions,
