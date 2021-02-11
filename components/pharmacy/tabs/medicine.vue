@@ -70,6 +70,7 @@
                     <v-col cols="12" sm="6" md="4">
                       <v-text-field
                         v-model="editedItem.price"
+                        type="number"
                         label="Unit price"
                       ></v-text-field>
                     </v-col>
@@ -186,7 +187,7 @@ export default {
       category: "",
       group: "",
       units: 0,
-      price: 0.0
+      price: 0
     },
     defaultItem: {
       id: 0,
@@ -196,7 +197,7 @@ export default {
       category: "",
       group: "",
       units: 0,
-      price: 0.0
+      price: 0
     }
   }),
   created() {},
@@ -229,6 +230,7 @@ export default {
         Object.assign(this.medicines[this.editedIndex], this.editedItem);
         this.editedItem.group = this.editedItem.group.id;
         this.editedItem.category = this.editedItem.category.id;
+        this.editedItem.price = parseFloat(this.editedItem.price + ".00");
         this.$store.dispatch("update_medicine_product", this.editedItem);
       } else {
         this.medicines.push(this.editedItem);
