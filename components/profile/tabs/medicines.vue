@@ -7,7 +7,7 @@
     >
       <template v-slot:activator="{ on, attrs }">
         <v-btn color="primary" v-bind="attrs" v-on="on"
-          >Add patient service</v-btn
+          >Add patient medicine</v-btn
         >
       </template>
       <v-card>
@@ -17,7 +17,7 @@
         <v-card-text>
           <v-select
             v-model="select"
-            :items="medicalservices"
+            :items="medicines"
             item-text="name"
             item-value="id"
             chips
@@ -47,9 +47,17 @@
           dense
           class="default"
           :headers="headers"
-          :items="transaction.transactions.filter(t => t.medicineName === null)"
+          :items="
+            transaction.transactions.filter(t => t.medicalServiceName === null)
+          "
           mobile-breakpoint="100"
         >
+          <template v-slot:[`item.service`]="{ item }">
+            <p v-if="item.medicalServiceName != null">
+              {{ item.medicalServiceName }}
+            </p>
+            <p v-else>{{ item.medicineName }}</p>
+          </template>
         </v-data-table>
       </v-container>
     </div>
@@ -76,10 +84,10 @@ export default {
     select: [],
     dialog: false,
     service_transactions: null,
-    type: "service",
+    type: "medicine",
     headers: [
       { text: "ID", value: "id" },
-      { text: "Service", value: "medicalServiceName", sortable: true },
+      { text: "Service", value: "service", sortable: true },
       { text: "Department", value: "departmentName" },
       { text: "Amount", value: "amount", sortable: false },
       { text: "Currency", value: "currencyCode" },
@@ -90,7 +98,7 @@ export default {
 
   methods: {
     fetch_medical_services() {
-      this.$store.dispatch("get_medical_services");
+      this.$store.dispatch("getmedicines");
     },
     save() {
       this.$store.dispatch("initiate_medical_transaction", {
@@ -104,7 +112,7 @@ export default {
 
   computed: {
     ...mapGetters({
-      medicalservices: "medicalservices"
+      medicines: "medicines"
     })
   }
 };
