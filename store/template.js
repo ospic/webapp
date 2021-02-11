@@ -1,5 +1,5 @@
 import * as mutation from './mutation-types';
-const state = () => ({
+export const state = () => ({
   showLoader: Boolean,
   physician: {},
   physicians: [],
@@ -37,7 +37,7 @@ const mutations = {
   },
 
 }
-const actions = {
+export const actions = {
   async retrievephysicians({ commit }) {
     commit(mutation.GET_PATIENT_CREATION_TEMPLATE);
     await this.$api.$get(`patients/?command=template`)
@@ -64,7 +64,7 @@ const actions = {
 
   }
 }
-const getters = {
+export const getters = {
   physicians: function (state) {
     return state.physicians;
   },
@@ -74,6 +74,7 @@ const getters = {
 }
 
 export default {
+  namespaced: false,
   state,
   mutations,
   actions,
