@@ -27,7 +27,15 @@
             </tr>
             <tr v-if="patient.gender">
               <td id="gender" class="font-weight-black">Gender:</td>
-              <td>{{ patient.gender }}</td>
+              <td v-if="edit">
+                <v-select
+                  :items="gender"
+                  v-model="patientcp.gender"
+                  :menu-props="{ top: true, offsetY: true }"
+                  label="Select gender"
+                ></v-select>
+              </td>
+              <td v-else>{{ patient.gender }}</td>
             </tr>
             <tr v-if="patient.age">
               <td id="age" class="font-weight-black">Age:</td>
@@ -170,7 +178,8 @@ export default {
   data: function() {
     return {
       edit: false,
-      patientcp: this.patient
+      patientcp: this.patient,
+      gender: ["Male", "Female", "Unspecified"]
     };
   },
   methods: {
