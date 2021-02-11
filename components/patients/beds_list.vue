@@ -45,8 +45,8 @@
                         }}</v-list-item-title
                       >
                       <v-list-item-subtitle class="white--text"
-                        ><strong>Id:</strong>&nbsp;&nbsp;
-                        {{ patient.id }}</v-list-item-subtitle
+                        ><strong>Gender:</strong>&nbsp;&nbsp;
+                        {{ patient.gender }}</v-list-item-subtitle
                       >
                     </v-list-item-content>
                   </v-list-item>
@@ -136,17 +136,11 @@ export default {
 };
 </script>
 <style scoped>
-fieldset {
-  background-color: transparent;
-  max-width: 100%;
-  padding: 16px;
-  border: 2px solid green;
-  -moz-border-radius: 8px;
-  -webkit-border-radius: 8px;
-  border-radius: 8px;
+tr:nth-child(odd) {
+  background: none;
 }
-.legend1 {
-  margin-bottom: 0px;
-  margin-left: 0px;
+
+tr:nth-child(even) {
+  background: none;
 }
 </style>
