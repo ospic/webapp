@@ -147,7 +147,11 @@ export default {
   mounted: function() {
     this.syncro();
     const exipire = window.localStorage.getItem("date");
-    if (exipire === null) {
+    const status =
+      (exipire === null ? new Date().getTime() - 2 : exipire) -
+        new Date().getTime() >
+      0;
+    if (!status) {
       this.$store.dispatch("logout");
     }
   },
