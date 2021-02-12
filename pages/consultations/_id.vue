@@ -228,11 +228,13 @@
                 <v-tab-item>
                   <tb-medical-services
                     :transaction="service_transactions"
+                    :isActive="service.isActive"
                   ></tb-medical-services>
                 </v-tab-item>
                 <v-tab-item>
                   <tb-medicines
                     :transaction="service_transactions"
+                    :isActive="service.isActive"
                   ></tb-medicines>
                 </v-tab-item>
                 <v-tab-item>
