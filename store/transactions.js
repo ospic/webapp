@@ -25,6 +25,7 @@ const actions = {
     commit("INITIATE_TRANSACTION");
     await this.$api.$post(`transactions/${payload.id}/${payload.type}`, payload.services)
       .then(response => {
+        console.log(response)
         commit("INITIATE_TRANSACTION_SUCCESS", response);
       }).catch(error => {
         commit("INITIATE_TRANSACTION_ERROR");
