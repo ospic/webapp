@@ -6,7 +6,7 @@
       max-width="600"
     >
       <template v-slot:activator="{ on, attrs }">
-        <v-btn color="primary" v-bind="attrs" v-on="on"
+        <v-btn v-if="isActive" color="primary" v-bind="attrs" v-on="on"
           >Add patient medicine</v-btn
         >
       </template>
@@ -78,6 +78,10 @@ export default {
     transaction: {
       type: Object,
       default: null
+    },
+    isActive: {
+      type: Boolean,
+      default: true
     }
   },
   data: () => ({
