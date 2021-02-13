@@ -122,7 +122,7 @@
 
       <v-spacer></v-spacer>
 
-      <v-tooltip bottom color="primary" open-on-hover open-delay="500">
+      <v-tooltip top color="primary" open-on-hover open-delay="500">
         <template v-slot:activator="{ on }">
           <v-btn
             fab
