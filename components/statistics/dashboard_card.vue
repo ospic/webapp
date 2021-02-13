@@ -4,15 +4,8 @@
       <template v-slot:default="{ hover }">
         <v-card class="default" :elevation="hover ? 3 : 0">
           <v-list-item>
-            <v-list-item-avatar
-              height="45"
-              rounded
-              :class="`${item.color} lighten-4`"
-            >
-              <v-icon
-                :color="`${item.color} darken-2`"
-                v-text="item.icon"
-              ></v-icon>
+            <v-list-item-avatar height="45" width="45" rounded class="primary">
+              <v-icon color="white" v-text="item.icon"></v-icon>
             </v-list-item-avatar>
 
             <v-list-item-content>
@@ -21,7 +14,7 @@
                 v-html="item.value"
               ></v-list-item-title>
               <v-list-item-subtitle
-                :class="`${item.color}--text font-weight-normal `"
+                class="font-weight-normal"
                 v-html="item.title"
               ></v-list-item-subtitle>
             </v-list-item-content>
