@@ -66,7 +66,7 @@
       <v-row justify="start" align="start" class="mt-3">
         <v-col cols="12" sm="12" class="ma-0 pa-0 mt-2 ">
           <v-card class="mr-1 ml-1 mx-auto default " dense>
-            <bar-chart :data="service_trends"></bar-chart>
+            <line-chart-gradient :data="service_trends"></line-chart-gradient>
           </v-card>
         </v-col>
         <v-col cols="12" sm="12" v-if="bsc_size > 0" class="ma-0 pa-0 mt-3">
@@ -95,11 +95,13 @@ import BasicBarChartComponent from "@/components/charts/BasicBarChart";
 import SummaryCardComponent from "@/components/statistics/dashboard_card";
 import DonutChartCompoent from "@/components/charts/DonutChartComponent";
 import AreaChartSpline from "@/components/charts/area_chart_spline";
+import LineChartGradient from "@/components/charts/line-chart-gradient";
 import { mapGetters } from "vuex";
 export default {
   components: {
     "pie-chart": PieChartComponent,
     "bar-chart": BasicBarChartComponent,
+    "line-chart-gradient": LineChartGradient,
     summarycard: SummaryCardComponent,
     donutchart: DonutChartCompoent,
     "area-chart-spline": AreaChartSpline
