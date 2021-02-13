@@ -176,6 +176,12 @@ const getters = {
   },
   accessToken: function (state) {
     return state.accessToken;
+  },
+  thisuserroles: function (state) {
+    return state.userdata.roles;
+  },
+  thisuserpermissions: function (state) {
+    return state.userdata.permissions;
   }
 };
 export default {

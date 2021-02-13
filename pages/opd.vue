@@ -3,7 +3,7 @@
   <servicescard-component
     v-else
     :services="services"
-    title="Active OPD services"
+    title="Active OPD consultations"
   ></servicescard-component>
 </template>
 <script>

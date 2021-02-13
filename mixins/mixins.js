@@ -41,6 +41,12 @@ Vue.mixin({
 
         });
     },
+    hasRole(r) {
+      return this.$store.getters.thisuserroles.includes(r);
+    },
+    hasPermission(p) {
+      return this.$store.getters.thisuserpermissions.includes(p);
+    }
   },
   computed: {
     isMdAndUp() {
