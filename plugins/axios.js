@@ -14,6 +14,7 @@ export default function ({ $axios, redirect, store }, inject) {
     headers: {
       common: {
         Accept: "application/json, text/plain, */*",
+        'Content-Type': 'application/json'
       },
     },
   });
@@ -27,16 +28,22 @@ export default function ({ $axios, redirect, store }, inject) {
   });
 
   api.onError(error => {
-    //console.log(error)
-    return Promise.resolve(false);
+    const message = error.response.data.defaultUserMessage
+    const code = parseInt(error.response && error.response.status)
+
   })
   api.onResponse(response => {
-
     // Vue.toasted.show('Success ', { icon: 'check-circle', type: 'success' });
   });
-  api.onResponseError((error) => {
-    //console.log(error)
-    Vue.toasted.show('Failed !!!', { icon: 'close-circle', type: 'error' });
+  api.onResponseError(error => {
+    const message = error.response.data.defaultUserMessage
+    const code = parseInt(error.response && error.response.status)
+    if (code === 404) {
+      Vue.toasted.error(`Failed with message: ${message}`, {
+        icon: 'close-circle', position: 'top-center', keepOnHover: true, type: 'error',
+        theme: 'bubble'
+      });
+    }
   });
 
   // Set baseURL to something different
