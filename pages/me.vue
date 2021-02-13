@@ -27,6 +27,7 @@
                   @submit.prevent="updatepasssword"
                   id="check-login-form"
                   class="mt-3"
+                  ref="form"
                   v-model="valid"
                 >
                   <v-text-field
@@ -272,16 +273,22 @@ export default {
   },
   methods: {
     updatepasssword() {
-      this.$store.dispatch("_update_user_password", this.form_data);
+      this.$store.dispatch("_update_user_password", this.form_data).then(() => {
+        this.close();
+      });
     },
     updateprofile() {
       console.log(this.user.staff);
       delete this.user.staff.user;
       delete this.user.staff.department;
-      this.$store.dispatch("updatestaff", this.user.staff).then(() => {
+      this.$store.dispatch("updatestaff", this.user.staff).then(response => {
         this.$store.dispatch("retrieve_profile");
-        this.edit = false;
       });
+    },
+    close() {
+      this.$refs.form.reset();
+      this.dialog = false;
+      this.$store.dispatch("_clear_local_storage_and_sign_out");
     },
     getColor(role) {
       if (role === "user") {
