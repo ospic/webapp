@@ -27,15 +27,15 @@ export default function ({ $axios, redirect, store }, inject) {
   });
 
   api.onError(error => {
-    console.log(error)
+    //console.log(error)
     return Promise.resolve(false);
   })
   api.onResponse(response => {
-    console.log(response)
+
     // Vue.toasted.show('Success ', { icon: 'check-circle', type: 'success' });
   });
   api.onResponseError((error) => {
-    console.log(error)
+    //console.log(error)
     Vue.toasted.show('Failed !!!', { icon: 'close-circle', type: 'error' });
   });
 

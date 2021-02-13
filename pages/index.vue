@@ -65,7 +65,7 @@
       </v-row>
       <v-row justify="start" align="start" class="mt-3">
         <v-col cols="12" sm="12" class="ma-0 pa-0 mt-2 ">
-          <v-card class="mr-1 ml-1 mx-auto default " dense>
+          <v-card class="mr-1 ml-1 mx-auto default " height="400" dense>
             <line-chart-gradient :data="service_trends"></line-chart-gradient>
           </v-card>
         </v-col>
@@ -433,7 +433,9 @@ export default {
         if (item !== undefined) {
           item.forEach(element => {
             datas.push(element.total);
-            categories.push(element.date);
+            var val = element.date;
+            var dv = `${val[2]}/${val[1]}/${val[0]}`;
+            categories.push(new Date(dv).toLocaleDateString());
           });
         }
         var data = {
