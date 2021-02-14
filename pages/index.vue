@@ -266,14 +266,14 @@ export default {
             title: "Users",
             subtitle: "Users",
             value: this.users.totalUsers,
-            icon: "mdi-gender-male-female",
+            icon: "mdi-account-star",
             color: "orange"
           },
           {
             title: "Staff's",
             subtitle: "Staff's",
             value: this.users.totalStaffs,
-            icon: "mdi-gender-male-female",
+            icon: "mdi-account-supervisor",
             color: "orange"
           }
         ];
@@ -288,7 +288,7 @@ export default {
             subtitle: "Total consultations",
             measure: "p/d",
             value: this.services.total,
-            icon: "mdi-account-group-outline",
+            icon: "mdi-egg",
             color: "red"
           },
           {
