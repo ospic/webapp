@@ -58,7 +58,7 @@ export default {
               }
         },
         fill:{
-          colors: ['#44FF07', '#58508D','#68DD6f', '#FF6361', '#FFA600'],
+          colors: ['#44FF07', '#00A756'],
           type: 'solid'
         },
         plotOptions:{
@@ -81,7 +81,7 @@ export default {
           position: "bottom",
           show: false,
            markers:{
-           // fillColors: ['#00897B', '#ED1C23']
+            fillColors: ['#00897B', '#ED1C23']
           },
         },
 
