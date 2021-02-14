@@ -434,8 +434,7 @@ export default {
           item.forEach(element => {
             datas.push(element.total);
             var val = element.date;
-            var dv = `${val[2]}/${val[1]}/${val[0]}`;
-            categories.push(new Date(dv).toLocaleDateString());
+            categories.push(new Date(val).toISOString().split("T")[0]);
           });
         }
         var data = {
