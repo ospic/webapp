@@ -171,10 +171,6 @@
                   <v-icon small left>mdi-medical-bag</v-icon>
                   Diagnoses
                 </v-tab>
-                <v-tab class="font-weight-normal" @click="getServiceAdmissions">
-                  <v-icon small left>mdi-history</v-icon>
-                  Admission History
-                </v-tab>
 
                 <v-tab
                   class="font-weight-normal"
@@ -184,14 +180,14 @@
                   "
                 >
                   <v-icon small left>mdi-plus</v-icon>
-                  Medical services
+                  Services
                 </v-tab>
                 <v-tab
                   class="font-weight-normal"
                   @click="getServiceChargesAndCosts()"
                 >
-                  <v-icon small left>mdi-plus</v-icon>
-                  Medicines
+                  <v-icon small left>mdi-medical-bag</v-icon>
+                  Medications
                 </v-tab>
                 <v-tab
                   class="font-weight-normal"
@@ -199,6 +195,10 @@
                 >
                   <v-icon small left>mdi-credit-card</v-icon>
                   Charges & Costs
+                </v-tab>
+                <v-tab class="font-weight-normal" @click="getServiceAdmissions">
+                  <v-icon small left>mdi-history</v-icon>
+                  Admission History
                 </v-tab>
               </v-tabs>
               <v-tabs-items vertical v-model="tab" class="default">
@@ -218,12 +218,6 @@
                     :isActive="service.isActive"
                   ></tb-diagnoses>
                 </v-tab-item>
-                <v-tab-item>
-                  <tb-admissions
-                    :admissions="admissions"
-                    :userdata="service.patient"
-                  ></tb-admissions>
-                </v-tab-item>
 
                 <v-tab-item>
                   <tb-medical-services
@@ -239,6 +233,13 @@
                 </v-tab-item>
                 <v-tab-item>
                   <tb-charges :transaction="service_transactions"></tb-charges>
+                </v-tab-item>
+
+                <v-tab-item>
+                  <tb-admissions
+                    :admissions="admissions"
+                    :userdata="service.patient"
+                  ></tb-admissions>
                 </v-tab-item>
               </v-tabs-items>
             </v-card-text>
