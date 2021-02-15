@@ -338,7 +338,7 @@ export default {
           menus: [
             {
               title: "label.menu.finance",
-              icon: "mdi-finance",
+              icon: "mdi-currency-usd-circle",
               to: "/finance",
               subtitle: "Lorem ipsum dolor sit de amet.."
             }
