@@ -8,7 +8,7 @@ export default ({ store }) => {
       paths: [
         "authentication", "inventory", "profile", "diagnoses",
         "templates", "users", "patients", "documents", "statistics", "theme", "smsconfiguration", "statisitics",
-        "consultations", "departments", "medicalservices"],
+        "consultations", "departments", "medicalservices", "laboratory"],
       storage: {
         getItem: key => ls.get(key),
         setItem: (key, value) => ls.set(key, value),

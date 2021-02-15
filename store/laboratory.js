@@ -78,7 +78,7 @@ const actions = {
       });
   },
 
-  async fetch_laboratory_service({ commit }) {
+  async fetch_laboratory_services({ commit }) {
     commit("GET_LABORATORY_SERVICES");
     await this.$api.$get(`lab/services/`)
       .then(response => {
@@ -90,7 +90,7 @@ const actions = {
 
   async update_laboratory_service({ commit }, payload) {
     commit("UPDATE_LABORATORY_SERVICES");
-    await this.$api.$put(`lab/services/${payload.id}`, payload.data)
+    await this.$api.$put(`lab/services/${payload.id}`, payload)
       .then(response => {
         commit("UPDATE_LABORATORY_SERVICES_SUCCESS", response);
       }).catch(error => {
@@ -114,6 +114,7 @@ const getters = {
   }
 };
 export default {
+  namespaced: false,
   state,
   getters,
   mutations,
