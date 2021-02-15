@@ -328,7 +328,7 @@ export default {
             {
               title: "label.titles.services",
               to: "/services",
-              icon: "mdi-office-building"
+              icon: "mdi-help-circle"
             }
           ]
         },
