@@ -6,7 +6,7 @@
     </div>
     <v-card class="mx-auto pa-2">
       <v-progress-linear
-        v-if="(lbservices = null)"
+        v-if="laboratoryservices === null"
         value="20"
         buffer-value="0"
         stream
@@ -17,7 +17,7 @@
         v-else
         class="default"
         :headers="headers"
-        :items="lbservices"
+        :items="laboratoryservices"
         :search="search"
         sort-by="isActive"
         :sort-desc="sortDesc"
@@ -144,6 +144,7 @@ export default {
     sortDesc: false,
     editedIndex: -1,
     valid: true,
+    dialogDelete: false,
     headers: [
       { text: "ID", value: "id" },
       { text: "Name", value: "name" },
@@ -171,25 +172,39 @@ export default {
       this.$router.push("roles/" + item.id);
     },
     editItem(item) {
-      this.editedIndex = this.lbservices.indexOf(item);
+      this.editedIndex = this.laboratoryservices.indexOf(item);
       this.editedItem = Object.assign({}, item);
       this.dialog = true;
+    },
+    deleteItem(item) {
+      this.editedIndex = this.laboratoryservices.indexOf(item);
+      this.editedItem = Object.assign({}, item);
+      this.dialogDelete = true;
     },
     close() {
       this.dialog = false;
       this.$nextTick(() => {
         this.editedItem = Object.assign({}, this.defaultItem);
         this.editedIndex = -1;
+
         this.request_data();
       });
     },
     request_data() {
-      this.$store.dispatch("fetch_laboratory_services");
+      setTimeout(() => {
+        this.$store.dispatch("fetch_laboratory_services");
+      }, 5000);
     },
     save() {
       if (this.editedIndex > -1) {
+        Object.assign(
+          this.laboratoryservices[this.editedIndex],
+          this.editedItem
+        );
+
         this.$store.dispatch("update_laboratory_service", this.editedItem);
       } else {
+        this.laboratoryservices.push(this.editedItem);
         delete this.editedItem.id;
         this.$store.dispatch("create_laboratory_service", this.editedItem);
       }
@@ -201,7 +216,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      lbservices: "laboratoryservices"
+      laboratoryservices: "laboratoryservices"
     }),
 
     formTitle() {
