@@ -37,7 +37,8 @@
       "btnaddnewmedicine":"Add new medicine",
       "addnewmeasure":"Add new measurement unit",
       "btnaddnewservice":"Add new medical service",
-      "btncreateward":"Create new ward"
+      "btncreateward":"Create new ward",
+      "btnnewlaboratoryservice":"Add laboratory service"
       
     },
     "menu":{
@@ -132,7 +133,10 @@
       "editservice":"Edit medical service",
       "servicesmanagement":"Services Management",
       "newward":"New ward",
-      "editward":"Edit ward"
+      "editward":"Edit ward",
+      "laboratoryservices":"Medical laboratory services",
+      "newlaboratoryservice":"Add laboratory service",
+      "editlaboratoryservice":"Edit laboratory service"
       
     }
   }
