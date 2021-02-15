@@ -42,7 +42,7 @@ const mutations = {
   },
   ["UPDATE_LABORATORY_SERVICES_SUCCESS"](state, payload) {
     state.isLoading = false;
-    state.laboratory_services = payload;
+    state.laboratory_service = payload;
   },
   ["UPDATE_LABORATORY_SERVICES_FAILED"](state) {
     state.isLoading = false;
