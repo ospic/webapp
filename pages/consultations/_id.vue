@@ -164,7 +164,7 @@
                 <v-tab class="ffont-weight-normal">
                   <span><v-icon small left>mdi-eye</v-icon>Biography</span>
                 </v-tab>
-                <v-tab class="font-weight-normal">
+                <v-tab class="font-weight-normal" @click="updatestafflist()">
                   <span><v-icon small left>mdi-bag</v-icon>Staff</span>
                 </v-tab>
                 <v-tab class="font-weight-normal">
@@ -344,6 +344,9 @@ export default {
     },
     getMedicalServices() {
       this.$store.dispatch("get_medical_services");
+    },
+    updatestafflist() {
+      this.$store.dispatch("fetchAllStaffs");
     }
   },
   created() {

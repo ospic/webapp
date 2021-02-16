@@ -14,11 +14,7 @@
       </v-list-item-content>
       <v-list-item-avatar size="60">
         <v-img
-          :src="
-            staff.imageUrl == null
-              ? 'https://avataaars.io/?avatarStyle=Circle&topType=ShortHairSides&accessoriesType=Round&hairColor=BrownDark&facialHairType=BeardLight&facialHairColor=BrownDark&clotheType=BlazerShirt&eyeType=Default&eyebrowType=Default&mouthType=Default&skinColor=Light'
-              : staff.imageUrl
-          "
+          :src="staff.imageUrl == null ? thumbnail : staff.imageUrl"
         ></v-img>
       </v-list-item-avatar>
     </v-list-item>
