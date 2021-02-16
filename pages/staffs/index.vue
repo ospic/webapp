@@ -149,7 +149,7 @@ export default {
     this.fetchDepartmentStaffs(1);
   },
   beforeCreate() {
-    //this.$store.dispatch("fetchAllStaffs");
+    this.$store.dispatch("retrieve_departments");
   },
   computed: {
     ...mapGetters({
