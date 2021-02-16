@@ -74,6 +74,20 @@ const mutations = {
     state.showLoader = false;
   },
 
+  /** Update user department */
+  ["UPDATE_USER"](state) {
+    state.showLoader = true;
+  },
+  ["UPDATE_USER_FAILED"](state) {
+    state.showLoader = false;
+  },
+  ["UPDATE_USER_ERROR"](state) {
+    state.showLoader = false;
+  },
+  ["UPDATE_USER_SUCCESS"](state, payload) {
+    state.showLoader = false;
+  },
+
 }
 const actions = {
   async retrieveAllusers({ commit }) {
@@ -101,6 +115,22 @@ const actions = {
 
       }).catch(error => {
         commit(mutation.CREATE_NEW_USER_FAILED);
+        console.log(error);
+
+      });
+
+  },
+  async updateuserdetails({ commit }, payload) {
+    commit("UPDATE_USER");
+    await this.$api.$put(`auth/users/${payload.id}`, payload.data)
+      .then(response => {
+        console.log(response);
+        if (response.statusCode === 200) {
+          commit("UPDATE_USER_SUCCESS", response);
+        }
+
+      }).catch(error => {
+        commit("UPDATE_USER_FAILED");
         console.log(error);
 
       });

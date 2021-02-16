@@ -273,14 +273,17 @@ export default {
       }
     },
     editItem(item) {
-      //this.editedItem.departmentId = null;
       this.editedIndex = this.userslist.indexOf(item);
       this.editedItem = Object.assign({}, item);
       this.editedItem.departmentId =
         this.editedItem.staff === null
           ? null
           : this.editedItem.staff.department.id;
-
+      var roles = [];
+      this.editedItem.roles.forEach(role => {
+        roles.push(role.id);
+      });
+      this.editedItem.roles = roles;
       this.dialog = true;
     },
 
@@ -314,7 +317,11 @@ export default {
 
     save() {
       if (this.editedIndex > -1) {
-        console.log(this.editedItem);
+        var did = this.editedItem.id;
+        delete this.editedItem.staff;
+        var payload = { id: did, data: this.editedItem };
+        //console.log(payload);
+        this.$store.dispatch("updateuserdetails", payload);
       } else {
         delete this.editedItem.id;
         if (this.$refs.form.validate()) {
