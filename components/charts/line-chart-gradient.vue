@@ -26,7 +26,7 @@ export default {
           id: 'areachart-2'
         },
          stroke: {
-          width: 7,
+          width: 4,
           curve: 'smooth'
         },
 
