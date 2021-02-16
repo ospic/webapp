@@ -138,7 +138,7 @@ const actions = {
   },
   async fetchAllStaffs({ commit }) {
     commit(mutation.FETCH_STAFFS);
-    await this.$api.$get(`staffs/`)
+    await this.$api.$get(`staffs/status?status=activeavailable`)
       .then(response => {
         if (response != null) {
           commit(mutation.FETCH_STAFFS_SUCCESS, response);
