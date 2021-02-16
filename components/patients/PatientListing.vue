@@ -11,6 +11,7 @@
       :sort-desc="sortDesc"
       mobile-breakpoint="100"
       @click:row="handleClick"
+      :items-per-page="itemsperpage"
       @update:page="updatePagination"
     >
       <template v-slot:top>
@@ -146,7 +147,6 @@ export default {
     body: {
       options: {
         page: 1,
-        itemsPerPage: 5,
         sortBy: ["name"]
       }
     }
