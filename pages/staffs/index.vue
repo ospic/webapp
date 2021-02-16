@@ -40,6 +40,14 @@
               width="100%"
               @click:row="handleClick"
             >
+              <template v-slot:[`item.image`]="{ item }">
+                <v-avatar>
+                  <img
+                    :src="item.imageUrl === null ? thumbnail : item.imageUrl"
+                    alt="Staff profile image"
+                  />
+                </v-avatar>
+              </template>
               <template v-slot:[`item.fullName`]="{ item }">
                 {{ item.fullName == null ? item.user.username : item.fullName }}
               </template>
@@ -100,7 +108,7 @@ export default {
     search: "",
     updating: false,
     headers: [
-      { text: "ID", value: "id" },
+      { text: "Image", value: "image" },
       { text: "User/name", value: "fullName", sortable: false },
       { text: "Department", value: "department" },
       { text: "Email", value: "email" },
@@ -138,7 +146,7 @@ export default {
     }
   },
   created() {
-    this.fetchDepartmentStaffs(5);
+    this.fetchDepartmentStaffs(1);
   },
   beforeCreate() {
     //this.$store.dispatch("fetchAllStaffs");
