@@ -41,7 +41,7 @@ export default function ({ $axios, redirect, store }, inject) {
     if (code === 404) {
       Vue.toasted.error(`Failed with message: ${message}`, {
         icon: 'close-circle', position: 'top-center', keepOnHover: true, type: 'error',
-        theme: 'bubble'
+        theme: 'outline', duration: 5000
       });
     }
   });
