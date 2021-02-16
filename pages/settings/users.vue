@@ -64,7 +64,7 @@
                           required
                         ></v-text-field>
                       </v-col>
-                      <v-col cols="12" sm="6" md="6">
+                      <v-col cols="12" sm="6" md="6" v-if="editedIndex === -1">
                         <v-text-field
                           v-model="editedItem.password"
                           label="Password"
@@ -192,6 +192,7 @@ export default {
     dialogDelete: false,
     role: 0,
     editedIndex: -1,
+    departmentId: null,
     headers: [
       {
         text: "ID",
@@ -215,18 +216,20 @@ export default {
       username: "",
       isStaff: false,
       email: "",
+      staff: null,
       password: "",
-      departmentId: 0,
-      roles: []
+      roles: [],
+      departmentId: 0
     },
     defaultItem: {
       id: "",
       username: "",
       isStaff: false,
       email: "",
+      staff: null,
       password: "",
-      departmentId: 0,
-      roles: []
+      roles: [],
+      departmentId: 0
     },
     colors: [
       "red",
@@ -270,9 +273,14 @@ export default {
       }
     },
     editItem(item) {
-      delete item.staff;
+      //this.editedItem.departmentId = null;
       this.editedIndex = this.userslist.indexOf(item);
       this.editedItem = Object.assign({}, item);
+      this.editedItem.departmentId =
+        this.editedItem.staff === null
+          ? null
+          : this.editedItem.staff.department.id;
+
       this.dialog = true;
     },
 
@@ -293,7 +301,6 @@ export default {
         this.editedItem = Object.assign({}, this.defaultItem);
         this.editedIndex = -1;
       });
-      this.$refs.form.reset();
     },
 
     closeDelete() {
@@ -302,19 +309,18 @@ export default {
         this.editedItem = Object.assign({}, this.defaultItem);
         this.editedIndex = -1;
       });
+      this.$store.dispatch("retrieveAllusers");
     },
 
     save() {
       if (this.editedIndex > -1) {
         console.log(this.editedItem);
-        this.close();
       } else {
         delete this.editedItem.id;
         if (this.$refs.form.validate()) {
           this.$store.dispatch("create_new_user", this.editedItem);
-          this.$store.dispatch("retrieveAllusers");
-          this.close();
         }
+        this.close();
       }
     },
     _fetch_departments() {
