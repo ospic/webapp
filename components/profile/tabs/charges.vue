@@ -16,6 +16,7 @@
       dense
       class="default"
       :headers="headers"
+      :options="body.options"
       :items="transaction.transactions"
       mobile-breakpoint="100"
     >

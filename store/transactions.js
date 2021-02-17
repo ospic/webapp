@@ -1,5 +1,6 @@
 const state = () => ({
-  showLoader: Boolean
+  showLoader: Boolean,
+  transactions: {}
 });
 
 const mutations = {
@@ -17,6 +18,22 @@ const mutations = {
     state.showLoader = false;
   },
 
+  /**Fetch transactions */
+
+  ["GET_TRANSACTIONS"](state) {
+    state.showLoader = true;
+  },
+  ["GET_TRANSACTIONS_FAILED"](state) {
+    state.showLoader = false;
+  },
+  ["GET_TRANSACTIONS_ERROR"](state) {
+    state.showLoader = false;
+  },
+  ["GET_TRANSACTIONS_SUCCESS"](state, payload) {
+    state.showLoader = false;
+    state.transactions = payload;
+  },
+
 }
 
 const actions = {
@@ -25,17 +42,31 @@ const actions = {
     commit("INITIATE_TRANSACTION");
     await this.$api.$post(`transactions/${payload.id}/${payload.type}`, payload.services)
       .then(response => {
-        console.log(response)
         commit("INITIATE_TRANSACTION_SUCCESS", response);
       }).catch(error => {
         commit("INITIATE_TRANSACTION_ERROR");
         console.log(error);
 
       });
+  },
 
+  async get_transactions({ commit }) {
+    commit("GET_TRANSACTIONS");
+    await this.$api.$get('transactions/1/consultation')
+      .then(response => {
+        commit("GET_TRANSACTIONS_SUCCESS", response);
+      }).catch(error => {
+        commit("GET_TRANSACTIONS_ERROR");
+        console.log(error);
+
+      });
   }
 }
-const getters = {}
+const getters = {
+  transactions: function (state) {
+    return state.transactions;
+  }
+}
 
 export default {
   namespaced: false,

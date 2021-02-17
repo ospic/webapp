@@ -110,13 +110,6 @@ export default {
       added: 0,
       total: 0,
       counts: 0
-    },
-    body: {
-      options: {
-        page: 1,
-        itemsPerPage: 10,
-        sortBy: ["name"]
-      }
     }
   }),
   beforeCreate() {
