@@ -1,6 +1,11 @@
 import Vue from 'vue';
+import ChargesTemplate from "@/components/profile/tabs/charges"
 Vue.mixin({
+  components: {
+    "charges-template": ChargesTemplate
+  },
   data: function () {
+
     return {
       months_labels: [
         "Jan",
@@ -20,6 +25,13 @@ Vue.mixin({
         'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'
       ],
       itemsperpage: 15,
+      body: {
+        options: {
+          page: 1,
+          itemsPerPage: 15,
+          sortBy: ["name"]
+        }
+      },
       thumbnail: 'https://avataaars.io/?avatarStyle=Circle&topType=ShortHairSides&accessoriesType=Prescription02&hairColor=BrownDark&facialHairType=Blank&clotheType=BlazerSweater&eyeType=Default&eyebrowType=UnibrowNatural&mouthType=Twinkle&skinColor=Light'
     }
   },
