@@ -52,7 +52,7 @@ const actions = {
 
   async get_transactions({ commit }) {
     commit("GET_TRANSACTIONS");
-    await this.$api.$get('transactions/1/consultation')
+    await this.$api.$get('transactions/')
       .then(response => {
         commit("GET_TRANSACTIONS_SUCCESS", response);
       }).catch(error => {
