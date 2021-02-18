@@ -22,6 +22,7 @@
                 :headers="headers"
                 :items="transaction.transactions"
                 mobile-breakpoint="100"
+                group-by="consultationId"
                 @click:row="viewconsultation"
               >
                 <template v-slot:[`item.service`]="{ item }">
@@ -52,7 +53,8 @@ export default {
     service_transactions: null,
     type: "service",
     headers: [
-      { text: "ID", value: "id" },
+      { text: "#", value: "id" },
+      { text: "ID", value: "consultationId" },
       { text: "Service", value: "service", sortable: true },
       { text: "Department", value: "departmentName" },
       { text: "Amount", value: "amount", sortable: false },
