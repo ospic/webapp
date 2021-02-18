@@ -1,33 +1,98 @@
 <template>
   <v-container fluid>
-    <v-card class=" pa-1">
+    <div class="breadcrumb " v-if="bill !== null">
+      <router-link to="/">Dashboard</router-link>
+      <router-link to="/finance">Finance</router-link>
+      <router-link :to="`/finance/bill/${bill.id}`" class="active"
+        >Bill</router-link
+      >
+    </div>
+    <v-card class="pa-3">
       <v-progress-linear indeterminate v-if="bill == null"></v-progress-linear>
-      <div v-else></div>
-      {{ id }}
+      <div v-else>
+        <v-row>
+          <v-col cols="12" md="4">
+            <v-card flat outlined elevation="1">
+              <v-simple-table dense>
+                <template v-slot:default>
+                  <tbody>
+                    <tr>
+                      <td class="font-weight-bold">Extra ID</td>
+                      <td>{{ bill.extraId }}</td>
+                    </tr>
+                    <tr>
+                      <td class="font-weight-bold">Required Amount</td>
+                      <td>{{ bill.totalAmount }}</td>
+                    </tr>
+                    <tr>
+                      <td class="font-weight-bold">Paid Amount</td>
+                      <td>{{ bill.paidAmount }}</td>
+                    </tr>
+                    <tr>
+                      <td class="font-weight-bold">Consultation ID</td>
+                      <NuxtLink :to="`/consultations/${bill.consultationId}`">
+                        <td>&nbsp;&nbsp;&nbsp;{{ bill.consultationId }}</td>
+                      </NuxtLink>
+                    </tr>
+                    <tr>
+                      <td class="font-weight-bold">Patient</td>
+                      <NuxtLink :to="`/patients/${bill.patientId}`">
+                        <td>
+                          &nbsp;&nbsp;&nbsp;{{ bill.patientName }}[{{
+                            bill.patientId
+                          }}]
+                        </td>
+                      </NuxtLink>
+                    </tr>
 
-      <charges :transaction="transaction"></charges>
+                    <tr>
+                      <td class="font-weight-bold">Is Active ?</td>
+                      <td>{{ bill.isActive }}</td>
+                    </tr>
+                    <tr>
+                      <td class="font-weight-bold">Phone</td>
+                      <td>{{ bill.phoneNumber }}</td>
+                    </tr>
+                    <tr>
+                      <td class="font-weight-bold">Adress</td>
+                      <td>{{ bill.address }}</td>
+                    </tr>
+                    <tr>
+                      <td class="font-weight-bold">Email</td>
+                      <td>{{ bill.emailAddress }}</td>
+                    </tr>
+                    <tr>
+                      <td class="font-weight-bold">Created</td>
+                      <td>{{ bill.createdDate }} By: {{ bill.createdBy }}</td>
+                    </tr>
+                    <tr>
+                      <td class="font-weight-bold">Last Modified</td>
+                      <td>
+                        {{ bill.lastUpdatedDate }} By: {{ bill.lastUpdatedBy }}
+                      </td>
+                    </tr>
+                  </tbody>
+                </template>
+              </v-simple-table>
+            </v-card>
+          </v-col>
+        </v-row>
+        <charges-component :transaction="transaction"></charges-component>
+      </div>
     </v-card>
   </v-container>
 </template>
 <script>
-import Charges from "@/components/profile/tabs/charges"
+import Charges from "@/components/profile/tabs/charges";
 export default {
-  components:{
-    'charges':Charges,
+  layout: "finance",
+  components: {
+    "charges-component": Charges
   },
   data() {
     return {
       bill: null,
-      transactions: null,
-      headers: [
-        { text: "ID", value: "id" },
-        { text: "Service/Medicine", value: "service", sortable: true },
-        { text: "Department", value: "departmentName" },
-        { text: "Amount", value: "amount", sortable: false },
-        { text: "Currency", value: "currencyCode" },
-        { text: "Reversed", value: "isReversed", sortable: true },
-        { text: "Transaction Date", value: "transactionDate" }
-      ]
+      transaction: null
     };
   },
   methods: {
@@ -53,3 +118,9 @@ export default {
   }
 };
 </script>
+<style>
+a {
+  color: #ffffff;
+  text-decoration: none;
+}
+</style>
