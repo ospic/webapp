@@ -43,6 +43,7 @@
 import { mapGetters } from "vuex";
 import TransactionTotalsCard from "@/components/finance/total-cards";
 export default {
+  layout: "finance",
   components: {
     "total-amount": TransactionTotalsCard
   },
