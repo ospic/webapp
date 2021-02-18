@@ -5,7 +5,7 @@
     background: rgba(0,0,0,0);"
   >
     <!--NAVIGATION DRAWER-->
-    <v-navigation-drawer
+    <!-- <v-navigation-drawer
       v-model="drawer"
       mini-variant.sync="mini"
       overlay-color="primary"
@@ -27,7 +27,6 @@
             >
               {{ username }}
             </v-list-item-title>
-            <v-list-item-subtitle>{{ email }}</v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
 
@@ -113,37 +112,16 @@
             alt="Donate button"
         /></a>
       </template>
-    </v-navigation-drawer>
+    </v-navigation-drawer>-->
     <v-app-bar hide-on-scroll dense fixed app>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
 
       <v-toolbar-title class="title font-weight-black primary--text">
-        Hospital Management System
+        Finance
       </v-toolbar-title>
 
       <v-spacer></v-spacer>
 
-      <v-tooltip top color="primary" open-on-hover open-delay="500">
-        <template v-slot:activator="{ on }">
-          <v-btn
-            fab
-            v-if="$vuetify.breakpoint.mdAndUp"
-            v-on="on"
-            @click.stop="syncro()"
-            elevation="1"
-            x-small
-            class="mr-2 primary"
-          >
-            <v-icon v-on="on" v-if="sync" medium>mdi-progress-clock</v-icon>
-            <v-icon v-else medium>mdi-progress-check</v-icon>
-          </v-btn>
-        </template>
-
-        <span v-if="sync" color="white">{{
-          $t("label.tooltip.progresssynchronising")
-        }}</span>
-        <span v-else color="white">{{ $t("label.tooltip.synchronise") }}</span>
-      </v-tooltip>
       <v-tooltip bottom color="primary" open-on-hover open-delay="500">
         <template v-slot:activator="{ on }">
           <v-btn fab v-on="on" x-small elevation="1" class="mr-2 primary">
@@ -474,14 +452,11 @@ export default {
   },
 
   computed: {
-    userinfo() {
-      return this.$store.getters.userInfos;
-    },
     username() {
-      return this.userinfo.username;
+      return window.localStorage.getItem("ospic.username");
     },
     email() {
-      return this.userinfo.email;
+      return window.localStorage.getItem("ospic.email");
     },
     domain() {
       return window.location.hostname === "app.ospicx.com";
