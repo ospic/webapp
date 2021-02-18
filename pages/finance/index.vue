@@ -70,7 +70,7 @@ export default {
   }),
   methods: {
     viewconsultation: function(item) {
-      this.$router.push("consultations/" + item.consultationId);
+      this.$router.push("finance/bill/" + item.id);
     }
   },
 
