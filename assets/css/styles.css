@@ -291,11 +291,11 @@ th {
   border-radius: 1rem;
   font-family: "Courier";
   -webkit-mask-image: url("../images/stamp.png");
-  mask-image: url("../images/stamp.png");
+          mask-image: url("../images/stamp.png");
   -webkit-mask-size: 944px 604px;
-  mask-size: 944px 604px;
+          mask-size: 944px 604px;
   mix-blend-mode: multiply;
-  margin-top: 14%;
+  margin-top: 2%;
 }
 
 .is-nope {
@@ -313,16 +313,16 @@ th {
   border: 0.5rem solid #0a9928;
   -webkit-mask-position: 13rem 6rem;
   mask-position: 13rem 6rem;
-  -webkit-transform: rotate(-24deg);
-          transform: rotate(-24deg);
+  -webkit-transform: rotate(-4deg);
+          transform: rotate(-4deg);
   border-radius: 0;
 }
 
 .is-draft {
   color: #c4c4c4;
   border: 1rem double #c4c4c4;
-  -webkit-transform: rotate(-45deg);
-          transform: rotate(-45deg);
+  -webkit-transform: rotate(-5deg);
+          transform: rotate(-5deg);
   font-size: 6rem;
   font-family: "FiraSans";
   border-radius: 0;
