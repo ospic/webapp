@@ -1,0 +1,46 @@
+.stamp {
+  transform: rotate(12deg);
+  color: #555;
+  font-size: 3rem;
+  font-weight: 700;
+  border: 0.25rem solid #555;
+  display: inline-block;
+  padding: 0.25rem 1rem;
+  text-transform: uppercase;
+  border-radius: 1rem;
+  font-family: "Courier";
+  -webkit-mask-image: url("../images/stamp.png");
+  mask-image: url("../images/stamp.png");
+  -webkit-mask-size: 944px 604px;
+  mask-size: 944px 604px;
+  mix-blend-mode: multiply;
+  margin-top: 14%;
+}
+
+.is-nope {
+  color: rgb(226, 38, 54);
+  border: 0.5rem double rgb(218, 31, 46);
+  transform: rotate(3deg);
+  -webkit-mask-position: 2rem 3rem;
+  mask-position: 2rem 3rem;
+  font-size: 2rem;
+}
+
+.is-approved {
+  color: #0a9928;
+  border: 0.5rem solid #0a9928;
+  -webkit-mask-position: 13rem 6rem;
+  mask-position: 13rem 6rem;
+  transform: rotate(-24deg);
+  border-radius: 0;
+}
+
+.is-draft {
+  color: #c4c4c4;
+  border: 1rem double #c4c4c4;
+  transform: rotate(-45deg);
+  font-size: 6rem;
+  font-family: "FiraSans";
+  border-radius: 0;
+  padding: 0.5rem;
+}
