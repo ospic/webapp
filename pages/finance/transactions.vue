@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="breadcrumb ">
-      <router-link to="/">Dashboard</router-link>
+      <router-link to="/finance">Dashboard</router-link>
       <router-link to="/finance">Finance</router-link>
       <router-link to="/finance/transactions" class="active"
         >Transactions</router-link
