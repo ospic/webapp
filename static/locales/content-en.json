@@ -62,7 +62,10 @@
       "update":"Update",
       "delete":"Delete",
       "organization":"Organization",
-      "rolesandprivileges":"Roles & Authorities"
+      "rolesandprivileges":"Roles & Authorities",
+      "transactions":"Transactions",
+      "bills": "Service Bill's",
+      "financereports":"Financial Report's"
     },
     "message": {
       "nodataavailable":"No Data available ...",
