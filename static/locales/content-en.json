@@ -38,7 +38,8 @@
       "addnewmeasure":"Add new measurement unit",
       "btnaddnewservice":"Add new medical service",
       "btncreateward":"Create new ward",
-      "btnnewlaboratoryservice":"Add laboratory service"
+      "btnnewlaboratoryservice":"Add laboratory service",
+      "btnpaybill":"PAY BILL"
       
     },
     "menu":{

@@ -78,14 +78,64 @@
             </v-card>
           </v-col>
 
-          <v-col cols="12" md="4" class="d-flex align-center mb-6">
+          <v-col
+            cols="12"
+            md="4"
+            class="d-flex align-center justify-center mb-6"
+          >
             <span class="stamp is-approved" v-if="!bill.isPaid"
               >OutStanding !</span
             >
             <span class="stamp is-draft" v-else>Paid </span>
           </v-col>
-          <v-col cols="12" md="4" class="d-flex align-end">
-            <v-btn class="blue white--text" v-if="!bill.isPaid">Pay</v-btn>
+          <v-col cols="12" md="4" class="d-flex align-end justify-end">
+            <v-dialog v-model="dialog" persistent max-width="600px">
+              <template v-slot:activator="{ on, attrs }">
+                <v-btn
+                  class="blue white--text"
+                  v-bind="attrs"
+                  v-on="on"
+                  v-if="!bill.isPaid"
+                  >{{ $t("label.button.btnpaybill") }}</v-btn
+                >
+              </template>
+              <v-card>
+                <v-card-title class="primary">
+                  <span class="white--text"
+                    >Pay bill No.{{ bill.id }} for customer
+                    {{ bill.patientName }} amount {{ bill.totalAmount }} ?
+                  </span>
+                </v-card-title>
+                <v-card-text>
+                  <v-container>
+                    <v-row>
+                      <v-col cols="12">
+                        <v-text-field
+                          label="Amount"
+                          type="number"
+                          required
+                          v-model="amountToPay"
+                        ></v-text-field>
+                      </v-col>
+                    </v-row>
+                  </v-container>
+                </v-card-text>
+                <v-card-actions>
+                  <v-spacer></v-spacer>
+                  <v-btn
+                    color="blue darken-1"
+                    small
+                    text
+                    @click="dialog = false"
+                  >
+                    Ignore
+                  </v-btn>
+                  <v-btn class="blue white--text" small @click="paybill">
+                    Yes {{ $t("label.button.btnpaybill") }}
+                  </v-btn>
+                </v-card-actions>
+              </v-card>
+            </v-dialog>
           </v-col>
         </v-row>
         <charges-component :transaction="transaction"></charges-component>
@@ -102,8 +152,10 @@ export default {
   },
   data() {
     return {
+      dialog: false,
       bill: null,
-      transaction: null
+      transaction: null,
+      amountToPay: null
     };
   },
   methods: {
@@ -113,10 +165,19 @@ export default {
         .then(response => {
           this.bill = response;
           this.transaction = response.transactionResponse;
+          this.amountToPay = response.totalAmount;
         })
         .catch(error => {
           console.log(error);
         });
+    },
+    paybill: function() {
+      this.dialog = false;
+      var payload = {
+        consultationId: this.bill.consultationId,
+        amount: this.amountToPay
+      };
+      console.log(payload);
     }
   },
   created() {
