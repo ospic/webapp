@@ -3,9 +3,10 @@
     <div class="breadcrumb " v-if="bill !== null">
       <router-link to="/">Dashboard</router-link>
       <router-link to="/finance">Finance</router-link>
-      <router-link :to="`/finance/bill/${bill.id}`" class="active"
-        >Bill</router-link
-      >
+      <router-link to="/finance/bills">Bills</router-link>
+      <router-link :to="`/finance/bills/${bill.id}`" class="active">{{
+        bill.patientName
+      }}</router-link>
     </div>
     <v-card class="pa-3">
       <v-progress-linear indeterminate v-if="bill == null"></v-progress-linear>
