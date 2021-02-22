@@ -38,6 +38,7 @@
             v-model="query.page"
             :length="query.size"
             @input="get_next"
+            :total-visible="totalvisible"
             circle
           ></v-pagination>
         </div>
