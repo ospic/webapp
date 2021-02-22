@@ -1,9 +1,5 @@
 <template>
   <div>
-    <div class="breadcrumb ">
-      <router-link to="/">Dashboard</router-link>
-      <router-link to="/finance" class="active">Finance</router-link>
-    </div>
     <v-card class="pa-2" color="#F5F5F5">
       <v-card-title class="font-weight-black">Bills</v-card-title>
       <v-row no-gutters>

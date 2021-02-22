@@ -1,7 +1,7 @@
 <template>
   <v-container fluid>
     <div class="breadcrumb " v-if="bill !== null">
-      <router-link to="/">Dashboard</router-link>
+      <router-link to="/finance">Dashboard</router-link>
       <router-link to="/finance">Finance</router-link>
       <router-link to="/finance/bills">Bills</router-link>
       <router-link :to="`/finance/bills/${bill.id}`" class="active">{{
