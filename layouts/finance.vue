@@ -161,19 +161,19 @@ export default {
         {
           text: "label.menu.bills",
           icon: "mdi-finance",
-          route: "/finance/bills",
+          route: "finance/bills",
           subtitle: "Lorem ipsum dolor sit de amet.."
         },
         {
-          text: "label.menu.calendar",
+          text: "label.menu.transactions",
           icon: "mdi-calendar-month",
-          route: "calendar",
+          route: "finance/transactions",
           subtitle: "Lorem ipsum dolor sit de amet.."
         },
         {
-          text: "label.menu.reports",
+          text: "label.menu.financereports",
           icon: "mdi-clipboard-file",
-          route: "reports",
+          route: "finance/reports",
           subtitle: "Lorem ipsum dolor sit de amet.."
         }
       ],

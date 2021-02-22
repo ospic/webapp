@@ -4,6 +4,7 @@ Vue.mixin({
   components: {
     "charges-template": ChargesTemplate
   },
+  layout: (context) => context.from.name.startsWith('finance-') ? 'finance' : 'default',
   data: function () {
 
     return {
@@ -77,6 +78,9 @@ Vue.mixin({
     },
     domain() {
       return window.location.hostname === "app.ospicx.com";
+    },
+    isfinance() {
+      return this.$root.context.from.name.startsWith(prefix)
     }
 
   },
