@@ -177,7 +177,9 @@ export default {
         consultationId: this.bill.consultationId,
         amount: this.amountToPay
       };
-      console.log(payload);
+      this.$store.dispatch("pay_bill", payload).then(response => {
+        this.get_bill();
+      });
     }
   },
   created() {

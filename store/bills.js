@@ -1,6 +1,7 @@
 const state = () => ({
   showLoader: Boolean,
-  bills: []
+  bills: [],
+  bill: {}
 });
 
 const mutations = {
@@ -20,6 +21,19 @@ const mutations = {
     state.bills = payload;
   },
 
+  ["PAY_BILL"](state) {
+    state.showLoader = true;
+  },
+  ["PAY_BILL_FAILED"](state) {
+    state.showLoader = false;
+  },
+  ["PAY_BILL_ERROR"](state) {
+    state.showLoader = false;
+  },
+  ["PAY_BILL_SUCCESS"](state, payload) {
+    state.showLoader = false;
+    state.bill = payload;
+  },
 }
 
 const actions = {
@@ -31,6 +45,17 @@ const actions = {
         commit("GET_BILLS_SUCCESS", response);
       }).catch(error => {
         commit("GET_BILLS_ERROR");
+        console.log(error);
+
+      });
+  },
+  async pay_bill({ commit }, payload) {
+    commit("PAY_BILL");
+    await this.$api.$put('bills/', payload)
+      .then(response => {
+        commit("PAY_BILL_SUCCESS", response);
+      }).catch(error => {
+        commit("PAY_BILL_ERROR");
         console.log(error);
 
       });
