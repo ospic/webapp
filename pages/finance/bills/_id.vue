@@ -12,13 +12,6 @@
       <v-progress-linear indeterminate v-if="bill == null"></v-progress-linear>
       <div v-else>
         <v-row>
-          <v-col cols="12" md="4"></v-col>
-          <v-col cols="12" md="4">
-            <span class="stamp is-approved" v-if="!bill.isPaid"
-              >OutStanding !</span
-            >
-            <span class="stamp is-draft" v-else>Paid </span>
-          </v-col>
           <v-col cols="12" md="4">
             <v-card flat outlined elevation="1">
               <v-simple-table dense>
@@ -83,6 +76,16 @@
                 </template>
               </v-simple-table>
             </v-card>
+          </v-col>
+
+          <v-col cols="12" md="4" class="d-flex align-center mb-6">
+            <span class="stamp is-approved" v-if="!bill.isPaid"
+              >OutStanding !</span
+            >
+            <span class="stamp is-draft" v-else>Paid </span>
+          </v-col>
+          <v-col cols="12" md="4" class="d-flex align-end">
+            <v-btn class="blue white--text" v-if="!bill.isPaid">Pay</v-btn>
           </v-col>
         </v-row>
         <charges-component :transaction="transaction"></charges-component>
