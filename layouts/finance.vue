@@ -5,7 +5,7 @@
     background: rgba(0,0,0,0);"
   >
     <!--NAVIGATION DRAWER-->
-    <!-- <v-navigation-drawer
+    <v-navigation-drawer
       v-model="drawer"
       mini-variant.sync="mini"
       overlay-color="primary"
@@ -27,51 +27,19 @@
             >
               {{ username }}
             </v-list-item-title>
+            <v-list-item-subtitle>{{ email }}</v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
 
         <v-divider></v-divider>
-        <v-list-item class="list-item ma-0" dense to="/">
+        <!--<v-list-item class="list-item ma-0" dense to="/finance/dashboard">
           <v-list-item-icon class="ml-1 mr-1">
             <v-icon color="primary" small>mdi-view-grid</v-icon>
           </v-list-item-icon>
           <v-list-item-title color="#8C93F5" class="font-weight-bold ">{{
             $t("label.menu.dashboard")
           }}</v-list-item-title>
-        </v-list-item>
-
-        <v-list-group
-          v-for="(setting, ind) in settings"
-          :value="false"
-          no-action
-          ripple
-          :key="ind"
-        >
-          <v-icon
-            slot="prependIcon"
-            v-html="setting.icon"
-            small
-            class="ml-1"
-            color="primary"
-          ></v-icon>
-          <template v-slot:activator>
-            <v-list-item-title
-              color="#8C93F5"
-              class="font-weight-bold pa-0 ma-0 "
-            >
-              {{ $t(setting.title) }}</v-list-item-title
-            >
-          </template>
-
-          <template v-for="(menu, index) in setting.menus">
-            <v-list-item :key="index" :to="menu.to">
-              <v-list-item-title color="#8C93F5" class="font-weight-light ">
-                <v-icon small color="primary" v-html="menu.icon"></v-icon>
-                &nbsp;&nbsp;{{ $t(menu.title) }}</v-list-item-title
-              >
-            </v-list-item>
-          </template>
-        </v-list-group>
+        </v-list-item>-->
 
         <template v-for="(item, i) in items">
           <v-list-item
@@ -89,30 +57,7 @@
           </v-list-item>
         </template>
       </v-list>
-      <template v-slot:append>
-        <v-select
-          v-model="select"
-          :items="locales"
-          item-text="locale"
-          item-value="lang"
-          persistent-hint
-          return-object
-          single-line
-          dense
-          class="font-weight-light ma-2"
-          @change="changeLanguage(select.lang)"
-        ></v-select>
-        <a
-          target="_blank"
-          class="ml-2"
-          href="https://www.paypal.com/donate?business=HE3L345WEKRWJ&item_name=Support+Ospic+an+open+source++Hospital+Management+system+developers+team.&currency_code=USD"
-        >
-          <img
-            src="https://img.shields.io/badge/Donate-PayPal-green.svg"
-            alt="Donate button"
-        /></a>
-      </template>
-    </v-navigation-drawer>-->
+    </v-navigation-drawer>
     <v-app-bar hide-on-scroll dense fixed app>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
 
@@ -211,125 +156,12 @@ export default {
       titles: {
         title: "Ospic"
       },
-      settings: [
-        {
-          title: "label.menu.patients",
-          icon: "mdi-account-multiple",
-          menus: [
-            {
-              title: "label.menu.appointmentandschedule",
-              icon: "mdi-alarm-multiple",
-              to: "/appointments",
-              subtitle: "Lorem ipsum dolor sit de amet ..."
-            },
-            {
-              title: "label.menu.patients",
-              to: "/patients",
-              icon: "mdi-account-multiple"
-            },
-            {
-              title: "label.menu.opdcenter",
-              icon: "mdi-alpha-o-circle",
-              to: "/opd",
-              subtitle: "Lorem ipsum dolor sit de amet.."
-            },
-            {
-              title: "label.menu.ipdcenter",
-              icon: "mdi-bed-queen",
-              to: "/ipd",
-              subtitle: "Lorem ipsum dolor sit de amet.."
-            }
-          ]
-        },
-        {
-          title: "label.menu.inventoryandstock",
-          icon: "mdi-store-24-hour",
-          menus: [
-            {
-              title: "label.titles.pharmacy",
-              to: "/inventory/",
-              icon: "mdi-pharmacy"
-            },
-            {
-              title: "label.titles.medicine",
-              to: "/inventory/medicine",
-              icon: "mdi-pill"
-            },
-            {
-              title: "label.titles.bloodbank",
-              to: "/inventory/bloods",
-              icon: "mdi-blood-bag"
-            },
-            {
-              title: "label.titles.wards",
-              to: "/inventory/ward",
-              icon: "mdi-home-floor-1"
-            },
-            {
-              title: "label.titles.beds",
-              to: "/inventory/bed",
-              icon: "mdi-bunk-bed-outline"
-            }
-          ]
-        },
-        {
-          title: "label.menu.laboratory",
-          icon: "mdi-octagon",
-          menus: [
-            {
-              title: "label.menu.laboratory",
-              icon: "mdi-octagon",
-              to: "/laboratory",
-              subtitle: "Lorem ipsum dolor sit de amet.."
-            },
-            {
-              title: "label.menu.radiology",
-              icon: "mdi-radioactive",
-              to: "/laboratory/radiology",
-              subtitle: "Lorem ipsum dolor sit de amet.."
-            }
-          ]
-        },
-        {
-          title: "label.menu.organization",
-          icon: "mdi-store-24-hour",
-          menus: [
-            {
-              title: "label.menu.staff",
-              to: "/staffs",
-              icon: "mdi-account-hard-hat"
-            },
-            {
-              title: "label.titles.departments",
-              to: "/departments",
-              icon: "mdi-office-building"
-            },
-            {
-              title: "label.titles.services",
-              to: "/services",
-              icon: "mdi-help-circle"
-            }
-          ]
-        },
-        {
-          title: "label.menu.finance",
-          icon: "mdi-finance",
-          menus: [
-            {
-              title: "label.menu.finance",
-              icon: "mdi-currency-usd-circle",
-              to: "/finance",
-              subtitle: "Lorem ipsum dolor sit de amet.."
-            }
-          ]
-        }
-      ],
 
       items: [
         {
-          text: "label.menu.stations",
-          icon: "mdi-adjust",
-          route: "stations",
+          text: "label.menu.bills",
+          icon: "mdi-finance",
+          route: "/finance/bills",
           subtitle: "Lorem ipsum dolor sit de amet.."
         },
         {
@@ -343,11 +175,6 @@ export default {
           icon: "mdi-clipboard-file",
           route: "reports",
           subtitle: "Lorem ipsum dolor sit de amet.."
-        },
-        {
-          text: "label.tooltip.settingsandconfigurations",
-          icon: "mdi-cog-outline",
-          route: "settings"
         }
       ],
       actions: [
@@ -356,25 +183,7 @@ export default {
         { title: "Help", icon: "mdi-help" },
         { title: "Logout", icon: "mdi-logout-variant" }
       ],
-      select: { locale: "English", lang: "en" },
-      locales: [
-        {
-          locale: "English",
-          lang: "en"
-        },
-        {
-          locale: "Kiswahili",
-          lang: "sw"
-        },
-        {
-          locale: "French",
-          lang: "fr"
-        },
-        {
-          locale: "Arab",
-          lang: "ar"
-        }
-      ],
+
       miniVariant: false,
       right: true,
       shaped: true,
@@ -442,33 +251,12 @@ export default {
       setTimeout(() => {
         vm.sync = !vm.sync;
       }, 2000);
-    },
-    changeLanguage(lang) {
-      this.$i18n.locale = lang;
     }
   },
   beforeDestroy() {
     clearInterval(this.interval);
   },
 
-  computed: {
-    username() {
-      return window.localStorage.getItem("ospic.username");
-    },
-    email() {
-      return window.localStorage.getItem("ospic.email");
-    },
-    domain() {
-      return window.location.hostname === "app.ospicx.com";
-    }
-  }
+  computed: {}
 };
 </script>
-<style scoped>
-.list-item .tile {
-  color: #566573;
-}
-.list-item:hover .tile:hover {
-  color: #4a56ff;
-}
-</style>

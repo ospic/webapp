@@ -66,7 +66,18 @@ Vue.mixin({
     isMdAndUp() {
       return this.$vuetify.breakpoint.mdAndUp;
     },
-
+    userinfo() {
+      return this.$store.getters.userInfos;
+    },
+    username() {
+      return this.userinfo.username;
+    },
+    email() {
+      return this.userinfo.email;
+    },
+    domain() {
+      return window.location.hostname === "app.ospicx.com";
+    }
 
   },
 });
