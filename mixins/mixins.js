@@ -4,7 +4,7 @@ Vue.mixin({
   components: {
     "charges-template": ChargesTemplate
   },
-  layout: (context) => context.from.name.startsWith('finance-') ? 'finance' : 'default',
+  layout: (context) => context.from.name.startsWith('finance') ? 'finance' : 'default',
   data: function () {
 
     return {
