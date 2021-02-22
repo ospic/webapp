@@ -349,6 +349,12 @@ export default {
 
       items: [
         {
+          text: "label.menu.finance",
+          icon: "mdi-currency-usd-circle",
+          route: "finance",
+          subtitle: "Lorem ipsum dolor sit de amet.."
+        },
+        {
           text: "label.menu.stations",
           icon: "mdi-adjust",
           route: "stations",
@@ -473,27 +479,6 @@ export default {
     clearInterval(this.interval);
   },
 
-  computed: {
-    userinfo() {
-      return this.$store.getters.userInfos;
-    },
-    username() {
-      return this.userinfo.username;
-    },
-    email() {
-      return this.userinfo.email;
-    },
-    domain() {
-      return window.location.hostname === "app.ospicx.com";
-    }
-  }
+  computed: {}
 };
 </script>
-<style scoped>
-.list-item .tile {
-  color: #566573;
-}
-.list-item:hover .tile:hover {
-  color: #4a56ff;
-}
-</style>
