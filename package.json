@@ -37,8 +37,9 @@
     "vuex-persistedstate": "^3.2.0"
   },
   "devDependencies": {
-    "@nuxt/types": "^2.15.0",
-    "@nuxt/typescript-build": "^2.0.5",
+    "@nuxt/types": "^2.15.1",
+    "@nuxt/typescript-build": "^2.0.4",
+
     "@nuxtjs/eslint-config": "^5.0.0",
     "@nuxtjs/eslint-config-typescript": "^5.0.0",
     "@nuxtjs/eslint-module": "^3.0.2",
