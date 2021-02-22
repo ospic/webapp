@@ -26,6 +26,7 @@ Vue.mixin({
         'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'
       ],
       itemsperpage: 15,
+      totalvisible: 7,
       body: {
         options: {
           page: 1,
