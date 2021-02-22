@@ -1,82 +1,58 @@
 <template>
-  <div>
-    <v-card class="pa-2" color="#F5F5F5">
-      <v-card-title class="font-weight-black">Bills</v-card-title>
-      <v-row no-gutters>
-        <!--<v-col md="3">
-          <total-amount :amount="amount"></total-amount>
-        </v-col>-->
-        <v-col md="12">
-          <div>
-            <v-progress-linear
-              indeterminate
-              v-if="bills == null"
-            ></v-progress-linear>
-            <v-container fluid v-else class="ma-2">
-              <v-data-table
-                dense
-                class="default"
-                :headers="headers"
-                :items="bills"
-                mobile-breakpoint="100"
-                group-by="lastUpdatedDate"
-                @click:row="viewconsultation"
-              >
-                <template v-slot:[`item.service`]="{ item }">
-                  <p v-if="item.medicalServiceName != null">
-                    {{ item.medicalServiceName }}
-                  </p>
-                  <p v-else>{{ item.medicineName }}</p>
-                </template>
-              </v-data-table>
-            </v-container>
-          </div>
-        </v-col>
-      </v-row>
-    </v-card>
-  </div>
+  <v-container fluid>
+    <v-row>
+      <v-col
+        v-for="(item, index) in items"
+        :key="index"
+        class="pa-1"
+        xs="6"
+        sm="6"
+        md="3"
+        xl="1"
+      >
+        <statistical-card :item="item"></statistical-card>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 <script>
-import { mapGetters } from "vuex";
-import TransactionTotalsCard from "@/components/finance/total-cards";
+import StatisticalCard from "~/components/finance/statistical-card.vue";
 export default {
-  layout: "finance",
   components: {
-    "total-amount": TransactionTotalsCard
+    "statistical-card": StatisticalCard
   },
 
-  data: () => ({
-    title: "45% This week",
-    dialog: false,
-    service_transactions: null,
-    type: "service",
-    amount: 0.0,
-    headers: [
-      { text: "NID", value: "id" },
-      { text: "Patient", value: "patientName" },
-      { text: "Amount", value: "totalAmount", sortable: false },
-      { text: "Paid Amount", value: "paidAmount" },
-      { text: "Paid ?", value: "isPaid" },
-      { text: "No.", value: "extraId", sortable: true },
-      { text: "CI", value: "consultationId" },
-      { text: "Active", value: "isActive", sortable: true },
-      { text: "Created Date", value: "createdDate" },
-      { text: "Last modified Date", value: "lastUpdatedDate" }
-    ]
-  }),
-  methods: {
-    viewconsultation: function(item) {
-      this.$router.push("finance/bills/" + item.id);
-    }
-  },
-
-  created() {
-    this.$store.dispatch("get_bills");
-  },
-  computed: {
-    ...mapGetters({
-      bills: "bills"
-    })
+  data: function() {
+    return {
+      items: [
+        {
+          value: 34000,
+          title: "Vuetify layout",
+          icon: "mdi-progress-question"
+        },
+        {
+          value: 34000,
+          title: "Vuetify layout",
+          icon: "mdi-progress-question"
+        },
+        {
+          value: 34000,
+          title: "Vuetify layout",
+          icon: "mdi-progress-question"
+        },
+        {
+          value: 34000,
+          title: "Vuetify layout",
+          icon: "mdi-progress-question"
+        }
+      ]
+    };
   }
 };
 </script>
+<style scoped>
+.outlined {
+  color: blue !important;
+  border-color: blue !important;
+}
+</style>

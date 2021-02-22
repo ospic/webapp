@@ -71,7 +71,7 @@ export default {
   }),
   methods: {
     viewconsultation: function(item) {
-      this.$router.push("finance/bills/" + item.id);
+      this.$router.push("/finance/bills/" + item.id);
     }
   },
 

@@ -46,7 +46,7 @@
             class="list-item ma-0"
             dense
             :key="`${i}-${item.route}`"
-            v-on:click="nativateToHere(item.route)"
+            :to="item.route"
           >
             <v-list-item-icon class="ml-1 mr-1">
               <v-icon color="primary" v-text="item.icon" small></v-icon>
@@ -161,19 +161,19 @@ export default {
         {
           text: "label.menu.bills",
           icon: "mdi-finance",
-          route: "finance/bills",
+          route: "/finance/bills",
           subtitle: "Lorem ipsum dolor sit de amet.."
         },
         {
           text: "label.menu.transactions",
           icon: "mdi-calendar-month",
-          route: "finance/transactions",
+          route: "/finance/transactions",
           subtitle: "Lorem ipsum dolor sit de amet.."
         },
         {
           text: "label.menu.financereports",
           icon: "mdi-clipboard-file",
-          route: "finance/reports",
+          route: "/finance/reports",
           subtitle: "Lorem ipsum dolor sit de amet.."
         }
       ],
@@ -222,7 +222,7 @@ export default {
       this.$vuetify.theme.dark = this.dark;
     },
     nativateToHere(id) {
-      this.$router.push("/" + id);
+      this.$router.push(id);
     },
     toggle(mode) {
       if (`${mode}` === "true") {
