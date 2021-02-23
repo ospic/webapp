@@ -48,6 +48,7 @@
 </template>
 <script>
 export default {
+  layout: "finance",
   data() {
     return {
       bill: null,
