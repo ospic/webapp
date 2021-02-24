@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <!--<div>
     <div class="breadcrumb ">
       <router-link to="/">Dashboard</router-link>
       <router-link to="/reports" class="active">Reports</router-link>
@@ -7,7 +7,7 @@
     <div id="app">
       <WebViewer :url="response_url" />
     </div>
-  </div>
+  </div>-->
   <!--<div>
     <div class="breadcrumb ">
       <router-link to="/">Dashboard</router-link>
@@ -21,13 +21,12 @@
       </div>
     </v-card>
   </div>-->
+  <div v-if="response_url != null">
+    <v-pdf :src="getpdf()"></v-pdf>
+  </div>
 </template>
 <script>
-import pdf from "vue-pdf";
 export default {
-  components: {
-    pdf
-  },
   data: function() {
     return {
       response_url: null,
