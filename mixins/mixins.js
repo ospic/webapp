@@ -1,8 +1,11 @@
 import Vue from 'vue';
 import ChargesTemplate from "@/components/profile/tabs/charges"
+import WebViewer from "@/components/WebViewer.vue"
+
 Vue.mixin({
   components: {
-    "charges-template": ChargesTemplate
+    "charges-template": ChargesTemplate,
+    WebViewer
   },
   layout: (context) => context.from.name.startsWith('finance') ? 'finance' : 'default',
   data: function () {
@@ -25,6 +28,7 @@ Vue.mixin({
       week_labels: [
         'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'
       ],
+      publicPath: window.location.origin + '/lib',
       itemsperpage: 15,
       totalvisible: 7,
       body: {
