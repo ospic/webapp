@@ -4,6 +4,15 @@
       <router-link to="/">Dashboard</router-link>
       <router-link to="/reports" class="active">Reports</router-link>
     </div>
+    <div id="app">
+      <WebViewer :url="response_url" />
+    </div>
+  </div>
+  <!--<div>
+    <div class="breadcrumb ">
+      <router-link to="/">Dashboard</router-link>
+      <router-link to="/reports" class="active">Reports</router-link>
+    </div>
     <v-card class="pa-3">
       <h1>Example of reports (Under development)</h1>
       <div name="link" id="link"></div>
@@ -11,7 +20,7 @@
         <pdf :src="getpdf()"></pdf>
       </div>
     </v-card>
-  </div>
+  </div>-->
 </template>
 <script>
 import pdf from "vue-pdf";
@@ -22,7 +31,8 @@ export default {
   data: function() {
     return {
       response_url: null,
-      response_data: null
+      response_data: null,
+      publicPath: process.env.BASE_URL
     };
   },
   methods: {
@@ -33,7 +43,6 @@ export default {
       return await this.$api
         .$get(`test/view`)
         .then(response => {
-          console.log(response);
           this.response_data = response;
           this.response_url = this.$api.defaults.baseURL + "test/view";
         })
@@ -42,9 +51,17 @@ export default {
         });
     }
   },
+  mounted() {
+    this.load_pdf();
+  },
 
   created() {
     this.load_pdf();
+  },
+  computed: {
+    reportUrl() {
+      return this;
+    }
   }
 };
 </script>
