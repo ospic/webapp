@@ -1,10 +1,11 @@
 import Vue from 'vue';
 import ChargesTemplate from "@/components/profile/tabs/charges"
 import WebViewer from "@/components/WebViewer.vue"
-
+import PDFViewer from "@/components/PdfViewer.vue"
 Vue.mixin({
   components: {
     "charges-template": ChargesTemplate,
+    "v-pdf": PDFViewer,
     WebViewer
   },
   layout: (context) => context.from.name.startsWith('finance') ? 'finance' : 'default',
