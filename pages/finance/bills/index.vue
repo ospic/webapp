@@ -36,7 +36,7 @@
                     <v-icon
                       small
                       class="blue--text"
-                      @click="viewreceipt(item.consultationId)"
+                      @click="viewreceipt(item.id)"
                     >
                       mdi-eye
                     </v-icon>
@@ -59,17 +59,24 @@
                         ></v-text-field>
                       </v-col>
                     </v-row>
-                    <v-dialog v-model="dialog" max-width="600px">
-                      <v-card>
-                        <v-card-text>
-                          <receipt></receipt>
-                        </v-card-text>
-                      </v-card>
+                    <v-dialog
+                      v-model="dialog"
+                      max-width="600px"
+                      class="ma-0 pa-0"
+                    >
+                      <v-progress-linear
+                        background-color="white"
+                        indeterminate
+                        color="cyan"
+                        v-if="bill == null"
+                      ></v-progress-linear>
+                      <receipt v-else :bill="bill"></receipt>
                     </v-dialog>
                   </v-toolbar>
                 </template>
                 <template v-slot:no-data>
                   <v-progress-linear
+                    background-color="white"
                     indeterminate
                     color="cyan"
                   ></v-progress-linear>
@@ -100,6 +107,7 @@ export default {
     service_transactions: null,
     type: "service",
     amount: 0.0,
+    bill: null,
     headers: [
       { text: "NID", value: "id" },
       { text: "Patient", value: "patientName" },
@@ -118,9 +126,17 @@ export default {
     viewconsultation: function(item) {
       this.$router.push("/finance/bills/" + item.id);
     },
-    viewreceipt: function(cid) {
+    async viewreceipt(cid) {
       this.dialog = true;
-      console.log(cid);
+      this.bill = null;
+      return await this.$api
+        .$get(`bills/${cid}`)
+        .then(response => {
+          this.bill = response;
+        })
+        .catch(error => {
+          console.log(error);
+        });
     }
   },
 
