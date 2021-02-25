@@ -20,6 +20,7 @@
                 class="default"
                 :headers="headers"
                 :items="bills"
+                :search="search"
                 mobile-breakpoint="100"
                 group-by="lastUpdatedDate"
                 @click:row="viewconsultation"
@@ -41,6 +42,32 @@
                     </v-icon>
                   </td>
                 </template>
+                <template v-slot:top>
+                  <v-toolbar flat>
+                    <v-row no-gutters>
+                      <v-col cols="12" md="2" align-self="center">
+                        <h3 class="title">Blood Bank</h3>
+                      </v-col>
+                      <v-col cols="12" md="4">
+                        <v-text-field
+                          v-model="search"
+                          append-icon="search"
+                          label="Enter search text ..."
+                          solo
+                          single-line
+                          hide-details
+                        ></v-text-field>
+                      </v-col>
+                    </v-row>
+                    <v-dialog v-model="dialog" max-width="600px">
+                      <v-card>
+                        <v-card-text>
+                          <receipt></receipt>
+                        </v-card-text>
+                      </v-card>
+                    </v-dialog>
+                  </v-toolbar>
+                </template>
                 <template v-slot:no-data>
                   <v-progress-linear
                     indeterminate
@@ -57,16 +84,19 @@
 </template>
 <script>
 import { mapGetters } from "vuex";
+import ReceiptComponent from "@/components/finance/receipt_component.vue";
 import TransactionTotalsCard from "@/components/finance/total-cards";
 export default {
   layout: "finance",
   components: {
-    "total-amount": TransactionTotalsCard
+    "total-amount": TransactionTotalsCard,
+    receipt: ReceiptComponent
   },
 
   data: () => ({
     title: "45% This week",
     dialog: false,
+    search: null,
     service_transactions: null,
     type: "service",
     amount: 0.0,
@@ -89,6 +119,7 @@ export default {
       this.$router.push("/finance/bills/" + item.id);
     },
     viewreceipt: function(cid) {
+      this.dialog = true;
       console.log(cid);
     }
   },
