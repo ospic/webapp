@@ -24,7 +24,7 @@
     
     <div id="bot">
 
-					<div id="table" v-if="transaction !== null">
+					<div id="table" v-if="bill !== null">
 						<table>
 							<tr class="tabletitle">
 								<td class="item"><h2>Item</h2></td>
@@ -33,7 +33,7 @@
 								<td class="Rate"><h2>Price</h2></td>
 							</tr>
 
-							<tr class="service" v-for="(trans, index) in transaction.transactions" :key="index">
+							<tr class="service" v-for="(trans, index) in bill.transactionResponse.transactions" :key="index">
 								<td class="tableitem"><p class="itemtext">Communication</p></td>
 								<td class="tableitem"><p class="itemtext">{{ trans.medicalServiceName === null ? '------': trans.medicalServiceName }}</p></td>
 								<td class="tableitem"><p class="itemtext">{{ trans.medicineName === null ? '------':trans.medicineName }}</p></td>
@@ -52,7 +52,7 @@
 							<tr class="tabletitle">
 								<td></td><td></td>
 								<td class="Rate"><h2>Total</h2></td>
-								<td class="payment"><h2>{{amountToPay}}</h2></td>
+								<td class="payment"><h2>{{bill.transactionResponse.totalAmount}}</h2></td>
 							</tr>
 
 						</table>
@@ -75,21 +75,23 @@
 </template>
 <script>
 export default {
+  props:{
+    bill:{
+      type:Object,
+      default: null
+    }
+  },
   data:()=>({
-      dialog: false,
-      bill: null,
-      transaction: null,
-      amountToPay: null,
-      tax: 0
+   
   }),
   methods:{
-    async getbill() {
+    async getbill(id) {
       return await this.$api
-        .$get(`bills/1/`)
+        .$get(`bills/${id}`)
         .then(response => {
-          this.bill = response;
-          this.transaction = response.transactionResponse;
-          this.amountToPay = response.totalAmount;
+         // this.bill = response;
+          //this.transaction = response.transactionResponse;
+          //this.amountToPay = response.totalAmount;
         })
         .catch(error => {
           console.log(error);
@@ -97,7 +99,7 @@ export default {
     },
   },
   created(){
-    this.getbill()
+   
   }
 }
 </script>
