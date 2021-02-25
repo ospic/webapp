@@ -1,28 +1,13 @@
 <template>
-  <!--<div>
+  <div>
     <div class="breadcrumb ">
       <router-link to="/">Dashboard</router-link>
       <router-link to="/reports" class="active">Reports</router-link>
     </div>
-    <div id="app">
-      <WebViewer :url="response_url" />
+
+    <div v-if="response_url != null">
+      <v-pdf :src="getpdf()"></v-pdf>
     </div>
-  </div>-->
-  <!--<div>
-    <div class="breadcrumb ">
-      <router-link to="/">Dashboard</router-link>
-      <router-link to="/reports" class="active">Reports</router-link>
-    </div>
-    <v-card class="pa-3">
-      <h1>Example of reports (Under development)</h1>
-      <div name="link" id="link"></div>
-      <div>
-        <pdf :src="getpdf()"></pdf>
-      </div>
-    </v-card>
-  </div>-->
-  <div v-if="response_url != null">
-    <v-pdf :src="getpdf()"></v-pdf>
   </div>
 </template>
 <script>
