@@ -63,6 +63,8 @@
                       v-model="dialog"
                       max-width="600px"
                       class="ma-0 pa-0"
+                      hide-overlay
+                      open-delay="12"
                     >
                       <v-progress-linear
                         background-color="white"
