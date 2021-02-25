@@ -97,7 +97,8 @@
       "genderother":"Other",
       "edit":"Edit",
       "activate":"Activate",
-      "active":"Active"
+      "active":"Active",
+      "viewreceipt":"View bill receipt"
     },
     "titles":{
       "settings":"Settings",
