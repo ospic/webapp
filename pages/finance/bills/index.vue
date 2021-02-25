@@ -30,6 +30,19 @@
                   </p>
                   <p v-else>{{ item.medicineName }}</p>
                 </template>
+                <template v-slot:[`item.actions`]="{ item }">
+                  <td @click.stop class="none-clickable">
+                    <v-icon small class="blue--text">
+                      mdi-eye
+                    </v-icon>
+                  </td>
+                </template>
+                <template v-slot:no-data>
+                  <v-progress-linear
+                    indeterminate
+                    color="cyan"
+                  ></v-progress-linear>
+                </template>
               </v-data-table>
             </v-container>
           </div>
@@ -63,7 +76,8 @@ export default {
       { text: "CI", value: "consultationId" },
       { text: "Active", value: "isActive", sortable: true },
       { text: "Created Date", value: "createdDate" },
-      { text: "Last modified Date", value: "lastUpdatedDate" }
+      { text: "Last modified Date", value: "lastUpdatedDate" },
+      { text: "Actions", value: "actions", sortable: false }
     ]
   }),
   methods: {
