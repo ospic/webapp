@@ -8,9 +8,6 @@
     <v-card class="pa-2" color="#F5F5F5">
       <v-card-title class="font-weight-black">Bills</v-card-title>
       <v-row no-gutters>
-        <!--<v-col md="3">
-          <total-amount :amount="amount"></total-amount>
-        </v-col>-->
         <v-col md="12">
           <div>
             <v-progress-linear
