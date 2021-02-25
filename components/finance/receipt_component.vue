@@ -27,14 +27,14 @@
 					<div id="table" v-if="bill !== null">
 						<table>
 							<tr class="tabletitle">
-								<td class="item"><h2>Item</h2></td>
+								<td class="item"><h2>ID</h2></td>
 								<td class="Hours"><h2>Medicine</h2></td>
                 	<td class="Hours"><h2>Service</h2></td>
 								<td class="Rate"><h2>Price</h2></td>
 							</tr>
 
 							<tr class="service" v-for="(trans, index) in bill.transactionResponse.transactions" :key="index">
-								<td class="tableitem"><p class="itemtext">Communication</p></td>
+								<td class="tableitem"><p class="itemtext">{{index+1}}</p></td>
 								<td class="tableitem"><p class="itemtext">{{ trans.medicalServiceName === null ? '------': trans.medicalServiceName }}</p></td>
 								<td class="tableitem"><p class="itemtext">{{ trans.medicineName === null ? '------':trans.medicineName }}</p></td>
 							
@@ -131,7 +131,7 @@ h3{
   line-height: 2em;
 }
 p{
-  font-size: .7em;
+  font-size: .8em;
   color: #666;
   line-height: 1.2em;
 }
@@ -178,14 +178,14 @@ td{
 }
 .tabletitle{
   //padding: 5px;
-  font-size: .5em;
+  font-size: 1.1em;
   background: #EEE;
   
 }
 .service{
   border-bottom: 1px solid #EEE;}
 .item{width: 24mm;}
-.itemtext{font-size: .5em;}
+.itemtext{font-size: .9em;}
 
 #legalcopy{
   margin-top: 5mm;
