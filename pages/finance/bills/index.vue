@@ -32,7 +32,11 @@
                 </template>
                 <template v-slot:[`item.actions`]="{ item }">
                   <td @click.stop class="none-clickable">
-                    <v-icon small class="blue--text">
+                    <v-icon
+                      small
+                      class="blue--text"
+                      @click="viewreceipt(item.consultationId)"
+                    >
                       mdi-eye
                     </v-icon>
                   </td>
@@ -83,6 +87,9 @@ export default {
   methods: {
     viewconsultation: function(item) {
       this.$router.push("/finance/bills/" + item.id);
+    },
+    viewreceipt: function(cid) {
+      console.log(cid);
     }
   },
 
