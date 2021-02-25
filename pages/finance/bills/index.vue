@@ -33,13 +33,20 @@
                 </template>
                 <template v-slot:[`item.actions`]="{ item }">
                   <td @click.stop class="none-clickable">
-                    <v-icon
-                      small
-                      class="blue--text"
-                      @click="viewreceipt(item.id)"
-                    >
-                      mdi-eye
-                    </v-icon>
+                    <v-tooltip bottom color="primary lighten-1">
+                      <template v-slot:activator="{ on, attrs }">
+                        <v-icon
+                          small
+                          v-bind="attrs"
+                          v-on="on"
+                          class="blue--text"
+                          @click="viewreceipt(item.id)"
+                        >
+                          mdi-receipt
+                        </v-icon>
+                      </template>
+                      <span>{{ $t("label.tooltip.viewreceipt") }}</span>
+                    </v-tooltip>
                   </td>
                 </template>
                 <template v-slot:top>
