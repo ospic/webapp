@@ -307,7 +307,7 @@ export default {
             {
               title: "label.menu.radiology",
               icon: "mdi-radioactive",
-              to: "/laboratory/radiology",
+              to: "/radiology",
               subtitle: "Lorem ipsum dolor sit de amet.."
             }
           ]
