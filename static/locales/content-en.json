@@ -144,7 +144,8 @@
       "newlaboratoryservice":"Add laboratory service",
       "editlaboratoryservice":"Edit laboratory service",
       "newradiologyservice":"New radiology service",
-      "radiologyservices":"Radiology services"
+      "radiologyservices":"Radiology services",
+      "editradiologyservice":"Edit radiology service"
       
     }
   }
