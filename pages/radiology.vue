@@ -2,7 +2,6 @@
   <div>
     <div class="breadcrumb ">
       <router-link to="/">Dashboard</router-link>
-      <router-link to="/radiology">radiology</router-link>
       <router-link to="/radiology" class="active">Radiology</router-link>
     </div>
     <v-card class="mx-auto pa-2">
