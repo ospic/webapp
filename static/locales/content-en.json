@@ -39,7 +39,8 @@
       "btnaddnewservice":"Add new medical service",
       "btncreateward":"Create new ward",
       "btnnewlaboratoryservice":"Add laboratory service",
-      "btnpaybill":"PAY BILL"
+      "btnpaybill":"PAY BILL",
+      "btnnewradiologyservice":"Add radiology service"
       
     },
     "menu":{
@@ -141,7 +142,9 @@
       "editward":"Edit ward",
       "laboratoryservices":"Medical laboratory services",
       "newlaboratoryservice":"Add laboratory service",
-      "editlaboratoryservice":"Edit laboratory service"
+      "editlaboratoryservice":"Edit laboratory service",
+      "newradiologyservice":"New radiology service",
+      "radiologyservices":"Radiology services"
       
     }
   }
