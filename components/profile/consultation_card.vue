@@ -19,7 +19,7 @@
         <template v-slot:top>
           <v-toolbar flat>
             <h2>
-              <strong>{{ title }}</strong>
+              <strong>{{ $t(title) }}</strong>
             </h2>
             <v-spacer></v-spacer>
             <v-text-field

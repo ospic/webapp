@@ -1,8 +1,10 @@
 <template>
   <div>
     <div class="breadcrumb ">
-      <router-link to="/">Dashboard</router-link>
-      <router-link to="/oppointemnts" class="active">Appointments</router-link>
+      <router-link to="/">{{ $t("label.menu.dashboard") }}</router-link>
+      <router-link to="/oppointemnts" class="active">{{
+        $t("label.titles.appointments")
+      }}</router-link>
     </div>
     <v-tabs color="deep-purple accent-4 pa-3" right>
       <v-tab>
@@ -11,7 +13,7 @@
           :content="unassigned.length"
           :value="unassigned.length"
         >
-          Un-Assigned
+          {{ $t("label.titles.unassignedservices") }}
         </v-badge>
       </v-tab>
       <v-tab ripple
@@ -20,20 +22,20 @@
           :content="assigned.length"
           :value="assigned.length"
           class="lowercase"
-          >Assigned</v-badge
+          >{{ $t("label.titles.assignedservices") }}</v-badge
         ></v-tab
       >
 
       <v-tab-item>
         <servicescard-component
           :services="unassigned"
-          title="Un-assigned services"
+          title="label.titles.unassignedservices"
         ></servicescard-component>
       </v-tab-item>
       <v-tab-item>
         <servicescard-component
           :services="assigned"
-          title="Assigned services"
+          title="label.titles.assignedservices"
         ></servicescard-component>
       </v-tab-item>
     </v-tabs>
