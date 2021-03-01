@@ -145,7 +145,10 @@
       "editlaboratoryservice":"Edit laboratory service",
       "newradiologyservice":"New radiology service",
       "radiologyservices":"Radiology services",
-      "editradiologyservice":"Edit radiology service"
+      "editradiologyservice":"Edit radiology service",
+      "unassignedservices":"Un-assigned consultations",
+      "assignedservices":"Assigned consultations",
+      "appointments":"Appointments"
       
     }
   }

@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="breadcrumb " v-if="patient != null">
-      <router-link to="/">Dashboard</router-link>
+      <router-link to="/">{{ $t("label.menu.dashboard") }}</router-link>
       <router-link to="/patients">Patients</router-link>
       <router-link :to="`/patients/${this.$route.params.id}`">{{
         patient.name
