@@ -20,11 +20,9 @@
         :items="reports"
         :search="search"
         mobile-breakpoint="100"
+        @click:row="handle_row_click"
       ></v-data-table>
     </v-card>
-    <!--<div v-if="response_url != null">
-      <v-pdf :src="getpdf()"></v-pdf>
-    </div>-->
   </div>
 </template>
 <script>
@@ -43,29 +41,14 @@ export default {
     };
   },
   methods: {
-    getpdf() {
-      return this.$api.defaults.baseURL + "test/view";
-    },
-    async load_pdf() {
-      return await this.$api
-        .$get(`test/view`)
-        .then(response => {
-          this.response_data = response;
-          this.response_url = this.$api.defaults.baseURL + "test/view";
-        })
-        .catch(error => {
-          console.log(error);
-        });
+    handle_row_click(i) {
+      this.$router.push("/reports/" + i.filename);
     }
   },
   mounted() {
     this.$store.dispatch("get_reports");
-    this.load_pdf();
   },
 
-  created() {
-    this.load_pdf();
-  },
   computed: {
     ...mapGetters({
       reports: "reports"
