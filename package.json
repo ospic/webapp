@@ -9,7 +9,7 @@
     "start": "NODE_ENV=production nuxt start",
     "devi": "backpack dev",
     "deploy": "nuxt build",
-    "generate": "NODE_ENV=production nuxt generate",
+    "generate": "NODE_ENV=production nuxt-ts generate",
     "lint:js": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "lint": "npm run lint:js",
     "test": "jest"
