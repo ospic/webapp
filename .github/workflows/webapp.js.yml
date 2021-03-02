@@ -34,7 +34,7 @@ jobs:
       - run: npm cache verify
       - run: npm cache clean --force
       - run: npm i --save
-      - run: npm run deploy
+      - run: npm run generate
       - run: npm test
       - name: Deploy to gihub pages 🚀
         uses: JamesIves/github-pages-deploy-action@releases/v3
