@@ -18,7 +18,7 @@ const mutations = {
   },
   ["GET_REPORTS_SUCCESS"](state, payload) {
     state.showLoader = false;
-    this.report = payload;
+    state.reports = payload;
   },
 
 }
@@ -40,6 +40,9 @@ const actions = {
 
 }
 const getters = {
+  reports: function (state) {
+    return state.reports
+  }
 
 }
 

@@ -4,19 +4,42 @@
       <router-link to="/">Dashboard</router-link>
       <router-link to="/reports" class="active">Reports</router-link>
     </div>
-
-    <div v-if="response_url != null">
+    <v-card class="mx-auto pa-2">
+      <v-progress-linear
+        v-if="reports === null"
+        value="20"
+        buffer-value="0"
+        stream
+        color="primary"
+      ></v-progress-linear>
+      <v-data-table
+        dense
+        v-else
+        class="default"
+        :headers="headers"
+        :items="reports"
+        :search="search"
+        mobile-breakpoint="100"
+      ></v-data-table>
+    </v-card>
+    <!--<div v-if="response_url != null">
       <v-pdf :src="getpdf()"></v-pdf>
-    </div>
+    </div>-->
   </div>
 </template>
 <script>
+import { mapGetters } from "vuex";
 export default {
   data: function() {
     return {
       response_url: null,
       response_data: null,
-      publicPath: process.env.BASE_URL
+      search: "",
+      publicPath: process.env.BASE_URL,
+      headers: [
+        { text: "ID", value: "id" },
+        { text: "Name", value: "name" }
+      ]
     };
   },
   methods: {
@@ -36,6 +59,7 @@ export default {
     }
   },
   mounted() {
+    this.$store.dispatch("get_reports");
     this.load_pdf();
   },
 
@@ -43,6 +67,9 @@ export default {
     this.load_pdf();
   },
   computed: {
+    ...mapGetters({
+      reports: "reports"
+    }),
     reportUrl() {
       return this;
     }
