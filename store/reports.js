@@ -21,6 +21,20 @@ const mutations = {
     state.reports = payload;
   },
 
+  ["UPLOAD_REPORT"](state) {
+    state.showLoader = true;
+  },
+  ["UPLOAD_REPORT_FAILED"](state) {
+    state.showLoader = false;
+  },
+  ["UPLOAD_REPORT_ERROR"](state) {
+    state.showLoader = false;
+  },
+  ["UPLOAD_REPORT_SUCCESS"](state, payload) {
+    state.showLoader = false;
+    console.log(payload)
+  },
+
 }
 const actions = {
 
@@ -35,7 +49,18 @@ const actions = {
         console.log(error);
 
       });
+  },
+  async uploadreport({ commit }, payload) {
+    commit("UPLOAD_REPORT");
+    await this.$api.$post('reports/', payload)
+      .then(response => {
+        commit("UPLOAD_REPORT_SUCCESS", response);
 
+      }).catch(error => {
+        commit("UPLOAD_REPORT_ERROR");
+        console.log(error);
+
+      });
   }
 
 }
