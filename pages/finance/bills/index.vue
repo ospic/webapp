@@ -5,8 +5,7 @@
       <router-link to="/finance">Finance</router-link>
       <router-link to="/finance/bills" class="active">Bills</router-link>
     </div>
-    <v-card class="pa-2" color="#F5F5F5">
-      <v-card-title class="font-weight-black">Bills</v-card-title>
+    <v-card>
       <v-row no-gutters>
         <v-col md="12">
           <div>
@@ -53,14 +52,16 @@
                   <v-toolbar flat>
                     <v-row no-gutters>
                       <v-col cols="12" md="2" align-self="center">
-                        <h3 class="title">Blood Bank</h3>
+                        <h3 class="title">Bills</h3>
                       </v-col>
                       <v-col cols="12" md="4">
                         <v-text-field
                           v-model="search"
                           append-icon="search"
                           label="Enter search text ..."
-                          solo
+                          rounded
+                          dense
+                          outlined
                           single-line
                           hide-details
                         ></v-text-field>

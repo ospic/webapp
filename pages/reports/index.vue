@@ -21,7 +21,28 @@
         :search="search"
         mobile-breakpoint="100"
         @click:row="handle_row_click"
-      ></v-data-table>
+      >
+        <template v-slot:top>
+          <v-toolbar flat class="default">
+            <p class="title">Reports</p>
+            <v-spacer></v-spacer>
+            <v-row no-gutters>
+              <v-col cols="12" md="2" align-self="center"> </v-col>
+              <v-col cols="12" md="4">
+                <v-text-field
+                  v-model="search"
+                  append-icon="search"
+                  label="Search by Name/ID ..."
+                  outlined
+                  rounded
+                  single-line
+                  hide-details
+                ></v-text-field>
+              </v-col>
+            </v-row>
+          </v-toolbar>
+        </template>
+      </v-data-table>
     </v-card>
   </div>
 </template>
