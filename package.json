@@ -8,7 +8,7 @@
     "build": "NODE_ENV=dev nuxt build",
     "start": "NODE_ENV=production nuxt start",
     "devi": "backpack dev",
-    "deploy": "npm cache clean && npm install node-sass && npm install --force && npm audit fix && nuxt build",
+    "deploy": "npm cache clean --force && npm install --force node-sass && npm install --force && npm audit fix && nuxt build",
     "generate": "NODE_ENV=production nuxt-ts generate",
     "lint:js": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "lint": "npm run lint:js",
