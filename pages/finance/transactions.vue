@@ -8,41 +8,75 @@
       >
     </div>
     <v-card>
-      <v-card-text>
-        <h1>Transactions</h1>
-        <v-progress-linear
-          indeterminate
-          v-if="transactions == null"
-        ></v-progress-linear>
-        <v-container fluid v-else class="ma-2">
-          <v-data-table
-            dense
-            class="default"
-            :headers="headers"
-            :options="body.options"
-            :items="transactions"
-            disable-pagination
-            hide-default-footer
-            mobile-breakpoint="100"
-          >
-            <template v-slot:[`item.service`]="{ item }">
-              <p v-if="item.medicalServiceName != null">
-                {{ item.medicalServiceName }}
-              </p>
-              <p v-else>{{ item.medicineName }}</p>
-            </template>
-          </v-data-table>
-        </v-container>
-        <div class="text-center">
-          <v-pagination
-            v-model="query.page"
-            :length="query.size"
-            @input="get_next"
-            :total-visible="totalvisible"
-            circle
-          ></v-pagination>
-        </div>
-      </v-card-text>
+      <v-progress-linear
+        indeterminate
+        v-if="transactions == null"
+      ></v-progress-linear>
+      <v-container fluid v-else class="ma-2">
+        <v-data-table
+          dense
+          class="default"
+          :headers="headers"
+          :options="body.options"
+          :items="transactions"
+          :search="search"
+          disable-pagination
+          hide-default-footer
+          mobile-breakpoint="100"
+        >
+          <template v-slot:[`item.service`]="{ item }">
+            <p v-if="item.medicalServiceName != null">
+              {{ item.medicalServiceName }}
+            </p>
+            <p v-else>{{ item.medicineName }}</p>
+          </template>
+          <template v-slot:top>
+            <v-toolbar flat>
+              <v-row no-gutters>
+                <v-col cols="12" md="2" align-self="center">
+                  <h3 class="title">Transactions</h3>
+                </v-col>
+                <v-col cols="12" md="4">
+                  <v-text-field
+                    v-model="search"
+                    append-icon="search"
+                    label="Enter search text ..."
+                    rounded
+                    dense
+                    outlined
+                    single-line
+                    hide-details
+                  ></v-text-field>
+                </v-col>
+              </v-row>
+              <v-dialog
+                v-model="dialog"
+                max-width="600px"
+                class="ma-0 pa-0"
+                hide-overlay
+                open-delay="12"
+              >
+                <v-progress-linear
+                  background-color="white"
+                  indeterminate
+                  color="cyan"
+                  v-if="bill == null"
+                ></v-progress-linear>
+                <receipt v-else :bill="bill"></receipt>
+              </v-dialog>
+            </v-toolbar>
+          </template>
+        </v-data-table>
+      </v-container>
+      <div class="text-center">
+        <v-pagination
+          v-model="query.page"
+          :length="query.size"
+          @input="get_next"
+          :total-visible="totalvisible"
+          circle
+        ></v-pagination>
+      </div>
     </v-card>
   </div>
 </template>
@@ -53,6 +87,7 @@ export default {
     return {
       bill: null,
       transactions: null,
+      search: null,
 
       query: {
         page: null,
@@ -60,11 +95,11 @@ export default {
       },
       headers: [
         { text: "ID", value: "id" },
-        { text: "Service/Medicine", value: "service", sortable: true },
+        { text: "Service/Medicine", value: "service" },
         { text: "Department", value: "departmentName" },
-        { text: "Amount", value: "amount", sortable: false },
+        { text: "Amount", value: "amount" },
         { text: "Currency", value: "currencyCode" },
-        { text: "Reversed", value: "isReversed", sortable: true },
+        { text: "Reversed", value: "isReversed" },
         { text: "Transaction Date", value: "transactionDate" }
       ]
     };
