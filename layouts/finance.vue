@@ -159,6 +159,12 @@ export default {
 
       items: [
         {
+          text: "label.menu.dashboard",
+          icon: "mdi-view-grid",
+          route: "/patients",
+          subtitle: "Lorem ipsum dolor sit de amet.."
+        },
+        {
           text: "label.menu.bills",
           icon: "mdi-finance",
           route: "/finance/bills",
