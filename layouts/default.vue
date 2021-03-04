@@ -196,15 +196,59 @@
         <nuxt />
       </v-container>
     </v-main>
-    <v-footer color="transparent">
-      <v-progress-linear
-        v-if="sync"
-        width="100"
-        color="teal"
-        buffer-value="0"
-        value="20"
-        stream
-      ></v-progress-linear>
+    <v-footer
+      class="primary"
+      rounded
+      fixed
+      :absolute="!$vuetify.breakpoint.mdAndUp"
+      padless
+      app
+    >
+      <v-col class="text-center" cols="4">
+        <div class="white--text ml-3">
+          Made by
+          <a
+            href="https://github.com/ospic"
+            style="color: white"
+            target="_blank"
+            >Ospic
+          </a>
+          as open source Hospital management system
+          <a
+            style="color: blue; text-decoration: underline;"
+            href="https://app.ospicx.com/"
+            target="_blank"
+            >Ospic HMS</a
+          >
+        </div>
+      </v-col>
+      <v-col class="text-center" cols="4">
+        <v-flex xs12 class="d-flex align-center justify-end  flex-column">
+          <div style="color: white">
+            Copyright &copy; {{ new Date().getFullYear() }} The Apache Software
+            Foundation, Licensed under the
+            <a
+              href="https://www.apache.org/licenses/LICENSE-2.0"
+              style="color: blue;  text-decoration: underline;"
+              target="_blank"
+            >
+              Apache License, Version 2.0.</a
+            >
+          </div>
+        </v-flex>
+      </v-col>
+      <v-col class="text-center" cols="4">
+        <div class="white--text ml-3">
+          Documentation is currentl under development but you can still access
+          it from
+          <a
+            style="color: blue; text-decoration: underline;"
+            href="https://ospic.github.io/docs/docs/"
+            target="_blank"
+            >here</a
+          >
+        </div>
+      </v-col>
     </v-footer>
   </v-app>
 </template>
