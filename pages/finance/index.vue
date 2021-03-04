@@ -29,23 +29,23 @@ export default {
     return {
       items: [
         {
-          value: 34000,
-          title: "Total bills",
-          subtitle: "Amount collected today",
+          value: 1238000,
+          title: "Active bills",
+          subtitle: "Total bill amounts",
           icon: "mdi-bitcoin",
           color: "blue"
         },
         {
-          value: 34000,
-          title: "Total bills",
+          value: 478000,
+          title: "Amount collected",
           subtitle: "Amount collected today",
           icon: "mdi-currency-usd-circle",
           color: "black darken-2"
         },
         {
-          value: 34000,
-          title: "Total bills",
-          subtitle: "Amount collected today",
+          value: 562000,
+          title: "Amount not collected",
+          subtitle: "Amount not collected today",
           icon: "mdi-layers-outline",
           color: "red darken-1"
         },
