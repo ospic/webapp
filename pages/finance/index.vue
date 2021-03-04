@@ -10,7 +10,7 @@
           <statistical-card :item="item"></statistical-card>
         </v-col>
       </v-col>
-      <v-col cols="12" md="9" sm="12">
+      <v-col cols="12" md="9" sm="12" style="background-color: white">
         <apexchart
           width="98%"
           type="line"
@@ -64,15 +64,15 @@ export default {
           value: 562000,
           title: "Amount not collected",
           subtitle: "Amount not collected today",
-          icon: "mdi-layers-outline",
+          icon: "mdi-looks",
           color: "red darken-1"
         },
         {
-          value: 34000,
+          value: 3000,
           title: "Total bills",
           subtitle: "Amount collected today",
-          icon: "mdi-barcode-scan",
-          color: "blue darken-2"
+          icon: "mdi-memory",
+          color: "green darken-2"
         }
       ],
       options: {
@@ -87,7 +87,14 @@ export default {
           type: "line"
         },
         theme: {
-          mode: "dark"
+          mode: "light",
+          palette: "palette1",
+          monochrome: {
+            enabled: true,
+            color: "#2E294E",
+            shadeTo: "dark",
+            shadeIntensity: 1
+          }
         },
         stroke: {
           width: 4,
