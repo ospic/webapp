@@ -6,12 +6,24 @@
     </div>
     <v-container fluid>
       <v-card class="py-2 pl-1" flat>
-        <v-card-title>{{ $t("label.titles.staffs") }}</v-card-title>
-        <!-- <v-row no-gutters>
-          <v-col v-for="(staff, n) in staffs" :key="n" sm="3" md="2">
-            <staff-card :staff="staff"></staff-card>
-          </v-col> </v-row
-        >-->
+        <v-row no-gutters>
+          <v-col cols="12" sm="12" md="3">
+            <v-card-title>{{ $t("label.titles.staffs") }}</v-card-title>
+          </v-col>
+          <v-col cols="12" sm="12" md="3">
+            <v-text-field
+              v-model="search"
+              append-icon="search"
+              label="Enter search text ..."
+              rounded
+              dense
+              outlined
+              single-line
+              hide-details
+              class="mt-3"
+            ></v-text-field>
+          </v-col>
+        </v-row>
         <v-card-text>
           <v-tabs v-model="tab" background-color="primary" dark>
             <v-tab
