@@ -26,3 +26,9 @@ canvas {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
 }
+.v-list-group {
+  background-color: blue;
+}
+.v-list-item__icon & .v-list-group__header__prepend-icon {
+  background-color: yellowgreen;
+}

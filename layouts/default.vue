@@ -48,18 +48,15 @@
           ripple
           :key="ind"
         >
-          <v-icon
-            slot="prependIcon"
-            v-html="setting.icon"
-            small
-            class="ml-1"
-            color="primary"
-          ></v-icon>
-          <template v-slot:activator>
-            <v-list-item-title
-              color="#8C93F5"
-              class="font-weight-bold pa-0 ma-0 "
-            >
+          <template v-slot:activator class="ma-0 pa-0">
+            <v-list-item-title class="font-weight-bold  ">
+              <v-icon
+                slot="prependIcon"
+                v-html="setting.icon"
+                small
+                class="ml-1 mr-2"
+                color="primary"
+              ></v-icon>
               {{ $t(setting.title) }}</v-list-item-title
             >
           </template>
@@ -84,7 +81,7 @@
             <v-list-item-icon class="ml-1 mr-1">
               <v-icon color="primary" v-text="item.icon" small></v-icon>
             </v-list-item-icon>
-            <v-list-item-title color="#8C93F5" class="font-weight-bold ">{{
+            <v-list-item-title class="font-weight-bold ">{{
               $t(item.text)
             }}</v-list-item-title>
           </v-list-item>
