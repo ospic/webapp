@@ -198,7 +198,6 @@
     </v-main>
     <v-footer
       class="primary"
-      rounded
       fixed
       :absolute="!$vuetify.breakpoint.mdAndUp"
       padless
@@ -213,7 +212,7 @@
             target="_blank"
             >Ospic
           </a>
-          as open source Hospital management system
+          as an open source Hospital management system
           <a
             style="color: blue; text-decoration: underline;"
             href="https://app.ospicx.com/"
@@ -239,7 +238,7 @@
       </v-col>
       <v-col class="text-center" cols="4">
         <div class="white--text ml-3">
-          Documentation is currentl under development but you can still access
+          Documentation is currently under development but you can still access
           it from
           <a
             style="color: blue; text-decoration: underline;"
