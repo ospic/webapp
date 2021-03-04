@@ -189,7 +189,7 @@
         <v-alert v-if="!domain" dense color="green lighten-1" type="info">
           This application is no longer supported in this domain. It has being
           moved to
-          <a style="color: blue" href="http://app.ospicx.com/"
+          <a style="color: blue" href="http://app.ospicx.com/webapp"
             >app.ospicx.com</a
           >
         </v-alert>
