@@ -331,7 +331,7 @@ export default {
         },
         {
           text: "label.menu.stations",
-          icon: "mdi-adjust",
+          icon: "mdi-map-marker-radius",
           route: "stations",
           subtitle: "Lorem ipsum dolor sit de amet.."
         },
