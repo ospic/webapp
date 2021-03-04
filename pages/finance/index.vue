@@ -30,23 +30,31 @@ export default {
       items: [
         {
           value: 34000,
-          title: "Vuetify layout",
-          icon: "mdi-progress-question"
+          title: "Total bills",
+          subtitle: "Amount collected today",
+          icon: "mdi-bitcoin",
+          color: "blue"
         },
         {
           value: 34000,
-          title: "Vuetify layout",
-          icon: "mdi-progress-question"
+          title: "Total bills",
+          subtitle: "Amount collected today",
+          icon: "mdi-currency-usd-circle",
+          color: "black darken-2"
         },
         {
           value: 34000,
-          title: "Vuetify layout",
-          icon: "mdi-progress-question"
+          title: "Total bills",
+          subtitle: "Amount collected today",
+          icon: "mdi-layers-outline",
+          color: "red darken-1"
         },
         {
           value: 34000,
-          title: "Vuetify layout",
-          icon: "mdi-progress-question"
+          title: "Total bills",
+          subtitle: "Amount collected today",
+          icon: "mdi-barcode-scan",
+          color: "blue darken-2"
         }
       ]
     };
