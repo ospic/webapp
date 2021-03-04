@@ -10,7 +10,7 @@
             ></v-list-item-title>
 
             <v-list-item-subtitle
-              class="text-h5 font-weight-black black--text my-2"
+              class="text-h5 font-weight-bold black--text my-2"
               >{{ formatPrice(item.value) }}</v-list-item-subtitle
             >
 
