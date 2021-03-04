@@ -196,13 +196,7 @@
         <nuxt />
       </v-container>
     </v-main>
-    <v-footer
-      class="primary"
-      fixed
-      :absolute="!$vuetify.breakpoint.mdAndUp"
-      padless
-      app
-    >
+    <v-footer class="primary" fixed padless app>
       <v-col class="text-center" cols="4">
         <div class="white--text ml-3">
           Made by
