@@ -36,11 +36,19 @@ export default function ({ $axios, redirect, store }, inject) {
     // Vue.toasted.show('Success ', { icon: 'check-circle', type: 'success' });
   });
   api.onResponseError(error => {
-    const message = error.response.data.defaultUserMessage
     const code = parseInt(error.response && error.response.status)
     if (code === 404) {
+      const message = error.response.data.defaultUserMessage
       Vue.toasted.error(`Failed with message: ${message}`, {
         icon: 'close-circle', position: 'top-center', keepOnHover: true, type: 'error',
+        theme: 'outline', duration: 5000
+      });
+    }
+    if (code === 401) {
+      console.log(error.response.data)
+      const message = error.response.data.defaultUserMessage;
+      Vue.toasted.error(`${message}`, {
+        icon: 'close-circle', position: 'top-center', keepOnHover: true, type: 'info',
         theme: 'outline', duration: 5000
       });
     }
