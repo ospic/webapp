@@ -45,7 +45,6 @@ export default function ({ $axios, redirect, store }, inject) {
       });
     }
     if (code === 401) {
-      console.log(error.response.data)
       const message = error.response.data.defaultUserMessage;
       Vue.toasted.error(`${message}`, {
         icon: 'close-circle', position: 'top-center', keepOnHover: true, type: 'info',
