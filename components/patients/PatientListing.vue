@@ -26,7 +26,7 @@
           ></v-text-field>
 
           <v-spacer></v-spacer>
-          <div v-if="isAppointmentRoute">
+          <div v-if="hasPermission('ALL_FUNCTIONS', 'CREATE_PATIENT')">
             <v-btn medium v-if="isMdAndUp" class="primary" to="/patients/add"
               ><v-icon>mdi-plus</v-icon
               >{{ $t("label.button.btnnewpatient") }}</v-btn
