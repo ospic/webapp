@@ -15,6 +15,7 @@ const mutations = {
   },
   ["GET_BILLS_ERROR"](state) {
     state.showLoader = false;
+    state.bills = [];
   },
   ["GET_BILLS_SUCCESS"](state, payload) {
     state.showLoader = false;
