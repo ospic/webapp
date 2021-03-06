@@ -63,14 +63,19 @@ Vue.mixin({
     },
 
     hasPermission(p) {
+      console.log(this.hasAnyPermission(this.$store.getters.thisuserpermissions, p))
       return this.hasAnyPermission(this.$store.getters.thisuserpermissions, p);
     },
     formatPrice(value) {
       return value.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
     },
     hasAnyPermission: function (source, target) {
-      var result = source.filter(function (item) { return target.indexOf(item) > -1 });
-      return (result.length > 0);
+      if (source === undefined) {
+        return true;
+      } else {
+        var result = source.filter(function (item) { return target.indexOf(item) > -1 });
+        return (result.length > 0);
+      }
     }
   },
   computed: {
