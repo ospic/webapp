@@ -40,42 +40,47 @@
             $t("label.menu.dashboard")
           }}</v-list-item-title>
         </v-list-item>
-
-        <v-list-group
-          v-for="(setting, ind) in settings"
-          :value="false"
-          no-action
-          ripple
-          :key="ind"
-        >
-          <template v-slot:activator class="ma-0 pa-0">
-            <v-list-item-title class="font-weight-bold  ">
-              <v-icon
-                slot="prependIcon"
-                v-html="setting.icon"
-                small
-                class="ml-1 mr-2"
-                color="primary"
-              ></v-icon>
-              {{ $t(setting.title) }}</v-list-item-title
-            >
-          </template>
-
-          <template v-for="(menu, index) in setting.menus">
-            <v-list-item :key="index" :to="menu.to">
-              <v-list-item-title color="#8C93F5" class="font-weight-light ">
-                <v-icon small color="primary" v-html="menu.icon"></v-icon>
-                &nbsp;&nbsp;{{ $t(menu.title) }}</v-list-item-title
+        <div v-for="(setting, ind) in settings" :key="ind">
+          <v-list-group
+            :value="false"
+            no-action
+            ripple
+            v-if="hasPermission(setting.permissions)"
+          >
+            <template v-slot:activator class="ma-0 pa-0">
+              <v-list-item-title class="font-weight-bold">
+                <v-icon
+                  slot="prependIcon"
+                  v-html="setting.icon"
+                  small
+                  class="ml-1 mr-2"
+                  color="primary"
+                ></v-icon>
+                {{ $t(setting.title) }}</v-list-item-title
               >
-            </v-list-item>
-          </template>
-        </v-list-group>
+            </template>
+
+            <template v-for="(menu, index) in setting.menus">
+              <v-list-item
+                :key="index"
+                :to="menu.to"
+                v-if="hasPermission(menu.permissions)"
+              >
+                <v-list-item-title color="#8C93F5" class="font-weight-light ">
+                  <v-icon small color="primary" v-html="menu.icon"></v-icon>
+                  &nbsp;&nbsp;{{ $t(menu.title) }}</v-list-item-title
+                >
+              </v-list-item>
+            </template>
+          </v-list-group>
+        </div>
 
         <template v-for="(item, i) in items">
           <v-list-item
             class="list-item ma-0"
             dense
             :key="`${i}-${item.route}`"
+            v-if="hasPermission(item.permissions)"
             v-on:click="nativateToHere(item.route)"
           >
             <v-list-item-icon class="ml-1 mr-1">
@@ -224,99 +229,121 @@ export default {
         {
           title: "label.menu.patients",
           icon: "mdi-account-multiple",
+          permissions:
+            "ALL_FUNCTIONS, CREATE_PATIENT, UPDATE_PATIENT, DELETE_PATIENT, DELETE_PATIENT",
           menus: [
             {
               title: "label.menu.appointmentandschedule",
               icon: "mdi-alarm-multiple",
               to: "/appointments",
-              subtitle: "Lorem ipsum dolor sit de amet ..."
+              subtitle: "Lorem ipsum dolor sit de amet ...",
+              permissions:
+                "ALL_FUNCTIONS, CREATE_PATIENT, UPDATE_PATIENT, DELETE_PATIENT, DELETE_PATIENT"
             },
             {
               title: "label.menu.patients",
               to: "/patients",
-              icon: "mdi-account-multiple"
+              icon: "mdi-account-multiple",
+              permissions:
+                "ALL_FUNCTIONS, CREATE_PATIENT, UPDATE_PATIENT, DELETE_PATIENT, DELETE_PATIENT"
             },
             {
               title: "label.menu.opdcenter",
               icon: "mdi-alpha-o-circle",
               to: "/opd",
-              subtitle: "Lorem ipsum dolor sit de amet.."
+              subtitle: "Lorem ipsum dolor sit de amet..",
+              permissions:
+                "ALL_FUNCTIONS, CREATE_PATIENT, UPDATE_PATIENT, DELETE_PATIENT, DELETE_PATIENT"
             },
             {
               title: "label.menu.ipdcenter",
               icon: "mdi-bed-queen",
               to: "/ipd",
-              subtitle: "Lorem ipsum dolor sit de amet.."
+              subtitle: "Lorem ipsum dolor sit de amet..",
+              permissions: "ALL_FUNCTIONS"
             }
           ]
         },
         {
           title: "label.menu.inventoryandstock",
           icon: "mdi-store-24-hour",
+          permissions: "ALL_FUNCTIONS",
           menus: [
             {
               title: "label.titles.pharmacy",
               to: "/inventory/",
-              icon: "mdi-pharmacy"
+              icon: "mdi-pharmacy",
+              permissions: "ALL_FUNCTIONS"
             },
             {
               title: "label.titles.medicine",
               to: "/inventory/medicine",
-              icon: "mdi-pill"
+              icon: "mdi-pill",
+              permissions: "ALL_FUNCTIONS"
             },
             {
               title: "label.titles.bloodbank",
               to: "/inventory/bloods",
-              icon: "mdi-blood-bag"
+              icon: "mdi-blood-bag",
+              permissions: "ALL_FUNCTIONS"
             },
             {
               title: "label.titles.wards",
               to: "/inventory/ward",
-              icon: "mdi-home-floor-1"
+              icon: "mdi-home-floor-1",
+              permissions: "ALL_FUNCTIONS"
             },
             {
               title: "label.titles.beds",
               to: "/inventory/bed",
-              icon: "mdi-bunk-bed-outline"
+              icon: "mdi-bunk-bed-outline",
+              permissions: "ALL_FUNCTIONS"
             }
           ]
         },
         {
           title: "label.menu.laboratory",
           icon: "mdi-octagon",
+          permissions: "ALL_FUNCTIONS",
           menus: [
             {
               title: "label.menu.laboratory",
               icon: "mdi-octagon",
               to: "/laboratory",
-              subtitle: "Lorem ipsum dolor sit de amet.."
+              subtitle: "Lorem ipsum dolor sit de amet..",
+              permissions: "ALL_FUNCTIONS"
             },
             {
               title: "label.menu.radiology",
               icon: "mdi-radioactive",
               to: "/radiology",
-              subtitle: "Lorem ipsum dolor sit de amet.."
+              subtitle: "Lorem ipsum dolor sit de amet..",
+              permissions: "ALL_FUNCTIONS"
             }
           ]
         },
         {
           title: "label.menu.organization",
           icon: "mdi-store-24-hour",
+          permissions: "ALL_FUNCTIONS",
           menus: [
             {
               title: "label.menu.staff",
               to: "/staffs",
-              icon: "mdi-account-hard-hat"
+              icon: "mdi-account-hard-hat",
+              permissions: "ALL_FUNCTIONS"
             },
             {
               title: "label.titles.departments",
               to: "/departments",
-              icon: "mdi-office-building"
+              icon: "mdi-office-building",
+              permissions: "ALL_FUNCTIONS"
             },
             {
               title: "label.titles.services",
               to: "/services",
-              icon: "mdi-help-circle"
+              icon: "mdi-help-circle",
+              permissions: "ALL_FUNCTIONS"
             }
           ]
         }
@@ -327,30 +354,36 @@ export default {
           text: "label.menu.finance",
           icon: "mdi-currency-usd-circle",
           route: "finance",
-          subtitle: "Lorem ipsum dolor sit de amet.."
+          subtitle: "Lorem ipsum dolor sit de amet..",
+          permissions:
+            "ALL_FUNCTIONS, CREATE_BILL, READ_BILL,UPDATE_BILL,DELETE_BILL"
         },
         {
           text: "label.menu.stations",
           icon: "mdi-map-marker-radius",
           route: "stations",
-          subtitle: "Lorem ipsum dolor sit de amet.."
+          subtitle: "Lorem ipsum dolor sit de amet..",
+          permissions: "ALL_FUNCTIONS"
         },
         {
           text: "label.menu.calendar",
           icon: "mdi-calendar-month",
           route: "calendar",
-          subtitle: "Lorem ipsum dolor sit de amet.."
+          subtitle: "Lorem ipsum dolor sit de amet..",
+          permissions: "ALL_FUNCTIONS"
         },
         {
           text: "label.menu.reports",
           icon: "mdi-clipboard-file",
           route: "reports",
-          subtitle: "Lorem ipsum dolor sit de amet.."
+          subtitle: "Lorem ipsum dolor sit de amet..",
+          permissions: "ALL_FUNCTIONS"
         },
         {
           text: "label.tooltip.settingsandconfigurations",
           icon: "mdi-cog-outline",
-          route: "settings"
+          route: "settings",
+          permissions: "ALL_FUNCTIONS"
         }
       ],
       actions: [
