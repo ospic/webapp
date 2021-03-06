@@ -104,7 +104,6 @@ import { mapGetters } from "vuex";
 import ReceiptComponent from "@/components/finance/receipt_component.vue";
 import TransactionTotalsCard from "@/components/finance/total-cards";
 export default {
-  layout: "finance",
   components: {
     "total-amount": TransactionTotalsCard,
     receipt: ReceiptComponent
