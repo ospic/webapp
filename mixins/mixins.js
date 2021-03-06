@@ -61,15 +61,17 @@ Vue.mixin({
 
         });
     },
-    hasRole(r) {
-      return this.$store.getters.thisuserroles.includes(r);
-    },
+
     hasPermission(p) {
-      return this.$store.getters.thisuserpermissions.includes(p);
+      return this.hasAnyPermission(this.$store.getters.thisuserpermissions, p);
     },
     formatPrice(value) {
       return value.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
     },
+    hasAnyPermission: function (source, target) {
+      var result = source.filter(function (item) { return target.indexOf(item) > -1 });
+      return (result.length > 0);
+    }
   },
   computed: {
     isMdAndUp() {
