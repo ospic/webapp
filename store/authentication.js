@@ -4,7 +4,9 @@ const state = () => ({
   showLoader: Boolean,
   isAuthenticated: Boolean,
   userdata: {},
+  roles: [],
   exipiredate: '',
+  privileges: [],
   accessToken: "",
 });
 
@@ -163,14 +165,21 @@ const getters = {
   userInfos: function (state) {
     return state.userdata;
   },
-
+  userroles: function (state) {
+    return state.roles;
+  },
+  privileges: function (state) {
+    return state.privileges;
+  },
   role: (state) => (id) => {
     return state.roles.find(role => role.id === id)
   },
   accessToken: function (state) {
     return state.accessToken;
   },
-
+  thisuserroles: function (state) {
+    return state.userdata.roles;
+  },
   thisuserpermissions: function (state) {
     return state.userdata.permissions;
   }
