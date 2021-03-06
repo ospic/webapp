@@ -10,6 +10,5 @@
 </template>
 <script>
 export default {
-   layout: 'finance',
 }
 </script>

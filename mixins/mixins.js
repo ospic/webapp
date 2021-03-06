@@ -7,7 +7,7 @@ Vue.mixin({
     "v-pdf": PDFViewer,
 
   },
-  layout: (context) => context.from.name.startsWith('finance') ? 'finance' : 'default',
+  layout: 'default',
   data: function () {
 
     return {

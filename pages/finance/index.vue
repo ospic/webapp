@@ -24,7 +24,6 @@
 <script>
 import StatisticalCard from "~/components/finance/statistical-card.vue";
 export default {
-  layout: "finance",
   components: {
     "statistical-card": StatisticalCard
   },

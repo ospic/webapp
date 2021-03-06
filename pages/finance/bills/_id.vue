@@ -146,7 +146,6 @@
 <script>
 import Charges from "@/components/profile/tabs/charges";
 export default {
-  layout: "finance",
   components: {
     "charges-component": Charges
   },

@@ -251,7 +251,7 @@ export default {
               title: "label.menu.opdcenter",
               icon: "mdi-alpha-o-circle",
               to: "/opd",
-              subtitle: "Lorem ipsum dolor sit de amet..",
+
               permissions:
                 "ALL_FUNCTIONS, CREATE_PATIENT, UPDATE_PATIENT, DELETE_PATIENT, DELETE_PATIENT"
             },
@@ -259,7 +259,7 @@ export default {
               title: "label.menu.ipdcenter",
               icon: "mdi-bed-queen",
               to: "/ipd",
-              subtitle: "Lorem ipsum dolor sit de amet..",
+
               permissions: "ALL_FUNCTIONS"
             }
           ]
@@ -310,14 +310,14 @@ export default {
               title: "label.menu.laboratory",
               icon: "mdi-octagon",
               to: "/laboratory",
-              subtitle: "Lorem ipsum dolor sit de amet..",
+
               permissions: "ALL_FUNCTIONS"
             },
             {
               title: "label.menu.radiology",
               icon: "mdi-radioactive",
               to: "/radiology",
-              subtitle: "Lorem ipsum dolor sit de amet..",
+
               permissions: "ALL_FUNCTIONS"
             }
           ]
@@ -346,37 +346,58 @@ export default {
               permissions: "ALL_FUNCTIONS"
             }
           ]
+        },
+        {
+          title: "label.menu.finance",
+          icon: "mdi-currency-usd-circle",
+          permissions:
+            "ALL_FUNCTIONS, CREATE_BILL, READ_BILL,UPDATE_BILL,DELETE_BILL",
+          menus: [
+            {
+              title: "label.menu.bills",
+              icon: "mdi-finance",
+              to: "/finance/bills",
+
+              permissions: "ALL_FUNCTIONS"
+            },
+            {
+              title: "label.menu.transactions",
+              icon: "mdi-calendar-month",
+              to: "/finance/transactions",
+
+              permissions: "ALL_FUNCTIONS"
+            },
+            {
+              title: "label.menu.financereports",
+              icon: "mdi-clipboard-file",
+              to: "/finance/reports",
+
+              permissions: "ALL_FUNCTIONS"
+            }
+          ]
         }
       ],
 
       items: [
         {
-          text: "label.menu.finance",
-          icon: "mdi-currency-usd-circle",
-          route: "finance",
-          subtitle: "Lorem ipsum dolor sit de amet..",
-          permissions:
-            "ALL_FUNCTIONS, CREATE_BILL, READ_BILL,UPDATE_BILL,DELETE_BILL"
-        },
-        {
           text: "label.menu.stations",
           icon: "mdi-map-marker-radius",
           route: "stations",
-          subtitle: "Lorem ipsum dolor sit de amet..",
+
           permissions: "ALL_FUNCTIONS"
         },
         {
           text: "label.menu.calendar",
           icon: "mdi-calendar-month",
           route: "calendar",
-          subtitle: "Lorem ipsum dolor sit de amet..",
+
           permissions: "ALL_FUNCTIONS"
         },
         {
           text: "label.menu.reports",
           icon: "mdi-clipboard-file",
           route: "reports",
-          subtitle: "Lorem ipsum dolor sit de amet..",
+
           permissions: "ALL_FUNCTIONS"
         },
         {
