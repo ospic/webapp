@@ -99,6 +99,11 @@ export default {
                   icon: "mdi-account-settings"
                 },
                 {
+                  title: "label.titles.selfusersmanagement",
+                  to: "/settings/selfservices",
+                  icon: "mdi-account-group"
+                },
+                {
                   title: "label.menu.rolesandprivileges",
                   icon: "mdi-cog-outline",
                   to: "/settings/roles"
