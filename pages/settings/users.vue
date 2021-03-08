@@ -159,6 +159,9 @@
         <v-icon class=" font-weight-black" color="primary" v-if="item.isStaff">
           mdi-check
         </v-icon>
+        <v-icon class="font-weight-black" color="primary" small v-else>
+          mdi-close
+        </v-icon>
       </template>
       <template v-slot:[`item.actions`]="{ item }">
         <v-icon small class="mr-2" @click="editItem(item)">

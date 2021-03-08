@@ -94,12 +94,13 @@ const mutations = {
   ["GET_SELF_SERVICE_USERS"](state) {
     state.showLoader = true;
   },
-  ["GET_SELF_SERVICE_USERS_SUCCESS"](state) {
-    state.showLoader = false;
-  },
-  ["GET_SELF_SERVICE_USERS_FAILED"](state, payload) {
+  ["GET_SELF_SERVICE_USERS_SUCCESS"](state, payload) {
     state.showLoader = false;
     state.selfserviceusers = payload;
+  },
+  ["GET_SELF_SERVICE_USERS_FAILED"](state) {
+    state.showLoader = false;
+
   },
 
 }
@@ -211,7 +212,8 @@ const getters = {
   users: function (state) {
     return state.users;
   },
-  staffs: function (state) { return state.staffs }
+  staffs: function (state) { return state.staffs },
+  selfserviceusers: function (state) { return state.selfserviceusers }
 }
 
 export default {
