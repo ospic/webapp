@@ -1,45 +1,5 @@
 <template>
   <users-component></users-component>
-  <!-- <v-container>
-    <v-row justify="space-around">
-      <v-col cols="12" sm="12">
-        <v-card>
-          <v-card-title>
-            Switch Dark/Light Mode
-
-            <v-spacer></v-spacer>
-            <v-switch
-              :value="true"
-              v-model="isDark"
-              inset
-              color="primary"
-              @change="toggle($event !== null)"
-            ></v-switch>
-          </v-card-title>
-        </v-card>
-      </v-col>
-      <v-col cols="12" sm="12">
-        <v-card>
-          <v-card-title>
-            {{ $t("label.titles.changelanguage") }}
-            <v-spacer></v-spacer>
-            <v-select
-              v-model="select"
-              :items="locales"
-              item-text="locale"
-              item-value="lang"
-              persistent-hint
-              return-object
-              single-line
-              dense
-              lass="font-weight-light"
-              @change="changeLanguage(select.lang)"
-            ></v-select>
-          </v-card-title>
-        </v-card>
-      </v-col>
-    </v-row>
-  </v-container>-->
 </template>
 
 <script>
