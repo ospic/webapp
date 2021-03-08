@@ -3,7 +3,8 @@ const state = () => ({
   showLoader: Boolean,
   user: {},
   users: [],
-  staffs: []
+  staffs: [],
+  selfserviceusers: []
 });
 
 const mutations = {
@@ -88,17 +89,44 @@ const mutations = {
     state.showLoader = false;
   },
 
+
+  //Get self service users
+  ["GET_SELF_SERVICE_USERS"](state) {
+    state.showLoader = true;
+  },
+  ["GET_SELF_SERVICE_USERS_SUCCESS"](state) {
+    state.showLoader = false;
+  },
+  ["GET_SELF_SERVICE_USERS_FAILED"](state, payload) {
+    state.showLoader = false;
+    state.selfserviceusers = payload;
+  },
+
 }
 const actions = {
   async retrieveAllusers({ commit }) {
     commit(mutation.FETCH_APPLICATION_USERS);
-    await this.$api.$get(`auth/users/`)
+    await this.$api.$get(`auth/users/?command=users`)
       .then(response => {
         commit(mutation.FETCH_APPLICATION_USERS_SUCCESS, response);
 
 
       }).catch(error => {
         commit(mutation.FETCH_APPLICATION_USERS_FAILED);
+        console.log(error);
+
+      });
+
+  },
+  async get_self_service_users({ commit }) {
+    commit("GET_SELF_SERVICE_USERS");
+    await this.$api.$get(`auth/users/?command=self`)
+      .then(response => {
+        commit("GET_SELF_SERVICE_USERS_SUCCESS", response);
+
+
+      }).catch(error => {
+        commit("GET_SELF_SERVICE_USERS_FAILED");
         console.log(error);
 
       });
