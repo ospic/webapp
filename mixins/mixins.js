@@ -63,7 +63,7 @@ Vue.mixin({
     },
 
     hasPermission(p) {
-      console.log(this.hasAnyPermission(this.$store.getters.thisuserpermissions, p))
+      //console.log(this.hasAnyPermission(this.$store.getters.thisuserpermissions, p))
       return this.hasAnyPermission(this.$store.getters.thisuserpermissions, p);
     },
     formatPrice(value) {

@@ -12,22 +12,25 @@
       <router-link to="/patients" class="active">Add contact</router-link>
     </div>
     <v-container fluid grid-list-md>
-      <v-card>
+      <v-card tile class="pa-2">
+        <v-card-title>
+          <h3>View contacts</h3>
+        </v-card-title>
+        <v-divider class="mx-2"></v-divider>
         <v-layout row wrap align-center>
           <v-flex xs12 sm12 md12 order-md2 order-sm2>
             <v-row justify="space-around" no-gutters v-if="!isDataLoaded">
-              <v-col cols="12" md="2"></v-col>
-              <v-col cols="12" md="4" class="pr-2">
-                <v-card width="400">
+              <v-col cols="12" xs="12" sm="12" md="3">
+                <v-card ro>
                   <v-img
                     height="200px"
-                    src="https://static.timesofisrael.com/www/uploads/2017/02/Hitlers-Phone-Auction_Horo-640x400.jpg"
+                    :src="
+                      require('../../../../assets/images/body_background.jpg')
+                    "
                   >
                     <v-app-bar flat color="rgba(0, 0, 0, 0)">
-                      <v-app-bar-nav-icon color="white"></v-app-bar-nav-icon>
-
-                      <v-toolbar-title class="title white--text pl-0">
-                        Contacts
+                      <v-toolbar-title class="title primary--text pl-0">
+                        {{ patient.name }} Contacts
                       </v-toolbar-title>
 
                       <v-spacer></v-spacer>
@@ -38,16 +41,13 @@
                     </v-app-bar>
 
                     <v-card-title class="white--text mt-8">
-                      <v-avatar size="56">
-                        <img alt="user" :src="itemThumbnail" />
+                      <v-avatar size="56" color="white">
+                        <v-icon class="primary--text">mdi-phone-classic</v-icon>
                       </v-avatar>
                       <p class="ml-3" v-html="username"></p>
                     </v-card-title>
                   </v-img>
-                </v-card>
-              </v-col>
-              <v-col cols="12" md="4">
-                <v-card width="400" outlined>
+
                   <v-card-text>
                     <v-timeline align-top dense>
                       <v-timeline-item color="primary" small>
@@ -114,7 +114,7 @@
                   </v-card-text>
                 </v-card>
               </v-col>
-              <v-col cols="12" md="2"></v-col>
+              <v-col cols="12" md="5"></v-col>
             </v-row>
           </v-flex>
         </v-layout>
