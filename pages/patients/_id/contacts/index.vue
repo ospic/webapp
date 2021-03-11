@@ -143,7 +143,9 @@
                           </div>
                         </div>
                       </v-timeline-item>
-                      <v-btn v-if="edit" block class="primary">Submit</v-btn>
+                      <v-btn v-if="edit" block class="primary" @click="submit"
+                        >Submit</v-btn
+                      >
                     </v-timeline>
                   </v-card-text>
                 </v-card>
@@ -272,6 +274,17 @@ export default {
     },
     isEmpty(obj) {
       return Object.keys(obj).length === 0;
+    },
+    submit: function() {
+      var id = this.contact.id;
+      var contact = this.contact;
+      //delete contact.id;
+      delete contact.patient;
+      var payload = {
+        id: contact.id,
+        contact: contact
+      };
+      this.$store.dispatch("updatepatientcontacts", payload);
     }
   },
   created() {
