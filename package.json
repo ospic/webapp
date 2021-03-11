@@ -26,7 +26,7 @@
     "core-js": "^3.9.1",
     "fibers": "^5.0.0",
     "fs-extra": "^9.0.0",
-    "nuxt": "^2.15.2",
+    "nuxt": "^2.15.3",
     "nuxt-material-design-icons": "^1.0.4",
     "opn": "^6.0.0",
     "secure-ls": "^1.2.6",
