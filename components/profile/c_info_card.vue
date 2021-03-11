@@ -23,7 +23,10 @@
               <v-list three-line flat width="100%" class="default">
                 <v-list-item>
                   <v-list-item-avatar>
-                    <v-img :src="entityThumbNail"></v-img>
+                    <v-img
+                      :src="entityThumbNail"
+                      lazy-src="https://boylancode.com/wp-content/uploads/2018/09/Man-Placeholder-Headshot.png"
+                    ></v-img>
                   </v-list-item-avatar>
 
                   <v-list-item-content>
