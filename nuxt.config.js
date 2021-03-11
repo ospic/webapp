@@ -1,4 +1,3 @@
-import colors from 'vuetify/es5/util/colors';
 const open = require('opn');
 
 export default {
