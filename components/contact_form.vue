@@ -126,7 +126,8 @@ export default {
   computed: {},
 
   methods: {
-    async submit() {
+    /**  async submit() {
+
       this.$api
         .$patch(`contacts/${this.$route.params.id}/`, this.formData)
         .then(response => {
@@ -137,6 +138,16 @@ export default {
         .catch(error => {
           console.log(error);
         });
+    },
+    **/
+    submit: function() {
+      var payload = {
+        id: this.$route.params.id,
+        contact: this.formData
+      };
+      this.$store.dispatch("postpatientcontacts", payload).then(() => {
+        this.$router.push(`patients/${this.$route.params.id}/contacts/`);
+      });
     },
     clear() {}
   }
