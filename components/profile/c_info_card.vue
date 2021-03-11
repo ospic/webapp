@@ -1,166 +1,151 @@
 <template>
   <v-container fill-height fluid grid-list-xl>
-    <v-layout justify-start wrap>
-      <v-flex xs12 md3 sm12 class="mt-0 ml-0 ">
-        <v-container py-0>
-          <v-layout wrap>
-            <v-flex xs12 md12 class="pa-0 ma-0">
-              <v-card class="mx-auto default" flat>
-                <v-img
-                  :src="entityThumbNail"
-                  lazy-src="https://boylancode.com/wp-content/uploads/2018/09/Man-Placeholder-Headshot.png"
-                  aspect-ratio="1"
-                  class="grey lighten-2 align-end"
-                  height="200px"
-                  max-height="200px"
-                >
-                  <template v-slot:placeholder>
-                    <v-row
-                      class="fill-height ma-0"
-                      align="center"
-                      justify="center"
-                    >
-                      <v-progress-circular
-                        indeterminate
-                        color="grey lighten-5"
-                      ></v-progress-circular>
-                    </v-row>
-                  </template>
-                  <v-card-title>
-                    <v-list three-line flat width="100%" class="default">
-                      <v-list-item>
-                        <v-list-item-avatar>
-                          <v-img :src="entityThumbNail"></v-img>
-                        </v-list-item-avatar>
+    <v-row>
+      <v-col xs="12" md="3" sm="12">
+        <v-card flat>
+          <v-img
+            :src="entityThumbNail"
+            lazy-src="https://boylancode.com/wp-content/uploads/2018/09/Man-Placeholder-Headshot.png"
+            aspect-ratio="1"
+            class="grey lighten-2 align-end"
+            height="200px"
+            max-height="200px"
+          >
+            <template v-slot:placeholder>
+              <v-row class="fill-height ma-0" align="center" justify="center">
+                <v-progress-circular
+                  indeterminate
+                  color="grey lighten-5"
+                ></v-progress-circular>
+              </v-row>
+            </template>
+            <v-card-title>
+              <v-list three-line flat width="100%" class="default">
+                <v-list-item>
+                  <v-list-item-avatar>
+                    <v-img :src="entityThumbNail"></v-img>
+                  </v-list-item-avatar>
 
-                        <v-list-item-content>
-                          <v-list-item-title>
-                            {{ userdata.name }}</v-list-item-title
+                  <v-list-item-content>
+                    <v-list-item-title> {{ userdata.name }}</v-list-item-title>
+                    <v-list-item-subtitle
+                      v-if="userdata.contactsInformation"
+                      v-html="userdata.contactsInformation.city"
+                    ></v-list-item-subtitle>
+                    <v-list-item-subtitle v-else v-html="userdata.country">
+                    </v-list-item-subtitle>
+                  </v-list-item-content>
+
+                  <v-list-item-icon>
+                    <div class="text-center">
+                      <v-dialog
+                        v-model="uploaddialog"
+                        persistent
+                        max-width="600"
+                      >
+                        <template v-slot:activator="{ on, attrs }">
+                          <v-btn
+                            color="warning"
+                            fab
+                            x-small
+                            dark
+                            v-if="entityThumbNail != null"
+                            @click.stop="deletePatientProfilePic()"
                           >
-                          <v-list-item-subtitle
-                            v-if="userdata.contactsInformation"
-                            v-html="userdata.contactsInformation.city"
-                          ></v-list-item-subtitle>
-                          <v-list-item-subtitle
+                            <v-icon>mdi-trash-can-outline</v-icon>
+                          </v-btn>
+                          <v-btn
                             v-else
-                            v-html="userdata.country"
+                            fab
+                            color="primary"
+                            dark
+                            v-bind="attrs"
+                            v-on="on"
+                            x-small
                           >
-                          </v-list-item-subtitle>
-                        </v-list-item-content>
-
-                        <v-list-item-icon>
-                          <div class="text-center">
-                            <v-dialog
-                              v-model="uploaddialog"
-                              persistent
-                              max-width="600"
+                            <v-icon>mdi-progress-upload</v-icon>
+                          </v-btn>
+                        </template>
+                        <v-card>
+                          <v-card-title class="headline">
+                            Changing {{ userdata.first_name }}&nbsp;{{
+                              userdata.last_name
+                            }}
+                            profile picture
+                          </v-card-title>
+                          <v-card-text>
+                            <v-file-input
+                              label="Profile picture"
+                              accept="image/png, image/jpeg, image/bmp"
+                              prepend-icon="mdi-camera"
+                              show-size
+                              @change="selectFile"
                             >
-                              <template v-slot:activator="{ on, attrs }">
-                                <v-btn
-                                  color="warning"
-                                  fab
-                                  x-small
-                                  dark
-                                  v-if="entityThumbNail != null"
-                                  @click.stop="deletePatientProfilePic()"
-                                >
-                                  <v-icon>mdi-trash-can-outline</v-icon>
-                                </v-btn>
-                                <v-btn
-                                  v-else
-                                  fab
-                                  color="primary"
-                                  dark
-                                  v-bind="attrs"
-                                  v-on="on"
-                                  x-small
-                                >
-                                  <v-icon>mdi-progress-upload</v-icon>
-                                </v-btn>
+                              <template v-slot:selection="{ text }">
+                                <v-chip small label color="primary">
+                                  {{ text }}
+                                </v-chip>
                               </template>
-                              <v-card>
-                                <v-card-title class="headline">
-                                  Changing {{ userdata.first_name }}&nbsp;{{
-                                    userdata.last_name
-                                  }}
-                                  profile picture
-                                </v-card-title>
-                                <v-card-text>
-                                  <v-file-input
-                                    label="Profile picture"
-                                    accept="image/png, image/jpeg, image/bmp"
-                                    prepend-icon="mdi-camera"
-                                    show-size
-                                    @change="selectFile"
-                                  >
-                                    <template v-slot:selection="{ text }">
-                                      <v-chip small label color="primary">
-                                        {{ text }}
-                                      </v-chip>
-                                    </template>
-                                  </v-file-input>
-                                </v-card-text>
-                                <v-card-actions>
-                                  <v-spacer></v-spacer>
-                                  <v-btn
-                                    color="primary"
-                                    @click.stop="uploaddialog = false"
-                                    x-small
-                                  >
-                                    Cancel
-                                  </v-btn>
-                                  <v-btn
-                                    color="warning"
-                                    x-small
-                                    shaped
-                                    @click="uploadPatientImage()"
-                                  >
-                                    Save
-                                  </v-btn>
-                                </v-card-actions>
-                              </v-card>
-                            </v-dialog>
-                          </div>
-                        </v-list-item-icon>
-                      </v-list-item>
-                    </v-list>
-                  </v-card-title>
-                </v-img>
-                <v-card-text>
-                  <p class="overline">Contacts</p>
-                  <v-divider></v-divider>
+                            </v-file-input>
+                          </v-card-text>
+                          <v-card-actions>
+                            <v-spacer></v-spacer>
+                            <v-btn
+                              color="primary"
+                              @click.stop="uploaddialog = false"
+                              x-small
+                            >
+                              Cancel
+                            </v-btn>
+                            <v-btn
+                              color="warning"
+                              x-small
+                              shaped
+                              @click="uploadPatientImage()"
+                            >
+                              Save
+                            </v-btn>
+                          </v-card-actions>
+                        </v-card>
+                      </v-dialog>
+                    </div>
+                  </v-list-item-icon>
+                </v-list-item>
+              </v-list>
+            </v-card-title>
+          </v-img>
+          <v-card-text>
+            <p class="overline">Contacts</p>
+            <v-divider></v-divider>
 
-                  <v-flex xs12 md12 class="ma-0 pa-0" v-if="address !== null">
-                    <v-address-card :address="address"></v-address-card>
-                  </v-flex>
-                </v-card-text>
-                <v-card-actions>
-                  <v-col>
-                    <v-btn
-                      small
-                      block
-                      color="primary"
-                      v-if="address"
-                      :to="`/patients/${userdata.id}/contacts/`"
-                      >View contacts</v-btn
-                    >
-                    <v-btn
-                      small
-                      block
-                      color="primary"
-                      v-else
-                      :to="`/patients/${userdata.id}/contacts/add`"
-                    >
-                      Add contacts
-                    </v-btn>
-                  </v-col>
-                </v-card-actions>
-              </v-card>
+            <v-flex xs12 md12 class="ma-0 pa-0" v-if="address !== null">
+              <v-address-card :address="address"></v-address-card>
             </v-flex>
-          </v-layout>
-        </v-container>
-      </v-flex>
-      <v-flex xs12 md9 sm12 class="ma-0 pa-0 default">
+          </v-card-text>
+          <v-card-actions>
+            <v-col>
+              <v-btn
+                small
+                block
+                color="primary"
+                v-if="address"
+                :to="`/patients/${userdata.id}/contacts/`"
+                >View contacts</v-btn
+              >
+              <v-btn
+                small
+                block
+                color="primary"
+                v-else
+                :to="`/patients/${userdata.id}/contacts/add`"
+              >
+                Add contacts
+              </v-btn>
+            </v-col>
+          </v-card-actions>
+        </v-card>
+      </v-col>
+      <v-col xs="12" md="9" sm="12">
         <v-tabs
           slider-color="primary"
           background-color="default"
@@ -195,8 +180,8 @@
             </div>
           </v-tab-item>
         </v-tabs-items>
-      </v-flex>
-    </v-layout>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 <script lang="js">
