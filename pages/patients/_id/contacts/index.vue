@@ -35,8 +35,8 @@
 
                       <v-spacer></v-spacer>
 
-                      <v-btn color="white" icon>
-                        <v-icon>mdi-dots-vertical</v-icon>
+                      <v-btn class="primary" small fab @click="edit = !edit">
+                        <v-icon small>mdi-pencil</v-icon>
                       </v-btn>
                     </v-app-bar>
 
@@ -55,7 +55,12 @@
                           <div class="font-weight-normal">
                             <strong>City</strong>
                           </div>
-                          <div>{{ contact.city }}</div>
+                          <v-text-field
+                            dense
+                            v-if="edit"
+                            v-model="contact.city"
+                          ></v-text-field>
+                          <div v-else>{{ contact.city }}</div>
                         </div>
                       </v-timeline-item>
                       <v-timeline-item color="primary" small>
@@ -63,7 +68,13 @@
                           <div class="font-weight-normal">
                             <strong>State</strong>
                           </div>
-                          <div>{{ contact.state }}</div>
+
+                          <v-text-field
+                            dense
+                            v-if="edit"
+                            v-model="contact.state"
+                          ></v-text-field>
+                          <div v-else>{{ contact.state }}</div>
                         </div>
                       </v-timeline-item>
                       <v-timeline-item color="primary" small>
@@ -71,7 +82,12 @@
                           <div class="font-weight-normal">
                             <strong>Location</strong>
                           </div>
-                          <div>{{ contact.physical_address }}</div>
+                          <v-text-field
+                            dense
+                            v-if="edit"
+                            v-model="contact.physical_address"
+                          ></v-text-field>
+                          <div v-else>{{ contact.physical_address }}</div>
                         </div>
                       </v-timeline-item>
                       <v-timeline-item color="primary" small>
@@ -79,7 +95,13 @@
                           <div class="font-weight-normal">
                             <strong>Email Adress</strong>
                           </div>
-                          <div>{{ contact.email_address }}</div>
+                          <v-text-field
+                            dense
+                            v-if="edit"
+                            type="email"
+                            v-model="contact.email_address"
+                          ></v-text-field>
+                          <div v-else>{{ contact.email_address }}</div>
                         </div>
                       </v-timeline-item>
                       <v-timeline-item color="primary" small>
@@ -87,7 +109,12 @@
                           <div class="font-weight-normal">
                             <strong>Home Phone</strong>
                           </div>
-                          <div>{{ contact.home_phone }}</div>
+                          <v-text-field
+                            dense
+                            v-if="edit"
+                            v-model="contact.home_phone"
+                          ></v-text-field>
+                          <div v-else>{{ contact.home_phone }}</div>
                         </div>
                       </v-timeline-item>
                       <v-timeline-item color="primary" small>
@@ -95,14 +122,99 @@
                           <div class="font-weight-normal">
                             <strong>Mobile Phone</strong>
                           </div>
-                          <div>{{ contact.work_phone }}</div>
+                          <v-text-field
+                            dense
+                            v-if="edit"
+                            v-model="contact.work_phone"
+                          ></v-text-field>
+                          <div v-else>{{ contact.work_phone }}</div>
                         </div>
                       </v-timeline-item>
                       <v-timeline-item color="primary" small>
                         <div>
                           <div class="font-weight-normal">
                             <strong>Is Reachable</strong>
+
                             <v-checkbox
+                              v-model="contact.isReachable"
+                              required
+                              :readonly="!edit"
+                            ></v-checkbox>
+                          </div>
+                        </div>
+                      </v-timeline-item>
+                      <v-btn v-if="edit" block class="primary">Submit</v-btn>
+                    </v-timeline>
+                  </v-card-text>
+                </v-card>
+              </v-col>
+              <v-col cols="12" md="5">
+                <v-card outlined v-if="edit">
+                  <v-card-title>
+                    <h3>Your edits</h3>
+                  </v-card-title>
+                  <v-card-text>
+                    <v-timeline align-top dense>
+                      <v-timeline-item color="info" small>
+                        <div>
+                          <div class="font-weight-normal">
+                            <strong>City</strong>
+                          </div>
+
+                          <div>{{ contact.city }}</div>
+                        </div>
+                      </v-timeline-item>
+                      <v-timeline-item color="info" small>
+                        <div>
+                          <div class="font-weight-normal">
+                            <strong>State</strong>
+                          </div>
+                          <div>{{ contact.state }}</div>
+                        </div>
+                      </v-timeline-item>
+                      <v-timeline-item color="info" small>
+                        <div>
+                          <div class="font-weight-normal">
+                            <strong>Location</strong>
+                          </div>
+
+                          <div>{{ contact.physical_address }}</div>
+                        </div>
+                      </v-timeline-item>
+                      <v-timeline-item color="info" small>
+                        <div>
+                          <div class="font-weight-normal">
+                            <strong>Email Adress</strong>
+                          </div>
+
+                          <div>{{ contact.email_address }}</div>
+                        </div>
+                      </v-timeline-item>
+                      <v-timeline-item color="info" small>
+                        <div>
+                          <div class="font-weight-normal">
+                            <strong>Home Phone</strong>
+                          </div>
+
+                          <div>{{ contact.home_phone }}</div>
+                        </div>
+                      </v-timeline-item>
+                      <v-timeline-item color="info" small>
+                        <div>
+                          <div class="font-weight-normal">
+                            <strong>Mobile Phone</strong>
+                          </div>
+
+                          <div>{{ contact.work_phone }}</div>
+                        </div>
+                      </v-timeline-item>
+                      <v-timeline-item color="info" small>
+                        <div>
+                          <div class="font-weight-normal">
+                            <strong>Is Reachable</strong>
+
+                            <v-checkbox
+                              color="info"
                               v-model="contact.isReachable"
                               required
                               readonly
@@ -114,7 +226,6 @@
                   </v-card-text>
                 </v-card>
               </v-col>
-              <v-col cols="12" md="5"></v-col>
             </v-row>
           </v-flex>
         </v-layout>
@@ -126,6 +237,7 @@
 export default {
   data: () => ({
     contact: {},
+    edit: false,
     messages: [
       {
         from: "You",
