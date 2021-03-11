@@ -8,8 +8,8 @@ export default {
   router: {
     mode: 'hash',
 
-    base: "/",
-    // base: process.env.NODE_ENV === "production" ? "/webapp/" : "/",
+    //base: "/",
+    base: process.env.NODE_ENV === "production" ? "/webapp/" : "/",
     routerNameSplitter: "/",
     middleware: ['router']
   },
