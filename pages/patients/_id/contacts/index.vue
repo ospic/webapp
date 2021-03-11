@@ -276,15 +276,15 @@ export default {
       return Object.keys(obj).length === 0;
     },
     submit: function() {
-      var id = this.contact.id;
       var contact = this.contact;
-      //delete contact.id;
       delete contact.patient;
       var payload = {
         id: contact.id,
         contact: contact
       };
-      this.$store.dispatch("updatepatientcontacts", payload);
+      this.$store.dispatch("updatepatientcontacts", payload).then(() => {
+        this.edit = false;
+      });
     }
   },
   created() {
