@@ -24,7 +24,7 @@ export default {
   },
   **/
   env: {
-    baseUrl: 'http://demo.ospicx.com:8080/api/',
+    baseUrl: 'https://ospicapi.herokuapp.com/api/',
     localUrl: 'http://127.0.0.1:8080/api/'
   },
 
