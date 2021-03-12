@@ -169,6 +169,7 @@
                     :counter="5"
                     label="Self service username"
                     placeholder="e.g username"
+                    autocomplete="new-password"
                     required
                   ></v-text-field>
 
@@ -178,6 +179,8 @@
                     :counter="8"
                     label="Password"
                     placeholder="e.g password"
+                    type="password"
+                    autocomplete="new-password"
                     required
                   ></v-text-field>
 
@@ -187,7 +190,7 @@
                     label="E-mail"
                     placeholder="email@example.com"
                     type="email"
-                    shaped
+                    autocomplete="username"
                     required
                   ></v-text-field>
                   <v-btn class="primary mt-3" @click.stop="submit"
@@ -277,8 +280,13 @@ export default {
     },
     submit: function() {
       var state = this.$refs.form.validate();
+      this.selfservice.patientId = parseInt(this.$route.params.id);
       if (state) {
-        console.log("Valid");
+        this.$store
+          .dispatch("create_self_service_users", this.selfservice)
+          .then(() => {
+            this.$router.push(`/patients/${this.$route.params.id}`);
+          });
       }
     }
   },
