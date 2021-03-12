@@ -5,7 +5,7 @@
         <v-card flat>
           <v-img
             :src="entityThumbNail"
-            lazy-src="https://boylancode.com/wp-content/uploads/2018/09/Man-Placeholder-Headshot.png"
+            lazy-src="https://www.attendanceworks.org/wp-content/uploads/2020/09/img-placeholder.png"
             aspect-ratio="1"
             class="grey lighten-2 align-end"
             height="200px"
@@ -22,18 +22,18 @@
             <v-card-title>
               <v-list three-line flat width="100%" class="default">
                 <v-list-item>
-                  <v-list-item-avatar>
+                  <v-list-item-avatar size="60">
                     <v-img
                       :src="entityThumbNail"
-                      lazy-src="https://boylancode.com/wp-content/uploads/2018/09/Man-Placeholder-Headshot.png"
+                      lazy-src="https://aosa.org/wp-content/uploads/2019/04/image-placeholder-350x350.png"
                     ></v-img>
                   </v-list-item-avatar>
 
                   <v-list-item-content>
                     <v-list-item-title> {{ userdata.name }}</v-list-item-title>
                     <v-list-item-subtitle
-                      v-if="userdata.contactsInformation"
-                      v-html="userdata.contactsInformation.city"
+                      v-if="userdata"
+                      v-html="userdata.address"
                     ></v-list-item-subtitle>
                     <v-list-item-subtitle v-else v-html="userdata.country">
                     </v-list-item-subtitle>
