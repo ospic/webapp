@@ -144,6 +144,15 @@
               >
                 Add contacts
               </v-btn>
+              <v-btn
+                small
+                block
+                class="primary mt-2"
+                v-if="!userdata.hasSelfServiceUserAccount"
+                :to="`/patients/${userdata.id}/selfservice`"
+              >
+                Create self service user
+              </v-btn>
             </v-col>
           </v-card-actions>
         </v-card>
