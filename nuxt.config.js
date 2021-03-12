@@ -7,9 +7,7 @@ export default {
   ssr: false,
   router: {
     mode: 'hash',
-
-   // base: "/",
-    // base: process.env.NODE_ENV === "production" ? "/webapp/" : "/",
+    base: process.env.NODE_ENV === "production" ? "/webapp/" : "/",
     routerNameSplitter: "/",
     middleware: ['router']
   },
