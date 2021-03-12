@@ -1,5 +1,5 @@
 const open = require('opn');
-
+const routerBase = process.env.DEPLOY_ENV === 'prod' ? '/webapp/' : '/';
 export default {
   // Disable server-side rendering (https://go.nuxtjs.dev/ssr-mode)
   //target: 'static',
@@ -7,7 +7,7 @@ export default {
   ssr: false,
   router: {
     mode: 'hash',
-    base: process.env.NODE_ENV === "production" ? "/webapp/" : "/",
+    base: routerBase,
     routerNameSplitter: "/",
     middleware: ['router']
   },
