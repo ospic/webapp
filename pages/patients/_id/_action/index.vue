@@ -161,7 +161,7 @@
           <v-row>
             <v-col cols="12" sm="12" md="4"></v-col>
             <v-col cols="12" sm="12" md="4">
-              <v-form v-model="valid">
+              <v-form ref="form" v-model="valid" lazy-validation>
                 <v-container>
                   <v-text-field
                     v-model="selfservice.username"
@@ -190,6 +190,9 @@
                     shaped
                     required
                   ></v-text-field>
+                  <v-btn class="primary mt-3" @click.stop="submit"
+                    >Submit</v-btn
+                  >
                 </v-container>
               </v-form>
             </v-col>
@@ -213,7 +216,7 @@ export default {
     modal: false,
     emailRules: [
       v => !!v || "E-mail is required",
-      v => /.+@.+/.test(v) || "E-mail must be valid"
+      v => /.+@.+\..+/.test(v) || "E-mail must be valid"
     ],
     nameRules: [
       v => !!v || "Username is required",
@@ -271,6 +274,12 @@ export default {
     },
     resetValidation() {
       this.$refs.form.resetValidation();
+    },
+    submit: function() {
+      var state = this.$refs.form.validate();
+      if (state) {
+        console.log("Valid");
+      }
     }
   },
   created() {
