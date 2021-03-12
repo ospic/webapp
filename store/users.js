@@ -103,6 +103,18 @@ const mutations = {
 
   },
 
+  //Get self service users
+  ["CREATE_SERVICE_USERS"](state) {
+    state.showLoader = true;
+  },
+  ["CREATE_SERVICE_USERS_SUCCESS"](state, payload) {
+    state.showLoader = false;
+  },
+  ["CREATE_SERVICE_USERS_FAILED"](state) {
+    state.showLoader = false;
+
+  },
+
 }
 const actions = {
   async retrieveAllusers({ commit }) {
@@ -128,6 +140,19 @@ const actions = {
 
       }).catch(error => {
         commit("GET_SELF_SERVICE_USERS_FAILED");
+        console.log(error);
+
+      });
+
+  },
+  async create_self_service_users({ commit }, payload) {
+    commit("CREATE_SERVICE_USERS");
+    await this.$api.$post(`auth/self/`, payload)
+      .then(response => {
+        commit("CREATE_SERVICE_USERS_SUCCESS", response);
+
+      }).catch(error => {
+        commit("CREATE_SERVICE_USERS_FAILED");
         console.log(error);
 
       });
