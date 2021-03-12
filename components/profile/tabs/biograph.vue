@@ -156,10 +156,24 @@
                   <td>{{ patient.marriageStatus }}</td>
                 </tr>
                 <tr>
-                  <td id="isamitted" class="font-weight-black">IDs Admitted</td>
+                  <td id="isamitted" class="font-weight-black">
+                    Is Admitted ?
+                  </td>
                   <td>
                     <v-checkbox
                       v-model="patientcp.isAdmitted"
+                      readonly
+                      dense
+                    ></v-checkbox>
+                  </td>
+                </tr>
+                <tr>
+                  <td id="isamitted" class="font-weight-black">
+                    Have user account ?
+                  </td>
+                  <td>
+                    <v-checkbox
+                      v-model="patientcp.hasSelfServiceUserAccount"
                       readonly
                       dense
                     ></v-checkbox>
