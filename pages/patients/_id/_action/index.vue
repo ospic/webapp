@@ -6,155 +6,204 @@
       <router-link :to="`/patients/${this.$route.params.id}`">{{
         patient.name
       }}</router-link>
-      <a class="active"> Admit</a>
+      <a class="active"> {{ this.$route.params.action }}</a>
     </div>
-    <v-card class="pa-3">
-      <v-card-title>Patient Admission</v-card-title>
-      <v-card-text>
-        <v-form ref="form" v-model="valid" lazy-validation>
-          <v-row align="center" justify="center">
-            <v-col cols="12" md="5">
-              <v-select
-                v-model="wardId"
-                :items="wards"
-                prepend-icon="mdi-home-variant-outline"
-                :rules="[v => !!v || 'Item is required']"
-                label="Select ward"
-                :item-value="'id'"
-                @change="wardIdChanges()"
-                required
-              >
-                <template slot="selection" slot-scope="{ item }">
-                  {{ item.name }} - {{ item.id }}
-                </template>
-                <template slot="item" slot-scope="{ item }">
-                  {{ item.id }} - {{ item.name }}
-                </template>
-              </v-select>
-            </v-col>
+    <div v-if="this.$route.params.action === 'admit'">
+      <v-card class="pa-3">
+        <v-card-title>Patient Admission</v-card-title>
+        <v-card-text>
+          <v-form ref="form" v-model="valid" lazy-validation>
+            <v-row align="center" justify="center">
+              <v-col cols="12" md="5">
+                <v-select
+                  v-model="wardId"
+                  :items="wards"
+                  prepend-icon="mdi-home-variant-outline"
+                  :rules="[v => !!v || 'Item is required']"
+                  label="Select ward"
+                  :item-value="'id'"
+                  @change="wardIdChanges()"
+                  required
+                >
+                  <template slot="selection" slot-scope="{ item }">
+                    {{ item.name }} - {{ item.id }}
+                  </template>
+                  <template slot="item" slot-scope="{ item }">
+                    {{ item.id }} - {{ item.name }}
+                  </template>
+                </v-select>
+              </v-col>
 
-            <v-col cols="12" md="5" v-show="beds.length > 0">
-              <v-select
-                v-model="admission.bedId"
-                :items="beds"
-                prepend-icon="mdi-queen-bed"
-                :rules="[v => !!v || 'Item is required']"
-                :item-value="'id'"
-                required
-              >
-                <template slot="selection" slot-scope="{ item }">
-                  {{ item.identifier }} - {{ item.id }}
-                </template>
-                <template slot="item" slot-scope="{ item }">
-                  {{ item.id }} - {{ item.identifier }}
-                </template>
-              </v-select>
-            </v-col>
+              <v-col cols="12" md="5" v-show="beds.length > 0">
+                <v-select
+                  v-model="admission.bedId"
+                  :items="beds"
+                  prepend-icon="mdi-queen-bed"
+                  :rules="[v => !!v || 'Item is required']"
+                  :item-value="'id'"
+                  required
+                >
+                  <template slot="selection" slot-scope="{ item }">
+                    {{ item.identifier }} - {{ item.id }}
+                  </template>
+                  <template slot="item" slot-scope="{ item }">
+                    {{ item.id }} - {{ item.identifier }}
+                  </template>
+                </v-select>
+              </v-col>
 
-            <v-col cols="12" md="5">
-              <v-menu
-                ref="menu1"
-                v-model="menu1"
-                :close-on-content-click="false"
-                :return-value.sync="date"
-                transition="scale-transition"
-                offset-y
-                max-width="290px"
-                min-width="290px"
-              >
-                <template v-slot:activator="{ on, attrs }">
-                  <v-text-field
+              <v-col cols="12" md="5">
+                <v-menu
+                  ref="menu1"
+                  v-model="menu1"
+                  :close-on-content-click="false"
+                  :return-value.sync="date"
+                  transition="scale-transition"
+                  offset-y
+                  max-width="290px"
+                  min-width="290px"
+                >
+                  <template v-slot:activator="{ on, attrs }">
+                    <v-text-field
+                      v-model="admission.startDateTime"
+                      label="Admission from Date"
+                      prepend-icon="mdi-calendar"
+                      readonly
+                      v-bind="attrs"
+                      v-on="on"
+                      :rules="[v => !!v || 'Date is required']"
+                      required
+                    ></v-text-field>
+                  </template>
+                  <v-date-picker
                     v-model="admission.startDateTime"
-                    label="Admission from Date"
-                    prepend-icon="mdi-calendar"
-                    readonly
-                    v-bind="attrs"
-                    v-on="on"
-                    :rules="[v => !!v || 'Date is required']"
+                    no-title
+                    scrollable
                     required
-                  ></v-text-field>
-                </template>
-                <v-date-picker
-                  v-model="admission.startDateTime"
-                  no-title
-                  scrollable
-                  required
-                  @input="menu1 = false"
+                    @input="menu1 = false"
+                  >
+                    <v-spacer></v-spacer>
+                    <v-btn text color="primary" @click="menu1 = false">
+                      Cancel
+                    </v-btn>
+                    <v-btn text color="primary" @click="$refs.menu1.save(date)">
+                      OK
+                    </v-btn>
+                  </v-date-picker>
+                </v-menu>
+              </v-col>
+              <v-col cols="12" md="5">
+                <v-menu
+                  ref="menu2"
+                  v-model="menu2"
+                  :close-on-content-click="false"
+                  :return-value.sync="date"
+                  transition="scale-transition"
+                  offset-y
+                  max-width="290px"
+                  min-width="290px"
                 >
-                  <v-spacer></v-spacer>
-                  <v-btn text color="primary" @click="menu1 = false">
-                    Cancel
-                  </v-btn>
-                  <v-btn text color="primary" @click="$refs.menu1.save(date)">
-                    OK
-                  </v-btn>
-                </v-date-picker>
-              </v-menu>
-            </v-col>
-            <v-col cols="12" md="5">
-              <v-menu
-                ref="menu2"
-                v-model="menu2"
-                :close-on-content-click="false"
-                :return-value.sync="date"
-                transition="scale-transition"
-                offset-y
-                max-width="290px"
-                min-width="290px"
-              >
-                <template v-slot:activator="{ on, attrs }">
-                  <v-text-field
+                  <template v-slot:activator="{ on, attrs }">
+                    <v-text-field
+                      v-model="admission.endDateTime"
+                      label="To Date"
+                      prepend-icon="mdi-calendar"
+                      readonly
+                      v-bind="attrs"
+                      v-on="on"
+                      :rules="[v => !!v || 'Date is required']"
+                      required
+                    ></v-text-field>
+                  </template>
+                  <v-date-picker
                     v-model="admission.endDateTime"
-                    label="To Date"
-                    prepend-icon="mdi-calendar"
-                    readonly
-                    v-bind="attrs"
-                    v-on="on"
-                    :rules="[v => !!v || 'Date is required']"
+                    no-title
+                    scrollable
+                    required
+                    @input="menu2 = false"
+                  >
+                    <v-spacer></v-spacer>
+                    <v-btn text color="primary" @click="menu2 = false">
+                      Cancel
+                    </v-btn>
+                    <v-btn text color="primary" @click="$refs.menu2.save(date)">
+                      OK
+                    </v-btn>
+                  </v-date-picker>
+                </v-menu>
+              </v-col>
+            </v-row>
+            <div>
+              <v-spacer></v-spacer>
+              <v-btn color="error" class="mr-4" @click="reset">
+                Reset Form
+              </v-btn>
+              <v-btn
+                :disabled="!valid"
+                color="primary"
+                class="mr-4"
+                @click="validate"
+              >
+                Admit
+              </v-btn>
+            </div>
+          </v-form>
+        </v-card-text>
+      </v-card>
+    </div>
+    <div v-if="this.$route.params.action === 'selfservice'">
+      <v-card>
+        <v-card-title dense class="pa-2">
+          <h4>Create Self service</h4>
+        </v-card-title>
+        <v-divider class="ma-1"></v-divider>
+        <v-card-text>
+          <v-row>
+            <v-col cols="12" sm="12" md="4"></v-col>
+            <v-col cols="12" sm="12" md="4">
+              <v-form v-model="valid">
+                <v-container>
+                  <v-text-field
+                    v-model="selfservice.username"
+                    :rules="nameRules"
+                    :counter="5"
+                    label="Self service username"
+                    placeholder="e.g username"
                     required
                   ></v-text-field>
-                </template>
-                <v-date-picker
-                  v-model="admission.endDateTime"
-                  no-title
-                  scrollable
-                  required
-                  @input="menu2 = false"
-                >
-                  <v-spacer></v-spacer>
-                  <v-btn text color="primary" @click="menu2 = false">
-                    Cancel
-                  </v-btn>
-                  <v-btn text color="primary" @click="$refs.menu2.save(date)">
-                    OK
-                  </v-btn>
-                </v-date-picker>
-              </v-menu>
+
+                  <v-text-field
+                    v-model="selfservice.password"
+                    :rules="passwordRules"
+                    :counter="8"
+                    label="Password"
+                    placeholder="e.g password"
+                    required
+                  ></v-text-field>
+
+                  <v-text-field
+                    v-model="selfservice.email"
+                    :rules="emailRules"
+                    label="E-mail"
+                    placeholder="email@example.com"
+                    type="email"
+                    shaped
+                    required
+                  ></v-text-field>
+                </v-container>
+              </v-form>
             </v-col>
+            <v-col cols="12" sm="12" md="4"></v-col>
           </v-row>
-          <div>
-            <v-spacer></v-spacer>
-            <v-btn color="error" class="mr-4" @click="reset">
-              Reset Form
-            </v-btn>
-            <v-btn
-              :disabled="!valid"
-              color="primary"
-              class="mr-4"
-              @click="validate"
-            >
-              Admit
-            </v-btn>
-          </div>
-        </v-form>
-      </v-card-text>
-    </v-card>
+        </v-card-text>
+      </v-card>
+    </div>
   </div>
 </template>
 <script>
 export default {
   data: () => ({
-    valid: true,
+    valid: false,
     name: "",
     wardId: "",
     beds: [],
@@ -162,12 +211,36 @@ export default {
     menu1: false,
     menu2: false,
     modal: false,
+    emailRules: [
+      v => !!v || "E-mail is required",
+      v => /.+@.+/.test(v) || "E-mail must be valid"
+    ],
+    nameRules: [
+      v => !!v || "Username is required",
+      v =>
+        (v && v.length >= 5 && v.length < 12) ||
+        "Username must be not less than 5 and not more than 12 characters"
+    ],
+    passwordRules: [
+      v => !!v || "Password is required",
+      v =>
+        (v && v.length >= 8) || "Password must be not less than 8 characters",
+      v =>
+        (v && v.length < 18) ||
+        "Password must be not less than 8 and not more than 18 characters"
+    ],
     admission: {
       bedId: "",
       serviceId: 0,
       isActive: 1,
       endDateTime: null,
       startDateTime: null
+    },
+    selfservice: {
+      username: "",
+      email: "",
+      password: "",
+      patientId: 0
     }
   }),
 
