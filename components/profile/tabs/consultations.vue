@@ -64,7 +64,7 @@ export default {
       { text: "Status", value: "isActive" },
       { text: "ID", value: "id" },
       { text: "Patient Name", value: "patientName", sortable: false },
-      { text: "Staff Name", value: "staffName" },
+      { text: "Consultant", value: "staffName" },
 
       { text: "From", value: "fromDate" },
       { text: "To", value: "toDate" }

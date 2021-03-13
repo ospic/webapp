@@ -71,7 +71,7 @@ export default {
     headers: [
       { text: "ID", value: "id" },
       { text: "Patient Name", value: "patientName", sortable: false },
-      { text: "Staff Name", value: "staffName" },
+      { text: "Consultant", value: "staffName" },
       { text: "Is Active?", value: "isActive" },
       { text: "From", value: "fromDate" },
       { text: "To", value: "toDate" }
