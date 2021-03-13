@@ -162,65 +162,76 @@
                     </template>
                   </v-autocomplete>
                 </v-col>
-                <v-col cols="12" md="4">
-                  <table
-                    style="width:100%; text-align: start;"
-                    class="pa-0"
-                    summary="Patient infos"
-                  >
-                    <tr v-if="service.patient.id">
-                      <td id="Patient" class="font-weight-normal">Patient</td>
-                      <td>
-                        <small>{{ service.patient.name }}</small>
-                      </td>
-                    </tr>
-
-                    <tr>
-                      <td id="Phone" class="font-weight-normal">Weight</td>
-                      <td>
-                        <small>{{ service.patient.weight }} </small>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td id="Phone" class="font-weight-normal">BP</td>
-                      <td>
-                        <small>{{ service.patient.bloodPressure }} </small>
-                      </td>
-                    </tr>
-                  </table>
-                </v-col>
-                <v-col cols="12" md="1">
+                <v-col cols="12" md="3">
                   <br />
                 </v-col>
-                <v-col cols="12" md="4" v-if="service.staff">
-                  <table
-                    style="width:100%; text-align: start; "
-                    class="pa-0"
-                    summary="Staff infos"
-                  >
-                    <tr v-if="service.patient.id">
-                      <td id="Patient" class="font-weight-normal">Staff</td>
-                      <td>
-                        {{
-                          service.staff.fullName == null
-                            ? service.staff.username
-                            : service.staff.fullName
-                        }}
-                      </td>
-                    </tr>
-                    <tr>
-                      <td id="Phone" class="font-weight-normal">Phone</td>
-                      <td>
-                        <small>{{ service.staff.contacts }} </small>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td id="Phone" class="font-weight-normal">Email</td>
-                      <td>
-                        <small>{{ service.staff.email }} </small>
-                      </td>
-                    </tr>
-                  </table>
+                <v-col cols="12" md="3">
+                  <v-container fluid>
+                    <v-card outlined dense color="primary">
+                      <v-list-item three-line>
+                        <v-list-item-avatar size="60">
+                          <v-img
+                            :src="
+                              service.patient.patientPhoto == null
+                                ? thumbnail
+                                : service.patient.patientPhoto
+                            "
+                          ></v-img>
+                        </v-list-item-avatar>
+                        <v-list-item-content>
+                          <v-list-item-title
+                            ><strong>Patient:</strong>&nbsp;&nbsp;{{
+                              service.patient.name
+                            }}</v-list-item-title
+                          >
+                          <v-list-item-subtitle>
+                            <strong>Weight</strong>&nbsp;&nbsp;{{
+                              service.patient.weight
+                            }}
+                          </v-list-item-subtitle>
+                          <v-list-item-subtitle>
+                            <strong>Blood pressure</strong>&nbsp;&nbsp;
+                            {{ service.patient.bloodPressure }}
+                          </v-list-item-subtitle>
+                        </v-list-item-content>
+                      </v-list-item>
+                    </v-card>
+                  </v-container>
+                </v-col>
+                <v-col cols="12" md="3" v-if="service.staff">
+                  <v-container fluid>
+                    <v-card outlined dense color="primary">
+                      <v-list-item three-line>
+                        <v-list-item-avatar size="60">
+                          <v-img
+                            :src="
+                              service.patient.patientPhoto == null
+                                ? thumbnail
+                                : service.patient.patientPhoto
+                            "
+                          ></v-img>
+                        </v-list-item-avatar>
+                        <v-list-item-content>
+                          <v-list-item-title
+                            ><strong>Staff:</strong>&nbsp;&nbsp;{{
+                              service.staff.fullName == null
+                                ? service.staff.username
+                                : service.staff.fullName
+                            }}</v-list-item-title
+                          >
+                          <v-list-item-subtitle>
+                            <strong>Phone</strong>&nbsp;&nbsp;{{
+                              service.staff.contacts
+                            }}
+                          </v-list-item-subtitle>
+                          <v-list-item-subtitle>
+                            <strong>Email</strong>&nbsp;&nbsp;
+                            {{ service.staff.email }}
+                          </v-list-item-subtitle>
+                        </v-list-item-content>
+                      </v-list-item>
+                    </v-card>
+                  </v-container>
                 </v-col>
               </v-row>
             </v-card-title>
