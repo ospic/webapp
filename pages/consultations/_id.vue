@@ -87,6 +87,80 @@
                       </v-card-actions>
                     </v-card>
                   </v-dialog>
+                  <v-autocomplete
+                    dense
+                    :items="staffs"
+                    v-model="selectedstaffId"
+                    item-text="fullName"
+                    item-value="id"
+                    persistent-hint
+                    return-object
+                    solo
+                    flat
+                    outlined
+                    small-chips
+                    class="mx-3 mt-4 d-flex align-bottom"
+                    label="Re/Assign staffs"
+                    @change="_assign_staff()"
+                  >
+                    <template slot="selection" slot-scope="data">
+                      <v-chip
+                        v-bind="data.attrs"
+                        :input-value="data.selected"
+                        close
+                        @click="data.select"
+                        @click:close="remove(data.item)"
+                      >
+                        <v-avatar left>
+                          <v-img
+                            :src="
+                              data.item.imageUrl === null
+                                ? thumbnail
+                                : data.item.imageUrl
+                            "
+                          ></v-img>
+                        </v-avatar>
+                        {{
+                          data.item.fullName === null
+                            ? data.item.username
+                            : data.item.fullName
+                        }}
+                      </v-chip>
+                    </template>
+
+                    <template v-slot:item="data">
+                      <template v-if="typeof data.item !== 'object'">
+                        <v-list-item-content
+                          v-text="data.item"
+                        ></v-list-item-content>
+                      </template>
+                      <template v-else>
+                        <v-list-item-avatar>
+                          <v-img
+                            :src="
+                              data.item.imageUrl === null
+                                ? thumbnail
+                                : data.item.imageUrl
+                            "
+                            alt="image"
+                          ></v-img>
+                        </v-list-item-avatar>
+                        <v-list-item-content>
+                          <v-list-item-title
+                            v-html="
+                              data.item.fullName === null
+                                ? data.item.username
+                                : data.item.fullName
+                            "
+                          ></v-list-item-title>
+                          <v-list-item-subtitl>
+                            {{ data.item.department.name }} [
+                            {{ data.item.user.roles[0].name }} ]
+                          </v-list-item-subtitl>
+                        </v-list-item-content>
+                      </template>
+                    </template>
+                  </v-autocomplete>
                 </v-col>
                 <v-col cols="12" md="4">
                   <table
@@ -161,12 +235,6 @@
                 show-arrows-on-hover="true"
                 :show-arrows="$vuetify.breakpoint.mobile"
               >
-                <v-tab class="ffont-weight-normal">
-                  <span><v-icon small left>mdi-eye</v-icon>Biography</span>
-                </v-tab>
-                <v-tab class="font-weight-normal" @click="updatestafflist()">
-                  <span><v-icon small left>mdi-bag</v-icon>Staff</span>
-                </v-tab>
                 <v-tab class="font-weight-normal">
                   <v-icon small left>mdi-medical-bag</v-icon>
                   Diagnoses
@@ -202,16 +270,6 @@
                 </v-tab>
               </v-tabs>
               <v-tabs-items vertical v-model="tab" class="default">
-                <v-tab-item>
-                  <tb-biograph :patient="service.patient"></tb-biograph>
-                </v-tab-item>
-                <v-tab-item>
-                  <tb-doctor
-                    v-bind:staff="service.staff"
-                    v-bind:staffs="staffs"
-                    v-on:update-service="onServiceUpdate"
-                  ></tb-doctor>
-                </v-tab-item>
                 <v-tab-item>
                   <tb-diagnoses
                     v-bind:diagnoses="service.diagnoses"
@@ -286,7 +344,8 @@ export default {
       service: null,
       dialog: false,
       admissions: null,
-      service_transactions: null
+      service_transactions: null,
+      selectedstaffId: null
     };
   },
   methods: {
@@ -296,6 +355,7 @@ export default {
         .then(response => {
           if (response !== null) {
             this.service = response;
+            this.selectedstaffId = response.staff.id;
           }
         })
         .catch(error => {
@@ -347,6 +407,25 @@ export default {
     },
     updatestafflist() {
       this.$store.dispatch("fetchAllStaffs");
+    },
+    async _assign_staff() {
+      if (this.selectedstaffId.id != null) {
+        return await this.$api
+          .$put(
+            `consultations/${this.$route.params.id}/${this.selectedstaffId.id}/`
+          )
+          .then(response => {
+            if (response !== null) {
+              this.onServiceUpdate();
+            }
+          })
+          .catch(error => {
+            console.log(error);
+          });
+      }
+    },
+    remove(i) {
+      console.log(i);
     }
   },
   created() {
