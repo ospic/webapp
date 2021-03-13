@@ -212,6 +212,7 @@ export default {
   },
   methods: {
     submit() {
+      delete this.patientcp.contactsInformation;
       this.$store.dispatch("update_patient", this.patientcp).then(() => {
         this.edit = false;
         this.fetchclientdata(this.$route.params.id);
