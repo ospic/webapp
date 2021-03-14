@@ -1,14 +1,28 @@
 <template>
-  <v-container>
-    <h1 v-if="error.statusCode === 404">{{ pageNotFound }}</h1>
-    <h1 v-else>{{ otherError }}</h1>
-    <NuxtLink to="/">Home page</NuxtLink>
-  </v-container>
+      <div class="text-center">
+    <v-dialog
+      v-model="dialog"
+      width="500"
+    >
+    
+  
+    <v-card outlined  elevation="">
+    <v-card-title class="d-flex justify-center">
+       <h2 v-if="error.statusCode === 404" class=" warning--text">{{ pageNotFound }}</h2>
+    <h2 v-else class=" warning--text">{{ otherError }}</h2>
+    </v-card-title>
+    <v-card-text>
+       <NuxtLink to="/" class="d-flex justify-center" @click="dialog = false">Go back to Homepage</NuxtLink>
+    </v-card-text>
+    </v-card>
+    </v-dialog>
+      </div>
+      
 </template>
 
 <script>
 export default {
-  layout: "empty",
+  layout: "finance",
   props: {
     error: {
       type: Object,
@@ -25,14 +39,23 @@ export default {
   data() {
     return {
       pageNotFound: "404 Not Found",
-      otherError: "An error occurred"
+      otherError: "An error has occurred",
+      dialog: false,
     };
+  },
+  created(){
+    this.dialog =true;
   }
 };
 </script>
 
 <style scoped>
-h1 {
-  font-size: 20px;
+ .center{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -50px;
+    margin-left: -50px;
+    padding: 1%;
 }
 </style>
