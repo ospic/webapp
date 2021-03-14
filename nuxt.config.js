@@ -43,7 +43,8 @@ export default {
       { name: 'viewport', content: 'width=device-width, initial-scale=1.0' },
       { hid: 'description', name: 'description', content: 'Open source Hospital Management System' },
       { hid: 'og:image', property: 'og:image', content: "https://hmis.netlify.app/icon.png" || '' },
-      { name: "google-site-verification", content: "jwy483Mw-M59YJGRAtWDO5hohS5JwMS15j5GzKBQ-WY" }
+      { name: "google-site-verification", content: "cx99OlrotJDjh6FbXnZFs4lRdaqQ7ksY-SadPjv2CLQ" }
+
 
     ],
     link: [
