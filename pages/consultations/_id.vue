@@ -205,9 +205,9 @@
                         <v-list-item-avatar size="60">
                           <v-img
                             :src="
-                              service.patient.patientPhoto == null
+                              service.staff.imageUrl == null
                                 ? thumbnail
-                                : service.patient.patientPhoto
+                                : service.staff.imageUrl
                             "
                           ></v-img>
                         </v-list-item-avatar>
