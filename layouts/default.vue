@@ -362,13 +362,14 @@ export default {
       ],
 
       items: [
-        {
+        /**  {
           text: "label.menu.stations",
           icon: "mdi-map-marker-radius",
           route: "stations",
 
           permissions: "ALL_FUNCTIONS"
         },
+        **/
         {
           text: "label.menu.calendar",
           icon: "mdi-calendar-month",
