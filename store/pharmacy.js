@@ -31,7 +31,7 @@ const mutations = {
   ["CREATE_NEW_MEDICINE_PRODUCT_FAILED"](state) {
     state.showLoader = false;
   },
-  ["CREATE_NEW_MEDICINE_PRODUCT_ERROR"(state) {
+  ["CREATE_NEW_MEDICINE_PRODUCT_ERROR"](state) {
     state.showLoader = false;
   },
   ["CREATE_NEW_MEDICINE_PRODUCT_SUCCESS"](state, payload) {

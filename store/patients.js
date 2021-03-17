@@ -239,7 +239,7 @@ const getters = {
 export default {
   namespaced: false,
   state,
-  mutationS",
-  actionS",
+  mutation,
+  action,
   getters
 }
