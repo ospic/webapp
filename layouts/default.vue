@@ -62,12 +62,17 @@
 
             <template v-for="(menu, index) in setting.menus">
               <v-list-item
+                dense
+                class="my-0 py-0"
                 :key="index"
                 :to="menu.to"
                 v-if="hasPermission(menu.permissions)"
               >
-                <v-list-item-title color="#8C93F5" class="font-weight-light ">
-                  <v-icon small color="primary" v-html="menu.icon"></v-icon>
+                <v-list-item-title
+                  color="#8C93F5"
+                  class="font-weight-light ma-0 pa-0 "
+                >
+                  <v-icon small color="primary">mdi-circle-medium</v-icon>
                   &nbsp;&nbsp;{{ $t(menu.title) }}</v-list-item-title
                 >
               </v-list-item>
@@ -234,22 +239,18 @@ export default {
           menus: [
             {
               title: "label.menu.appointmentandschedule",
-              icon: "mdi-alarm-multiple",
               to: "/appointments",
-              subtitle: "Lorem ipsum dolor sit de amet ...",
               permissions:
                 "ALL_FUNCTIONS, CREATE_PATIENT, UPDATE_PATIENT, DELETE_PATIENT, DELETE_PATIENT"
             },
             {
               title: "label.menu.patients",
               to: "/patients",
-              icon: "mdi-account-multiple",
               permissions:
                 "ALL_FUNCTIONS, CREATE_PATIENT, UPDATE_PATIENT, DELETE_PATIENT, DELETE_PATIENT"
             },
             {
               title: "label.menu.opdcenter",
-              icon: "mdi-alpha-o-circle",
               to: "/opd",
 
               permissions:
@@ -257,9 +258,7 @@ export default {
             },
             {
               title: "label.menu.ipdcenter",
-              icon: "mdi-bed-queen",
               to: "/ipd",
-
               permissions: "ALL_FUNCTIONS"
             }
           ]
@@ -272,31 +271,26 @@ export default {
             {
               title: "label.titles.pharmacy",
               to: "/inventory/",
-              icon: "mdi-pharmacy",
               permissions: "ALL_FUNCTIONS"
             },
             {
               title: "label.titles.medicine",
               to: "/inventory/medicine",
-              icon: "mdi-pill",
               permissions: "ALL_FUNCTIONS"
             },
             {
               title: "label.titles.bloodbank",
               to: "/inventory/bloods",
-              icon: "mdi-blood-bag",
               permissions: "ALL_FUNCTIONS"
             },
             {
               title: "label.titles.wards",
               to: "/inventory/ward",
-              icon: "mdi-home-floor-1",
               permissions: "ALL_FUNCTIONS"
             },
             {
               title: "label.titles.beds",
               to: "/inventory/bed",
-              icon: "mdi-bunk-bed-outline",
               permissions: "ALL_FUNCTIONS"
             }
           ]
@@ -310,20 +304,17 @@ export default {
               title: "label.menu.laboratory",
               icon: "mdi-octagon",
               to: "/laboratory",
-
               permissions: "ALL_FUNCTIONS"
             },
             {
               title: "label.menu.radiology",
               icon: "mdi-radioactive",
               to: "/radiology",
-
               permissions: "ALL_FUNCTIONS"
             },
             {
               title: "label.titles.otherservices",
               to: "/services",
-              icon: "mdi-help-circle",
               permissions: "ALL_FUNCTIONS"
             }
           ]
@@ -336,13 +327,11 @@ export default {
             {
               title: "label.menu.staff",
               to: "/staffs",
-              icon: "mdi-account-hard-hat",
               permissions: "ALL_FUNCTIONS"
             },
             {
               title: "label.titles.departments",
               to: "/departments",
-              icon: "mdi-office-building",
               permissions: "ALL_FUNCTIONS"
             }
           ]
@@ -355,23 +344,17 @@ export default {
           menus: [
             {
               title: "label.menu.bills",
-              icon: "mdi-finance",
               to: "/finance/bills",
-
               permissions: "ALL_FUNCTIONS"
             },
             {
               title: "label.menu.transactions",
-              icon: "mdi-calendar-month",
               to: "/finance/transactions",
-
               permissions: "ALL_FUNCTIONS"
             },
             {
               title: "label.menu.financereports",
-              icon: "mdi-clipboard-file",
               to: "/finance/reports",
-
               permissions: "ALL_FUNCTIONS"
             }
           ]
