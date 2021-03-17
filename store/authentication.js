@@ -1,5 +1,3 @@
-import * as mutation from './mutation-types';
-
 const state = () => ({
   showLoader: Boolean,
   isAuthenticated: Boolean,
@@ -12,16 +10,16 @@ const state = () => ({
 
 const mutations = {
 
-  [mutation.SIGNIN](state) {
+  ["SIGNIN"](state) {
     state.showLoader = true;
   },
-  [mutation.SIGNIN_FAILED](state) {
+  ["SIGNIN_FAILED"](state) {
     state.showLoader = false;
   },
-  [mutation.SIGNIN_ERROR](state) {
+  ["SIGNIN_ERROR"](state) {
     state.showLoader = false;
   },
-  [mutation.SIGNIN_SUCCESS](state, payload) {
+  ["SIGNIN_SUCCESS"](state, payload) {
     state.isAuthenticated = true;
     state.showLoader = false;
 
@@ -40,68 +38,68 @@ const mutations = {
     }
     this.$router.push('/');
   },
-  [mutation.SIGNOUT](state) {
+  ["SIGNOUT"](state) {
     state.showLoader = true;
     state.userdata = null;
     state.isAuthenticated = false;
 
     this.$router.push('/signin');
   },
-  [mutation.SIGNOUT_SUCCESS](state) {
+  ["SIGNOUT_SUCCESS"](state) {
     state.showLoader = false;
     state.userdata = null;
     window.localStorage.clear();
     sessionStorage.clear();
     this.$router.push('/signin');
   },
-  [mutation.SIGNOUT_FAILED](state) {
+  ["SIGNOUT_FAILED"](state) {
     state.showLoader = false;
   },
 
 
   /**User roles */
-  [mutation.FETCH_ROLES](state) {
+  ["FETCH_ROLES"](state) {
     state.showLoader = true;
   },
-  [mutation.FETCH_ROLES_ERROR](state) {
+  ["FETCH_ROLES_ERROR"](state) {
     state.showLoader = false;
   },
-  [mutation.FETCH_ROLES_FAILED](state) {
+  ["FETCH_ROLES_FAILED"](state) {
     state.showLoader = false;
   },
-  [mutation.FETCH_ROLES_SUCCESS](state, payload) {
+  ["FETCH_ROLES_SUCCESS"](state, payload) {
     state.showLoader = false;
     state.roles = payload;
   },
 
 
   /** Role privileges */
-  [mutation.REQUEST_PRIVILEGES](state) {
+  ["REQUEST_PRIVILEGES"](state) {
     state.showLoader = true;
   },
-  [mutation.REQUEST_PRIVILEGES_ERROR](state) {
+  ["REQUEST_PRIVILEGES_ERROR"](state) {
     state.showLoader = false;
   },
-  [mutation.REQUEST_PRIVILEGES_FAILED](state) {
+  ["REQUEST_PRIVILEGES_FAILED"](state) {
     state.showLoader = false;
   },
-  [mutation.REQUEST_PRIVILEGES_SUCCESS](state, payload) {
+  ["REQUEST_PRIVILEGES_SUCCESS"](state, payload) {
     state.showLoader = false;
     state.privileges = payload;
   }
 };
 const actions = {
   async _authenticate_then_login({ commit }, payload) {
-    commit(mutation.SIGNIN);
+    commit("SIGNIN");
     await this.$authapi.$post(`auth/signin`, payload)
       .then(response => {
         if (response) {
-          commit(mutation.SIGNIN_SUCCESS, response);
+          commit("SIGNIN_SUCCESS", response);
 
         }
 
       }).catch(error => {
-        commit(mutation.SIGNIN_ERROR);
+        commit("SIGNIN_ERROR");
         localStorage.clear();
 
       });
@@ -114,39 +112,39 @@ const actions = {
     this.$router.push('/signin');
   },
   async logout({ commit }) {
-    commit(mutation.SIGNOUT)
+    commit("SIGNOUT")
     /**await this.$api.$get(`auth/signout`)
       .then(response => {
         if (response.result == 'OK') {
-          commit(mutation.SIGNOUT_SUCCESS);
+          commit("SIGNOUT_SUCCESS);
 
         }
 
 
       }).catch(error => {
-        commit(mutation.SIGNOUT_FAILED);
+        commit("SIGNOUT_FAILED);
 
       });
     **/
   },
   async fetchuserroles({ commit }) {
-    commit(mutation.FETCH_ROLES);
+    commit("FETCH_ROLES");
     await this.$api.$get(`auth/roles/`).then(response => {
       if (response != null) {
-        commit(mutation.FETCH_ROLES_SUCCESS, response)
+        commit("FETCH_ROLES_SUCCESS", response)
       }
     }).catch(error => {
-      commit(mutation.FETCH_ROLES_FAILED);
+      commit("FETCH_ROLES_FAILED");
       console.log(error);
 
     });
   },
   async request_role_privileges({ commit }) {
-    commit(mutation.REQUEST_PRIVILEGES);
+    commit("REQUEST_PRIVILEGES");
     await this.$api.$get(`auth/authorities/`).then(response => {
-      commit(mutation.REQUEST_PRIVILEGES_SUCCESS, response)
+      commit("REQUEST_PRIVILEGES_SUCCESS", response)
     }).catch(error => {
-      commit(mutation.REQUEST_PRIVILEGES_FAILED);
+      commit("REQUEST_PRIVILEGES_FAILED");
       console.log(error);
 
     });
