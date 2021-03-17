@@ -6,37 +6,31 @@ const state = () => ({
 });
 
 const mutations = {
-  [mutation.SIGNUP](state) {
+  ["SIGNUP"](state) {
     state.isLoading = true;
   },
-  [mutation.SIGNUP_SUCCESS](state, payload) {
+  ["SIGNUP_SUCCESS"](state, payload) {
     state.isLoading = false;
     state.userdata = payload;
   },
-  [mutation.SIGNUP_FAILED](state) {
+  ["SIGNUP_FAILED"](state) {
     state.isLoading = false;
   },
-  [mutation.SIGNUP_ERROR](state) {
+  ["SIGNUP_ERROR"](state) {
     state.isLoading = false;
   }
 };
 const actions = {
-  async signup({
-    commit
-  }, payload) {
-    commit(mutation.SIGNUP);
+  async signup({ commit }, payload) {
+    commit("SIGNUP");
     await this.$api.$post(`auth/signup/`, payload)
       .then(response => {
         if (response.message != null) {
-          commit(mutation.SIGNUP_SUCCESS, response);
+          commit("SIGNUP_SUCCESS", response);
           this.$router.push('/signin');
         }
-
-
       }).catch(error => {
-        commit(mutation.SIGNUP_FAILED);
-
-
+        commit("SIGNUP_FAILED");
       });
   }
 
