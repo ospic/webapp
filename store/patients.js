@@ -1,4 +1,3 @@
-import * as mutation from './mutation-types';
 const state = () => ({
   showLoader: Boolean,
   patient: {},
@@ -8,108 +7,108 @@ const state = () => ({
 
 const mutations = {
 
-  [mutation.GET_PATIENTS](state) {
+  ["GET_PATIENTS"](state) {
     state.showLoader = true;
   },
-  [mutation.GET_PATIENTS_FAILED](state) {
+  ["GET_PATIENTS_FAILED"](state) {
     state.showLoader = false;
   },
-  [mutation.GET_PATIENTS_ERROR](state) {
+  ["GET_PATIENTS_ERROR"](state) {
     state.showLoader = false;
   },
-  [mutation.GET_PATIENTS_SUCCESS](state, payload) {
+  ["GET_PATIENTS_SUCCESS"](state, payload) {
     state.showLoader = false;
     state.patients = payload;
 
   },
-  [mutation.GET_PATIENT_TRENDS](state) {
+  ["GET_PATIENT_TRENDS"](state) {
     state.showLoader = true;
   },
-  [mutation.GET_PATIENT_TRENDS_FAILED](state) {
+  ["GET_PATIENT_TRENDS_FAILED"](state) {
     state.showLoader = false;
   },
-  [mutation.GET_PATIENT_TRENDS_ERROR](state) {
+  ["GET_PATIENT_TRENDS_ERROR"](state) {
     state.showLoader = false;
   },
-  [mutation.GET_PATIENT_TRENDS_SUCCESS](state, payload) {
+  ["GET_PATIENT_TRENDS_SUCCESS"](state, payload) {
     state.showLoader = false;
     state.trends = payload;
 
   },
-  [mutation.CREATE_PATIENTS](state) {
+  ["CREATE_PATIENTS"](state) {
     state.showLoader = true;
   },
-  [mutation.CREATE_PATIENTS_FAILED](state) {
+  ["CREATE_PATIENTS_FAILED"](state) {
     state.showLoader = false;
   },
-  [mutation.CREATE_PATIENTS_ERROR](state) {
+  ["CREATE_PATIENTS_ERROR"](state) {
     state.showLoader = false;
   },
-  [mutation.CREATE_PATIENTS_SUCCESS](state, payload) {
+  ["CREATE_PATIENTS_SUCCESS"](state, payload) {
     state.showLoader = false;
     this.$router.push('/patients/' + payload.id);
   },
 
-  [mutation.UPDATE_PATIENT_SUCCESS](state, payload) {
+  ["UPDATE_PATIENT_SUCCESS"](state, payload) {
     state.showLoader = false;
     state.patients = payload;
 
   },
-  [mutation.UPDATE_PATIENT](state) {
+  ["UPDATE_PATIENT"](state) {
     state.showLoader = true;
   },
-  [mutation.UPDATE_PATIENT_FAILED](state) {
+  ["UPDATE_PATIENT_FAILED"](state) {
     state.showLoader = false;
   },
-  [mutation.UPDATE_PATIENT_ERROR](state) {
+  ["UPDATE_PATIENT_ERROR"](state) {
     state.showLoader = false;
   },
-  [mutation.UPDATE_PATIENT_SUCCESS](state, payload) {
+  ["UPDATE_PATIENT_SUCCESS"](state, payload) {
     state.showLoader = false;
     state.patient = payload;
 
   },
   //Delete Patient Mutations 
 
-  [mutation.DELETE_PATIENT](state) {
+  ["DELETE_PATIENT"](state) {
     state.showLoader = true;
   },
-  [mutation.DELETE_PATIENT_FAILED](state) {
+  ["DELETE_PATIENT_FAILED"](state) {
     state.showLoader = false;
   },
-  [mutation.DELETE_PATIENT_ERROR](state) {
+  ["DELETE_PATIENT_ERROR"](state) {
     state.showLoader = false;
   },
-  [mutation.DELETE_PATIENT_SUCCESS](state, payload) {
+  ["DELETE_PATIENT_SUCCESS"](state, payload) {
     state.showLoader = false;
     state.patient = payload;
   },
 
   //Admit patient
-  [mutation.ADMIT_PATIENT](state) {
+  ["ADMIT_PATIENT"](state) {
     state.showLoader = true;
   },
-  [mutation.ADMIT_PATIENT_FAILED](state) {
+  ["ADMIT_PATIENT_FAILED"](state) {
     state.showLoader = false;
   },
-  [mutation.ADMIT_PATIENT_ERROR](state) {
+  ["ADMIT_PATIENT_ERROR"](state) {
     state.showLoader = false;
   },
-  [mutation.ADMIT_PATIENT_SUCCESS](state, payload) {
+  ["ADMIT_PATIENT_SUCCESS"](state, payload) {
     state.showLoader = false;
     this.$router.push('/consultations/' + payload);
   },
   //End patient admission
-  [mutation.END_ADMISSION](state) {
+  ["END_ADMISSION"](state) {
     state.showLoader = true;
   },
-  [mutation.END_ADMISSION_FAILED](state) {
+  ["END_ADMISSION_FAILED"](state) {
     state.showLoader = false;
   },
-  [mutation.END_ADMISSION_ERROR](state) {
+  ["END_ADMISSION_ERROR"](state) {
     state.showLoader = false;
   },
-  [mutation.END_ADMISSION_SUCCESS](state, payload) {
+  ["END_ADMISSION_SUCCESS"](state, payload) {
     state.showLoader = false;
     this.$router.push('/consultations/' + payload);
   },
@@ -117,98 +116,98 @@ const mutations = {
 }
 const actions = {
   async retrievepatients({ commit }) {
-    commit(mutation.GET_PATIENTS);
+    commit("GET_PATIENTS");
     await this.$api.$get(`patients/`)
       .then(response => {
-        commit(mutation.GET_PATIENTS_SUCCESS, response);
+        commit("GET_PATIENTS_SUCCESS", response);
 
       }).catch(error => {
-        commit(mutation.GET_PATIENTS_ERROR);
+        commit("GET_PATIENTS_ERROR");
         console.log(error);
 
       });
 
   },
   async get_patient_trends({ commit }) {
-    commit(mutation.GET_PATIENTS);
+    commit("GET_PATIENTS");
     await this.$api.$get(`patients/?command=trends`)
       .then(response => {
-        commit(mutation.GET_PATIENT_TRENDS_SUCCESS, response);
+        commit("GET_PATIENT_TRENDS_SUCCESS", response);
 
       }).catch(error => {
-        commit(mutation.GET_PATIENT_TRENDS_ERROR);
+        commit("GET_PATIENT_TRENDS_ERROR");
         console.log(error);
 
       });
 
   },
   async create_new_patient({ commit }, payload) {
-    commit(mutation.CREATE_PATIENTS);
+    commit("CREATE_PATIENTS");
     await this.$api.$post(`patients/`, payload)
       .then(response => {
         if (response.id !== null) {
-          commit(mutation.CREATE_PATIENTS_SUCCESS, response);
+          commit("CREATE_PATIENTS_SUCCESS", response);
         }
 
       }).catch(error => {
-        commit(mutation.CREATE_PATIENTS_ERROR);
+        commit("CREATE_PATIENTS_ERROR");
         console.log(error);
 
       });
 
   },
   async update_patient({ commit }, payload) {
-    commit(mutation.UPDATE_PATIENT);
+    commit("UPDATE_PATIENT");
     await this.$api.$put(`patients/${payload.id}/`, payload)
       .then(response => {
-        commit(mutation.UPDATE_PATIENT_SUCCESS, response);
+        commit("UPDATE_PATIENT_SUCCESS", response);
 
       }).catch(error => {
-        commit(mutation.UPDATE_PATIENT_ERROR);
+        commit("UPDATE_PATIENT_ERROR");
         console.log(error);
 
       });
 
   },
   async delete_patient({ commit }, payload) {
-    commit(mutation.DELETE_PATIENT);
+    commit("DELETE_PATIENT");
     await this.$api.$delete(`patients/${payload}`)
       .then(response => {
-        commit(mutation.DELETE_PATIENT_SUCCESS, response);
+        commit("DELETE_PATIENT_SUCCESS", response);
 
       }).catch(error => {
-        commit(mutation.DELETE_PATIENT_ERROR);
+        commit("DELETE_PATIENT_ERROR");
         console.log(error);
 
       });
 
   },
   async admit_patient({ commit }, payload) {
-    commit(mutation.ADMIT_PATIENT);
+    commit("ADMIT_PATIENT");
     await this.$api.$post(`admissions/`, payload)
       .then(response => {
         if (response.message !== null) {
-          commit(mutation.ADMIT_PATIENT_SUCCESS, payload.serviceId);
+          commit("ADMIT_PATIENT_SUCCESS", payload.serviceId);
 
         }
       }).catch(error => {
-        commit(mutation.ADMIT_PATIENT_ERROR);
+        commit("ADMIT_PATIENT_ERROR");
         console.log(error);
 
       });
 
   },
   async end_patient_admission({ commit }, payload) {
-    commit(mutation.END_ADMISSION);
+    commit("END_ADMISSION");
     await this.$api.$post(`admissions/end`, payload)
       .then(response => {
         if (response.message !== null) {
-          commit(mutation.END_ADMISSION_SUCCESS, payload.serviceId);
+          commit("END_ADMISSION_SUCCESS", payload.serviceId);
 
         }
 
       }).catch(error => {
-        commit(mutation.END_ADMISSION_ERROR);
+        commit("END_ADMISSION_ERROR");
         console.log(error);
 
       });
@@ -240,7 +239,7 @@ const getters = {
 export default {
   namespaced: false,
   state,
-  mutations,
-  actions,
+  mutationS",
+  actionS",
   getters
 }
