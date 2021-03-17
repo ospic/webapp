@@ -1,4 +1,3 @@
-import * as mutation from './mutation-types';
 const state = () => ({
   showLoader: Boolean,
   departments: [],
@@ -7,31 +6,31 @@ const state = () => ({
 
 const mutations = {
   //CREATE DEPARTMENT
-  [mutation.CREATE_DEPARTMENT](state) {
+  ["CREATE_DEPARTMENT"](state) {
     state.showLoader = true;
   },
-  [mutation.CREATE_DEPARTMENT_FAILED](state) {
+  ["CREATE_DEPARTMENT_FAILED"](state) {
     state.showLoader = false;
   },
-  [mutation.CREATE_DEPARTMENT_ERROR](state) {
+  ["CREATE_DEPARTMENT_ERROR"](state) {
     state.showLoader = false;
   },
-  [mutation.CREATE_DEPARTMENT_SUCCESS](state, payload) {
+  ["CREATE_DEPARTMENT_SUCCESS"](state, payload) {
     state.showLoader = false;
     state.department = payload;
   },
 
   //GET DEPARTMENTS
-  [mutation.GET_DEPARTMENTS](state) {
+  ["GET_DEPARTMENTS"](state) {
     state.showLoader = true;
   },
-  [mutation.GET_DEPARTMENTS_FAILED](state) {
+  ["GET_DEPARTMENTS_FAILED"](state) {
     state.showLoader = false;
   },
-  [mutation.GET_DEPARTMENTS_ERROR](state) {
+  ["GET_DEPARTMENTS_ERROR"](state) {
     state.showLoader = false;
   },
-  [mutation.GET_DEPARTMENTS_SUCCESS](state, payload) {
+  ["GET_DEPARTMENTS_SUCCESS"](state, payload) {
     state.showLoader = false;
     state.departments = payload;
   },
@@ -40,13 +39,13 @@ const mutations = {
 const actions = {
 
   async create_department({ commit }, payload) {
-    commit(mutation.CREATE_DEPARTMENT);
+    commit("CREATE_DEPARTMENT");
     await this.$api.$post('departments/', payload)
       .then(response => {
         console.log(response)
-        commit(mutation.CREATE_DEPARTMENT_SUCCESS, response);
+        commit("CREATE_DEPARTMENT_SUCCESS", response);
       }).catch(error => {
-        commit(mutation.CREATE_DEPARTMENT_ERROR);
+        commit("CREATE_DEPARTMENT_ERROR");
         console.log(error);
 
       });
@@ -54,12 +53,12 @@ const actions = {
   },
 
   async retrieve_departments({ commit }) {
-    commit(mutation.GET_DEPARTMENTS);
+    commit("GET_DEPARTMENTS");
     await this.$api.$get('departments/')
       .then(response => {
-        commit(mutation.GET_DEPARTMENTS_SUCCESS, response);
+        commit("GET_DEPARTMENTS_SUCCESS", response);
       }).catch(error => {
-        commit(mutation.GET_DEPARTMENTS_ERROR);
+        commit("GET_DEPARTMENTS_ERROR");
         console.log(error);
 
       });
