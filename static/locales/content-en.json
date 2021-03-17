@@ -67,7 +67,8 @@
       "rolesandprivileges":"Roles & Authorities",
       "transactions":"Transactions",
       "bills": "Service Bill's",
-      "financereports":"Financial Report's"
+      "financereports":"Financial Report's",
+      "medicalservices":"Medical Services"
     },
     "message": {
       "nodataavailable":"No Data available ...",
@@ -136,6 +137,9 @@
       "editrole":"Edit role",
       "staffs":"Staffs",
       "services":"Services",
+
+      "medicalservices":"Medical Services",
+      "otherservices":"Other services",
       "newservice":"Add medical service",
       "editservice":"Edit medical service",
       "servicesmanagement":"Services Management",

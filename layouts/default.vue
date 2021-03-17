@@ -302,7 +302,7 @@ export default {
           ]
         },
         {
-          title: "label.menu.laboratory",
+          title: "label.menu.medicalservices",
           icon: "mdi-octagon",
           permissions: "ALL_FUNCTIONS",
           menus: [
@@ -318,6 +318,12 @@ export default {
               icon: "mdi-radioactive",
               to: "/radiology",
 
+              permissions: "ALL_FUNCTIONS"
+            },
+            {
+              title: "label.titles.otherservices",
+              to: "/services",
+              icon: "mdi-help-circle",
               permissions: "ALL_FUNCTIONS"
             }
           ]
@@ -337,12 +343,6 @@ export default {
               title: "label.titles.departments",
               to: "/departments",
               icon: "mdi-office-building",
-              permissions: "ALL_FUNCTIONS"
-            },
-            {
-              title: "label.titles.services",
-              to: "/services",
-              icon: "mdi-help-circle",
               permissions: "ALL_FUNCTIONS"
             }
           ]
