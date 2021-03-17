@@ -1,4 +1,3 @@
-import * as mutation from './mutation-types';
 const state = () => ({
   showLoader: Boolean,
   ward: {},
@@ -49,30 +48,30 @@ const mutations = {
     state.showLoader = false;
   },
 
-  [mutation.GET_WARDS](state) {
+  ["GET_WARDS"](state) {
     state.showLoader = true;
   },
-  [mutation.GET_WARDS_FAILED](state) {
+  ["GET_WARDS_FAILED"](state) {
     state.showLoader = false;
   },
-  [mutation.GET_WARDS_ERROR](state) {
+  ["GET_WARDS_ERROR"](state) {
     state.showLoader = false;
   },
-  [mutation.GET_WARDS_SUCCESS](state, payload) {
+  ["GET_WARDS_SUCCESS"](state, payload) {
     state.showLoader = false;
     state.wards = payload;
   },
 
-  [mutation.GET_BEDS](state) {
+  ["GET_BEDS"](state) {
     state.showLoader = true;
   },
-  [mutation.GET_BEDS_FAILED](state) {
+  ["GET_BEDS_FAILED"](state) {
     state.showLoader = false;
   },
-  [mutation.GET_BEDS_ERROR](state) {
+  ["GET_BEDS_ERROR"](state) {
     state.showLoader = false;
   },
-  [mutation.GET_BEDS_SUCCESS](state, payload) {
+  ["GET_BEDS_SUCCESS"](state, payload) {
     state.showLoader = false;
     state.beds = payload;
 
@@ -121,26 +120,26 @@ const actions = {
 
 
   async retrieve_all_wards({ commit }) {
-    commit(mutation.GET_WARDS);
+    commit("GET_WARDS");
     await this.$api.$get(`wards/beds/`)
       .then(response => {
-        commit(mutation.GET_WARDS_SUCCESS, response);
+        commit("GET_WARDS_SUCCESS", response);
 
       }).catch(error => {
-        commit(mutation.GET_WARDS_ERROR);
+        commit("GET_WARDS_ERROR");
         console.log(error);
 
       });
 
   },
   async retrieve_all_ward_with_beds({ commit }) {
-    commit(mutation.GET_WARDS);
+    commit("GET_WARDS");
     await this.$api.$get(`wards/`)
       .then(response => {
-        commit(mutation.GET_BEDS_SUCCESS, response);
+        commit("GET_BEDS_SUCCESS", response);
 
       }).catch(error => {
-        commit(mutation.GET_BEDS_ERROR);
+        commit("GET_BEDS_ERROR");
         console.log(error);
 
       });
