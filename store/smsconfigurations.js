@@ -1,4 +1,3 @@
-import * as mutation from './mutation-types';
 const state = () => ({
   showLoader: Boolean,
   smsconfiguration: {},
@@ -7,110 +6,110 @@ const state = () => ({
 
 const mutations = {
   /** Retrieve sms configurations */
-  [mutation.GET_SMS_CONFIG](state) {
+  ["GET_SMS_CONFIG"](state) {
     state.showLoader = true;
   },
-  [mutation.GET_SMS_CONFIG_FAILED](state) {
+  ["GET_SMS_CONFIG_FAILED"](state) {
     state.showLoader = false;
   },
-  [mutation.GET_SMS_CONFIG_ERROR](state) {
+  ["GET_SMS_CONFIG_ERROR"](state) {
     state.showLoader = false;
   },
-  [mutation.GET_SMS_CONFIG_SUCCESS](state, payload) {
+  ["GET_SMS_CONFIG_SUCCESS"](state, payload) {
     state.showLoader = false;
     state.smsconfigurations = payload;
   },
 
   /** Create new sms configuration */
-  [mutation.CREATE_SMS_CONFIG](state) {
+  ["CREATE_SMS_CONFIG"](state) {
     state.showLoader = true;
   },
-  [mutation.CREATE_SMS_CONFIG_FAILED](state) {
+  ["CREATE_SMS_CONFIG_FAILED"](state) {
     state.showLoader = false;
   },
-  [mutation.CREATE_SMS_CONFIG_ERROR](state) {
+  ["CREATE_SMS_CONFIG_ERROR"](state) {
     state.showLoader = false;
   },
-  [mutation.CREATE_SMS_CONFIG_SUCCESS](state, payload) {
+  ["CREATE_SMS_CONFIG_SUCCESS"](state, payload) {
     state.showLoader = false;
   },
 
   /**Update SMS configurations */
-  [mutation.UPDATE_SMS_CONFIG](state) {
+  ["UPDATE_SMS_CONFIG"](state) {
     state.showLoader = true;
   },
-  [mutation.UPDATE_SMS_CONFIG_FAILED](state) {
+  ["UPDATE_SMS_CONFIG_FAILED"](state) {
     state.showLoader = false;
   },
-  [mutation.UPDATE_SMS_CONFIG_ERROR](state) {
+  ["UPDATE_SMS_CONFIG_ERROR"](state) {
     state.showLoader = false;
   },
-  [mutation.UPDATE_SMS_CONFIG_SUCCESS](state, payload) {
+  ["UPDATE_SMS_CONFIG_SUCCESS"](state, payload) {
     state.showLoader = false;
   },
 
   /**Activate SMS configurations */
 
   /**Update SMS configurations */
-  [mutation.ACTIVATE_SMS_CONFIG](state) {
+  ["ACTIVATE_SMS_CONFIG"](state) {
     state.showLoader = true;
   },
-  [mutation.ACTIVATE_SMS_CONFIG_FAILED](state) {
+  ["ACTIVATE_SMS_CONFIG_FAILED"](state) {
     state.showLoader = false;
   },
-  [mutation.ACTIVATE_SMS_CONFIG_ERROR](state) {
+  ["ACTIVATE_SMS_CONFIG_ERROR"](state) {
     state.showLoader = false;
   },
-  [mutation.ACTIVATE_SMS_CONFIG_SUCCESS](state, payload) {
+  ["ACTIVATE_SMS_CONFIG_SUCCESS"](state, payload) {
     state.showLoader = false;
   },
 
 }
 const actions = {
   async fetch_sms_configurations({ commit }) {
-    commit(mutation.GET_SMS_CONFIG);
+    commit("GET_SMS_CONFIG");
     await this.$api.$get(`configurations/sms`)
       .then(response => {
-        commit(mutation.GET_SMS_CONFIG_SUCCESS, response);
+        commit("GET_SMS_CONFIG_SUCCESS", response);
 
       }).catch(error => {
-        commit(mutation.GET_SMS_CONFIG_ERROR);
+        commit("GET_SMS_CONFIG_ERROR");
         console.log(error);
 
       });
 
   },
   async create_sms_configuration({ commit }, payload) {
-    commit(mutation.CREATE_SMS_CONFIG);
+    commit("CREATE_SMS_CONFIG");
     await this.$api.$post(`configurations/sms`, payload)
       .then(response => {
-        commit(mutation.CREATE_SMS_CONFIG_SUCCESS, response);
+        commit("CREATE_SMS_CONFIG_SUCCESS", response);
       }).catch(error => {
-        commit(mutation.CREATE_SMS_CONFIG_FAILED);
+        commit("CREATE_SMS_CONFIG_FAILED");
         console.log(error);
 
       });
 
   },
   async update_sms_configuration({ commit }, payload) {
-    commit(mutation.UPDATE_SMS_CONFIG);
+    commit("UPDATE_SMS_CONFIG");
     await this.$api.$put(`configurations/sms/${payload.id}/`, payload)
       .then(response => {
-        commit(mutation.UPDATE_SMS_CONFIG_SUCCESS, response);
+        commit("UPDATE_SMS_CONFIG_SUCCESS", response);
       }).catch(error => {
-        commit(mutation.UPDATE_SMS_CONFIG_FAILED);
+        commit("UPDATE_SMS_CONFIG_FAILED");
         console.log(error);
 
       });
 
   },
   async activate_sms_configuration({ commit }, id) {
-    commit(mutation.ACTIVATE_SMS_CONFIG);
+    commit("ACTIVATE_SMS_CONFIG");
     await this.$api.$put(`configurations/sms/${id}/activate`)
       .then(response => {
-        commit(mutation.ACTIVATE_SMS_CONFIG_SUCCESS, response);
+        commit("ACTIVATE_SMS_CONFIG_SUCCESS", response);
       }).catch(error => {
-        commit(mutation.ACTIVATE_SMS_CONFIG_FAILED);
+        commit("ACTIVATE_SMS_CONFIG_FAILED");
         console.log(error);
 
       });
