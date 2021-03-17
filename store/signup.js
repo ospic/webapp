@@ -1,4 +1,4 @@
-import * as mutation from './mutation-types';
+
 const state = () => ({
   registration: {},
   isLoading: Boolean,
