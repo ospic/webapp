@@ -1,4 +1,3 @@
-import * as mutation from './mutation-types';
 const state = () => ({
   showLoader: Boolean,
   statistics: []
@@ -8,16 +7,16 @@ const mutations = {
 
 
   //End patient admission
-  [mutation.STATISTICS](state) {
+  ["STATISTICS"](state) {
     state.showLoader = true;
   },
-  [mutation.STATISTICS_FAILED](state) {
+  ["STATISTICS_FAILED"](state) {
     state.showLoader = false;
   },
-  [mutation.STATISTICS_ERROR](state) {
+  ["STATISTICS_ERROR"](state) {
     state.showLoader = false;
   },
-  [mutation.STATISTICS_SUCCESS](state, payload) {
+  ["STATISTICS_SUCCESS"](state, payload) {
     state.showLoader = false;
     state.statistics = payload;
   },
@@ -25,12 +24,12 @@ const mutations = {
 const actions = {
 
   async retrieve_statistics({ commit }) {
-    commit(mutation.STATISTICS);
+    commit("STATISTICS");
     await this.$api.$get('statistics/')
       .then(response => {
-        commit(mutation.STATISTICS_SUCCESS, response);
+        commit("STATISTICS_SUCCESS", response);
       }).catch(error => {
-        commit(mutation.STATISTICS_ERROR);
+        commit("STATISTICS_ERROR");
         console.log(error);
 
       });
