@@ -1,4 +1,3 @@
-import * as mutation from './mutation-types';
 const state = () => ({
   showLoader: Boolean,
   blood: {},
