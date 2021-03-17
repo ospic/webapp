@@ -9,31 +9,31 @@ const state = () => ({
 const mutations = {
 
   /**Populate blood bank  */
-  [mutation.FETCH_BLOODS](state) {
+  ["FETCH_BLOODS"](state) {
     state.showLoader = true;
   },
-  [mutation.FETCH_BLOODS_FAILED](state) {
+  ["FETCH_BLOODS_FAILED"](state) {
     state.showLoader = false;
   },
-  [mutation.FETCH_BLOODS_ERROR](state) {
+  ["FETCH_BLOODS_ERROR"](state) {
     state.showLoader = false;
   },
-  [mutation.FETCH_BLOODS_SUCCESS](state, payload) {
+  ["FETCH_BLOODS_SUCCESS"](state, payload) {
     state.showLoader = false;
     state.bloods = payload;
   },
 
   /**Update blood bank  */
-  [mutation.UPDATE_BLOOD](state) {
+  ["UPDATE_BLOOD"](state) {
     state.showLoader = true;
   },
-  [mutation.UPDATE_BLOOD_FAILED](state) {
+  ["UPDATE_BLOOD_FAILED"](state) {
     state.showLoader = false;
   },
-  [mutation.UPDATE_BLOOD_ERROR](state) {
+  ["UPDATE_BLOOD_ERROR"](state) {
     state.showLoader = false;
   },
-  [mutation.UPDATE_BLOOD_SUCCESS](state, payload) {
+  ["UPDATE_BLOOD_SUCCESS"](state, payload) {
     state.showLoader = false;
 
   },
@@ -41,23 +41,23 @@ const mutations = {
 }
 const actions = {
   async fetchbloodsbank({ commit }) {
-    commit(mutation.FETCH_BLOODS);
+    commit("FETCH_BLOODS");
     await this.$api.$get(`bloods/`)
       .then(response => {
-        commit(mutation.FETCH_BLOODS_SUCCESS, response);
+        commit("FETCH_BLOODS_SUCCESS", response);
 
       }).catch(error => {
-        commit(mutation.FETCH_BLOODS_ERROR);
+        commit("FETCH_BLOODS_ERROR");
         console.log(error);
 
       });
   },
   async updatebloodgroup({ commit }, payload) {
-    commit(mutation.UPDATE_BLOOD);
+    commit("UPDATE_BLOOD");
     await this.$api.$patch(`bloods/`, payload).then(response => {
-      commit(mutation.UPDATE_BLOOD_SUCCESS, response);
+      commit("UPDATE_BLOOD_SUCCESS", response);
     }).catch(error => {
-      commit(mutation.UPDATE_BLOOD_ERROR);
+      commit("UPDATE_BLOOD_ERROR");
       console.log(error);
     });
   },
