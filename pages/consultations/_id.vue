@@ -247,7 +247,7 @@
                 :show-arrows="$vuetify.breakpoint.mobile"
               >
                 <v-tab class="font-weight-normal">
-                  <v-icon small left>mdi-medical-bag</v-icon>
+                  <v-icon small left>mdi-stethoscope</v-icon>
                   Diagnoses
                 </v-tab>
 
@@ -258,26 +258,31 @@
                     getServiceChargesAndCosts();
                   "
                 >
-                  <v-icon small left>mdi-plus</v-icon>
+                  <v-icon small left>mdi-plus-box</v-icon>
                   Services
                 </v-tab>
                 <v-tab
                   class="font-weight-normal"
                   @click="getServiceChargesAndCosts()"
                 >
-                  <v-icon small left>mdi-medical-bag</v-icon>
+                  <v-icon small left>mdi-pill</v-icon>
                   Medications
+                </v-tab>
+                <v-tab class="font-weight-normal">
+                  <v-icon small left>mdi-microscope</v-icon>
+                  Laboratory reports
                 </v-tab>
                 <v-tab
                   class="font-weight-normal"
                   @click="getServiceChargesAndCosts"
                 >
                   <v-icon small left>mdi-credit-card</v-icon>
-                  Charges & Costs
+                  Costs
                 </v-tab>
+
                 <v-tab class="font-weight-normal" @click="getServiceAdmissions">
-                  <v-icon small left>mdi-history</v-icon>
-                  Admission History
+                  <v-icon small left>mdi-bed</v-icon>
+                  Admissions
                 </v-tab>
               </v-tabs>
               <v-tabs-items vertical v-model="tab" class="default">
@@ -299,6 +304,10 @@
                     :transaction="service_transactions"
                     :isActive="service.isActive"
                   ></tb-medicines>
+                </v-tab-item>
+
+                <v-tab-item>
+                  <tb-reports></tb-reports>
                 </v-tab-item>
                 <v-tab-item>
                   <tb-charges :transaction="service_transactions"></tb-charges>
@@ -329,6 +338,7 @@ import ConsultationsTab from "@/components/profile/tabs/consultations";
 import ChargesAndConstsTab from "@/components/profile/tabs/charges";
 import MedicalServicesTab from "@/components/profile/tabs/medicalservices";
 import MedicineServiceTab from "@/components/profile/tabs/medicines";
+import ReportsTab from "@/components/profile/tabs/reports";
 
 export default {
   props: {
@@ -347,7 +357,8 @@ export default {
     "tb-consultations": ConsultationsTab,
     "tb-charges": ChargesAndConstsTab,
     "tb-medical-services": MedicalServicesTab,
-    "tb-medicines": MedicineServiceTab
+    "tb-medicines": MedicineServiceTab,
+    "tb-reports": ReportsTab
   },
   data: function() {
     return {
