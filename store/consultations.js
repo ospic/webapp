@@ -1,4 +1,3 @@
-import * as mutation from './mutation-types';
 const state = () => ({
   showLoader: Boolean,
   ipdservices: [],
@@ -8,46 +7,46 @@ const state = () => ({
 
 const mutations = {
   //GET ACTIVE OPD SERVICES AVAILABLE
-  [mutation.GET_OPDSERVICES](state) {
+  ["GET_OPDSERVICES"](state) {
     state.showLoader = true;
   },
-  [mutation.GET_OPDSERVICES_FAILED](state) {
+  ["GET_OPDSERVICES_FAILED"](state) {
     state.showLoader = false;
   },
-  [mutation.GET_OPDSERVICES_ERROR](state) {
+  ["GET_OPDSERVICES_ERROR"](state) {
     state.showLoader = false;
   },
-  [mutation.GET_OPDSERVICES_SUCCESS](state, payload) {
+  ["GET_OPDSERVICES_SUCCESS"](state, payload) {
     state.showLoader = false;
     state.opdservices = payload;
   },
 
   //GET ACTIVE IPD SERVICES
-  [mutation.GET_IPDSERVICES](state) {
+  ["GET_IPDSERVICES"](state) {
     state.showLoader = true;
   },
-  [mutation.GET_IPDSERVICES_FAILED](state) {
+  ["GET_IPDSERVICES_FAILED"](state) {
     state.showLoader = false;
   },
-  [mutation.GET_IPDSERVICES_ERROR](state) {
+  ["GET_IPDSERVICES_ERROR"](state) {
     state.showLoader = false;
   },
-  [mutation.GET_IPDSERVICES_SUCCESS](state, payload) {
+  ["GET_IPDSERVICES_SUCCESS"](state, payload) {
     state.showLoader = false;
     state.ipdservices = payload;
   },
 
   //GET ALLSERVICES
-  [mutation.SERVICES](state) {
+  ["SERVICES"](state) {
     state.showLoader = true;
   },
-  [mutation.SERVICES_FAILED](state) {
+  ["SERVICES_FAILED"](state) {
     state.showLoader = false;
   },
-  [mutation.SERVICES_ERROR](state) {
+  ["SERVICES_ERROR"](state) {
     state.showLoader = false;
   },
-  [mutation.SERVICES_SUCCESS](state, payload) {
+  ["SERVICES_SUCCESS"](state, payload) {
     state.showLoader = false;
     state.consultations = payload;
   },
@@ -56,13 +55,13 @@ const mutations = {
 const actions = {
 
   async retrieve_active_opd_services({ commit }) {
-    commit(mutation.GET_OPDSERVICES);
+    commit("GET_OPDSERVICES");
     await this.$api.$get('consultations/?active=activeopd')
       .then(response => {
         console.log(response)
-        commit(mutation.GET_OPDSERVICES_SUCCESS, response);
+        commit("GET_OPDSERVICES_SUCCESS", response);
       }).catch(error => {
-        commit(mutation.GET_OPDSERVICES_ERROR);
+        commit("GET_OPDSERVICES_ERROR");
         console.log(error);
 
       });
@@ -70,28 +69,28 @@ const actions = {
   },
 
   async retrieve_active_ipd_services({ commit }) {
-    commit(mutation.GET_IPDSERVICES);
+    commit("GET_IPDSERVICES");
     await this.$api.$get('consultations/?active=activeipd')
       .then(response => {
-        commit(mutation.GET_IPDSERVICES_SUCCESS, response);
+        commit("GET_IPDSERVICES_SUCCESS", response);
       }).catch(error => {
-        commit(mutation.GET_IPDSERVICES_ERROR);
+        commit("GET_IPDSERVICES_ERROR");
         console.log(error);
 
       });
 
   },
   async fetch_all_services({ commit }) {
-    commit(mutation.SERVICES);
+    commit("SERVICES");
     return await this.$api
       .$get(`consultations/`)
       .then(response => {
         if (response !== null) {
-          commit(mutation.SERVICES_SUCCESS, response);
+          commit("SERVICES_SUCCESS", response);
         }
       })
       .catch(error => {
-        commit(mutation.SERVICES_ERROR);
+        commit("SERVICES_ERROR");
 
       });
   },
