@@ -1,4 +1,3 @@
-import * as mutation from './mutation-types';
 const state = () => ({
   showLoader: Boolean,
   contact: {},
@@ -22,16 +21,16 @@ const mutations = {
   },
 
 
-  [mutation.UPDATE_PATIENT_ADD_CONTACT](state) {
+  ["UPDATE_PATIENT_ADD_CONTACT"](state) {
     state.showLoader = true;
   },
-  [mutation.UPDATE_PATIENT_ADD_CONTACT_FAILED](state) {
+  ["UPDATE_PATIENT_ADD_CONTACT_FAILED"](state) {
     state.showLoader = false;
   },
-  [mutation.UPDATE_PATIENT_ADD_CONTACT_ERROR](state) {
+  ["UPDATE_PATIENT_ADD_CONTACT_ERROR"](state) {
     state.showLoader = false;
   },
-  [mutation.UPDATE_PATIENT_ADD_CONTACT_SUCCESS](state, payload) {
+  ["UPDATE_PATIENT_ADD_CONTACT_SUCCESS"](state, payload) {
     state.showLoader = false;
   },
 }
@@ -52,14 +51,14 @@ const actions = {
 
   },
   async updatepatientcontacts({ commit }, payload) {
-    commit(mutation.UPDATE_PATIENT_ADD_CONTACT);
+    commit("UPDATE_PATIENT_ADD_CONTACT");
     await this.$api.$patch(`contacts/${payload.id}/`, payload.contact)
       .then(response => {
         console.log(response);
-        commit(mutation.UPDATE_PATIENT_ADD_CONTACT_SUCCESS, response);
+        commit("UPDATE_PATIENT_ADD_CONTACT_SUCCESS", response);
 
       }).catch(error => {
-        commit(mutation.UPDATE_PATIENT_ADD_CONTACT_ERROR);
+        commit("UPDATE_PATIENT_ADD_CONTACT_ERROR");
         console.log(error);
 
       });
