@@ -343,6 +343,11 @@ export default {
             "ALL_FUNCTIONS, CREATE_BILL, READ_BILL,UPDATE_BILL,DELETE_BILL",
           menus: [
             {
+              title: "label.menu.dashboard",
+              to: "/finance",
+              permissions: "ALL_FUNCTIONS"
+            },
+            {
               title: "label.menu.bills",
               to: "/finance/bills",
               permissions: "ALL_FUNCTIONS"
