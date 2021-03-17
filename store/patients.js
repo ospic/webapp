@@ -49,11 +49,6 @@ const mutations = {
     this.$router.push('/patients/' + payload.id);
   },
 
-  ["UPDATE_PATIENT_SUCCESS"](state, payload) {
-    state.showLoader = false;
-    state.patients = payload;
-
-  },
   ["UPDATE_PATIENT"](state) {
     state.showLoader = true;
   },
@@ -66,7 +61,6 @@ const mutations = {
   ["UPDATE_PATIENT_SUCCESS"](state, payload) {
     state.showLoader = false;
     state.patient = payload;
-
   },
   //Delete Patient Mutations 
 
@@ -239,7 +233,7 @@ const getters = {
 export default {
   namespaced: false,
   state,
-  mutation,
-  action,
+  mutations,
+  actions,
   getters
 }
