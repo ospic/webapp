@@ -178,15 +178,7 @@
         ></v-icon>
       </v-btn>
     </v-app-bar>
-    <a
-      class="github-fork-ribbon right-bottom fixed "
-      href="https://github.com/ospic/webapp"
-      target="_blank"
-      rel="noopener noreferrer"
-      data-ribbon="Fork me on GitHub"
-      title="Fork me on GitHub"
-      >Fork me on GitHub</a
-    >
+
     <v-main>
       <v-container
         style="background-color: transparent;"
