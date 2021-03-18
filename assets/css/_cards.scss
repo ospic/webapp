@@ -27,8 +27,8 @@ canvas {
   transition: 0.3s;
 }
 .v-list-group {
-  background-color: blue;
+  background-color: transparent;
 }
-.v-list-item__icon & .v-list-group__header__prepend-icon {
+.v-list-item__icon .v-list-group__header__prepend-icon {
   background-color: yellowgreen;
 }
