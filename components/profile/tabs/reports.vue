@@ -13,10 +13,14 @@
                 </ul>
               </v-card-text>
             </div>
+
             <div
-              class="file-icon file-icon-xl ma-3"
-              :data-type="file.type.split('/')[1]"
-            ></div>
+              :class="
+                `ma-3 fi fi-size-xl fi-round-md fi-${file.type.split('/')[1]}`
+              "
+            >
+              <div class="fi-content">{{ file.type.split("/")[1] }}</div>
+            </div>
           </div>
         </v-card>
       </v-col>
