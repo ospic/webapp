@@ -268,7 +268,10 @@
                   <v-icon small left>mdi-pill</v-icon>
                   Medications
                 </v-tab>
-                <v-tab class="font-weight-normal">
+                <v-tab
+                  class="font-weight-normal"
+                  @click="getConsultationLaboratoryReports()"
+                >
                   <v-icon small left>mdi-microscope</v-icon>
                   Laboratory reports
                 </v-tab>
@@ -307,7 +310,7 @@
                 </v-tab-item>
 
                 <v-tab-item>
-                  <tb-reports></tb-reports>
+                  <tb-reports :files="reportfiles"></tb-reports>
                 </v-tab-item>
                 <v-tab-item>
                   <tb-charges :transaction="service_transactions"></tb-charges>
@@ -367,7 +370,8 @@ export default {
       dialog: false,
       admissions: null,
       service_transactions: null,
-      selectedstaffId: null
+      selectedstaffId: null,
+      reportfiles: null
     };
   },
   methods: {
@@ -400,6 +404,18 @@ export default {
         });
     },
     async getServiceChargesAndCosts() {
+      return await this.$api
+        .$get(`consultations/${this.$route.params.id}/files`)
+        .then(response => {
+          if (response !== null) {
+            this.reportfiles = response;
+          }
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    },
+    async getConsultationLaboratoryReports() {
       return await this.$api
         .$get(`transactions/${this.$route.params.id}/consultation`)
         .then(response => {
