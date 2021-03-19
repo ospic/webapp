@@ -312,7 +312,7 @@
                 <v-tab-item>
                   <tb-reports
                     :files="reportfiles"
-                    v-on:updatereport="getConsultationLaboratoryReports"
+                    v-on:update-report="checkevent"
                   ></tb-reports>
                 </v-tab-item>
                 <v-tab-item>
@@ -406,7 +406,7 @@ export default {
           console.log(error);
         });
     },
-    async getServiceChargesAndCosts() {
+    async getConsultationLaboratoryReports() {
       return await this.$api
         .$get(`consultations/${this.$route.params.id}/files`)
         .then(response => {
@@ -418,7 +418,7 @@ export default {
           console.log(error);
         });
     },
-    async getConsultationLaboratoryReports() {
+    async getServiceChargesAndCosts() {
       return await this.$api
         .$get(`transactions/${this.$route.params.id}/consultation`)
         .then(response => {
@@ -448,6 +448,10 @@ export default {
     },
     updatestafflist() {
       this.$store.dispatch("fetchAllStaffs");
+    },
+    checkevent() {
+      console.log("This event");
+      this.getConsultationLaboratoryReports();
     },
     async _assign_staff() {
       if (this.selectedstaffId.id != null) {

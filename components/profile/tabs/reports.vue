@@ -121,7 +121,7 @@ export default {
             this.dialog = false;
             this.currentFile = undefined;
           }
-          this.$emit("updatereport");
+          this.$emit("update-report");
         })
         .catch(error => {
           console.log(error);
