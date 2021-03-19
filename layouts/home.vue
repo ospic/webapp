@@ -37,7 +37,7 @@
             >. Documentation can be found
             <a
               style="color: blue; text-decoration: underline;"
-              href="https://docs.ospicx.com/"
+              href="https://docs.ospicx.com/welcome"
               target="_blank"
               >here</a
             >
