@@ -23,11 +23,16 @@
             >
           </v-card-title>
           <v-card-text>
+            <p>{{ location || "null" }}</p>
+            <v-radio-group row v-model="location" mandatory>
+              <v-radio label="Laboratory" value="laboratory"></v-radio>
+              <v-radio label="Radiology" value="radiology"></v-radio>
+            </v-radio-group>
             <v-file-input
-              v-model="file"
               counter
               show-size
               small-chips
+              @change="selectFile"
               accept="image/png, image/jpeg, image/bmp"
               label="Medical examination report file"
               truncate-length="27"
@@ -37,7 +42,7 @@
             <v-btn @click="dialog = false" color="primary" outlined>Deny</v-btn>
             <v-btn
               class="primary"
-              @click="save"
+              @click="uploadimagefile()"
               :loading="loading"
               :disabled="loading"
               >Upload
@@ -90,8 +95,38 @@ export default {
   data: () => ({
     select: [],
     dialog: false,
-    loading: true,
-    file: null
-  })
+    loading: false,
+    file: undefined,
+    currentFile: undefined,
+    location: null
+  }),
+  methods: {
+    selectFile(file) {
+      this.progress = 0;
+      this.currentFile = file;
+      this.loading = false;
+    },
+    async uploadimagefile() {
+      this.loading = true;
+      const formData = new FormData();
+      formData.append("file", this.currentFile);
+      return await this.$api
+        .$patch(
+          `/consultations/${this.$route.params.id}/${this.location}/`,
+          formData
+        )
+        .then(response => {
+          if (response !== null) {
+            this.loading = false;
+            this.dialog = false;
+            this.currentFile = undefined;
+          }
+          this.$emit("updatereport");
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    }
+  }
 };
 </script>

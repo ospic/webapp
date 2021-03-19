@@ -310,7 +310,10 @@
                 </v-tab-item>
 
                 <v-tab-item>
-                  <tb-reports :files="reportfiles"></tb-reports>
+                  <tb-reports
+                    :files="reportfiles"
+                    v-on:updatereport="getConsultationLaboratoryReports"
+                  ></tb-reports>
                 </v-tab-item>
                 <v-tab-item>
                   <tb-charges :transaction="service_transactions"></tb-charges>
