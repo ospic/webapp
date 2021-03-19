@@ -45,7 +45,7 @@
 
             <a
               style="color: blue; text-decoration: underline;"
-              href="https://ospic.github.io/docs/docs/"
+              href="https://docs.ospicx.com/"
               target="_blank"
               >here</a
             >
