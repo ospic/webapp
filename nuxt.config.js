@@ -42,7 +42,7 @@ export default {
       { name: "apple-mobile-web-app-status-bar-style", content: "#00A756" },
       { name: 'viewport', content: 'width=device-width, initial-scale=1.0' },
       { hid: 'description', name: 'description', content: 'Open source Hospital Management System' },
-      { hid: 'og:image', property: 'og:image', content: "https://hmis.netlify.app/icon.png" || '' },
+      { hid: 'og:image', property: 'og:image', content: "https://app.ospicx.com/icon.png" || '' },
       { name: "google-site-verification", content: "cx99OlrotJDjh6FbXnZFs4lRdaqQ7ksY-SadPjv2CLQ" }
 
 
@@ -136,11 +136,11 @@ export default {
       ogSiteName: "Ospic Hms",
       ogTitle: "Ospic Hospital Management system",
       ogDescription: "Open source Hospital Management System",
-      ogHost: "http://ospic.github.io/webapp/",
+      ogHost: "https://app.ospicx.com/",
       ogImage: "https://a.fsdn.com/con/app/proj/ospic/screenshots/Screenshot%20from%202020-10-23%2020-03-21.png/max/max/1",
       ogUrl: "",
       twitterCard: "Ospic",
-      twitterSite: "elixml",
+      twitterSite: "ospicapp",
 
 
     },
