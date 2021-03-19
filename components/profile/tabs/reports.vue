@@ -33,7 +33,7 @@
               show-size
               small-chips
               @change="selectFile"
-              accept="image/png, image/jpeg, image/bmp"
+              :accept="accepted"
               label="Medical examination report file"
               truncate-length="27"
             ></v-file-input>
@@ -98,7 +98,9 @@ export default {
     loading: false,
     file: undefined,
     currentFile: undefined,
-    location: null
+    location: null,
+    accepted:
+      "image/*,.csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel,.pdf,.doc,.xml,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
   }),
   methods: {
     selectFile(file) {
