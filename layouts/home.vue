@@ -37,7 +37,7 @@
             >. Documentation can be found
             <a
               style="color: blue; text-decoration: underline;"
-              href="https://ospic.github.io/docs/docs/"
+              href="https://docs.ospicx.com/"
               target="_blank"
               >here</a
             >
@@ -45,7 +45,7 @@
 
             <a
               style="color: blue; text-decoration: underline;"
-              href="https://docs.ospicx.com/"
+              href="https://github.com/ospic/webapp"
               target="_blank"
               >here</a
             >
