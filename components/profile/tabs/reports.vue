@@ -9,7 +9,14 @@
         max-width="600"
       >
         <template v-slot:activator="{ on, attrs }">
-          <v-btn color="primary" small outlined v-bind="attrs" v-on="on">
+          <v-btn
+            color="primary"
+            small
+            v-if="hasPermission(permissions)"
+            outlined
+            v-bind="attrs"
+            v-on="on"
+          >
             <v-icon left>
               mdi-file-document
             </v-icon>
@@ -99,6 +106,7 @@ export default {
     file: undefined,
     currentFile: undefined,
     location: null,
+    permissions: "ALL_FUNCTIONS, UPDATE_CONSULTATION",
     accepted:
       "image/*,.csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel,.pdf,.doc,.xml,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
   }),
