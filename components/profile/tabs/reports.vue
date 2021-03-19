@@ -1,5 +1,57 @@
 <template>
   <v-container fluid>
+    <v-row class="mx-2">
+      <v-spacer></v-spacer>
+
+      <v-dialog
+        v-model="dialog"
+        transition="dialog-top-transition"
+        max-width="600"
+      >
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn color="primary" small outlined v-bind="attrs" v-on="on">
+            <v-icon left>
+              mdi-file-document
+            </v-icon>
+            Upload new report file</v-btn
+          >
+        </template>
+        <v-card>
+          <v-card-title class="pa-0 mb-4">
+            <v-toolbar color="primary" dark flat
+              >Upload new patient medical examination report</v-toolbar
+            >
+          </v-card-title>
+          <v-card-text>
+            <v-file-input
+              v-model="file"
+              counter
+              show-size
+              small-chips
+              accept="image/png, image/jpeg, image/bmp"
+              label="Medical examination report file"
+              truncate-length="27"
+            ></v-file-input>
+          </v-card-text>
+          <v-card-actions class="justify-end">
+            <v-btn @click="dialog = false" color="primary" outlined>Deny</v-btn>
+            <v-btn
+              class="primary"
+              @click="save"
+              :loading="loading"
+              :disabled="loading"
+              >Upload
+              <v-icon right dark>
+                mdi-cloud-upload
+              </v-icon>
+              <template v-slot:loader>
+                <span>Uploading...</span>
+              </template>
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+    </v-row>
     <v-row>
       <v-col md="2" sm="6" v-for="(file, i) in files" :key="i">
         <v-card outlined>
@@ -34,6 +86,12 @@ export default {
       type: Array,
       default: null
     }
-  }
+  },
+  data: () => ({
+    select: [],
+    dialog: false,
+    loading: true,
+    file: null
+  })
 };
 </script>
