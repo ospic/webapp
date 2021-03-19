@@ -1,5 +1,30 @@
 <template>
   <v-container fluid>
+    <v-alert prominent type="error" v-if="deletedialog">
+      <v-row align="center">
+        <v-col class="grow">
+          <h2>
+            Do you real want to delete this report file ?
+            <strong>{{ file.name }}</strong>
+          </h2>
+          Remember: This process will parmanently delete this file and you can
+          not undo after that
+        </v-col>
+        <v-col class="shrink">
+          <v-btn
+            color="primary"
+            class="primary"
+            @click.stop="deleteimagefile"
+            :loading="loading"
+            :disabled="loading"
+          >
+            <template v-slot:loader>
+              <span class="white--text">Deleting...</span> </template
+            >Yes Delete</v-btn
+          >
+        </v-col>
+      </v-row>
+    </v-alert>
     <v-row class="mx-2">
       <v-spacer></v-spacer>
 
@@ -76,6 +101,21 @@
                   <li>Unit: {{ file.location }}</li>
                 </ul>
               </v-card-text>
+              <v-card-actions>
+                <v-container fluid>
+                  <v-btn
+                    fab
+                    elevation="1"
+                    color="warning"
+                    x-small
+                    @click="deletefile(file)"
+                  >
+                    <v-icon>
+                      mdi-trash-can-outline
+                    </v-icon>
+                  </v-btn>
+                </v-container>
+              </v-card-actions>
             </div>
 
             <div
@@ -85,6 +125,10 @@
             >
               <div class="fi-content">{{ file.type.split("/")[1] }}</div>
             </div>
+            <!--<v-img
+              :src="file.url"
+              lazy-src="https://aosa.org/wp-content/uploads/2019/04/image-placeholder-350x350.png"
+            ></v-img>-->
           </div>
         </v-card>
       </v-col>
@@ -102,6 +146,8 @@ export default {
   data: () => ({
     select: [],
     dialog: false,
+
+    deletedialog: false,
     loading: false,
     file: undefined,
     currentFile: undefined,
@@ -115,6 +161,10 @@ export default {
       this.progress = 0;
       this.currentFile = file;
       this.loading = false;
+    },
+    deletefile(file) {
+      this.deletedialog = true;
+      this.file = file;
     },
     async uploadimagefile() {
       this.loading = true;
@@ -131,6 +181,21 @@ export default {
             this.dialog = false;
             this.currentFile = undefined;
           }
+          this.$emit("update-report");
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    },
+    async deleteimagefile() {
+      this.loading = true;
+      return await this.$api
+        .$delete(
+          `/consultations/${this.$route.params.id}/${this.file.location}/${this.file.id}`
+        )
+        .then(response => {
+          this.loading = false;
+          this.deletedialog = false;
           this.$emit("update-report");
         })
         .catch(error => {
