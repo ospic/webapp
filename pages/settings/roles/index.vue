@@ -52,7 +52,8 @@
                       <v-col cols="12" sm="12" md="4">
                         <v-text-field
                           v-model="editedItem.name"
-                          label="Name"
+                          label="Role name"
+                          hint="E.g Administrator"
                           required
                         ></v-text-field>
                       </v-col>
