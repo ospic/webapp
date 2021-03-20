@@ -72,7 +72,7 @@
                           :rules="[
                             v => !!v || 'You must select one to continue!'
                           ]"
-                          label="Chips"
+                          label="Select role permissions"
                           required
                         ></v-select>
                       </v-col>
