@@ -28,8 +28,8 @@
 						<table>
 							<tr class="tabletitle">
 								<td class="item"><h2>ID</h2></td>
-								<td class="Hours"><h2>Medicine</h2></td>
-                	<td class="Hours"><h2>Service</h2></td>
+								<td class="Hours"><h2>Service</h2></td>
+                	<td class="Hours"><h2>Medicine</h2></td>
 								<td class="Rate"><h2>Price</h2></td>
 							</tr>
 
