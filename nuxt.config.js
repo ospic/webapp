@@ -8,7 +8,7 @@ export default {
   telemetry: true,
   ssr: false,
   router: {
-    mode: 'history',
+    mode: 'hash',
     base: routerBase,
     routerNameSplitter: "/",
     middleware: ['router']
