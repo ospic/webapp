@@ -1,5 +1,7 @@
 const open = require('opn');
 const routerBase = process.env.DEPLOY_ENV === 'prod' ? '/webapp/' : '/';
+import metajs from './plugins/meta';
+const meta = metajs();
 export default {
   // Disable server-side rendering (https://go.nuxtjs.dev/ssr-mode)
   //target: 'static',
@@ -33,6 +35,7 @@ export default {
     titleTemplate: 'Ospic',
     title: 'Ospic-HMS',
     meta: [
+      ...meta,
       { charset: 'utf-8' },
       /**Chrome, Firefox OS and Opera **/
       { name: "theme-color", content: "#00A756" },
@@ -42,8 +45,16 @@ export default {
       { name: "apple-mobile-web-app-status-bar-style", content: "#00A756" },
       { name: 'viewport', content: 'width=device-width, initial-scale=1.0' },
       { hid: 'description', name: 'description', content: 'Open source Hospital Management System' },
-      { hid: 'og:image', property: 'og:image', content: "https://docs.ospicx.com/preview.png" || '' },
-      { name: "google-site-verification", content: "cx99OlrotJDjh6FbXnZFs4lRdaqQ7ksY-SadPjv2CLQ" }
+      { name: "google-site-verification", content: "cx99OlrotJDjh6FbXnZFs4lRdaqQ7ksY-SadPjv2CLQ" },
+      //Twitter meta-data
+      { hid: "twitter:site", name: "twitter:site", content: "ospicapp" },
+      { hid: "twitter:card", name: "twitter:card", content: "summary_large_image" },
+      { hid: "twitter:image:alt", name: "twitter:image:alt", content: "Ospic application" },
+
+
+
+
+
 
 
     ],
