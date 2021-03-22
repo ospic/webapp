@@ -73,6 +73,21 @@ const mutations = {
   },
 
 
+  /** create role  */
+  ["CREATE_ROLE"](state) {
+    state.showLoader = true;
+  },
+  ["CREATE_ROLE_ERROR"](state) {
+    state.showLoader = false;
+  },
+  ["CREATE_ROLE_FAILED"](state) {
+    state.showLoader = false;
+  },
+  ["CREATE_ROLE_SUCCESS"](state, payload) {
+    state.showLoader = false;
+  },
+
+
   /** Role privileges */
   ["REQUEST_PRIVILEGES"](state) {
     state.showLoader = true;
@@ -130,9 +145,7 @@ const actions = {
   async fetchuserroles({ commit }) {
     commit("FETCH_ROLES");
     await this.$api.$get(`auth/roles/`).then(response => {
-      if (response != null) {
-        commit("FETCH_ROLES_SUCCESS", response)
-      }
+      commit("FETCH_ROLES_SUCCESS", response)
     }).catch(error => {
       commit("FETCH_ROLES_FAILED");
       console.log(error);
@@ -148,8 +161,17 @@ const actions = {
       console.log(error);
 
     });
-  }
+  },
+  async create_role({ commit }, payload) {
+    commit("CREATE_ROLE");
+    await this.$api.$post(`auth/roles/`, payload).then(response => {
+      commit("CREATE_ROLE_SUCCESS", response)
+    }).catch(error => {
+      commit("CREATE_ROLE_FAILED");
+      console.log(error);
 
+    });
+  }
 };
 const getters = {
   isLoggedIn: function (state) {

@@ -150,6 +150,7 @@ export default {
         this.editedItem = Object.assign({}, this.defaultItem);
         this.editedIndex = -1;
       });
+      this.$store.dispatch("fetchuserroles");
     },
     request_data() {
       this.$store.dispatch("request_role_privileges");
@@ -163,7 +164,8 @@ export default {
         );
         this.close();
       } else {
-        console.log("NONE");
+        this.$store.dispatch("create_role", this.editedItem);
+        this.close();
       }
     },
     async update_role_privileges(id, payload) {
@@ -180,6 +182,7 @@ export default {
   },
   beforeMount() {
     this.$store.dispatch("request_role_privileges");
+    this.$store.dispatch("fetchuserroles");
   },
   computed: {
     ...mapGetters({
