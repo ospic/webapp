@@ -128,19 +128,19 @@ const actions = {
   },
   async logout({ commit }) {
     commit("SIGNOUT")
-    /**await this.$api.$get(`auth/signout`)
+  },
+  async update_role_privileges({ commit }, id, payload) {
+    console.log(id);
+    console.log(payload)
+    return await this.$api
+      .$put(`auth/roles/${id}/`, payload)
       .then(response => {
-        if (response.result == 'OK') {
-          commit("SIGNOUT_SUCCESS);
-
-        }
-
-
-      }).catch(error => {
-        commit("SIGNOUT_FAILED);
-
+        this.$router.push(`roles/${id}`);
+        //this.request_data();
+      })
+      .catch(error => {
+        console.log(error);
       });
-    **/
   },
   async fetchuserroles({ commit }) {
     commit("FETCH_ROLES");
