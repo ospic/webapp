@@ -158,10 +158,7 @@ export default {
     },
     save() {
       if (this.editedIndex > -1) {
-        this.update_role_privileges(
-          this.editedItem.id,
-          this.editedItem.privileges
-        );
+        this.update_role_privileges(this.editedItem.id, this.editedItem);
         this.close();
       } else {
         this.$store.dispatch("create_role", this.editedItem);
