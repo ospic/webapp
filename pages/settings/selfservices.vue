@@ -21,6 +21,22 @@
           }}</v-toolbar-title>
           <v-divider class="mx-4" inset vertical></v-divider>
           <v-spacer></v-spacer>
+          <v-dialog v-model="dialogDelete" max-width="500px" color="red">
+            <v-card dark>
+              <v-card-title class="subhead-1 pa-4">
+                {{ $t("label.dialogs.deleteuserconfirmdialog") }}</v-card-title
+              >
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn color="primary" small @click="closeDelete">{{
+                  $t("label.button.decline")
+                }}</v-btn>
+                <v-btn color="warning" small @click="deleteItemConfirm">{{
+                  $t("label.button.btnyesdelete")
+                }}</v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-dialog>
         </v-toolbar>
       </template>
       <template v-slot:[`item.isStaff`]="{ item }">
@@ -41,6 +57,14 @@
           x-small
           >{{ role.name.toLowerCase() }}</v-chip
         >
+      </template>
+      <template v-slot:[`item.actions`]="{ item }">
+        <v-icon small class="mr-2" v-if="false" @click="editItem(item)">
+          mdi-pencil
+        </v-icon>
+        <v-icon small @click="deleteItem(item)" color="warning">
+          mdi-trash-can
+        </v-icon>
       </template>
       <template v-slot:no-data>
         <p>No Data available</p>
@@ -72,7 +96,8 @@ export default {
       },
       { text: "Email", value: "email" },
       { text: "Is Staff ?", value: "isStaff" },
-      { text: "Roles", value: "roles" }
+      { text: "Roles", value: "roles" },
+      { text: "Actions", value: "actions", sortable: false }
     ],
     editedItem: {
       id: "",
@@ -133,6 +158,25 @@ export default {
       } else {
         return "cyan";
       }
+    },
+    deleteItem(item) {
+      this.editedIndex = this.userslist.indexOf(item);
+      this.editedItem = Object.assign({}, item);
+      this.dialogDelete = true;
+    },
+
+    deleteItemConfirm() {
+      this.$store.dispatch("delete_user", this.editedItem.id).then(() => {
+        this.closeDelete();
+      });
+    },
+    closeDelete() {
+      this.dialogDelete = false;
+      this.$nextTick(() => {
+        this.editedItem = Object.assign({}, this.defaultItem);
+        this.editedIndex = -1;
+      });
+      this.$store.dispatch("get_self_service_users");
     }
   },
   computed: {
