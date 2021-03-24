@@ -114,6 +114,18 @@ const mutations = {
 
   },
 
+  //Get self service users
+  ["DELETE_USERS"](state) {
+    state.showLoader = true;
+  },
+  ["DELETE_USERS_SUCCESS"](state, payload) {
+    state.showLoader = false;
+  },
+  ["DELETE_USERS_FAILED"](state) {
+    state.showLoader = false;
+
+  },
+
 }
 const actions = {
   async retrieveAllusers({ commit }) {
@@ -155,7 +167,6 @@ const actions = {
     commit("CREATE_NEW_USER");
     await this.$api.$post(`auth/signup/`, payload)
       .then(response => {
-        console.log(response);
         if (response.statusCode === 200) {
           commit("CREATE_NEW_USER_SUCCESS", response);
         }
@@ -166,6 +177,19 @@ const actions = {
 
       });
 
+  },
+
+  async delete_user({ commit }, payload) {
+    commit("DELETE_USER");
+    await this.$api.$delete(`auth/self/${payload}`)
+      .then(response => {
+        if (response.statusCode === 200) {
+          commit("DELETE_USER_SUCCESS", response);
+        }
+      }).catch(error => {
+        commit("DELETE_USER_FAILED");
+        console.log(error);
+      });
   },
   async updateuserdetails({ commit }, payload) {
     commit("UPDATE_USER");
