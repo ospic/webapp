@@ -51,12 +51,6 @@ export default {
       { hid: "twitter:card", name: "twitter:card", content: "summary_large_image" },
       { hid: "twitter:image:alt", name: "twitter:image:alt", content: "Ospic application" },
 
-
-
-
-
-
-
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
@@ -103,6 +97,7 @@ export default {
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
     '@nuxtjs/toast',
+    '@nuxtjs/sitemap',
     'nuxt-material-design-icons',
     ['cookie-universal-nuxt', { parseJSON: false }],
   ],
@@ -160,6 +155,16 @@ export default {
     }
   },
 
+  /**Sitemap file */
+  sitemap: {
+    hostname: 'https://app.ospicx.com',
+    gzip: false,
+    defaults: {
+      changefreq: 'daily',
+      priority: 1,
+      lastmod: new Date()
+    }
+  },
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
   axios: {},
 
