@@ -12,17 +12,18 @@
     <v-row no-gutters>
       <v-col cols="12" md="5" sm="12">
         <v-card class="mr-1">
-          <apexchart
-            width="98%"
-            type="line"
-            :options="billtrends"
-            :series="billtrends.series"
-          ></apexchart>
+          <smooth-line-chart
+            :data="transactiontrends"
+            title="Number of transactions per day"
+          ></smooth-line-chart>
         </v-card>
       </v-col>
-      <v-col cols="12" md="5" sm="12">
+      <v-col cols="12" md="5" sm="12" v-if="billsperday != null">
         <v-card class="ml-1">
-          <smooth-line-chart></smooth-line-chart>
+          <smooth-line-chart
+            :data="billtrends"
+            title="Number of bills created per day"
+          ></smooth-line-chart>
         </v-card>
       </v-col>
       <v-col cols="12" md="2" sm="12">
@@ -50,99 +51,7 @@ export default {
   },
 
   data: function() {
-    return {
-      options: {
-        series: [
-          {
-            name: "Likes",
-            data: [4, 3, 10, 9, 29, 19, 22, 9, 12, 7, 19, 5, 13, 9, 17, 2, 7, 5]
-          }
-        ],
-        chart: {
-          height: 350,
-          type: "line"
-        },
-        theme: {
-          mode: "light",
-          palette: "palette1",
-          monochrome: {
-            enabled: true,
-            color: "#2E294E",
-            shadeTo: "dark",
-            shadeIntensity: 1
-          }
-        },
-        stroke: {
-          width: 4,
-          curve: "smooth"
-        },
-        xaxis: {
-          type: "datetime",
-          categories: [
-            "1/11/2000",
-            "2/11/2000",
-            "3/11/2000",
-            "4/11/2000",
-            "5/11/2000",
-            "6/11/2000",
-            "7/11/2000",
-            "8/11/2000",
-            "9/11/2000",
-            "10/11/2000",
-            "11/11/2000",
-            "12/11/2000",
-            "1/11/2001",
-            "2/11/2001",
-            "3/11/2001",
-            "4/11/2001",
-            "5/11/2001",
-            "6/11/2001"
-          ],
-          tickAmount: 10,
-          labels: {
-            formatter: function(value, timestamp, opts) {
-              return opts.dateFormatter(new Date(timestamp), "dd MMM");
-            }
-          }
-        },
-        title: {
-          text: "Bill collections",
-          align: "left",
-          style: {
-            fontSize: "16px",
-            color: "#666"
-          }
-        },
-        fill: {
-          type: "gradient",
-          gradient: {
-            shade: "dark",
-            gradientToColors: ["#FDD835"],
-            shadeIntensity: 1,
-            type: "horizontal",
-            opacityFrom: 1,
-            opacityTo: 1,
-            stops: [0, 100, 100, 100]
-          }
-        },
-        markers: {
-          size: 4,
-          colors: ["#FFA41B"],
-          strokeColors: "#fff",
-          strokeWidth: 2,
-          hover: {
-            size: 7
-          }
-        },
-        yaxis: {
-          min: -10,
-          max: 40,
-          title: {
-            text: "Engagement"
-          }
-        }
-      }
-    };
+    return {};
   },
   created() {
     this.$store.dispatch("get_bills_perday");
@@ -252,7 +161,7 @@ export default {
         ];
       }
     },
-    billtrends: {
+    transactiontrends: {
       get() {
         var item = this.transactionsperday;
         var datas = new Array();
@@ -261,14 +170,37 @@ export default {
           item.forEach(element => {
             datas.push(element.numberOfTransactions);
             var val = element.transactionDate;
-            console.log(new Date(val).toISOString());
             categories.push(new Date(val).toISOString());
           });
         }
         var data = {
           series: [
             {
-              name: "Service  issued",
+              name: "Number of Transactions per day",
+              data: datas
+            }
+          ],
+          categories: categories
+        };
+        return data;
+      }
+    },
+    billtrends: {
+      get() {
+        var item = this.billsperday;
+        var datas = new Array();
+        var categories = new Array();
+        if (item !== undefined) {
+          item.forEach(element => {
+            datas.push(element.totalBills);
+            var val = element.createdDate;
+            categories.push(new Date(val).toISOString());
+          });
+        }
+        var data = {
+          series: [
+            {
+              name: "Number of bills per day",
               data: datas
             }
           ],
