@@ -24,7 +24,7 @@
           :key="index"
           class="ma-0 pa-0 pl-2 pb-2"
         >
-          <statistical-card :item="trx"></statistical-card>
+          <transaction-card :item="trx"></transaction-card>
         </v-col>
       </v-col>
     </v-row>
@@ -32,10 +32,12 @@
 </template>
 <script>
 import StatisticalCard from "~/components/finance/statistical-card.vue";
+import TransactionCard from "~/components/finance/transactions_card";
 import { mapGetters } from "vuex";
 export default {
   components: {
-    "statistical-card": StatisticalCard
+    "statistical-card": StatisticalCard,
+    "transaction-card": TransactionCard
   },
 
   data: function() {
@@ -244,60 +246,42 @@ export default {
         return [
           {
             value: this.transactionsummation.totalNumberOfTransactionsToday,
+            amount: this.transactionsummation.totalTransactionAmountToday,
             title: "Transactions today",
-            subtitle: "Number of transactions today",
+            subtitle1: "Transactions",
+            subtitle2: "Total amount",
             icon: "mdi-currency-usd-circle",
             color: "black darken-2"
           },
-          {
-            value: this.transactionsummation.totalTransactionAmountToday,
-            title: "Transaction amount ",
-            subtitle: "Total amount of today transactions",
-            icon: "mdi-layers-outline",
-            color: "red darken-1"
-          },
+
           {
             value: this.transactionsummation.totalNumberOfTransactionsLast7Days,
-            title: "Transactions 7days",
-            subtitle: "Number of transactions in last 7 days",
-            icon: "mdi-layers-outline",
-            color: "red darken-1"
-          },
-          {
-            value: this.transactionsummation.totalTransactionAmountLast7Days,
-            title: "Amount 7days",
-            subtitle: "Total transaction amount last 7days",
-            icon: "mdi-bitcoin",
-            color: "blue"
+            amount: this.transactionsummation.totalTransactionAmountLast7Days,
+            title: "Transactions in last 7 days",
+            subtitle1: "Number of Transactions",
+            subtitle2: "Total amount",
+            icon: "mdi-contactless-payment-circle",
+            color: "primary darken-1"
           },
 
           {
             value: this.transactionsummation
               .totalNumberOfTransactionsLast30Days,
-            title: "Transactions 30 days",
-            subtitle: "No. of transactions in last 7 days",
-            icon: "mdi-layers-outline",
+            amount: this.transactionsummation.totalTransactionAmountLast30Days,
+            title: "Transactions in last 30 days",
+            subtitle1: "No. of transactions in last 30 days",
+            subtitle2: "Transactions amount in last 30 days",
+            icon: "mdi-wallet",
             color: "red darken-1"
           },
-          {
-            value: this.transactionsummation.totalTransactionAmountLast30Days,
-            title: "Amount in 30 days",
-            subtitle: "Transactions amount in last 30 days",
-            icon: "mdi-barcode-scan",
-            color: "blue darken-2"
-          },
+
           {
             value: this.transactionsummation.totalNumberOfTransactions,
-            title: "No. of transactions",
-            subtitle: "Sum of all transactions",
-            icon: "mdi-barcode-scan",
-            color: "blue darken-2"
-          },
-          {
-            value: this.transactionsummation.totalTransactionAmount,
-            title: "Total amounts",
-            subtitle: "Sum of all transactions amounts",
-            icon: "mdi-barcode-scan",
+            amount: this.transactionsummation.totalTransactionAmount,
+            title: "All transactions",
+            subtitle1: "Number of all transactions",
+            subtitle2: "Total amounts",
+            icon: "mdi-barcode",
             color: "blue darken-2"
           }
         ];
