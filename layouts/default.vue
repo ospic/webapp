@@ -41,6 +41,7 @@
           }}</v-list-item-title>
         </v-list-item>
         <div v-for="(setting, ind) in settings" :key="ind">
+          <v-divider></v-divider>
           <v-list-group
             :value="false"
             no-action
@@ -81,6 +82,7 @@
         </div>
 
         <template v-for="(item, i) in items">
+          <v-divider :key="i"></v-divider>
           <v-list-item
             class="list-item ma-0"
             dense
@@ -96,6 +98,8 @@
             }}</v-list-item-title>
           </v-list-item>
         </template>
+
+        <v-divider></v-divider>
       </v-list>
       <template v-slot:append>
         <v-select
