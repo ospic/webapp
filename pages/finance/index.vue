@@ -1,16 +1,16 @@
 <template>
   <v-container fluid>
     <v-row no-gutters>
-      <v-col cols="12" md="3" sm="12">
+      <v-col cols="12" md="2" sm="12">
         <v-col
-          v-for="(item, index) in items"
+          v-for="(bill, index) in bills"
           :key="index"
           class="ma-0 pa-0 pr-2 pb-2"
         >
-          <statistical-card :item="item"></statistical-card>
+          <statistical-card :item="bill"></statistical-card>
         </v-col>
       </v-col>
-      <v-col cols="12" md="9" sm="12" style="background-color: white">
+      <v-col cols="12" md="8" sm="12" style="background-color: white">
         <apexchart
           width="98%"
           type="line"
@@ -18,11 +18,21 @@
           :series="options.series"
         ></apexchart>
       </v-col>
+      <v-col cols="12" md="2" sm="12">
+        <v-col
+          v-for="(trx, index) in transactions"
+          :key="index"
+          class="ma-0 pa-0 pl-2 pb-2"
+        >
+          <statistical-card :item="trx"></statistical-card>
+        </v-col>
+      </v-col>
     </v-row>
   </v-container>
 </template>
 <script>
 import StatisticalCard from "~/components/finance/statistical-card.vue";
+import { mapGetters } from "vuex";
 export default {
   components: {
     "statistical-card": StatisticalCard
@@ -30,7 +40,7 @@ export default {
 
   data: function() {
     return {
-      items: [
+      itemsa: [
         {
           value: 1238000,
           title: "Active bills",
@@ -166,6 +176,133 @@ export default {
         }
       }
     };
+  },
+  created() {
+    this.$store.dispatch("get_bills_perday");
+    this.$store.dispatch("get_bills_summation");
+    this.$store.dispatch("get_transactions_perday");
+    this.$store.dispatch("get_transactions_summations");
+  },
+  computed: {
+    ...mapGetters({
+      billsperday: "billsperday",
+      billsummation: "billsummation",
+      transactionsperday: "transactionsperday",
+      transactionsummation: "transactionsummation"
+    }),
+    bills: {
+      get() {
+        return [
+          {
+            value: this.billsummation.totalNumberOfBillsToday,
+            title: "No. bills today",
+            subtitle: "Total number of bills today",
+            icon: "mdi-currency-usd-circle",
+            color: "black darken-2"
+          },
+          {
+            value: this.billsummation.totalBillsAmountToday,
+            title: "Amount of bills today",
+            subtitle: "Total amount of bills today",
+            icon: "mdi-layers-outline",
+            color: "red darken-1"
+          },
+          {
+            value: this.billsummation.totalBillsPaidAmountToday,
+            title: "Amount paid today",
+            subtitle: "Total amount of bills paid today",
+            icon: "mdi-layers-outline",
+            color: "red darken-1"
+          },
+          {
+            value: this.billsummation.totalNumberOfBills,
+            title: "No. of bills",
+            subtitle: "Total number of bills",
+            icon: "mdi-bitcoin",
+            color: "blue"
+          },
+
+          {
+            value: this.billsummation.totalBillsAmount,
+            title: "Bills amount",
+            subtitle: "Total of all bills amount",
+            icon: "mdi-layers-outline",
+            color: "red darken-1"
+          },
+          {
+            value: this.billsummation.totalBillsPaidAmount,
+            title: "Total paid bills",
+            subtitle: "Amount paid from bills",
+            icon: "mdi-barcode-scan",
+            color: "blue darken-2"
+          }
+        ];
+      }
+    },
+    transactions: {
+      get() {
+        return [
+          {
+            value: this.transactionsummation.totalNumberOfTransactionsToday,
+            title: "Transactions today",
+            subtitle: "Number of transactions today",
+            icon: "mdi-currency-usd-circle",
+            color: "black darken-2"
+          },
+          {
+            value: this.transactionsummation.totalTransactionAmountToday,
+            title: "Transaction amount ",
+            subtitle: "Total amount of today transactions",
+            icon: "mdi-layers-outline",
+            color: "red darken-1"
+          },
+          {
+            value: this.transactionsummation.totalNumberOfTransactionsLast7Days,
+            title: "Transactions 7days",
+            subtitle: "Number of transactions in last 7 days",
+            icon: "mdi-layers-outline",
+            color: "red darken-1"
+          },
+          {
+            value: this.transactionsummation.totalTransactionAmountLast7Days,
+            title: "Amount 7days",
+            subtitle: "Total transaction amount last 7days",
+            icon: "mdi-bitcoin",
+            color: "blue"
+          },
+
+          {
+            value: this.transactionsummation
+              .totalNumberOfTransactionsLast30Days,
+            title: "Transactions 30 days",
+            subtitle: "No. of transactions in last 7 days",
+            icon: "mdi-layers-outline",
+            color: "red darken-1"
+          },
+          {
+            value: this.transactionsummation.totalTransactionAmountLast30Days,
+            title: "Amount in 30 days",
+            subtitle: "Transactions amount in last 30 days",
+            icon: "mdi-barcode-scan",
+            color: "blue darken-2"
+          },
+          {
+            value: this.transactionsummation.totalNumberOfTransactions,
+            title: "No. of transactions",
+            subtitle: "Sum of all transactions",
+            icon: "mdi-barcode-scan",
+            color: "blue darken-2"
+          },
+          {
+            value: this.transactionsummation.totalTransactionAmount,
+            title: "Total amounts",
+            subtitle: "Sum of all transactions amounts",
+            icon: "mdi-barcode-scan",
+            color: "blue darken-2"
+          }
+        ];
+      }
+    }
   }
 };
 </script>

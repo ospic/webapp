@@ -10,7 +10,7 @@
             ></v-list-item-title>
 
             <v-list-item-subtitle
-              class="text-h5 font-weight-bold black--text my-2"
+              class="text-h6 font-weight-bold black--text my-2"
               >{{ formatPrice(item.value) }}</v-list-item-subtitle
             >
 
@@ -20,7 +20,7 @@
             ></v-list-item-subtitle>
           </v-list-item-content>
           <v-list-item-avatar height="45" width="45" rounded>
-            <v-icon :color="item.color" size="50" v-text="item.icon"></v-icon>
+            <v-icon :color="item.color" size="40" v-text="item.icon"></v-icon>
           </v-list-item-avatar>
         </v-list-item>
       </v-card>
