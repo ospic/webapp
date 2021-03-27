@@ -15,19 +15,14 @@
           <apexchart
             width="98%"
             type="line"
-            :options="options"
-            :series="options.series"
+            :options="billtrends"
+            :series="billtrends.series"
           ></apexchart>
         </v-card>
       </v-col>
       <v-col cols="12" md="5" sm="12">
         <v-card class="ml-1">
-          <apexchart
-            width="98%"
-            type="line"
-            :options="options"
-            :series="options.series"
-          ></apexchart>
+          <smooth-line-chart></smooth-line-chart>
         </v-card>
       </v-col>
       <v-col cols="12" md="2" sm="12">
@@ -45,59 +40,17 @@
 <script>
 import StatisticalCard from "~/components/finance/statistical-card.vue";
 import TransactionCard from "~/components/finance/transactions_card";
+import SmoothLineChart from "~/components/charts/SmoothLineChart";
 import { mapGetters } from "vuex";
 export default {
   components: {
     "statistical-card": StatisticalCard,
-    "transaction-card": TransactionCard
+    "transaction-card": TransactionCard,
+    "smooth-line-chart": SmoothLineChart
   },
 
   data: function() {
     return {
-      itemsa: [
-        {
-          value: 1238000,
-          title: "Active bills",
-          subtitle: "Total bill amounts",
-          icon: "mdi-bitcoin",
-          color: "blue"
-        },
-        {
-          value: 478000,
-          title: "Amount collected",
-          subtitle: "Amount collected today",
-          icon: "mdi-currency-usd-circle",
-          color: "black darken-2"
-        },
-        {
-          value: 562000,
-          title: "Amount not collected",
-          subtitle: "Amount not collected today",
-          icon: "mdi-layers-outline",
-          color: "red darken-1"
-        },
-        {
-          value: 34000,
-          title: "Total bills",
-          subtitle: "Amount collected today",
-          icon: "mdi-barcode-scan",
-          color: "blue darken-2"
-        },
-        {
-          value: 562000,
-          title: "Amount not collected",
-          subtitle: "Amount not collected today",
-          icon: "mdi-looks",
-          color: "red darken-1"
-        },
-        {
-          value: 3000,
-          title: "Total bills",
-          subtitle: "Amount collected today",
-          icon: "mdi-memory",
-          color: "green darken-2"
-        }
-      ],
       options: {
         series: [
           {
@@ -297,6 +250,31 @@ export default {
             color: "blue darken-2"
           }
         ];
+      }
+    },
+    billtrends: {
+      get() {
+        var item = this.transactionsperday;
+        var datas = new Array();
+        var categories = new Array();
+        if (item !== undefined) {
+          item.forEach(element => {
+            datas.push(element.numberOfTransactions);
+            var val = element.transactionDate;
+            console.log(new Date(val).toISOString());
+            categories.push(new Date(val).toISOString());
+          });
+        }
+        var data = {
+          series: [
+            {
+              name: "Service  issued",
+              data: datas
+            }
+          ],
+          categories: categories
+        };
+        return data;
       }
     }
   }
