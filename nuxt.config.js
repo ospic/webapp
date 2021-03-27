@@ -101,6 +101,7 @@ export default {
     'nuxt-material-design-icons',
     ['cookie-universal-nuxt', { parseJSON: false }],
   ],
+
   toast: {
     position: 'bottom-right',
     duration: 4000,
