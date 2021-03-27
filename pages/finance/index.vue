@@ -1,22 +1,34 @@
 <template>
   <v-container fluid>
     <v-row no-gutters>
-      <v-col cols="12" md="2" sm="12">
-        <v-col
-          v-for="(bill, index) in bills"
-          :key="index"
-          class="ma-0 pa-0 pr-2 pb-2"
-        >
-          <statistical-card :item="bill"></statistical-card>
-        </v-col>
+      <v-col
+        v-for="(bill, index) in bills"
+        :key="index"
+        class="ma-0 pa-0 pr-2 pb-2"
+      >
+        <statistical-card :item="bill"></statistical-card>
       </v-col>
-      <v-col cols="12" md="8" sm="12" style="background-color: white">
-        <apexchart
-          width="98%"
-          type="line"
-          :options="options"
-          :series="options.series"
-        ></apexchart>
+    </v-row>
+    <v-row no-gutters>
+      <v-col cols="12" md="5" sm="12">
+        <v-card class="mr-1">
+          <apexchart
+            width="98%"
+            type="line"
+            :options="options"
+            :series="options.series"
+          ></apexchart>
+        </v-card>
+      </v-col>
+      <v-col cols="12" md="5" sm="12">
+        <v-card class="ml-1">
+          <apexchart
+            width="98%"
+            type="line"
+            :options="options"
+            :series="options.series"
+          ></apexchart>
+        </v-card>
       </v-col>
       <v-col cols="12" md="2" sm="12">
         <v-col

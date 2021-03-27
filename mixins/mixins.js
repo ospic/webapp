@@ -67,10 +67,9 @@ Vue.mixin({
       return this.hasAnyPermission(this.$store.getters.thisuserpermissions, p);
     },
     formatPrice(value) {
-      if (value === undefined) {
-        return 0.0
+      if (value != null) {
+        return value.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
       }
-      return value.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
     },
     hasAnyPermission: function (source, target) {
       if (source === undefined) {
