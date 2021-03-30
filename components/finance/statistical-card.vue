@@ -7,7 +7,7 @@
             {{ item.title }}
           </v-toolbar-title>
           <v-spacer></v-spacer>
-          <v-icon v-text="item.icon" :color="item.color"></v-icon>
+          <v-icon v-text="item.icon" color="white"></v-icon>
         </v-toolbar>
         <v-divider></v-divider>
         <v-card-text>
