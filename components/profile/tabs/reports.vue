@@ -111,7 +111,7 @@
         hide-overlay
         transition="dialog-bottom-transition"
       >
-        <v-card>
+        <v-card dark>
           <v-toolbar dark color="primary">
             <v-btn icon dark @click="viewdialog = false">
               <v-icon>mdi-close</v-icon>
@@ -127,11 +127,33 @@
             </v-toolbar-items>
           </v-toolbar>
           <div v-if="selectedfile != null" class="pa-4 ">
-            <div v-if="selectedfile.type.startsWith('image/')">
-              <v-img
-                :src="selectedfile.url"
-                lazy-src="https://aosa.org/wp-content/uploads/2019/04/image-placeholder-350x350.png"
-              ></v-img>
+            <div
+              v-if="selectedfile.type.startsWith('image/')"
+              class="d-flex flex-column justify-space-between align-center"
+            >
+              <v-container fluid>
+                <v-row no-gutters>
+                  <v-col cols="12" sm="12" md="2">
+                    <strong>Image height</strong>
+                    <v-slider
+                      v-model="width"
+                      class="align-self-stretch"
+                      hint="Height"
+                      min="200"
+                      max="1500"
+                      step="1"
+                    ></v-slider>
+                  </v-col>
+                  <v-spacer></v-spacer>
+                  <v-col cols="12" sm="4" md="9">
+                    <v-img
+                      :width="width"
+                      :src="selectedfile.url"
+                      lazy-src="https://aosa.org/wp-content/uploads/2019/04/image-placeholder-350x350.png"
+                    ></v-img>
+                  </v-col>
+                </v-row>
+              </v-container>
             </div>
             <div v-else-if="selectedfile.type == 'application/pdf'">
               <div>
@@ -144,7 +166,7 @@
     </v-row>
     <v-row>
       <v-col md="2" sm="6" v-for="(file, i) in files" :key="i">
-        <v-card @click="viewfile(file)" outlined>
+        <v-card outlined>
           <div class="d-flex flex-no-wrap justify-space-between">
             <div>
               <v-card-text>
@@ -172,6 +194,7 @@
             </div>
 
             <div
+              @click="viewfile(file)"
               :class="
                 `ma-3 fi fi-size-xl fi-round-md fi-${file.type.split('/')[1]}`
               "
@@ -202,6 +225,7 @@ export default {
     currentFile: undefined,
     selectedfile: null,
     location: null,
+    width: 300,
     permissions: "ALL_FUNCTIONS, UPDATE_CONSULTATION",
     accepted:
       "image/*,.csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel,.pdf,.doc,.xml,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
