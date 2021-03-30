@@ -46,7 +46,7 @@ jobs:
       - name: Deploy to repo 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.0
         with:
-          GITHUB_TOKEN: ${{ secrets.GITHUBTOKEN }}
+          token: ${{ secrets.GITHUBTOKEN }}
           branch: master # The branch the action should deploy to.
           repository-name: ospic/deploys
           target-folder: application
