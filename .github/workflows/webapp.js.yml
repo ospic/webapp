@@ -37,8 +37,17 @@ jobs:
       - run: npm run production
       - run: npm test
       - name: Deploy to gihub pages 🚀
-        uses: JamesIves/github-pages-deploy-action@releases/v3
+        uses: JamesIves/github-pages-deploy-action@4.1.0
+        with:
+          token: ${{ secrets.GITHUBTOKEN }}
+          branch: gh-pages # The branch the action should deploy to.
+          folder: dist # The folder the action should deploy.
+
+      - name: Deploy to repo 🚀
+        uses: JamesIves/github-pages-deploy-action@4.1.0
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUBTOKEN }}
-          BRANCH: gh-pages # The branch the action should deploy to.
-          FOLDER: dist # The folder the action should deploy.
+          branch: master # The branch the action should deploy to.
+          repository-name: ospic/deploys
+          target-folder: application
+          folder: dist # The folder the action should deploy.
