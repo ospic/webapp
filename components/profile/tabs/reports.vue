@@ -1,12 +1,22 @@
 <template>
   <v-container fluid>
-    <v-alert prominent type="error" v-if="deletedialog" dismissible>
+    <v-alert
+      color="warning"
+      border="left"
+      elevation="1"
+      colored-border
+      type="error"
+      v-if="deletedialog"
+      dismissible
+      ref="alert"
+      transition="scale-transition"
+    >
       <v-row align="center">
         <v-col class="grow">
-          <h2>
+          <h3>
             Do you real want to delete this report file ?
             <strong>{{ file.name }}</strong>
-          </h2>
+          </h3>
           Remember: This process will parmanently delete this file and you can
           not undo after that
         </v-col>
@@ -24,6 +34,11 @@
           >
         </v-col>
       </v-row>
+      <template v-slot:close>
+        <v-btn icon @click="toggle">
+          <v-icon size="32" color="red">mdi-close-circle</v-icon>
+        </v-btn>
+      </template>
     </v-alert>
     <v-row class="mx-2">
       <v-spacer></v-spacer>
@@ -186,6 +201,10 @@ export default {
         .catch(error => {
           console.log(error);
         });
+    },
+    toggle: function() {
+      this.$refs.alert.toggle();
+      this.deletedialog = false;
     },
     async deleteimagefile() {
       this.loading = true;
