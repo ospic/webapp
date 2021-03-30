@@ -116,7 +116,9 @@
             <v-btn icon dark @click="viewdialog = false">
               <v-icon>mdi-close</v-icon>
             </v-btn>
-            <v-toolbar-title>Settings</v-toolbar-title>
+            <v-toolbar-title>{{
+              selectedfile == null ? "" : selectedfile.name
+            }}</v-toolbar-title>
             <v-spacer></v-spacer>
             <v-toolbar-items>
               <v-btn dark text @click="viewdialog = false">
@@ -124,12 +126,17 @@
               </v-btn>
             </v-toolbar-items>
           </v-toolbar>
-          <div v-if="selectedfile != null">
+          <div v-if="selectedfile != null" class="pa-4 ">
             <div v-if="selectedfile.type.startsWith('image/')">
               <v-img
                 :src="selectedfile.url"
                 lazy-src="https://aosa.org/wp-content/uploads/2019/04/image-placeholder-350x350.png"
               ></v-img>
+            </div>
+            <div v-else-if="selectedfile.type == 'application/pdf'">
+              <div>
+                <v-pdf :src="selectedfile.url"></v-pdf>
+              </div>
             </div>
           </div>
         </v-card>
