@@ -5,7 +5,8 @@
       border="left"
       elevation="1"
       colored-border
-      type="error"
+      type="warning"
+      prominent
       v-if="deletedialog"
       dismissible
       ref="alert"
@@ -103,10 +104,40 @@
           </v-card-actions>
         </v-card>
       </v-dialog>
+
+      <v-dialog
+        v-model="viewdialog"
+        fullscreen
+        hide-overlay
+        transition="dialog-bottom-transition"
+      >
+        <v-card>
+          <v-toolbar dark color="primary">
+            <v-btn icon dark @click="viewdialog = false">
+              <v-icon>mdi-close</v-icon>
+            </v-btn>
+            <v-toolbar-title>Settings</v-toolbar-title>
+            <v-spacer></v-spacer>
+            <v-toolbar-items>
+              <v-btn dark text @click="viewdialog = false">
+                Save
+              </v-btn>
+            </v-toolbar-items>
+          </v-toolbar>
+          <div v-if="selectedfile != null">
+            <div v-if="selectedfile.type.startsWith('image/')">
+              <v-img
+                :src="selectedfile.url"
+                lazy-src="https://aosa.org/wp-content/uploads/2019/04/image-placeholder-350x350.png"
+              ></v-img>
+            </div>
+          </div>
+        </v-card>
+      </v-dialog>
     </v-row>
     <v-row>
       <v-col md="2" sm="6" v-for="(file, i) in files" :key="i">
-        <v-card outlined>
+        <v-card @click="viewfile(file)" outlined>
           <div class="d-flex flex-no-wrap justify-space-between">
             <div>
               <v-card-text>
@@ -140,10 +171,6 @@
             >
               <div class="fi-content">{{ file.type.split("/")[1] }}</div>
             </div>
-            <!--<v-img
-              :src="file.url"
-              lazy-src="https://aosa.org/wp-content/uploads/2019/04/image-placeholder-350x350.png"
-            ></v-img>-->
           </div>
         </v-card>
       </v-col>
@@ -161,11 +188,12 @@ export default {
   data: () => ({
     select: [],
     dialog: false,
-
+    viewdialog: false,
     deletedialog: false,
     loading: false,
     file: undefined,
     currentFile: undefined,
+    selectedfile: null,
     location: null,
     permissions: "ALL_FUNCTIONS, UPDATE_CONSULTATION",
     accepted:
@@ -205,6 +233,11 @@ export default {
     toggle: function() {
       this.$refs.alert.toggle();
       this.deletedialog = false;
+    },
+    viewfile: function(it) {
+      this.selectedfile = it;
+      this.viewdialog = true;
+      console.log(it);
     },
     async deleteimagefile() {
       this.loading = true;
