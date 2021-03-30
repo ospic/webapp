@@ -1,6 +1,6 @@
 <template>
   <v-container fluid>
-    <v-alert prominent type="error" v-if="deletedialog">
+    <v-alert prominent type="error" v-if="deletedialog" dismissible>
       <v-row align="center">
         <v-col class="grow">
           <h2>
