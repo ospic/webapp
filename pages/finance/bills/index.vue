@@ -117,6 +117,7 @@ export default {
     type: "service",
     amount: 0.0,
     bill: null,
+
     headers: [
       { text: "NID", value: "id" },
       { text: "Patient", value: "patientName" },
