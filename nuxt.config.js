@@ -164,6 +164,12 @@ export default {
       changefreq: 'daily',
       priority: 1,
       lastmod: new Date()
+    },
+    filter({ routes }) {
+      return routes.map(route => {
+        route.url = `#/${route.url}`
+        return route
+      })
     }
   },
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
