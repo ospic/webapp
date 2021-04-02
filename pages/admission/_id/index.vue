@@ -176,7 +176,7 @@ export default {
       return await this.$api
         .$get(`admissions/${this.$route.params.id}/`)
         .then(response => {
-          this.admission = response[0];
+          this.admission = response;
         })
         .catch(error => {
           console.log(error);
