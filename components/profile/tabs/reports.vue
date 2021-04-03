@@ -124,6 +124,7 @@
               <v-btn dark text @click="viewdialog = false">
                 Save
               </v-btn>
+              <p>{{ filebaseUri }}</p>
             </v-toolbar-items>
           </v-toolbar>
           <div v-if="selectedfile != null" class="pa-4 ">
@@ -148,7 +149,7 @@
                   <v-col cols="12" sm="4" md="9">
                     <v-img
                       :width="width"
-                      :src="selectedfile.url"
+                      :src="filebaseUri + selectedfile.url"
                       lazy-src="https://aosa.org/wp-content/uploads/2019/04/image-placeholder-350x350.png"
                     ></v-img>
                   </v-col>
@@ -171,7 +172,7 @@
             <div>
               <v-card-text>
                 <ul>
-                  <li>File: {{ file.name }}</li>
+                  <li>File: {{ file.type }}</li>
                   <li>Size: {{ file.size }}</li>
                   <li>Unit: {{ file.location }}</li>
                 </ul>

@@ -98,7 +98,13 @@ Vue.mixin({
     },
     isfinance() {
       return this.$root.context.from.name.startsWith(prefix)
+    },
+    filebaseUri() {
+      var url = this.$api.defaults.baseURL;
+      var path = url.endsWith("/") ? url.slice(0, -1) : url;
+      return path;
     }
+
 
   },
 });
