@@ -4,7 +4,7 @@
       <v-col xs="12" md="3" sm="12">
         <v-card flat>
           <v-img
-            :src="entityThumbNail"
+            :src="filebaseUri + entityThumbNail"
             lazy-src="https://www.attendanceworks.org/wp-content/uploads/2020/09/img-placeholder.png"
             aspect-ratio="1"
             class="grey lighten-2 align-end"
@@ -24,7 +24,7 @@
                 <v-list-item>
                   <v-list-item-avatar size="60">
                     <v-img
-                      :src="entityThumbNail"
+                      :src="filebaseUri + entityThumbNail"
                       lazy-src="https://aosa.org/wp-content/uploads/2019/04/image-placeholder-350x350.png"
                     ></v-img>
                   </v-list-item-avatar>
