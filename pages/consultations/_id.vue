@@ -174,7 +174,7 @@
                             :src="
                               service.patient.patientPhoto == null
                                 ? thumbnail
-                                : service.patient.patientPhoto
+                                : filebaseUri + service.patient.patientPhoto
                             "
                           ></v-img>
                         </v-list-item-avatar>
