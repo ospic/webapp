@@ -147,10 +147,10 @@
                   <v-row no-gutters>
                     <v-col cols="12">
                       <v-textarea
-                        label="Symptoms"
+                        label="Allergies"
                         outlined
-                        v-model="editedItem.symptoms"
-                        hint="Patient initial symptoms"
+                        v-model="editedItem.allergies"
+                        hint="Patient allergies"
                       ></v-textarea>
                     </v-col>
 

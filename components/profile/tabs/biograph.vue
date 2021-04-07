@@ -179,6 +179,18 @@
                     ></v-checkbox>
                   </td>
                 </tr>
+
+                <tr v-if="patient.allergies">
+                  <td id="allergies" class="font-weight-black">Allergies:</td>
+                  <td>
+                    <v-text-field
+                      v-if="edit"
+                      dense
+                      v-model="patientcp.allergies"
+                    ></v-text-field>
+                    <p v-else>{{ patient.allergies }}</p>
+                  </td>
+                </tr>
                 <tr v-if="edit">
                   <td></td>
                   <td>
