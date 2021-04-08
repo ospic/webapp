@@ -48,6 +48,17 @@ body {
   zoom: 75%;
 }
 
+.page-enter-active,
+.page-leave-active {
+  -webkit-transition: opacity 0.5s;
+  transition: opacity 0.5s;
+}
+
+.page-enter,
+.page-leave-to {
+  opacity: 0;
+}
+
 /*since the first link does not have a triangle before it we can reduce the left padding to make it look consistent with other links*/
 /*hover/active styles*/
 /*adding the arrows for the breadcrumbs using rotated pseudo elements*/
