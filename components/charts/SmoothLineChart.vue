@@ -75,8 +75,7 @@ export default {
           }
         },
         yaxis: {
-          min: -10,
-          max: 40,
+          min: 0,
           title: {
             text: this.title
           }
