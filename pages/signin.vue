@@ -28,7 +28,7 @@
                     <v-text-field
                       label="Username"
                       placeholder="e.g. demo"
-                      v-model="username"
+                      v-model="payload.username"
                       prepend-inner-icon="person"
                       :rules="[rules.required]"
                       value="user"
@@ -37,7 +37,7 @@
                     ></v-text-field>
 
                     <v-text-field
-                      v-model="password"
+                      v-model="payload.password"
                       prepend-inner-icon="lock"
                       :append-icon="show1 ? 'visibility' : 'visibility_off'"
                       :rules="[rules.required, rules.min]"
@@ -86,8 +86,10 @@ export default {
     show2: true,
     show3: false,
     show4: false,
-    password: "password",
-    username: "demo",
+    payload:{
+       password: "password",
+       username: "demo",
+    },
     image:"https://images.squarespace-cdn.com/content/v1/5608c2dae4b0ffbc0ff092a2/1462484735802-94M1A977HJJEL2THCD2Q/ke17ZwdGBToddI8pDm48kLl6r9ydDU0pEbLAVM93WoUUqsxRUqqbr1mOJYKfIPR7IxQp-SzSi0mUVxNxPLQ2a8ST-OHudl8xFkQoit3yJpm7Mythp_T-mtop-vrsUOmeInPi9iDjx9w8K4ZfjXt2dtBAdYz4rrMKLrjAsWFNRtjSprFKWBuEhUbdsZxltHXcCjLISwBs8eEdxAxTptZAUg/Medical-physician-doctor-hands.png?format=2500w",
     rules: {
       required: value => !!value || "Required.",
@@ -100,7 +102,7 @@ export default {
   },
   methods: {
     login() {
-    this.$store.dispatch("_authenticate_then_login", {username: this.username, password: this.password})
+    this.$store.dispatch("_authenticate_then_login",  this.payload)
     },
     nativateToHere(id) {
       this.$router.push('/' + id);
