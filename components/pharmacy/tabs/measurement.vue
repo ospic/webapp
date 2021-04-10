@@ -1,5 +1,4 @@
-<template> 
-
+<template>
   <div>
     <v-data-table
       :headers="headers"
@@ -74,7 +73,7 @@
                         label="Symbol"
                       ></v-text-field>
                     </v-col>
-                     <v-col cols="12" sm="6" md="4">
+                    <v-col cols="12" sm="6" md="4">
                       <v-text-field
                         v-model="editedItem.quantity"
                         label="Quantity"
@@ -90,7 +89,11 @@
                   $t("label.button.decline")
                 }}</v-btn>
                 <v-btn color="error" medium @click="save">{{
-                  $t(editedIndex === -1 ? "label.button.btnsave": "label.button.btnedityes")
+                  $t(
+                    editedIndex === -1
+                      ? "label.button.btnsave"
+                      : "label.button.btnedityes"
+                  )
                 }}</v-btn>
               </v-card-actions>
             </v-card>
@@ -122,12 +125,13 @@
           mdi-delete
         </v-icon>
       </template>
-</v-data-table>
-</div>
- </template>
+    </v-data-table>
+  </div>
+</template>
 <script>
+import { mapGetters } from "vuex";
 export default {
- props: {
+  props: {
     measures: {
       type: Array,
       default: null
@@ -135,32 +139,32 @@ export default {
   },
   data: function() {
     return {
-    dialog: false,
-    dialogDelete:false,
-    search: "",
-    editedIndex: -1,
-    editedItem: {
+      dialog: false,
+      dialogDelete: false,
+      search: "",
+      editedIndex: -1,
+      editedItem: {
         id: 0,
         unit: "",
         symbol: "",
-        quantity:""
+        quantity: ""
       },
-    defaultItem: {
+      defaultItem: {
         id: 0,
         unit: "",
         symbol: "",
-        quantity:""
-    },
-    headers: [
+        quantity: ""
+      },
+      headers: [
         { text: "ID", value: "id" },
         { text: "Unit", value: "unit" },
         { text: "Symbol", value: "symbol", sortable: false },
         { text: "Quantity", value: "quantity", sortable: false },
-        
+
         { text: "Actions", value: "actions", sortable: false }
       ]
-  }
-},
+    };
+  },
   methods: {
     save() {
       if (this.editedIndex > -1) {
@@ -211,6 +215,9 @@ export default {
     }
   },
   computed: {
+    ...mapGetters({
+      measures: "medicinemeasurements"
+    }),
     formTitle() {
       return this.editedIndex === -1
         ? "New medicine  measures"
@@ -220,6 +227,5 @@ export default {
       return this.measures;
     }
   }
-}
-
+};
 </script>

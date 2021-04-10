@@ -299,18 +299,23 @@ export default {
             {
               title: "label.menu.laboratory",
               icon: "mdi-octagon",
-              to: "/laboratory",
+              to: "/services/laboratory",
               permissions: "ALL_FUNCTIONS"
             },
             {
               title: "label.menu.radiology",
               icon: "mdi-radioactive",
-              to: "/radiology",
+              to: "/services/radiology",
               permissions: "ALL_FUNCTIONS"
             },
             {
-              title: "label.titles.otherservices",
+              title: "label.titles.medicalservices",
               to: "/services",
+              permissions: "ALL_FUNCTIONS"
+            },
+            {
+              title: "label.titles.servicecategories",
+              to: "/services/types",
               permissions: "ALL_FUNCTIONS"
             }
           ]

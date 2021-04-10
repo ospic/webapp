@@ -16,15 +16,34 @@
         >
         <v-card-text>
           <v-select
+            v-model="service"
+            :items="servicetypes"
+            item-text="name"
+            item-value="id"
+            chips
+            small-chips
+            @click="fetch_medical_service_types"
+            @change="fetch_medical_types"
+            :rules="[v => !!v || 'You must select one to continue!']"
+            label="Medical services"
+            required
+            persistent-hint
+            single-line
+          ></v-select>
+          <v-select
             v-model="select"
             :items="medicalservices"
             item-text="name"
             item-value="id"
             chips
             small-chips
-            @click="fetch_medical_services"
+            :disabled="medicalservices.length <= 0"
             :rules="[v => !!v || 'You must select one to continue!']"
-            label="Medical services"
+            :label="
+              medicalservices.length > 0
+                ? 'Medical services'
+                : 'Selected category have no medical services'
+            "
             required
             multiple
             persistent-hint
@@ -81,6 +100,7 @@ export default {
     dialog: false,
     service_transactions: null,
     type: "service",
+    service: null,
     headers: [
       { text: "ID", value: "id" },
       { text: "Service", value: "medicalServiceName", sortable: true },
@@ -96,6 +116,11 @@ export default {
     fetch_medical_services() {
       this.$store.dispatch("get_medical_services");
     },
+
+    fetch_medical_types: function(it) {
+      console.log(it);
+      this.$store.dispatch("get_medical_services_by_type", it);
+    },
     save() {
       this.$store.dispatch("initiate_medical_transaction", {
         id: this.$route.params.id,
@@ -108,7 +133,8 @@ export default {
 
   computed: {
     ...mapGetters({
-      medicalservices: "medicalservices"
+      medicalservices: "medicalservices",
+      servicetypes: "servicetypes"
     })
   }
 };

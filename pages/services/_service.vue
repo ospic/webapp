@@ -2,14 +2,17 @@
   <div>
     <div class="breadcrumb ">
       <router-link to="/">Dashboard</router-link>
-      <router-link to="/services" class="active">Services </router-link>
+      <router-link to="/services">Services </router-link>
+      <router-link
+        :to="`/services/${this.$route.params.service}`"
+        class="active"
+        v-html="`${this.$route.params.service}`"
+      ></router-link>
     </div>
-
-    <medical-service :services="medicalservices"></medical-service>
+    <medical-service :services="services"></medical-service>
   </div>
 </template>
 <script>
-import { mapGetters } from "vuex";
 import MedicalServiceComponent from "~/components/services/medical_service";
 export default {
   components: {
@@ -21,6 +24,7 @@ export default {
     sortDesc: false,
     editedIndex: -1,
     valid: true,
+    services: [],
     headers: [
       { text: "ID", value: "id" },
       { text: "Name", value: "name" },
@@ -50,11 +54,7 @@ export default {
       this.$router.push("roles/" + item.id);
     },
     editItem(item) {
-      this.fetch_measures();
-      this.editedIndex = this.medicalservices.indexOf(item);
-      this.editedItem.medicalServiceType = this.measures.find(
-        x => x.symbol === item.medicalServiceType
-      );
+      this.editedIndex = this.services.indexOf(item);
       this.editedItem = Object.assign({}, item);
       this.dialog = true;
     },
@@ -78,19 +78,36 @@ export default {
         this.$store.dispatch("create_new_medical_service", this.editedItem);
       }
       this.close();
+    },
+    fetch_measures: function() {
+      this.$store.dispatch("fetch_medicine_measurements");
+    },
+
+    async getMedicalServicesByTypeName() {
+      return await this.$api
+        .$get(`services/name/${this.$route.params.service}`)
+        .then(response => {
+          if (response !== null) {
+            this.services = response;
+          }
+        })
+        .catch(error => {
+          console.log(error);
+        });
     }
   },
   created() {
+    this.getMedicalServicesByTypeName();
     this.$store.dispatch("get_medical_services");
   },
   computed: {
-    ...mapGetters({
-      medicalservices: "medicalservices"
-    }),
     formTitle() {
       return this.editedIndex === -1
         ? "label.titles.newservice"
         : "label.titles.editservice";
+    },
+    routename() {
+      return this.$route.params.service;
     }
   }
 };
