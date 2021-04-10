@@ -40,7 +40,8 @@
       "btncreateward":"Create new ward",
       "btnnewlaboratoryservice":"Add laboratory service",
       "btnpaybill":"PAY BILL",
-      "btnnewradiologyservice":"Add radiology service"
+      "btnnewradiologyservice":"Add radiology service",
+      "btnaddnewservicetype":"Add new medical service category"
       
     },
     "menu":{
@@ -138,12 +139,14 @@
       "editrole":"Edit role",
       "staffs":"Staffs",
       "services":"Services",
-
       "medicalservices":"Medical Services",
       "otherservices":"Other services",
       "newservice":"Add medical service",
       "editservice":"Edit medical service",
+      "newservicetype":"Add new medical service category",
+      "editservicetype":"Edit medical service category",
       "servicesmanagement":"Services Management",
+      "servicetypesmanagement": "Medical service categories",
       "newward":"New ward",
       "editward":"Edit ward",
       "laboratoryservices":"Medical laboratory services",
@@ -154,7 +157,8 @@
       "editradiologyservice":"Edit radiology service",
       "unassignedservices":"Un-assigned consultations",
       "assignedservices":"Assigned consultations",
-      "appointments":"Appointments"
+      "appointments":"Appointments",
+      "servicecategories":"Service categories"
       
     }
   }

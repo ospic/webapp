@@ -296,7 +296,7 @@ const actions = {
     commit("GET_MEDICINE_MEASURES");
     await this.$api.$get(`pharmacy/measures/`)
       .then(response => {
-        commit("GET_MEDICINE_MEASURES_SUCCES", response);
+        commit("GET_MEDICINE_MEASURES_SUCCESS", response);
 
       }).catch(error => {
         commit("GET_MEDICINE_MEASURES_ERROR");

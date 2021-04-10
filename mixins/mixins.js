@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import ChargesTemplate from "@/components/profile/tabs/charges"
 import PDFViewer from "@/components/PdfViewer.vue"
+import { mapGetters } from "vuex";
 Vue.mixin({
   components: {
     "charges-template": ChargesTemplate,
@@ -78,6 +79,15 @@ Vue.mixin({
         var result = source.filter(function (item) { return target.indexOf(item) > -1 });
         return (result.length > 0);
       }
+    },
+    fetch_medical_service_types() {
+      this.$store.dispatch("get_medical_service_types");
+    },
+    filter_medical_services: function (it) {
+      this.$router.push(`/services/${it}`);
+    },
+    fetch_measures: function () {
+      this.$store.dispatch("fetch_medicine_measurements");
     }
   },
   computed: {
@@ -103,7 +113,11 @@ Vue.mixin({
       var url = this.$api.defaults.baseURL;
       var path = url.endsWith("/") ? url.slice(0, -1) : url;
       return path;
-    }
+    },
+    ...mapGetters({
+      servicetypes: "servicetypes",
+      measures: "medicinemeasurements"
+    }),
 
 
   },

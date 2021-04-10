@@ -2,31 +2,34 @@
   <div>
     <div class="breadcrumb ">
       <router-link to="/">Dashboard</router-link>
-      <router-link to="/radiology" class="active">Radiology</router-link>
+      <router-link to="/services">Services </router-link>
+      <router-link to="/services/types" class="active"
+        >Services categories
+      </router-link>
     </div>
-    <v-card class="mx-auto pa-2">
-      <v-progress-linear
-        v-if="radiologyservices === null"
-        value="20"
-        buffer-value="0"
-        stream
+    <v-card class="mx-auto">
+      <v-progress-circular
+        size="52"
         color="primary"
-      ></v-progress-linear>
+        indeterminate
+        v-if="!servicetypes"
+      ></v-progress-circular>
       <v-data-table
         dense
         v-else
         class="default"
         :headers="headers"
-        :items="radiologyservices"
+        :items="servicetypes"
         :search="search"
         sort-by="isActive"
         :sort-desc="sortDesc"
         mobile-breakpoint="100"
+        @click:row="handleClick"
       >
         <template v-slot:top>
           <v-toolbar flat>
             <v-toolbar-title>{{
-              $t("label.titles.radiologyservices")
+              $t("label.titles.servicetypesmanagement")
             }}</v-toolbar-title>
             <v-divider class="mx-4" inset vertical></v-divider>
             <v-spacer></v-spacer>
@@ -41,7 +44,7 @@
                   v-if="isMdAndUp"
                   dark
                   ><v-icon small>mdi-plus</v-icon>
-                  {{ $t("label.button.btnnewradiologyservice") }}</v-btn
+                  {{ $t("label.button.btnaddnewservicetype") }}</v-btn
                 >
                 <v-btn
                   v-else
@@ -67,33 +70,18 @@
                         <v-col cols="12" sm="12" md="6">
                           <v-text-field
                             v-model="editedItem.name"
-                            label="Service name"
+                            label="Service type name"
                             required
                           ></v-text-field>
                         </v-col>
 
                         <v-col cols="12" sm="12" md="6">
                           <v-text-field
-                            v-model="editedItem.price"
-                            label="Price"
-                            required
-                            type="number"
-                            min="0"
-                          ></v-text-field>
-                        </v-col>
-
-                        <v-col c sm="6" md="6" class="pa-2">
-                          <v-checkbox
-                            v-model="editedItem.isActive"
-                            label="Active?"
-                            required
-                          ></v-checkbox>
-                        </v-col>
-                        <v-col cols="12" md="12">
-                          <v-textarea
                             v-model="editedItem.descriptions"
                             label="Descriptions"
-                          ></v-textarea>
+                            required
+                            min="0"
+                          ></v-text-field>
                         </v-col>
                       </v-row>
                     </v-form>
@@ -136,7 +124,6 @@
   </div>
 </template>
 <script>
-import { mapGetters } from "vuex";
 export default {
   data: () => ({
     dialog: false,
@@ -144,85 +131,65 @@ export default {
     sortDesc: false,
     editedIndex: -1,
     valid: true,
-    dialogDelete: false,
     headers: [
       { text: "ID", value: "id" },
       { text: "Name", value: "name" },
-      { text: "Is Active", value: "isActive", sortable: false },
-      { text: "Price", value: "price" },
+      { text: "Description", value: "descriptions", sortable: false },
       { text: "Actions", value: "actions", sortable: false }
     ],
     editedItem: {
       id: "",
       name: "",
-      descriptions: "",
-      isActive: 0,
-      price: 0
+      descriptions: ""
     },
     defaultItem: {
       id: "",
       name: "",
-      descriptions: "",
-      isActive: 0,
-      price: 0
+      descriptions: ""
     }
   }),
   methods: {
     handleClick: function(item) {
-      this.$router.push("roles/" + item.id);
+      this.$router.push("/services/" + item.name);
     },
     editItem(item) {
-      this.editedIndex = this.radiologyservices.indexOf(item);
+      this.editedIndex = this.servicetypes.indexOf(item);
       this.editedItem = Object.assign({}, item);
       this.dialog = true;
-    },
-    deleteItem(item) {
-      this.editedIndex = this.radiologyservices.indexOf(item);
-      this.editedItem = Object.assign({}, item);
-      this.dialogDelete = true;
     },
     close() {
       this.dialog = false;
       this.$nextTick(() => {
         this.editedItem = Object.assign({}, this.defaultItem);
         this.editedIndex = -1;
-
         this.request_data();
       });
     },
     request_data() {
-      setTimeout(() => {
-        this.$store.dispatch("fetch_radiology_services");
-      }, 5000);
+      this.$store.dispatch("get_medical_service_types");
     },
     save() {
       if (this.editedIndex > -1) {
-        Object.assign(
-          this.radiologyservices[this.editedIndex],
+        console.log(this.editedItem);
+        this.$store.dispatch("update_medical_service_type", this.editedItem);
+      } else {
+        delete this.editedItem.id;
+        this.$store.dispatch(
+          "create_new_medical_service_type",
           this.editedItem
         );
-
-        this.$store.dispatch("update_radiology_service", this.editedItem);
-      } else {
-        this.radiologyservices.push(this.editedItem);
-        delete this.editedItem.id;
-        this.$store.dispatch("create_radiology_service", this.editedItem);
       }
       this.close();
     }
   },
   created() {
-    this.$store.dispatch("fetch_radiology_services");
+    this.request_data();
   },
   computed: {
-    ...mapGetters({
-      radiologyservices: "radiologyservices"
-    }),
-
     formTitle() {
       return this.editedIndex === -1
-        ? "label.titles.newradiologyservice"
-        : "label.titles.editradiologyservice";
+        ? "label.titles.newservicetype"
+        : "label.titles.editservicetype";
     }
   }
 };
