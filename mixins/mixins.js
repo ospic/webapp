@@ -104,7 +104,7 @@ Vue.mixin({
       return this.userinfo.email;
     },
     domain() {
-      return window.location.hostname === "app.ospicx.com";
+      return window.location.hostname === "app.ospicx.com" || "localhost";
     },
     isfinance() {
       return this.$root.context.from.name.startsWith(prefix)

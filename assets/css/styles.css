@@ -36,8 +36,7 @@
 }
 
 body {
-  background-color: #fafafa;
-  background-image: url("../images/body_background.jpg");
+  background-color: #f5f5f5;
   background-size: cover;
   background-attachment: fixed;
   background-position: center;
