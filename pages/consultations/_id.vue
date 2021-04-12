@@ -238,7 +238,7 @@
             <v-card-text>
               <v-tabs
                 slider-color="blue"
-                background-color="primary"
+                background-color="#dcdcdc"
                 slider-size="3"
                 left
                 v-model="tab"
