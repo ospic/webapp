@@ -4,7 +4,9 @@
       <router-link to="/">Dashboard</router-link>
       <router-link to="/pharmacy" class="active">Pharmacy</router-link>
     </div>
-    <tab-medicine :medicines="medicines" :showaction="false"></tab-medicine>
+    <v-card>
+      <tab-medicine :medicines="medicines" :showaction="false"></tab-medicine>
+    </v-card>
   </div>
 </template>
 <script>

@@ -125,7 +125,7 @@
         /></a>
       </template>
     </v-navigation-drawer>
-    <v-app-bar hide-on-scroll dense fixed app>
+    <v-app-bar hide-on-scroll dense fixed app flat color="white">
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
 
       <v-toolbar-title class="title font-weight-black primary--text">

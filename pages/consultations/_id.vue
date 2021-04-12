@@ -16,7 +16,7 @@
     </div>
 
     <v-flex class="ma-0 pa-0 default">
-      <v-card flat class="ma-0 pa-0 mx-auto ">
+      <v-card class="ma-0 pa-0 mx-auto ">
         <v-list class="ma-0 pa-0">
           <v-progress-circular
             v-if="service == null"
@@ -237,8 +237,8 @@
             </v-card-title>
             <v-card-text>
               <v-tabs
-                slider-color="primary"
-                background-color="default"
+                slider-color="blue"
+                background-color="primary"
                 slider-size="3"
                 left
                 v-model="tab"

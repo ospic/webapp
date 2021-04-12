@@ -4,37 +4,41 @@
       <router-link to="/">Dashboard</router-link>
       <router-link to="/pharmacy" class="active">Pharmacy</router-link>
     </div>
+    <v-card>
+      <v-tabs v-model="tab" show-arrows background-color="primary" dark>
+        <v-tab
+          v-for="item in items"
+          :key="item.tab"
+          @click.stop="handleTabNavigation(item)"
+        >
+          {{ item.tab }}
+        </v-tab>
+      </v-tabs>
 
-    <v-tabs v-model="tab" show-arrows background-color="primary" dark>
-      <v-tab
-        v-for="item in items"
-        :key="item.tab"
-        @click.stop="handleTabNavigation(item)"
-      >
-        {{ item.tab }}
-      </v-tab>
-    </v-tabs>
-
-    <v-tabs-items v-model="tab">
-      <v-tab-item>
-        <tab-med-groups
-          :groups="groups"
-          @update="fetchGroups()"
-        ></tab-med-groups>
-      </v-tab-item>
-      <v-tab-item>
-        <tab-med-categories
-          :categories="categories"
-          @update="fetchCategories()"
-        ></tab-med-categories>
-      </v-tab-item>
-      <v-tab-item>
-        <tab-medicine :medicines="medicines"></tab-medicine>
-      </v-tab-item>
-      <v-tab-item>
-        <tab-med-measurement :measures="medicinemeasurements" @update="fetchMedicineMeasureUnits()"></tab-med-measurement>
-      </v-tab-item>
-    </v-tabs-items>
+      <v-tabs-items v-model="tab">
+        <v-tab-item>
+          <tab-med-groups
+            :groups="groups"
+            @update="fetchGroups()"
+          ></tab-med-groups>
+        </v-tab-item>
+        <v-tab-item>
+          <tab-med-categories
+            :categories="categories"
+            @update="fetchCategories()"
+          ></tab-med-categories>
+        </v-tab-item>
+        <v-tab-item>
+          <tab-medicine :medicines="medicines"></tab-medicine>
+        </v-tab-item>
+        <v-tab-item>
+          <tab-med-measurement
+            :measures="medicinemeasurements"
+            @update="fetchMedicineMeasureUnits()"
+          ></tab-med-measurement>
+        </v-tab-item>
+      </v-tabs-items>
+    </v-card>
   </div>
 </template>
 <script>
@@ -88,7 +92,7 @@ export default {
       { id: 3, tab: "Medicine Groups", content: "Tab 2 Content" },
       { id: 2, tab: "Medicine Categories", content: "Tab 2 Content" },
       { id: 1, tab: "Medicines", content: "Tab 1" },
-      { id: 4, tab: "Measurement units", content: "Tab measures "}
+      { id: 4, tab: "Measurement units", content: "Tab measures " }
     ]
   }),
   created() {},
@@ -112,7 +116,7 @@ export default {
     fetchGroups: function() {
       this.$store.dispatch("getmedicinesgroups");
     },
-    fetchMedicineMeasureUnits: function(){
+    fetchMedicineMeasureUnits: function() {
       this.$store.dispatch("fetch_medicine_measurements");
     },
     handleTabNavigation: function(val) {

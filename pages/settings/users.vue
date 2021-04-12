@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <v-container>
     <v-progress-circular
       size="52"
       color="indigo"
@@ -185,7 +185,7 @@
         <p>No Data available</p>
       </template>
     </v-data-table>
-  </div>
+  </v-container>
 </template>
 <script>
 import { mapGetters } from "vuex";
