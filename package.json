@@ -33,7 +33,7 @@
     "opn": "^6.0.0",
     "secure-ls": "^1.2.6",
     "sweetalert": "^2.1.2",
-    "vue-apexcharts": "^1.6.0",
+    "vue-apexcharts": "^1.6.1",
     "vue-i18n": "^8.24.2",
     "vue-pdf-print": "^4.2.0",
     "vuetify": "^2.4.9",
