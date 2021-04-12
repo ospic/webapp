@@ -6,39 +6,41 @@
         $t("label.titles.appointments")
       }}</router-link>
     </div>
-    <v-tabs color="deep-purple accent-4 pa-3" right>
-      <v-tab>
-        <v-badge
-          color="green"
-          :content="unassigned.length"
-          :value="unassigned.length"
+    <v-card>
+      <v-tabs color="deep-purple accent-4 pa-3" right>
+        <v-tab>
+          <v-badge
+            color="green"
+            :content="unassigned.length"
+            :value="unassigned.length"
+          >
+            {{ $t("label.titles.unassignedservices") }}
+          </v-badge>
+        </v-tab>
+        <v-tab ripple
+          ><v-badge
+            color="green"
+            :content="assigned.length"
+            :value="assigned.length"
+            class="lowercase"
+            >{{ $t("label.titles.assignedservices") }}</v-badge
+          ></v-tab
         >
-          {{ $t("label.titles.unassignedservices") }}
-        </v-badge>
-      </v-tab>
-      <v-tab ripple
-        ><v-badge
-          color="green"
-          :content="assigned.length"
-          :value="assigned.length"
-          class="lowercase"
-          >{{ $t("label.titles.assignedservices") }}</v-badge
-        ></v-tab
-      >
 
-      <v-tab-item>
-        <servicescard-component
-          :services="unassigned"
-          title="label.titles.unassignedservices"
-        ></servicescard-component>
-      </v-tab-item>
-      <v-tab-item>
-        <servicescard-component
-          :services="assigned"
-          title="label.titles.assignedservices"
-        ></servicescard-component>
-      </v-tab-item>
-    </v-tabs>
+        <v-tab-item>
+          <servicescard-component
+            :services="unassigned"
+            title="label.titles.unassignedservices"
+          ></servicescard-component>
+        </v-tab-item>
+        <v-tab-item>
+          <servicescard-component
+            :services="assigned"
+            title="label.titles.assignedservices"
+          ></servicescard-component>
+        </v-tab-item>
+      </v-tabs>
+    </v-card>
   </div>
 </template>
 

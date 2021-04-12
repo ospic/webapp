@@ -159,18 +159,21 @@
       </v-col>
       <v-col xs="12" md="9" sm="12">
         <v-tabs
-          slider-color="primary"
-          background-color="default"
+          slider-color="blue"
+          background-color="#dcdcdc"
+          slider-size="3"
           left
           v-model="tab"
-          class="elevation-2"
         >
           <v-tab class="ffont-weight-normal">
-            <span><v-icon small left>mdi-eye</v-icon>Biography</span>
+            <span
+              ><v-icon small left color="primary">mdi-account-question</v-icon
+              >Biography</span
+            >
           </v-tab>
 
           <v-tab class="font-weight-normal" @click.stop="getPatientServices()">
-            <v-icon small left>mdi-plus</v-icon>
+            <v-icon small left color="primary">mdi-clock-check</v-icon>
             Consultations
           </v-tab>
         </v-tabs>

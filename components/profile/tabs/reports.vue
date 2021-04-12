@@ -41,12 +41,12 @@
         </v-btn>
       </template>
     </v-alert>
-    <v-row class="mx-2">
+    <v-row class="mx-2 pt-2">
       <v-spacer></v-spacer>
 
       <v-dialog
         v-model="dialog"
-        transition="dialog-top-transition"
+        transition="dialog-bottom-transition"
         max-width="600"
       >
         <template v-slot:activator="{ on, attrs }">
@@ -124,7 +124,6 @@
               <v-btn dark text @click="viewdialog = false">
                 Save
               </v-btn>
-              <p>{{ filebaseUri }}</p>
             </v-toolbar-items>
           </v-toolbar>
           <div v-if="selectedfile != null" class="pa-4 ">
@@ -135,7 +134,7 @@
               <v-container fluid>
                 <v-row no-gutters>
                   <v-col cols="12" sm="12" md="2">
-                    <strong>Image height</strong>
+                    <strong>Image size : {{ width }}</strong>
                     <v-slider
                       v-model="width"
                       class="align-self-stretch"
@@ -231,6 +230,7 @@ export default {
     accepted:
       "image/*,.csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel,.pdf,.doc,.xml,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
   }),
+
   methods: {
     selectFile(file) {
       this.progress = 0;
