@@ -26,7 +26,7 @@ export default {
     reportUrl() {
       return (
         this.$api.defaults.baseURL +
-        "reports/view?entity=client&reportName=" +
+        "reports/view?reportName=" +
         this.$route.params.name
       );
     }

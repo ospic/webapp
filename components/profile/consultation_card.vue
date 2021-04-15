@@ -17,7 +17,7 @@
         @update:page="updatePagination"
       >
         <template v-slot:top>
-          <v-toolbar flat>
+          <v-toolbar flat color="primary" dark>
             <h2>
               <strong>{{ $t(title) }}</strong>
             </h2>

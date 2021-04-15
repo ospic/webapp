@@ -5,11 +5,11 @@
       :items="categories"
       :search="search"
       :items-per-page="15"
-      sort-by="id"
+      sort-by="id" dense
       class="elevation-0 "
     >
       <template v-slot:top>
-        <v-toolbar flat color="gray">
+        <v-toolbar flat color="primary" dark>
           <v-toolbar-title
             ><h3>
               Medicine categories
@@ -24,13 +24,13 @@
             hide-details
             rounded
             height="40"
-            class="shrink"
+            filled
           ></v-text-field
           >&nbsp;&nbsp;
           <v-dialog v-model="dialog" max-width="900px">
             <template v-slot:activator="{ on, attrs }">
               <v-btn
-                color="primary"
+                color="primary lighten-1"
                 elevation="1"
                 medium
                 v-if="isMdAndUp"
@@ -43,7 +43,7 @@
               >
               <v-btn
                 v-else
-                color="primary"
+                color="primary lighten-2"
                 fab
                 small
                 class="mb-2 font-weight-normal"
@@ -68,23 +68,23 @@
                       ></v-text-field>
                     </v-col>
                     <v-col cols="12" sm="6" md="6">
-                        <v-select
-                          v-model="select"
-                          :items="measures"
-                          item-text="unit"
-                          item-value="id"
-                          chips
-                          small-chips
-                          @click="fetch_measures"
-                          :rules="[
-                            v => !!v || 'You must select one to continue!'
-                          ]"
-                          label="Measure unit"
-                          required
-                          persistent-hint
-                          single-line
-                        ></v-select>
-                      </v-col>
+                      <v-select
+                        v-model="select"
+                        :items="measures"
+                        item-text="unit"
+                        item-value="id"
+                        chips
+                        small-chips
+                        @click="fetch_measures"
+                        :rules="[
+                          v => !!v || 'You must select one to continue!'
+                        ]"
+                        label="Measure unit"
+                        required
+                        persistent-hint
+                        single-line
+                      ></v-select>
+                    </v-col>
                     <v-col cols="12" sm="12" md="12">
                       <v-text-field
                         v-model="editedItem.descriptions"
@@ -167,7 +167,7 @@ export default {
       editedItem: {
         id: 0,
         name: "",
-        measurementId:0,
+        measurementId: 0,
         descriptions: ""
       },
       defaultItem: {
@@ -182,9 +182,9 @@ export default {
     save() {
       if (this.editedIndex > -1) {
         Object.assign(this.categories[this.editedIndex], this.editedItem);
-       delete this.editedItem.measureName;
-      
-       this.editedItem.measurementId = this.select;
+        delete this.editedItem.measureName;
+
+        this.editedItem.measurementId = this.select;
         this.$store.dispatch("update_medicine_category", this.editedItem);
         //this.$emit("update");
       } else {
@@ -224,7 +224,7 @@ export default {
         this.editedIndex = -1;
       });
     },
-    fetch_measures:function(){
+    fetch_measures: function() {
       this.$store.dispatch("fetch_medicine_measurements");
     }
   },
@@ -237,7 +237,7 @@ export default {
     }
   },
   computed: {
-     ...mapGetters({
+    ...mapGetters({
       measures: "medicinemeasurements"
     }),
     formTitle() {
@@ -247,8 +247,7 @@ export default {
     },
     datas() {
       return this.categories;
-    },
-   
+    }
   }
 };
 </script>

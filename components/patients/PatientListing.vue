@@ -15,7 +15,7 @@
       @update:page="updatePagination"
     >
       <template v-slot:top>
-        <v-toolbar flat class="default">
+        <v-toolbar flat class="primary" dark>
           <v-text-field
             v-model="search"
             append-icon="search"
@@ -27,11 +27,11 @@
 
           <v-spacer></v-spacer>
           <div v-if="hasPermission('ALL_FUNCTIONS', 'CREATE_PATIENT')">
-            <v-btn medium v-if="isMdAndUp" class="primary" to="/patients/add"
+            <v-btn medium v-if="isMdAndUp" class="primary lighten-1" to="/patients/add"
               ><v-icon>mdi-plus</v-icon
               >{{ $t("label.button.btnnewpatient") }}</v-btn
             >
-            <v-btn small fab v-else class="primary" to="/patients/add"
+            <v-btn small fab v-else class="primary lighten-1" to="/patients/add"
               ><v-icon>mdi-plus</v-icon></v-btn
             >
           </div>

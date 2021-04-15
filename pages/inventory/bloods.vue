@@ -16,7 +16,7 @@
         mobile-breakpoint="100"
       >
         <template v-slot:top>
-          <v-toolbar flat>
+          <v-toolbar flat dark color="primary">
             <v-row no-gutters>
               <v-col cols="12" md="2" align-self="center">
                 <h3 class="title">Blood Bank</h3>
@@ -26,9 +26,11 @@
                   v-model="search"
                   append-icon="search"
                   label="Enter search text ..."
-                  solo
+                  rounded
                   single-line
                   hide-details
+                  filled
+                  class="pt-3"
                 ></v-text-field>
               </v-col>
             </v-row>

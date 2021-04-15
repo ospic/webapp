@@ -15,7 +15,7 @@
       class="elevation-1"
     >
       <template v-slot:top>
-        <v-toolbar flat>
+        <v-toolbar flat color="primary" dark>
           <v-toolbar-title>{{
             $t("label.titles.selfusersmanagement")
           }}</v-toolbar-title>

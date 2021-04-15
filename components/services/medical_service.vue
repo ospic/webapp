@@ -18,7 +18,7 @@
       mobile-breakpoint="100"
     >
       <template v-slot:top>
-        <v-toolbar flat>
+        <v-toolbar flat dark color="primary">
           <v-toolbar-title>{{
             $t("label.titles.servicetypesmanagement")
           }}</v-toolbar-title>
@@ -44,7 +44,7 @@
           <v-dialog v-model="dialog" max-width="700px">
             <template v-slot:activator="{ on, attrs }">
               <v-btn
-                color="primary"
+                color="primary lighten-1"
                 medium
                 class="mb-2"
                 v-bind="attrs"
@@ -56,7 +56,7 @@
               >
               <v-btn
                 v-else
-                color="primary"
+                color="primary lighten-1"
                 fab
                 small
                 class="mb-2"

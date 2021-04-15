@@ -9,6 +9,8 @@
       v-model="drawer"
       mini-variant.sync="mini"
       overlay-color="primary"
+      color="primary"
+      dark
       app
       expand-on-hover
       width="220"
@@ -34,7 +36,7 @@
         <v-divider></v-divider>
         <v-list-item class="list-item ma-0" dense to="/">
           <v-list-item-icon class="ml-1 mr-1">
-            <v-icon color="primary" small>mdi-view-grid</v-icon>
+            <v-icon small>mdi-view-grid</v-icon>
           </v-list-item-icon>
           <v-list-item-title color="#8C93F5" class="font-weight-bold ">{{
             $t("label.menu.dashboard")
@@ -46,16 +48,16 @@
             :value="false"
             no-action
             ripple
+            color="white"
             v-if="hasPermission(setting.permissions)"
           >
             <template v-slot:activator class="ma-0 pa-0">
-              <v-list-item-title class="font-weight-bold">
+              <v-list-item-title class="font-weight-bold" dark>
                 <v-icon
                   slot="prependIcon"
                   v-html="setting.icon"
                   small
                   class="ml-1 mr-2"
-                  color="primary"
                 ></v-icon>
                 {{ $t(setting.title) }}</v-list-item-title
               >
@@ -67,13 +69,14 @@
                 class="my-0 py-0"
                 :key="index"
                 :to="menu.to"
+                color="white"
                 v-if="hasPermission(menu.permissions)"
               >
                 <v-list-item-title
-                  color="#8C93F5"
+                  color="white"
                   class="font-weight-light ma-0 pa-0 "
                 >
-                  <v-icon small color="primary">mdi-circle-medium</v-icon>
+                  <v-icon small>mdi-circle-medium</v-icon>
                   &nbsp;&nbsp;{{ $t(menu.title) }}</v-list-item-title
                 >
               </v-list-item>
@@ -91,7 +94,7 @@
             v-on:click="nativateToHere(item.route)"
           >
             <v-list-item-icon class="ml-1 mr-1">
-              <v-icon color="primary" v-text="item.icon" small></v-icon>
+              <v-icon v-text="item.icon" small></v-icon>
             </v-list-item-icon>
             <v-list-item-title class="font-weight-bold ">{{
               $t(item.text)
@@ -125,8 +128,11 @@
         /></a>
       </template>
     </v-navigation-drawer>
-    <v-app-bar hide-on-scroll dense fixed app flat color="white">
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+    <v-app-bar hide-on-scroll dense fixed app flat color="primary">
+      <v-app-bar-nav-icon
+        color="white"
+        @click.stop="drawer = !drawer"
+      ></v-app-bar-nav-icon>
 
       <v-toolbar-title class="title font-weight-black primary--text">
         Hospital Management System
@@ -141,9 +147,10 @@
             v-if="$vuetify.breakpoint.mdAndUp"
             v-on="on"
             @click.stop="syncro()"
-            elevation="1"
             x-small
-            class="mr-2 primary"
+            elevation="5"
+            color="primary lighten-1"
+            class="mr-2 "
           >
             <v-icon v-on="on" v-if="sync" medium>mdi-progress-clock</v-icon>
             <v-icon v-else medium>mdi-progress-check</v-icon>
@@ -157,7 +164,14 @@
       </v-tooltip>
       <v-tooltip bottom color="primary" open-on-hover open-delay="500">
         <template v-slot:activator="{ on }">
-          <v-btn fab v-on="on" x-small elevation="1" class="mr-2 primary">
+          <v-btn
+            fab
+            v-on="on"
+            x-small
+            elevation="1"
+            color="primary lighten-1"
+            class="mr-2 "
+          >
             <v-icon medium @click="logoutsession">mdi-power</v-icon>
           </v-btn>
         </template>
@@ -166,9 +180,9 @@
       <v-btn
         fab
         x-small
-        color="primary"
         class="pa-1 "
         elevation="1"
+        color="primary lighten-1"
         @click="(dark = !dark), toggle(dark)"
       >
         <v-icon

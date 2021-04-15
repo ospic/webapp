@@ -15,322 +15,319 @@
       >
     </div>
 
-    <v-flex class="ma-0 pa-0 default">
-      <v-card class="ma-0 pa-0 mx-auto ">
-        <v-list class="ma-0 pa-0">
-          <v-progress-circular
-            v-if="service == null"
-            indeterminate
-            color="grey lighten-5"
-            size="16"
-          ></v-progress-circular>
-          <div v-else>
-            <v-card-title>
-              <v-row no-gutters>
-                <v-col cols="12" md="3">
-                  <v-icon :color="service.isActive ? 'green' : 'gray'"
-                    >mdi-circle</v-icon
-                  >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <v-dialog v-model="dialog" persistent dark max-width="500">
-                    <template v-slot:activator="{ on, attrs }">
-                      <v-btn
-                        small
-                        v-if="service.isActive"
-                        class="primary mb-1"
-                        v-bind="attrs"
-                        v-on="on"
-                        >Close consultation</v-btn
-                      >
-                    </template>
-                    <v-card flat class=" text-xs-center">
-                      <v-card-title primary-title class="justify-center">
-                        <div>
-                          <h2 class="font-weight-black">
-                            <v-icon size="48" color="yellow"
-                              >mdi-alert-octagon-outline</v-icon
-                            >&nbsp;&nbsp;End service ?
-                          </h2>
-                        </div>
-                      </v-card-title>
-
-                      <v-card-text>
-                        <p class="text-justify font-weight-normal">
-                          Ending this service will make this service instance
-                          <strong> No. {{ service.id }} </strong>
-                          &nbsp;for client
-                          <strong class="font-weight-normal">{{
-                            service.patient.name
-                          }}</strong
-                          >&nbsp;as inactive for new admissions, diagnoses,
-                          admission visits, Service costs etc. Click agree if
-                          you are okay with this or Disagree to cancel this
-                          operation
-                        </p>
-                      </v-card-text>
-                      <v-card-actions>
-                        <v-spacer></v-spacer>
-                        <v-btn
-                          @click="dialog = false"
-                          class="font-weight-bold"
-                          large
-                        >
-                          Discard
-                        </v-btn>
-                        <v-btn
-                          color="primary darken-2"
-                          class="font-weight-bold"
-                          @click.stop="endThisService"
-                          large
-                        >
-                          End service
-                        </v-btn>
-                      </v-card-actions>
-                    </v-card>
-                  </v-dialog>
-                  <v-autocomplete
-                    dense
-                    :items="staffs"
-                    v-model="selectedstaffId"
-                    item-text="fullName"
-                    item-value="id"
-                    persistent-hint
-                    return-object
-                    solo
-                    flat
-                    outlined
-                    small-chips
-                    class="mx-3 mt-4 d-flex align-bottom"
-                    label="Re/Assign staffs"
-                    @change="_assign_staff()"
+    <v-card class=" mx-auto">
+      <v-toolbar dark v-if="service != null" prominent color="primary">
+        <v-container fluid>
+          <v-row no-gutters>
+            <v-col cols="12" md="3">
+              <v-icon :color="service.isActive ? 'green' : 'gray'"
+                >mdi-circle</v-icon
+              >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <v-dialog v-model="dialog" persistent dark max-width="500">
+                <template v-slot:activator="{ on, attrs }">
+                  <v-btn
+                    medium
+                    v-if="service.isActive"
+                    class="primary mb-1 lighten-2"
+                    v-bind="attrs"
+                    v-on="on"
+                    >Close consultation</v-btn
                   >
-                    <template slot="selection" slot-scope="data">
-                      <v-chip
-                        v-bind="data.attrs"
-                        :input-value="data.selected"
-                        close
-                        @click="data.select"
-                        @click:close="remove(data.item)"
-                      >
-                        <v-avatar left>
-                          <v-img
-                            :src="
-                              data.item.imageUrl === null
-                                ? thumbnail
-                                : data.item.imageUrl
-                            "
-                          ></v-img>
-                        </v-avatar>
-                        {{
+                </template>
+                <v-card flat class=" text-xs-center">
+                  <v-card-title primary-title class="justify-center">
+                    <div>
+                      <h2 class="font-weight-black">
+                        <v-icon size="48" color="yellow"
+                          >mdi-alert-octagon-outline</v-icon
+                        >&nbsp;&nbsp;End service ?
+                      </h2>
+                    </div>
+                  </v-card-title>
+
+                  <v-card-text>
+                    <p class="text-justify font-weight-normal">
+                      Ending this service will make this service instance
+                      <strong> No. {{ service.id }} </strong>
+                      &nbsp;for client
+                      <strong class="font-weight-normal">{{
+                        service.patient.name
+                      }}</strong
+                      >&nbsp;as inactive for new admissions, diagnoses,
+                      admission visits, Service costs etc. Click agree if you
+                      are okay with this or Disagree to cancel this operation
+                    </p>
+                  </v-card-text>
+                  <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn
+                      @click="dialog = false"
+                      class="font-weight-bold"
+                      large
+                    >
+                      Discard
+                    </v-btn>
+                    <v-btn
+                      color="primary darken-2"
+                      class="font-weight-bold"
+                      @click.stop="endThisService"
+                      large
+                    >
+                      End service
+                    </v-btn>
+                  </v-card-actions>
+                </v-card>
+              </v-dialog>
+              <v-autocomplete
+                dense
+                :items="staffs"
+                v-model="selectedstaffId"
+                item-text="fullName"
+                item-value="id"
+                persistent-hint
+                return-object
+                solo
+                flat
+                light
+                small-chips
+                class="mx-3 mt-4 d-flex align-bottom"
+                label="Re/Assign staffs"
+                @change="_assign_staff()"
+              >
+                <template slot="selection" slot-scope="data">
+                  <v-chip
+                    v-bind="data.attrs"
+                    :input-value="data.selected"
+                    close
+                    @click="data.select"
+                    @click:close="remove(data.item)"
+                  >
+                    <v-avatar left>
+                      <v-img
+                        :src="
+                          data.item.imageUrl === null
+                            ? thumbnail
+                            : data.item.imageUrl
+                        "
+                      ></v-img>
+                    </v-avatar>
+                    {{
+                      data.item.fullName === null
+                        ? data.item.username
+                        : data.item.fullName
+                    }}
+                  </v-chip>
+                </template>
+
+                <template v-slot:item="data">
+                  <template v-if="typeof data.item !== 'object'">
+                    <v-list-item-content
+                      v-text="data.item"
+                    ></v-list-item-content>
+                  </template>
+                  <template v-else>
+                    <v-list-item-avatar>
+                      <v-img
+                        :src="
+                          data.item.imageUrl === null
+                            ? thumbnail
+                            : data.item.imageUrl
+                        "
+                        alt="image"
+                      ></v-img>
+                    </v-list-item-avatar>
+                    <v-list-item-content>
+                      <v-list-item-title
+                        v-html="
                           data.item.fullName === null
                             ? data.item.username
                             : data.item.fullName
+                        "
+                      ></v-list-item-title>
+                      <v-list-item-subtitl>
+                        {{ data.item.department.name }} [
+                        {{ data.item.user.roles[0].name }} ]
+                      </v-list-item-subtitl>
+                    </v-list-item-content>
+                  </template>
+                </template>
+              </v-autocomplete>
+            </v-col>
+            <v-col cols="12" md="3">
+              <br />
+            </v-col>
+            <v-col cols="12" md="3">
+              <v-container fluid>
+                <v-card outlined light dense>
+                  <v-list-item three-line>
+                    <v-list-item-avatar size="60">
+                      <v-img
+                        :src="
+                          service.patient.patientPhoto == null
+                            ? thumbnail
+                            : filebaseUri + service.patient.patientPhoto
+                        "
+                      ></v-img>
+                    </v-list-item-avatar>
+                    <v-list-item-content>
+                      <v-list-item-title
+                        ><strong>Patient:</strong>&nbsp;&nbsp;{{
+                          service.patient.name
+                        }}</v-list-item-title
+                      >
+                      <v-list-item-subtitle>
+                        <strong>Weight</strong>&nbsp;&nbsp;{{
+                          service.patient.weight
                         }}
-                      </v-chip>
-                    </template>
+                      </v-list-item-subtitle>
+                      <v-list-item-subtitle>
+                        <strong>Blood pressure</strong>&nbsp;&nbsp;
+                        {{ service.patient.bloodPressure }}
+                      </v-list-item-subtitle>
+                    </v-list-item-content>
+                  </v-list-item>
+                </v-card>
+              </v-container>
+            </v-col>
+            <v-col cols="12" md="3" v-if="service.staff">
+              <v-container fluid>
+                <v-card outlined dense light>
+                  <v-list-item three-line>
+                    <v-list-item-avatar size="60">
+                      <v-img
+                        :src="
+                          service.staff.imageUrl == null
+                            ? thumbnail
+                            : service.staff.imageUrl
+                        "
+                      ></v-img>
+                    </v-list-item-avatar>
+                    <v-list-item-content>
+                      <v-list-item-title
+                        ><strong>Staff:</strong>&nbsp;&nbsp;{{
+                          service.staff.fullName == null
+                            ? service.staff.username
+                            : service.staff.fullName
+                        }}</v-list-item-title
+                      >
+                      <v-list-item-subtitle>
+                        <strong>Phone</strong>&nbsp;&nbsp;{{
+                          service.staff.contacts
+                        }}
+                      </v-list-item-subtitle>
+                      <v-list-item-subtitle>
+                        <strong>Email</strong>&nbsp;&nbsp;
+                        {{ service.staff.email }}
+                      </v-list-item-subtitle>
+                    </v-list-item-content>
+                  </v-list-item>
+                </v-card>
+              </v-container>
+            </v-col>
+          </v-row>
+        </v-container>
+      </v-toolbar>
+      <v-progress-circular
+        v-if="service == null"
+        indeterminate
+        color="grey lighten-5"
+        size="16"
+      ></v-progress-circular>
+      <div v-else>
+        <v-card-text class="ma-0 pa-0">
+          <v-tabs
+            slider-color="blue"
+            background-color="#dcdcdc"
+            slider-size="3"
+            left
+            v-model="tab"
+            class="elevation-2"
+            show-arrows-on-hover="true"
+            :show-arrows="$vuetify.breakpoint.mobile"
+          >
+            <v-tab class="font-weight-normal">
+              <v-icon small left>mdi-stethoscope</v-icon>
+              Diagnoses
+            </v-tab>
 
-                    <template v-slot:item="data">
-                      <template v-if="typeof data.item !== 'object'">
-                        <v-list-item-content
-                          v-text="data.item"
-                        ></v-list-item-content>
-                      </template>
-                      <template v-else>
-                        <v-list-item-avatar>
-                          <v-img
-                            :src="
-                              data.item.imageUrl === null
-                                ? thumbnail
-                                : data.item.imageUrl
-                            "
-                            alt="image"
-                          ></v-img>
-                        </v-list-item-avatar>
-                        <v-list-item-content>
-                          <v-list-item-title
-                            v-html="
-                              data.item.fullName === null
-                                ? data.item.username
-                                : data.item.fullName
-                            "
-                          ></v-list-item-title>
-                          <v-list-item-subtitl>
-                            {{ data.item.department.name }} [
-                            {{ data.item.user.roles[0].name }} ]
-                          </v-list-item-subtitl>
-                        </v-list-item-content>
-                      </template>
-                    </template>
-                  </v-autocomplete>
-                </v-col>
-                <v-col cols="12" md="3">
-                  <br />
-                </v-col>
-                <v-col cols="12" md="3">
-                  <v-container fluid>
-                    <v-card outlined dense color="primary">
-                      <v-list-item three-line>
-                        <v-list-item-avatar size="60">
-                          <v-img
-                            :src="
-                              service.patient.patientPhoto == null
-                                ? thumbnail
-                                : filebaseUri + service.patient.patientPhoto
-                            "
-                          ></v-img>
-                        </v-list-item-avatar>
-                        <v-list-item-content>
-                          <v-list-item-title
-                            ><strong>Patient:</strong>&nbsp;&nbsp;{{
-                              service.patient.name
-                            }}</v-list-item-title
-                          >
-                          <v-list-item-subtitle>
-                            <strong>Weight</strong>&nbsp;&nbsp;{{
-                              service.patient.weight
-                            }}
-                          </v-list-item-subtitle>
-                          <v-list-item-subtitle>
-                            <strong>Blood pressure</strong>&nbsp;&nbsp;
-                            {{ service.patient.bloodPressure }}
-                          </v-list-item-subtitle>
-                        </v-list-item-content>
-                      </v-list-item>
-                    </v-card>
-                  </v-container>
-                </v-col>
-                <v-col cols="12" md="3" v-if="service.staff">
-                  <v-container fluid>
-                    <v-card outlined dense color="primary">
-                      <v-list-item three-line>
-                        <v-list-item-avatar size="60">
-                          <v-img
-                            :src="
-                              service.staff.imageUrl == null
-                                ? thumbnail
-                                : service.staff.imageUrl
-                            "
-                          ></v-img>
-                        </v-list-item-avatar>
-                        <v-list-item-content>
-                          <v-list-item-title
-                            ><strong>Staff:</strong>&nbsp;&nbsp;{{
-                              service.staff.fullName == null
-                                ? service.staff.username
-                                : service.staff.fullName
-                            }}</v-list-item-title
-                          >
-                          <v-list-item-subtitle>
-                            <strong>Phone</strong>&nbsp;&nbsp;{{
-                              service.staff.contacts
-                            }}
-                          </v-list-item-subtitle>
-                          <v-list-item-subtitle>
-                            <strong>Email</strong>&nbsp;&nbsp;
-                            {{ service.staff.email }}
-                          </v-list-item-subtitle>
-                        </v-list-item-content>
-                      </v-list-item>
-                    </v-card>
-                  </v-container>
-                </v-col>
-              </v-row>
-            </v-card-title>
-            <v-card-text>
-              <v-tabs
-                slider-color="blue"
-                background-color="#dcdcdc"
-                slider-size="3"
-                left
-                v-model="tab"
-                class="elevation-2"
-                show-arrows-on-hover="true"
-                :show-arrows="$vuetify.breakpoint.mobile"
-              >
-                <v-tab class="font-weight-normal">
-                  <v-icon small left>mdi-stethoscope</v-icon>
-                  Diagnoses
-                </v-tab>
+            <v-tab
+              class="font-weight-normal"
+              @click="
+                getMedicalServices();
+                getServiceChargesAndCosts();
+              "
+            >
+              <v-icon small left>mdi-plus-box</v-icon>
+              Services
+            </v-tab>
+            <v-tab
+              class="font-weight-normal"
+              @click="getServiceChargesAndCosts()"
+            >
+              <v-icon small left>mdi-pill</v-icon>
+              Medications
+            </v-tab>
+            <v-tab
+              class="font-weight-normal"
+              @click="getConsultationLaboratoryReports()"
+            >
+              <v-icon small left>mdi-microscope</v-icon>
+              Laboratory reports
+            </v-tab>
+            <v-tab
+              class="font-weight-normal"
+              @click="getServiceChargesAndCosts"
+            >
+              <v-icon small left>mdi-credit-card</v-icon>
+              Costs
+            </v-tab>
 
-                <v-tab
-                  class="font-weight-normal"
-                  @click="
-                    getMedicalServices();
-                    getServiceChargesAndCosts();
-                  "
-                >
-                  <v-icon small left>mdi-plus-box</v-icon>
-                  Services
-                </v-tab>
-                <v-tab
-                  class="font-weight-normal"
-                  @click="getServiceChargesAndCosts()"
-                >
-                  <v-icon small left>mdi-pill</v-icon>
-                  Medications
-                </v-tab>
-                <v-tab
-                  class="font-weight-normal"
-                  @click="getConsultationLaboratoryReports()"
-                >
-                  <v-icon small left>mdi-microscope</v-icon>
-                  Laboratory reports
-                </v-tab>
-                <v-tab
-                  class="font-weight-normal"
-                  @click="getServiceChargesAndCosts"
-                >
-                  <v-icon small left>mdi-credit-card</v-icon>
-                  Costs
-                </v-tab>
+            <v-tab class="font-weight-normal" @click="getServiceAdmissions">
+              <v-icon small left>mdi-bed</v-icon>
+              Admissions
+            </v-tab>
+          </v-tabs>
+          <v-tabs-items vertical v-model="tab" class="default">
+            <v-tab-item>
+              <tb-diagnoses
+                v-bind:diagnoses="service.diagnoses"
+                :isActive="service.isActive"
+              ></tb-diagnoses>
+            </v-tab-item>
 
-                <v-tab class="font-weight-normal" @click="getServiceAdmissions">
-                  <v-icon small left>mdi-bed</v-icon>
-                  Admissions
-                </v-tab>
-              </v-tabs>
-              <v-tabs-items vertical v-model="tab" class="default">
-                <v-tab-item>
-                  <tb-diagnoses
-                    v-bind:diagnoses="service.diagnoses"
-                    :isActive="service.isActive"
-                  ></tb-diagnoses>
-                </v-tab-item>
+            <v-tab-item>
+              <tb-medical-services
+                :transaction="service_transactions"
+                :isActive="service.isActive"
+              ></tb-medical-services>
+            </v-tab-item>
+            <v-tab-item>
+              <tb-medicines
+                :transaction="service_transactions"
+                :isActive="service.isActive"
+              ></tb-medicines>
+            </v-tab-item>
 
-                <v-tab-item>
-                  <tb-medical-services
-                    :transaction="service_transactions"
-                    :isActive="service.isActive"
-                  ></tb-medical-services>
-                </v-tab-item>
-                <v-tab-item>
-                  <tb-medicines
-                    :transaction="service_transactions"
-                    :isActive="service.isActive"
-                  ></tb-medicines>
-                </v-tab-item>
+            <v-tab-item>
+              <tb-reports
+                :files="reportfiles"
+                v-on:update-report="checkevent"
+              ></tb-reports>
+            </v-tab-item>
+            <v-tab-item>
+              <tb-charges :transaction="service_transactions"></tb-charges>
+            </v-tab-item>
 
-                <v-tab-item>
-                  <tb-reports
-                    :files="reportfiles"
-                    v-on:update-report="checkevent"
-                  ></tb-reports>
-                </v-tab-item>
-                <v-tab-item>
-                  <tb-charges :transaction="service_transactions"></tb-charges>
-                </v-tab-item>
-
-                <v-tab-item>
-                  <tb-admissions
-                    :admissions="admissions"
-                    :userdata="service.patient"
-                  ></tb-admissions>
-                </v-tab-item>
-              </v-tabs-items>
-            </v-card-text>
-          </div>
-        </v-list>
-      </v-card>
-    </v-flex>
+            <v-tab-item>
+              <tb-admissions
+                :admissions="admissions"
+                :userdata="service.patient"
+              ></tb-admissions>
+            </v-tab-item>
+          </v-tabs-items>
+        </v-card-text>
+      </div>
+    </v-card>
   </div>
 </template>
 <script>

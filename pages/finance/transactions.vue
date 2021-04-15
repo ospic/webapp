@@ -8,11 +8,45 @@
       >
     </div>
     <v-card>
+      <v-toolbar flat dark color="primary">
+        <v-row no-gutters>
+          <v-col cols="12" md="2" align-self="center">
+            <h3 class="title">Transactions</h3>
+          </v-col>
+          <v-col cols="12" md="4">
+            <v-text-field
+              v-model="search"
+              append-icon="search"
+              label="Enter search text ..."
+              rounded
+              dense
+              outlined
+              single-line
+              hide-details
+            ></v-text-field>
+          </v-col>
+        </v-row>
+        <v-dialog
+          v-model="dialog"
+          max-width="600px"
+          class="ma-0 pa-0"
+          hide-overlay
+          open-delay="12"
+        >
+          <v-progress-linear
+            background-color="white"
+            indeterminate
+            color="cyan"
+            v-if="bill == null"
+          ></v-progress-linear>
+          <receipt v-else :bill="bill"></receipt>
+        </v-dialog>
+      </v-toolbar>
       <v-progress-linear
         indeterminate
         v-if="transactions == null"
       ></v-progress-linear>
-      <v-container fluid v-else class="ma-2">
+      <v-container fluid v-else class="ma-0 pa-0">
         <v-data-table
           dense
           class="default"
@@ -29,42 +63,6 @@
               {{ item.medicalServiceName }}
             </p>
             <p v-else>{{ item.medicineName }}</p>
-          </template>
-          <template v-slot:top>
-            <v-toolbar flat>
-              <v-row no-gutters>
-                <v-col cols="12" md="2" align-self="center">
-                  <h3 class="title">Transactions</h3>
-                </v-col>
-                <v-col cols="12" md="4">
-                  <v-text-field
-                    v-model="search"
-                    append-icon="search"
-                    label="Enter search text ..."
-                    rounded
-                    dense
-                    outlined
-                    single-line
-                    hide-details
-                  ></v-text-field>
-                </v-col>
-              </v-row>
-              <v-dialog
-                v-model="dialog"
-                max-width="600px"
-                class="ma-0 pa-0"
-                hide-overlay
-                open-delay="12"
-              >
-                <v-progress-linear
-                  background-color="white"
-                  indeterminate
-                  color="cyan"
-                  v-if="bill == null"
-                ></v-progress-linear>
-                <receipt v-else :bill="bill"></receipt>
-              </v-dialog>
-            </v-toolbar>
           </template>
         </v-data-table>
       </v-container>
