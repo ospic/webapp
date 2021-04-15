@@ -21,7 +21,7 @@
           @click:row="handleClick"
         >
           <template v-slot:top>
-            <v-toolbar flat>
+            <v-toolbar flat dark color="primary">
               <h2>
                 <strong>{{ title }}</strong>
               </h2>
@@ -38,7 +38,7 @@
               <v-dialog v-model="dialog" max-width="900px">
                 <template v-slot:activator="{ on, attrs }">
                   <v-btn
-                    color="primary"
+                    color="primary lighten-1"
                     elevation="1"
                     medium
                     prepend-icon="mdi-plus"
@@ -58,7 +58,7 @@
                     fab
                     dark
                     small
-                    color="primary"
+                    color="primary lighten-1"
                   >
                     <v-icon dark>
                       mdi-plus

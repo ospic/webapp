@@ -6,10 +6,11 @@
       :search="search"
       :items-per-page="15"
       sort-by="id"
+      dense
       class="elevation-0 "
     >
       <template v-slot:top>
-        <v-toolbar flat>
+        <v-toolbar flat color="primary" dark>
           <v-toolbar-title
             ><h3>
               Medicines
@@ -19,17 +20,16 @@
           <v-text-field
             v-model="search"
             label="Search by name/company/composition"
-            single-line
             hide-details
             rounded
             height="40"
-            class="shrink"
+            filled
           ></v-text-field
           >&nbsp;&nbsp;
           <v-dialog v-model="dialog" max-width="900px">
             <template v-if="showaction" v-slot:activator="{ on, attrs }">
               <v-btn
-                color="primary"
+                color="primary lighten-1"
                 elevation="1"
                 medium
                 prepend-icon="mdi-plus"
@@ -43,7 +43,7 @@
               >
               <v-btn
                 v-else
-                color="primary"
+                color="primary lighten-1"
                 fab
                 small
                 class="mb-2 font-weight-normal"

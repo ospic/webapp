@@ -24,7 +24,7 @@
       @click:row="navigateToWard"
     >
       <template v-slot:top>
-        <v-toolbar flat>
+        <v-toolbar flat dark color="primary">
           <v-toolbar-title
             ><h3>{{ title }}</h3></v-toolbar-title
           >
@@ -33,10 +33,12 @@
           <v-text-field
             v-model="search"
             append-icon="search"
-            label="Search"
+            label="Enter search text ..."
+            rounded
             single-line
-            dense
             hide-details
+            filled
+            class="pt-3"
           ></v-text-field>
           <v-spacer></v-spacer>
           <v-dialog v-model="dialog" max-width="700px">

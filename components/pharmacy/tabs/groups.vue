@@ -5,11 +5,11 @@
       :items="groups"
       :search="search"
       :items-per-page="15"
-      sort-by="id"
+      sort-by="id" dense
       class="elevation-0 "
     >
       <template v-slot:top>
-        <v-toolbar flat color="gray">
+        <v-toolbar flat color="primary" dark>
           <v-toolbar-title
             ><h3>
               Medicine groups
@@ -22,14 +22,14 @@
             single-line
             hide-details
             rounded
+            filled
             height="40"
-            class="shrink"
           ></v-text-field
           >&nbsp;&nbsp;
           <v-dialog v-model="dialog" max-width="900px">
             <template v-slot:activator="{ on, attrs }">
               <v-btn
-                color="primary"
+                color="primary lighten-1"
                 elevation="1"
                 medium
                 class="mb-2"
@@ -42,7 +42,7 @@
               >
               <v-btn
                 v-else
-                color="primary"
+                color="primary lighten-1"
                 fab
                 small
                 class="mb-2 font-weight-normal"
@@ -132,9 +132,9 @@ export default {
     save() {
       if (this.editedIndex > -1) {
         Object.assign(this.groups[this.editedIndex], this.editedItem);
-       
+
         this.$store.dispatch("update_medicine_group", this.editedItem);
-       // this.$emit("update");
+        // this.$emit("update");
       } else {
         this.groups.push(this.editedItem);
         this.$store.dispatch("add_new_medicine_group", this.editedItem);

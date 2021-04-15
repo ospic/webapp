@@ -16,7 +16,7 @@
     float: left;
     font-size: 12px;
     line-height: 36px;
-    color: $color_white;
+    color: rgb(151, 180, 88) !important;
     padding: 0 10px 0 60px;
     background: #666;
     background: linear-gradient(#666, #333);
@@ -78,6 +78,7 @@
   a.active {
     background: #333;
     background: linear-gradient(#333, #000);
+    color: yellow !important;
     &:after {
       background: #333;
       background: linear-gradient(135deg, #333, #000);

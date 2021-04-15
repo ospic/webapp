@@ -15,7 +15,7 @@
       class="elevation-1"
     >
       <template v-slot:top>
-        <v-toolbar flat>
+        <v-toolbar flat color="primary" dark>
           <v-toolbar-title>{{
             $t("label.titles.usersmanagement")
           }}</v-toolbar-title>
@@ -24,7 +24,7 @@
           <v-dialog v-model="dialog" max-width="700px">
             <template v-slot:activator="{ on, attrs }">
               <v-btn
-                color="primary"
+                color="primary lighten-1"
                 class="mb-2"
                 medium
                 v-bind="attrs"

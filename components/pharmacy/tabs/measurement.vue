@@ -6,10 +6,11 @@
       :search="search"
       :items-per-page="15"
       sort-by="id"
+      dense
       class="elevation-0 "
     >
       <template v-slot:top>
-        <v-toolbar flat color="gray">
+        <v-toolbar flat color="primary" dark>
           <v-toolbar-title
             ><h3>
               Medicine measurement units
@@ -23,14 +24,14 @@
             single-line
             hide-details
             rounded
+            filled
             height="40"
-            class="shrink"
           ></v-text-field
           >&nbsp;&nbsp;
           <v-dialog v-model="dialog" max-width="900px">
             <template v-slot:activator="{ on, attrs }">
               <v-btn
-                color="primary"
+                color="primary lighten-1"
                 elevation="1"
                 medium
                 v-if="isMdAndUp"
@@ -43,7 +44,7 @@
               >
               <v-btn
                 v-else
-                color="primary"
+                color="primary lighten-1"
                 fab
                 small
                 class="mb-2 font-weight-normal"

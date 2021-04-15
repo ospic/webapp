@@ -7,7 +7,16 @@
       }}</router-link>
     </div>
     <v-card>
-      <v-tabs color="deep-purple accent-4 pa-3" right>
+      <v-tabs
+        slider-color="blue"
+        background-color="primary"
+        slider-size="3"
+        right
+        v-model="tab"
+        show-arrows-on-hover="true"
+        :show-arrows="$vuetify.breakpoint.mobile"
+        dark
+      >
         <v-tab>
           <v-badge
             color="green"

@@ -11,7 +11,7 @@ export default (ctx) => {
       dark: false,
       themes: {
         dark: {
-          primary: '#00A756',
+          primary: '#06065e',
           accent: '#0000',
           secondary: '#ffffff',
           success: '#4CAF50',
@@ -23,7 +23,7 @@ export default (ctx) => {
           dlue: "#1520A6",
         },
         light: {
-          primary: '#00A756',
+          primary: '#141466',
           accent: '#000000',
           secondary: '#ffffff',
           success: '#4CAF50',

@@ -36,7 +36,7 @@
 }
 
 body {
-  background-color: #f5f5f5;
+  background-color: #f4f4f4;
   background-size: cover;
   background-attachment: fixed;
   background-position: center;
@@ -79,7 +79,7 @@ body {
   float: left;
   font-size: 12px;
   line-height: 36px;
-  color: #ffffff;
+  color: #97b458 !important;
   padding: 0 10px 0 60px;
   background: #666;
   background: -webkit-gradient(linear, left top, left bottom, from(#666), to(#333));
@@ -155,6 +155,7 @@ body {
   background: #333;
   background: -webkit-gradient(linear, left top, left bottom, from(#333), to(#000));
   background: linear-gradient(#333, #000);
+  color: yellow !important;
 }
 
 .breadcrumb a.active:after {
@@ -291,8 +292,12 @@ th {
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: left;
-  background-color: #00a756;
+  background-color: #141466;
   font-weight: b;
+  color: white;
+}
+
+th span {
   color: white;
 }
 
