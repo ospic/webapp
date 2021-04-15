@@ -42,7 +42,7 @@
             $t("label.menu.dashboard")
           }}</v-list-item-title>
         </v-list-item>
-        <div v-for="(setting, ind) in settings" :key="ind">
+        <div v-for="(setting, ind) in settings" :key="ind + setting.icon">
           <v-divider></v-divider>
           <v-list-group
             :value="false"
@@ -67,7 +67,7 @@
               <v-list-item
                 dense
                 class="my-0 py-0"
-                :key="index"
+                :key="index + menu.title"
                 :to="menu.to"
                 color="white"
                 v-if="hasPermission(menu.permissions)"
