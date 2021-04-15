@@ -1,7 +1,6 @@
 const state = () => ({
   showLoader: Boolean,
   medicalservices: [],
-  medicalservicestypes: [],
   medicalservice: {}
 });
 
@@ -51,21 +50,6 @@ const mutations = {
     state.medicalservices = payload;
   },
 
-
-  //GET MEDICAL SERVICES TYPES
-  ["GET_MEDICAL_SERVICE_TYPES"](state) {
-    state.showLoader = true;
-  },
-  ["GET_MEDICAL_SERVICE_TYPES_FAILED"](state) {
-    state.showLoader = false;
-  },
-  ["GET_MEDICAL_SERVICE_TYPES_ERROR"](state) {
-    state.showLoader = false;
-  },
-  ["GET_MEDICAL_SERVICE_TYPES_SUCCESS"](state, payload) {
-    state.showLoader = false;
-    state.medicalservicestypes = payload;
-  },
 }
 
 const actions = {
@@ -119,26 +103,13 @@ const actions = {
       });
 
   },
-  async get_medical_service_types({ commit }) {
-    commit("GET_MEDICAL_SERVICE_TYPES");
-    await this.$api.$get('mdservice/types/')
-      .then(response => {
-        commit("GET_MEDICAL_SERVICE_TYPES_SUCCESS", response);
-      }).catch(error => {
-        commit("GET_MEDICAL_SERVICE_TYPES_ERROR");
-        console.log(error);
 
-      });
-
-  }
 }
 const getters = {
   medicalservices: function (state) {
     return state.medicalservices;
   },
-  servicetypes: function (state) {
-    return state.medicalservicestypes;
-  }
+
 
 
 }
