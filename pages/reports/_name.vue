@@ -2,7 +2,11 @@
   <div>
     <div class="breadcrumb ">
       <router-link to="/">Dashboard</router-link>
-      <router-link to="/reports" class="active">Reports</router-link>
+      <router-link to="/reports">Report</router-link>
+
+      <router-link :to="`/reports/${$route.params.name}`" class="active"
+        >View Reports</router-link
+      >
     </div>
 
     <div v-if="reportUrl">

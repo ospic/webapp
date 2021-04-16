@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-card class="mx-auto ma-1" dark flat tile>
+    <v-card class="mx-auto ma-1" color="#5a5b5f" flat tile>
       <v-toolbar color="primary" dark flat>
         <v-toolbar-title>
           <v-icon>mdi-file-document</v-icon>Report Name
