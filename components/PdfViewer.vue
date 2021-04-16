@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-card class="mx-auto ma-1" color="#5a5b5f" flat tile>
+    <v-card class="mx-auto ma-1" dark flat tile>
       <v-toolbar color="primary" dark flat>
         <v-toolbar-title>
           <v-icon>mdi-file-document</v-icon>Report Name
@@ -51,9 +51,7 @@
       </v-toolbar>
 
       <v-card-text>
-        <div
-          style="width: 70%; height: 900px;  margin: auto; overflow: scroll;"
-        >
+        <div style="width: 70%;  margin: auto;">
           <pdf
             ref="pdfdoc"
             id="pdfdoc"
@@ -65,11 +63,7 @@
             @error="error"
             @link-clicked="page = $event"
             @progress="loadedRatio = $event"
-            v-for="i in numPages"
-            :key="i"
-            :page="i"
-            class="pdfdoc"
-            style="display: inline-block; width: 100%"
+            style="width: 100%;"
           ></pdf>
         </div>
       </v-card-text>
@@ -105,16 +99,6 @@ export default {
   methods: {
     error: function(err) {
       console.log(err);
-    },
-    logContent() {
-      console.log(this.$refs.myPdfComponent);
-      /**this.$refs.myPdfComponent.pdf.forEachPage(function(page) {
-        return page.getTextContent().then(function(content) {
-          var text = content.items.map(item => item.str);
-          console.log(text);
-        });
-      });
-      **/
     }
   },
   mounted() {
