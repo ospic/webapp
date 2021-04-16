@@ -51,7 +51,9 @@
       </v-toolbar>
 
       <v-card-text>
-        <div style="width: 70%;  margin: auto;">
+        <div
+          style="width: 70%; height: 900px;  margin: auto; overflow: scroll;"
+        >
           <pdf
             ref="pdfdoc"
             id="pdfdoc"
