@@ -182,6 +182,7 @@
         x-small
         class="pa-1 "
         elevation="1"
+        v-show="false"
         color="primary lighten-1"
         @click="(dark = !dark), toggle(dark)"
       >
