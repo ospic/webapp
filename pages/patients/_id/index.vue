@@ -35,7 +35,7 @@
 </template>
 
 <script>
-import info_card_info from "@/components/profile/c_info_card";
+import info_card_info from "~/components/profile/c_info_card";
 export default {
   components: {
     "card-info": info_card_info
