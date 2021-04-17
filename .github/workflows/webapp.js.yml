@@ -35,6 +35,7 @@ jobs:
       - run: npm cache clean -f
       - run: rm -rf node_modules package-lock.json 
       - run : npm install -g npm
+      - run: npm install --save core-js@^3
       - run: npm i --save
       - run: npm run production
       - run: npm test
