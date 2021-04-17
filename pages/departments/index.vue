@@ -227,7 +227,8 @@ export default {
     },
     save() {
       if (this.editedIndex > -1) {
-        //this.$store.dispatch("update_medicine_product", this.editedItem);
+        console.log(this.editedItem);
+        this.$store.dispatch("update_department", this.editedItem);
       } else {
         delete this.editedItem.id;
         this.$store.dispatch("create_department", this.editedItem);
@@ -241,7 +242,10 @@ export default {
   watch: {
     dialog(val) {
       val || this.close();
-      this.$store.dispatch("retrieve_departments");
+      setTimeout(
+        () => this.$store.dispatch("retrieve_departments"),
+        this.DELAY_SECONDS
+      );
     }
   },
   created() {
