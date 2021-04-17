@@ -65,6 +65,7 @@ export default {
   data: () => ({
     dialog: false,
     search: "",
+    tab: null,
     un_assigned_pagetitle: "Un-Assigned Patients",
     assigned_pagetitle: "Assigned Patients",
     all_pagetitle: "All Patients"

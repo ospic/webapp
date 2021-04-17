@@ -96,7 +96,7 @@ export default {
     }
   },
   data: () => ({
-    select: [],
+    select: null,
     dialog: false,
     service_transactions: null,
     type: "service",

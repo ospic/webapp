@@ -58,7 +58,6 @@ const actions = {
     commit("GET_OPDSERVICES");
     await this.$api.$get('consultations/?active=activeopd')
       .then(response => {
-        console.log(response)
         commit("GET_OPDSERVICES_SUCCESS", response);
       }).catch(error => {
         commit("GET_OPDSERVICES_ERROR");
