@@ -34,6 +34,20 @@ const mutations = {
     state.showLoader = false;
     state.departments = payload;
   },
+
+  //UPDATE DEPARTMENTS
+  ["UPDATE_DEPARTMENT"](state) {
+    state.showLoader = true;
+  },
+  ["UPDATE_DEPARTMENT_FAILED"](state) {
+    state.showLoader = false;
+  },
+  ["UPDATE_DEPARTMENT_ERROR"](state) {
+    state.showLoader = false;
+  },
+  ["UPDATE_DEPARTMENT_SUCCESS"](state, payload) {
+    state.showLoader = false;
+  },
 }
 
 const actions = {
@@ -47,10 +61,21 @@ const actions = {
       }).catch(error => {
         commit("CREATE_DEPARTMENT_ERROR");
         console.log(error);
-
       });
-
   },
+
+  async update_department({ commit }, payload) {
+    commit("UPDATE_DEPARTMENT");
+    await this.$api.$put(`departments/${payload.id}`, payload)
+      .then(response => {
+        console.log(response)
+        commit("UPDATE_DEPARTMENT_SUCCESS", response);
+      }).catch(error => {
+        commit("UPDATE_DEPARTMENT_ERROR");
+        console.log(error);
+      });
+  },
+
 
   async retrieve_departments({ commit }) {
     commit("GET_DEPARTMENTS");
@@ -60,9 +85,7 @@ const actions = {
       }).catch(error => {
         commit("GET_DEPARTMENTS_ERROR");
         console.log(error);
-
       });
-
   }
 }
 const getters = {
