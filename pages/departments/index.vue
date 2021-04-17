@@ -246,7 +246,7 @@ export default {
       val || this.close();
       setTimeout(
         () => this.$store.dispatch("retrieve_departments"),
-        this.DELAY_SECONDS
+        this.delay_seconds
       );
     }
   },
