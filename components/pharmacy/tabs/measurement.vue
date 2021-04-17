@@ -216,9 +216,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters({
-      measures: "medicinemeasurements"
-    }),
+    ...mapGetters({}),
     formTitle() {
       return this.editedIndex === -1
         ? "New medicine  measures"
