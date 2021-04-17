@@ -21,7 +21,7 @@
         slider-size="3"
         right
         v-model="tab"
-        show-arrows-on-hover="true"
+        show-arrows-on-hover
         :show-arrows="$vuetify.breakpoint.mobile"
       >
         <v-tab-item>

@@ -1,6 +1,13 @@
 <template>
   <div>
+    <v-progress-circular
+      size="32"
+      indeterminate
+      color="primary"
+      v-if="medicines == null"
+    ></v-progress-circular>
     <v-data-table
+      v-else
       :headers="headers"
       :items="medicines"
       :search="search"
@@ -213,7 +220,7 @@ export default {
       this.editedItemId = item.id;
     },
     deleteItem(item) {
-      const index = this.datalist.indexOf(item);
+      const index = this.medicines.indexOf(item);
       confirm("Are you sure you want to delete this item?");
       //this.datalist.splice(index, 1);
       //this.$store.dispatch("delete_patient", item.id);

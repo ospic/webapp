@@ -20,7 +20,7 @@ const mutations = {
   },
   ["GET_MEDICINE_PRODUCTS_SUCCESS"](state, payload) {
     state.showLoader = false;
-    state.medicines = payload.body;
+    state.medicines = payload;
   },
 
 
