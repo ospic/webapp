@@ -109,7 +109,7 @@
 
                         <v-col cols="12" sm="12" md="12">
                           <v-textarea
-                            v-model="editedItem.description"
+                            v-model="editedItem.descriptions"
                             label="Descriptions"
                           ></v-textarea>
                         </v-col>
@@ -177,17 +177,19 @@ export default {
       editedItem: {
         id: 0,
         name: "",
-        hierachy: "",
-        description: "",
+        hierarchy: "",
+        descriptions: "",
         extraId: "",
+        openingDate: "",
         parent: 0
       },
       defaultItem: {
         id: 0,
         name: "",
-        hierachy: "",
-        description: "",
+        hierarchy: "",
+        descriptions: "",
         extraId: "",
+        openingDate: "",
         parent: 0
       }
     };
@@ -227,7 +229,7 @@ export default {
     },
     save() {
       if (this.editedIndex > -1) {
-        console.log(this.editedItem);
+        // console.log(this.editedItem);
         this.$store.dispatch("update_department", this.editedItem);
       } else {
         delete this.editedItem.id;
