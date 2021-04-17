@@ -33,6 +33,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: npm cache verify
       - run: rm -rf node_modules package-lock.json 
+      - run : npm install -g npm
       - run: npm i --save
       - run: npm run production
       - run: npm test
