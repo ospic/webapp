@@ -1,5 +1,5 @@
 <template>
- <!-- <v-container>
+  <v-container>
     <v-dialog
       v-model="dialog"
       transition="dialog-top-transition"
@@ -72,7 +72,7 @@
         </v-data-table>
       </v-container>
     </div>
-  </v-container>--!>
+  </v-container>
 </template>
 <script>
 import { mapGetters } from "vuex";
