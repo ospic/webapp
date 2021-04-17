@@ -163,7 +163,7 @@ export default {
       this.$nextTick(() => {
         this.editedItem = Object.assign({}, this.defaultItem);
         this.editedIndex = -1;
-        setTimeout(() => this.request_data(), this.DELAY_SECONDS);
+        setTimeout(() => this.request_data(), this.delay_seconds);
       });
     },
     request_data() {

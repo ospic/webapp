@@ -32,7 +32,7 @@ Vue.mixin({
       publicPath: window.location.origin + '/lib',
       itemsperpage: 15,
       totalvisible: 7,
-      DELAY_SECONDS: 2000,
+      delay_seconds: 2000,
       body: {
         options: {
           page: 1,
