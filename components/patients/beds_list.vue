@@ -29,14 +29,17 @@
                 <v-progress-circular
                   v-if="patient == null"
                   indeterminate
-                  color="grey lighten-5"
+                  color="primary lighten-5"
                   size="16"
                 ></v-progress-circular>
                 <div v-else>
                   <v-list-item>
-                    <v-list-item-avatar color="green">
-                      <v-img :src="patient.patientPhoto"></v-img>
-                    </v-list-item-avatar>
+                    <v-avatar size="60" class="mr-2">
+                      <v-img
+                        :src="filebaseUri + patient.patientPhoto"
+                        :alt="patient.name"
+                      ></v-img>
+                    </v-avatar>
 
                     <v-list-item-content>
                       <v-list-item-title class="white--text"
@@ -50,48 +53,50 @@
                       >
                     </v-list-item-content>
                   </v-list-item>
-                  <table style="width:100%; text-align: start">
-                    <tr>
-                      <td id="gender">Gender:</td>
-                      <td>{{ patient.gender }}</td>
-                    </tr>
-                    <tr>
-                      <td id="gender">Height:</td>
-                      <td>{{ patient.height }}</td>
-                    </tr>
-                    <tr>
-                      <td id="gender">Weight:</td>
-                      <td>{{ patient.weight }}</td>
-                    </tr>
-                    <tr>
-                      <td id="gender">Blood Pressure:</td>
-                      <td>{{ patient.bloodPressure }}</td>
-                    </tr>
-                    <tr>
-                      <td id="gender">Blood Group:</td>
-                      <td>{{ patient.bloodGroup }}</td>
-                    </tr>
-                    <tr>
-                      <td id="gender">Age:</td>
-                      <td>{{ patient.age }}</td>
-                    </tr>
-                    <tr v-if="patient.martiaStatus">
-                      <td id="gender">Mariage Status:</td>
-                      <td>{{ patient.martiaStatus }}</td>
-                    </tr>
-                    <tr>
-                      <td id="gender">Guardian:</td>
-                      <td>{{ patient.guardianName }}</td>
-                    </tr>
-                    <tr>
-                      <td id="gender">Phone:</td>
-                      <td>{{ patient.phone }}</td>
-                    </tr>
-                    <tr>
-                      <td id="gender">Email:</td>
-                      <td>{{ patient.email }}</td>
-                    </tr>
-                  </table>
+                  <v-simple-table>
+                    <tbody>
+                      <tr>
+                        <td id="gender">Gender:</td>
+                        <td>{{ patient.gender }}</td>
+                      </tr>
+                      <tr>
+                        <td id="gender">Height:</td>
+                        <td>{{ patient.height }}</td>
+                      </tr>
+                      <tr>
+                        <td id="gender">Weight:</td>
+                        <td>{{ patient.weight }}</td>
+                      </tr>
+                      <tr>
+                        <td id="gender">Blood Pressure:</td>
+                        <td>{{ patient.bloodPressure }}</td>
+                      </tr>
+                      <tr>
+                        <td id="gender">Blood Group:</td>
+                        <td>{{ patient.bloodGroup }}</td>
+                      </tr>
+                      <tr>
+                        <td id="gender">Age:</td>
+                        <td>{{ patient.age }}</td>
+                      </tr>
+                      <tr v-if="patient.martiaStatus">
+                        <td id="gender">Mariage Status:</td>
+                        <td>{{ patient.martiaStatus }}</td>
+                      </tr>
+                      <tr>
+                        <td id="gender">Guardian:</td>
+                        <td>{{ patient.guardianName }}</td>
+                      </tr>
+                      <tr>
+                        <td id="gender">Phone:</td>
+                        <td>{{ patient.phone }}</td>
+                      </tr>
+                      <tr>
+                        <td id="gender">Email:</td>
+                        <td>{{ patient.email }}</td>
+                      </tr>
+                    </tbody>
+                  </v-simple-table>
                 </div>
               </div>
             </v-tooltip>
