@@ -222,12 +222,10 @@ export default {
       this.$nextTick(() => {
         this.editedItem = Object.assign({}, this.defaultItem);
         this.editedIndex = -1;
-        this.request_data();
+        this.$emit("update");
       });
     },
-    request_data() {
-      this.$store.dispatch("get_medical_services");
-    },
+
     save() {
       if (this.editedIndex > -1) {
         console.log(this.editedItem);

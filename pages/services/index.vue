@@ -5,7 +5,10 @@
       <router-link to="/services" class="active">Services </router-link>
     </div>
 
-    <medical-service :services="medicalservices"></medical-service>
+    <medical-service
+      :services="medicalservices"
+      v-on:update="update"
+    ></medical-service>
   </div>
 </template>
 <script>
@@ -46,38 +49,11 @@ export default {
     }
   }),
   methods: {
-    handleClick: function(item) {
-      this.$router.push("roles/" + item.id);
-    },
-    editItem(item) {
-      this.fetch_measures();
-      this.editedIndex = this.medicalservices.indexOf(item);
-      this.editedItem.medicalServiceType = this.measures.find(
-        x => x.symbol === item.medicalServiceType
-      );
-      this.editedItem = Object.assign({}, item);
-      this.dialog = true;
-    },
-    close() {
-      this.dialog = false;
-      this.$nextTick(() => {
-        this.editedItem = Object.assign({}, this.defaultItem);
-        this.editedIndex = -1;
-        this.request_data();
-      });
+    update() {
+      setTimeout(() => this.request_data(), 4000);
     },
     request_data() {
       this.$store.dispatch("get_medical_services");
-    },
-    save() {
-      if (this.editedIndex > -1) {
-        console.log(this.editedItem);
-        this.$store.dispatch("update_medical_service", this.editedItem);
-      } else {
-        delete this.editedItem.id;
-        this.$store.dispatch("create_new_medical_service", this.editedItem);
-      }
-      this.close();
     }
   },
   created() {
