@@ -12,7 +12,7 @@
         size="52"
         color="primary"
         indeterminate
-        v-if="servicetypes==null"
+        v-if="servicetypes == null"
       ></v-progress-circular>
       <v-data-table
         dense
@@ -124,6 +124,7 @@
   </div>
 </template>
 <script>
+import { mapGetters } from "vuex";
 export default {
   data: () => ({
     dialog: false,
@@ -162,7 +163,7 @@ export default {
       this.$nextTick(() => {
         this.editedItem = Object.assign({}, this.defaultItem);
         this.editedIndex = -1;
-        this.request_data();
+        setTimeout(() => this.request_data(), this.DELAY_SECONDS);
       });
     },
     request_data() {
@@ -171,6 +172,7 @@ export default {
     save() {
       if (this.editedIndex > -1) {
         console.log(this.editedItem);
+        delete this.editedItem.new;
         this.$store.dispatch("update_medical_service_type", this.editedItem);
       } else {
         delete this.editedItem.id;
@@ -190,7 +192,11 @@ export default {
       return this.editedIndex === -1
         ? "label.titles.newservicetype"
         : "label.titles.editservicetype";
-    }
+    },
+    ...mapGetters({
+      servicetypes: "servicetypes",
+      measures: "medicinemeasurements"
+    })
   }
 };
 </script>
