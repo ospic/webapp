@@ -24,7 +24,6 @@
                 indeterminate
                 :size="50"
                 color="primary"
-                class=""
               ></v-progress-circular>
             </v-flex>
           </v-layout>
