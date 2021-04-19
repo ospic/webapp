@@ -141,11 +141,8 @@ export default {
     save() {
       console.log(this.payload);
       if (this.$refs.form.validate()) {
-        this.$store.dispatch(
-          "initiate_medical_transaction",
-          this.$route.params.id,
-          this.payload
-        );
+        this.payload.id = this.$route.params.id;
+        this.$store.dispatch("initiate_medical_transaction", this.payload);
         this.dialog = false;
       }
     },
