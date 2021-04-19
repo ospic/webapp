@@ -61,9 +61,10 @@
               </v-btn>
             </template>
             <v-card>
-              <v-card-title>
-                <span class="headline">{{ formTitle }}</span>
-              </v-card-title>
+              <v-toolbar dark flat color="primary">
+                <v-toolbar-title>{{ formTitle }}</v-toolbar-title>
+              </v-toolbar>
+
               <v-divider></v-divider>
               <v-card-text>
                 <v-container>
@@ -76,9 +77,15 @@
                     </v-col>
                     <v-col cols="12" sm="6" md="4">
                       <v-text-field
-                        v-model="editedItem.price"
+                        v-model="editedItem.genericName"
+                        label="Generic Name"
+                      ></v-text-field>
+                    </v-col>
+                    <v-col cols="12" sm="6" md="4">
+                      <v-text-field
+                        v-model="editedItem.buyingPrice"
                         type="number"
-                        label="Unit price"
+                        label="Buying price"
                       ></v-text-field>
                     </v-col>
                     <v-col cols="12" sm="6" md="4">
@@ -96,9 +103,9 @@
 
                     <v-col cols="12" sm="6" md="4">
                       <v-text-field
-                        v-model="editedItem.units"
+                        v-model="editedItem.sellingPrice"
                         type="number"
-                        label="Units"
+                        label="Selling price"
                       ></v-text-field>
                     </v-col>
                     <v-col cols="12" sm="6" md="4">
@@ -125,6 +132,74 @@
                         </template>
                       </v-select>
                     </v-col>
+                    <v-col cols="12" sm="6" md="4">
+                      <v-text-field
+                        v-model="editedItem.effects"
+                        label="Effects"
+                      ></v-text-field>
+                    </v-col>
+                    <v-col cols="12" sm="6" md="4">
+                      <v-menu
+                        ref="menu2"
+                        v-model="menu2"
+                        :close-on-content-click="false"
+                        :return-value.sync="date"
+                        transition="scale-transition"
+                        offset-y
+                        max-width="290px"
+                        min-width="290px"
+                      >
+                        <template v-slot:activator="{ on, attrs }">
+                          <v-text-field
+                            v-model="editedItem.expireDateTime"
+                            label="To Date"
+                            prepend-icon="mdi-calendar"
+                            readonly
+                            v-bind="attrs"
+                            v-on="on"
+                            :rules="[v => !!v || 'Date is required']"
+                            required
+                          ></v-text-field>
+                        </template>
+                        <v-date-picker
+                          v-model="editedItem.expireDateTime"
+                          no-title
+                          scrollable
+                          required
+                          @input="menu2 = false"
+                        >
+                          <v-spacer></v-spacer>
+                          <v-btn text color="primary" @click="menu2 = false">
+                            Cancel
+                          </v-btn>
+                          <v-btn
+                            text
+                            color="primary"
+                            @click="$refs.menu2.save(date)"
+                          >
+                            OK
+                          </v-btn>
+                        </v-date-picker>
+                      </v-menu>
+                    </v-col>
+                    <v-col cols="12" sm="6" md="4">
+                      <v-select
+                        v-model="editedItem.units"
+                        :items="measures"
+                        item-text="unit"
+                        item-value="name"
+                        chips
+                        small-chips
+                        @click="fetch_measures"
+                        :rules="[
+                          v => !!v || 'You must select one to continue!'
+                        ]"
+                        label="Measure unit"
+                        required
+                        persistent-hint
+                        single-line
+                      ></v-select>
+                    </v-col>
                   </v-row>
                 </v-container>
               </v-card-text>
@@ -132,7 +207,7 @@
               <v-card-actions>
                 <v-spacer></v-spacer>
                 <v-btn color="blue darken-1" text @click="close">Cancel</v-btn>
-                <v-btn color="blue darken-1" text @click="save">Save</v-btn>
+                <v-btn color="primary darken-1" @click="save">Save</v-btn>
               </v-card-actions>
             </v-card>
           </v-dialog>
@@ -173,15 +248,22 @@ export default {
     dialog: false,
     search: "",
     medicinos: null,
+    menu1: false,
+    menu2: false,
     tab: null,
+    date: new Date().toISOString().substr(0, 7),
     headers: [
       { text: "Name", value: "name" },
+      { text: "Generic Name", value: "genericName" },
       { text: "Company", value: "company", sortable: false },
       { text: "Composition", value: "compositions" },
-      { text: "Quantity left", value: "units", sortable: true },
+      { text: "Quantity left", value: "quantity", sortable: true },
       { text: "Group", value: "group", sortable: true },
-      { text: "Price per unit", value: "price" },
+      { text: "Buying price", value: "buyingPrice" },
+      { text: "Selling price", value: "sellingPrice" },
       { text: "Category", value: "category", sortable: true },
+      { text: "Effects", value: "effects" },
+      { text: "Expire Date", value: "expireDateTime" },
       { text: "Actions", value: "actions", sortable: false }
     ],
     editedIndex: -1,
@@ -189,22 +271,30 @@ export default {
     editedItem: {
       id: 0,
       name: "",
+      genericName: "",
       company: "",
       compositions: "",
       category: "",
+      quantity: 0,
       group: "",
-      units: 0,
-      price: 0
+      units: "",
+      buyingPrice: 0,
+      sellingPrice: 0,
+      expireDateTime: null
     },
     defaultItem: {
       id: 0,
       name: "",
+      genericName: "",
       company: "",
       compositions: "",
       category: "",
+      quantity: 0,
       group: "",
-      units: 0,
-      price: 0
+      units: "",
+      buyingPrice: 0,
+      sellingPrice: 0,
+      expireDateTime: null
     }
   }),
   created() {},
@@ -215,6 +305,11 @@ export default {
   methods: {
     editItem(item) {
       this.editedIndex = this.medicines.indexOf(item);
+      var measureunit = this.measures.find(
+        x => x.unit === this.editedItem.unit
+      );
+
+      this.editedItem.units = measureunit;
       this.editedItem = Object.assign({}, item);
       this.dialog = true;
       this.editedItemId = item.id;
@@ -236,7 +331,9 @@ export default {
       if (this.editedIndex > -1) {
         Object.assign(this.medicines[this.editedIndex], this.editedItem);
         this.editedItem.group = this.editedItem.group.id;
+
         this.editedItem.category = this.editedItem.category.id;
+        delete this.editedItem.unit;
         this.editedItem.price = parseFloat(this.editedItem.price + ".00");
         this.$store.dispatch("update_medicine_product", this.editedItem);
       } else {
@@ -258,7 +355,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      // medicines: "medicines",
+      measures: "medicinemeasurements",
       template: "medicine_templates"
     }),
     formTitle() {

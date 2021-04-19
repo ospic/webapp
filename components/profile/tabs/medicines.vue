@@ -3,7 +3,7 @@
     <v-dialog
       v-model="dialog"
       transition="dialog-top-transition"
-      max-width="600"
+      max-width="700"
     >
       <template v-slot:activator="{ on, attrs }">
         <v-btn v-if="isActive" color="primary" v-bind="attrs" v-on="on"
@@ -11,30 +11,55 @@
         >
       </template>
       <v-card>
-        <v-toolbar color="primary" dark
-          >Add new service's received by this patient</v-toolbar
-        >
-        <v-card-text>
-          <v-select
-            v-model="select"
-            :items="medicines"
-            item-text="name"
-            item-value="id"
-            chips
-            small-chips
-            @click="fetch_medical_services"
-            :rules="[v => !!v || 'You must select one to continue!']"
-            label="Medical services"
-            required
-            multiple
-            persistent-hint
-            single-line
-          ></v-select>
-        </v-card-text>
-        <v-card-actions class="justify-end">
-          <v-btn @click="dialog = false">Close</v-btn>
-          <v-btn class="warning" @click="save">Save</v-btn>
-        </v-card-actions>
+        <v-toolbar color="primary" dark>
+          <v-toolbar-title>Give new medicine to this patient</v-toolbar-title>
+        </v-toolbar>
+        <v-container>
+          <v-form ref="form" v-model="valid" lazy-validation>
+            <v-row class="mx-1">
+              <v-col cols="12" sm="12" md="6">
+                <v-card-text>
+                  <v-select
+                    v-model="payload.id"
+                    :items="medicines"
+                    item-text="name"
+                    item-value="id"
+                    chips
+                    small-chips
+                    @click="fetch_medical_services"
+                    @click.clear="clear_select"
+                    @change="change_select"
+                    label="Select Medicine"
+                    persistent-hint
+                    single-line
+                    filled
+                    :rules="[v => !!v || 'Medicine is required!']"
+                    required
+                    clearable
+                  ></v-select>
+                </v-card-text>
+              </v-col>
+              <v-col cols="12" sm="12" md="6" v-if="payload.id">
+                <v-text-field
+                  v-model="payload.quantity"
+                  label="Quantity"
+                  type="number"
+                  filled
+                  min="1"
+                  class="mt-4"
+                  :suffix="suffix === null ? '' : suffix"
+                  :rules="[v => !!v || 'Quantity is required!']"
+                  required
+                ></v-text-field>
+              </v-col>
+            </v-row>
+          </v-form>
+
+          <v-card-actions class="justify-end">
+            <v-btn @click="dialog = false">Close</v-btn>
+            <v-btn class="warning" @click="save">Save</v-btn>
+          </v-card-actions>
+        </v-container>
       </v-card>
     </v-dialog>
     <div>
@@ -85,10 +110,19 @@ export default {
     }
   },
   data: () => ({
-    select: [],
+    select: null,
     dialog: false,
     service_transactions: null,
     type: "medicine",
+    quantity: null,
+    valid: false,
+    payload: {
+      id: null,
+      quantity: null,
+      type: "medicine"
+    },
+    suffix: null,
+
     headers: [
       { text: "ID", value: "id" },
       { text: "Service", value: "service", sortable: true },
@@ -105,12 +139,23 @@ export default {
       this.$store.dispatch("getmedicines");
     },
     save() {
-      this.$store.dispatch("initiate_medical_transaction", {
-        id: this.$route.params.id,
-        services: this.select,
-        type: this.type
-      });
-      this.dialog = false;
+      console.log(this.payload);
+      /**if (this.$refs.form.validate()) {
+        this.$store.dispatch(
+          "initiate_medical_transaction",
+          this.$route.params.id,
+          this.payload
+        );
+        this.dialog = false;
+      }
+      **/
+    },
+    clear_select: function() {
+      this.select = null;
+    },
+    change_select: function(it) {
+      var med = this.medicines.find(x => x.id === it);
+      this.suffix = med.unit;
     }
   },
 
