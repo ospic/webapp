@@ -103,7 +103,9 @@ export default {
       { id: 4, tab: "Measurement units", content: "Tab measures " }
     ]
   }),
-  created() {},
+  created() {
+    this.fetchGroups();
+  },
   beforeMount() {
     this.$store.dispatch("getmedicines");
   },
