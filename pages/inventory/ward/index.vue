@@ -48,11 +48,11 @@
                 v-bind="attrs"
                 v-on="on"
                 v-if="isMdAndUp"
-                class="primary"
+                class="button"
                 ><v-icon>mdi-plus</v-icon
                 >{{ $t("label.button.btncreateward") }}</v-btn
               >
-              <v-btn small v-bind="attrs" v-on="on" fab v-else class="primary"
+              <v-btn small v-bind="attrs" v-on="on" fab v-else class="button"
                 ><v-icon>mdi-plus</v-icon></v-btn
               >
             </template>
