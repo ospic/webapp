@@ -25,6 +25,9 @@
         :show-arrows="$vuetify.breakpoint.mobile"
       >
         <v-tab-item>
+          <tab-medicine :medicines="medicines"></tab-medicine>
+        </v-tab-item>
+        <v-tab-item>
           <tab-med-groups
             :groups="groups"
             @update="fetchGroups()"
@@ -36,9 +39,7 @@
             @update="fetchCategories()"
           ></tab-med-categories>
         </v-tab-item>
-        <v-tab-item>
-          <tab-medicine :medicines="medicines"></tab-medicine>
-        </v-tab-item>
+
         <v-tab-item>
           <tab-med-measurement
             :measures="medicinemeasurements"
@@ -97,9 +98,9 @@ export default {
       units: 0
     },
     items: [
+      { id: 1, tab: "Medicines", content: "Tab 1" },
       { id: 3, tab: "Medicine Groups", content: "Tab 2 Content" },
       { id: 2, tab: "Medicine Categories", content: "Tab 2 Content" },
-      { id: 1, tab: "Medicines", content: "Tab 1" },
       { id: 4, tab: "Measurement units", content: "Tab measures " }
     ]
   }),
