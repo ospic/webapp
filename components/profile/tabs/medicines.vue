@@ -118,7 +118,7 @@ export default {
     valid: false,
     payload: {
       id: null,
-      quantity: null,
+      quantity: 0,
       type: "medicine"
     },
     suffix: null,
@@ -141,7 +141,8 @@ export default {
     save() {
       console.log(this.payload);
       if (this.$refs.form.validate()) {
-        this.payload.id = this.$route.params.id;
+        this.payload.id = parseInt(this.$route.params.id);
+        this.payload.quantity = parseInt(this.payload.quantity);
         this.$store.dispatch("initiate_medical_transaction", this.payload);
         this.dialog = false;
       }
