@@ -36,7 +36,7 @@
           <v-dialog v-model="dialog" max-width="900px">
             <template v-if="showaction" v-slot:activator="{ on, attrs }">
               <v-btn
-                color="primary lighten-1"
+                color="button"
                 elevation="1"
                 medium
                 prepend-icon="mdi-plus"
@@ -50,7 +50,7 @@
               >
               <v-btn
                 v-else
-                color="primary lighten-1"
+                color="button"
                 fab
                 small
                 class="mb-2 font-weight-normal"
