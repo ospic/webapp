@@ -140,7 +140,7 @@ export default {
     },
     save() {
       console.log(this.payload);
-      /**if (this.$refs.form.validate()) {
+      if (this.$refs.form.validate()) {
         this.$store.dispatch(
           "initiate_medical_transaction",
           this.$route.params.id,
@@ -148,14 +148,13 @@ export default {
         );
         this.dialog = false;
       }
-      **/
     },
     clear_select: function() {
       this.select = null;
     },
     change_select: function(it) {
       var med = this.medicines.find(x => x.id === it);
-      this.suffix = med.unit;
+      this.suffix = med === undefined ? "" : med.unit;
     }
   },
 
