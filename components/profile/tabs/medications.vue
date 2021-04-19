@@ -141,9 +141,11 @@ export default {
     save() {
       console.log(this.payload);
       if (this.$refs.form.validate()) {
-        this.payload.id = parseInt(this.$route.params.id);
+        this.payload.route = this.$route.params.id;
+        this.payload.id = parseInt(this.payload.id);
         this.payload.quantity = parseInt(this.payload.quantity);
         this.$store.dispatch("initiate_medical_transaction", this.payload);
+        setTimeout(() => this.$emit("update"), this.delay_seconds);
         this.dialog = false;
       }
     },

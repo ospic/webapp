@@ -302,10 +302,11 @@
               ></tb-medical-services>
             </v-tab-item>
             <v-tab-item>
-              <tb-medicines
+              <tb-medications
                 :transaction="service_transactions"
                 :isActive="service.isActive"
-              ></tb-medicines>
+                v-on:update="getServiceChargesAndCosts"
+              ></tb-medications>
             </v-tab-item>
 
             <v-tab-item>
@@ -340,7 +341,7 @@ import AddressCard from "@/components/profile/c_address_card";
 import ConsultationsTab from "@/components/profile/tabs/consultations";
 import ChargesAndConstsTab from "@/components/profile/tabs/charges";
 import MedicalServicesTab from "@/components/profile/tabs/medicalservices";
-import MedicineServiceTab from "@/components/profile/tabs/medicines";
+import MedicineServiceTab from "@/components/profile/tabs/medications";
 import ReportsTab from "@/components/profile/tabs/reports";
 
 export default {
@@ -360,7 +361,7 @@ export default {
     "tb-consultations": ConsultationsTab,
     "tb-charges": ChargesAndConstsTab,
     "tb-medical-services": MedicalServicesTab,
-    "tb-medicines": MedicineServiceTab,
+    "tb-medications": MedicineServiceTab,
     "tb-reports": ReportsTab
   },
   data: function() {

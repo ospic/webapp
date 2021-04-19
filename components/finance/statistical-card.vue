@@ -15,7 +15,9 @@
             <v-list-item-content>
               <v-list-item-title
                 class="primary--text font-weight-normal text-body-1"
-                >{{ formatPrice(item.value) }}
+                >{{
+                  formatPrice(item.value) == null ? 0 : formatPrice(item.value)
+                }}
               </v-list-item-title>
               <v-list-item-subtitle
                 v-html="item.subtitle"
