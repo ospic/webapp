@@ -36,8 +36,8 @@ jobs:
       - run: rm -rf node_modules package-lock.json 
       - run : npm install -g npm
       - run: npm install --save core-js@^3
-      - run: npm install sass@1.32.8
       - run: npm i --save
+      - run: npm install sass@1.32.8
       - run: npm run production
       - run: npm test
       - name: Deploy to gihub pages 🚀
