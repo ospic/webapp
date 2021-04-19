@@ -152,7 +152,7 @@
                         <template v-slot:activator="{ on, attrs }">
                           <v-text-field
                             v-model="editedItem.expireDateTime"
-                            label="To Date"
+                            label="Expired Date"
                             prepend-icon="mdi-calendar"
                             readonly
                             v-bind="attrs"
