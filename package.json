@@ -31,7 +31,7 @@
     "nuxt": "^2.15.4",
     "nuxt-material-design-icons": "^1.0.4",
     "opn": "^6.0.0",
-    "sass": "^1.32.8",
+    "sass": "^1.32.11",
     "secure-ls": "^1.2.6",
     "sweetalert": "^2.1.2",
     "vue-apexcharts": "^1.6.1",
