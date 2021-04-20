@@ -25,7 +25,10 @@
         :show-arrows="$vuetify.breakpoint.mobile"
       >
         <v-tab-item>
-          <tab-medicine :medicines="medicines"></tab-medicine>
+          <tab-medicine
+            :medicines="medicines"
+            @update="fetchMedicines"
+          ></tab-medicine>
         </v-tab-item>
         <v-tab-item>
           <tab-med-groups
