@@ -327,7 +327,6 @@ export default {
       this.editedItem.units = this.$store.getters.get_measure_by_unit(
         item.unit
       );
-      console.log(this.editedItem);
     },
     deleteItem(item) {
       const index = this.medicines.indexOf(item);
@@ -363,7 +362,6 @@ export default {
       this.close();
     },
     handleClick: function(value) {
-      console.log(value);
       this.$router.push("/patients/" + value.id);
     }
   },
