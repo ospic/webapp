@@ -187,7 +187,7 @@
                         v-model="editedItem.units"
                         :items="measures"
                         item-text="unit"
-                        item-value="name"
+                        item-value="symbol"
                         chips
                         small-chips
                         @click="fetch_measures"
@@ -199,6 +199,15 @@
                         persistent-hint
                         single-line
                       ></v-select>
+                    </v-col>
+
+                    <v-col cols="12" sm="6" md="4">
+                      <v-text-field
+                        class="my-input input"
+                        v-model="editedItem.storeBox"
+                        label="Store Box"
+                        required
+                      ></v-text-field>
                     </v-col>
                   </v-row>
                 </v-container>
@@ -253,8 +262,10 @@ export default {
     tab: null,
     date: new Date().toISOString().substr(0, 7),
     headers: [
+      { text: "ID", value: "id" },
       { text: "Name", value: "name" },
       { text: "Generic Name", value: "genericName" },
+      { text: "Store Box", value: "storeBox" },
       { text: "Company", value: "company", sortable: false },
       { text: "Composition", value: "compositions" },
       { text: "Quantity left", value: "quantity", sortable: true },
@@ -280,7 +291,8 @@ export default {
       units: "",
       buyingPrice: 0,
       sellingPrice: 0,
-      expireDateTime: null
+      expireDateTime: null,
+      storeBox: ""
     },
     defaultItem: {
       id: 0,
@@ -294,10 +306,13 @@ export default {
       units: "",
       buyingPrice: 0,
       sellingPrice: 0,
-      expireDateTime: null
+      expireDateTime: null,
+      storeBox: ""
     }
   }),
-  created() {},
+  created() {
+    this.$store.dispatch("fetch_medicine_measurements");
+  },
   beforeMount() {
     // this.$store.dispatch("getmedicines");
   },
@@ -305,14 +320,14 @@ export default {
   methods: {
     editItem(item) {
       this.editedIndex = this.medicines.indexOf(item);
-      var measureunit = this.measures.find(
-        x => x.unit === this.editedItem.unit
-      );
 
-      this.editedItem.units = measureunit;
       this.editedItem = Object.assign({}, item);
       this.dialog = true;
       this.editedItemId = item.id;
+      this.editedItem.units = this.$store.getters.get_measure_by_unit(
+        item.unit
+      );
+      console.log(this.editedItem);
     },
     deleteItem(item) {
       const index = this.medicines.indexOf(item);
@@ -325,6 +340,8 @@ export default {
       this.$nextTick(() => {
         this.editedItem = Object.assign({}, this.defaultItem);
         this.editedIndex = -1;
+
+        setTimeout(() => this.$emit("update"), this.delay_seconds);
       });
     },
     save() {
@@ -335,6 +352,9 @@ export default {
         this.editedItem.category = this.editedItem.category.id;
         delete this.editedItem.unit;
         this.editedItem.price = parseFloat(this.editedItem.price + ".00");
+        if (this.editedItem.units instanceof Object) {
+          this.editedItem.units = this.editedItem.units.symbol;
+        }
         this.$store.dispatch("update_medicine_product", this.editedItem);
       } else {
         this.medicines.push(this.editedItem);
@@ -364,3 +384,8 @@ export default {
   }
 };
 </script>
+<style>
+.my-input input {
+  text-transform: uppercase;
+}
+</style>
