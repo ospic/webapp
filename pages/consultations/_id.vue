@@ -144,10 +144,10 @@
                             : data.item.fullName
                         "
                       ></v-list-item-title>
-                      <v-list-item-subtitl>
+                      <v-list-item-subtitle>
                         {{ data.item.department.name }} [
                         {{ data.item.user.roles[0].name }} ]
-                      </v-list-item-subtitl>
+                      </v-list-item-subtitle>
                     </v-list-item-content>
                   </template>
                 </template>
