@@ -24,7 +24,7 @@
           <v-dialog v-model="dialog" max-width="700px">
             <template v-slot:activator="{ on, attrs }">
               <v-btn
-                color="primary lighten-1"
+                color="button"
                 class="mb-2"
                 medium
                 v-bind="attrs"
@@ -37,7 +37,7 @@
 
               <v-btn
                 v-else
-                color="primary"
+                color="button"
                 fab
                 small
                 class="mb-2"
@@ -306,6 +306,7 @@ export default {
       this.$nextTick(() => {
         this.editedItem = Object.assign({}, this.defaultItem);
         this.editedIndex = -1;
+        setTimeout(() => this._get_users(), this.delay_seconds);
       });
     },
 
@@ -315,7 +316,7 @@ export default {
         this.editedItem = Object.assign({}, this.defaultItem);
         this.editedIndex = -1;
       });
-      this.$store.dispatch("retrieveAllusers");
+      setTimeout(() => this._get_users(), this.delay_seconds);
     },
 
     save() {
@@ -323,18 +324,20 @@ export default {
         var did = this.editedItem.id;
         delete this.editedItem.staff;
         var payload = { id: did, data: this.editedItem };
-        //console.log(payload);
         this.$store.dispatch("updateuserdetails", payload);
       } else {
         delete this.editedItem.id;
         if (this.$refs.form.validate()) {
           this.$store.dispatch("create_new_user", this.editedItem);
         }
-        this.close();
       }
+      this.close();
     },
     _fetch_departments() {
       this.$store.dispatch("retrieve_departments");
+    },
+    _get_users: function() {
+      this.$store.dispatch("retrieveAllusers");
     }
   },
   computed: {
