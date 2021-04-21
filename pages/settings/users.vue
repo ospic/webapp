@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container fluid>
     <v-progress-circular
       size="52"
       color="indigo"
