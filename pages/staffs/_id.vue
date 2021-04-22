@@ -62,10 +62,8 @@
             left
             v-model="tab"
             class="elevation-2"
+            dark
           >
-            <v-tab class="ffont-weight-normal">
-              <span><v-icon small left>mdi-eye</v-icon>Profile</span>
-            </v-tab>
             <v-tab class="font-weight-normal">
               <span><v-icon small left>mdi-account</v-icon>Payroll</span>
             </v-tab>
@@ -94,9 +92,6 @@
             </v-tab>
           </v-tabs>
           <v-tabs-items vertical v-model="tab">
-            <v-tab-item>
-              <h2 class="ma-8">Profile</h2>
-            </v-tab-item>
             <v-tab-item>
               <service-card :services="services"></service-card>
             </v-tab-item>
