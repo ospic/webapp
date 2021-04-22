@@ -222,12 +222,46 @@
           </v-dialog>
         </v-toolbar>
       </template>
+      <template v-slot:[`item.status`]="{ item }">
+        <v-tooltip
+          right
+          :color="item.isExpired ? 'error' : 'warning'"
+          v-if="item.isExpiring"
+        >
+          <template v-slot:activator="{ on, attrs }">
+            <v-icon
+              :color="item.isExpired ? 'error' : 'warning'"
+              dark
+              v-bind="attrs"
+              v-on="on"
+              v-html="item.isExpired ? 'mdi-clock-alert' : 'mdi-circle'"
+            >
+            </v-icon>
+          </template>
+          <span color="primary" v-if="item.daysToExpire > 0"
+            >{{ item.name }} is about to expire on next
+            {{ item.daysToExpire }} days. On
+            {{ item.expireOn }}
+          </span>
+
+          <span color="primary" v-if="item.isExpired"
+            >{{ item.name }} is expired about {{ item.daysToExpire * -1 }} days
+            ago. On
+
+            {{ item.expireOn }}
+          </span>
+          <span color="primary" v-if="item.daysToExpire === 0"
+            >{{ item.name }} is going to be expired today
+          </span>
+        </v-tooltip>
+      </template>
       <template v-slot:[`item.group`]="{ item }">
         <p>{{ item.group.name }}</p>
       </template>
       <template v-slot:[`item.category`]="{ item }">
         <p>{{ item.group.name }}</p>
       </template>
+      <template class="primary"> </template>
       <template v-if="showaction" v-slot:[`item.actions`]="{ item }">
         <v-icon small class="mr-2" @click="editItem(item)"> mdi-pencil </v-icon>
         <v-icon small color="indigo darken-4" @click="deleteItem(item)">
@@ -262,19 +296,21 @@ export default {
     tab: null,
     date: new Date().toISOString().substr(0, 7),
     headers: [
-      { text: "ID", value: "id" },
+      { text: "", value: "status" },
       { text: "Name", value: "name" },
       { text: "Generic Name", value: "genericName" },
       { text: "Store Box", value: "storeBox" },
-      { text: "Company", value: "company", sortable: false },
-      { text: "Composition", value: "compositions" },
       { text: "Quantity left", value: "quantity", sortable: true },
-      { text: "Group", value: "group", sortable: true },
       { text: "Buying price", value: "buyingPrice" },
       { text: "Selling price", value: "sellingPrice" },
+
+      { text: "Composition", value: "compositions" },
+      { text: "Group", value: "group", sortable: true },
       { text: "Category", value: "category", sortable: true },
+
+      { text: "Company", value: "company", sortable: false },
       { text: "Effects", value: "effects" },
-      { text: "Expire Date", value: "expireDateTime" },
+      { text: "Expire Date", value: "expireOn" },
       { text: "Actions", value: "actions", sortable: false }
     ],
     editedIndex: -1,
