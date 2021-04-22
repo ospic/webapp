@@ -225,12 +225,12 @@
       <template v-slot:[`item.status`]="{ item }">
         <v-tooltip
           right
-          :color="item.isExpired ? 'error' : 'warning'"
+          :color="item.isExpired ? 'red' : 'warning'"
           v-if="item.isExpiring"
         >
           <template v-slot:activator="{ on, attrs }">
             <v-icon
-              :color="item.isExpired ? 'error' : 'warning'"
+              :color="item.isExpired ? 'red' : 'warning'"
               dark
               v-bind="attrs"
               v-on="on"
