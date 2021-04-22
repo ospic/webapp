@@ -113,7 +113,7 @@ export default {
   },
   methods: {
     handle_row_click(i) {
-      this.$router.push("/reports/" + i.filename + "&entity=" + i.entity);
+      this.$router.push("/reports/" + i.id);
     },
     filechanged: function(file) {
       this.progress = 0;
