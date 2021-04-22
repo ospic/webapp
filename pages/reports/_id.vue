@@ -4,7 +4,7 @@
       <router-link to="/">Dashboard</router-link>
       <router-link to="/reports">Report</router-link>
 
-      <router-link :to="`/reports/${$route.params.name}`" class="active"
+      <router-link :to="`/reports/${$route.params.id}`" class="active"
         >View Reports</router-link
       >
     </div>
@@ -29,9 +29,7 @@ export default {
   computed: {
     reportUrl() {
       return (
-        this.$api.defaults.baseURL +
-        "reports/view?reportName=" +
-        this.$route.params.name
+        this.$api.defaults.baseURL + "reports/view/" + this.$route.params.id
       );
     }
   }
