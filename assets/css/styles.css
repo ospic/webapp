@@ -292,7 +292,7 @@ th {
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: left;
-  background-color: #141466;
+  background-color: #2f4454;
   font-weight: b;
   color: white;
 }
@@ -1771,5 +1771,15 @@ th span {
 .fi-round-md.fi {
   border-radius: 4px;
   overflow: hidden;
+}
+
+button.button {
+  background-color: #02532b;
+}
+
+button.button span {
+  color: white;
+  font-weight: bold;
+  font-size: large;
 }
 /*# sourceMappingURL=styles.css.map */

@@ -8,12 +8,11 @@
       >
     </div>
     <v-card>
-      <v-toolbar flat dark color="primary">
-        <v-row no-gutters>
-          <v-col cols="12" md="2" align-self="center">
-            <h3 class="title">Transactions</h3>
-          </v-col>
-          <v-col cols="12" md="4">
+      <v-card-title class="ma-0 pa-0">
+        <v-toolbar flat dark color="primary">
+          <v-toolbar-title>Transactions</v-toolbar-title>
+          <v-spacer></v-spacer>
+          <v-col cols="12" md="3">
             <v-text-field
               v-model="search"
               append-icon="search"
@@ -25,30 +24,33 @@
               hide-details
             ></v-text-field>
           </v-col>
-        </v-row>
-        <v-dialog
-          v-model="dialog"
-          max-width="600px"
-          class="ma-0 pa-0"
-          hide-overlay
-          open-delay="12"
-        >
-          <v-progress-linear
-            background-color="white"
-            indeterminate
-            color="cyan"
-            v-if="bill == null"
-          ></v-progress-linear>
-          <receipt v-else :bill="bill"></receipt>
-        </v-dialog>
-      </v-toolbar>
-      <v-progress-linear
-        indeterminate
-        v-if="transactions == null"
-      ></v-progress-linear>
-      <v-container fluid v-else class="ma-0 pa-0">
+
+          <v-dialog
+            v-model="dialog"
+            max-width="600px"
+            class="ma-0 pa-0"
+            hide-overlay
+            open-delay="12"
+          >
+            <v-progress-linear
+              background-color="white"
+              indeterminate
+              color="cyan"
+              v-if="bill == null"
+            ></v-progress-linear>
+            <receipt v-else :bill="bill"></receipt>
+          </v-dialog>
+        </v-toolbar>
+      </v-card-title>
+      <v-card-text class="ma-0 pa-0">
+        <v-progress-linear
+          indeterminate
+          v-if="transactions == null"
+        ></v-progress-linear>
+
         <v-data-table
           dense
+          v-else
           class="default"
           :headers="headers"
           :options="body.options"
@@ -65,16 +67,17 @@
             <p v-else>{{ item.medicineName }}</p>
           </template>
         </v-data-table>
-      </v-container>
-      <div class="text-center">
-        <v-pagination
-          v-model="query.page"
-          :length="query.size"
-          @input="get_next"
-          :total-visible="totalvisible"
-          circle
-        ></v-pagination>
-      </div>
+
+        <div class="text-center">
+          <v-pagination
+            v-model="query.page"
+            :length="query.size"
+            @input="get_next"
+            :total-visible="totalvisible"
+            circle
+          ></v-pagination>
+        </div>
+      </v-card-text>
     </v-card>
   </div>
 </template>

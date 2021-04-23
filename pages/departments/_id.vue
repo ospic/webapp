@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="breadcrumb" v-if="department != null">
-      <router-link to="/">Dashboard</router-link>
+      <router-link to="/" v-if="isMdAndUp">Dashboard</router-link>
       <router-link to="/departments">Departments</router-link>
       <router-link
         :to="`/departments/${this.$route.params.id}`"
@@ -17,51 +17,17 @@
         size="50"
         color="indigo"
       ></v-progress-circular>
-      <v-card class="pa-2" v-else>
-        <v-card-title
-          ><div>
-            <table
-              style="width:100%; text-align: start;"
-              class="pa-0"
-              summary="Patient infos"
-              v-if="department != null"
-            >
-              <tr v-if="department.id">
-                <td id="name" class="font-weight-black">
-                  Department name: &nbsp;
-                </td>
-                <td>
-                  <small>{{ department.name }}</small>
-                </td>
-              </tr>
-              <tr v-if="department.parent != null">
-                <td id="parentname" class="font-weight-black">
-                  Child of :&nbsp;
-                </td>
-                <td>
-                  <small>{{ department.parent.name }}</small>
-                </td>
-              </tr>
-
-              <tr>
-                <td id="date" class="font-weight-black">
-                  Opening date: &nbsp;
-                </td>
-                <td>
-                  <small>{{ department.openingDate }} </small>
-                </td>
-              </tr>
-              <tr>
-                <td id="info" class="font-weight-black">
-                  Descriptions: &nbsp;
-                </td>
-                <td>
-                  <small>{{ department.descriptions }} </small>
-                </td>
-              </tr>
-            </table>
+      <v-card v-else>
+        <v-toolbar flat color="primary" extended dark>
+          <div class="d-flex flex-column pa-2 mt-5">
+            <div v-if="department.id">Name: &nbsp; {{ department.name }}</div>
+            <div v-if="department.parent != null">
+              Parent: &nbsp; {{ department.parent.name }}
+            </div>
+            <div>Opened: &nbsp; {{ department.openingDate }}</div>
+            <div>About: &nbsp; {{ department.descriptions }}</div>
           </div>
-        </v-card-title>
+        </v-toolbar>
 
         <v-card-text>
           <h3><strong>Members:</strong></h3>

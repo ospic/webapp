@@ -60,7 +60,7 @@
                           <v-btn
                             v-else
                             fab
-                            color="primary"
+                            class="button"
                             dark
                             v-bind="attrs"
                             v-on="on"
@@ -100,12 +100,7 @@
                             >
                               Cancel
                             </v-btn>
-                            <v-btn
-                              color="warning"
-                              x-small
-                              shaped
-                              @click="uploadPatientImage()"
-                            >
+                            <v-btn x-small shaped @click="uploadPatientImage()">
                               Save
                             </v-btn>
                           </v-card-actions>
@@ -130,16 +125,18 @@
               <v-btn
                 small
                 block
-                color="primary"
+                class="button"
                 v-if="address"
+                dark
                 :to="`/patients/${userdata.id}/contacts/`"
                 >View contacts</v-btn
               >
               <v-btn
                 small
                 block
-                color="primary"
+                class="button"
                 v-else
+                dark
                 :to="`/patients/${userdata.id}/contacts/add`"
               >
                 Add contacts
@@ -147,7 +144,8 @@
               <v-btn
                 small
                 block
-                class="primary mt-2"
+                dark
+                class="button mt-2"
                 v-if="!userdata.hasSelfServiceUserAccount"
                 :to="`/patients/${userdata.id}/selfservice`"
               >
@@ -185,11 +183,11 @@
           <v-tab-item class="default">
             <div class="">
               <v-btn
-                class="primary small ma-2"
+                class="button small ma-2"
                 small
                 v-if="!userdata.isActive"
                 @click.stop="initiateServiceInstance()"
-                >New consultation</v-btn
+                ><v-icon small left>mdi-plus</v-icon>New consultation</v-btn
               >
               <tb-services :services="services"></tb-services>
             </div>

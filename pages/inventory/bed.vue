@@ -6,20 +6,26 @@
       <router-link to="/inventory/bed" class="active">Beds</router-link>
     </div>
     <v-card class="mx-auto">
-      <v-list flat>
-        <v-subheader>WARDS AND BEDS</v-subheader>
-        <v-list-item-group v-model="selectedItem" color="primary">
-          <v-list-item
-            v-for="(ward, i) in wards"
-            :key="i"
-            :to="`/inventory/ward/${ward.id}`"
-          >
-            <v-list-item-content>
-              <beds-list :ward="ward"></beds-list>
-            </v-list-item-content>
-          </v-list-item>
-        </v-list-item-group>
-      </v-list>
+      <v-toolbar flat class="primary" dark>
+        <v-toolbar-title>
+          WARDS AND BEDS
+        </v-toolbar-title>
+      </v-toolbar>
+      <v-card-text>
+        <v-list flat>
+          <v-list-item-group v-model="selectedItem" color="primary">
+            <v-list-item
+              v-for="(ward, i) in wards"
+              :key="i"
+              :to="`/inventory/ward/${ward.id}`"
+            >
+              <v-list-item-content>
+                <beds-list :ward="ward"></beds-list>
+              </v-list-item-content>
+            </v-list-item>
+          </v-list-item-group>
+        </v-list>
+      </v-card-text>
     </v-card>
   </div>
 </template>

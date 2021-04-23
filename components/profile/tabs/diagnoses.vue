@@ -4,11 +4,8 @@
       <v-row justify="start" class="ml-5 ma-4 ">
         <v-dialog v-model="dialog" persistent max-width="600px">
           <template v-slot:activator="{ on, attrs }">
-            <v-btn color="primary" v-on="on" v-bind="attrs" v-if="isActive">
-              <v-icon left>
-                mdi-reorder-horizontal
-              </v-icon>
-              Add new Diagnosis</v-btn
+            <v-btn class="button" v-on="on" v-bind="attrs" v-if="isActive">
+              <v-icon small left>mdi-plus</v-icon> Add new Diagnosis</v-btn
             >
           </template>
           <v-card>

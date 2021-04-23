@@ -2,12 +2,12 @@
   <v-container fluid>
     <v-btn
       v-if="!userdata.isAdmitted && userdata.isActive"
-      color="primary"
-      class="ml-5 my-2 "
+      class="button ml-5 my-2"
+      dark
       :to="`/patients/${this.$route.params.id}/admit`"
     >
       <v-icon left>
-        mdi-reorder-horizontal
+        mdi-bed
       </v-icon>
       Admit Patient</v-btn
     >

@@ -23,8 +23,7 @@
         </v-col>
         <v-col class="shrink">
           <v-btn
-            color="primary"
-            class="primary"
+            class="button"
             @click.stop="deleteimagefile"
             :loading="loading"
             :disabled="loading"
@@ -51,12 +50,13 @@
       >
         <template v-slot:activator="{ on, attrs }">
           <v-btn
-            color="primary"
+            color="button"
+            class="mb-2"
             small
             v-if="hasPermission(permissions)"
-            outlined
             v-bind="attrs"
             v-on="on"
+            dark
           >
             <v-icon left>
               mdi-file-document

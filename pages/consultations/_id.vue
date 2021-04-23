@@ -28,10 +28,11 @@
                   <v-btn
                     medium
                     v-if="service.isActive"
-                    class="primary mb-1 lighten-2"
+                    class="button"
                     v-bind="attrs"
                     v-on="on"
-                    >Close consultation</v-btn
+                    ><v-icon small>mdi-close-circle</v-icon>&nbsp; Close
+                    consultation</v-btn
                   >
                 </template>
                 <v-card flat class=" text-xs-center">
