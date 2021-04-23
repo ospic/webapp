@@ -26,23 +26,25 @@
                 <strong>{{ title }}</strong>
               </h2>
               <v-spacer></v-spacer>
+
               <v-text-field
                 v-model="search"
                 append-icon="search"
                 label="Enter search text ..."
-                dense
+                rounded
+                outlined
                 single-line
                 hide-details
+                class="mt-2"
               ></v-text-field
               >&nbsp;&nbsp;
               <v-dialog v-model="dialog" max-width="900px">
                 <template v-slot:activator="{ on, attrs }">
                   <v-btn
-                    color="primary lighten-1"
                     elevation="1"
                     medium
                     prepend-icon="mdi-plus"
-                    class="mb-2"
+                    class="mb-2 button"
                     v-bind="attrs"
                     v-on="on"
                     dark
@@ -52,13 +54,12 @@
                   >
                   <v-btn
                     v-else
-                    class="mx-2"
+                    class="mx-2 button"
                     v-bind="attrs"
                     v-on="on"
                     fab
                     dark
                     small
-                    color="primary lighten-1"
                   >
                     <v-icon dark>
                       mdi-plus

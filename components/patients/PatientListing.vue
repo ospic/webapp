@@ -27,11 +27,11 @@
 
           <v-spacer></v-spacer>
           <div v-if="hasPermission('ALL_FUNCTIONS', 'CREATE_PATIENT')">
-            <v-btn medium v-if="isMdAndUp" class="primary lighten-1" to="/patients/add"
+            <v-btn medium v-if="isMdAndUp" class="button" to="/patients/add"
               ><v-icon>mdi-plus</v-icon
               >{{ $t("label.button.btnnewpatient") }}</v-btn
             >
-            <v-btn small fab v-else class="primary lighten-1" to="/patients/add"
+            <v-btn small fab v-else class="button" to="/patients/add"
               ><v-icon>mdi-plus</v-icon></v-btn
             >
           </div>

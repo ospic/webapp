@@ -21,6 +21,7 @@
               <v-col cols="12" md="2" align-self="center">
                 <h3 class="title">Blood Bank</h3>
               </v-col>
+              <v-spacer></v-spacer>
               <v-col cols="12" md="4">
                 <v-text-field
                   v-model="search"

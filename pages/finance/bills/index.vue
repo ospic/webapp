@@ -6,12 +6,12 @@
       <router-link to="/finance/bills" class="active">Bills</router-link>
     </div>
     <v-card>
-      <v-toolbar flat color="primary" dark>
-        <v-row no-gutters>
-          <v-col cols="12" md="2" align-self="center">
-            <h3 class="title">Bills</h3>
-          </v-col>
-          <v-col cols="12" md="4">
+      <v-card-title class="ma-0 pa-0">
+        <v-toolbar flat color="primary" dark>
+          <v-toolbar-title>Bills</v-toolbar-title>
+          <v-spacer></v-spacer>
+
+          <v-col cols="12" md="3">
             <v-text-field
               v-model="search"
               append-icon="search"
@@ -23,7 +23,7 @@
               hide-details
             ></v-text-field>
           </v-col>
-        </v-row>
+        </v-toolbar>
         <v-dialog
           v-model="dialog"
           max-width="600px"
@@ -39,7 +39,8 @@
           ></v-progress-linear>
           <receipt v-else :bill="bill"></receipt>
         </v-dialog>
-      </v-toolbar>
+      </v-card-title>
+
       <v-card-text class="ma-0 pa-0">
         <v-progress-linear
           indeterminate

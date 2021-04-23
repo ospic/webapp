@@ -149,8 +149,8 @@
             @click.stop="syncro()"
             x-small
             elevation="5"
-            color="primary lighten-1"
-            class="mr-2 "
+            class="button mr-2 "
+            dark
           >
             <v-icon v-on="on" v-if="sync" medium>mdi-progress-clock</v-icon>
             <v-icon v-else medium>mdi-progress-check</v-icon>
@@ -164,14 +164,7 @@
       </v-tooltip>
       <v-tooltip bottom color="primary" open-on-hover open-delay="500">
         <template v-slot:activator="{ on }">
-          <v-btn
-            fab
-            v-on="on"
-            x-small
-            elevation="1"
-            color="primary lighten-1"
-            class="mr-2 "
-          >
+          <v-btn fab v-on="on" x-small elevation="1" class="mr-2 button" dark>
             <v-icon medium @click="logoutsession">mdi-power</v-icon>
           </v-btn>
         </template>
@@ -180,10 +173,10 @@
       <v-btn
         fab
         x-small
-        class="pa-1 "
+        class="pa-1 button"
         elevation="1"
         v-show="false"
-        color="primary lighten-1"
+        dark
         @click="(dark = !dark), toggle(dark)"
       >
         <v-icon

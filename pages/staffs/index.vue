@@ -5,36 +5,40 @@
       <router-link to="/staffs" class="active">Staffs</router-link>
     </div>
     <v-card>
-      <v-row no-gutters>
-        <v-col cols="12" sm="12" md="3">
-          <v-card-title>
-            <h5 v-if="title != null" class="primary--text">
-              {{ title }} Department Staff's
-            </h5>
-            <h5 v-else>{{ $t("label.titles.staffs") }}</h5></v-card-title
-          >
-        </v-col>
-        <v-col cols="12" sm="12" md="3">
-          <v-text-field
-            v-model="search"
-            append-icon="search"
-            label="Enter search text ..."
-            rounded
-            dense
-            outlined
-            single-line
-            hide-details
-            class="mt-3"
-          ></v-text-field>
-        </v-col>
-      </v-row>
-      <v-card-text>
+      <v-toolbar flat dark class="primary">
+        <v-row no-gutters>
+          <v-col cols="12" sm="12" md="3">
+            <v-card-title>
+              <h5 v-if="title != null">
+                <v-icon color="blue" left>mdi-circle</v-icon>&nbsp;{{ title }}
+                Department Staff's
+              </h5>
+              <h5 v-else>{{ $t("label.titles.staffs") }}</h5></v-card-title
+            >
+          </v-col>
+          <v-spacer></v-spacer>
+          <v-col cols="12" sm="12" md="3">
+            <v-text-field
+              v-model="search"
+              append-icon="search"
+              label="Enter search text ..."
+              rounded
+              dense
+              outlined
+              single-line
+              hide-details
+              class="mt-3"
+            ></v-text-field>
+          </v-col>
+        </v-row>
+      </v-toolbar>
+      <v-card-text class=" pa-0">
         <v-tabs
           v-model="tab"
           background-color="primary"
           slider-color="blue"
           dark
-          :vertical="isMdAndUp"
+          show-arrows="true"
         >
           <v-tab
             v-for="department in departments"
@@ -45,8 +49,8 @@
             @click="fetchDepartmentStaffs(department.id, department.name)"
             reverse-trasition="true"
           >
-            <v-icon left>
-              mdi-circle-small
+            <v-icon left color="blue">
+              mdi-circle-medium
             </v-icon>
             {{ department.name }}
           </v-tab>

@@ -44,22 +44,19 @@
           <v-dialog v-model="dialog" max-width="700px">
             <template v-slot:activator="{ on, attrs }">
               <v-btn
-                color="primary lighten-1"
                 medium
-                class="mb-2"
+                class="mb-2 button"
                 v-bind="attrs"
                 v-on="on"
                 v-if="isMdAndUp"
-                dark
                 ><v-icon small>mdi-plus</v-icon>
                 {{ $t("label.button.btnaddnewservice") }}</v-btn
               >
               <v-btn
                 v-else
-                color="primary lighten-1"
                 fab
                 small
-                class="mb-2"
+                class="mb-2 button"
                 v-bind="attrs"
                 v-on="on"
                 dark

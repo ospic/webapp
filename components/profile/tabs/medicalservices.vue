@@ -6,8 +6,8 @@
       max-width="600"
     >
       <template v-slot:activator="{ on, attrs }">
-        <v-btn v-if="isActive" color="primary" v-bind="attrs" v-on="on"
-          >Add patient service</v-btn
+        <v-btn v-if="isActive" class="button" v-bind="attrs" v-on="on" dark
+          ><v-icon small left>mdi-plus</v-icon>Add patient service</v-btn
         >
       </template>
       <v-card>
