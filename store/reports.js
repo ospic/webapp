@@ -2,7 +2,8 @@
 const state = () => ({
   showLoader: Boolean,
   report: {},
-  reports: []
+  reports: [],
+  financialreports: []
 });
 
 const mutations = {
@@ -19,6 +20,21 @@ const mutations = {
   ["GET_REPORTS_SUCCESS"](state, payload) {
     state.showLoader = false;
     state.reports = payload;
+  },
+
+  //Get financial reports
+  ["GET_FINANCIAL_REPORTS"](state) {
+    state.showLoader = true;
+  },
+  ["GET_FINANCIAL_REPORTS_FAILED"](state) {
+    state.showLoader = false;
+  },
+  ["GET_FINANCIAL_REPORTS_ERROR"](state) {
+    state.showLoader = false;
+  },
+  ["GET_FINANCIAL_REPORTS_SUCCESS"](state, payload) {
+    state.showLoader = false;
+    state.financialreports = payload;
   },
 
   ["UPLOAD_REPORT"](state) {
@@ -61,12 +77,27 @@ const actions = {
         console.log(error);
 
       });
-  }
+  },
+  async get_financial_reports({ commit }) {
+    commit("GET_FINANCIAL_REPORTS");
+    await this.$api.$get('reports/2')
+      .then(response => {
+        commit("GET_FINANCIAL_REPORTS_SUCCESS", response);
+
+      }).catch(error => {
+        commit("GET_FINANCIAL_REPORTS_ERROR");
+        console.log(error);
+
+      });
+  },
 
 }
 const getters = {
   reports: function (state) {
     return state.reports
+  },
+  financialreports: function (state) {
+    return state.financialreports;
   }
 
 }

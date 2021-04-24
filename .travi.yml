@@ -1,0 +1,24 @@
+language: node_js
+node_js:
+  - "node"
+
+install:
+  - npm install
+  - npm ci
+  - npm run generate
+
+# Keep the npm cache around to speed up installs
+cache:
+  directories:
+    - "$HOME/.npm"
+
+script:
+  - echo "Skipping tests"
+
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN
+  local_dir: dist
+  on:
+    branch: master

@@ -1,7 +1,7 @@
 <template>
   <v-container fluid>
     <v-btn
-      v-if="!userdata.isAdmitted && userdata.isActive"
+      v-if="!userdata.isAdmitted && userdata.isActive && isactive"
       class="button ml-5 my-2"
       dark
       :to="`/patients/${this.$route.params.id}/admit`"
@@ -49,6 +49,10 @@ export default {
     userdata: {
       type: Object,
       default: null
+    },
+    isactive: {
+      type: Boolean,
+      default: false
     }
   }
 };

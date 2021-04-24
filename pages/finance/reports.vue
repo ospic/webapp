@@ -3,12 +3,35 @@
     <div class="breadcrumb ">
       <router-link to="/finance">Dashboard</router-link>
       <router-link to="/finance">Finance</router-link>
-      <router-link to="/finance/reports" class="active">Reports</router-link>
+      <router-link to="/finance/reports" class="active"
+        >Financial Reports</router-link
+      >
     </div>
-    <h1>Reports</h1>
+
+    <report-component
+      :reports="reports"
+      title="Financial Reports"
+    ></report-component>
   </div>
 </template>
 <script>
+import report_component from "@/components/reports/report";
+import { mapGetters } from "vuex";
 export default {
-}
+  components: {
+    "report-component": report_component
+  },
+  mounted() {
+    this.$store.dispatch("get_financial_reports");
+  },
+
+  computed: {
+    ...mapGetters({
+      reports: "financialreports"
+    }),
+    reportUrl() {
+      return this;
+    }
+  }
+};
 </script>
