@@ -30,12 +30,12 @@
                     @click.clear="clear_select"
                     @change="change_select"
                     label="Select Medicine"
-                    persistent-hint
-                    single-line
                     filled
                     :rules="[v => !!v || 'Medicine is required!']"
                     required
                     clearable
+                    persistent-hint
+                    single-line
                   ></v-select>
                 </v-card-text>
               </v-col>
@@ -153,6 +153,7 @@ export default {
       this.select = null;
     },
     change_select: function(it) {
+      console.log(it);
       var med = this.medicines.find(x => x.id === it);
       this.suffix = med === undefined ? "" : med.unit;
     }
