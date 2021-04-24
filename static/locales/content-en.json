@@ -160,6 +160,9 @@
       "appointments":"Appointments",
       "servicecategories":"Service categories"
       
+    },
+    "search":{
+      "searchreportbynameanddescription":"Search report by name/desc"
     }
   }
 }

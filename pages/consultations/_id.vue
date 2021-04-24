@@ -238,9 +238,10 @@
         <v-card-text class="ma-0 pa-0">
           <v-tabs
             slider-color="blue"
-            background-color="#dcdcdc"
+            background-color="primary"
             slider-size="3"
             left
+            dark
             v-model="tab"
             class="elevation-2"
             show-arrows-on-hover="true"
@@ -324,6 +325,7 @@
               <tb-admissions
                 :admissions="admissions"
                 :userdata="service.patient"
+                :isactive="service.isActive"
               ></tb-admissions>
             </v-tab-item>
           </v-tabs-items>
