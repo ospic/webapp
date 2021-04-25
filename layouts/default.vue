@@ -17,7 +17,7 @@
       height="100%"
     >
       <v-list nav dense subheader tile class="mt-0 pa-0 py-1">
-        <v-list-item dense class="px-2" to="/me">
+        <!-- <v-list-item dense class="px-2" to="/me">
           <v-list-item-avatar>
             <v-img
               src="https://st3.depositphotos.com/4111759/13425/v/600/depositphotos_134255626-stock-illustration-avatar-male-profile-gray-person.jpg"
@@ -33,7 +33,7 @@
           </v-list-item-content>
         </v-list-item>
 
-        <v-divider></v-divider>
+        <v-divider></v-divider>-->
         <v-list-item class="list-item ma-0" dense to="/">
           <v-list-item-icon class="ml-1 mr-1">
             <v-icon small>mdi-view-grid</v-icon>
@@ -128,27 +128,56 @@
         /></a>
       </template>
     </v-navigation-drawer>
-    <v-app-bar hide-on-scroll dense fixed app flat color="primary">
-      <v-app-bar-nav-icon
-        color="white"
-        @click.stop="drawer = !drawer"
-      ></v-app-bar-nav-icon>
-
-      <v-toolbar-title class="title font-weight-black primary--text">
-        Hospital Management System
+    <v-app-bar hide-on-scroll fixed app flat color="primary">
+      <v-toolbar-title>
+        <v-avatar color="primary lighten-1" size="36">
+          <span
+            class="white--text font-weight-bold overline"
+            @click.stop="drawer = !drawer"
+          >
+            <v-icon small color="white">mdi-dialpad</v-icon>
+          </span>
+        </v-avatar>
+        &nbsp;&nbsp;
+        <span class="hidden-sm-and-down font-weight-bold default--text"
+          >Hospital Management System</span
+        >
       </v-toolbar-title>
 
       <v-spacer></v-spacer>
+      <v-badge
+        bordered
+        bottom
+        color="deep-purple accent-4"
+        dot
+        class="mr-2"
+        offset-x="10"
+        offset-y="10"
+      >
+        <v-btn fab small class="button" to="/me">
+          <v-avatar size="35">
+            <v-img :src="thumbnail"></v-img>
+          </v-avatar>
+        </v-btn>
+      </v-badge>
+      <v-badge class="mr-3" icon="mdi-lock" color="blue" overlap>
+        <template v-slot:badge>
+          10
+        </template>
+        <v-btn fab small class="button">
+          <v-icon color="white">mdi-bell</v-icon></v-btn
+        >
+      </v-badge>
 
-      <v-tooltip top color="primary" open-on-hover open-delay="500">
+      <v-tooltip bottom color="primary" open-on-hover open-delay="500">
         <template v-slot:activator="{ on }">
           <v-btn
             fab
             v-if="$vuetify.breakpoint.mdAndUp"
             v-on="on"
             @click.stop="syncro()"
-            x-small
-            elevation="5"
+            small
+            elevation="1"
             class="button mr-2 "
             dark
           >
@@ -164,7 +193,7 @@
       </v-tooltip>
       <v-tooltip bottom color="primary" open-on-hover open-delay="500">
         <template v-slot:activator="{ on }">
-          <v-btn fab v-on="on" x-small elevation="1" class="mr-2 button" dark>
+          <v-btn fab v-on="on" small elevation="1" class="mr-2 button" dark>
             <v-icon medium @click="logoutsession">mdi-power</v-icon>
           </v-btn>
         </template>

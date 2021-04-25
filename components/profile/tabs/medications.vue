@@ -139,7 +139,7 @@ export default {
       this.$store.dispatch("getmedicines");
     },
     save() {
-      console.log(this.payload);
+      //console.log(this.payload);
       if (this.$refs.form.validate()) {
         this.payload.route = this.$route.params.id;
         this.payload.id = parseInt(this.payload.id);

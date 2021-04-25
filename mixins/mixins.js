@@ -40,7 +40,7 @@ Vue.mixin({
           sortBy: ["name"]
         }
       },
-      thumbnail: 'https://avataaars.io/?avatarStyle=Circle&topType=ShortHairSides&accessoriesType=Prescription02&hairColor=BrownDark&facialHairType=Blank&clotheType=BlazerSweater&eyeType=Default&eyebrowType=UnibrowNatural&mouthType=Twinkle&skinColor=Light'
+      thumbnil: 'https://avataaars.io/?avatarStyle=Circle&topType=ShortHairSides&accessoriesType=Prescription02&hairColor=BrownDark&facialHairType=Blank&clotheType=BlazerSweater&eyeType=Default&eyebrowType=UnibrowNatural&mouthType=Twinkle&skinColor=Light'
     }
   },
   methods: {
@@ -115,9 +115,13 @@ Vue.mixin({
       var path = url.endsWith("/") ? url.slice(0, -1) : url;
       return path;
     },
+    thumbnail() {
+      return this.profileimage == null ? this.thumbnil : this.profileimage;
+    },
     ...mapGetters({
       servicetypes: "servicetypes",
-      measures: "medicinemeasurements"
+      measures: "medicinemeasurements",
+      profileimage: "profileimage"
     }),
 
 
