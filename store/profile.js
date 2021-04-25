@@ -1,6 +1,8 @@
 const state = () => ({
   showLoader: Boolean,
-  profile: {}
+  profile: {},
+  staff: {},
+  profileimage: String
 });
 
 const mutations = {
@@ -17,6 +19,8 @@ const mutations = {
   ["GET_PROFILE_SUCCESS"](state, payload) {
     state.showLoader = false;
     state.profile = payload;
+    state.staff = payload.staff;
+    state.profileimage = payload.staff.imageUrl;
 
   },
 
@@ -69,7 +73,11 @@ const actions = {
 const getters = {
   profile: function (state) {
     return state.profile;
+  },
+  profileimage: function (state) {
+    return state.profileimage;
   }
+
 }
 
 export default {

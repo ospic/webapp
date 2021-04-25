@@ -6,14 +6,20 @@
     </div>
     <v-container fluid>
       <v-card class="mx-auto default">
-        <v-toolbar color="primary" flat>
+        <v-toolbar color="primary" flat dark>
           <v-toolbar-title> User Profile</v-toolbar-title>
 
           <v-spacer></v-spacer>
           <v-dialog v-model="dialog" width="500">
             <template v-slot:activator="{ on, attrs }">
-              <v-btn v-if="user != null" medium v-bind="attrs" v-on="on">
-                <v-icon small color="primary">mdi-lock</v-icon>
+              <v-btn
+                v-if="user != null"
+                medium
+                v-bind="attrs"
+                v-on="on"
+                class="button"
+              >
+                <v-icon small>mdi-lock</v-icon>
                 &nbsp;&nbsp;Change Password</v-btn
               >
             </template>
@@ -175,9 +181,9 @@
       </v-card>
 
       <v-card class="mt-4" v-if="edit" tile outlined>
-        <v-card-title>
-          Edit profile
-        </v-card-title>
+        <v-toolbar dark color="primary" flat>
+          <v-toolbar-title> Edit staff profile</v-toolbar-title>
+        </v-toolbar>
         <v-card-text>
           <v-form
             @submit.prevent="updateprofile"
@@ -232,12 +238,7 @@
         <v-card-actions>
           <v-spacer></v-spacer>
 
-          <v-btn
-            color="warning"
-            small
-            type="submit"
-            form="check-update-profile-form"
-          >
+          <v-btn class="button" type="submit" form="check-update-profile-form">
             Update
           </v-btn>
         </v-card-actions>
@@ -278,12 +279,12 @@ export default {
       });
     },
     updateprofile() {
-      console.log(this.user.staff);
       delete this.user.staff.user;
       delete this.user.staff.department;
       this.$store.dispatch("updatestaff", this.user.staff).then(response => {
         this.$store.dispatch("retrieve_profile");
       });
+      this.edit = false;
     },
     close() {
       this.$refs.form.reset();
