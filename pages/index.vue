@@ -450,6 +450,8 @@ export default {
       }
     }
   },
-  created() {}
+  created() {
+    this.$store.dispatch("retrieve_profile");
+  }
 };
 </script>
