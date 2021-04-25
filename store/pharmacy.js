@@ -344,7 +344,7 @@ const getters = {
     return state.medicinemeasurements;
   },
   get_measure_by_unit: (state) => (it) => {
-    return state.medicinemeasurements.find(x => x.unit === it)
+    return state.medicinemeasurements.find(x => x.symbol === it)
   },
 
 

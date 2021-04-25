@@ -83,6 +83,13 @@
                     </v-col>
                     <v-col cols="12" sm="6" md="4">
                       <v-text-field
+                        v-model="editedItem.quantity"
+                        type="number"
+                        label="Quantity"
+                      ></v-text-field>
+                    </v-col>
+                    <v-col cols="12" sm="6" md="4">
+                      <v-text-field
                         v-model="editedItem.buyingPrice"
                         type="number"
                         label="Buying price"
@@ -356,13 +363,16 @@ export default {
   methods: {
     editItem(item) {
       this.editedIndex = this.medicines.indexOf(item);
-
+      var dt = item.expireDate;
+      console.log(dt.substring(0, dt.length - 8));
       this.editedItem = Object.assign({}, item);
       this.dialog = true;
       this.editedItemId = item.id;
       this.editedItem.units = this.$store.getters.get_measure_by_unit(
         item.unit
       );
+
+      this.editedItem.expireDateTime = dt.substring(0, dt.length - 8);
     },
     deleteItem(item) {
       const index = this.medicines.indexOf(item);
