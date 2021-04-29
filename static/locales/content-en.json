@@ -41,7 +41,8 @@
       "btnnewlaboratoryservice":"Add laboratory service",
       "btnpaybill":"PAY BILL",
       "btnnewradiologyservice":"Add radiology service",
-      "btnaddnewservicetype":"Add new medical service category"
+      "btnaddnewservicetype":"Add new medical service category",
+      "btnuploadnewreportfile":"Upload new report file"
       
     },
     "menu":{

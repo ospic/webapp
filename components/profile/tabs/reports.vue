@@ -52,7 +52,7 @@
           <v-btn
             color="button"
             class="mb-2"
-            small
+            medium
             v-if="hasPermission(permissions)"
             v-bind="attrs"
             v-on="on"
@@ -61,7 +61,7 @@
             <v-icon left>
               mdi-file-document
             </v-icon>
-            Upload new report file</v-btn
+            {{ $t("label.button.btnuploadnewreportfile") }}</v-btn
           >
         </template>
         <v-card>
@@ -166,31 +166,31 @@
     </v-row>
     <v-row>
       <v-col md="2" sm="6" v-for="(file, i) in files" :key="i">
-        <v-card outlined>
+        <v-card outlined dense>
+          <v-toolbar dense height="40" class="primary" flat>
+            <h5 class="white--text   font-weight-medium">{{ file.name }}</h5>
+            <v-spacer></v-spacer>
+            <v-btn
+              fab
+              text
+              class="button delete"
+              x-small
+              @click="deletefile(file)"
+            >
+              <v-icon>
+                mdi-trash-can-outline
+              </v-icon>
+            </v-btn>
+          </v-toolbar>
           <div class="d-flex flex-no-wrap justify-space-between">
             <div>
               <v-card-text>
                 <ul>
-                  <li>File: {{ file.type }}</li>
+                  <li>Type: {{ file.type.split("/").pop() }}</li>
                   <li>Size: {{ file.size }}</li>
                   <li>Unit: {{ file.location }}</li>
                 </ul>
               </v-card-text>
-              <v-card-actions>
-                <v-container fluid>
-                  <v-btn
-                    fab
-                    elevation="1"
-                    color="warning"
-                    x-small
-                    @click="deletefile(file)"
-                  >
-                    <v-icon>
-                      mdi-trash-can-outline
-                    </v-icon>
-                  </v-btn>
-                </v-container>
-              </v-card-actions>
             </div>
 
             <div
