@@ -236,6 +236,11 @@
         <nuxt />
       </v-container>
     </v-main>
+    <v-footer class="primary" fixed padless app>
+      <v-btn color="whitish" text to="/about" x-small>
+        Made by Ospic
+      </v-btn>
+    </v-footer>
   </v-app>
 </template>
 
