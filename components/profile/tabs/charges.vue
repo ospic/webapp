@@ -7,7 +7,7 @@
     <v-row justify="end" class="mb-2" no-gutters>
       <v-spacer></v-spacer>
       <v-col style="background-color: green" md="4">
-        <v-card class="pa-2" elevation="1" outlined tile>
+        <v-card class="pa-2 primary" dark elevation="1" outlined tile>
           <h3>Total amount: {{ transaction.totalAmount }}</h3>
         </v-card>
       </v-col>
