@@ -157,7 +157,7 @@
             <v-col cols="12" md="3">
               <br />
             </v-col>
-            <v-col cols="12" md="3">
+            <v-col cols="12" md="3" v-if="isMdAndUp">
               <v-container fluid>
                 <v-card outlined light dense>
                   <v-list-item three-line>
@@ -190,7 +190,7 @@
                 </v-card>
               </v-container>
             </v-col>
-            <v-col cols="12" md="3" v-if="service.staff">
+            <v-col cols="12" md="3" v-if="service.staff && isMdAndUp">
               <v-container fluid>
                 <v-card outlined dense light>
                   <v-list-item three-line>
