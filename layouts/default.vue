@@ -164,7 +164,7 @@
         <template v-slot:badge>
           10
         </template>
-        <v-btn fab small class="button">
+        <v-btn fab small class="button" to="/notifications">
           <v-icon color="white">mdi-bell</v-icon></v-btn
         >
       </v-badge>
