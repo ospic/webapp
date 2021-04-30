@@ -134,8 +134,8 @@
           mdi-delete
         </v-icon>
       </template>
-      <template v-slot:no-data>
-        <v-progress-linear indeterminate color="cyan"></v-progress-linear>
+     <template v-slot:no-data>
+        <p class="mt-2">No Data available for {{ routename }}</p>
       </template>
     </v-data-table>
   </div>

@@ -146,8 +146,8 @@
             </td>
           </template>
           <template v-slot:no-data>
-            <v-progress-linear indeterminate color="cyan"></v-progress-linear>
-          </template>
+        <p class="mt-2">No Data available for {{ routename }}</p>
+      </template>
         </v-data-table>
       </div>
     </v-card>
