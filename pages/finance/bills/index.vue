@@ -83,11 +83,7 @@
             </template>
 
             <template v-slot:no-data>
-              <v-progress-linear
-                background-color="white"
-                indeterminate
-                color="cyan"
-              ></v-progress-linear>
+              <p class="mt-2">No Data available for {{ routename }}</p>
             </template>
           </v-data-table>
         </v-container>
