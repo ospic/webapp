@@ -262,12 +262,7 @@
           </span>
         </v-tooltip>
       </template>
-      <template v-slot:[`item.group`]="{ item }">
-        <p>{{ item.group.name }}</p>
-      </template>
-      <template v-slot:[`item.category`]="{ item }">
-        <p>{{ item.group.name }}</p>
-      </template>
+
       <template class="primary"> </template>
       <template v-if="showaction" v-slot:[`item.actions`]="{ item }">
         <v-icon small class="mr-2" @click="editItem(item)"> mdi-pencil </v-icon>
@@ -312,8 +307,8 @@ export default {
       { text: "Selling price", value: "sellingPrice" },
 
       { text: "Composition", value: "compositions" },
-      { text: "Group", value: "group", sortable: true },
-      { text: "Category", value: "category", sortable: true },
+      { text: "Group", value: "group.name", sortable: true },
+      { text: "Category", value: "category.name", sortable: true },
 
       { text: "Company", value: "company", sortable: false },
       { text: "Effects", value: "effects" },
