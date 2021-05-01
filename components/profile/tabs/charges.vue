@@ -18,13 +18,14 @@
       :headers="headers"
       :options="body.options"
       :items="transaction.transactions"
+      :item-class="row_classes"
       mobile-breakpoint="100"
     >
       <template v-slot:[`item.service`]="{ item }">
-        <p v-if="item.medicalServiceName != null">
+        <a v-if="item.medicalServiceName != null">
           {{ item.medicalServiceName }}
-        </p>
-        <p v-else>{{ item.medicineName }}</p>
+        </a>
+        <a v-else>{{ item.medicineName }}</a>
       </template>
     </v-data-table>
   </v-container>
