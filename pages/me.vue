@@ -268,7 +268,6 @@ export default {
     show3: false,
     show4: false,
     edit: false,
-    toggle_exclusive: 2,
     progress: false,
 
     confirmPassword: "",
