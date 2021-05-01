@@ -440,7 +440,7 @@ export default {
         var data = {
           series: [
             {
-              name: "Service  issued",
+              name: "Number of consultations",
               data: datas
             }
           ],

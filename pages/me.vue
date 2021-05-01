@@ -5,23 +5,105 @@
       <router-link to="/me" class="active">Profile</router-link>
     </div>
     <v-container fluid>
-      <v-card class="mx-auto default">
+      <v-card class="mb-4" v-if="edit">
+        <v-toolbar dark color="primary" flat>
+          <v-toolbar-title> Edit staff profile</v-toolbar-title>
+          <v-spacer></v-spacer>
+          <div v-if="progress">
+            <a class="light-blue--text">Please wait...</a>
+            <v-progress-circular indeterminate></v-progress-circular>
+          </div>
+        </v-toolbar>
+        <v-card-text>
+          <v-form
+            @submit.prevent="updateprofile"
+            id="check-update-profile-form"
+            class="mt-3"
+          >
+            <v-container>
+              <v-row>
+                <v-col cols="12" sm="12" md="4">
+                  <v-text-field
+                    v-model="user.staff.username"
+                    label="Username"
+                    :readonly="readonly"
+                  ></v-text-field>
+                </v-col>
+                <v-col cols="12" sm="12" md="4">
+                  <v-text-field
+                    v-model="user.staff.fullName"
+                    label="Full name"
+                  ></v-text-field>
+                </v-col>
+                <v-col cols="12" sm="12" md="4">
+                  <v-text-field
+                    v-model="user.staff.contacts"
+                    label="Phone"
+                  ></v-text-field>
+                </v-col>
+                <v-col cols="12" sm="12" md="4">
+                  <v-text-field
+                    v-model="user.staff.level"
+                    label="Level"
+                  ></v-text-field>
+                </v-col>
+                <v-col cols="12" sm="12" md="4">
+                  <v-text-field
+                    v-model="user.staff.email"
+                    label="Email "
+                  ></v-text-field>
+                </v-col>
+
+                <v-col cols="12" sm="12" md="4">
+                  <v-text-field
+                    v-model="user.staff.imageUrl"
+                    label="Thumbnail link"
+                    readonly
+                  ></v-text-field>
+                </v-col>
+              </v-row>
+            </v-container>
+          </v-form>
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn dark class="button cancel" @click="edit = !edit">
+            cancel
+          </v-btn>
+          <v-btn class="button" type="submit" form="check-update-profile-form">
+            save Updates
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+      <v-card v-if="!edit" class="mx-auto default">
         <v-toolbar color="primary" flat dark>
           <v-toolbar-title> User Profile</v-toolbar-title>
 
           <v-spacer></v-spacer>
           <v-dialog v-model="dialog" width="500">
             <template v-slot:activator="{ on, attrs }">
-              <v-btn
-                v-if="user != null"
-                medium
-                v-bind="attrs"
-                v-on="on"
-                class="button"
-              >
-                <v-icon small>mdi-lock</v-icon>
-                &nbsp;&nbsp;Change Password</v-btn
-              >
+              <v-btn-toggle borderless rounded v-model="toggle_exclusive">
+                <v-btn
+                  medium
+                  class="button cancel"
+                  elevation="2"
+                  @click="edit = !edit"
+                  v-if="user.isStaff"
+                >
+                  <v-icon>mdi-pencil</v-icon>edit</v-btn
+                >
+                <v-btn
+                  v-if="user != null"
+                  v-bind="attrs"
+                  v-on="on"
+                  class="button"
+                  medium
+                  elevation="2"
+                >
+                  <v-icon small>mdi-lock</v-icon>
+                  &nbsp;&nbsp;Change Password</v-btn
+                >
+              </v-btn-toggle>
             </template>
             <v-card>
               <v-card-title class="headline grey lighten-2">
@@ -159,13 +241,6 @@
                     >{{ role.name.toLowerCase() }}</v-chip
                   >
                 </v-col>
-                <v-col cols="12" sm="12" md="6">
-                  <v-checkbox
-                    label="Edit"
-                    v-model="edit"
-                    v-if="user.isStaff"
-                  ></v-checkbox>
-                </v-col>
               </v-row>
             </v-container>
           </v-form>
@@ -178,70 +253,6 @@
             indeterminate
           ></v-progress-circular>
         </v-card-text>
-      </v-card>
-
-      <v-card class="mt-4" v-if="edit" tile outlined>
-        <v-toolbar dark color="primary" flat>
-          <v-toolbar-title> Edit staff profile</v-toolbar-title>
-        </v-toolbar>
-        <v-card-text>
-          <v-form
-            @submit.prevent="updateprofile"
-            id="check-update-profile-form"
-            class="mt-3"
-          >
-            <v-container>
-              <v-row>
-                <v-col cols="12" sm="12" md="4">
-                  <v-text-field
-                    v-model="user.staff.username"
-                    label="Username"
-                    :readonly="readonly"
-                  ></v-text-field>
-                </v-col>
-                <v-col cols="12" sm="12" md="4">
-                  <v-text-field
-                    v-model="user.staff.fullName"
-                    label="Full name"
-                  ></v-text-field>
-                </v-col>
-                <v-col cols="12" sm="12" md="4">
-                  <v-text-field
-                    v-model="user.staff.contacts"
-                    label="Phone"
-                  ></v-text-field>
-                </v-col>
-                <v-col cols="12" sm="12" md="4">
-                  <v-text-field
-                    v-model="user.staff.level"
-                    label="Level"
-                  ></v-text-field>
-                </v-col>
-                <v-col cols="12" sm="12" md="4">
-                  <v-text-field
-                    v-model="user.staff.email"
-                    label="Email "
-                  ></v-text-field>
-                </v-col>
-
-                <v-col cols="12" sm="12" md="4">
-                  <v-text-field
-                    v-model="user.staff.imageUrl"
-                    label="Thumbnail link"
-                    readonly
-                  ></v-text-field>
-                </v-col>
-              </v-row>
-            </v-container>
-          </v-form>
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer></v-spacer>
-
-          <v-btn class="button" type="submit" form="check-update-profile-form">
-            Update
-          </v-btn>
-        </v-card-actions>
       </v-card>
     </v-container>
   </div>
@@ -257,6 +268,8 @@ export default {
     show3: false,
     show4: false,
     edit: false,
+    toggle_exclusive: 2,
+    progress: false,
 
     confirmPassword: "",
     rules: {
@@ -279,12 +292,17 @@ export default {
       });
     },
     updateprofile() {
+      this.progress = true;
       delete this.user.staff.user;
       delete this.user.staff.department;
       this.$store.dispatch("updatestaff", this.user.staff).then(response => {
-        this.$store.dispatch("retrieve_profile");
+        setTimeout(() => this.closeprofileupdate(), this.delay_seconds);
       });
+    },
+    closeprofileupdate: function() {
+      this.$store.dispatch("retrieve_profile");
       this.edit = false;
+      this.progress = false;
     },
     close() {
       this.$refs.form.reset();

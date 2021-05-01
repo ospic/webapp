@@ -1821,4 +1821,8 @@ button.button span {
   font-weight: bold;
   font-size: large;
 }
+
+button.button.cancel {
+  background-color: #2196f3 !important;
+}
 /*# sourceMappingURL=styles.css.map */

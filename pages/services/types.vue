@@ -12,7 +12,7 @@
         size="52"
         color="primary"
         indeterminate
-        v-if="servicetypes == null"
+        v-if="servicetypes.length < 0"
       ></v-progress-circular>
       <v-data-table
         dense
