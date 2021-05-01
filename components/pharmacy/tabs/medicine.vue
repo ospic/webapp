@@ -14,7 +14,7 @@
       :items-per-page="15"
       sort-by="id"
       dense
-      class="elevation-0 "
+      class="elevation-0 text-xs-left"
     >
       <template v-slot:top>
         <v-toolbar flat color="primary" dark>
@@ -299,7 +299,7 @@ export default {
     date: new Date().toISOString().substr(0, 7),
     headers: [
       { text: "", value: "status" },
-      { text: "Name", value: "name" },
+      { text: "Name", value: "name", align: "left" },
       { text: "Generic Name", value: "genericName" },
       { text: "Store Box", value: "storeBox" },
       { text: "Quantity left", value: "quantity", sortable: true },
@@ -310,7 +310,7 @@ export default {
       { text: "Group", value: "group.name", sortable: true },
       { text: "Category", value: "category.name", sortable: true },
 
-      { text: "Company", value: "company", sortable: false },
+      { text: "Manufacture", value: "company", sortable: false },
       { text: "Effects", value: "effects" },
       { text: "Expire Date", value: "expireOn" },
       { text: "Actions", value: "actions", sortable: false }
