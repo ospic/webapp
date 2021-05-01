@@ -138,7 +138,10 @@
             </v-dialog>
           </v-col>
         </v-row>
-        <charges-component :transaction="transaction"></charges-component>
+        <charges-component
+          :transaction="transaction"
+          v-on:update="get_bill"
+        ></charges-component>
       </div>
     </v-card>
   </v-container>
