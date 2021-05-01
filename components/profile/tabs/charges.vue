@@ -85,10 +85,7 @@ export default {
   methods: {
     undo: function(it) {
       this.$store.dispatch("revert_transaction", it.id);
-      setTimeout(
-        () => this.get_bill(0, this.body.options.itemsPerPage),
-        this.delay_seconds
-      );
+      setTimeout(() => this.$emit("update"), this.delay_seconds);
     }
   }
 };
