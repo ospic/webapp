@@ -105,7 +105,8 @@
       "active":"Active",
       "viewreceipt":"View bill receipt",
       "reversetransaction":"Reverse transaction",
-      "reopentransaction":"Re-open reversed transaction"
+      "reopentransaction":"Re-open reversed transaction",
+      "expirewarning":"This product is about to expire or is expired"
     },
     "titles":{
       "settings":"Settings",
