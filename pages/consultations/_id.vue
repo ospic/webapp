@@ -301,6 +301,7 @@
               <tb-medical-services
                 :transaction="service_transactions"
                 :isActive="service.isActive"
+                v-on:update="getServiceChargesAndCosts"
               ></tb-medical-services>
             </v-tab-item>
             <v-tab-item>

@@ -20,7 +20,7 @@
               <v-col cols="12" sm="12" md="6">
                 <v-card-text>
                   <v-select
-                    v-model="payload.id"
+                    v-model="data.id"
                     :items="medicines"
                     item-text="name"
                     item-value="id"
@@ -39,9 +39,9 @@
                   ></v-select>
                 </v-card-text>
               </v-col>
-              <v-col cols="12" sm="12" md="6" v-if="payload.id">
+              <v-col cols="12" sm="12" md="6" v-if="data.id">
                 <v-text-field
-                  v-model="payload.quantity"
+                  v-model="data.quantity"
                   label="Quantity"
                   type="number"
                   filled
@@ -72,9 +72,7 @@
           dense
           class="default"
           :headers="headers"
-          :items="
-            transaction.transactions.filter(t => t.medicalServiceName === null)
-          "
+          :items="transactions"
           mobile-breakpoint="100"
         >
           <template v-slot:[`item.service`]="{ item }">
@@ -116,7 +114,8 @@ export default {
     type: "medicine",
     quantity: null,
     valid: false,
-    payload: {
+    payload: {},
+    data: {
       id: null,
       quantity: 0,
       type: "medicine"
@@ -142,8 +141,9 @@ export default {
       //console.log(this.payload);
       if (this.$refs.form.validate()) {
         this.payload.route = this.$route.params.id;
-        this.payload.id = parseInt(this.payload.id);
-        this.payload.quantity = parseInt(this.payload.quantity);
+        this.data.id = parseInt(this.data.id);
+        this.data.quantity = parseInt(this.data.quantity);
+        this.payload.data = this.data;
         this.$store.dispatch("initiate_medical_transaction", this.payload);
         setTimeout(() => this.$emit("update"), this.delay_seconds);
         this.dialog = false;
@@ -162,7 +162,12 @@ export default {
   computed: {
     ...mapGetters({
       medicines: "medicines"
-    })
+    }),
+    transactions() {
+      return this.transaction.transactions.filter(
+        t => t.medicalServiceName === null
+      );
+    }
   }
 };
 </script>
