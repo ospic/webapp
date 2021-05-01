@@ -7,7 +7,7 @@
       v-if="medicines == null"
     ></v-progress-circular>
     <v-data-table
-      v-else
+      v-if="medicines != null && list"
       :headers="headers"
       :items="medicines"
       :search="search"
@@ -37,15 +37,19 @@
           &nbsp;&nbsp;
           <v-dialog v-model="dialog" max-width="900px">
             <template v-if="showaction" v-slot:activator="{ on, attrs }">
-              <v-btn-toggle v-if="isMdAndUp" v-model="toggle_exclusive">
-                <v-btn medium class="button cancel" rounded>
-                  <v-icon>mdi-format-list-bulleted</v-icon>
+              <v-btn-toggle
+                v-if="isMdAndUp"
+                borderless
+                rounded
+                v-model="toggle_exclusive"
+              >
+                <v-btn medium class="button cancel" @click="list = !list">
+                  <v-icon>mdi-view-grid</v-icon>
                 </v-btn>
                 <v-btn
                   color="button"
                   medium
                   prepend-icon="mdi-plus"
-                  class="mb-2"
                   v-bind="attrs"
                   v-on="on"
                   dark
@@ -280,6 +284,59 @@
         <p class="mt-2">No Data available for {{ routename }}</p>
       </template>
     </v-data-table>
+    <v-card v-else class="mx-auto" flat tile>
+      <v-toolbar class="primary" dark>
+        <strong>Grid view</strong>
+
+        <v-spacer></v-spacer>
+        <v-btn medium class="button cancel" @click="list = !list">
+          <v-icon>mdi-format-list-bulleted</v-icon>
+        </v-btn>
+      </v-toolbar>
+      <v-card-text>
+        <v-container class="ma-2 pa-0 px-2" fluid>
+          <v-row justify="start" align="start" class="mt-2">
+            <v-col
+              class="pa-1"
+              xs="6"
+              sm="6"
+              md="2"
+              xl="1"
+              v-for="(item, i) in sortedmedicines"
+              :key="i"
+            >
+              <v-tooltip bottom :disabled="!item.isExpiring" color="primary">
+                <template v-slot:activator="{ on, attrs }">
+                  <v-card class="default" v-bind="attrs" v-on="on">
+                    <v-list-item>
+                      <v-avatar
+                        :color="item.isExpiring ? 'red' : 'blue'"
+                        size="48"
+                        class="ml-0 mr-3"
+                      >
+                        <v-icon color="white">mdi-pill</v-icon></v-avatar
+                      >
+
+                      <v-list-item-content>
+                        <v-list-item-subtitle
+                          class="font-weight-normal"
+                          v-html="item.name"
+                        ></v-list-item-subtitle>
+                        <v-list-item-title
+                          class="text-h6 font-weight-black my-1"
+                          v-html="item.quantity"
+                        ></v-list-item-title>
+                      </v-list-item-content>
+                    </v-list-item>
+                  </v-card>
+                </template>
+                <span>{{ $t("label.tooltip.expirewarning") }}</span>
+              </v-tooltip>
+            </v-col>
+          </v-row>
+        </v-container>
+      </v-card-text>
+    </v-card>
   </div>
 </template>
 <script>
@@ -411,6 +468,9 @@ export default {
     },
     handleClick: function(value) {
       this.$router.push("/patients/" + value.id);
+    },
+    comparator: function(a, b) {
+      return parseInt(a["quantity"], 10) - parseInt(b["quantity"], 10);
     }
   },
   watch: {
@@ -426,6 +486,12 @@ export default {
     }),
     formTitle() {
       return this.editedIndex === -1 ? "New medicine" : "Edit medicine";
+    },
+    sortedmedicines() {
+      var md = this.medicines.sort(function(a, b) {
+        return parseFloat(a.quantity) - parseFloat(b.quantity);
+      });
+      return md;
     }
   }
 };
