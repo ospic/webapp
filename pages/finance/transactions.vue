@@ -67,6 +67,38 @@
             </a>
             <a v-else>{{ item.medicineName }}</a>
           </template>
+          <template v-slot:[`item.actions`]="{ item }">
+            <v-tooltip v-if="item.isReversed" color="primary" bottom>
+              <template v-slot:activator="{ on, attrs }">
+                <v-btn
+                  x-small
+                  prepend-icon="mdi-undo"
+                  outlined
+                  color="button"
+                  v-bind="attrs"
+                  v-on="on"
+                  @click="undo(item)"
+                  ><v-icon small>mdi-undo-variant</v-icon>
+                </v-btn>
+              </template>
+              <span>{{ $t("label.tooltip.reopentransaction") }}</span>
+            </v-tooltip>
+            <v-tooltip v-else color="primary" bottom>
+              <template v-slot:activator="{ on, attrs }">
+                <v-btn
+                  x-small
+                  outlined
+                  v-bind="attrs"
+                  v-on="on"
+                  class="primary"
+                  dark
+                  @click="undo(item)"
+                  ><v-icon small> mdi-undo</v-icon>
+                </v-btn>
+              </template>
+              <span>{{ $t("label.tooltip.reversetransaction") }}</span>
+            </v-tooltip>
+          </template>
         </v-data-table>
 
         <div class="text-center">
@@ -88,6 +120,7 @@ export default {
     return {
       bill: null,
       transactions: null,
+      positionx: 2,
       search: null,
 
       query: {
@@ -101,7 +134,8 @@ export default {
         { text: "Amount", value: "amount" },
         { text: "Currency", value: "currencyCode" },
         { text: "Reversed", value: "isReversed" },
-        { text: "Transaction Date", value: "transactionDate" }
+        { text: "Transaction Date", value: "transactionDate" },
+        { text: "Actions", value: "actions", sortable: false }
       ]
     };
   },
@@ -120,6 +154,13 @@ export default {
         .catch(error => {
           console.log(error);
         });
+    },
+    undo: function(it) {
+      this.$store.dispatch("revert_transaction", it.id);
+      setTimeout(
+        () => this.get_bill(0, this.body.options.itemsPerPage),
+        this.delay_seconds
+      );
     }
   },
   created() {

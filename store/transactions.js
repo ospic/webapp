@@ -80,7 +80,7 @@ const actions = {
   },
   async revert_transaction({ commit }, id) {
     commit("REVERT_TRANSACTION");
-    await this.$api.$post(`transactions/undo/${id}/`)
+    await this.$api.$put(`transactions/undo/${id}`)
       .then(response => {
         commit("REVERT_TRANSACTION_SUCCESS", response);
       }).catch(error => {

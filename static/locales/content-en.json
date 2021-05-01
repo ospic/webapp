@@ -103,7 +103,9 @@
       "edit":"Edit",
       "activate":"Activate",
       "active":"Active",
-      "viewreceipt":"View bill receipt"
+      "viewreceipt":"View bill receipt",
+      "reversetransaction":"Reverse transaction",
+      "reopentransaction":"Re-open reversed transaction"
     },
     "titles":{
       "settings":"Settings",
