@@ -6,5 +6,8 @@ button {
       font-weight: bold;
       font-size: large;
     }
+    &.cancel {
+      background-color: $color_info !important;
+    }
   }
 }
