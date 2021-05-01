@@ -122,6 +122,7 @@ export default {
       transactions: null,
       positionx: 2,
       search: null,
+      dialog:false,
 
       query: {
         page: null,
