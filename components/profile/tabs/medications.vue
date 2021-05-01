@@ -75,12 +75,6 @@
           :items="transactions"
           mobile-breakpoint="100"
         >
-          <template v-slot:[`item.service`]="{ item }">
-            <p v-if="item.medicalServiceName != null">
-              {{ item.medicalServiceName }}
-            </p>
-            <p v-else>{{ item.medicineName }}</p>
-          </template>
         </v-data-table>
       </v-container>
     </div>
@@ -124,7 +118,7 @@ export default {
 
     headers: [
       { text: "ID", value: "id" },
-      { text: "Service", value: "service", sortable: true },
+      { text: "Service", value: "medicineName", sortable: true },
       { text: "Department", value: "departmentName" },
       { text: "Amount", value: "amount", sortable: false },
       { text: "Currency", value: "currencyCode" },
