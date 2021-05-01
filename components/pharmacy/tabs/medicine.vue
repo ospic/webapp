@@ -24,15 +24,17 @@
             </h3></v-toolbar-title
           >
           <v-spacer></v-spacer>
-          <v-text-field
-            v-model="search"
-            label="Search by name/company/composition"
-            hide-details
-            rounded
-            height="40"
-            filled
-          ></v-text-field
-          >&nbsp;&nbsp;
+          <v-col cols="12" md="3">
+            <v-text-field
+              v-model="search"
+              label="Search by name/company/composition"
+              hide-details
+              rounded
+              height="40"
+              filled
+            ></v-text-field>
+          </v-col>
+          &nbsp;&nbsp;
           <v-dialog v-model="dialog" max-width="900px">
             <template v-if="showaction" v-slot:activator="{ on, attrs }">
               <v-btn
