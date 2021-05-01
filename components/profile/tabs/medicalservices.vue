@@ -44,8 +44,8 @@
                 ? 'Medical services'
                 : 'Selected category have no medical services'
             "
+            @change="update_service"
             required
-            multiple
             persistent-hint
             single-line
           ></v-select>
@@ -61,12 +61,13 @@
         indeterminate
         v-if="transaction == null"
       ></v-progress-linear>
+
       <v-container fluid v-else class="ma-2">
         <v-data-table
           dense
           class="default"
           :headers="headers"
-          :items="transaction.transactions.filter(t => t.medicineName === null)"
+          :items="transactions"
           mobile-breakpoint="100"
         >
         </v-data-table>
@@ -101,6 +102,12 @@ export default {
     service_transactions: null,
     type: "service",
     service: null,
+    payload: {},
+    data: {
+      id: null,
+      quantity: 0,
+      type: "service"
+    },
     headers: [
       { text: "ID", value: "id" },
       { text: "Service", value: "medicalServiceName", sortable: true },
@@ -118,15 +125,18 @@ export default {
     },
 
     fetch_medical_types: function(it) {
-      console.log(it);
       this.$store.dispatch("get_medical_services_by_type", it);
     },
+    update_service: function(it) {
+      this.data.id = parseInt(it);
+    },
     save() {
-      this.$store.dispatch("initiate_medical_transaction", {
-        id: this.$route.params.id,
-        services: this.select,
-        type: this.type
-      });
+      this.payload.route = this.$route.params.id;
+      this.data.quantity = parseInt(1);
+      this.payload.data = this.data;
+
+      this.$store.dispatch("initiate_medical_transaction", this.payload);
+      setTimeout(() => this.$emit("update"), this.delay_seconds);
       this.dialog = false;
     }
   },
@@ -135,7 +145,12 @@ export default {
     ...mapGetters({
       medicalservices: "medicalservices",
       servicetypes: "servicetypes"
-    })
+    }),
+    transactions() {
+      return this.transaction.transactions.filter(
+        t => t.medicalServiceName === null
+      );
+    }
   }
 };
 </script>
