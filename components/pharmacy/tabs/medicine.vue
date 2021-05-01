@@ -37,23 +37,27 @@
           &nbsp;&nbsp;
           <v-dialog v-model="dialog" max-width="900px">
             <template v-if="showaction" v-slot:activator="{ on, attrs }">
+              <v-btn-toggle v-if="isMdAndUp" v-model="toggle_exclusive">
+                <v-btn medium class="button cancel" rounded>
+                  <v-icon>mdi-format-list-bulleted</v-icon>
+                </v-btn>
+                <v-btn
+                  color="button"
+                  medium
+                  prepend-icon="mdi-plus"
+                  class="mb-2"
+                  v-bind="attrs"
+                  v-on="on"
+                  dark
+                  ><v-icon left>mdi-plus</v-icon
+                  >{{ $t("label.button.addnewmedicine") }}</v-btn
+                >
+              </v-btn-toggle>
+
               <v-btn
-                color="button"
-                elevation="1"
-                medium
-                prepend-icon="mdi-plus"
-                class="mb-2"
-                v-bind="attrs"
-                v-on="on"
-                dark
-                v-if="isMdAndUp"
-                ><v-icon left>mdi-plus</v-icon
-                >{{ $t("label.button.addnewmedicine") }}</v-btn
-              >
-              <v-btn
-                v-else
                 color="button"
                 fab
+                v-else
                 small
                 class="mb-2 font-weight-normal"
                 v-bind="attrs"
@@ -298,6 +302,7 @@ export default {
     menu1: false,
     menu2: false,
     tab: null,
+    list: true,
     date: new Date().toISOString().substr(0, 7),
     headers: [
       { text: "", value: "status" },

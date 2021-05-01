@@ -33,6 +33,7 @@ Vue.mixin({
       itemsperpage: 15,
       totalvisible: 7,
       delay_seconds: 2000,
+      toggle_exclusive: 2,
       body: {
         options: {
           page: 1,
