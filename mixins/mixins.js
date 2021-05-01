@@ -64,6 +64,12 @@ Vue.mixin({
         });
     },
 
+    row_classes(item) {
+      if (item.isReversed) {
+        return "strikeout";
+      }
+    },
+
     hasPermission(p) {
       //console.log(this.hasAnyPermission(this.$store.getters.thisuserpermissions, p))
       return this.hasAnyPermission(this.$store.getters.thisuserpermissions, p);

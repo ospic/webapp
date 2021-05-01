@@ -56,15 +56,16 @@
           :options="body.options"
           :items="transactions"
           :search="search"
+          :item-class="row_classes"
           disable-pagination
           hide-default-footer
           mobile-breakpoint="100"
         >
           <template v-slot:[`item.service`]="{ item }">
-            <p v-if="item.medicalServiceName != null">
+            <a v-if="item.medicalServiceName != null">
               {{ item.medicalServiceName }}
-            </p>
-            <p v-else>{{ item.medicineName }}</p>
+            </a>
+            <a v-else>{{ item.medicineName }}</a>
           </template>
         </v-data-table>
 
@@ -108,6 +109,7 @@ export default {
     get_next() {
       this.get_bill(this.query.page - 1, this.body.options.itemsPerPage);
     },
+
     async get_bill(p, s) {
       return await this.$api
         .$get(`transactions/all/?page=${p}&size=${s}`)

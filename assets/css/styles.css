@@ -280,12 +280,53 @@ tbody tr td.none-clickable {
   cursor: auto;
 }
 
+table {
+  border-collapse: collapse;
+  empty-cells: show;
+}
+
 tr:nth-child(odd) {
   background: #eaeaea;
 }
 
+tr:nth-child(odd).strikeout {
+  background: red !important;
+}
+
 tr:nth-child(even) {
   background: white;
+}
+
+tr:nth-child(even).strikeout {
+  color: red;
+  font-weight: bold;
+}
+
+tr:nth-child(even).strikeout a {
+  color: red;
+  font-weight: bold;
+}
+
+tr.strikeout td:before {
+  content: " ";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  border-bottom: 3px solid red;
+  width: 100%;
+}
+
+tr.strikeout td:after {
+  content: "\00B7";
+  font-size: 1px;
+}
+
+td {
+  position: relative;
+}
+
+th {
+  text-align: left;
 }
 
 th {
