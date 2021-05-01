@@ -34,6 +34,23 @@ const mutations = {
     state.transactions = payload;
   },
 
+
+  /** Reverse transactions */
+
+  ["REVERT_TRANSACTION"](state) {
+    state.showLoader = true;
+  },
+  ["REVERT_TRANSACTION_FAILED"](state) {
+    state.showLoader = false;
+  },
+  ["REVERT_TRANSACTION_ERROR"](state) {
+    state.showLoader = false;
+  },
+  ["REVERT_TRANSACTION_SUCCESS"](state, payload) {
+    state.showLoader = false;
+    state.transaction = payload;
+  },
+
 }
 
 const actions = {
@@ -57,6 +74,17 @@ const actions = {
         commit("GET_TRANSACTIONS_SUCCESS", response);
       }).catch(error => {
         commit("GET_TRANSACTIONS_ERROR");
+        console.log(error);
+
+      });
+  },
+  async revert_transaction({ commit }, id) {
+    commit("REVERT_TRANSACTION");
+    await this.$api.$post(`transactions/undo/${id}/`)
+      .then(response => {
+        commit("REVERT_TRANSACTION_SUCCESS", response);
+      }).catch(error => {
+        commit("REVERT_TRANSACTION_ERROR");
         console.log(error);
 
       });
