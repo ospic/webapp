@@ -148,7 +148,7 @@ export default {
     }),
     transactions() {
       return this.transaction.transactions.filter(
-        t => t.medicalServiceName === null
+        t => t.medicalServiceName !== null
       );
     }
   }
