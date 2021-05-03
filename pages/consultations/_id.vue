@@ -319,7 +319,10 @@
               ></tb-reports>
             </v-tab-item>
             <v-tab-item>
-              <tb-charges :transaction="service_transactions"></tb-charges>
+              <tb-charges
+                :transaction="service_transactions"
+                v-on:update="getServiceChargesAndCosts"
+              ></tb-charges>
             </v-tab-item>
 
             <v-tab-item>

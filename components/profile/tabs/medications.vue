@@ -138,8 +138,11 @@ export default {
         this.data.id = parseInt(this.data.id);
         this.data.quantity = parseInt(this.data.quantity);
         this.payload.data = this.data;
-        this.$store.dispatch("initiate_medical_transaction", this.payload);
-        setTimeout(() => this.$emit("update"), this.delay_seconds);
+        this.$store
+          .dispatch("initiate_medical_transaction", this.payload)
+          .then(res => {
+            setTimeout(() => this.$emit("update"), this.delay_seconds);
+          });
         this.dialog = false;
       }
     },
