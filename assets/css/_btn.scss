@@ -9,5 +9,8 @@ button {
     &.cancel {
       background-color: $color_info !important;
     }
+    &.warning {
+      background-color: $color_warning !important;
+    }
   }
 }

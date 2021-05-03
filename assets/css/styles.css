@@ -1825,4 +1825,8 @@ button.button span {
 button.button.cancel {
   background-color: #2196f3 !important;
 }
+
+button.button.warning {
+  background-color: #fb8c00 !important;
+}
 /*# sourceMappingURL=styles.css.map */

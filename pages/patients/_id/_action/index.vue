@@ -9,8 +9,10 @@
       <a class="active"> {{ this.$route.params.action }}</a>
     </div>
     <div v-if="this.$route.params.action === 'admit'">
-      <v-card class="pa-3">
-        <v-card-title>Patient Admission</v-card-title>
+      <v-card>
+        <v-toolbar dark flat color="primary">
+          <v-toolbar-title>Admit patient</v-toolbar-title>
+        </v-toolbar>
         <v-card-text>
           <v-form ref="form" v-model="valid" lazy-validation>
             <v-row align="center" justify="center">
@@ -133,30 +135,24 @@
                 </v-menu>
               </v-col>
             </v-row>
-            <div>
-              <v-spacer></v-spacer>
-              <v-btn color="error" class="mr-4" @click="reset">
-                Reset Form
-              </v-btn>
-              <v-btn
-                :disabled="!valid"
-                color="primary"
-                class="mr-4"
-                @click="validate"
-              >
-                Admit
-              </v-btn>
-            </div>
           </v-form>
         </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn class="button warning mr-4" @click="reset">
+            Reset Form
+          </v-btn>
+          <v-btn :disabled="!valid" class="button mr-4" @click="validate">
+            Admit
+          </v-btn>
+        </v-card-actions>
       </v-card>
     </div>
     <div v-if="this.$route.params.action === 'selfservice'">
       <v-card>
-        <v-card-title dense class="pa-2">
-          <h4>Create Self service</h4>
-        </v-card-title>
-        <v-divider class="ma-1"></v-divider>
+        <v-toolbar flat dark color="primary">
+          <v-toolbar-title>Create Self service</v-toolbar-title>
+        </v-toolbar>
         <v-card-text>
           <v-row>
             <v-col cols="12" sm="12" md="4"></v-col>

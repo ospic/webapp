@@ -8,7 +8,9 @@
       >
     </div>
     <v-card class="mx-auto default ">
-      <tool-bar :title="title"></tool-bar>
+      <v-toolbar dark color="primary" flat dense>
+        <v-toolbar-title>{{ title }}</v-toolbar-title>
+      </v-toolbar>
 
       <v-form ref="form" v-model="valid" lazy-validation>
         <v-container>
@@ -170,8 +172,8 @@
 
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn @click="close">Cancel</v-btn>
-            <v-btn color="success darken-1" @click="save">Save</v-btn>
+            <v-btn @click="close" class="button cancel">Cancel</v-btn>
+            <v-btn color="button" @click="save">Save</v-btn>
           </v-card-actions>
         </v-container>
       </v-form>
