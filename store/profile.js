@@ -59,9 +59,11 @@ const actions = {
     await this.$api.$post("auth/password", payload)
       .then(response => {
         commit("UPDATE_PASSWORD_SUCCESS", response);
-        if (response.httpStatus === 'OK') {
+        console.log(response)
+        if (response.httpStatus === 200) {
           commit("SIGNOUT_SUCCESS")
         }
+
 
       }).catch(error => {
         commit("UPDATE_PASSWORD_ERROR");
