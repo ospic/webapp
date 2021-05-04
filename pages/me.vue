@@ -105,10 +105,10 @@
                 >
               </v-btn-toggle>
             </template>
-            <v-card>
-              <v-card-title class="headline grey lighten-2">
-                Update password
-              </v-card-title>
+            <v-card flat>
+              <v-toolbar dark flat class="primary">
+                <v-toolbar-title><h3>Update password</h3></v-toolbar-title>
+              </v-toolbar>
 
               <v-card-text class="pa-4">
                 <v-form
@@ -181,11 +181,11 @@
 
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn color="primary" small @click="dialog = false">
+                <v-btn class="button cancel" small @click="dialog = false">
                   Cancel
                 </v-btn>
                 <v-btn
-                  color="warning"
+                  class="button"
                   small
                   type="submit"
                   :disabled="!valid"
@@ -286,9 +286,7 @@ export default {
   },
   methods: {
     updatepasssword() {
-      this.$store.dispatch("_update_user_password", this.form_data).then(() => {
-        this.close();
-      });
+      this.$store.dispatch("_update_user_password", this.form_data);
     },
     updateprofile() {
       this.progress = true;
