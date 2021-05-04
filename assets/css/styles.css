@@ -1829,4 +1829,8 @@ button.button.cancel {
 button.button.warning {
   background-color: #fb8c00 !important;
 }
+
+button.button i {
+  font-weight: bold;
+}
 /*# sourceMappingURL=styles.css.map */

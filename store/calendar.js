@@ -19,13 +19,13 @@ const mutations = {
   },
   ["FETCH_CALENDAR_EVENTS_SUCCESS"](state, payload) {
     state.showLoader = false;
-    state.CALENDAR_EVENTS = payload;
+    state.events = payload;
   },
 
 
 }
 const actions = {
-  async getcalendar_events({ commit }) {
+  async get_calendar_events({ commit }) {
     commit("FETCH_CALENDAR_EVENTS");
     await this.$api.$get(`calendar/`)
       .then(response => {

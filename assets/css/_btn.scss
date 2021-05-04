@@ -12,5 +12,8 @@ button {
     &.warning {
       background-color: $color_warning !important;
     }
+    i {
+      font-weight: bold;
+    }
   }
 }
