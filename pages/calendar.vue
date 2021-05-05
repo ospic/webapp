@@ -93,7 +93,7 @@
                     <v-col sm="12" md="6">
                       <v-checkbox
                         v-model="event.timed"
-                        :label="`Timed: ${event.timed}`"
+                        :label="`Is Timed event: ${event.timed}`"
                       ></v-checkbox>
                     </v-col>
                     <v-col cols="12" sm="12" md="6">
@@ -247,6 +247,7 @@
                 ref="calendar"
                 v-model="focus"
                 color="primary"
+                event-height="30"
                 :events="events"
                 :event-color="getEventColor"
                 :type="type"
