@@ -7,7 +7,7 @@ const state = () => ({
 
 const mutations = {
 
-  /**Populate blood bank  */
+  /**Populate  calendar events */
   ["FETCH_CALENDAR_EVENTS"](state) {
     state.showLoader = true;
   },
@@ -22,6 +22,20 @@ const mutations = {
     state.events = payload;
   },
 
+  /**Create calendar event */
+  ["CREATE_EVENT"](state) {
+    state.showLoader = true;
+  },
+  ["CREATE_EVENT_FAILED"](state) {
+    state.showLoader = false;
+  },
+  ["CREATE_EVENT_ERROR"](state) {
+    state.showLoader = false;
+  },
+  ["CREATE_EVENT_SUCCESS"](state, payload) {
+    state.showLoader = false;
+    state.event = payload;
+  },
 
 }
 const actions = {
@@ -30,9 +44,20 @@ const actions = {
     await this.$api.$get(`calendar/`)
       .then(response => {
         commit("FETCH_CALENDAR_EVENTS_SUCCESS", response);
-
       }).catch(error => {
         commit("FETCH_CALENDAR_EVENTS_ERROR");
+        console.log(error);
+
+      });
+  },
+
+  async create_calendar_event({ commit }, payload) {
+    commit("CREATE_EVENT");
+    await this.$api.$post(`calendar/`, payload)
+      .then(response => {
+        commit("CREATE_EVENT_SUCCESS", response);
+      }).catch(error => {
+        commit("CREATE_EVENT_ERROR");
         console.log(error);
 
       });
