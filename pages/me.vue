@@ -80,6 +80,42 @@
         <v-toolbar color="primary" flat dark>
           <v-toolbar-title> User Profile</v-toolbar-title>
           <v-spacer></v-spacer>
+          <v-dialog v-model="uploaddialog" persistent max-width="600">
+            <v-card>
+              <v-card-title class="headline">
+                Upload profile image
+              </v-card-title>
+              <v-card-text>
+                <v-file-input
+                  label="Profile picture"
+                  accept="image/png, image/jpeg, image/bmp"
+                  prepend-icon="mdi-camera"
+                  show-size
+                  @change="selectFile"
+                >
+                  <template v-slot:selection="{ text }">
+                    <v-chip small label color="primary">
+                      {{ text }}
+                    </v-chip>
+                  </template>
+                </v-file-input>
+              </v-card-text>
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn
+                  color="primary"
+                  @click.stop="uploaddialog = false"
+                  x-small
+                >
+                  Cancel
+                </v-btn>
+                <v-btn x-small shaped @click="uploadProfileImage()">
+                  Save
+                </v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-dialog>
+
           <v-dialog v-model="dialog" width="500">
             <template v-slot:activator="{ on, attrs }">
               <v-btn-toggle borderless rounded v-model="toggle_exclusive">
@@ -92,6 +128,17 @@
                 >
                   <v-icon>mdi-pencil</v-icon>edit</v-btn
                 >
+                <v-btn
+                  medium
+                  class="button upload"
+                  color="green"
+                  elevation="2"
+                  @click="uploaddialog = !uploaddialog"
+                  v-if="user.isStaff"
+                >
+                  <v-icon>mdi-cloud-upload</v-icon>&nbsp;Update image</v-btn
+                >
+
                 <v-btn
                   v-if="user != null"
                   v-bind="attrs"
@@ -249,8 +296,9 @@ export default {
     show4: false,
     edit: false,
     progress: false,
-
+    uploaddialog: false,
     confirmPassword: "",
+    currentFile: undefined,
     rules: {
       required: value => !!value || "Required.",
       min: v => v.length >= 8 || "Min 8 characters",
@@ -265,6 +313,11 @@ export default {
     this.$store.dispatch("retrieve_profile");
   },
   methods: {
+    selectFile(file) {
+      this.progress = 0;
+      this.currentFile = file;
+      console.log("File chnaged");
+    },
     updatepasssword() {
       this.$store.dispatch("_update_user_password", this.form_data);
     },
@@ -275,6 +328,26 @@ export default {
       this.$store.dispatch("updatestaff", this.user.staff).then(response => {
         setTimeout(() => this.closeprofileupdate(), this.delay_seconds);
       });
+    },
+    async uploadProfileImage() {
+      const formData = new FormData();
+      formData.append("file", this.currentFile);
+      const userId = this.$store.getters.userInfos.id;
+
+      return await this.$api
+        .$patch(`/auth/${userId}/images/`, formData)
+        .then(response => {
+          if (response !== null) {
+            this.uploaddialog = false;
+            setTimeout(
+              () => this.$store.dispatch("retrieve_profile"),
+              this.delay_seconds
+            );
+          }
+        })
+        .catch(error => {
+          console.log(error);
+        });
     },
     closeprofileupdate: function() {
       this.$store.dispatch("retrieve_profile");

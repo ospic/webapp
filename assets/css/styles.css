@@ -1826,6 +1826,10 @@ button.button.cancel {
   background-color: #2196f3 !important;
 }
 
+button.button.upload {
+  background-color: #303edb !important;
+}
+
 button.button.warning {
   background-color: #fb8c00 !important;
 }
