@@ -5,9 +5,10 @@
       <router-link to="/me" class="active">Profile</router-link>
     </div>
     <v-container fluid>
-      <v-card class="mb-4" v-if="edit">
+      <v-card class="mb-4" flat v-if="edit">
         <v-toolbar dark color="primary" flat>
           <v-toolbar-title> Edit staff profile</v-toolbar-title>
+
           <v-spacer></v-spacer>
           <div v-if="progress">
             <a class="light-blue--text">Please wait...</a>
@@ -75,10 +76,9 @@
           </v-btn>
         </v-card-actions>
       </v-card>
-      <v-card v-if="!edit" class="mx-auto default">
+      <v-card v-if="!edit" flat class="mx-auto default">
         <v-toolbar color="primary" flat dark>
           <v-toolbar-title> User Profile</v-toolbar-title>
-
           <v-spacer></v-spacer>
           <v-dialog v-model="dialog" width="500">
             <template v-slot:activator="{ on, attrs }">
@@ -199,51 +199,31 @@
         </v-toolbar>
 
         <v-card-text v-if="user != null">
-          <v-form>
-            <v-container>
-              <v-row>
-                <v-col cols="12" sm="12" md="6">
-                  <v-text-field
-                    :value="user.username"
-                    label="Username"
-                    :readonly="readonly"
-                  ></v-text-field>
-                </v-col>
-                <v-col cols="12" sm="12" md="6">
-                  <v-text-field
-                    :value="user.email"
-                    label="Email"
-                    :readonly="readonly"
-                  ></v-text-field>
-                </v-col>
-                <v-col cols="12" sm="12" md="6">
-                  <v-text-field
-                    :value="user.createdDate"
-                    label="Created At"
-                    :readonly="readonly"
-                  ></v-text-field>
-                </v-col>
-                <v-col cols="12" sm="12" md="6">
-                  <v-text-field
-                    :value="user.lastModifiedDate"
-                    label="Last Modified"
-                    :readonly="readonly"
-                  ></v-text-field>
-                </v-col>
-                <v-col cols="12" sm="12" md="6">
-                  <h5>Roles:</h5>
-                  <v-chip
-                    v-for="(role, i) in user.roles"
-                    :key="i"
-                    class="pa-1 mr-1 "
-                    :color="getColor(role.name.toLowerCase())"
-                    small
-                    >{{ role.name.toLowerCase() }}</v-chip
+          <v-container>
+            <v-list three-line flat width="100%" class="default">
+              <v-list-item>
+                <v-list-item-avatar size="120">
+                  <v-img
+                    :src="filebaseUri + entityThumbNail"
+                    lazy-src="https://aosa.org/wp-content/uploads/2019/04/image-placeholder-350x350.png"
+                  ></v-img>
+                </v-list-item-avatar>
+
+                <v-list-item-content>
+                  <v-list-item-title>
+                    <strong
+                      ><h3>Username: {{ user.username }}</h3></strong
+                    ></v-list-item-title
                   >
-                </v-col>
-              </v-row>
-            </v-container>
-          </v-form>
+                  <v-list-item-subtitle
+                    ><strong
+                      >Email: {{ user.email }}</strong
+                    ></v-list-item-subtitle
+                  >
+                </v-list-item-content>
+              </v-list-item>
+            </v-list>
+          </v-container>
         </v-card-text>
         <v-card-text v-else>
           <v-progress-circular
@@ -321,6 +301,9 @@ export default {
   computed: {
     user() {
       return this.$store.getters.profile;
+    },
+    entityThumbNail() {
+      return this.user.staff.imageUrl;
     },
     passwordConfirmationRule() {
       return () =>
