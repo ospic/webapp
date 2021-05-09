@@ -9,6 +9,9 @@ button {
     &.cancel {
       background-color: $color_info !important;
     }
+    &.upload {
+      background-color: $color_dlue !important;
+    }
     &.warning {
       background-color: $color_warning !important;
     }

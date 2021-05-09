@@ -123,7 +123,7 @@ Vue.mixin({
       return path;
     },
     thumbnail() {
-      return this.profileimage == null ? this.thumbnil : this.profileimage;
+      return this.profileimage == null ? this.thumbnil : this.filebaseUri + this.profileimage;
     },
     ...mapGetters({
       servicetypes: "servicetypes",
