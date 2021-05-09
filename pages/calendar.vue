@@ -97,7 +97,15 @@
                       ></v-checkbox>
                     </v-col>
                     <v-col cols="12" sm="12" md="6">
-                      <v-menu
+                      <v-text-field
+                        type="time"
+                        id="appt"
+                        name="appt"
+                        v-if="event.timed"
+                        label="Start time"
+                        v-model="event.startTime"
+                      ></v-text-field>
+                      <!--<v-menu
                         ref="start"
                         v-model="menu2"
                         :close-on-content-click="false"
@@ -127,12 +135,23 @@
                           ampm-in-title
                           @click:minute="$refs.start.save(event.startTime)"
                         ></v-time-picker>
-                      </v-menu>
+                      </v-menu>-->
                     </v-col>
                     <v-spacer></v-spacer>
 
                     <v-col cols="11" sm="12" md="6">
-                      <v-dialog
+                      <v-text-field
+                        type="time"
+                        id="appt"
+                        name="appt"
+                        v-if="event.timed"
+                        label="End time"
+                        v-model="event.endTime"
+                        required
+                        min="12:00"
+                        max="18:00"
+                      ></v-text-field>
+                      <!--<v-dialog
                         ref="dialog"
                         v-model="modal2"
                         :return-value.sync="event.endTime"
@@ -169,7 +188,7 @@
                             OK
                           </v-btn>
                         </v-time-picker>
-                      </v-dialog>
+                      </v-dialog>-->
                     </v-col>
                   </v-row>
                 </v-card-text>
