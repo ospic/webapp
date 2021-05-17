@@ -21,16 +21,11 @@
           <v-card flat tile outlined v-else>
             <v-card-title class="d-flex flex-row justify-center mb-2">
               <v-avatar size="82">
-                <img
+                <v-img
                   alt="user"
-                  height="100%"
-                  width="100%"
-                  :src="
-                    staffdata.imageUrl == null
-                      ? 'https://boylancode.com/wp-content/uploads/2018/09/Man-Placeholder-Headshot.png'
-                      : staffdata.imageUrl
-                  "
-                />
+                  :src="staffThumbnail"
+                  :lazy-src="thumbnil"
+                ></v-img>
               </v-avatar>
             </v-card-title>
             <div class="d-flex flex-row justify-center mb-2">
@@ -255,6 +250,9 @@ export default {
           }
         ];
       }
+    },
+    staffThumbnail() {
+      return this.filebaseUri + this.staffdata.imageUrl;
     }
   }
 };

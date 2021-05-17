@@ -252,8 +252,10 @@
                 <v-list-item-avatar size="120">
                   <v-img
                     :src="filebaseUri + entityThumbNail"
+                    :alt="user.username"
                     lazy-src="https://aosa.org/wp-content/uploads/2019/04/image-placeholder-350x350.png"
-                  ></v-img>
+                  >
+                  </v-img>
                 </v-list-item-avatar>
 
                 <v-list-item-content>
