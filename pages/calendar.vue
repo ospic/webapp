@@ -307,7 +307,13 @@
                     <v-btn icon v-if="selectedEvent.eventSummary.editable">
                       <v-icon>mdi-square-edit-outline</v-icon>
                     </v-btn>
-                    <v-btn icon v-if="selectedEvent.eventSummary.editable">
+                    <v-btn
+                      icon
+                      v-if="selectedEvent.eventSummary.editable"
+                      @click="
+                        delete_calendar_event(selectedEvent.eventSummary.id)
+                      "
+                    >
                       <v-icon>mdi-trash-can-outline</v-icon>
                     </v-btn>
                   </v-toolbar>
@@ -467,6 +473,17 @@ export default {
     },
     rnd(a, b) {
       return Math.floor((b - a + 1) * Math.random()) + a;
+    },
+    delete_calendar_event(val) {
+      this.$store.dispatch("delete_calendar_event", val).then(() => {
+        setTimeout(
+          () => this.$store.dispatch("get_calendar_events"),
+          this.delay_seconds
+        );
+        setTimeout(() => {
+          this.selectedOpen = false;
+        }, 10);
+      });
     }
   },
 
@@ -478,6 +495,7 @@ export default {
       const events = [];
       this.eventsa.forEach(e => {
         var summary = {
+          id: e.id,
           editable: e.ownedByMe,
           description: e.description
         };

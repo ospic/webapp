@@ -37,6 +37,20 @@ const mutations = {
     state.event = payload;
   },
 
+  /**Delete calendar event */
+  ["DELETE_EVENT"](state) {
+    state.showLoader = true;
+  },
+  ["DELETE_EVENT_FAILED"](state) {
+    state.showLoader = false;
+  },
+  ["DELETE_EVENT_ERROR"](state) {
+    state.showLoader = false;
+  },
+  ["DELETE_EVENT_SUCCESS"](state) {
+    state.showLoader = false;
+  },
+
 }
 const actions = {
   async get_calendar_events({ commit }) {
@@ -58,6 +72,18 @@ const actions = {
         commit("CREATE_EVENT_SUCCESS", response);
       }).catch(error => {
         commit("CREATE_EVENT_ERROR");
+        console.log(error);
+
+      });
+  },
+
+  async delete_calendar_event({ commit }, payload) {
+    commit("DELETE_EVENT");
+    await this.$api.$delete(`calendar/${payload}`)
+      .then(response => {
+        commit("DELETE_EVENT_SUCCESS");
+      }).catch(error => {
+        commit("DELETE_EVENT_ERROR");
         console.log(error);
 
       });
