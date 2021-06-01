@@ -39,6 +39,17 @@
                       >
                       </v-text-field>
                     </v-col>
+                    <v-col cols="12">
+                      <v-textarea
+                        name="input-7-1"
+                        v-model="event.description"
+                        label="Event description"
+                        hint="Description"
+                        filled
+                        :rules="[v => !!v || 'Field is required']"
+                        required
+                      ></v-textarea>
+                    </v-col>
                     <v-col cols="12" sm="12" md="6">
                       <v-menu
                         ref="menu"
@@ -266,7 +277,7 @@
                 ref="calendar"
                 v-model="focus"
                 color="primary"
-                event-height="30"
+                :event-height="30"
                 :events="events"
                 :event-color="getEventColor"
                 :type="type"
@@ -281,22 +292,27 @@
                 :activator="selectedElement"
                 offset-x
               >
-                <v-card color="grey lighten-4" min-width="350px" flat>
+                <v-card
+                  color="grey lighten-4"
+                  min-width="350px"
+                  flat
+                  v-if="selectedEvent.eventSummary"
+                >
                   <v-toolbar :color="selectedEvent.color" dark>
-                    <v-btn icon>
-                      <v-icon>mdi-pencil</v-icon>
-                    </v-btn>
                     <v-toolbar-title
                       v-html="selectedEvent.name"
                     ></v-toolbar-title>
                     <v-spacer></v-spacer>
 
-                    <v-btn icon>
-                      <v-icon>mdi-dots-vertical</v-icon>
+                    <v-btn icon v-if="selectedEvent.eventSummary.editable">
+                      <v-icon>mdi-square-edit-outline</v-icon>
+                    </v-btn>
+                    <v-btn icon v-if="selectedEvent.eventSummary.editable">
+                      <v-icon>mdi-trash-can-outline</v-icon>
                     </v-btn>
                   </v-toolbar>
                   <v-card-text>
-                    <span v-html="selectedEvent.details"></span>
+                    <span>{{ selectedEvent.eventSummary.description }}</span>
                   </v-card-text>
                   <v-card-actions>
                     <v-btn text color="secondary" @click="selectedOpen = false">
@@ -345,6 +361,7 @@ export default {
       endDate: null,
       endTime: null,
       timed: true,
+      description: null,
       departmentId: null
     },
     colors: [
@@ -407,6 +424,7 @@ export default {
       const open = () => {
         this.selectedEvent = event;
         this.selectedElement = nativeEvent.target;
+        this.selectedEvent.details = event.description;
         setTimeout(() => {
           this.selectedOpen = true;
         }, 10);
@@ -459,12 +477,17 @@ export default {
     fevents() {
       const events = [];
       this.eventsa.forEach(e => {
+        var summary = {
+          editable: e.ownedByMe,
+          description: e.description
+        };
         events.push({
           name: e.name,
           start: new Date(e.start),
           end: new Date(e.end),
           color: e.color,
-          timed: e.timed
+          timed: e.timed,
+          eventSummary: summary
         });
       });
       return events;
