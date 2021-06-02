@@ -498,7 +498,6 @@ export default {
       });
     },
     initiate_update(e) {
-      console.log(e);
       var startDate =
         e.start.getFullYear() +
         "-" +
@@ -541,7 +540,6 @@ export default {
         id: this.updateId,
         data: this.event
       };
-      console.log(payload);
       this.$store.dispatch("update_calendar_event", payload).then(() => {
         setTimeout(
           () => this.$store.dispatch("get_calendar_events"),
