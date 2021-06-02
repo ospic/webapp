@@ -51,6 +51,20 @@ const mutations = {
     state.showLoader = false;
   },
 
+  /**Delete calendar event */
+  ["UPDATE_EVENT"](state) {
+    state.showLoader = true;
+  },
+  ["UPDATE_EVENT_FAILED"](state) {
+    state.showLoader = false;
+  },
+  ["UPDATE_EVENT_ERROR"](state) {
+    state.showLoader = false;
+  },
+  ["UPDATE_EVENT_SUCCESS"](state) {
+    state.showLoader = false;
+  },
+
 }
 const actions = {
   async get_calendar_events({ commit }) {
@@ -84,6 +98,18 @@ const actions = {
         commit("DELETE_EVENT_SUCCESS");
       }).catch(error => {
         commit("DELETE_EVENT_ERROR");
+        console.log(error);
+
+      });
+  },
+
+  async update_calendar_event({ commit }, payload) {
+    commit("UPDATE_EVENT");
+    await this.$api.$put(`calendar/${payload.id}`, payload.data)
+      .then(response => {
+        commit("UPDATE_EVENT_SUCCESS");
+      }).catch(error => {
+        commit("UPDATE_EVENT_ERROR");
         console.log(error);
 
       });

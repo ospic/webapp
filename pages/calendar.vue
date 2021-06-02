@@ -207,7 +207,13 @@
                   <v-btn @click="dialog.value = false" class="button cancel"
                     >Cancel</v-btn
                   >
-                  <v-btn @click="save_event" class="button">Save</v-btn>
+                  <v-btn
+                    v-if="edit"
+                    @click="update_calendar_event"
+                    class="button"
+                    >Update</v-btn
+                  >
+                  <v-btn v-else @click="save_event" class="button">Save</v-btn>
                 </v-card-actions>
               </v-form>
             </v-card>
@@ -304,7 +310,11 @@
                     ></v-toolbar-title>
                     <v-spacer></v-spacer>
 
-                    <v-btn icon v-if="selectedEvent.eventSummary.editable">
+                    <v-btn
+                      icon
+                      v-if="selectedEvent.eventSummary.editable"
+                      @click="initiate_update(selectedEvent)"
+                    >
                       <v-icon>mdi-square-edit-outline</v-icon>
                     </v-btn>
                     <v-btn
@@ -347,6 +357,8 @@ export default {
     modal2: false,
     valid: true,
     dialog: false,
+    edit: false,
+    updateId: null,
     nowDate: new Date().toISOString().slice(0, 10),
     today: new Date().toISOString(),
     timeNow: new Date().toTimeString().split(" ")[0],
@@ -483,6 +495,58 @@ export default {
         setTimeout(() => {
           this.selectedOpen = false;
         }, 10);
+      });
+    },
+    initiate_update(e) {
+      console.log(e);
+      var startDate =
+        e.start.getFullYear() +
+        "-" +
+        e.start.getMonth() +
+        "-" +
+        e.start.getDay();
+
+      var endDate =
+        e.end.getFullYear() + "-" + e.end.getMonth() + "-" + e.end.getDay();
+      this.dates[0] = startDate;
+      this.dates[1] = endDate;
+
+      this.event = {
+        name: e.name,
+        startDate: this.dates[0],
+        startTime: this.update_time_format(e.start),
+        endDate: this.dates[1],
+        endTime: this.update_time_format(e.end),
+        timed: e.timed,
+        description: e.eventSummary.description
+      };
+      this.updateId = e.eventSummary.id;
+      this.dialog = true;
+      this.edit = true;
+    },
+    update_time_format(time) {
+      return time
+        .toLocaleTimeString()
+        .slice(0, -3)
+        .split(":")[0] < 10
+        ? "0" + time.toLocaleTimeString().slice(0, -3)
+        : time.toLocaleTimeString().slice(0, -3);
+    },
+
+    update_calendar_event() {
+      this.event.description = this.event.description;
+      this.event.startDate = this.dates[0];
+      this.event.endDate = this.dates[1];
+      var payload = {
+        id: this.updateId,
+        data: this.event
+      };
+      console.log(payload);
+      this.$store.dispatch("update_calendar_event", payload).then(() => {
+        setTimeout(
+          () => this.$store.dispatch("get_calendar_events"),
+          this.delay_seconds
+        );
       });
     }
   },
