@@ -187,7 +187,7 @@ export default {
   data: function() {
     return {
       search: null,
-      title: "Insurances",
+      title: "Insurances companies",
       valid: false,
       headers: [
         { text: "ID", value: "id" },

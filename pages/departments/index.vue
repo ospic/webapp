@@ -146,8 +146,8 @@
             </td>
           </template>
           <template v-slot:no-data>
-        <p class="mt-2">No Data available for {{ routename }}</p>
-      </template>
+            <p class="mt-2">No Data available for {{ routename }}</p>
+          </template>
         </v-data-table>
       </div>
     </v-card>
@@ -230,7 +230,6 @@ export default {
     },
     save() {
       if (this.editedIndex > -1) {
-        // console.log(this.editedItem);
         this.$store.dispatch("update_department", this.editedItem);
       } else {
         delete this.editedItem.id;

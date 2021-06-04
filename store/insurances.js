@@ -101,6 +101,9 @@ const getters = {
   insurances: function (state) {
     return state.insurances;
   },
+  insurance: (state) => (id) => {
+    return state.insurances.find(insurance => insurance.id == id)
+  },
 
 }
 
