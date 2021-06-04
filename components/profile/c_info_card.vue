@@ -201,7 +201,10 @@
           </v-tab-item>
 
           <v-tab-item class="default">
-            <tb-insurance :insurancecards="insurancecards"></tb-insurance>
+            <tb-insurance
+              :insurancecards="insurancecards"
+              @update="getPatientInsurances"
+            ></tb-insurance>
           </v-tab-item>
         </v-tabs-items>
       </v-col>

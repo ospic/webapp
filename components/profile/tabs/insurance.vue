@@ -344,7 +344,9 @@ export default {
       } else {
         this.editedItem.patientId = this.$route.params.id;
         delete this.editedItem.id;
-        this.$store.dispatch("create_patient_insurance", this.editedItem);
+        this.$store.dispatch("create_patient_insurance", this.editedItem).then(res => {
+          setTimeout(() => this.$emit("update"), this.delay_seconds);
+        });
       }
       this.close();
     },
