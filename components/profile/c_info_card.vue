@@ -201,7 +201,7 @@
           </v-tab-item>
 
           <v-tab-item class="default">
-            <tb-insurance></tb-insurance>
+            <tb-insurance :insurancecards="insurancecards"></tb-insurance>
           </v-tab-item>
         </v-tabs-items>
       </v-col>
@@ -254,6 +254,7 @@ export default {
       address: null,
       staff:null,
       services: null,
+      insurancecards:null,
       diagnoses: null,
         attrs: {
         class: 'mb-6',
@@ -341,7 +342,17 @@ export default {
 
         });
     },
-    async getPatientInsurances(){},
+    async getPatientInsurances(){
+         return await this.$api.$get(`insurance/cards/patient/${this.$route.params.id}`)
+        .then(response => {
+          if (response !== null) {
+            this.insurancecards = response;
+          }
+        }).catch(error => {
+          console.log(error);
+
+        });
+    },
     get_average_rgb(img) {
     var context = document.createElement('canvas').getContext('2d');
     if (typeof img == 'string') {
