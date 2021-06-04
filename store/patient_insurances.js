@@ -24,5 +24,74 @@ const state = () => ({
   insurancecard: {}
 });
 
+const mutations = {
 
+  [CREATE_PATIENT_INSURANCES](state) {
+    state.showLoader = true;
+  },
+  [CREATE_PATIENT_INSURANCES_FAILED](state) {
+    state.showLoader = false;
+  },
+  [CREATE_PATIENT_INSURANCES_ERROR](state) {
+    state.showLoader = false;
+    state.insurances = [];
+  },
+  [CREATE_PATIENT_INSURANCES_SUCCESS](state, payload) {
+    state.showLoader = false;
+    state.insurancecard = payload;
+  },
+
+  [UPDATE_PATIENT_INSURANCES](state) {
+    state.showLoader = true;
+  },
+  [UPDATE_PATIENT_INSURANCES_FAILED](state) {
+    state.showLoader = false;
+  },
+  [UPDATE_PATIENT_INSURANCES_ERROR](state) {
+    state.showLoader = false;
+    state.insurances = [];
+  },
+  [UPDATE_PATIENT_INSURANCES_SUCCESS](state, payload) {
+    state.showLoader = false;
+    state.insurancecard = payload;
+  },
+}
+
+
+
+const actions = {
+
+  async create_patient_insurance({ commit }, payload) {
+    commit(CREATE_PATIENT_INSURANCES);
+    await this.$api.$post('insurance/cards/', payload).then(response => {
+      commit(CREATE_PATIENT_INSURANCES_SUCCESS, response);
+    }).catch(error => {
+      commit(CREATE_PATIENT_INSURANCES_ERROR);
+      console.log(error);
+
+    });
+  },
+
+  async update_patient_insurance({ commit }, payload) {
+    commit(UPDATE_PATIENT_INSURANCES);
+    await this.$api.$put(`insurance/cards/${payload.id}`, payload).then(response => {
+      commit(UPDATE_PATIENT_INSURANCES_SUCCESS, response);
+    }).catch(error => {
+      commit(UPDATE_PATIENT_INSURANCES_ERROR);
+      console.log(error);
+
+    });
+  },
+}
+
+const getters = {}
+
+
+export default {
+  namespaced: false,
+  state,
+  mutations,
+  actions,
+  getters
+}
 
