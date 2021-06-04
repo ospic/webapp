@@ -158,21 +158,28 @@
       <v-col xs="12" md="9" sm="12">
         <v-tabs
           slider-color="blue"
-          background-color="#dcdcdc"
+          background-color="primary"
           slider-size="3"
           left
+          dark
           v-model="tab"
         >
           <v-tab class="ffont-weight-normal">
             <span
-              ><v-icon small left color="primary">mdi-account-question</v-icon
-              >Biography</span
+              ><v-icon small left>mdi-account-question</v-icon>Biography</span
             >
           </v-tab>
 
           <v-tab class="font-weight-normal" @click.stop="getPatientServices()">
-            <v-icon small left color="primary">mdi-clock-check</v-icon>
+            <v-icon small left>mdi-clock-check</v-icon>
             Consultations
+          </v-tab>
+          <v-tab
+            class="font-weight-normal"
+            @click.stop="getPatientInsurances()"
+          >
+            <v-icon small left>mdi-shield-plus-outline</v-icon>
+            Insurances
           </v-tab>
         </v-tabs>
         <v-tabs-items vertical v-model="tab">
@@ -192,6 +199,10 @@
               <tb-services :services="services"></tb-services>
             </div>
           </v-tab-item>
+
+          <v-tab-item class="default">
+            <tb-insurance></tb-insurance>
+          </v-tab-item>
         </v-tabs-items>
       </v-col>
     </v-row>
@@ -203,6 +214,7 @@ import BiographTab from "@/components/profile/tabs/biograph"
 import c_type_divider from "@/components/profile/c_type_divider";
 import ConsultationsTab from "@/components/profile/tabs/consultations";
 import AddressCard from "@/components/profile/c_address_card.vue";
+import InsuranceTab from "@/components/profile/tabs/insurance.vue";
 
 export default {
   props: {
@@ -215,7 +227,8 @@ export default {
     'v-type-divider': c_type_divider,
     'tb-biograph': BiographTab,
     'tb-services': ConsultationsTab,
-    'v-address-card': AddressCard
+    'v-address-card': AddressCard,
+    'tb-insurance': InsuranceTab
   },
   data() {
     return {
@@ -328,6 +341,7 @@ export default {
 
         });
     },
+    async getPatientInsurances(){},
     get_average_rgb(img) {
     var context = document.createElement('canvas').getContext('2d');
     if (typeof img == 'string') {
