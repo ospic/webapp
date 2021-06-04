@@ -250,6 +250,7 @@ export default {
     deleteItem() {
       this.$store.dispatch("delete_insurance", this.itemtodelete.id);
       setTimeout(() => {
+        this.$store.dispatch("get_insurance_companies");
         this.deletedialog = false;
       }, this.delay_seconds);
     },

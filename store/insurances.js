@@ -26,8 +26,6 @@ const state = () => ({
   showLoader: Boolean,
   insurances: [],
   insurance: {},
-  insurancecards: [],
-  insurancecard: {}
 });
 
 const mutations = {
@@ -47,6 +45,49 @@ const mutations = {
     state.showLoader = false;
     state.insurances = payload;
   },
+
+  [CREATE_INSURANCES](state) {
+    state.showLoader = true;
+  },
+  [CREATE_INSURANCES_FAILED](state) {
+    state.showLoader = false;
+  },
+  [CREATE_INSURANCES_ERROR](state) {
+    state.showLoader = false;
+  },
+  [CREATE_INSURANCES_SUCCESS](state, payload) {
+    state.showLoader = false;
+    state.insurance = payload;
+  },
+
+  [UPDATE_INSURANCES](state) {
+    state.showLoader = true;
+  },
+  [UPDATE_INSURANCES_FAILED](state) {
+    state.showLoader = false;
+  },
+  [UPDATE_INSURANCES_ERROR](state) {
+    state.showLoader = false;
+  },
+  [UPDATE_INSURANCES_SUCCESS](state, payload) {
+    state.showLoader = false;
+    state.insurance = payload;
+  },
+
+  [DELETE_INSURANCES](state) {
+    state.showLoader = true;
+  },
+  [DELETE_INSURANCES_FAILED](state) {
+    state.showLoader = false;
+  },
+  [DELETE_INSURANCES_ERROR](state) {
+    state.showLoader = false;
+  },
+  [DELETE_INSURANCES_SUCCESS](state, payload) {
+    state.showLoader = false;
+    state.insurance = payload;
+  },
+
 }
 
 const actions = {
