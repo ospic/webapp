@@ -43,7 +43,8 @@
       "btnnewradiologyservice":"Add radiology service",
       "btnaddnewservicetype":"Add new medical service category",
       "btnuploadnewreportfile":"Upload new report file",
-      "newinsurance":"New insurance"
+      "newinsurance":"New insurance",
+      "newinsurancecard":"New insurance card"
       
     },
     "menu":{
