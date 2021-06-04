@@ -42,7 +42,8 @@
       "btnpaybill":"PAY BILL",
       "btnnewradiologyservice":"Add radiology service",
       "btnaddnewservicetype":"Add new medical service category",
-      "btnuploadnewreportfile":"Upload new report file"
+      "btnuploadnewreportfile":"Upload new report file",
+      "newinsurance":"New insurance"
       
     },
     "menu":{
@@ -162,7 +163,8 @@
       "unassignedservices":"Un-assigned consultations",
       "assignedservices":"Assigned consultations",
       "appointments":"Appointments",
-      "servicecategories":"Service categories"
+      "servicecategories":"Service categories",
+      "insurances":"Insurances"
       
     },
     "search":{

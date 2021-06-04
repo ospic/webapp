@@ -376,6 +376,12 @@ export default {
               title: "label.titles.departments",
               to: "/departments",
               permissions: "ALL_FUNCTIONS"
+            },
+            {
+              title: "label.titles.insurances",
+              to: "/insurances",
+              permissions:
+                "ALL_FUNCTIONS, READ_INSURANCE_COMPANY,UPDATE_INSURANCE_COMPANY,DELETE_INSURANCE_COMPANY,CREATE_INSURANCE_COMPANY"
             }
           ]
         },
