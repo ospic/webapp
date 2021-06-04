@@ -178,7 +178,7 @@
             class="font-weight-normal"
             @click.stop="getPatientInsurances()"
           >
-            <v-icon small left>mdi-shield-plus-outline</v-icon>
+            <v-icon small left>mdi-shield-sun</v-icon>
             Insurances
           </v-tab>
         </v-tabs>
