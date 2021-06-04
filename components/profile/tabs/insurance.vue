@@ -319,6 +319,7 @@ export default {
     };
   },
   methods: {
+
     getSelected: function(it, item) {
       if (it.title == "Edit") {
         this.editItem(item);
@@ -332,6 +333,21 @@ export default {
       }
     },
 
+     editItem(item) {
+      this.editedIndex = this.insurancecards.indexOf(item);
+      this.editedItem = Object.assign({}, item);
+      delete this.editedItem.insurance;
+      this.dialog = true;
+      this.editedItemId = item.id;
+    },
+    deleteItem() {
+      this.$store.dispatch("delete_insurance", this.itemtodelete.id);
+      setTimeout(() => {
+        this.$store.dispatch("get_insurance_companies");
+        this.deletedialog = false;
+      }, this.delay_seconds);
+    },
+
     navigateTo: function(id) {
       this.$router.push(`/insurances/${id}`);
     },
@@ -340,6 +356,7 @@ export default {
     },
     save() {
       if (this.editedIndex > -1) {
+        this.editedItem.patientId = parseInt(this.$route.params.id);
         this.$store.dispatch("update_patient_insurance", this.editedItem);
       } else {
         this.editedItem.patientId = this.$route.params.id;
