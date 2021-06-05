@@ -387,7 +387,7 @@ export default {
         this.editedItem.patientId = parseInt(this.$route.params.id);
         this.$store.dispatch("update_patient_insurance", this.editedItem);
       } else {
-        this.editedItem.patientId = this.$route.params.id;
+        this.editedItem.patientId = parseInt(this.$route.params.id);
         delete this.editedItem.id;
         this.$store.dispatch("create_patient_insurance", this.editedItem).then(res => {
           setTimeout(() => this.$emit("update"), this.delay_seconds);
