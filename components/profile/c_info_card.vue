@@ -203,7 +203,7 @@
           <v-tab-item class="default">
             <tb-insurance
               :insurancecards="insurancecards"
-              @update="getPatientInsurances"
+              @update="getPatientInsurances()"
             ></tb-insurance>
           </v-tab-item>
         </v-tabs-items>

@@ -21,7 +21,8 @@ const GET_PATIENT_INSURANCES_ERROR = "GET_PATIENT_INSURANCES_ERROR";
 const state = () => ({
   showLoader: Boolean,
   insurancecards: [],
-  insurancecard: {}
+  insurancecard: {},
+  message: null,
 });
 
 const mutations = {
@@ -55,6 +56,21 @@ const mutations = {
     state.showLoader = false;
     state.insurancecard = payload;
   },
+
+  [DELETE_PATIENT_INSURANCES](state) {
+    state.showLoader = true;
+  },
+  [DELETE_PATIENT_INSURANCES_FAILED](state) {
+    state.showLoader = false;
+  },
+  [DELETE_PATIENT_INSURANCES_ERROR](state) {
+    state.showLoader = false;
+
+  },
+  [DELETE_PATIENT_INSURANCES_SUCCESS](state, payload) {
+    state.showLoader = false;
+    state.message = payload;
+  },
 }
 
 
@@ -78,6 +94,17 @@ const actions = {
       commit(UPDATE_PATIENT_INSURANCES_SUCCESS, response);
     }).catch(error => {
       commit(UPDATE_PATIENT_INSURANCES_ERROR);
+      console.log(error);
+
+    });
+  },
+
+  async delete_patient_insurance_card({ commit }, payload) {
+    commit(DELETE_PATIENT_INSURANCES);
+    await this.$api.$delete(`insurance/cards/${payload}`).then(response => {
+      commit(DELETE_PATIENT_INSURANCES_SUCCESS, response);
+    }).catch(error => {
+      commit(DELETE_PATIENT_INSURANCES_ERROR);
       console.log(error);
 
     });
