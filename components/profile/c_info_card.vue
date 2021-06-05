@@ -204,6 +204,9 @@
             <tb-insurance
               :insurancecards="insurancecards"
               @update="getPatientInsurances()"
+              @active="active = !active"
+              :title="active ? 'Show inactive' : 'Show active'"
+              :activelist="active"
             ></tb-insurance>
           </v-tab-item>
         </v-tabs-items>
@@ -248,16 +251,17 @@ export default {
       followings: null,
       followers: null,
       selectedstaffId: null,
+      active: true,
       date: new Date().toISOString().substr(0, 7),
       menu: false,
       modal: false,
-     emptyIcon: 'mdi-star-outline',
+      emptyIcon: 'mdi-star-outline',
       fullIcon: 'mdi-star',
       halfIcon: 'mdi-star-half-full',
       address: null,
       staff:null,
       services: null,
-      insurancecards:null,
+      cards:[],
       diagnoses: null,
         attrs: {
         class: 'mb-6',
@@ -275,13 +279,18 @@ export default {
     this.$store.dispatch("fetchAllStaffs");
   },
   computed:{
-      entityThumbNail: function() {
-            return this.userdata.patientPhoto;
+    entityThumbNail: function() {
+      return this.userdata.patientPhoto;
     },
      staffs: {
       get() {
         return this.$store.getters.staffs;
       }
+    },
+     insurancecards() {
+       var activeinsurances  = this.cards.filter(it => (it.isActive));
+       var inactiveinsurances  = this.cards.filter(it => (!it.isActive));
+      return this.active ? activeinsurances : inactiveinsurances;
     }
   },
   methods: {
@@ -349,7 +358,7 @@ export default {
          return await this.$api.$get(`insurance/cards/patient/${this.$route.params.id}`)
         .then(response => {
           if (response !== null) {
-            this.insurancecards = response;
+            this.cards = response ;
           }
         }).catch(error => {
           console.log(error);

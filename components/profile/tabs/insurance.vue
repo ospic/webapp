@@ -32,6 +32,8 @@
               class="mt-2"
             ></v-text-field
             >&nbsp;&nbsp;
+             <v-btn class="button mb-1" medium @click="showActive"
+              v-if="insurancecards.length > 0"> {{title}}</v-btn>&nbsp;&nbsp;
             <v-dialog v-model="dialog" max-width="900px">
               <template v-slot:activator="{ on, attrs }">
                 <v-btn
@@ -59,6 +61,7 @@
                     mdi-plus
                   </v-icon>
                 </v-btn>
+               
               </template>
               <v-card>
                 <v-form ref="form" v-model="valid" lazy-validation>
@@ -230,11 +233,19 @@
             <!--Delete insurance company-dialog-->
             <v-dialog v-model="deletedialog" persistent max-width="590">
               <v-card>
-                <v-card-title class="text-h5">
-                  Are you sure you want to delete this insurance?
+                <v-card-title class="text-h5" v-if="activelist">
+                  Deactivate this insurance
                 </v-card-title>
-                <v-card-text
-                  >Note: This process can not be undone. Click 'Yes' to delete
+                <v-card-title class="text-h5" v-else>
+                  Activate this insurance
+                </v-card-title>
+                <v-card-text v-if="activelist"
+                  >Are you sure you want to deactivate this insurance.  Click 'Yes' to deactivate
+                  or 'No' to ignore
+                </v-card-text>
+
+                  <v-card-text v-else
+                  >Are you sure you want to activate this insurance.  Click 'Yes' to activate
                   or 'No' to ignore
                 </v-card-text>
                 <v-card-actions>
@@ -253,17 +264,25 @@
         <template v-slot:[`item.actions`]="{ item }">
           <td @click.stop class="none-clickable">
             <v-icon
-              x-small
+              medium
               :color="it.color"
               class="mr-2"
               v-for="(it, i) in items"
               :key="i"
               @click="getSelected(it, item)"
             >
-              mdi-{{ it.icon }}
+              mdi-{{ activelist ? it.icon :it.icona }}
             </v-icon>
           </td>
         </template>
+        <template v-slot:[`item.isActive`]="{ item }">
+        <v-icon class=" font-weight-black" color="primary" v-if="item.isActive">
+          mdi-check
+        </v-icon>
+         <v-icon class=" font-weight-black" color="primary" v-else>
+          mdi-close
+        </v-icon>
+      </template>
         <template v-slot:no-data>
           <p class="mt-2">No Data available for {{ routename }}</p>
         </template>
@@ -278,6 +297,14 @@ export default {
     insurancecards: {
       type: Array,
       dafault: null
+    },
+    title:{
+      type:String,
+      default: 'Active'
+    },
+    activelist:{
+      type:Boolean,
+      default: true
     }
   },
   data: function() {
@@ -296,13 +323,14 @@ export default {
         { text: "Insurance name", value: "insurance.name" },
         { text: "Client name", value: "patientName", sortable: false },
         { text: "Client No.", value: "membershipNumber" },
+        { text:"Active ? ", value:"isActive"},
         { text: "Gender", value: "sex" },
         { text: "Exipire Date", value: "expireDate" },
         { text: "Actions", value: "actions" }
       ],
       items: [
-        { title: "Edit", icon: "lead-pencil", color: "blue" },
-        { title: "Delete", icon: "delete", color: "red" }
+        { title: "Edit", icon: "lead-pencil", icona: "lead-penci", color: "blue" },
+        { title: "Delete", icon: "minus-circle", icona:"plus-circle", color: "red" }
       ],
       dialog: false,
       editedItem: {
@@ -340,7 +368,7 @@ export default {
       this.editedItemId = item.id;
     },
     deleteItem() {
-      this.$store.dispatch("delete_patient_insurance_card", this.itemtodelete.id);
+      this.activelist ? this.$store.dispatch("deactivate_patient_insurance_card", this.itemtodelete.id):this.$store.dispatch("activate_patient_insurance_card", this.itemtodelete.id);
       this.close();
     },
 
@@ -366,6 +394,9 @@ export default {
         });
       }
       this.close();
+    },
+    showActive(){
+       this.$emit("active");
     },
     handleClick: function(item) {
       //this.navigateTo(item.id);
