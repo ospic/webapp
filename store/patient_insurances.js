@@ -99,9 +99,19 @@ const actions = {
     });
   },
 
-  async delete_patient_insurance_card({ commit }, payload) {
+  async deactivate_patient_insurance_card({ commit }, payload) {
     commit(DELETE_PATIENT_INSURANCES);
-    await this.$api.$delete(`insurance/cards/${payload}`).then(response => {
+    await this.$api.$put(`insurance/cards/${payload}/deactivate`).then(response => {
+      commit(DELETE_PATIENT_INSURANCES_SUCCESS, response);
+    }).catch(error => {
+      commit(DELETE_PATIENT_INSURANCES_ERROR);
+      console.log(error);
+
+    });
+  },
+  async activate_patient_insurance_card({ commit }, payload) {
+    commit(DELETE_PATIENT_INSURANCES);
+    await this.$api.$put(`insurance/cards/${payload}/activate`).then(response => {
       commit(DELETE_PATIENT_INSURANCES_SUCCESS, response);
     }).catch(error => {
       commit(DELETE_PATIENT_INSURANCES_ERROR);
@@ -111,7 +121,9 @@ const actions = {
   },
 }
 
-const getters = {}
+const getters = {
+
+}
 
 
 export default {
