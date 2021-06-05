@@ -286,7 +286,6 @@ export default {
       title: "Insurance cards",
       valid: false,
       editedIndex: -1,
-      deleteItem: null,
       deletedialog: false,
       select: null,
       date: new Date().toISOString().substr(0, 10),
@@ -341,18 +340,19 @@ export default {
       this.editedItemId = item.id;
     },
     deleteItem() {
-      this.$store.dispatch("delete_insurance", this.itemtodelete.id);
-      setTimeout(() => {
-        this.$store.dispatch("get_insurance_companies");
-        this.deletedialog = false;
-      }, this.delay_seconds);
+      this.$store.dispatch("delete_patient_insurance_card", this.itemtodelete.id);
+      this.close();
     },
 
     navigateTo: function(id) {
       this.$router.push(`/insurances/${id}`);
     },
     close() {
-      this.dialog = false;
+      setTimeout(() => {
+         this.$emit("update");
+        this.deletedialog = false;
+        this.dialog = false;
+      }, this.delay_seconds);
     },
     save() {
       if (this.editedIndex > -1) {
