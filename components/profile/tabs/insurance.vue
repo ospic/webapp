@@ -32,8 +32,7 @@
               class="mt-2"
             ></v-text-field
             >&nbsp;&nbsp;
-             <v-btn class="button mb-1" medium @click="showActive"
-              v-if="insurancecards.length > 0"> {{title}}</v-btn>&nbsp;&nbsp;
+             <v-btn class="button mb-1" medium @click="showActive"> {{title}}</v-btn>&nbsp;&nbsp;
             <v-dialog v-model="dialog" max-width="900px">
               <template v-slot:activator="{ on, attrs }">
                 <v-btn
