@@ -147,6 +147,10 @@ export default {
     }
   },
   mounted: function() {
+    const col = window.localStorage.getItem("color");
+    if (col != null) {
+      this.$vuetify.theme.themes.light.primary = col;
+    }
     this.syncro();
     const exipire = window.localStorage.getItem("date");
     const status =
@@ -155,6 +159,14 @@ export default {
       0;
     if (!status) {
       this.$store.dispatch("logout");
+    }
+  },
+
+  created() {
+    var color = localStorage.getItem("color");
+    console.log(color);
+    if (color != null) {
+      this.$vuetify.theme.themes.light.primary = color;
     }
   },
 
