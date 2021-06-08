@@ -128,6 +128,11 @@ export default {
                   title: "label.titles.emailconfigurations",
                   to: "/settings/config/email",
                   icon: "mdi-mailbox-outline"
+                },
+                {
+                  title: "label.titles.systemcolors",
+                  to: "/settings/colors",
+                  icon: "mdi-format-color-fill"
                 }
               ]
             }

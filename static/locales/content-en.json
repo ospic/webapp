@@ -165,7 +165,8 @@
       "assignedservices":"Assigned consultations",
       "appointments":"Appointments",
       "servicecategories":"Service categories",
-      "insurances":"Insurances"
+      "insurances":"Insurances",
+      "systemcolors":"System colors"
       
     },
     "search":{
