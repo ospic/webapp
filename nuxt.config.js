@@ -16,7 +16,7 @@ export default {
   loadingIndicator: {
     name: 'pulse',
     color: ' #00A756',
-    background: '#2F4454'
+    background: '#FAFAFA'
   },
   /**
   hooks: {
@@ -128,6 +128,8 @@ export default {
     manifest: {
       name: 'Ospic Hospital Management System',
       short_name: 'Ospic Hms',
+      color_theme: "#2F4454",
+      background_color: "#2F4454",
       lang: 'en',
       useWebmanifestExtension: false
     },
