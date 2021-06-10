@@ -117,15 +117,6 @@
           class="font-weight-light ma-2"
           @change="changeLanguage(select.lang)"
         ></v-select>
-       <!-- <a
-          target="_blank"
-          class="ml-2"
-          href="https://www.paypal.com/donate?business=HE3L345WEKRWJ&item_name=Support+Ospic+an+open+source++Hospital+Management+system+developers+team.&currency_code=USD"
-        >
-          <img
-            src="https://img.shields.io/badge/Donate-PayPal-green.svg"
-            alt="Donate button"
-        /></a>-->
         <iframe src="https://github.com/sponsors/ospic/button" title="Sponsor ospic" height="30" width="216" style="border: 0;"></iframe>
       </template>
     </v-navigation-drawer>
