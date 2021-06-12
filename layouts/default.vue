@@ -144,12 +144,12 @@
 
       <v-spacer></v-spacer>
 
-      <v-badge class="mr-3" icon="mdi-lock" color="blue" overlap>
+      <v-badge class="mr-3" icon="mdi-lock" color="blue" bottom overlap>
         <template v-slot:badge>
           10
         </template>
-        <v-btn fab small class="primary" elevation="1" to="/notifications">
-          <v-icon color="white">mdi-bell</v-icon></v-btn
+        <v-btn fab small class="primary" elevation="0" to="/notifications">
+          <v-icon medium color="white">mdi-bell</v-icon></v-btn
         >
       </v-badge>
 
@@ -161,7 +161,7 @@
             v-on="on"
             @click.stop="syncro()"
             small
-            elevation="1"
+            elevation="0"
             class="primary mr-1 "
             dark
           >
