@@ -42,7 +42,6 @@
   "devDependencies": {
     "@babel/eslint-parser": "7.14.5",
     "@nuxtjs/eslint-config": "^6.0.0",
-    "@nuxtjs/eslint-config-typescript": "^6.0.1",
     "@nuxtjs/eslint-module": "^3.0.2",
     "@nuxtjs/vuetify": "^1.11.3",
     "@vue/test-utils": "^1.2.0",
@@ -52,13 +51,10 @@
     "dotenv": "^10.0.0",
     "eslint": "^7.27.0",
     "eslint-plugin-nuxt": "^2.0.0",
-    "jest": "^26.6.3",
     "node-sass": "^6.0.0",
     "sass-loader": "^10.1.1",
-    "ts-jest": "^26.5.6",
     "ts-node": "^10.0.0",
-    "typescript": "^4.3.2",
-    "vue-jest": "^3.0.4"
+    "babel-runtime": "^6.26.0"
   }
   
 }
