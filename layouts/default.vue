@@ -202,8 +202,13 @@
           </v-list-item-avatar>
 
           <v-list-item-content>
-            <v-list-item-titl v-html="user.username"></v-list-item-titl>
-            <v-list-item-subtitle v-html="user.email"></v-list-item-subtitle>
+            <v-list-item-titl
+              v-html="user.username"
+              class="font-weight-black"
+            ></v-list-item-titl>
+            <v-list-item-subtitle
+              ><v-icon dense color="warning">mdi-circle-medium</v-icon>Online
+            </v-list-item-subtitle>
           </v-list-item-content>
           <v-list-item-action>
             <v-menu offset-y>
@@ -218,7 +223,9 @@
                   @click="selectionAction(item)"
                 >
                   <v-list-item-icon>
-                    <v-icon v-text="item.icon"></v-icon>
+                    <v-avatar color="primary" size="36">
+                      <v-icon dark v-text="item.icon"></v-icon>
+                    </v-avatar>
                   </v-list-item-icon>
 
                   <v-list-item-content>
@@ -492,7 +499,7 @@ export default {
         username: "Elirehema Paul"
       },
       menus: [
-        { title: "Profile", icon: "mdi-account", value: 1 },
+        { title: "View profile", icon: "mdi-account", value: 1 },
         { title: "Logout", icon: "mdi-power", value: 2 }
       ]
     };
