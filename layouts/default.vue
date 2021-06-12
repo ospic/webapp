@@ -117,7 +117,13 @@
           class="font-weight-light ma-2"
           @change="changeLanguage(select.lang)"
         ></v-select>
-        <iframe src="https://github.com/sponsors/ospic/button" title="Sponsor ospic" height="30" width="216" style="border: 0;"></iframe>
+        <iframe
+          src="https://github.com/sponsors/ospic/button"
+          title="Sponsor ospic"
+          height="30"
+          width="216"
+          style="border: 0;"
+        ></iframe>
       </template>
     </v-navigation-drawer>
     <v-app-bar hide-on-scroll fixed app flat color="primary">
@@ -137,26 +143,12 @@
       </v-toolbar-title>
 
       <v-spacer></v-spacer>
-      <v-badge
-        bordered
-        bottom
-        color="deep-purple accent-4"
-        dot
-        class="mr-2"
-        offset-x="10"
-        offset-y="10"
-      >
-        <v-btn fab small class="button" to="/me">
-          <v-avatar size="35">
-            <v-img :src="thumbnail"></v-img>
-          </v-avatar>
-        </v-btn>
-      </v-badge>
+
       <v-badge class="mr-3" icon="mdi-lock" color="blue" overlap>
         <template v-slot:badge>
           10
         </template>
-        <v-btn fab small class="button" to="/notifications">
+        <v-btn fab small class="primary" elevation="1" to="/notifications">
           <v-icon color="white">mdi-bell</v-icon></v-btn
         >
       </v-badge>
@@ -170,7 +162,7 @@
             @click.stop="syncro()"
             small
             elevation="1"
-            class="button mr-2 "
+            class="primary mr-1 "
             dark
           >
             <v-icon v-on="on" v-if="sync" medium>mdi-progress-clock</v-icon>
@@ -183,14 +175,7 @@
         }}</span>
         <span v-else color="white">{{ $t("label.tooltip.synchronise") }}</span>
       </v-tooltip>
-      <v-tooltip bottom color="primary" open-on-hover open-delay="500">
-        <template v-slot:activator="{ on }">
-          <v-btn fab v-on="on" small elevation="1" class="mr-2 button" dark>
-            <v-icon medium @click="logoutsession">mdi-power</v-icon>
-          </v-btn>
-        </template>
-        <span>{{ $t("label.tooltip.clicktologout") }}</span>
-      </v-tooltip>
+
       <v-btn
         fab
         x-small
@@ -210,6 +195,41 @@
           "
         ></v-icon>
       </v-btn>
+      <div>
+        <v-list-item dense two-line dark>
+          <v-list-item-avatar>
+            <v-img :src="thumbnail"></v-img>
+          </v-list-item-avatar>
+
+          <v-list-item-content>
+            <v-list-item-titl v-html="user.username"></v-list-item-titl>
+            <v-list-item-subtitle v-html="user.email"></v-list-item-subtitle>
+          </v-list-item-content>
+          <v-list-item-action>
+            <v-menu offset-y>
+              <template v-slot:activator="{ on, attrs }">
+                <v-icon v-bind="attrs" v-on="on">mdi-menu-down</v-icon>
+              </template>
+              <v-list rounded>
+                <v-list-item
+                  ripple
+                  v-for="(item, index) in menus"
+                  :key="index"
+                  @click="selectionAction(item)"
+                >
+                  <v-list-item-icon>
+                    <v-icon v-text="item.icon"></v-icon>
+                  </v-list-item-icon>
+
+                  <v-list-item-content>
+                    <v-list-item-title>{{ item.title }}</v-list-item-title>
+                  </v-list-item-content>
+                </v-list-item>
+              </v-list>
+            </v-menu>
+          </v-list-item-action>
+        </v-list-item>
+      </div>
     </v-app-bar>
 
     <v-main>
@@ -470,21 +490,23 @@ export default {
       year: new Date().getFullYear(),
       userdata: {
         username: "Elirehema Paul"
-      }
+      },
+      menus: [
+        { title: "Profile", icon: "mdi-account", value: 1 },
+        { title: "Logout", icon: "mdi-power", value: 2 }
+      ]
     };
   },
 
   methods: {
-    selectedItemAction: function(item) {
-      switch (item) {
-        case 0:
-          //this.$router.push("/profile");
+    selectionAction: function(i) {
+      switch (i.value) {
+        case 1:
+          this.nativateToHere("me");
           break;
+
         case 2:
-          localStorage.removeItem("qAccessToken");
-          localStorage.removeItem("uuId");
-          sessionStorage.clear();
-          this.$router.push("/");
+          this.logoutsession();
           break;
       }
     },
@@ -538,6 +560,10 @@ export default {
     clearInterval(this.interval);
   },
 
-  computed: {}
+  computed: {
+    user() {
+      return this.$store.getters.profile;
+    }
+  }
 };
 </script>
