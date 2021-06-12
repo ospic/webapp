@@ -36,7 +36,7 @@ jobs:
       - run: rm -rf node_modules package-lock.json 
       - run: npm i --save
       - run: npm run production
-      - run: npm test
+      # - run: npm test
       - name: Deploy to gihub pages 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.0
         with:
