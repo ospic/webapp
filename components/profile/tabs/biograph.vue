@@ -22,6 +22,7 @@
                     <v-text-field
                       v-if="edit"
                       dense
+                      counter=100
                       v-model="patientcp.name"
                     ></v-text-field>
                     <p v-else>{{ patient.name }}</p>
@@ -57,6 +58,7 @@
                     <v-text-field
                       v-if="edit"
                       dense
+                      counter=15
                       v-model="patientcp.phone"
                     ></v-text-field>
                     <p v-else>{{ patient.phone }}</p>
@@ -68,6 +70,7 @@
                     <v-text-field
                       v-if="edit"
                       dense
+                      counter=200
                       v-model="patientcp.address"
                     ></v-text-field>
                     <p v-else>{{ patient.address }}</p>
@@ -79,6 +82,7 @@
                     <v-text-field
                       v-if="edit"
                       dense
+                      counter=254
                       v-model="patientcp.emailAddress"
                     ></v-text-field>
                     <p v-else>{{ patient.emailAddress }}</p>
@@ -92,6 +96,7 @@
                     <v-text-field
                       v-if="edit"
                       dense
+                      counter=100
                       v-model="patientcp.guardianName"
                     ></v-text-field>
                     <p v-else>{{ patient.guardianName }}</p>
@@ -119,11 +124,13 @@
                     Blood group:
                   </td>
                   <td>
-                    <v-text-field
+                    <v-select
                       v-if="edit"
-                      dense
+                      :items="bloodgroup"
                       v-model="patientcp.bloodGroup"
-                    ></v-text-field>
+                      :menu-props="{ top: true, offsetY: true }"
+                      label="Select bloodgroup"
+                    ></v-select>
                     <p v-else>{{ patient.bloodGroup }}</p>
                   </td>
                 </tr>
@@ -133,6 +140,7 @@
                     <v-text-field
                       v-if="edit"
                       dense
+                      counter=10
                       v-model="patientcp.height"
                     ></v-text-field>
                     <p v-else>{{ patient.height }}</p>
@@ -144,6 +152,7 @@
                     <v-text-field
                       v-if="edit"
                       dense
+                      counter=10
                       v-model="patientcp.weight"
                     ></v-text-field>
                     <p v-else>{{ patient.weight }}</p>
@@ -153,7 +162,16 @@
                   <td id="marriage" class="font-weight-black">
                     Maritial Status:
                   </td>
-                  <td>{{ patient.marriageStatus }}</td>
+                  <td>
+                    <v-select
+                      v-if="edit"
+                      :items="marriageStatus"
+                      v-model="patientcp.marriageStatus"
+                      :menu-props="{ top: true, offsetY: true }"
+                      label="Select Marriage Status"
+                    ></v-select>
+                    <p v-else>{{ patient.marriageStatus }}</p>
+                  </td>
                 </tr>
                 <tr>
                   <td id="isamitted" class="font-weight-black">
@@ -186,6 +204,7 @@
                     <v-text-field
                       v-if="edit"
                       dense
+                      counter=550
                       v-model="patientcp.allergies"
                     ></v-text-field>
                     <p v-else>{{ patient.allergies }}</p>
@@ -219,7 +238,9 @@ export default {
     return {
       edit: false,
       patientcp: this.patient,
-      gender: ["Male", "Female", "Unspecified"]
+      gender: ["Male", "Female", "Unspecified"],
+      bloodgroup: ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-', "Unspecified"],
+      marriageStatus: ['Single', 'Married', 'Seperated', 'Widowed',"Unspecified"],
     };
   },
   methods: {
