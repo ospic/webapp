@@ -144,6 +144,8 @@ export default {
       marriageStatus: ""
     },
     genderoptions: ["Male", "Female", "Others"],
+    marriagestatusoptions: ["Single", "Married", "Seperated", "Widowed", "Unspecified"],
+    bloodgroupoptions: ["A+", "A-", "B+", "B-","O+", "O-","AB+","AB-","Unspecified"],
     body: {
       options: {
         page: 1,
