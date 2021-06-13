@@ -38,7 +38,7 @@
         </v-toolbar>
       </template>
       <template v-slot:[`item.gender`]="{ item }">
-        <v-tooltip top v-if="item.gender == 'F'" color="green">
+        <v-tooltip top v-if="item.gender == 'Female'" color="green">
           <template v-slot:activator="{ on, attrs }">
             <v-icon v-bind="attrs" v-on="on" small color="green darken-2"
               >mdi-gender-female
@@ -46,7 +46,7 @@
           </template>
           <span>{{ $t("label.tooltip.genderfemale") }}</span>
         </v-tooltip>
-        <v-tooltip top v-if="item.gender == 'M'" color="primary">
+        <v-tooltip top v-if="item.gender == 'Male'" color="primary">
           <template v-slot:activator="{ on, attrs }">
             <v-icon v-bind="attrs" v-on="on" small color="primary darken-2"
               >mdi-gender-male
@@ -54,7 +54,7 @@
           </template>
           <span>{{ $t("label.tooltip.gendermale") }}</span>
         </v-tooltip>
-        <v-tooltip top v-if="item.gender == 'O'" color="cyan">
+        <v-tooltip top v-if="item.gender == 'Unspecified'" color="cyan">
           <template v-slot:activator="{ on, attrs }">
             <v-icon v-bind="attrs" v-on="on" small color="cyan darken-2"
               >mdi-gender-male-female
@@ -144,8 +144,24 @@ export default {
       marriageStatus: ""
     },
     genderoptions: ["Male", "Female", "Others"],
-    marriagestatusoptions: ["Single", "Married", "Seperated", "Widowed", "Unspecified"],
-    bloodgroupoptions: ["A+", "A-", "B+", "B-","O+", "O-","AB+","AB-","Unspecified"],
+    marriagestatusoptions: [
+      "Single",
+      "Married",
+      "Seperated",
+      "Widowed",
+      "Unspecified"
+    ],
+    bloodgroupoptions: [
+      "A+",
+      "A-",
+      "B+",
+      "B-",
+      "O+",
+      "O-",
+      "AB+",
+      "AB-",
+      "Unspecified"
+    ],
     body: {
       options: {
         page: 1,
