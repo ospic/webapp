@@ -23,7 +23,7 @@
                       <v-text-field
                         v-model="editedItem.name"
                         outlined
-                        counter=100
+                        counter="100"
                         label="Full Name"
                         hint="Patient full name. E.g John Doe (Mandatory)"
                         :rules="[rules.required]"
@@ -54,7 +54,7 @@
                       <v-text-field
                         v-model="editedItem.phone"
                         outlined
-                        counter=15
+                        counter="15"
                         label="Phone No."
                         hint="Patient phone No. e.g +255716xxxxxx (Mandatory)"
                         :rules="[rules.required]"
@@ -64,7 +64,7 @@
                       <v-text-field
                         v-model="editedItem.address"
                         outlined
-                        counter=200
+                        counter="200"
                         label="Home Address"
                         hint="Address e.g 123 Hawaii, 31ST, H24KL (Mandatory)"
                         :rules="[rules.required]"
@@ -84,7 +84,7 @@
                       <v-text-field
                         v-model="editedItem.guardianName"
                         outlined
-                        counter=100
+                        counter="100"
                         label="Guardian Name"
                         hint="Patient close relative. E.g Alice Doe (Mandatory)"
                         :rules="[rules.required]"
@@ -98,7 +98,7 @@
                       <v-text-field
                         v-model="editedItem.emailAddress"
                         outlined
-                        counter=254
+                        counter="254"
                         label="Email address"
                         hint="Patient Email  address. E.g example@email.com (Optional)"
                         :rules="[rules.email]"
@@ -129,7 +129,7 @@
                       <v-text-field
                         v-model="editedItem.height"
                         outlined
-                        counter=10
+                        counter="10"
                         label="Height"
                         hint="Patient height. e.g 10FT (Mandatory)"
                         :rules="[rules.required]"
@@ -139,7 +139,7 @@
                       <v-text-field
                         v-model="editedItem.weight"
                         outlined
-                        counter=10
+                        counter="10"
                         label="Weight"
                         hint="Patient weight. e.g 10Kg (Mandatory)"
                         :rules="[rules.required]"
@@ -170,7 +170,7 @@
                       <v-text-field
                         v-model="editedItem.bloodPressure"
                         outlined
-                        counter=10
+                        counter="10"
                         label="Blood pressure"
                         hint="Patient BP. (Mandatory)"
                         :rules="[rules.required]"
@@ -184,7 +184,7 @@
                       <v-textarea
                         label="Allergies"
                         outlined
-                        counter=550
+                        counter="550"
                         v-model="editedItem.allergies"
                         hint="Patient allergies"
                       ></v-textarea>
@@ -194,7 +194,7 @@
                       <v-textarea
                         label="Note:"
                         outlined
-                        counter=200
+                        counter="200"
                         v-model="editedItem.note"
                         hint="Additional note if any"
                       ></v-textarea
@@ -289,10 +289,29 @@ export default {
       { name: "O+", value: 7 },
       { name: "O-", value: 8 },
       { name: "Unspecified", value: 0 }
-    ],
+    ]
   }),
   methods: {
-    close() {},
+    close() {
+      this.editedItem = {
+        name: "",
+        phone: "",
+        address: "",
+        emailAddress: "",
+        guardianName: "",
+        height: "",
+        weight: "",
+        bloodPressure: "",
+        age: 0,
+        bloodGroup: 0,
+        gender: 0,
+        isAdmitted: false,
+        symptoms: "",
+        note: "",
+        marriageStatus: 0
+      };
+      this.$router.push("/patients");
+    },
     save() {
       this.editedItem.gender = this.editedItem.gender.name;
       console.log(this.editedItem);

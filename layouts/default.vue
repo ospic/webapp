@@ -202,10 +202,10 @@
           </v-list-item-avatar>
 
           <v-list-item-content>
-            <v-list-item-titl
+            <v-list-item-title
               v-html="user.username"
               class="font-weight-black"
-            ></v-list-item-titl>
+            ></v-list-item-title>
             <v-list-item-subtitle
               ><v-icon dense color="warning">mdi-circle-medium</v-icon>Online
             </v-list-item-subtitle>
