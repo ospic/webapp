@@ -1,9 +1,13 @@
 <template>
   <div>
     <div class="breadcrumb ">
-      <router-link to="/finance">Dashboard</router-link>
-      <router-link to="/finance">Finance</router-link>
-      <router-link to="/finance/bills" class="active">Bills</router-link>
+      <router-link to="/">{{ $t("label.breadcrumb.dashboard") }}</router-link>
+      <router-link to="/finance">{{
+        $t("label.breadcrumb.finance")
+      }}</router-link>
+      <router-link to="/finance/bills" class="active">{{
+        $t("label.breadcrumb.bills")
+      }}</router-link>
     </div>
     <v-card>
       <v-card-title class="ma-0 pa-0">

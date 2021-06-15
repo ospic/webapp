@@ -1,11 +1,15 @@
 <template>
   <div>
     <div class="breadcrumb ">
-      <router-link to="/finance">Dashboard</router-link>
-      <router-link to="/finance">Finance</router-link>
-      <router-link to="/finance/transactions" class="active"
-        >Transactions</router-link
-      >
+      <router-link to="/finance">{{
+        $t("label.breadcrumb.dashboard")
+      }}</router-link>
+      <router-link to="/finance">{{
+        $t("label.breadcrumb.finance")
+      }}</router-link>
+      <router-link to="/finance/transactions" class="active">{{
+        $t("label.breadcrumb.transactions")
+      }}</router-link>
     </div>
     <v-card>
       <v-card-title class="ma-0 pa-0">
@@ -122,7 +126,7 @@ export default {
       transactions: null,
       positionx: 2,
       search: null,
-      dialog:false,
+      dialog: false,
 
       query: {
         page: null,

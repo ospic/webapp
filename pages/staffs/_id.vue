@@ -1,8 +1,10 @@
 <template>
   <div>
     <div class="breadcrumb " v-if="staffdata != null">
-      <router-link to="/">Dashboard</router-link>
-      <router-link to="/staffs">Staffs</router-link>
+      <router-link to="/">{{ $t("label.breadcrumb.dashboard") }}</router-link>
+      <router-link to="/staffs">{{
+        $t("label.breadcrumb.staffs")
+      }}</router-link>
       <router-link :to="`/staffs/${this.$route.params.id}`" class="active">{{
         this.staffdata.fullName == null
           ? this.staffdata.username

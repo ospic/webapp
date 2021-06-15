@@ -1,8 +1,10 @@
 <template>
   <div>
     <div class="breadcrumb ">
-      <router-link to="/">Dashboard</router-link>
-      <router-link to="/reports" class="active">Reports</router-link>
+      <router-link to="/">{{ $t("label.breadcrumb.dashboard") }}</router-link>
+      <router-link to="/reports" class="active">{{
+        $t("label.breadcrumb.reports")
+      }}</router-link>
     </div>
 
     <report-component :reports="reports"></report-component>

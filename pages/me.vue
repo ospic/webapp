@@ -1,8 +1,10 @@
 <template>
   <div>
     <div class="breadcrumb ">
-      <router-link to="/">Dashboard</router-link>
-      <router-link to="/me" class="active">Profile</router-link>
+      <router-link to="/">{{ $t("label.breadcrumb.dashboard") }}</router-link>
+      <router-link to="/me" class="active">{{
+        $t("label.breadcrumb.profile")
+      }}</router-link>
     </div>
     <v-container fluid>
       <v-card class="mb-4" flat v-if="edit">

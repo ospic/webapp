@@ -1,12 +1,14 @@
 <template>
   <div>
     <div class="breadcrumb ">
-      <router-link to="/">Dashboard</router-link>
-      <router-link to="/reports">Report</router-link>
+      <router-link to="/">{{ $t("label.breadcrumb.dashboard") }}</router-link>
+      <router-link to="/reports">{{
+        $t("label.breadcrumb.reports")
+      }}</router-link>
 
-      <router-link :to="`/reports/${$route.params.id}`" class="active"
-        >View Reports</router-link
-      >
+      <router-link :to="`/reports/${$route.params.id}`" class="active">{{
+        $t("label.breadcrumb.viewreports")
+      }}</router-link>
     </div>
 
     <div v-if="reportUrl">
