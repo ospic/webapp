@@ -1,8 +1,10 @@
 <template>
   <div>
     <div class="breadcrumb">
-      <router-link to="/">Dashboard</router-link>
-      <router-link to="/patients" class="active">Patients</router-link>
+      <router-link to="/">{{ $t("label.breadcrumb.dashboard") }}</router-link>
+      <router-link to="/patients" class="active">{{
+        $t("label.breadcrumb.patients")
+      }}</router-link>
     </div>
 
     <v-card class="mx-auto default">

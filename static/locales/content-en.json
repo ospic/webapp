@@ -171,6 +171,28 @@
     },
     "search":{
       "searchreportbynameanddescription":"Search report by name/desc"
+    },
+    "breadcrumb":{
+      "dashboard":"Dashboard",
+      "patients":"Patients",
+      "createnewpatient":"Create new Patient",
+      "addcontact":"Add contact",
+      "viewcontact":"View contact",
+      "consultations":"Consultations",
+      "opd":"Out-patient Department",
+      "ipd":"In-patient Department",
+      "appointments":"Appointments",
+      "phamarcy":"Pharmarcy",
+      "medicine":"Medicine",
+      "bloodbank":"Blood Bank",
+      "wards":"Wards",
+      "beds":"Beds",
+      "inventory": "Inventory",
+      "services":"Services",
+      "servicecategories":"Service categories",
+      "staffs":"Staffs",
+      "departments":"Departments",
+      "insurances":"Insurances"
     }
   }
 }

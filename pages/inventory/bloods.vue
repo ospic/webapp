@@ -1,11 +1,13 @@
 <template>
   <div>
-    <div class="breadcrumb" v-if="groups != null">
-      <router-link to="/">Dashboard</router-link>
-      <router-link to="/pharmacy">Pharmacy</router-link>
-      <router-link to="/inventory/bloods" class="active"
-        >Blood bank</router-link
-      >
+    <div class="breadcrumb ">
+      <router-link to="/">{{ $t("label.breadcrumb.dashboard") }}</router-link>
+      <router-link to="/inventory">{{
+        $t("label.breadcrumb.inventory")
+      }}</router-link>
+      <router-link to="/inventory/bed" class="active">{{
+        $t("label.breadcrumb.bloodbank")
+      }}</router-link>
     </div>
     <v-card>
       <v-data-table

@@ -1,10 +1,13 @@
 <template>
   <div>
     <div class="breadcrumb ">
-      <router-link to="/">Dashboard</router-link>
-      <router-link to="/services">Services </router-link>
+      <router-link to="/">{{ $t("label.breadcrumb.dashboard") }}</router-link>
+
+      <router-link to="/services">{{
+        $t("label.breadcrumb.services")
+      }}</router-link>
       <router-link to="/services/types" class="active"
-        >Services categories
+        >{{ $t("label.breadcrumb.servicecategories") }}
       </router-link>
     </div>
     <v-card class="mx-auto">

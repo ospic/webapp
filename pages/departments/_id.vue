@@ -1,8 +1,12 @@
 <template>
   <div>
     <div class="breadcrumb" v-if="department != null">
-      <router-link to="/" v-if="isMdAndUp">Dashboard</router-link>
-      <router-link to="/departments">Departments</router-link>
+      <router-link to="/" v-if="isMdAndUp">{{
+        $t("label.breadcrumb.dashboard")
+      }}</router-link>
+      <router-link to="/departments">{{
+        $t("label.breadcrumb.departments")
+      }}</router-link>
       <router-link
         :to="`/departments/${this.$route.params.id}`"
         class="active"

@@ -1,8 +1,10 @@
 <template>
   <div>
     <div class="breadcrumb ">
-      <router-link to="/">Dashboard</router-link>
-      <router-link to="/services" class="active">Services </router-link>
+      <router-link to="/">{{ $t("label.breadcrumb.dashboard") }}</router-link>
+      <router-link to="/services" class="active"
+        >{{ $t("label.breadcrumb.services") }}
+      </router-link>
     </div>
 
     <medical-service

@@ -1,9 +1,13 @@
 <template>
   <div>
     <div class="breadcrumb ">
-      <router-link to="/">Dashboard</router-link>
-      <router-link to="/inventory">Inventory</router-link>
-      <router-link to="/inventory/bed" class="active">Beds</router-link>
+      <router-link to="/">{{ $t("label.breadcrumb.dashboard") }}</router-link>
+      <router-link to="/inventory">{{
+        $t("label.breadcrumb.inventory")
+      }}</router-link>
+      <router-link to="/inventory/bed" class="active">{{
+        $t("label.breadcrumb.beds")
+      }}</router-link>
     </div>
     <v-card class="mx-auto">
       <v-toolbar flat class="primary" dark>

@@ -1,8 +1,10 @@
 <template>
   <div>
     <div class="breadcrumb">
-      <router-link to="/">Dashboard</router-link>
-      <router-link to="/insurances" class="active">Insurances</router-link>
+      <router-link to="/">{{ $t("label.breadcrumb.dashboard") }}</router-link>
+      <router-link to="/insurances" class="active">{{
+        $t("label.breadcrumb.insurances")
+      }}</router-link>
     </div>
     <v-card class="mx-auto default ">
       <v-progress-circular
@@ -15,6 +17,7 @@
         <v-data-table
           dense
           :headers="headers"
+          2
           :items="insurances"
           :search="search"
           width="100%"

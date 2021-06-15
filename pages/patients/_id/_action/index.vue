@@ -2,7 +2,9 @@
   <div>
     <div class="breadcrumb " v-if="patient != null">
       <router-link to="/">{{ $t("label.menu.dashboard") }}</router-link>
-      <router-link to="/patients">Patients</router-link>
+      <router-link to="/patients" class="active">{{
+        $t("label.breadcrumb.patients")
+      }}</router-link>
       <router-link :to="`/patients/${this.$route.params.id}`">{{
         patient.name
       }}</router-link>

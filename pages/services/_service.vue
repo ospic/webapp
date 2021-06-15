@@ -1,8 +1,11 @@
 <template>
   <div>
     <div class="breadcrumb ">
-      <router-link to="/">Dashboard</router-link>
-      <router-link to="/services">Services </router-link>
+      <router-link to="/">{{ $t("label.breadcrumb.dashboard") }}</router-link>
+      <router-link to="/inventory">{{
+        $t("label.breadcrumb.services")
+      }}</router-link>
+
       <router-link
         :to="`/services/${this.$route.params.service}`"
         class="active"
