@@ -1,10 +1,10 @@
 <template>
   <div>
     <div class="breadcrumb ">
-      <router-link to="/">Dashboard</router-link>
-      <router-link to="/settings" class="active"
-        >Setting & Configurations</router-link
-      >
+      <router-link to="/">{{ $t("label.breadcrumb.dashboard") }}</router-link>
+      <router-link to="/settings" class="active">{{
+        $t("label.breadcrumb.settingandconfiguration")
+      }}</router-link>
     </div>
     <v-container class="fill-height" fluid>
       <v-row no-gutters>

@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="breadcrumb ">
-      <router-link to="/">{{ $t("label.menu.dashboard") }}</router-link>
+      <router-link to="/">{{ $t("label.breadcrumb.dashboard") }}</router-link>
       <router-link to="/patients">{{
         $t("label.breadcrumb.patients")
       }}</router-link>

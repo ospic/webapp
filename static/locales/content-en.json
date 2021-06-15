@@ -192,7 +192,16 @@
       "servicecategories":"Service categories",
       "staffs":"Staffs",
       "departments":"Departments",
-      "insurances":"Insurances"
+      "insurances":"Insurances",
+      "bills":" Bill's",
+      "finance":"Finance",
+      "transactions":"Transactions",
+      "financialreports":"Financial Report's",
+      "workingcalendar":"Working calendar",
+      "reports":"Reports",
+      "viewreports":"View report",
+      "settingandconfiguration":"Settings & Configuration",
+      "profile":"Profile"
     }
   }
 }
