@@ -1,8 +1,10 @@
 <template>
   <div>
     <div class="breadcrumb" v-if="userdata != null">
-      <router-link to="/">Dashboard</router-link>
-      <router-link to="/patients">Patients</router-link>
+      <router-link to="/">{{ $t("label.breadcrumb.dashboard") }}</router-link>
+      <router-link to="/patients">{{
+        $t("label.breadcrumb.patients")
+      }}</router-link>
       <router-link :to="`/patients/${this.$route.params.id}`" class="active">{{
         username
       }}</router-link>

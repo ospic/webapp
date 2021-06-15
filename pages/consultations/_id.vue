@@ -1,10 +1,10 @@
 <template>
   <div>
     <div class="breadcrumb " v-if="service != null">
-      <router-link to="/">Dashboard</router-link>
-      <router-link v-show="!this.$vuetify.breakpoint.mobile" to="/patients"
-        >Patients</router-link
-      >
+      <router-link to="/">{{ $t("label.menu.dashboard") }}</router-link>
+      <router-link to="/patients">{{
+        $t("label.breadcrumb.patients")
+      }}</router-link>
       <router-link :to="`/patients/${service.patient.id}`">{{
         service.patient.name
       }}</router-link>

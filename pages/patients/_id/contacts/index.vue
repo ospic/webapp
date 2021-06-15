@@ -1,23 +1,24 @@
 <template>
   <div>
     <div class="breadcrumb" v-if="patient != null">
-      <router-link to="/">Dashboard</router-link>
-      <router-link v-show="!this.$vuetify.breakpoint.mobile" to="/patients"
-        >Patients</router-link
-      >
+      <router-link to="/">{{ $t("label.breadcrumb.dashboard") }}</router-link>
+      <router-link to="/patients">{{
+        $t("label.breadcrumb.patients")
+      }}</router-link>
       <router-link :to="`/patients/${this.$route.params.id}`">{{
         patient.name
       }}</router-link>
 
-      <router-link to="/patients" class="active">Add contact</router-link>
+      <router-link to="/patients" class="active">{{
+        $t("label.breadcrumb.viewcontact")
+      }}</router-link>
     </div>
     <v-container fluid grid-list-md>
-      <v-card tile class="pa-2">
-        <v-card-title>
-          <h3>View contacts</h3>
-        </v-card-title>
-        <v-divider class="mx-2"></v-divider>
-        <v-layout row wrap align-center>
+      <v-card>
+        <v-toolbar dark flat color="primary">
+          <h3>View contact</h3>
+        </v-toolbar>
+        <v-layout row wrap align-center class="mt-3">
           <v-flex xs12 sm12 md12 order-md2 order-sm2>
             <v-row justify="space-around" no-gutters v-if="!isDataLoaded">
               <v-col cols="12" xs="12" sm="12" md="3">

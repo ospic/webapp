@@ -1,15 +1,17 @@
 <template>
   <div>
     <div class="breadcrumb" v-if="patient != null">
-      <router-link to="/">Dashboard</router-link>
-      <router-link v-show="!this.$vuetify.breakpoint.mobile" to="/patients"
-        >Patients</router-link
-      >
+      <router-link to="/">{{ $t("label.breadcrumb.dashboard") }}</router-link>
+      <router-link to="/patients">{{
+        $t("label.breadcrumb.patients")
+      }}</router-link>
       <router-link :to="`/patients/${this.$route.params.id}`">{{
         patient.name
       }}</router-link>
 
-      <router-link to="/patients" class="active">Add contact</router-link>
+      <router-link to="/patients" class="active">{{
+        $t("label.breadcrumb.addcontact")
+      }}</router-link>
     </div>
     <contacts-form :title="title"></contacts-form>
   </div>

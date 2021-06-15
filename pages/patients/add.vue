@@ -1,11 +1,13 @@
 <template>
   <div>
     <div class="breadcrumb">
-      <router-link to="/">Dashboard</router-link>
-      <router-link to="/patients">Patients</router-link>
-      <router-link to="/patients/add" class="active"
-        >Create new Patient</router-link
-      >
+      <router-link to="/">{{ $t("label.breadcrumb.dashboard") }}</router-link>
+      <router-link to="/patients">{{
+        $t("label.breadcrumb.patients")
+      }}</router-link>
+      <router-link to="/patients/add" class="active">{{
+        $t("label.breadcrumb.createnewpatient")
+      }}</router-link>
     </div>
     <v-card class="mx-auto default ">
       <v-toolbar dark color="primary" flat dense>

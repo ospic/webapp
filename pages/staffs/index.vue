@@ -1,8 +1,10 @@
 <template>
   <div>
     <div class="breadcrumb">
-      <router-link to="/">Dashboard</router-link>
-      <router-link to="/staffs" class="active">Staffs</router-link>
+      <router-link to="/">{{ $t("label.breadcrumb.dashboard") }}</router-link>
+      <router-link to="/staffs" class="active">{{
+        $t("label.breadcrumb.staffs")
+      }}</router-link>
     </div>
     <v-card>
       <v-toolbar flat dark class="primary">

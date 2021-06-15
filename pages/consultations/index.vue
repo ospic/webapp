@@ -1,10 +1,10 @@
 <template>
   <div>
-    <div class="breadcrumb " v-if="services != null">
-      <router-link to="/">Dashboard</router-link>
-      <router-link to="/consultations" class="active"
-        >Consultation
-      </router-link>
+    <div class="breadcrumb " v-if="consultations != null">
+      <router-link to="/">{{ $t("label.menu.dashboard") }}</router-link>
+      <router-link to="/consultations" class="active">{{
+        $t("label.breadcrumb.consultations")
+      }}</router-link>
     </div>
 
     <consultation-card :services="consultations"></consultation-card>

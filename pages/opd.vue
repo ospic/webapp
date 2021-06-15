@@ -1,8 +1,10 @@
 <template>
   <div>
     <div class="breadcrumb  ">
-      <router-link to="/">Dashboard</router-link>
-      <router-link to="/opd" class="active">Out-patient Department</router-link>
+      <router-link to="/">{{ $t("label.breadcrumb.dashboard") }}</router-link>
+      <router-link to="/opd" class="active">{{
+        $t("label.breadcrumb.opd")
+      }}</router-link>
     </div>
     <v-progress-circular v-if="services == undefined"></v-progress-circular>
     <servicescard-component
