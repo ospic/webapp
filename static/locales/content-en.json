@@ -44,7 +44,9 @@
       "btnaddnewservicetype":"Add new medical service category",
       "btnuploadnewreportfile":"Upload new report file",
       "newinsurance":"New insurance",
-      "newinsurancecard":"New insurance card"
+      "newinsurancecard":"New insurance card",
+      "activate":"Activate",
+      "close":"Close"
       
     },
     "menu":{
@@ -89,7 +91,8 @@
     },
     "dialogs":{
       "deleteconfirmdialog":"Are you sure you want to delete this item ?",
-      "deleteuserconfirmdialog":"Are you sure you want to delete this user ?"
+      "deleteuserconfirmdialog":"Are you sure you want to delete this user ?",
+      "editconfigurationvalue":"Edit configuration value "
     },
     "tooltip": {
       "tooltiphello": "Hello there",
@@ -104,6 +107,7 @@
       "genderother":"Other",
       "edit":"Edit",
       "activate":"Activate",
+      "deactivate":"De-activate",
       "active":"Active",
       "viewreceipt":"View bill receipt",
       "reversetransaction":"Reverse transaction",
@@ -166,7 +170,8 @@
       "appointments":"Appointments",
       "servicecategories":"Service categories",
       "insurances":"Insurances",
-      "systemcolors":"System colors"
+      "systemcolors":"System colors",
+      "globalconfigurations": "Global configurations"
       
     },
     "search":{
