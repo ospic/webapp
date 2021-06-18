@@ -133,6 +133,11 @@ export default {
                   title: "label.titles.systemcolors",
                   to: "/settings/colors",
                   icon: "mdi-format-color-fill"
+                },
+                {
+                  title: "label.titles.globalconfiguraations",
+                  to: "/settings/configurations",
+                  icon: "mdi-cog-outline"
                 }
               ]
             }
