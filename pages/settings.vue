@@ -38,7 +38,7 @@
                       <v-list-item :key="sub.to" :to="sub.to">
                         <v-list-item-content>
                           <v-list-item-title>
-                            <v-icon small v-html="sub.icon"></v-icon>
+                            <v-icon left v-html="sub.icon"></v-icon>
                             {{ $t(sub.title) }}
                           </v-list-item-title>
                         </v-list-item-content>
@@ -101,11 +101,11 @@ export default {
                 {
                   title: "label.titles.selfusersmanagement",
                   to: "/settings/selfservices",
-                  icon: "mdi-account-group"
+                  icon: "mdi-tooltip-account"
                 },
                 {
                   title: "label.menu.rolesandprivileges",
-                  icon: "mdi-cog-outline",
+                  icon: "mdi-account-cog",
                   to: "/settings/roles"
                 }
               ]
@@ -127,17 +127,17 @@ export default {
                 {
                   title: "label.titles.emailconfigurations",
                   to: "/settings/config/email",
-                  icon: "mdi-mailbox-outline"
+                  icon: "mdi-folder-cog-outline"
                 },
                 {
-                  title: "label.titles.systemcolors",
+                  title: "label.titles.themecolor",
                   to: "/settings/colors",
-                  icon: "mdi-format-color-fill"
+                  icon: "mdi-invert-colors"
                 },
                 {
-                  title: "label.titles.globalconfiguraations",
+                  title: "label.titles.globalconfigurations",
                   to: "/settings/configurations",
-                  icon: "mdi-cog-outline"
+                  icon: "mdi-cog-transfer"
                 }
               ]
             }
