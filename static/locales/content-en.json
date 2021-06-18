@@ -171,7 +171,8 @@
       "servicecategories":"Service categories",
       "insurances":"Insurances",
       "systemcolors":"System colors",
-      "globalconfigurations": "Global configurations"
+      "globalconfigurations": "Global configurations",
+      "themecolor":"Theme colors"
       
     },
     "search":{

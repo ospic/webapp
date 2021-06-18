@@ -9,7 +9,7 @@ export default ({ store }) => {
         "authentication", "inventory", "profile", "diagnoses",
         "templates", "users", "patients", "documents", "statistics", "theme", "smsconfiguration", "statisitics",
         "consultations", "departments", "medicalservices", "laboratory", 'bills', 'radiology', 'reports', 'accounting',
-        'servicetypes', 'pharmarcy'],
+        'servicetypes', 'pharmarcy', 'configuration'],
       storage: {
         getItem: key => ls.get(key),
         setItem: (key, value) => ls.set(key, value),
