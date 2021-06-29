@@ -26,8 +26,6 @@ export default {
     };
   },
   methods: {},
-  mounted() {},
-  created() {},
   computed: {
     reportUrl() {
       return (
