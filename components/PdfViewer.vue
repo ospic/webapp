@@ -52,9 +52,10 @@
 
       <v-card-text>
         <div
-          style="width: 70%; height: 900px;  margin: auto; overflow: scroll;"
+          style="width: 80%; height: 1200px;  margin: auto; overflow: scroll;"
         >
-          <pdf
+          <vue-pdf-app :pdf="src"></vue-pdf-app>
+          <!-- <pdf
             ref="pdfdoc"
             id="pdfdoc"
             name="pdfdoc"
@@ -66,7 +67,7 @@
             @link-clicked="page = $event"
             @progress="loadedRatio = $event"
             style="width: 100%;"
-          ></pdf>
+          ></pdf>-->
         </div>
       </v-card-text>
     </v-card>
@@ -74,11 +75,15 @@
 </template>
 <script>
 import pdf from "vue-pdf-print";
+import VuePdfApp from "vue-pdf-app";
+// import this to use default icons for buttons
+import "vue-pdf-app/dist/icons/main.css";
 //var loadingTask = pdf.createLoadingTask("http://localhost:8080/api/test/view");
 
 export default {
   components: {
-    pdf
+    pdf,
+    VuePdfApp
   },
   props: {
     src: {
