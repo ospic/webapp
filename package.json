@@ -49,6 +49,6 @@
     "dotenv": "^10.0.0",
     "eslint": "^7.30.0",
     "eslint-plugin-nuxt": "^2.0.0",
-    "sass": "1.35.1"
+    "sass": "1.35.2"
   }
 }
