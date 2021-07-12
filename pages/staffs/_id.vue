@@ -66,8 +66,8 @@
             </v-tab>
             <v-tab class="font-weight-normal">
               <span>
-                <v-icon small left>mdi-medical-bag</v-icon>
-                Leaves</span
+                <v-icon small left>mdi-calendar</v-icon
+                >{{ $t("label.tab.appointments") }}</span
               >
             </v-tab>
             <v-tab class="font-weight-normal">
@@ -93,7 +93,7 @@
               <service-card :services="services"></service-card>
             </v-tab-item>
             <v-tab-item>
-              <h2 class="ma-8">Leaves</h2>
+              <appointment-component></appointment-component>
             </v-tab-item>
             <v-tab-item>
               <h2 class="ma-8">Attendance</h2>
@@ -118,9 +118,11 @@
 </template>
 <script>
 import ServiceCard from "@/components/profile/consultation_card";
+import AppointmentsComponent from "@/components/staff/tabs/appointments.vue";
 export default {
   components: {
-    "service-card": ServiceCard
+    "service-card": ServiceCard,
+    "appointment-component": AppointmentsComponent
   },
   data() {
     return {
