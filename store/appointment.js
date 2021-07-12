@@ -146,7 +146,7 @@ const actions = {
 
   async accept_appointment({ commit }, payload) {
     commit(ACCEPT_APPOINTMENT);
-    await this.$api.$put(`appointments/${payload}`, payload).then(response => {
+    await this.$api.$put(`appointments/${payload}/update?action=accept`).then(response => {
       commit(ACCEPT_APPOINTMENT_SUCCESS, response);
     }).catch(error => {
       commit(ACCEPT_APPOINTMENT_ERROR);
