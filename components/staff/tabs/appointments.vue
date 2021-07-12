@@ -38,7 +38,9 @@
             >accept</v-btn
           >
           <v-btn small color="button warning">re-schedule</v-btn>
-          <v-btn small color="button error">decline</v-btn>
+          <v-btn small color="button error" @click="reject_appointment(item.id)"
+            >decline</v-btn
+          >
         </template>
       </v-data-table>
     </div>
@@ -66,6 +68,9 @@ export default {
   methods: {
     accept_appointment(id) {
       this.$store.dispatch("accept_appointment", id);
+    },
+    reject_appointment(id) {
+      this.$store.dispatch("reject_appointment", id);
     }
   }
 };

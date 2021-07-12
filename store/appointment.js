@@ -155,9 +155,9 @@ const actions = {
     });
   },
 
-  async decline_appointmennt({ commit }, payload) {
+  async reject_appointment({ commit }, payload) {
     commit(DECLINE_APPOINTMENT);
-    await this.$api.$delete(`appointments/${payload}`).then(response => {
+    await this.$api.$put(`appointments/${payload}/update?action=unschedule`).then(response => {
       commit(DECLINE_APPOINTMENT_SUCCESS, response);
     }).catch(error => {
       commit(DECLINE_APPOINTMENT_ERROR);
@@ -166,7 +166,7 @@ const actions = {
     });
   },
 
-  async unschedule_appointmennt({ commit }, payload) {
+  async unschedule_appointment({ commit }, payload) {
     commit(UNSCHEDULE_APPOINTMENT);
     await this.$api.$delete(`appointments/${payload}/update?action=unschedule`).then(response => {
       commit(UNSCHEDULE_APPOINTMENT_SUCCESS, response);
@@ -178,7 +178,7 @@ const actions = {
   },
 
 
-  async edit_appointmennt({ commit }, payload) {
+  async edit_appointment({ commit }, payload) {
     commit(EDIT_APPOINTMENT);
     await this.$api.$put(`appointments/${payload.id}`, payload.data).then(response => {
       commit(EDIT_APPOINTMENT_SUCCESS, response);
