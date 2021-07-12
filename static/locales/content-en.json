@@ -173,7 +173,9 @@
       "systemcolors":"System colors",
       "globalconfigurations": "Global configurations",
       "themecolor":"Theme colors"
-      
+    },
+    "tab":{
+      "appointments":"Appointments"
     },
     "search":{
       "searchreportbynameanddescription":"Search report by name/desc"
