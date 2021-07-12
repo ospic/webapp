@@ -8,7 +8,7 @@
     </v-toolbar>
 
     <v-card-text>
-      <div style="width: 80%; height: 1200px;  margin: auto; overflow: scroll;">
+      <div style="width: 100%; height: 1200px;  margin: auto; overflow: scroll;">
         <vue-pdf-app :pdf="src"></vue-pdf-app>
       </div>
     </v-card-text>
