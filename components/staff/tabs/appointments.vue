@@ -42,6 +42,11 @@
             >decline</v-btn
           >
         </template>
+        <template v-slot:[`item.patientId`]="{ item }" }>
+          <router-link :to="`/patients/${item.patientId}`">
+            Patient No.{{ item.patientId }}</router-link
+          >
+        </template>
       </v-data-table>
     </div>
   </v-card>
@@ -68,9 +73,15 @@ export default {
   methods: {
     accept_appointment(id) {
       this.$store.dispatch("accept_appointment", id);
+      setTimeout(() => {
+        this.$emit("update");
+      }, this.delay_seconds);
     },
     reject_appointment(id) {
       this.$store.dispatch("reject_appointment", id);
+      setTimeout(() => {
+        this.$emit("update");
+      }, this.delay_seconds);
     }
   }
 };

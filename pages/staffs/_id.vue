@@ -95,6 +95,7 @@
             <v-tab-item>
               <appointment-component
                 :appointments="appointments"
+                @update="getAppointments()"
               ></appointment-component>
             </v-tab-item>
             <v-tab-item>
