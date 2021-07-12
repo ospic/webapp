@@ -64,7 +64,7 @@
             <v-tab class="font-weight-normal">
               <span><v-icon small left>mdi-account</v-icon>Payroll</span>
             </v-tab>
-            <v-tab class="font-weight-normal">
+            <v-tab class="font-weight-normal" @click.stop="getAppointments()">
               <span>
                 <v-icon small left>mdi-calendar</v-icon
                 >{{ $t("label.tab.appointments") }}</span
@@ -93,7 +93,9 @@
               <service-card :services="services"></service-card>
             </v-tab-item>
             <v-tab-item>
-              <appointment-component></appointment-component>
+              <appointment-component
+                :appointments="appointments"
+              ></appointment-component>
             </v-tab-item>
             <v-tab-item>
               <h2 class="ma-8">Attendance</h2>
@@ -119,6 +121,7 @@
 <script>
 import ServiceCard from "@/components/profile/consultation_card";
 import AppointmentsComponent from "@/components/staff/tabs/appointments.vue";
+import { mapGetters } from "vuex";
 export default {
   components: {
     "service-card": ServiceCard,
@@ -177,6 +180,9 @@ export default {
         .catch(error => {
           console.log(error);
         });
+    },
+    getAppointments() {
+      this.$store.dispatch("get_physician_appointments", this.$route.params.id);
     },
     handleClick: function(value) {
       this.$router.push("/consultations/" + value.id);
@@ -257,7 +263,10 @@ export default {
     },
     staffThumbnail() {
       return this.filebaseUri + this.staffdata.imageUrl;
-    }
+    },
+    ...mapGetters({
+      appointments: "appointments"
+    })
   }
 };
 </script>
