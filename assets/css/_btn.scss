@@ -15,6 +15,9 @@ button {
     &.warning {
       background-color: $color_warning !important;
     }
+    &.error {
+      background-color: $color_error !important;
+    }
     i {
       font-weight: bold;
     }

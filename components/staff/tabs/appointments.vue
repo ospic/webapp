@@ -32,23 +32,13 @@
             ></v-text-field>
           </v-toolbar>
         </template>
-        <template v-slot:[`item.isActive`]="{ item }">
-          <v-tooltip right v-if="item.isActive" color="primary">
-            <template v-slot:activator="{ on, attrs }">
-              <v-icon v-bind="attrs" v-on="on" small color="red lighten-2"
-                >mdi-check</v-icon
-              >
-            </template>
-            <span>Active</span>
-          </v-tooltip>
-          <div v-else></div>
-        </template>
-        <template v-slot:[`item.patientName`]="{ item }">
-          {{ item.patientName }} ( {{ item.patientId }})
-        </template>
-        <template v-slot:[`item.staffName`]="{ item }">
-          <p v-if="item.staffName == null">Unassigned</p>
-          <p v-else>{{ item.staffName }} ( {{ item.staffId }})</p>
+
+        <template v-slot:[`item.actions`]="{ item }">
+          <v-btn small class="button my-2" @click="accept_appointment(item.id)"
+            >accept</v-btn
+          >
+          <v-btn small color="button warning">re-schedule</v-btn>
+          <v-btn small color="button error">decline</v-btn>
         </template>
       </v-data-table>
     </div>
@@ -64,19 +54,19 @@ export default {
   },
   data: () => ({
     search: null,
+    title: "Adjust appointment",
     headers: [
       { text: "ID", value: "id" },
       { text: "Appointment Date", value: "appointmentDate", sortable: true },
       { text: "Status", value: "status" },
-      { text: "Patient", value: "patientId" }
-    ],
-    body: {
-      options: {
-        page: 1,
-        itemsPerPage: 5,
-        sortBy: ["patientName"]
-      }
+      { text: "Patient", value: "patientId" },
+      { text: "Actions", value: "actions" }
+    ]
+  }),
+  methods: {
+    accept_appointment(id) {
+      this.$store.dispatch("accept_appointment", id);
     }
-  })
+  }
 };
 </script>
