@@ -160,13 +160,33 @@
         </template>
 
         <template v-slot:[`item.actions`]="{ item }">
-          <v-btn small class="button my-2" @click="accept_appointment(item.id)"
+          <v-btn
+            small
+            class="button my-2"
+            @click="accept_appointment(item.id)"
+            v-show="item.status === 'WAITING'"
             >accept</v-btn
           >
-          <v-btn small color="button warning" @click.stop="editItem(item)"
+          <v-btn
+            small
+            color="button warning"
+            v-show="
+              item.status === 'ACCEPTED' ||
+                item.status === 'WAITING' ||
+                item.status === 'PROGRESSING'
+            "
+            @click.stop="editItem(item)"
             >re-schedule</v-btn
           >
-          <v-btn small color="button error" @click="reject_appointment(item.id)"
+          <v-btn
+            small
+            color="button error"
+            v-show="
+              item.status === 'ACCEPTED' ||
+                item.status === 'WAITING' ||
+                item.status === 'PROGRESSING'
+            "
+            @click="reject_appointment(item.id)"
             >decline</v-btn
           >
         </template>
