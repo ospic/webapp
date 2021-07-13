@@ -178,9 +178,9 @@ const actions = {
   },
 
 
-  async edit_appointment({ commit }, payload) {
+  async update_appointment({ commit }, payload) {
     commit(EDIT_APPOINTMENT);
-    await this.$api.$put(`appointments/${payload.id}`, payload.data).then(response => {
+    await this.$api.$put(`appointments/${payload.id}`, payload).then(response => {
       commit(EDIT_APPOINTMENT_SUCCESS, response);
     }).catch(error => {
       commit(EDIT_APPOINTMENT_ERROR);
