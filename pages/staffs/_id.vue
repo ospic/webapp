@@ -13,7 +13,7 @@
     </div>
     <v-container class="ma-0 pa-0" fluid>
       <v-row>
-        <v-col cols="12" md="3">
+        <v-col cols="12" v-if="show_profile" :md="profile_size">
           <v-progress-circular
             v-if="staffdata == null"
             indeterminate
@@ -33,7 +33,9 @@
             <div class="d-flex flex-row justify-center mb-2">
               <v-icon class="red--text lighten-4 mx-1">mdi-account-lock</v-icon>
               <v-icon class="blue--text lighten-4 mx-1">mdi-camera</v-icon>
-              <v-icon class="orange--text mx-1">mdi-pencil</v-icon>
+              <v-icon class="orange--text mx-1" @click="_close_open"
+                >mdi-eye</v-icon
+              >
             </div>
             <v-card-text>
               <v-simple-table>
@@ -50,7 +52,7 @@
             </v-card-text>
           </v-card>
         </v-col>
-        <v-col cols="12" md="9">
+        <v-col cols="12" :md="data_size">
           <v-tabs
             slider-color="secondary"
             background-color="primary"
@@ -134,7 +136,10 @@ export default {
       staffpatients: [],
       services: [],
       allservices: null,
-      tab: null
+      tab: null,
+      profile_size: 3,
+      data_size: 9,
+      show_profile: true
     };
   },
   methods: {
@@ -181,6 +186,11 @@ export default {
         .catch(error => {
           console.log(error);
         });
+    },
+    _close_open() {
+      this.data_size = 12;
+      this.profile_size = 0;
+      this.show_profile = false;
     },
     getAppointments() {
       this.$store.dispatch("get_physician_appointments", this.$route.params.id);
