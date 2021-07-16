@@ -126,7 +126,7 @@ export default {
   props:{
     diagnoses:{
       type: Array,
-      default: null
+      default: []
     },
     isActive:{
       type:Boolean,
