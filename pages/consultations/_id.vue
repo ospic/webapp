@@ -339,17 +339,17 @@
   </div>
 </template>
 <script>
-import DoctorTab from "@/components/profile/tabs/doctor";
-import BiographTab from "@/components/profile/tabs/biograph";
-import DiagnosesTab from "@/components/profile/tabs/diagnoses";
-import AdmissionsTab from "@/components/profile/tabs/admissions";
-import c_type_divider from "@/components/profile/c_type_divider";
-import AddressCard from "@/components/profile/c_address_card";
-import ConsultationsTab from "@/components/profile/tabs/consultations";
-import ChargesAndConstsTab from "@/components/profile/tabs/charges";
-import MedicalServicesTab from "@/components/profile/tabs/medicalservices";
-import MedicineServiceTab from "@/components/profile/tabs/medications";
-import ReportsTab from "@/components/profile/tabs/reports";
+import DoctorTab from "@/components/consultation/tabs/doctor";
+import BiographTab from "@/components/consultation/tabs/biograph";
+import DiagnosesTab from "@/components/consultation/tabs/diagnoses";
+import AdmissionsTab from "@/components/consultation/tabs/admissions";
+import c_type_divider from "@/components/consultation/c_type_divider";
+import AddressCard from "@/components/consultation/c_address_card";
+import ConsultationsTab from "@/components/consultation/tabs/consultations";
+import ChargesAndConstsTab from "@/components/consultation/tabs/charges";
+import MedicalServicesTab from "@/components/consultation/tabs/medicalservices";
+import MedicineServiceTab from "@/components/consultation/tabs/medications";
+import ReportsTab from "@/components/consultation/tabs/reports";
 
 export default {
   props: {
