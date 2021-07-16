@@ -11,7 +11,7 @@
   </div>
 </template>
 <script>
-import ConsultationCard from "@/components/profile/consultation_card";
+import ConsultationCard from "@/components/consultation/consultation_card";
 import { mapGetters } from "vuex";
 export default {
   components: {
