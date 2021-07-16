@@ -147,7 +147,7 @@
   </v-container>
 </template>
 <script>
-import Charges from "@/components/profile/tabs/charges";
+import Charges from "@/components/consultation/tabs/charges";
 export default {
   components: {
     "charges-component": Charges

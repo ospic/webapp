@@ -216,11 +216,11 @@
 </template>
 <script lang="js">
 
-import BiographTab from "@/components/profile/tabs/biograph"
-import c_type_divider from "@/components/profile/c_type_divider";
-import ConsultationsTab from "@/components/profile/tabs/consultations";
-import AddressCard from "@/components/profile/c_address_card.vue";
-import InsuranceTab from "@/components/profile/tabs/insurance.vue";
+import BiographTab from "@/components/consultation/tabs/biograph"
+import c_type_divider from "@/components/consultation/c_type_divider";
+import ConsultationsTab from "@/components/consultation/tabs/consultations";
+import AddressCard from "@/components/consultation/c_address_card.vue";
+import InsuranceTab from "@/components/consultation/tabs/insurance.vue";
 
 export default {
   props: {

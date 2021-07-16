@@ -81,7 +81,7 @@
 </template>
 <script>
 import StaffCard from "@/components/staff/staff_card";
-import info_card_info from "@/components/profile/c_info_card";
+import info_card_info from "@/components/consultation/c_info_card";
 export default {
   components: {
     "card-info": info_card_info,

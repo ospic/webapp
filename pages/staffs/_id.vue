@@ -122,7 +122,7 @@
   </div>
 </template>
 <script>
-import ServiceCard from "@/components/profile/consultation_card";
+import ServiceCard from "@/components/consultation/consultation_card";
 import AppointmentsComponent from "@/components/staff/tabs/appointments.vue";
 import { mapGetters } from "vuex";
 export default {

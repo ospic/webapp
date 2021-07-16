@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import ChargesTemplate from "@/components/profile/tabs/charges"
+import ChargesTemplate from "@/components/consultation/tabs/charges"
 import PDFViewer from "@/components/PdfViewer.vue"
 import { mapGetters } from "vuex";
 Vue.mixin({
