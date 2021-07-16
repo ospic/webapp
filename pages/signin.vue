@@ -2,7 +2,7 @@
   <v-container class="fill-height" fluid>
     <v-row align="center" class="justify-center" justify="center" no-gutters>
       <v-col cols="12" class="d-flex justify-space-around">
-        <v-card class="elevation-12">
+        <v-card class="elevation-12" width="400">
           <v-toolbar prominent :src="image" flat>
             <v-toolbar-title color="white" dense>
               <img
@@ -26,6 +26,7 @@
                 <v-row>
                   <v-col cols="12" sm="12">
                     <v-text-field
+                      rounded
                       label="Username"
                       placeholder="e.g. demo"
                       v-model="payload.username"
@@ -37,6 +38,7 @@
                     ></v-text-field>
 
                     <v-text-field
+                      rounded
                       v-model="payload.password"
                       prepend-inner-icon="lock"
                       :append-icon="show1 ? 'visibility' : 'visibility_off'"
@@ -59,6 +61,9 @@
           <v-card-actions>
             <v-spacer></v-spacer>
             <v-btn
+              block
+              large
+              rounded
               color="primary"
               type="submit"
               :disabled="!valid"
