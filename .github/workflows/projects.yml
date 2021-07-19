@@ -16,7 +16,7 @@ env:
   GITHUB_TOKEN: ${{ secrets.GITHUBTOKEN }}
   MY_GITHUB_TOKEN: ${{ secrets.GITHUBTOKEN }}
 jobs:
-  build:
+  build_test:
     runs-on: ubuntu-latest
     # runs-on: self-hosted
 
