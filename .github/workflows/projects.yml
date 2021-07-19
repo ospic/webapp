@@ -48,3 +48,24 @@ jobs:
         with:
           project: "https://github.com/orgs/ospic/projects/1"
           column_name: "To do"
+
+  build:
+    runs-on: ubuntu-latest
+    # runs-on: self-hosted
+
+    strategy:
+      matrix:
+        node-version: [15.x]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: npm cache verify
+      - run: npm cache clean -f
+      - run: rm -rf node_modules package-lock.json 
+      - run: npm i --save
+      - run: npm run production
