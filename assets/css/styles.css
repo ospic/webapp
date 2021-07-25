@@ -35,7 +35,7 @@
   font-family: "FiraSans";
 }
 
-body {
+main {
   background-color: #f4f4f4;
   background-size: cover;
   background-attachment: fixed;
@@ -45,6 +45,23 @@ body {
   -webkit-box-shadow: inset 0 0 0 1000px rgba(63, 203, 98, 0);
   box-shadow: inset 0 0 0 1000px rgba(63, 203, 98, 0);
   zoom: 75%;
+}
+
+main.v-main.default {
+  zoom: 75%;
+}
+
+main.v-main.login {
+  background: transparent;
+  background-image: url("https://storage.googleapis.com/aims-edu/images/000/001/174/lead/64.jpg");
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+nav,
+header {
+  zoom: 80%;
 }
 
 .page-enter-active,
