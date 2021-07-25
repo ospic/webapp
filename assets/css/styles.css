@@ -1840,7 +1840,11 @@ button.button span {
 }
 
 button.button.cancel {
-  background-color: #2196f3 !important;
+  background-color: #fb8c00 !important;
+}
+
+button.button.cancel span {
+  color: white;
 }
 
 button.button.upload {

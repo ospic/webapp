@@ -7,7 +7,10 @@ button {
       font-size: large;
     }
     &.cancel {
-      background-color: $color_info !important;
+      span {
+        color: white;
+      }
+      background-color: $color_warning !important;
     }
     &.upload {
       background-color: $color_teal !important;
