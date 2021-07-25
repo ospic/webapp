@@ -35,7 +35,6 @@
                         v-model="event.name"
                         label="Event name"
                         clearable
-                        outlined
                         :rules="[v => !!v || 'Field is required']"
                         required
                       >
@@ -43,11 +42,10 @@
                     </v-col>
                     <v-col cols="12">
                       <v-textarea
-                        name="input-7-1"
+                        name="input--1"
                         v-model="event.description"
                         label="Event description"
                         hint="Description"
-                        filled
                         :rules="[v => !!v || 'Field is required']"
                         required
                       ></v-textarea>
@@ -118,37 +116,6 @@
                         label="Start time"
                         v-model="event.startTime"
                       ></v-text-field>
-                      <!--<v-menu
-                        ref="start"
-                        v-model="menu2"
-                        :close-on-content-click="false"
-                        :nudge-right="40"
-                        :return-value.sync="event.startTime"
-                        transition="scale-transition"
-                        offset-y
-                        max-width="290px"
-                        min-width="290px"
-                      >
-                        <template v-slot:activator="{ on, attrs }">
-                          <v-text-field
-                            v-model="event.startTime"
-                            label="Start time"
-                            prepend-icon="mdi-clock-time-four-outline"
-                            readonly
-                            v-bind="attrs"
-                            v-on="on"
-                            :rules="[v => !!v || 'Field is required']"
-                            required
-                          ></v-text-field>
-                        </template>
-                        <v-time-picker
-                          v-if="menu2"
-                          v-model="event.startTime"
-                          full-width
-                          ampm-in-title
-                          @click:minute="$refs.start.save(event.startTime)"
-                        ></v-time-picker>
-                      </v-menu>-->
                     </v-col>
                     <v-spacer></v-spacer>
 
@@ -164,44 +131,6 @@
                         min="12:00"
                         max="18:00"
                       ></v-text-field>
-                      <!--<v-dialog
-                        ref="dialog"
-                        v-model="modal2"
-                        :return-value.sync="event.endTime"
-                        persistent
-                        width="290px"
-                      >
-                        <template v-slot:activator="{ on, attrs }">
-                          <v-text-field
-                            v-model="event.endTime"
-                            label="End time"
-                            prepend-icon="mdi-clock-time-four-outline"
-                            readonly
-                            v-bind="attrs"
-                            v-on="on"
-                            :rules="[v => !!v || 'Field is required']"
-                            required
-                          ></v-text-field>
-                        </template>
-
-                        <v-time-picker
-                          v-if="modal2"
-                          v-model="event.endTime"
-                          full-width
-                        >
-                          <v-spacer></v-spacer>
-                          <v-btn text color="primary" @click="modal2 = false">
-                            Cancel
-                          </v-btn>
-                          <v-btn
-                            text
-                            color="primary"
-                            @click="$refs.dialog.save(event.endTime)"
-                          >
-                            OK
-                          </v-btn>
-                        </v-time-picker>
-                      </v-dialog>-->
                     </v-col>
                   </v-row>
                 </v-card-text>
@@ -294,19 +223,21 @@
                 @click:date="viewDay"
                 @change="updateRange"
               ></v-calendar>
-              <v-menu
+
+              <v-dialog
                 v-model="selectedOpen"
-                :close-on-content-click="false"
-                :activator="selectedElement"
-                offset-x
+                hide-overlay
+                transition="fab-transition"
+                scrollable
+                width="600"
               >
                 <v-card
                   color="grey lighten-4"
-                  min-width="350px"
+                  min-width="100px"
                   flat
                   v-if="selectedEvent.eventSummary"
                 >
-                  <v-toolbar :color="selectedEvent.color" dark>
+                  <v-toolbar :color="selectedEvent.color" flat dark>
                     <v-toolbar-title
                       v-html="selectedEvent.name"
                     ></v-toolbar-title>
@@ -338,7 +269,7 @@
                     </v-btn>
                   </v-card-actions>
                 </v-card>
-              </v-menu>
+              </v-dialog>
             </v-sheet>
           </v-col>
         </v-row>
