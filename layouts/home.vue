@@ -1,9 +1,9 @@
 <template>
   <v-app
     class="aspire"
-    style="background: transparent; background-image: url('https://storage.googleapis.com/aims-edu/images/000/001/174/lead/64.jpg');  background-repeat: no-repeat; height:900px;"
+    style="background: transparent; background-image: url('https://storage.googleapis.com/aims-edu/images/000/001/174/lead/64.jpg'); height: 100%; background-repeat: no-repeat; background-size: cover;"
   >
-    <v-main>
+    <v-main class="login">
       <nuxt />
     </v-main>
     <v-footer class="primary" fixed padless app>
