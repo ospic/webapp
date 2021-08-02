@@ -375,9 +375,18 @@ export default {
       }
     }
   },
+  created() {
+    if (this.$route.query.edit) {
+      this.edit = true;
+    }
+  },
   computed: {
     user() {
-      return this.$store.getters.profile;
+      var user = this.$store.getters.profile;
+      if (user.staff.fullName === null) {
+        this.edit = true;
+      }
+      return user;
     },
     entityThumbNail() {
       return this.user.staff.imageUrl;
