@@ -1,18 +1,12 @@
 <template>
-  <v-col class="pa-1" xs="6" sm="6" md="2" xl="1">
+  <v-col class="pa-1" xs="6" sm="6" md="2" xl="2">
     <v-hover>
       <template v-slot:default="{ hover }">
-        <v-card
-          class="default"
-          flat
-          :elevation="hover ? 3 : 2"
-          color="primary"
-          tile
-        >
+        <v-card class="default" outline color="primary" tile>
           <v-list-item>
             <v-list-item-content>
               <v-list-item-title
-                class=" font-weight-black "
+                class="font-weight-black"
                 v-html="item.value"
               ></v-list-item-title>
               <v-list-item-subtitle
@@ -34,12 +28,12 @@ export default {
   props: {
     item: {
       type: Object,
-      default: null
-    }
+      default: null,
+    },
   },
-  data: function() {
+  data: function () {
     return {};
-  }
+  },
 };
 </script>
 <style scoped>
