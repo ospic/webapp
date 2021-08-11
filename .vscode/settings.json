@@ -8,5 +8,7 @@
   "javascript.suggest.completeFunctionCalls": true,
   "jshint.options": {
     "esversion": 8
-  }
+  },
+  "files.autoSave": "onFocusChange",
+  "files.autoSaveDelay": 10
 }
