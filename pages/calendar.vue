@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="breadcrumb  ">
+    <div class="breadcrumb">
       <router-link to="/">{{ $t("label.breadcrumb.dashboard") }}</router-link>
       <router-link to="/calendar" class="active">{{
         $t("label.breadcrumb.workingcalendar")
@@ -35,7 +35,7 @@
                         v-model="event.name"
                         label="Event name"
                         clearable
-                        :rules="[v => !!v || 'Field is required']"
+                        :rules="[(v) => !!v || 'Field is required']"
                         required
                       >
                       </v-text-field>
@@ -46,7 +46,7 @@
                         v-model="event.description"
                         label="Event description"
                         hint="Description"
-                        :rules="[v => !!v || 'Field is required']"
+                        :rules="[(v) => !!v || 'Field is required']"
                         required
                       ></v-textarea>
                     </v-col>
@@ -135,9 +135,7 @@
                   </v-row>
                 </v-card-text>
                 <v-card-actions class="justify-end">
-                  <v-btn @click="dialog.value = false" class="button cancel"
-                    >Cancel</v-btn
-                  >
+                  <v-btn @click="close" class="button cancel">Cancel</v-btn>
                   <v-btn
                     v-if="edit"
                     @click="update_calendar_event"
@@ -165,14 +163,10 @@
                   Today
                 </v-btn>
                 <v-btn fab text small color="grey darken-2" @click="prev">
-                  <v-icon small>
-                    mdi-chevron-left
-                  </v-icon>
+                  <v-icon small> mdi-chevron-left </v-icon>
                 </v-btn>
                 <v-btn fab text small color="grey darken-2" @click="next">
-                  <v-icon small>
-                    mdi-chevron-right
-                  </v-icon>
+                  <v-icon small> mdi-chevron-right </v-icon>
                 </v-btn>
                 <v-toolbar-title v-if="$refs.calendar">
                   {{ $refs.calendar.title }}
@@ -187,9 +181,7 @@
                       v-on="on"
                     >
                       <span>{{ typeToLabel[type] }}</span>
-                      <v-icon right>
-                        mdi-menu-down
-                      </v-icon>
+                      <v-icon right> mdi-menu-down </v-icon>
                     </v-btn>
                   </template>
                   <v-list>
@@ -221,7 +213,6 @@
                 @click:event="showEvent"
                 @click:more="viewDay"
                 @click:date="viewDay"
-                @change="updateRange"
               ></v-calendar>
 
               <v-dialog
@@ -299,12 +290,12 @@ export default {
       month: "Month",
       week: "Week",
       day: "Day",
-      "4day": "4 Days"
+      "4day": "4 Days",
     },
     selectedEvent: {},
     selectedElement: null,
     selectedOpen: false,
-    events: [],
+
     event: {
       name: null,
       startDate: null,
@@ -313,7 +304,7 @@ export default {
       endTime: null,
       timed: true,
       description: null,
-      departmentId: null
+      departmentId: null,
     },
     colors: [
       "blue",
@@ -322,7 +313,7 @@ export default {
       "cyan",
       "green",
       "orange",
-      "grey darken-1"
+      "grey darken-1",
     ],
     names: [
       "Meeting",
@@ -332,15 +323,15 @@ export default {
       "Event",
       "Birthday",
       "Conference",
-      "Party"
-    ]
+      "Party",
+    ],
   }),
   mounted() {
     this.$refs.calendar.checkChange();
     this.$store.dispatch("get_calendar_events");
   },
   methods: {
-    save_event: function() {
+    save_event: function () {
       this.event.startDate = this.dates[0];
       this.event.endDate = this.dates[1];
       if (this.$refs.form.validate()) {
@@ -390,35 +381,12 @@ export default {
 
       nativeEvent.stopPropagation();
     },
-    updateRange({ start, end }) {
-      const events = [];
-
-      const min = new Date(`${start.date}T00:00:00`);
-      const max = new Date(`${end.date}T23:59:59`);
-      const days = (max.getTime() - min.getTime()) / 86400000;
-      const eventCount = this.rnd(days, days + 20);
-
-      for (let i = 0; i < eventCount; i++) {
-        const allDay = this.rnd(0, 3) === 0;
-        const firstTimestamp = this.rnd(min.getTime(), max.getTime());
-        const first = new Date(firstTimestamp - (firstTimestamp % 900000));
-        const secondTimestamp = this.rnd(2, allDay ? 288 : 8) * 900000;
-        const second = new Date(first.getTime() + secondTimestamp);
-
-        events.push({
-          name: this.names[this.rnd(0, this.names.length - 1)],
-          start: first,
-          end: second,
-          color: this.colors[this.rnd(0, this.colors.length - 1)],
-          timed: !allDay
-        });
-      }
-
-      this.events = this.fevents;
+    close: function () {
+      this.$refs.form.reset();
+      this.edit = false;
+      this.dialog = false;
     },
-    rnd(a, b) {
-      return Math.floor((b - a + 1) * Math.random()) + a;
-    },
+
     delete_calendar_event(val) {
       this.$store.dispatch("delete_calendar_event", val).then(() => {
         setTimeout(
@@ -431,15 +399,11 @@ export default {
       });
     },
     initiate_update(e) {
-      var startDate =
-        e.start.getFullYear() +
-        "-" +
-        e.start.getMonth() +
-        "-" +
-        e.start.getDay();
+      var startD = new Date(e.start);
+      var endD = new Date(e.end);
 
-      var endDate =
-        e.end.getFullYear() + "-" + e.end.getMonth() + "-" + e.end.getDay();
+      var startDate = startD.toISOString().split("T")[0];
+      var endDate = endD.toISOString().split("T")[0];
       this.dates[0] = startDate;
       this.dates[1] = endDate;
 
@@ -450,49 +414,51 @@ export default {
         endDate: this.dates[1],
         endTime: this.update_time_format(e.end),
         timed: e.timed,
-        description: e.eventSummary.description
+        description: e.eventSummary.description,
       };
       this.updateId = e.eventSummary.id;
       this.dialog = true;
       this.edit = true;
     },
     update_time_format(time) {
-      return time
-        .toLocaleTimeString()
-        .slice(0, -3)
-        .split(":")[0] < 10
+      return time.toLocaleTimeString().slice(0, -3).split(":")[0] < 10
         ? "0" + time.toLocaleTimeString().slice(0, -3)
         : time.toLocaleTimeString().slice(0, -3);
+    },
+    month_format(month) {
+      return ("0" + month).slice(-2);
     },
 
     update_calendar_event() {
       this.event.description = this.event.description;
+      console.log(this.dates);
       this.event.startDate = this.dates[0];
       this.event.endDate = this.dates[1];
+
       var payload = {
         id: this.updateId,
-        data: this.event
+        data: this.event,
       };
       this.$store.dispatch("update_calendar_event", payload).then(() => {
-        setTimeout(
-          () => this.$store.dispatch("get_calendar_events"),
-          this.delay_seconds
-        );
+        setTimeout(() => {
+          this.$store.dispatch("get_calendar_events");
+          this.close();
+        }, this.delay_seconds);
       });
-    }
+    },
   },
 
   computed: {
     ...mapGetters({
-      eventsa: "events"
+      eventsa: "events",
     }),
-    fevents() {
+    events() {
       const events = [];
-      this.eventsa.forEach(e => {
+      this.eventsa.forEach((e) => {
         var summary = {
           id: e.id,
           editable: e.ownedByMe,
-          description: e.description
+          description: e.description,
         };
         events.push({
           name: e.name,
@@ -500,11 +466,11 @@ export default {
           end: new Date(e.end),
           color: e.color,
           timed: e.timed,
-          eventSummary: summary
+          eventSummary: summary,
         });
       });
       return events;
-    }
-  }
+    },
+  },
 };
 </script>
