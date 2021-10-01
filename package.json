@@ -33,7 +33,7 @@
     "secure-ls": "^1.2.6",
     "sweetalert": "^2.1.2",
     "vue-apexcharts": "^1.6.2",
-    "vue-i18n": "^8.26.1",
+    "vue-i18n": "^8.26.3",
     "vue-pdf-app": "^2.1.0",
     "vuetify": "^2.5.8",
     "vuex-persistedstate": "^4.1.0"
