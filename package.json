@@ -40,14 +40,14 @@
   },
   "devDependencies": {
     "@babel/eslint-parser": "7.15.8",
-    "@nuxtjs/eslint-config": "^6.0.0",
+    "@nuxtjs/eslint-config": "^7.0.0",
     "@nuxtjs/eslint-module": "^3.0.2",
     "@nuxtjs/vuetify": "^1.12.1",
     "@vue/test-utils": "^1.2.2",
     "babel-core": "7.0.0-bridge.0",
     "babel-runtime": "^6.26.0",
     "dotenv": "^10.0.0",
-    "eslint": "^7.32.0",
+    "eslint": "^8.1.0",
     "eslint-plugin-nuxt": "^3.0.0",
     "sass": "1.43.3"
   }
