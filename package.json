@@ -35,7 +35,7 @@
     "vue-apexcharts": "^1.6.2",
     "vue-i18n": "^8.26.7",
     "vue-pdf-app": "^2.1.0",
-    "vuetify": "^2.5.11",
+    "vuetify": "^2.5.12",
     "vuex-persistedstate": "^4.1.0"
   },
   "devDependencies": {
