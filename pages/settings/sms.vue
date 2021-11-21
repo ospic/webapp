@@ -130,15 +130,11 @@
         <span>{{ $t("label.tooltip.active") }}</span>
       </v-tooltip>
 
-      <v-icon small class="mr-2" @click="editItem(item)">
-        mdi-pencil
-      </v-icon>
-      <v-icon small @click="deleteItem(item)">
-        mdi-delete
-      </v-icon>
+      <v-icon small class="mr-2" @click="editItem(item)"> mdi-pencil </v-icon>
+      <v-icon small @click="deleteItem(item)"> mdi-delete </v-icon>
     </template>
     <template v-slot:[`item.isActive`]="{ item }">
-      <v-icon class=" font-weight-black" color="primary" v-if="item.isActive">
+      <v-icon class="font-weight-black" color="primary" v-if="item.isActive">
         mdi-check
       </v-icon>
     </template>
@@ -161,19 +157,21 @@ export default {
         text: "ID",
         align: "start",
         sortable: false,
-        value: "id"
+        value: "id",
+        class: "primary",
       },
       {
         text: "Name",
         align: "start",
         sortable: false,
-        value: "name"
+        value: "name",
+        class: "primary",
       },
-      { text: "SID", value: "sid" },
-      { text: "Token", value: "token" },
-      { text: "From Number", value: "phoneNumber" },
-      { text: "Is Active?", value: "isActive" },
-      { text: "Actions", value: "actions", sortable: false }
+      { text: "SID", value: "sid", class: "primary" },
+      { text: "Token", value: "token", class: "primary" },
+      { text: "From Number", value: "phoneNumber", class: "primary" },
+      { text: "Is Active?", value: "isActive", class: "primary" },
+      { text: "Actions", value: "actions", class: "primary", sortable: false },
     ],
     editedItem: {
       id: "",
@@ -181,7 +179,7 @@ export default {
       sid: "",
       token: "",
       phoneNumber: "",
-      isActive: false
+      isActive: false,
     },
     defaultItem: {
       id: "",
@@ -189,8 +187,8 @@ export default {
       sid: "",
       token: "",
       phoneNumber: "",
-      isActive: false
-    }
+      isActive: false,
+    },
   }),
 
   beforeMount() {
@@ -256,18 +254,18 @@ export default {
           });
         this.close();
       }
-    }
+    },
   },
   computed: {
     ...mapGetters({
-      smsconfigurations: "smsconfigurations"
+      smsconfigurations: "smsconfigurations",
     }),
 
     formTitle() {
       return this.editedIndex === -1
         ? "label.titles.newsmsconfigurations"
         : "label.titles.updatesmsconfigurations";
-    }
+    },
   },
   watch: {
     dialog(val) {
@@ -275,7 +273,7 @@ export default {
     },
     dialogDelete(val) {
       val || this.closeDelete();
-    }
-  }
+    },
+  },
 };
 </script>

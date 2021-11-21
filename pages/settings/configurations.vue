@@ -51,7 +51,7 @@
         </v-toolbar>
       </template>
       <template v-slot:[`item.active`]="{ item }">
-        <v-icon class=" font-weight-black" color="primary" v-if="item.active">
+        <v-icon class="font-weight-black" color="primary" v-if="item.active">
           mdi-check
         </v-icon>
         <v-icon class="font-weight-black" small color="primary" v-else>
@@ -60,9 +60,7 @@
       </template>
 
       <template v-slot:[`item.actions`]="{ item }">
-        <v-icon class="mr-2" @click="editItem(item)">
-          mdi-pencil
-        </v-icon>
+        <v-icon class="mr-2" @click="editItem(item)"> mdi-pencil </v-icon>
         &nbsp;
         <v-btn
           @click="updatestatus(item)"
@@ -95,46 +93,48 @@ export default {
         text: "ID",
         align: "start",
         sortable: false,
-        value: "id"
+        value: "id",
+        class: "primary",
       },
       {
         text: "Name",
         align: "start",
         sortable: false,
-        value: "name"
+        value: "name",
+        class: "primary",
       },
-      { text: "Value", value: "value" },
-      { text: "Active", value: "active" },
-      { text: "Actions", value: "actions", sortable: false }
+      { text: "Value", value: "value", class: "primary" },
+      { text: "Active", value: "active", class: "primary" },
+      { text: "Actions", value: "actions", class: "primary", sortable: false },
     ],
     editedItem: {
       id: "",
       name: "",
       value: false,
       email: "",
-      code: null
+      code: null,
     },
     defaultItem: {
       id: "",
       name: "",
       value: false,
       email: "",
-      code: null
+      code: null,
     },
     config: {
       configurationValue: 0,
-      configurationId: 0
+      configurationId: 0,
     },
     valid: true,
 
     nameRules: [
-      v => !!v || "Name is required",
-      v => (v && v.length > 5) || "Name must be less than 5 characters"
+      (v) => !!v || "Name is required",
+      (v) => (v && v.length > 5) || "Name must be less than 5 characters",
     ],
     emailRules: [
-      v => !!v || "E-mail is required",
-      v => /.+@.+\..+/.test(v) || "E-mail must be valid"
-    ]
+      (v) => !!v || "E-mail is required",
+      (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
+    ],
   }),
   created() {
     this.$store.dispatch("get_configurations");
@@ -156,7 +156,7 @@ export default {
     updatestatus(it) {
       var payload = {
         action: it.active ? "deactivate" : "activate",
-        id: it.id
+        id: it.id,
       };
       this.$store.dispatch("update_configuration_status", payload).then(() => {
         setTimeout(
@@ -164,12 +164,12 @@ export default {
           this.delay_seconds
         );
       });
-    }
+    },
   },
   computed: {
     ...mapGetters({
-      configurations: "configurations"
-    })
+      configurations: "configurations",
+    }),
   },
   watch: {
     dialog(val) {
@@ -181,7 +181,7 @@ export default {
     },
     dialogDelete(val) {
       val || this.closeDelete();
-    }
-  }
+    },
+  },
 };
 </script>

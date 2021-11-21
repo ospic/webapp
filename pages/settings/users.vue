@@ -91,7 +91,7 @@
                           small-chips
                           multiple
                           :rules="[
-                            v => !!v || 'You must select one to continue!'
+                            (v) => !!v || 'You must select one to continue!',
                           ]"
                           label="Role"
                           required
@@ -114,7 +114,7 @@
                           small-chips
                           v-if="editedItem.isStaff"
                           :rules="[
-                            v => !!v || 'You must select one to continue!'
+                            (v) => !!v || 'You must select one to continue!',
                           ]"
                           label="Department"
                           @click="_fetch_departments"
@@ -156,7 +156,7 @@
         </v-toolbar>
       </template>
       <template v-slot:[`item.isStaff`]="{ item }">
-        <v-icon class=" font-weight-black" color="primary" v-if="item.isStaff">
+        <v-icon class="font-weight-black" color="primary" v-if="item.isStaff">
           mdi-check
         </v-icon>
         <v-icon class="font-weight-black" color="primary" small v-else>
@@ -164,12 +164,8 @@
         </v-icon>
       </template>
       <template v-slot:[`item.actions`]="{ item }">
-        <v-icon small class="mr-2" @click="editItem(item)">
-          mdi-pencil
-        </v-icon>
-        <v-icon small @click="deleteItem(item)">
-          mdi-delete
-        </v-icon>
+        <v-icon small class="mr-2" @click="editItem(item)"> mdi-pencil </v-icon>
+        <v-icon small @click="deleteItem(item)"> mdi-delete </v-icon>
       </template>
       <template v-slot:[`item.roles`]="{ item }">
         <v-chip
@@ -201,18 +197,20 @@ export default {
         text: "ID",
         align: "start",
         sortable: false,
-        value: "id"
+        value: "id",
+        class: "primary",
       },
       {
         text: "Username",
         align: "start",
         sortable: false,
-        value: "username"
+        value: "username",
+        class: "primary",
       },
-      { text: "Email", value: "email" },
-      { text: "Is Staff ?", value: "isStaff" },
-      { text: "Roles", value: "roles" },
-      { text: "Actions", value: "actions", sortable: false }
+      { text: "Email", value: "email", class: "primary" },
+      { text: "Is Staff ?", value: "isStaff", class: "primary" },
+      { text: "Roles", value: "roles", class: "primary" },
+      { text: "Actions", value: "actions", class: "primary", sortable: false },
     ],
     editedItem: {
       id: "",
@@ -222,7 +220,7 @@ export default {
       staff: null,
       password: "",
       roles: [],
-      departmentId: 0
+      departmentId: 0,
     },
     defaultItem: {
       id: "",
@@ -232,7 +230,7 @@ export default {
       staff: null,
       password: "",
       roles: [],
-      departmentId: 0
+      departmentId: 0,
     },
     colors: [
       "red",
@@ -245,19 +243,19 @@ export default {
       "brown",
       "deep-orange",
       "blue-grey",
-      "cyan"
+      "cyan",
     ],
     currentColor: "",
     valid: true,
 
     nameRules: [
-      v => !!v || "Name is required",
-      v => (v && v.length > 5) || "Name must be less than 5 characters"
+      (v) => !!v || "Name is required",
+      (v) => (v && v.length > 5) || "Name must be less than 5 characters",
     ],
     emailRules: [
-      v => !!v || "E-mail is required",
-      v => /.+@.+\..+/.test(v) || "E-mail must be valid"
-    ]
+      (v) => !!v || "E-mail is required",
+      (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
+    ],
   }),
   created() {
     this.$store.dispatch("fetchuserroles");
@@ -283,7 +281,7 @@ export default {
           ? null
           : this.editedItem.staff.department.id;
       var roles = [];
-      this.editedItem.roles.forEach(role => {
+      this.editedItem.roles.forEach((role) => {
         roles.push(role.id);
       });
       this.editedItem.roles = roles;
@@ -336,22 +334,22 @@ export default {
     _fetch_departments() {
       this.$store.dispatch("retrieve_departments");
     },
-    _get_users: function() {
+    _get_users: function () {
       this.$store.dispatch("retrieveAllusers");
-    }
+    },
   },
   computed: {
     ...mapGetters({
       userslist: "users",
       userroles: "userroles",
-      departments: "departments"
+      departments: "departments",
     }),
 
     formTitle() {
       return this.editedIndex === -1
         ? "label.titles.newuser"
         : "label.titles.edituser";
-    }
+    },
   },
   watch: {
     dialog(val) {
@@ -359,7 +357,7 @@ export default {
     },
     dialogDelete(val) {
       val || this.closeDelete();
-    }
-  }
+    },
+  },
 };
 </script>

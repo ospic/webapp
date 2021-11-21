@@ -69,7 +69,7 @@
                           small-chips
                           multiple
                           :rules="[
-                            v => !!v || 'You must select one to continue!'
+                            (v) => !!v || 'You must select one to continue!',
                           ]"
                           label="Select role permissions"
                           required
@@ -106,7 +106,7 @@
 <script>
 import { mapGetters } from "vuex";
 export default {
-  data: function() {
+  data: function () {
     return {
       editedIndex: -1,
       headers: [
@@ -114,27 +114,34 @@ export default {
           text: "ID",
           align: "start",
           sortable: false,
-          value: "id"
+          value: "id",
+          class: "primary",
         },
         {
           text: "Name",
           align: "start",
           sortable: false,
-          value: "name"
+          value: "name",
+          class: "primary",
         },
-        { text: "Actions", value: "actions", sortable: false }
+        {
+          text: "Actions",
+          value: "actions",
+          class: "primary",
+          sortable: false,
+        },
       ],
       editedItem: {
         id: "",
         name: "",
-        privileges: []
+        privileges: [],
       },
       dialog: false,
-      valid: true
+      valid: true,
     };
   },
   methods: {
-    handleClick: function(item) {
+    handleClick: function (item) {
       this.$router.push("roles/" + item.id);
     },
     editItem(item) {
@@ -166,14 +173,14 @@ export default {
     async update_role_privileges(id, payload) {
       return await this.$api
         .$put(`auth/roles/${id}/`, payload)
-        .then(response => {
+        .then((response) => {
           this.$router.push(`roles/${response.id}`);
           this.request_data();
         })
-        .catch(error => {
+        .catch((error) => {
           console.log(error);
         });
-    }
+    },
   },
   beforeMount() {
     this.$store.dispatch("request_role_privileges");
@@ -182,14 +189,14 @@ export default {
   computed: {
     ...mapGetters({
       authorities: "privileges",
-      roles: "userroles"
+      roles: "userroles",
     }),
     formTitle() {
       return this.editedIndex === -1
         ? "label.titles.newrole"
         : "label.titles.editrole";
-    }
-  }
+    },
+  },
 };
 </script>
 <style scoped>

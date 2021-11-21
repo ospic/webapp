@@ -40,7 +40,7 @@
         </v-toolbar>
       </template>
       <template v-slot:[`item.isStaff`]="{ item }">
-        <v-icon class=" font-weight-black" color="primary" v-if="item.isStaff">
+        <v-icon class="font-weight-black" color="primary" v-if="item.isStaff">
           mdi-check
         </v-icon>
         <v-icon class="font-weight-black" small color="primary" v-else>
@@ -86,18 +86,20 @@ export default {
         text: "ID",
         align: "start",
         sortable: false,
-        value: "id"
+        value: "id",
+        class: "primary",
       },
       {
         text: "Username",
         align: "start",
         sortable: false,
-        value: "username"
+        value: "username",
+        class: "primary",
       },
-      { text: "Email", value: "email" },
-      { text: "Is Staff ?", value: "isStaff" },
-      { text: "Roles", value: "roles" },
-      { text: "Actions", value: "actions", sortable: false }
+      { text: "Email", value: "email", class: "primary" },
+      { text: "Is Staff ?", value: "isStaff", class: "primary" },
+      { text: "Roles", value: "roles", class: "primary" },
+      { text: "Actions", value: "actions", class: "primary", sortable: false },
     ],
     editedItem: {
       id: "",
@@ -107,7 +109,7 @@ export default {
       staff: null,
       password: "",
       roles: [],
-      departmentId: 0
+      departmentId: 0,
     },
     defaultItem: {
       id: "",
@@ -117,7 +119,7 @@ export default {
       staff: null,
       password: "",
       roles: [],
-      departmentId: 0
+      departmentId: 0,
     },
     colors: [
       "red",
@@ -130,19 +132,19 @@ export default {
       "brown",
       "deep-orange",
       "blue-grey",
-      "cyan"
+      "cyan",
     ],
     currentColor: "",
     valid: true,
 
     nameRules: [
-      v => !!v || "Name is required",
-      v => (v && v.length > 5) || "Name must be less than 5 characters"
+      (v) => !!v || "Name is required",
+      (v) => (v && v.length > 5) || "Name must be less than 5 characters",
     ],
     emailRules: [
-      v => !!v || "E-mail is required",
-      v => /.+@.+\..+/.test(v) || "E-mail must be valid"
-    ]
+      (v) => !!v || "E-mail is required",
+      (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
+    ],
   }),
   created() {
     this.$store.dispatch("get_self_service_users");
@@ -177,18 +179,18 @@ export default {
         this.editedIndex = -1;
       });
       this.$store.dispatch("get_self_service_users");
-    }
+    },
   },
   computed: {
     ...mapGetters({
-      userslist: "selfserviceusers"
+      userslist: "selfserviceusers",
     }),
 
     formTitle() {
       return this.editedIndex === -1
         ? "label.titles.newuser"
         : "label.titles.edituser";
-    }
+    },
   },
   watch: {
     dialog(val) {
@@ -196,7 +198,7 @@ export default {
     },
     dialogDelete(val) {
       val || this.closeDelete();
-    }
-  }
+    },
+  },
 };
 </script>
