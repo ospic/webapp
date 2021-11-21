@@ -1,7 +1,7 @@
 <template>
   <v-container fluid class="">
-    <div class="d-flex justify-start ">
-      <v-row justify="start" class="ml-5 ma-4 ">
+    <div class="d-flex justify-start">
+      <v-row justify="start" class="ml-5 ma-4">
         <v-dialog v-model="dialog" persistent max-width="600px">
           <template v-slot:activator="{ on, attrs }">
             <v-btn class="button" v-on="on" v-bind="attrs" v-if="isActive">
@@ -34,7 +34,7 @@
                         readonly
                         v-bind="attrs"
                         v-on="on"
-                        :rules="[v => !!v || 'Date is required']"
+                        :rules="[(v) => !!v || 'Date is required']"
                         required
                       ></v-text-field>
                     </template>
@@ -61,7 +61,7 @@
                   <v-textarea
                     outlined
                     label="Symptoms *"
-                    class=" ma-0 mt-4"
+                    class="ma-0 mt-4"
                     placeholder="Patient symptoms on th specified date"
                     :rules="symptoms_rule"
                     required
@@ -106,7 +106,7 @@
             >
               <template v-slot:icon>
                 <v-avatar color="primary">
-                  <span class="white--text ">{{ index }}</span>
+                  <span class="white--text">{{ index }}</span>
                 </v-avatar>
               </template>
               <diagnosis-info-card :post="diagnose"></diagnosis-info-card>
@@ -126,7 +126,9 @@ export default {
   props:{
     diagnoses:{
       type: Array,
-      default: []
+      default:  function () {
+    return []
+  },
     },
     isActive:{
       type:Boolean,
