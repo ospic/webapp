@@ -95,14 +95,14 @@ export default {
   props: {
     reports: {
       type: Array,
-      default: null
+      default: null,
     },
     title: {
       type: String,
-      default: "Reports"
-    }
+      default: "Reports",
+    },
   },
-  data: function() {
+  data: function () {
     return {
       response_url: null,
       response_data: null,
@@ -111,27 +111,27 @@ export default {
       currentFile: undefined,
       publicPath: process.env.BASE_URL,
       headers: [
-        { text: "ID", value: "id" },
-        { text: "Report Name", value: "name" },
-        { text: "Description", value: "descriptions" }
-      ]
+        { text: "ID", value: "id", class: "primary" },
+        { text: "Report Name", value: "name", class: "primary" },
+        { text: "Description", value: "descriptions", class: "primary" },
+      ],
     };
   },
   methods: {
     handle_row_click(i) {
       this.$router.push("/reports/" + i.id);
     },
-    filechanged: function(file) {
+    filechanged: function (file) {
       this.progress = 0;
       this.currentFile = file;
     },
-    uploadreport: function() {
+    uploadreport: function () {
       this.dialog = false;
       const formData = new FormData();
       formData.append("file", this.currentFile);
       this.$store.dispatch("uploadreport", formData);
       this.$store.dispatch("get_reports");
-    }
+    },
   },
   mounted() {
     this.$store.dispatch("get_reports");
@@ -139,7 +139,7 @@ export default {
   computed: {
     reportUrl() {
       return this;
-    }
-  }
+    },
+  },
 };
 </script>

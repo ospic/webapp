@@ -74,7 +74,7 @@
         <div v-else></div>
       </template>
       <template v-slot:[`item.isActive`]="{ item }">
-        <v-icon class=" font-weight-black" color="primary" v-if="item.isActive">
+        <v-icon class="font-weight-black" color="primary" v-if="item.isActive">
           mdi-check
         </v-icon>
       </template>
@@ -94,17 +94,17 @@ export default {
     search: "",
     sortDesc: false,
     headers: [
-      { text: "Name", value: "name" },
-      { text: "Gender", value: "gender", sortable: false },
-      { text: "Guardian", value: "guardianName" },
-      { text: "Status", value: "isAdmitted", sortable: true },
-      { text: "Address", value: "address" },
-      { text: "Phone", value: "phone", sortable: true },
-      { text: "Is Active?", value: "isActive" },
-      { text: "Created On", value: "createdDate" },
-      { text: "Updated On", value: "lastModifiedDate" },
-      { text: "Created By", value: "createdBy" },
-      { text: "Updated By", value: "lastModifiedBy" }
+      { text: "Name", value: "name", class: "primary" },
+      { text: "Gender", value: "gender", class: "primary", sortable: false },
+      { text: "Guardian", value: "guardianName", class: "primary" },
+      { text: "Status", value: "isAdmitted", class: "primary", sortable: true },
+      { text: "Address", value: "address", class: "primary" },
+      { text: "Phone", value: "phone", class: "primary", sortable: true },
+      { text: "Is Active?", value: "isActive", class: "primary" },
+      { text: "Created On", value: "createdDate", class: "primary" },
+      { text: "Updated On", value: "lastModifiedDate", class: "primary" },
+      { text: "Created By", value: "createdBy", class: "primary" },
+      { text: "Updated By", value: "lastModifiedBy", class: "primary" },
     ],
     desserts: [],
     editedIndex: -1,
@@ -124,7 +124,7 @@ export default {
       isAdmitted: false,
       symptoms: "",
       note: "",
-      marriageStatus: ""
+      marriageStatus: "",
     },
     defaultItem: {
       name: "",
@@ -141,7 +141,7 @@ export default {
       isAdmitted: false,
       symptoms: "",
       note: "",
-      marriageStatus: ""
+      marriageStatus: "",
     },
     genderoptions: ["Male", "Female", "Others"],
     marriagestatusoptions: [
@@ -149,7 +149,7 @@ export default {
       "Married",
       "Seperated",
       "Widowed",
-      "Unspecified"
+      "Unspecified",
     ],
     bloodgroupoptions: [
       "A+",
@@ -160,14 +160,14 @@ export default {
       "O-",
       "AB+",
       "AB-",
-      "Unspecified"
+      "Unspecified",
     ],
     body: {
       options: {
         page: 1,
-        sortBy: ["name"]
-      }
-    }
+        sortBy: ["name"],
+      },
+    },
   }),
 
   computed: {
@@ -177,14 +177,14 @@ export default {
     isAppointmentRoute: {
       get() {
         return this.$router.currentRoute.name === "patients";
-      }
-    }
+      },
+    },
   },
 
   watch: {
     dialog(val) {
       val || this.close();
-    }
+    },
   },
 
   created() {},
@@ -197,18 +197,18 @@ export default {
       this.editedItemId = item.id;
     },
 
-    handleClick: function(value) {
+    handleClick: function (value) {
       this.$router.push("/patients/" + value.id);
     },
     initialize() {},
-    updatePagination: function(val) {
+    updatePagination: function (val) {
       console.log(val);
-    }
+    },
   },
 
   beforeMount() {
     this.$store.dispatch("retrievepatients");
-  }
+  },
 };
 </script>
 <style scoped>

@@ -50,40 +50,44 @@
 import ServiceCard from "@/components/consultation/consultation_card";
 export default {
   components: {
-    "service-card": ServiceCard
+    "service-card": ServiceCard,
   },
   props: {
     services: {
       type: Array,
-      default: null
-    }
+      default: null,
+    },
   },
   data: () => ({
     search: null,
     headers: [
-      { text: "Status", value: "isActive" },
-      { text: "ID", value: "id" },
-      { text: "Patient Name", value: "patientName", sortable: false },
-      { text: "Consultant", value: "staffName" },
-
-      { text: "From", value: "fromDate" },
-      { text: "To", value: "toDate" }
+      { text: "Status", value: "isActive", class: "primary" },
+      { text: "ID", value: "id", class: "primary" },
+      {
+        text: "Patient Name",
+        value: "patientName",
+        class: "primary",
+        sortable: false,
+      },
+      { text: "Consultant", value: "staffName", class: "primary" },
+      { text: "From", value: "fromDate", class: "primary" },
+      { text: "To", value: "toDate", class: "primary" },
     ],
     body: {
       options: {
         page: 1,
         itemsPerPage: 5,
-        sortBy: ["patientName"]
-      }
-    }
+        sortBy: ["patientName"],
+      },
+    },
   }),
   methods: {
-    handleClick: function(value) {
+    handleClick: function (value) {
       this.$router.push("/consultations/" + value.id);
     },
-    updatePagination: function(val) {
+    updatePagination: function (val) {
       console.log(val);
-    }
-  }
+    },
+  },
 };
 </script>

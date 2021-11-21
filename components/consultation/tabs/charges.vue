@@ -67,26 +67,36 @@ export default {
   props: {
     transaction: {
       type: Object,
-      default: null
-    }
+      default: null,
+    },
   },
   data: () => ({
     headers: [
       { text: "ID", value: "id" },
-      { text: "Service/Medicine", value: "service", sortable: true },
-      { text: "Department", value: "departmentName" },
-      { text: "Amount", value: "amount", sortable: false },
-      { text: "Currency", value: "currencyCode" },
-      { text: "Reversed", value: "isReversed", sortable: true },
-      { text: "Transaction Date", value: "transactionDate" },
-      { text: "Actions", value: "actions", sortable: false }
-    ]
+      {
+        text: "Service/Medicine",
+        value: "service",
+        class: "primary",
+        sortable: true,
+      },
+      { text: "Department", value: "departmentName", class: "primary" },
+      { text: "Amount", value: "amount", class: "primary", sortable: false },
+      { text: "Currency", value: "currencyCode", class: "primary" },
+      {
+        text: "Reversed",
+        value: "isReversed",
+        class: "primary",
+        sortable: true,
+      },
+      { text: "Transaction Date", value: "transactionDate", class: "primary" },
+      { text: "Actions", value: "actions", class: "primary", sortable: false },
+    ],
   }),
   methods: {
-    undo: function(it) {
+    undo: function (it) {
       this.$store.dispatch("revert_transaction", it.id);
       setTimeout(() => this.$emit("update"), this.delay_seconds);
-    }
-  }
+    },
+  },
 };
 </script>
