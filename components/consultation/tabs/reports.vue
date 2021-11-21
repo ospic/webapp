@@ -58,9 +58,7 @@
             v-on="on"
             dark
           >
-            <v-icon left>
-              mdi-file-document
-            </v-icon>
+            <v-icon left> mdi-file-document </v-icon>
             {{ $t("label.button.btnuploadnewreportfile") }}</v-btn
           >
         </template>
@@ -94,9 +92,7 @@
               :loading="loading"
               :disabled="loading"
               >Upload
-              <v-icon right dark>
-                mdi-cloud-upload
-              </v-icon>
+              <v-icon right dark> mdi-cloud-upload </v-icon>
               <template v-slot:loader>
                 <span>Uploading...</span>
               </template>
@@ -121,12 +117,10 @@
             }}</v-toolbar-title>
             <v-spacer></v-spacer>
             <v-toolbar-items>
-              <v-btn dark text @click="viewdialog = false">
-                Save
-              </v-btn>
+              <v-btn dark text @click="viewdialog = false"> Save </v-btn>
             </v-toolbar-items>
           </v-toolbar>
-          <div v-if="selectedfile != null" class="pa-4 ">
+          <div v-if="selectedfile != null" class="pa-4">
             <div
               v-if="selectedfile.type.startsWith('image/')"
               class="d-flex flex-column justify-space-between align-center"
@@ -148,7 +142,7 @@
                   <v-col cols="12" sm="4" md="9">
                     <v-img
                       :width="width"
-                      :src="filebaseUri + selectedfile.url"
+                      :src="selectedfile.url"
                       lazy-src="https://aosa.org/wp-content/uploads/2019/04/image-placeholder-350x350.png"
                     ></v-img>
                   </v-col>
@@ -168,7 +162,7 @@
       <v-col md="2" sm="6" v-for="(file, i) in files" :key="i">
         <v-card outlined dense>
           <v-toolbar dense height="40" class="primary" flat>
-            <h5 class="white--text   font-weight-medium">{{ file.name }}</h5>
+            <h5 class="white--text font-weight-medium">{{ file.name }}</h5>
             <v-spacer></v-spacer>
             <v-btn
               fab
@@ -177,9 +171,7 @@
               x-small
               @click="deletefile(file)"
             >
-              <v-icon>
-                mdi-trash-can-outline
-              </v-icon>
+              <v-icon> mdi-trash-can-outline </v-icon>
             </v-btn>
           </v-toolbar>
           <div class="d-flex flex-no-wrap justify-space-between">
@@ -195,9 +187,9 @@
 
             <div
               @click="viewfile(file)"
-              :class="
-                `ma-3 fi fi-size-xl fi-round-md fi-${file.type.split('/')[1]}`
-              "
+              :class="`ma-3 fi fi-size-xl fi-round-md fi-${
+                file.type.split('/')[1]
+              }`"
             >
               <div class="fi-content">{{ file.type.split("/")[1] }}</div>
             </div>
@@ -212,8 +204,8 @@ export default {
   props: {
     files: {
       type: Array,
-      default: null
-    }
+      default: null,
+    },
   },
   data: () => ({
     select: [],
@@ -228,7 +220,7 @@ export default {
     width: 300,
     permissions: "ALL_FUNCTIONS, UPDATE_CONSULTATION",
     accepted:
-      "image/*,.csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel,.pdf,.doc,.xml,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+      "image/*,.csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel,.pdf,.doc,.xml,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document",
   }),
 
   methods: {
@@ -250,7 +242,7 @@ export default {
           `/consultations/${this.$route.params.id}/${this.location}/`,
           formData
         )
-        .then(response => {
+        .then((response) => {
           if (response !== null) {
             this.loading = false;
             this.dialog = false;
@@ -258,15 +250,15 @@ export default {
           }
           this.$emit("update-report");
         })
-        .catch(error => {
+        .catch((error) => {
           console.log(error);
         });
     },
-    toggle: function() {
+    toggle: function () {
       this.$refs.alert.toggle();
       this.deletedialog = false;
     },
-    viewfile: function(it) {
+    viewfile: function (it) {
       this.selectedfile = it;
       this.viewdialog = true;
       console.log(it);
@@ -277,15 +269,15 @@ export default {
         .$delete(
           `/consultations/${this.$route.params.id}/${this.file.location}/${this.file.id}`
         )
-        .then(response => {
+        .then((response) => {
           this.loading = false;
           this.deletedialog = false;
           this.$emit("update-report");
         })
-        .catch(error => {
+        .catch((error) => {
           console.log(error);
         });
-    }
-  }
+    },
+  },
 };
 </script>
