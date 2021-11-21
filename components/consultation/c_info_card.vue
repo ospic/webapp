@@ -205,7 +205,8 @@
               :insurancecards="insurancecards"
               @update="getPatientInsurances()"
               @active="active = !active"
-              :title="active ? 'Show inactive' : 'Show active'"
+              :button="active ? 'Show inactive' : 'Show active'"
+              :title="active ? 'Active Insurances' : 'Inactive Insurances'"
               :activelist="active"
             ></tb-insurance>
           </v-tab-item>

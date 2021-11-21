@@ -32,7 +32,7 @@
               class="mt-2"
             ></v-text-field
             >&nbsp;&nbsp;
-             <v-btn class="button mb-1" medium @click="showActive"> {{title}}</v-btn>&nbsp;&nbsp;
+             <v-btn class="button mb-1" medium @click="showActive"> {{button}}</v-btn>&nbsp;&nbsp;
             <v-dialog v-model="dialog" max-width="900px">
               <template v-slot:activator="{ on, attrs }">
                 <v-btn
@@ -283,7 +283,7 @@
         </v-icon>
       </template>
         <template v-slot:no-data>
-          <p class="mt-2">No Data available for {{ routename }}</p>
+          <p class="mt-2">No Data available </p>
         </template>
       </v-data-table>
     </div>
@@ -295,21 +295,24 @@ export default {
   props: {
     insurancecards: {
       type: Array,
-      dafault: null
+      dafault: null,
     },
-    title:{
-      type:String,
-      default: 'Active'
+    title: {
+      type: String,
+      default: "Active",
     },
-    activelist:{
-      type:Boolean,
-      default: true
-    }
+    button: {
+      type: String,
+      default: "Active",
+    },
+    activelist: {
+      type: Boolean,
+      default: true,
+    },
   },
-  data: function() {
+  data: function () {
     return {
       search: null,
-      title: "Insurance cards",
       valid: false,
       editedIndex: -1,
       deletedialog: false,
@@ -322,14 +325,24 @@ export default {
         { text: "Insurance name", value: "insurance.name" },
         { text: "Client name", value: "patientName", sortable: false },
         { text: "Client No.", value: "membershipNumber" },
-        { text:"Active ? ", value:"isActive"},
+        { text: "Active ? ", value: "isActive" },
         { text: "Gender", value: "sex" },
         { text: "Exipire Date", value: "expireDate" },
-        { text: "Actions", value: "actions" }
+        { text: "Actions", value: "actions" },
       ],
       items: [
-        { title: "Edit", icon: "lead-pencil", icona: "lead-penci", color: "blue" },
-        { title: "Delete", icon: "minus-circle", icona:"plus-circle", color: "red" }
+        {
+          title: "Edit",
+          icon: "lead-pencil",
+          icona: "lead-penci",
+          color: "blue",
+        },
+        {
+          title: "Delete",
+          icon: "minus-circle",
+          icona: "plus-circle",
+          color: "red",
+        },
       ],
       dialog: false,
       editedItem: {
@@ -340,13 +353,12 @@ export default {
         expireDate: "",
         codeNo: "",
         insuranceId: 0,
-        patientId: 0
-      }
+        patientId: 0,
+      },
     };
   },
   methods: {
-
-    getSelected: function(it, item) {
+    getSelected: function (it, item) {
       if (it.title == "Edit") {
         this.editItem(item);
       }
@@ -359,7 +371,7 @@ export default {
       }
     },
 
-     editItem(item) {
+    editItem(item) {
       this.editedIndex = this.insurancecards.indexOf(item);
       this.editedItem = Object.assign({}, item);
       delete this.editedItem.insurance;
@@ -367,16 +379,24 @@ export default {
       this.editedItemId = item.id;
     },
     deleteItem() {
-      this.activelist ? this.$store.dispatch("deactivate_patient_insurance_card", this.itemtodelete.id):this.$store.dispatch("activate_patient_insurance_card", this.itemtodelete.id);
+      this.activelist
+        ? this.$store.dispatch(
+            "deactivate_patient_insurance_card",
+            this.itemtodelete.id
+          )
+        : this.$store.dispatch(
+            "activate_patient_insurance_card",
+            this.itemtodelete.id
+          );
       this.close();
     },
 
-    navigateTo: function(id) {
+    navigateTo: function (id) {
       this.$router.push(`/insurances/${id}`);
     },
     close() {
       setTimeout(() => {
-         this.$emit("update");
+        this.$emit("update");
         this.deletedialog = false;
         this.dialog = false;
       }, this.delay_seconds);
@@ -388,31 +408,33 @@ export default {
       } else {
         this.editedItem.patientId = parseInt(this.$route.params.id);
         delete this.editedItem.id;
-        this.$store.dispatch("create_patient_insurance", this.editedItem).then(res => {
-          setTimeout(() => this.$emit("update"), this.delay_seconds);
-        });
+        this.$store
+          .dispatch("create_patient_insurance", this.editedItem)
+          .then((res) => {
+            setTimeout(() => this.$emit("update"), this.delay_seconds);
+          });
       }
       this.close();
     },
-    showActive(){
-       this.$emit("active");
+    showActive() {
+      this.$emit("active");
     },
-    handleClick: function(item) {
+    handleClick: function (item) {
       //this.navigateTo(item.id);
-    }
+    },
   },
   created() {
     this.$store.dispatch("get_insurance_companies");
   },
   computed: {
     ...mapGetters({
-      insurances: "insurances"
+      insurances: "insurances",
     }),
     formTitle() {
       return this.editedIndex === -1
         ? "New insurance card"
         : "Edit insurance card";
-    }
-  }
+    },
+  },
 };
 </script>
