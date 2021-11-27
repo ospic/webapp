@@ -118,6 +118,14 @@
             <v-icon small class="mr-2" @click="editItem(item)">
               mdi-pencil
             </v-icon>
+            <v-icon
+              small
+              class="mr-2"
+              color="red"
+              @click="deleteMedicalServiceType(item.id)"
+            >
+              mdi-trash-can
+            </v-icon>
           </td>
         </template>
       </v-data-table>
@@ -174,6 +182,12 @@ export default {
     },
     request_data() {
       this.$store.dispatch("get_medical_service_types");
+    },
+    deleteMedicalServiceType(id) {
+      console.log(id);
+      this.$store.dispatch("delete_medical_service_type", id).then((res) => {
+        setTimeout(() => this.request_data(), this.delay_seconds);
+      });
     },
     save() {
       if (this.editedIndex > -1) {

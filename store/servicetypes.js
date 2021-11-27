@@ -48,6 +48,19 @@ const mutations = {
   ["GET_MEDICAL_SERVICE_TYPES_SUCCESS"](state, payload) {
     state.showLoader = false;
     state.medicalservicestypes = payload;
+  },
+  //GET MEDICAL SERVICES
+  ["DELETE_MEDICAL_SERVICE_TYPE"](state) {
+    state.showLoader = true;
+  },
+  ["DELETE_MEDICAL_SERVICE_TYPE_FAILED"](state) {
+    state.showLoader = false;
+  },
+  ["DELETE_MEDICAL_SERVICE_TYPE_ERROR"](state) {
+    state.showLoader = false;
+  },
+  ["DELETE_MEDICAL_SERVICE_TYPE_SUCCESS"](state, payload) {
+    state.showLoader = false;
   }
 }
 
@@ -97,6 +110,18 @@ const actions = {
         commit("GET_MEDICAL_SERVICE_TYPES_SUCCESS", response);
       }).catch(error => {
         commit("GET_MEDICAL_SERVICE_TYPES_ERROR");
+        console.log(error);
+
+      });
+
+  },
+  async delete_medical_service_type({ commit }, payload) {
+    commit("DELETE_MEDICAL_SERVICE_TYPE");
+    await this.$api.$delete(`mdservice/types/${payload}`)
+      .then(response => {
+        commit("DELETE_MEDICAL_SERVICE_TYPE_SUCCESS", response);
+      }).catch(error => {
+        commit("DELETE_MEDICAL_SERVICE_TYPE_ERROR");
         console.log(error);
 
       });

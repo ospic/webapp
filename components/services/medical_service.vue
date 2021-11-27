@@ -162,7 +162,7 @@
         </td>
       </template>
       <template v-slot:no-data>
-        <p class="mt-2">No Data available for {{ routename }}</p>
+        <p class="mt-2">{{ $t("label.message.nodataavailable") }}</p>
       </template>
     </v-data-table>
   </v-card>
