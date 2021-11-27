@@ -168,8 +168,11 @@ export default {
 
         });
 
-    },
+    }
 
-  }
+  },
+created() {
+  
+  },
 };
 </script>
