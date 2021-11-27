@@ -72,7 +72,7 @@ export default {
   },
   data: () => ({
     headers: [
-      { text: "ID", value: "id" },
+      { text: "ID", value: "id", class: "primary" },
       {
         text: "Service/Medicine",
         value: "service",

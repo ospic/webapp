@@ -6,7 +6,7 @@
         $t("label.breadcrumb.departments")
       }}</router-link>
     </div>
-    <v-card class="mx-auto default ">
+    <v-card class="mx-auto default">
       <v-progress-circular
         v-if="departments.length == null"
         indeterminate
@@ -63,9 +63,7 @@
                     dark
                     small
                   >
-                    <v-icon dark>
-                      mdi-plus
-                    </v-icon>
+                    <v-icon dark> mdi-plus </v-icon>
                   </v-btn>
                 </template>
                 <v-card>
@@ -159,20 +157,30 @@
 <script>
 import { mapGetters } from "vuex";
 export default {
-  data: function() {
+  data: function () {
     return {
       search: null,
       title: "Departments",
       headers: [
-        { text: "ID", value: "id" },
-        { text: "Department name", value: "name", sortable: false },
-        { text: "Description", value: "descriptions" },
-        { text: "Opening date", value: "openingDate" },
-        { text: "Actions", value: "actions", sortable: false }
+        { text: "ID", value: "id", class: "primary" },
+        {
+          text: "Department name",
+          value: "name",
+          class: "primary",
+          sortable: false,
+        },
+        { text: "Description", value: "descriptions", class: "primary" },
+        { text: "Opening date", value: "openingDate", class: "primary" },
+        {
+          text: "Actions",
+          value: "actions",
+          class: "primary",
+          sortable: false,
+        },
       ],
       items: [
         { title: "Edit", icon: "lead-pencil", color: "blue" },
-        { title: "Delete", icon: "delete", color: "red" }
+        { title: "Delete", icon: "delete", color: "red" },
       ],
       editedIndex: -1,
       editedItemId: "",
@@ -184,7 +192,7 @@ export default {
         descriptions: "",
         extraId: "",
         openingDate: "",
-        parent: 0
+        parent: 0,
       },
       defaultItem: {
         id: 0,
@@ -193,8 +201,8 @@ export default {
         descriptions: "",
         extraId: "",
         openingDate: "",
-        parent: 0
-      }
+        parent: 0,
+      },
     };
   },
 
@@ -202,7 +210,7 @@ export default {
     fetchdata() {
       this.$store.dispatch("retrieve_departments");
     },
-    getSelected: function(it, item) {
+    getSelected: function (it, item) {
       if (it.title == "Edit") {
         this.editItem(item);
       }
@@ -224,7 +232,7 @@ export default {
     deleteItem(item) {
       console.log(item);
     },
-    navigateTo: function(id) {
+    navigateTo: function (id) {
       this.$router.push(`/departments/${id}`);
     },
     close() {
@@ -239,9 +247,9 @@ export default {
       }
       this.close();
     },
-    handleClick: function(item) {
+    handleClick: function (item) {
       this.navigateTo(item.id);
-    }
+    },
   },
   watch: {
     dialog(val) {
@@ -250,19 +258,19 @@ export default {
         () => this.$store.dispatch("retrieve_departments"),
         this.delay_seconds
       );
-    }
+    },
   },
   created() {
     this.$store.dispatch("retrieve_departments");
   },
   computed: {
     ...mapGetters({
-      departments: "departments"
+      departments: "departments",
     }),
     formTitle() {
       return this.editedIndex === -1 ? "New department" : "Edit department";
-    }
-  }
+    },
+  },
 };
 </script>
 <style lang="scss" scoped>

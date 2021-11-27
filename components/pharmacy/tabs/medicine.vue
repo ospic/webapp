@@ -18,11 +18,7 @@
     >
       <template v-slot:top>
         <v-toolbar flat color="primary" dark>
-          <v-toolbar-title
-            ><h3>
-              Medicines
-            </h3></v-toolbar-title
-          >
+          <v-toolbar-title><h3>Medicines</h3></v-toolbar-title>
           <v-spacer></v-spacer>
           <v-col cols="12" md="3">
             <v-text-field
@@ -174,7 +170,7 @@
                             readonly
                             v-bind="attrs"
                             v-on="on"
-                            :rules="[v => !!v || 'Date is required']"
+                            :rules="[(v) => !!v || 'Date is required']"
                             required
                           ></v-text-field>
                         </template>
@@ -209,7 +205,7 @@
                         small-chips
                         @click="fetch_measures"
                         :rules="[
-                          v => !!v || 'You must select one to continue!'
+                          (v) => !!v || 'You must select one to continue!',
                         ]"
                         label="Measure unit"
                         required
@@ -345,12 +341,12 @@ export default {
   props: {
     medicines: {
       type: Array,
-      default: null
+      default: null,
     },
     showaction: {
       type: Boolean,
-      default: true
-    }
+      default: true,
+    },
   },
   data: () => ({
     dialog: false,
@@ -362,22 +358,37 @@ export default {
     list: true,
     date: new Date().toISOString().substr(0, 7),
     headers: [
-      { text: "", value: "status" },
-      { text: "Name", value: "name", align: "left" },
-      { text: "Generic Name", value: "genericName" },
-      { text: "Store Box", value: "storeBox" },
-      { text: "Quantity left", value: "quantity", sortable: true },
-      { text: "Buying price", value: "buyingPrice" },
-      { text: "Selling price", value: "sellingPrice" },
+      { text: "", value: "status", class: "primary" },
+      { text: "Name", value: "name", class: "primary", align: "left" },
+      { text: "Generic Name", value: "genericName", class: "primary" },
+      { text: "Store Box", value: "storeBox", class: "primary" },
+      {
+        text: "Quantity left",
+        value: "quantity",
+        class: "primary",
+        sortable: true,
+      },
+      { text: "Buying price", value: "buyingPrice", class: "primary" },
+      { text: "Selling price", value: "sellingPrice", class: "primary" },
 
-      { text: "Composition", value: "compositions" },
-      { text: "Group", value: "group.name", sortable: true },
-      { text: "Category", value: "category.name", sortable: true },
+      { text: "Composition", value: "compositions", class: "primary" },
+      { text: "Group", value: "group.name", class: "primary", sortable: true },
+      {
+        text: "Category",
+        value: "category.name",
+        class: "primary",
+        sortable: true,
+      },
 
-      { text: "Manufacture", value: "company", sortable: false },
-      { text: "Effects", value: "effects" },
-      { text: "Expire Date", value: "expireOn" },
-      { text: "Actions", value: "actions", sortable: false }
+      {
+        text: "Manufacture",
+        value: "company",
+        class: "primary",
+        sortable: false,
+      },
+      { text: "Effects", value: "effects", class: "primary" },
+      { text: "Expire Date", value: "expireOn", class: "primary" },
+      { text: "Actions", value: "actions", class: "primary", sortable: false },
     ],
     editedIndex: -1,
     editedItemId: "",
@@ -394,7 +405,7 @@ export default {
       buyingPrice: 0,
       sellingPrice: 0,
       expireDateTime: null,
-      storeBox: ""
+      storeBox: "",
     },
     defaultItem: {
       id: 0,
@@ -409,8 +420,8 @@ export default {
       buyingPrice: 0,
       sellingPrice: 0,
       expireDateTime: null,
-      storeBox: ""
-    }
+      storeBox: "",
+    },
   }),
   created() {
     this.$store.dispatch("fetch_medicine_measurements");
@@ -466,34 +477,34 @@ export default {
       }
       this.close();
     },
-    handleClick: function(value) {
+    handleClick: function (value) {
       this.$router.push("/patients/" + value.id);
     },
-    comparator: function(a, b) {
+    comparator: function (a, b) {
       return parseInt(a["quantity"], 10) - parseInt(b["quantity"], 10);
-    }
+    },
   },
   watch: {
     dialog(val) {
       val || this.close();
       this.$store.dispatch("retrieve_medicine_template");
-    }
+    },
   },
   computed: {
     ...mapGetters({
       measures: "medicinemeasurements",
-      template: "medicine_templates"
+      template: "medicine_templates",
     }),
     formTitle() {
       return this.editedIndex === -1 ? "New medicine" : "Edit medicine";
     },
     sortedmedicines() {
-      var md = this.medicines.sort(function(a, b) {
+      var md = this.medicines.sort(function (a, b) {
         return parseFloat(a.quantity) - parseFloat(b.quantity);
       });
       return md;
-    }
-  }
+    },
+  },
 };
 </script>
 <style>

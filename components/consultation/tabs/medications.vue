@@ -31,7 +31,7 @@
                     @change="change_select"
                     label="Select Medicine"
                     filled
-                    :rules="[v => !!v || 'Medicine is required!']"
+                    :rules="[(v) => !!v || 'Medicine is required!']"
                     required
                     clearable
                     persistent-hint
@@ -48,7 +48,7 @@
                   min="1"
                   class="mt-4"
                   :suffix="suffix === null ? '' : suffix"
-                  :rules="[v => !!v || 'Quantity is required!']"
+                  :rules="[(v) => !!v || 'Quantity is required!']"
                   required
                 ></v-text-field>
               </v-col>
@@ -85,21 +85,21 @@ import { mapGetters } from "vuex";
 import Charges from "./charges.vue";
 export default {
   components: {
-    charges: Charges
+    charges: Charges,
   },
   props: {
     consultationsservices: {
       type: Array,
-      default: null
+      default: null,
     },
     transaction: {
       type: Object,
-      default: null
+      default: null,
     },
     isActive: {
       type: Boolean,
-      default: true
-    }
+      default: true,
+    },
   },
   data: () => ({
     select: null,
@@ -112,19 +112,29 @@ export default {
     data: {
       id: null,
       quantity: 0,
-      type: "medicine"
+      type: "medicine",
     },
     suffix: null,
 
     headers: [
-      { text: "ID", value: "id" },
-      { text: "Service", value: "medicineName", sortable: true },
-      { text: "Department", value: "departmentName" },
-      { text: "Amount", value: "amount", sortable: false },
-      { text: "Currency", value: "currencyCode" },
-      { text: "Reversed", value: "isReversed", sortable: true },
-      { text: "Transaction Date", value: "transactionDate" }
-    ]
+      { text: "ID", value: "id", class: "primary" },
+      {
+        text: "Service",
+        value: "medicineName",
+        sortable: true,
+        class: "primary",
+      },
+      { text: "Department", value: "departmentName", class: "primary" },
+      { text: "Amount", value: "amount", sortable: false, class: "primary" },
+      { text: "Currency", value: "currencyCode", class: "primary" },
+      {
+        text: "Reversed",
+        value: "isReversed",
+        sortable: true,
+        class: "primary",
+      },
+      { text: "Transaction Date", value: "transactionDate", class: "primary" },
+    ],
   }),
 
   methods: {
@@ -140,31 +150,31 @@ export default {
         this.payload.data = this.data;
         this.$store
           .dispatch("initiate_medical_transaction", this.payload)
-          .then(res => {
+          .then((res) => {
             setTimeout(() => this.$emit("update"), this.delay_seconds);
           });
         this.dialog = false;
       }
     },
-    clear_select: function() {
+    clear_select: function () {
       this.select = null;
     },
-    change_select: function(it) {
+    change_select: function (it) {
       console.log(it);
-      var med = this.medicines.find(x => x.id === it);
+      var med = this.medicines.find((x) => x.id === it);
       this.suffix = med === undefined ? "" : med.unit;
-    }
+    },
   },
 
   computed: {
     ...mapGetters({
-      medicines: "medicines"
+      medicines: "medicines",
     }),
     transactions() {
       return this.transaction.transactions.filter(
-        t => t.medicalServiceName === null
+        (t) => t.medicalServiceName === null
       );
-    }
-  }
+    },
+  },
 };
 </script>

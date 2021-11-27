@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="breadcrumb ">
+    <div class="breadcrumb">
       <router-link to="/finance">{{
         $t("label.breadcrumb.dashboard")
       }}</router-link>
@@ -130,18 +130,27 @@ export default {
 
       query: {
         page: null,
-        size: null
+        size: null,
       },
       headers: [
-        { text: "ID", value: "id" },
-        { text: "Service/Medicine", value: "service" },
-        { text: "Department", value: "departmentName" },
-        { text: "Amount", value: "amount" },
-        { text: "Currency", value: "currencyCode" },
-        { text: "Reversed", value: "isReversed" },
-        { text: "Transaction Date", value: "transactionDate" },
-        { text: "Actions", value: "actions", sortable: false }
-      ]
+        { text: "ID", value: "id", class: "primary" },
+        { text: "Service/Medicine", value: "service", class: "primary" },
+        { text: "Department", value: "departmentName", class: "primary" },
+        { text: "Amount", value: "amount", class: "primary" },
+        { text: "Currency", value: "currencyCode", class: "primary" },
+        { text: "Reversed", value: "isReversed", class: "primary" },
+        {
+          text: "Transaction Date",
+          value: "transactionDate",
+          class: "primary",
+        },
+        {
+          text: "Actions",
+          value: "actions",
+          class: "primary",
+          sortable: false,
+        },
+      ],
     };
   },
   methods: {
@@ -152,24 +161,24 @@ export default {
     async get_bill(p, s) {
       return await this.$api
         .$get(`transactions/all/?page=${p}&size=${s}`)
-        .then(response => {
+        .then((response) => {
           this.transactions = response.data;
           this.query.size = response.totalPages;
         })
-        .catch(error => {
+        .catch((error) => {
           console.log(error);
         });
     },
-    undo: function(it) {
+    undo: function (it) {
       this.$store.dispatch("revert_transaction", it.id);
       setTimeout(
         () => this.get_bill(0, this.body.options.itemsPerPage),
         this.delay_seconds
       );
-    }
+    },
   },
   created() {
     this.get_bill(0, this.body.options.itemsPerPage);
-  }
+  },
 };
 </script>

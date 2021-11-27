@@ -1,5 +1,5 @@
 <template>
-  <v-card class="mx-auto default ">
+  <v-card class="mx-auto default">
     <v-progress-circular
       v-if="services.length == null"
       indeterminate
@@ -59,38 +59,43 @@ export default {
   props: {
     services: {
       type: Array,
-      default: null
+      default: null,
     },
     title: {
       type: String,
-      default: "Services"
-    }
+      default: "Services",
+    },
   },
   data: () => ({
     search: null,
     headers: [
-      { text: "ID", value: "id" },
-      { text: "Patient Name", value: "patientName", sortable: false },
-      { text: "Consultant", value: "staffName" },
-      { text: "Is Active?", value: "isActive" },
-      { text: "From", value: "fromDate" },
-      { text: "To", value: "toDate" }
+      { text: "ID", value: "id", class: "primary" },
+      {
+        text: "Patient Name",
+        value: "patientName",
+        class: "primary",
+        sortable: false,
+      },
+      { text: "Consultant", value: "staffName", class: "primary" },
+      { text: "Is Active?", value: "isActive", class: "primary" },
+      { text: "From", value: "fromDate", class: "primary" },
+      { text: "To", value: "toDate", class: "primary" },
     ],
     body: {
       options: {
         page: 1,
         itemsPerPage: 5,
-        sortBy: ["patientName"]
-      }
-    }
+        sortBy: ["patientName"],
+      },
+    },
   }),
   methods: {
-    handleClick: function(value) {
+    handleClick: function (value) {
       this.$router.push("/consultations/" + value.id);
     },
-    updatePagination: function(val) {
+    updatePagination: function (val) {
       console.log(val);
-    }
-  }
+    },
+  },
 };
 </script>

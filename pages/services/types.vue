@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="breadcrumb ">
+    <div class="breadcrumb">
       <router-link to="/">{{ $t("label.breadcrumb.dashboard") }}</router-link>
 
       <router-link to="/services">{{
@@ -134,24 +134,29 @@ export default {
     editedIndex: -1,
     valid: true,
     headers: [
-      { text: "ID", value: "id" },
-      { text: "Name", value: "name" },
-      { text: "Description", value: "descriptions", sortable: false },
-      { text: "Actions", value: "actions", sortable: false }
+      { text: "ID", value: "id", class: "primary" },
+      { text: "Name", value: "name", class: "primary" },
+      {
+        text: "Description",
+        value: "descriptions",
+        class: "primary",
+        sortable: false,
+      },
+      { text: "Actions", value: "actions", class: "primary", sortable: false },
     ],
     editedItem: {
       id: "",
       name: "",
-      descriptions: ""
+      descriptions: "",
     },
     defaultItem: {
       id: "",
       name: "",
-      descriptions: ""
-    }
+      descriptions: "",
+    },
   }),
   methods: {
-    handleClick: function(item) {
+    handleClick: function (item) {
       this.$router.push("/services/" + item.name);
     },
     editItem(item) {
@@ -183,7 +188,7 @@ export default {
         );
       }
       this.close();
-    }
+    },
   },
   created() {
     this.request_data();
@@ -196,8 +201,8 @@ export default {
     },
     ...mapGetters({
       servicetypes: "servicetypes",
-      measures: "medicinemeasurements"
-    })
-  }
+      measures: "medicinemeasurements",
+    }),
+  },
 };
 </script>
