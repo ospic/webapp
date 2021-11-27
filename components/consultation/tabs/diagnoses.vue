@@ -2,7 +2,7 @@
   <v-container fluid class="">
     <div class="d-flex justify-start">
       <v-row justify="start" class="ml-5 ma-4">
-        <v-dialog v-model="dialog" persistent max-width="600px">
+        <v-dialog v-model="dialog" persistent width="600">
           <template v-slot:activator="{ on, attrs }">
             <v-btn class="button" v-on="on" v-bind="attrs" v-if="isActive">
               <v-icon small left>mdi-plus</v-icon> Add new Diagnosis</v-btn
@@ -70,6 +70,7 @@
                 </v-container>
                 <small>*indicates required field</small>
               </v-card-text>
+              <v-divider></v-divider>
               <v-card-actions>
                 <v-spacer></v-spacer>
                 <v-btn color="blue darken-1" text @click="dialog = false">

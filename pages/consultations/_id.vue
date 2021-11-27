@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="breadcrumb " v-if="service != null">
+    <div class="breadcrumb" v-if="service != null">
       <router-link to="/">{{ $t("label.menu.dashboard") }}</router-link>
       <router-link to="/patients">{{
         $t("label.breadcrumb.patients")
@@ -15,7 +15,7 @@
       >
     </div>
 
-    <v-card class=" mx-auto">
+    <v-card class="mx-auto">
       <v-toolbar dark v-if="service != null" prominent color="primary">
         <v-container fluid>
           <v-row no-gutters>
@@ -35,7 +35,7 @@
                     consultation</v-btn
                   >
                 </template>
-                <v-card flat class=" text-xs-center">
+                <v-card flat class="text-xs-center">
                   <v-card-title primary-title class="justify-center">
                     <div>
                       <h2 class="font-weight-black">
@@ -355,8 +355,8 @@ export default {
   props: {
     userdata: {
       type: Object,
-      default: null
-    }
+      default: null,
+    },
   },
   components: {
     "v-type-divider": c_type_divider,
@@ -369,9 +369,9 @@ export default {
     "tb-charges": ChargesAndConstsTab,
     "tb-medical-services": MedicalServicesTab,
     "tb-medications": MedicineServiceTab,
-    "tb-reports": ReportsTab
+    "tb-reports": ReportsTab,
   },
-  data: function() {
+  data: function () {
     return {
       tab: null,
       service: null,
@@ -379,59 +379,59 @@ export default {
       admissions: null,
       service_transactions: null,
       selectedstaffId: null,
-      reportfiles: null
+      reportfiles: null,
     };
   },
   methods: {
     async getServiceById() {
       return await this.$api
         .$get(`consultations/${this.$route.params.id}`)
-        .then(response => {
+        .then((response) => {
           if (response !== null) {
             this.service = response;
             this.selectedstaffId = response.staff.id;
           }
         })
-        .catch(error => {
+        .catch((error) => {
           console.log(error);
         });
     },
-    onServiceUpdate: function() {
+    onServiceUpdate: function () {
       this.getServiceById();
     },
     async getServiceAdmissions() {
       return await this.$api
         .$get(`admissions/${this.$route.params.id}/?command=service`)
-        .then(response => {
+        .then((response) => {
           if (response !== null) {
             this.admissions = response;
           }
         })
-        .catch(error => {
+        .catch((error) => {
           console.log(error);
         });
     },
     async getConsultationLaboratoryReports() {
       return await this.$api
         .$get(`consultations/${this.$route.params.id}/files`)
-        .then(response => {
+        .then((response) => {
           if (response !== null) {
             this.reportfiles = response;
           }
         })
-        .catch(error => {
+        .catch((error) => {
           console.log(error);
         });
     },
     async getServiceChargesAndCosts() {
       return await this.$api
         .$get(`transactions/${this.$route.params.id}/consultation`)
-        .then(response => {
+        .then((response) => {
           if (response !== null) {
             this.service_transactions = response;
           }
         })
-        .catch(error => {
+        .catch((error) => {
           console.log(error);
         });
     },
@@ -439,12 +439,12 @@ export default {
       this.dialog = false;
       return await this.$api
         .$put(`consultations/${this.$route.params.id}`)
-        .then(response => {
+        .then((response) => {
           if (response !== null) {
             this.getServiceById();
           }
         })
-        .catch(error => {
+        .catch((error) => {
           console.log(error);
         });
     },
@@ -464,19 +464,19 @@ export default {
           .$put(
             `consultations/${this.$route.params.id}/${this.selectedstaffId.id}/`
           )
-          .then(response => {
+          .then((response) => {
             if (response !== null) {
               this.onServiceUpdate();
             }
           })
-          .catch(error => {
+          .catch((error) => {
             console.log(error);
           });
       }
     },
     remove(i) {
       console.log(i);
-    }
+    },
   },
   created() {
     this.getServiceById();
@@ -485,8 +485,8 @@ export default {
     staffs: {
       get() {
         return this.$store.getters.staffs;
-      }
-    }
-  }
+      },
+    },
+  },
 };
 </script>

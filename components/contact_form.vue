@@ -1,5 +1,5 @@
 <template>
-  <v-card class="mx-auto" outlined>
+  <v-card class="mx-auto">
     <v-card-title> {{ title }}</v-card-title>
     <v-divider></v-divider>
     <v-card-text>
@@ -82,12 +82,8 @@
         </v-col>
 
         <v-col cols="12" sm="12" md="4" class="pa-2">
-          <v-btn class="mr-4" @click="submit">
-            submit
-          </v-btn>
-          <v-btn @click="clear">
-            clear
-          </v-btn>
+          <v-btn class="mr-4" @click="submit"> submit </v-btn>
+          <v-btn @click="clear"> clear </v-btn>
         </v-col>
       </v-row>
     </v-card-text>
@@ -98,13 +94,13 @@ export default {
   props: {
     title: {
       type: String,
-      default: null
+      default: null,
     },
 
     data: {
       type: Object,
-      default: null
-    }
+      default: null,
+    },
   },
   data: () => ({
     name: "",
@@ -116,26 +112,26 @@ export default {
       work_phone: "",
       physical_address: "",
       zipcode: "",
-      state: ""
+      state: "",
     },
     select: null,
     items: ["Item 1", "Item 2", "Item 3", "Item 4"],
-    checkbox: false
+    checkbox: false,
   }),
 
   computed: {},
 
   methods: {
-    submit: function() {
+    submit: function () {
       var payload = {
         id: this.$route.params.id,
-        contact: this.formData
+        contact: this.formData,
       };
       this.$store.dispatch("postpatientcontacts", payload).then(() => {
         this.$router.push(`/patients/${this.$route.params.id}/contacts/`);
       });
     },
-    clear() {}
-  }
+    clear() {},
+  },
 };
 </script>
