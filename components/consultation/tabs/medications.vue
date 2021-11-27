@@ -1,10 +1,6 @@
 <template>
   <v-container>
-    <v-dialog
-      v-model="dialog"
-      transition="dialog-top-transition"
-      max-width="700"
-    >
+    <v-dialog v-model="dialog" transition="dialog-top-transition" width="600">
       <template v-slot:activator="{ on, attrs }">
         <v-btn v-if="isActive" class="button" v-bind="attrs" v-on="on" dark
           ><v-icon small left>mdi-plus</v-icon>Add patient medicine</v-btn
@@ -15,45 +11,48 @@
           <v-toolbar-title>Give new medicine to this patient</v-toolbar-title>
         </v-toolbar>
         <v-container>
-          <v-form ref="form" v-model="valid" lazy-validation>
-            <v-row class="mx-1">
-              <v-col cols="12" sm="12" md="6">
-                <v-card-text>
-                  <v-select
-                    v-model="data.id"
-                    :items="medicines"
-                    item-text="name"
-                    item-value="id"
-                    chips
-                    small-chips
-                    @click="fetch_medical_services"
-                    @click.clear="clear_select"
-                    @change="change_select"
-                    label="Select Medicine"
+          <v-card-text>
+            <v-form ref="form" v-model="valid" lazy-validation>
+              <v-row class="mx-1">
+                <v-col cols="12" sm="12" md="6">
+                  <v-card-text>
+                    <v-select
+                      v-model="data.id"
+                      :items="medicines"
+                      item-text="name"
+                      item-value="id"
+                      chips
+                      small-chips
+                      @click="fetch_medical_services"
+                      @click.clear="clear_select"
+                      @change="change_select"
+                      label="Select Medicine"
+                      filled
+                      :rules="[(v) => !!v || 'Medicine is required!']"
+                      required
+                      clearable
+                      persistent-hint
+                      single-line
+                    ></v-select>
+                  </v-card-text>
+                </v-col>
+                <v-col cols="12" sm="12" md="6" v-if="data.id">
+                  <v-text-field
+                    v-model="data.quantity"
+                    label="Quantity"
+                    type="number"
                     filled
-                    :rules="[(v) => !!v || 'Medicine is required!']"
+                    min="1"
+                    class="mt-4"
+                    :suffix="suffix === null ? '' : suffix"
+                    :rules="[(v) => !!v || 'Quantity is required!']"
                     required
-                    clearable
-                    persistent-hint
-                    single-line
-                  ></v-select>
-                </v-card-text>
-              </v-col>
-              <v-col cols="12" sm="12" md="6" v-if="data.id">
-                <v-text-field
-                  v-model="data.quantity"
-                  label="Quantity"
-                  type="number"
-                  filled
-                  min="1"
-                  class="mt-4"
-                  :suffix="suffix === null ? '' : suffix"
-                  :rules="[(v) => !!v || 'Quantity is required!']"
-                  required
-                ></v-text-field>
-              </v-col>
-            </v-row>
-          </v-form>
+                  ></v-text-field>
+                </v-col>
+              </v-row>
+            </v-form>
+          </v-card-text>
+          <v-divider></v-divider>
 
           <v-card-actions class="justify-end">
             <v-btn @click="dialog = false">Close</v-btn>

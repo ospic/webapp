@@ -32,7 +32,9 @@
               class="mt-2"
             ></v-text-field
             >&nbsp;&nbsp;
-             <v-btn class="button mb-1" medium @click="showActive"> {{button}}</v-btn>&nbsp;&nbsp;
+            <v-btn class="button mb-1" medium @click="showActive">
+              {{ button }}</v-btn
+            >&nbsp;&nbsp;
             <v-dialog v-model="dialog" max-width="900px">
               <template v-slot:activator="{ on, attrs }">
                 <v-btn
@@ -56,11 +58,8 @@
                   dark
                   small
                 >
-                  <v-icon dark>
-                    mdi-plus
-                  </v-icon>
+                  <v-icon dark> mdi-plus </v-icon>
                 </v-btn>
-               
               </template>
               <v-card>
                 <v-form ref="form" v-model="valid" lazy-validation>
@@ -108,7 +107,7 @@
                             chips
                             small-chips
                             :rules="[
-                              v => !!v || 'You must select one to continue!'
+                              (v) => !!v || 'You must select one to continue!',
                             ]"
                             label="Insurance"
                             required
@@ -136,7 +135,7 @@
                                 readonly
                                 v-bind="attrs"
                                 v-on="on"
-                                :rules="[v => !!v || 'Date is required']"
+                                :rules="[(v) => !!v || 'Date is required']"
                                 required
                               ></v-text-field>
                             </template>
@@ -160,57 +159,55 @@
                               </v-btn>
                             </v-date-picker>
                           </v-menu>
-
                         </v-col>
 
-                          <v-col cols="12" sm="12" md="6">
-                            <v-menu
-                              ref="menu2"
-                              v-model="menu2"
-                              :close-on-content-click="false"
-                              :return-value.sync="date"
-                              transition="scale-transition"
-                              offset-y
-                              max-width="290px"
-                              min-width="290px"
-                            >
-                              <template v-slot:activator="{ on, attrs }">
-                                <v-text-field
-                                  v-model="editedItem.expireDate"
-                                  label="Expired date"
-                                  prepend-icon="mdi-calendar"
-                                  readonly
-                                  v-bind="attrs"
-                                  v-on="on"
-                                  :rules="[v => !!v || 'Date is required']"
-                                  required
-                                ></v-text-field>
-                              </template>
-                              <v-date-picker
+                        <v-col cols="12" sm="12" md="6">
+                          <v-menu
+                            ref="menu2"
+                            v-model="menu2"
+                            :close-on-content-click="false"
+                            :return-value.sync="date"
+                            transition="scale-transition"
+                            offset-y
+                            max-width="290px"
+                            min-width="290px"
+                          >
+                            <template v-slot:activator="{ on, attrs }">
+                              <v-text-field
                                 v-model="editedItem.expireDate"
-                                no-title
-                                scrollable
+                                label="Expired date"
+                                prepend-icon="mdi-calendar"
+                                readonly
+                                v-bind="attrs"
+                                v-on="on"
+                                :rules="[(v) => !!v || 'Date is required']"
                                 required
-                                @input="menu2 = false"
+                              ></v-text-field>
+                            </template>
+                            <v-date-picker
+                              v-model="editedItem.expireDate"
+                              no-title
+                              scrollable
+                              required
+                              @input="menu2 = false"
+                            >
+                              <v-spacer></v-spacer>
+                              <v-btn
+                                text
+                                color="primary"
+                                @click="menu2 = false"
                               >
-                                <v-spacer></v-spacer>
-                                <v-btn
-                                  text
-                                  color="primary"
-                                  @click="menu2 = false"
-                                >
-                                  Cancel
-                                </v-btn>
-                                <v-btn
-                                  text
-                                  color="primary"
-                                  @click="$refs.menu2.save(date)"
-                                >
-                                  OK
-                                </v-btn>
-                              </v-date-picker>
-                            </v-menu>
-                          </v-col>
+                                Cancel
+                              </v-btn>
+                              <v-btn
+                                text
+                                color="primary"
+                                @click="$refs.menu2.save(date)"
+                              >
+                                OK
+                              </v-btn>
+                            </v-date-picker>
+                          </v-menu>
                         </v-col>
                       </v-row>
                     </v-container>
@@ -239,13 +236,13 @@
                   Activate this insurance
                 </v-card-title>
                 <v-card-text v-if="activelist"
-                  >Are you sure you want to deactivate this insurance.  Click 'Yes' to deactivate
-                  or 'No' to ignore
+                  >Are you sure you want to deactivate this insurance. Click
+                  'Yes' to deactivate or 'No' to ignore
                 </v-card-text>
 
-                  <v-card-text v-else
-                  >Are you sure you want to activate this insurance.  Click 'Yes' to activate
-                  or 'No' to ignore
+                <v-card-text v-else
+                  >Are you sure you want to activate this insurance. Click 'Yes'
+                  to activate or 'No' to ignore
                 </v-card-text>
                 <v-card-actions>
                   <v-spacer></v-spacer>
@@ -270,20 +267,24 @@
               :key="i"
               @click="getSelected(it, item)"
             >
-              mdi-{{ activelist ? it.icon :it.icona }}
+              mdi-{{ activelist ? it.icon : it.icona }}
             </v-icon>
           </td>
         </template>
         <template v-slot:[`item.isActive`]="{ item }">
-        <v-icon class=" font-weight-black" color="primary" v-if="item.isActive">
-          mdi-check
-        </v-icon>
-         <v-icon class=" font-weight-black" color="primary" v-else>
-          mdi-close
-        </v-icon>
-      </template>
+          <v-icon
+            class="font-weight-black"
+            color="primary"
+            v-if="item.isActive"
+          >
+            mdi-check
+          </v-icon>
+          <v-icon class="font-weight-black" color="primary" v-else>
+            mdi-close
+          </v-icon>
+        </template>
         <template v-slot:no-data>
-          <p class="mt-2">No Data available </p>
+          <p class="mt-2">No Data available</p>
         </template>
       </v-data-table>
     </div>
@@ -321,14 +322,19 @@ export default {
       menu: false,
       menu2: false,
       headers: [
-        { text: "ID", value: "id" },
-        { text: "Insurance name", value: "insurance.name" },
-        { text: "Client name", value: "patientName", sortable: false },
-        { text: "Client No.", value: "membershipNumber" },
-        { text: "Active ? ", value: "isActive" },
-        { text: "Gender", value: "sex" },
-        { text: "Exipire Date", value: "expireDate" },
-        { text: "Actions", value: "actions" },
+        { text: "ID", value: "id", class: "primary" },
+        { text: "Insurance name", value: "insurance.name", class: "primary" },
+        {
+          text: "Client name",
+          value: "patientName",
+          class: "primary",
+          sortable: false,
+        },
+        { text: "Client No.", value: "membershipNumber", class: "primary" },
+        { text: "Active ? ", value: "isActive", class: "primary" },
+        { text: "Gender", value: "sex", class: "primary" },
+        { text: "Exipire Date", value: "expireDate", class: "primary" },
+        { text: "Actions", value: "actions", class: "primary" },
       ],
       items: [
         {

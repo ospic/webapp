@@ -46,7 +46,7 @@
       <v-dialog
         v-model="dialog"
         transition="dialog-bottom-transition"
-        max-width="600"
+        width="600"
       >
         <template v-slot:activator="{ on, attrs }">
           <v-btn
@@ -84,6 +84,7 @@
               truncate-length="27"
             ></v-file-input>
           </v-card-text>
+          <v-divider></v-divider>
           <v-card-actions class="justify-end">
             <v-btn @click="dialog = false" color="primary" outlined>Deny</v-btn>
             <v-btn

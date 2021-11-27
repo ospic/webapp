@@ -46,6 +46,7 @@
             single-line
           ></v-select>
         </v-card-text>
+        <v-divider></v-divider>
         <v-card-actions class="justify-end">
           <v-btn @click="dialog = false">Close</v-btn>
           <v-btn class="warning" @click="save">Save</v-btn>
