@@ -41,11 +41,7 @@
 
                   <v-list-item-icon>
                     <div class="text-center">
-                      <v-dialog
-                        v-model="uploaddialog"
-                        persistent
-                        max-width="600"
-                      >
+                      <v-dialog v-model="uploaddialog" persistent width="600">
                         <template v-slot:activator="{ on, attrs }">
                           <v-btn
                             color="warning"
@@ -71,9 +67,7 @@
                         </template>
                         <v-card>
                           <v-card-title class="headline">
-                            Changing {{ userdata.first_name }}&nbsp;{{
-                              userdata.last_name
-                            }}
+                            Changing {{ userdata.name }}
                             profile picture
                           </v-card-title>
                           <v-card-text>
@@ -91,17 +85,18 @@
                               </template>
                             </v-file-input>
                           </v-card-text>
+                          <v-divider></v-divider>
                           <v-card-actions>
                             <v-spacer></v-spacer>
                             <v-btn
                               color="primary"
                               @click.stop="uploaddialog = false"
-                              x-small
+                              medium
                             >
-                              Cancel
+                              {{ $t("label.button.btncancel") }}
                             </v-btn>
-                            <v-btn x-small shaped @click="uploadPatientImage()">
-                              Save
+                            <v-btn medium shaped @click="uploadPatientImage()">
+                              {{ $t("label.button.btnsave") }}
                             </v-btn>
                           </v-card-actions>
                         </v-card>
@@ -132,24 +127,19 @@
                 >View contacts</v-btn
               >
               <v-btn
-                small
-                block
-                class="button"
+                class="primary"
                 v-else
                 dark
                 :to="`/patients/${userdata.id}/contacts/add`"
               >
-                Add contacts
+                {{ $t("label.button.addcontacts") }}
               </v-btn>
               <v-btn
-                small
-                block
-                dark
-                class="button mt-2"
+                class="primary"
                 v-if="!userdata.hasSelfServiceUserAccount"
                 :to="`/patients/${userdata.id}/selfservice`"
               >
-                Create self service user
+                {{ $t("label.button.createselfservice") }}
               </v-btn>
             </v-col>
           </v-card-actions>
@@ -166,20 +156,21 @@
         >
           <v-tab class="ffont-weight-normal">
             <span
-              ><v-icon small left>mdi-account-question</v-icon>Biography</span
+              ><v-icon small left>mdi-account-question</v-icon
+              >{{ $t("label.tab.biography") }}</span
             >
           </v-tab>
 
           <v-tab class="font-weight-normal" @click.stop="getPatientServices()">
             <v-icon small left>mdi-clock-check</v-icon>
-            Consultations
+            {{ $t("label.tab.consultations") }}
           </v-tab>
           <v-tab
             class="font-weight-normal"
             @click.stop="getPatientInsurances()"
           >
             <v-icon small left>mdi-shield-sun</v-icon>
-            Insurances
+            {{ $t("label.tab.insurances") }}
           </v-tab>
         </v-tabs>
         <v-tabs-items vertical v-model="tab">
@@ -194,7 +185,8 @@
                 small
                 v-if="!userdata.isActive"
                 @click.stop="initiateServiceInstance()"
-                ><v-icon small left>mdi-plus</v-icon>New consultation</v-btn
+                ><v-icon small left>mdi-plus</v-icon
+                >{{ $t("label.button.newconsultation") }}</v-btn
               >
               <tb-services :services="services"></tb-services>
             </div>

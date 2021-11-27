@@ -41,17 +41,16 @@
                   elevation="1"
                   medium
                   prepend-icon="mdi-plus"
-                  class="mb-2 button"
+                  class="button"
                   v-bind="attrs"
                   v-on="on"
-                  dark
                   v-if="isMdAndUp"
                   ><v-icon left>mdi-plus</v-icon
                   >{{ $t("label.button.newinsurancecard") }}</v-btn
                 >
                 <v-btn
                   v-else
-                  class="mx-2 button"
+                  class="button"
                   v-bind="attrs"
                   v-on="on"
                   fab

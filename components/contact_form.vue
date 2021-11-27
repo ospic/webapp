@@ -1,6 +1,10 @@
 <template>
   <v-card class="mx-auto">
-    <v-card-title> {{ title }}</v-card-title>
+    <v-toolbar color="primary" dark flat>
+      <v-toolbar-title>
+        <span class="headline">{{ title }}</span></v-toolbar-title
+      >
+    </v-toolbar>
     <v-divider></v-divider>
     <v-card-text>
       <v-row no-gutters>
@@ -80,13 +84,14 @@
             required
           ></v-checkbox>
         </v-col>
-
-        <v-col cols="12" sm="12" md="4" class="pa-2">
-          <v-btn class="mr-4" @click="submit"> submit </v-btn>
-          <v-btn @click="clear"> clear </v-btn>
-        </v-col>
       </v-row>
     </v-card-text>
+    <v-divider></v-divider>
+    <v-card-actions>
+      <v-spacer></v-spacer>
+      <v-btn class="mr-4 button" @click="submit"> Submit </v-btn>
+      <v-btn @click="clear" class="button warning"> Clear </v-btn>
+    </v-card-actions>
   </v-card>
 </template>
 <script>
