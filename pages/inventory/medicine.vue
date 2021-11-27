@@ -16,7 +16,7 @@ import { mapGetters } from "vuex";
 import medicineTab from "@/components/pharmacy/tabs/medicine";
 export default {
   components: {
-    "tab-medicine": medicineTab
+    "tab-medicine": medicineTab,
   },
   data: () => ({
     dialog: false,
@@ -24,13 +24,13 @@ export default {
     medicinos: null,
     tab: null,
     headers: [
-      { text: "Name", value: "name" },
-      { text: "Company", value: "company", sortable: false },
-      { text: "Composition", value: "compositions" },
-      { text: "Units", value: "units", sortable: true },
-      { text: "Group", value: "group", sortable: true },
-      { text: "Category", value: "category", sortable: true },
-      { text: "Actions", value: "actions", sortable: false }
+      { text: "Name", value: "name", class: "primary" },
+      { text: "Company", value: "company", class: "primary", sortable: false },
+      { text: "Composition", value: "compositions", class: "primary" },
+      { text: "Units", value: "units", class: "primary", sortable: true },
+      { text: "Group", value: "group", class: "primary", sortable: true },
+      { text: "Category", value: "category", class: "primary", sortable: true },
+      { text: "Actions", value: "actions", class: "primary", sortable: false },
     ],
     editedIndex: -1,
     editedItemId: "",
@@ -41,7 +41,7 @@ export default {
       compositions: "",
       category: "",
       group: "",
-      units: 0
+      units: 0,
     },
     defaultItem: {
       id: 0,
@@ -50,8 +50,8 @@ export default {
       compositions: "",
       category: "",
       group: "",
-      units: 0
-    }
+      units: 0,
+    },
   }),
   created() {},
   beforeMount() {
@@ -65,16 +65,16 @@ export default {
       this.dialog = true;
       this.editedItemId = item.id;
     },
-    fetchMedicines: function() {
+    fetchMedicines: function () {
       this.$store.dispatch("getmedicines");
     },
-    fetchCategories: function() {
+    fetchCategories: function () {
       this.$store.dispatch("getmedicinescategories");
     },
-    fetchGroups: function() {
+    fetchGroups: function () {
       this.$store.dispatch("getmedicinesgroups");
     },
-    handleTabNavigation: function(val) {
+    handleTabNavigation: function (val) {
       switch (val.id) {
         case 1:
           this.fetchMedicines();
@@ -88,21 +88,21 @@ export default {
       }
     },
 
-    handleClick: function(value) {
+    handleClick: function (value) {
       console.log(value);
       this.$router.push("/patients/" + value.id);
-    }
+    },
   },
   watch: {
     dialog(val) {
       val || this.close();
       this.$store.dispatch("retrieve_medicine_template");
-    }
+    },
   },
   computed: {
     ...mapGetters({
-      medicines: "medicines"
-    })
-  }
+      medicines: "medicines",
+    }),
+  },
 };
 </script>

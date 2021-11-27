@@ -6,7 +6,7 @@
         $t("label.breadcrumb.insurances")
       }}</router-link>
     </div>
-    <v-card class="mx-auto default ">
+    <v-card class="mx-auto default">
       <v-progress-circular
         v-if="insurances.length == null"
         indeterminate
@@ -17,7 +17,6 @@
         <v-data-table
           dense
           :headers="headers"
-          2
           :items="insurances"
           :search="search"
           width="100%"
@@ -64,9 +63,7 @@
                     dark
                     small
                   >
-                    <v-icon dark>
-                      mdi-plus
-                    </v-icon>
+                    <v-icon dark> mdi-plus </v-icon>
                   </v-btn>
                 </template>
                 <v-card>
@@ -176,7 +173,7 @@
             </td>
           </template>
           <template v-slot:no-data>
-            <p class="mt-2">No Data available for {{ routename }}</p>
+            <p class="mt-2">No Data available...</p>
           </template>
         </v-data-table>
       </div>
@@ -187,22 +184,22 @@
 <script>
 import { mapGetters } from "vuex";
 export default {
-  data: function() {
+  data: function () {
     return {
       search: null,
       title: "Insurances companies",
       valid: false,
       headers: [
-        { text: "ID", value: "id" },
-        { text: "Insurance", value: "name", sortable: false },
-        { text: "P.O Box", value: "poBox" },
-        { text: "Location", value: "location" },
-        { text: "Email", value: "emailAddress" },
-        { text: "Actions", value: "actions" }
+        { text: "ID", value: "id", class: "primary" },
+        { text: "Insurance", value: "name", class: "primary", sortable: false },
+        { text: "P.O Box", value: "poBox", class: "primary" },
+        { text: "Location", value: "location", class: "primary" },
+        { text: "Email", value: "emailAddress", class: "primary" },
+        { text: "Actions", value: "actions", class: "primary" },
       ],
       items: [
         { title: "Edit", icon: "lead-pencil", color: "blue" },
-        { title: "Delete", icon: "delete", color: "red" }
+        { title: "Delete", icon: "delete", color: "red" },
       ],
       editedIndex: -1,
       editedItemId: "",
@@ -215,7 +212,7 @@ export default {
         poBox: "",
         location: "",
         telephoneNo: "",
-        emailAddress: ""
+        emailAddress: "",
       },
       defaultItem: {
         id: 0,
@@ -223,8 +220,8 @@ export default {
         poBox: "",
         location: "",
         telephoneNo: "",
-        emailAddress: ""
-      }
+        emailAddress: "",
+      },
     };
   },
 
@@ -232,7 +229,7 @@ export default {
     fetchdata() {
       this.$store.dispatch("get_insurance_companies");
     },
-    getSelected: function(it, item) {
+    getSelected: function (it, item) {
       if (it.title == "Edit") {
         this.editItem(item);
       }
@@ -257,7 +254,7 @@ export default {
         this.deletedialog = false;
       }, this.delay_seconds);
     },
-    navigateTo: function(id) {
+    navigateTo: function (id) {
       this.$router.push(`/insurances/${id}`);
     },
     close() {
@@ -272,9 +269,9 @@ export default {
       }
       this.close();
     },
-    handleClick: function(item) {
+    handleClick: function (item) {
       this.navigateTo(item.id);
-    }
+    },
   },
   watch: {
     dialog(val) {
@@ -283,19 +280,19 @@ export default {
         () => this.$store.dispatch("get_insurance_companies"),
         this.delay_seconds
       );
-    }
+    },
   },
   created() {
     this.$store.dispatch("get_insurance_companies");
   },
   computed: {
     ...mapGetters({
-      insurances: "insurances"
+      insurances: "insurances",
     }),
     formTitle() {
       return this.editedIndex === -1 ? "New insurance" : "Edit insurance";
-    }
-  }
+    },
+  },
 };
 </script>
 <style lang="scss" scoped>

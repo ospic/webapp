@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="breadcrumb ">
+    <div class="breadcrumb">
       <router-link to="/">{{ $t("label.breadcrumb.dashboard") }}</router-link>
       <router-link to="/inventory">{{
         $t("label.breadcrumb.inventory")
@@ -112,26 +112,26 @@ export default {
     dialog: false,
     valid: true,
     headers: [
-      { text: "ID", value: "id" },
-      { text: "Name", value: "name", sortable: false },
-      { text: "No. of Beds", value: "numberOfBeds" },
-      { text: "Actions", value: "actions", sortable: false }
+      { text: "ID", value: "id", class: "primary" },
+      { text: "Name", value: "name", class: "primary", sortable: false },
+      { text: "No. of Beds", value: "numberOfBeds", class: "primary" },
+      { text: "Actions", value: "actions", class: "primary", sortable: false },
     ],
     editedItem: {
       id: "",
-      name: ""
+      name: "",
     },
     defaultItem: {
       id: "",
-      name: ""
-    }
+      name: "",
+    },
   }),
   methods: {
     navigateToWard(item) {
       console.log(item);
       this.$router.push("/inventory/ward/" + item.id);
     },
-    close: function() {
+    close: function () {
       this.dialog = false;
       this.$nextTick(() => {
         this.editedItem = Object.assign({}, this.defaultItem);
@@ -139,15 +139,15 @@ export default {
         this.$store.dispatch("retrieve_all_wards");
       });
     },
-    editItem: function(item) {
+    editItem: function (item) {
       this.editedIndex = this.wards.indexOf(item);
       this.editedItem = Object.assign({}, item);
       this.dialog = true;
     },
-    deleteItem: function(item) {
+    deleteItem: function (item) {
       this.$store.dispatch("delete_ward", item.id);
     },
-    save: function() {
+    save: function () {
       if (this.editedIndex > -1) {
         this.$store.dispatch("update_ward", this.editedItem);
         this.close();
@@ -157,7 +157,7 @@ export default {
         this.$store.dispatch("create_new_ward", this.editedItem);
         this.close();
       }
-    }
+    },
   },
   computed: {
     wards() {
@@ -167,10 +167,10 @@ export default {
       return this.editedIndex === -1
         ? "label.titles.newward"
         : "label.titles.editward";
-    }
+    },
   },
   beforeMount() {
     this.$store.dispatch("retrieve_all_wards");
-  }
+  },
 };
 </script>

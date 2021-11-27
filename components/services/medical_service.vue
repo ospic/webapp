@@ -34,7 +34,7 @@
             small-chips
             @click="fetch_medical_service_types"
             @change="filter_medical_services"
-            :rules="[v => !!v || 'You must select one to continue!']"
+            :rules="[(v) => !!v || 'You must select one to continue!']"
             label="Filter by service types"
             required
             persistent-hint
@@ -99,7 +99,7 @@
                           small-chips
                           @click="fetch_medical_service_types"
                           :rules="[
-                            v => !!v || 'You must select one to continue!'
+                            (v) => !!v || 'You must select one to continue!',
                           ]"
                           label="Service types"
                           required
@@ -117,7 +117,7 @@
                           small-chips
                           @click="fetch_measures"
                           :rules="[
-                            v => !!v || 'You must select one to continue!'
+                            (v) => !!v || 'You must select one to continue!',
                           ]"
                           label="Measure unit"
                           required
@@ -172,8 +172,8 @@ export default {
   props: {
     services: {
       type: Array,
-      default: null
-    }
+      default: null,
+    },
   },
   data: () => ({
     dialog: false,
@@ -182,31 +182,35 @@ export default {
     editedIndex: -1,
     valid: true,
     headers: [
-      { text: "ID", value: "id" },
-      { text: "Name", value: "name" },
-      { text: "Is Active", value: "isActive", sortable: false },
-      { text: "Price", value: "price" },
-
-      { text: "Service type", value: "serviceTypeName" },
-      { text: "Actions", value: "actions", sortable: false }
+      { text: "ID", value: "id", class: "primary" },
+      { text: "Name", value: "name", class: "primary" },
+      {
+        text: "Is Active",
+        value: "isActive",
+        class: "primary",
+        sortable: false,
+      },
+      { text: "Price", value: "price", class: "primary" },
+      { text: "Service type", value: "serviceTypeName", class: "primary" },
+      { text: "Actions", value: "actions", class: "primary", sortable: false },
     ],
     editedItem: {
       id: "",
       name: "",
       price: 0,
       medicalServiceType: 0,
-      units: ""
+      units: "",
     },
     defaultItem: {
       id: "",
       name: "",
       price: 0,
       medicalServiceType: 0,
-      units: ""
-    }
+      units: "",
+    },
   }),
   methods: {
-    handleClick: function(item) {
+    handleClick: function (item) {
       this.$router.push("roles/" + item.id);
     },
     editItem(item) {
@@ -232,7 +236,7 @@ export default {
         this.$store.dispatch("create_new_medical_service", this.editedItem);
       }
       this.close();
-    }
+    },
   },
   computed: {
     formTitle() {
@@ -242,7 +246,7 @@ export default {
     },
     routename() {
       return this.$route.params.service;
-    }
-  }
+    },
+  },
 };
 </script>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="breadcrumb ">
+    <div class="breadcrumb">
       <router-link to="/">{{ $t("label.breadcrumb.dashboard") }}</router-link>
       <router-link to="/finance">{{
         $t("label.breadcrumb.finance")
@@ -102,7 +102,7 @@ import TransactionTotalsCard from "@/components/finance/total-cards";
 export default {
   components: {
     "total-amount": TransactionTotalsCard,
-    receipt: ReceiptComponent
+    receipt: ReceiptComponent,
   },
 
   data: () => ({
@@ -115,21 +115,30 @@ export default {
     bill: null,
 
     headers: [
-      { text: "NID", value: "id" },
-      { text: "Patient", value: "patientName" },
-      { text: "Amount", value: "totalAmount", sortable: false },
-      { text: "Paid Amount", value: "paidAmount" },
-      { text: "Paid ?", value: "isPaid" },
-      { text: "No.", value: "extraId", sortable: true },
-      { text: "CI", value: "consultationId" },
-      { text: "Active", value: "isActive", sortable: true },
-      { text: "Created Date", value: "createdDate" },
-      { text: "Last modified Date", value: "lastUpdatedDate" },
-      { text: "Actions", value: "actions", sortable: false }
-    ]
+      { text: "NID", value: "id", class: "primary" },
+      { text: "Patient", value: "patientName", class: "primary" },
+      {
+        text: "Amount",
+        value: "totalAmount",
+        class: "primary",
+        sortable: false,
+      },
+      { text: "Paid Amount", value: "paidAmount", class: "primary" },
+      { text: "Paid ?", value: "isPaid", class: "primary" },
+      { text: "No.", value: "extraId", class: "primary", sortable: true },
+      { text: "CI", value: "consultationId", class: "primary" },
+      { text: "Active", value: "isActive", class: "primary", sortable: true },
+      { text: "Created Date", value: "createdDate", class: "primary" },
+      {
+        text: "Last modified Date",
+        value: "lastUpdatedDate",
+        class: "primary",
+      },
+      { text: "Actions", value: "actions", class: "primary", sortable: false },
+    ],
   }),
   methods: {
-    viewconsultation: function(item) {
+    viewconsultation: function (item) {
       this.$router.push("/finance/bills/" + item.id);
     },
     async viewreceipt(cid) {
@@ -137,13 +146,13 @@ export default {
       this.bill = null;
       return await this.$api
         .$get(`bills/${cid}`)
-        .then(response => {
+        .then((response) => {
           this.bill = response;
         })
-        .catch(error => {
+        .catch((error) => {
           console.log(error);
         });
-    }
+    },
   },
 
   created() {
@@ -151,8 +160,8 @@ export default {
   },
   computed: {
     ...mapGetters({
-      bills: "bills"
-    })
-  }
+      bills: "bills",
+    }),
+  },
 };
 </script>

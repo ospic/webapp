@@ -34,7 +34,7 @@
           </v-col>
         </v-row>
       </v-toolbar>
-      <v-card-text class=" pa-0">
+      <v-card-text class="pa-0">
         <v-tabs
           v-model="tab"
           background-color="primary"
@@ -47,13 +47,11 @@
             :key="department.id"
             left
             class="ml-0 pl-0"
-            style="text-align: left;"
+            style="text-align: left"
             @click="fetchDepartmentStaffs(department.id, department.name)"
             reverse-trasition="true"
           >
-            <v-icon left color="blue">
-              mdi-circle-medium
-            </v-icon>
+            <v-icon left color="blue"> mdi-circle-medium </v-icon>
             {{ department.name }}
           </v-tab>
           <v-tab-item v-for="department in departments" :key="department.id">
@@ -150,27 +148,37 @@ import StaffCard from "@/components/staff/staff_card";
 import { mapGetters } from "vuex";
 export default {
   components: {
-    StaffCard
+    StaffCard,
   },
   data: () => ({
     search: "",
     updating: false,
     headers: [
-      { text: "Image", value: "image" },
-      { text: "User/name", value: "fullName", sortable: false },
-      { text: "Department", value: "department" },
-      { text: "Email", value: "email" },
-      { text: "Phone", value: "contacts" },
-      { text: "Role", value: "role" },
-      { text: "Active ?", value: "isActive", sortable: true },
-      { text: "Available ?", value: "isAvailable", sortable: true }
+      { text: "Image", value: "image", class: "primary" },
+      {
+        text: "User/name",
+        value: "fullName",
+        class: "primary",
+        sortable: false,
+      },
+      { text: "Department", value: "department", class: "primary" },
+      { text: "Email", value: "email", class: "primary" },
+      { text: "Phone", value: "contacts", class: "primary" },
+      { text: "Role", value: "role", class: "primary" },
+      { text: "Active ?", value: "isActive", class: "primary", sortable: true },
+      {
+        text: "Available ?",
+        value: "isAvailable",
+        class: "primary",
+        sortable: true,
+      },
     ],
     items: [
       { title: "Edit", icon: "lead-pencil", color: "blue" },
-      { title: "Delete", icon: "delete", color: "red" }
+      { title: "Delete", icon: "delete", color: "red" },
     ],
     departmentsstaffs: [],
-    title: null
+    title: null,
   }),
   methods: {
     async fetchDepartmentStaffs(id, title) {
@@ -178,20 +186,20 @@ export default {
       this.updating = true;
       await this.$api
         .$get(`staffs/dep/${id}`)
-        .then(response => {
+        .then((response) => {
           if (response != null) {
             this.departmentsstaffs = response;
             this.updating = false;
           }
         })
-        .catch(error => {
+        .catch((error) => {
           this.updating = false;
           console.log(error);
         });
     },
     handleClick(item) {
       this.$router.push("staffs/" + item.id);
-    }
+    },
   },
   created() {
     this.fetchDepartmentStaffs(1);
@@ -202,8 +210,8 @@ export default {
   computed: {
     ...mapGetters({
       staffs: "staffs",
-      departments: "departments"
-    })
-  }
+      departments: "departments",
+    }),
+  },
 };
 </script>

@@ -108,10 +108,9 @@ export default {
     search: null,
     dialog: false,
     headers: [
-      { text: "Group", value: "group" },
-      { text: "Quantitty(in bags)", value: "counts", sortable: false },
-
-      { text: "Actions", value: "actions" }
+      { text: "Group", value: "group", class: "primary" },
+      { text: "Quantitty(in bags)", value: "counts", class: "primary", sortable: false },
+      { text: "Actions", value: "actions", class: "primary" }
     ],
     editedItem: {
       id: 0,

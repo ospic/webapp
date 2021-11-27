@@ -1,10 +1,6 @@
 <template>
   <v-container>
-    <v-dialog
-      v-model="dialog"
-      transition="dialog-top-transition"
-      max-width="600"
-    >
+    <v-dialog v-model="dialog" transition="dialog-top-transition" width="600">
       <template v-slot:activator="{ on, attrs }">
         <v-btn v-if="isActive" class="button" v-bind="attrs" v-on="on" dark
           ><v-icon small left>mdi-plus</v-icon>Add patient service</v-btn
@@ -24,7 +20,7 @@
             small-chips
             @click="fetch_medical_service_types"
             @change="fetch_medical_types"
-            :rules="[v => !!v || 'You must select one to continue!']"
+            :rules="[(v) => !!v || 'You must select one to continue!']"
             label="Medical services"
             required
             persistent-hint
@@ -38,7 +34,7 @@
             chips
             small-chips
             :disabled="medicalservices.length <= 0"
-            :rules="[v => !!v || 'You must select one to continue!']"
+            :rules="[(v) => !!v || 'You must select one to continue!']"
             :label="
               medicalservices.length > 0
                 ? 'Medical services'
@@ -80,21 +76,21 @@ import { mapGetters } from "vuex";
 import Charges from "./charges.vue";
 export default {
   components: {
-    charges: Charges
+    charges: Charges,
   },
   props: {
     consultationsservices: {
       type: Array,
-      default: null
+      default: null,
     },
     transaction: {
       type: Object,
-      default: null
+      default: null,
     },
     isActive: {
       type: Boolean,
-      default: true
-    }
+      default: true,
+    },
   },
   data: () => ({
     select: null,
@@ -106,17 +102,27 @@ export default {
     data: {
       id: null,
       quantity: 0,
-      type: "service"
+      type: "service",
     },
     headers: [
-      { text: "ID", value: "id" },
-      { text: "Service", value: "medicalServiceName", sortable: true },
-      { text: "Department", value: "departmentName" },
-      { text: "Amount", value: "amount", sortable: false },
-      { text: "Currency", value: "currencyCode" },
-      { text: "Reversed", value: "isReversed", sortable: true },
-      { text: "Transaction Date", value: "transactionDate" }
-    ]
+      { text: "ID", value: "id", class: "primary" },
+      {
+        text: "Service",
+        value: "medicalServiceName",
+        sortable: true,
+        class: "primary",
+      },
+      { text: "Department", value: "departmentName", class: "primary" },
+      { text: "Amount", value: "amount", sortable: false, class: "primary" },
+      { text: "Currency", value: "currencyCode", class: "primary" },
+      {
+        text: "Reversed",
+        value: "isReversed",
+        sortable: true,
+        class: "primary",
+      },
+      { text: "Transaction Date", value: "transactionDate", class: "primary" },
+    ],
   }),
 
   methods: {
@@ -124,10 +130,10 @@ export default {
       this.$store.dispatch("get_medical_services");
     },
 
-    fetch_medical_types: function(it) {
+    fetch_medical_types: function (it) {
       this.$store.dispatch("get_medical_services_by_type", it);
     },
-    update_service: function(it) {
+    update_service: function (it) {
       this.data.id = parseInt(it);
     },
     save() {
@@ -137,23 +143,23 @@ export default {
 
       this.$store
         .dispatch("initiate_medical_transaction", this.payload)
-        .then(res => {
+        .then((res) => {
           setTimeout(() => this.$emit("update"), this.delay_seconds);
         });
       this.dialog = false;
-    }
+    },
   },
 
   computed: {
     ...mapGetters({
       medicalservices: "medicalservices",
-      servicetypes: "servicetypes"
+      servicetypes: "servicetypes",
     }),
     transactions() {
       return this.transaction.transactions.filter(
-        t => t.medicalServiceName !== null
+        (t) => t.medicalServiceName !== null
       );
-    }
-  }
+    },
+  },
 };
 </script>
