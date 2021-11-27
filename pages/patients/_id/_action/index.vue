@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div class="breadcrumb " v-if="patient != null">
+    <div class="breadcrumb" v-if="patient != null">
       <router-link to="/">{{ $t("label.menu.dashboard") }}</router-link>
-      <router-link to="/patients" class="active">{{
+      <router-link to="/patients">{{
         $t("label.breadcrumb.patients")
       }}</router-link>
       <router-link :to="`/patients/${this.$route.params.id}`">{{
@@ -23,7 +23,7 @@
                   v-model="wardId"
                   :items="wards"
                   prepend-icon="mdi-home-variant-outline"
-                  :rules="[v => !!v || 'Item is required']"
+                  :rules="[(v) => !!v || 'Item is required']"
                   label="Select ward"
                   :item-value="'id'"
                   @change="wardIdChanges()"
@@ -43,7 +43,7 @@
                   v-model="admission.bedId"
                   :items="beds"
                   prepend-icon="mdi-queen-bed"
-                  :rules="[v => !!v || 'Item is required']"
+                  :rules="[(v) => !!v || 'Item is required']"
                   :item-value="'id'"
                   required
                 >
@@ -75,7 +75,7 @@
                       readonly
                       v-bind="attrs"
                       v-on="on"
-                      :rules="[v => !!v || 'Date is required']"
+                      :rules="[(v) => !!v || 'Date is required']"
                       required
                     ></v-text-field>
                   </template>
@@ -115,7 +115,7 @@
                       readonly
                       v-bind="attrs"
                       v-on="on"
-                      :rules="[v => !!v || 'Date is required']"
+                      :rules="[(v) => !!v || 'Date is required']"
                       required
                     ></v-text-field>
                   </template>
@@ -141,9 +141,7 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn class="button warning mr-4" @click="reset">
-            Reset Form
-          </v-btn>
+          <v-btn class="button warning mr-4" @click="reset"> Reset Form </v-btn>
           <v-btn :disabled="!valid" class="button mr-4" @click="validate">
             Admit
           </v-btn>
@@ -216,36 +214,36 @@ export default {
     menu2: false,
     modal: false,
     emailRules: [
-      v => !!v || "E-mail is required",
-      v => /.+@.+\..+/.test(v) || "E-mail must be valid"
+      (v) => !!v || "E-mail is required",
+      (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
     ],
     nameRules: [
-      v => !!v || "Username is required",
-      v =>
+      (v) => !!v || "Username is required",
+      (v) =>
         (v && v.length >= 5 && v.length < 12) ||
-        "Username must be not less than 5 and not more than 12 characters"
+        "Username must be not less than 5 and not more than 12 characters",
     ],
     passwordRules: [
-      v => !!v || "Password is required",
-      v =>
+      (v) => !!v || "Password is required",
+      (v) =>
         (v && v.length >= 8) || "Password must be not less than 8 characters",
-      v =>
+      (v) =>
         (v && v.length < 18) ||
-        "Password must be not less than 8 and not more than 18 characters"
+        "Password must be not less than 8 and not more than 18 characters",
     ],
     admission: {
       bedId: "",
       serviceId: 0,
       isActive: 1,
       endDateTime: null,
-      startDateTime: null
+      startDateTime: null,
     },
     selfservice: {
       username: "",
       email: "",
       password: "",
-      patientId: 0
-    }
+      patientId: 0,
+    },
   }),
 
   methods: {
@@ -253,12 +251,12 @@ export default {
       console.log(this.wardId);
       return await this.$api
         .$get(`beds/${this.wardId}/ward/`)
-        .then(response => {
+        .then((response) => {
           if (response !== null) {
-            this.beds = response.filter(bed => bed.isOccupied === false);
+            this.beds = response.filter((bed) => bed.isOccupied === false);
           }
         })
-        .catch(error => {
+        .catch((error) => {
           console.log(error);
         });
     },
@@ -276,7 +274,7 @@ export default {
     resetValidation() {
       this.$refs.form.resetValidation();
     },
-    submit: function() {
+    submit: function () {
       var state = this.$refs.form.validate();
       this.selfservice.patientId = parseInt(this.$route.params.id);
       if (state) {
@@ -286,7 +284,7 @@ export default {
             this.$router.push(`/patients/${this.$route.params.id}`);
           });
       }
-    }
+    },
   },
   created() {
     this.admission.serviceId = this.$route.params.id;
@@ -300,7 +298,7 @@ export default {
     },
     patient() {
       return this.$store.getters.patient(parseInt(this.$route.params.id));
-    }
-  }
+    },
+  },
 };
 </script>

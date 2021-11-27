@@ -1855,6 +1855,10 @@ button.button.warning {
   background-color: #fb8c00 !important;
 }
 
+button.button.warning span.v-btn__content {
+  color: #ffffff !important;
+}
+
 button.button.error {
   background-color: #ff0000 !important;
 }
