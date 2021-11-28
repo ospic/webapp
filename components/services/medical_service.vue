@@ -156,9 +156,21 @@
       </template>
       <template v-slot:[`item.actions`]="{ item }">
         <td @click.stop>
-          <v-icon small class="mr-2" @click="editItem(item)">
-            mdi-pencil
+          <v-icon class="mr-2" @click="editItem(item)"> mdi-pencil </v-icon>
+        </td>
+        <td @click.stop>
+          <v-icon class="mr-2" color="red" @click="deleteItem(item.id)">
+            mdi-trash-can
           </v-icon>
+        </td>
+        <td @click.stop>
+          <v-switch
+            v-model="item.isActive"
+            inset
+            dense
+            @change="enableDisableService(item)"
+            color="green lighten-1"
+          ></v-switch>
         </td>
       </template>
       <template v-slot:no-data>
@@ -181,8 +193,9 @@ export default {
     sortDesc: false,
     editedIndex: -1,
     valid: true,
+    switch1: true,
     headers: [
-      { text: "ID", value: "id", class: "primary" },
+      { text: "ID", value: "id", sortable: true, class: "primary" },
       { text: "Name", value: "name", class: "primary" },
       {
         text: "Is Active",
@@ -224,6 +237,30 @@ export default {
         this.editedItem = Object.assign({}, this.defaultItem);
         this.editedIndex = -1;
         this.$emit("update");
+      });
+    },
+    enableDisableService(item) {
+      var data = {
+        id: item.id,
+        action: item.isActive ? "enable" : "disable",
+      };
+      if (item.isActive) {
+        this.$store
+          .dispatch("enable_disable_medical_service", data)
+          .then((res) => {
+            setTimeout(() => this.$emit("update"), this.delay_seconds);
+          });
+      } else {
+        this.$store
+          .dispatch("enable_disable_medical_service", data)
+          .then((res) => {
+            setTimeout(() => this.$emit("update"), this.delay_seconds);
+          });
+      }
+    },
+    deleteItem(serviceId) {
+      this.$store.dispatch("delete_medical_service", serviceId).then((res) => {
+        setTimeout(() => this.$emit("update"), this.delay_seconds);
       });
     },
 
