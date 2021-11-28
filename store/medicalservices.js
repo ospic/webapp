@@ -50,6 +50,37 @@ const mutations = {
     state.medicalservices = payload;
   },
 
+
+  /** Enable and disable medical service */
+  ["ENABLEDISABLE_MEDICAL_SERVICE"](state) {
+    state.showLoader = true;
+  },
+  ["ENABLEDISABLE_MEDICAL_SERVICE_FAILED"](state) {
+    state.showLoader = false;
+  },
+  ["ENABLEDISABLE_MEDICAL_SERVICE_ERROR"](state) {
+    state.showLoader = false;
+  },
+  ["ENABLEDISABLE_MEDICAL_SERVICE_SUCCESS"](state, payload) {
+    state.showLoader = false;
+    state.medicalservice = payload;
+  },
+
+  /** Delete medical service */
+  ["DELETE_MEDICAL_SERVICE"](state) {
+    state.showLoader = true;
+  },
+  ["DELETE_MEDICAL_SERVICE_FAILED"](state) {
+    state.showLoader = false;
+  },
+  ["DELETE_MEDICAL_SERVICE_ERROR"](state) {
+    state.showLoader = false;
+  },
+  ["DELETE_MEDICAL_SERVICE_SUCCESS"](state, payload) {
+    state.showLoader = false;
+    state.medicalservice = payload;
+  },
+
 }
 
 const actions = {
@@ -98,6 +129,32 @@ const actions = {
         commit("GET_MEDICAL_SERVICES_SUCCESS", response);
       }).catch(error => {
         commit("GET_MEDICAL_SERVICES_ERROR");
+        console.log(error);
+
+      });
+
+  },
+
+  async enable_disable_medical_service({ commit }, payload) {
+    commit("ENABLEDISABLE_MEDICAL_SERVICE");
+    await this.$api.$put(`services/${payload.action}/${payload.id}`)
+      .then(response => {
+        commit("ENABLEDISABLE_MEDICAL_SERVICE_SUCCESS", response);
+      }).catch(error => {
+        commit("ENABLEDISABLE_MEDICAL_SERVICE_ERROR");
+        console.log(error);
+
+      });
+
+  },
+
+  async delete_medical_service({ commit }, payload) {
+    commit("DELETE_MEDICAL_SERVICE");
+    await this.$api.$delete(`services/${payload}`)
+      .then(response => {
+        commit("DELETE_MEDICAL_SERVICE_SUCCESS", response);
+      }).catch(error => {
+        commit("DELETE_MEDICAL_SERVICE_ERROR");
         console.log(error);
 
       });

@@ -26,34 +26,6 @@ export default {
     sortDesc: false,
     editedIndex: -1,
     valid: true,
-    headers: [
-      { text: "ID", value: "id", class: "primary" },
-      { text: "Name", value: "name", class: "primary" },
-      {
-        text: "Is Active",
-        value: "isActive",
-        class: "primary",
-        sortable: false,
-      },
-      { text: "Price", value: "price", class: "primary" },
-
-      { text: "Service type", value: "serviceTypeName", class: "primary" },
-      { text: "Actions", value: "actions", class: "primary", sortable: false },
-    ],
-    editedItem: {
-      id: "",
-      name: "",
-      price: 0,
-      medicalServiceType: 0,
-      units: "",
-    },
-    defaultItem: {
-      id: "",
-      name: "",
-      price: 0,
-      medicalServiceType: 0,
-      units: "",
-    },
   }),
   methods: {
     update() {
