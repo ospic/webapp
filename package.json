@@ -48,7 +48,7 @@
     "babel-runtime": "^6.26.0",
     "dotenv": "^10.0.0",
     "eslint": "^7.32.0",
-    "eslint-plugin-nuxt": "^3.0.0",
+    "eslint-plugin-nuxt": "^3.1.0",
     "sass": "^1.43.5",
     "sass-loader": "10.1.1",
     "webpack": "^4.46.0"
