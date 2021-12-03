@@ -50,6 +50,7 @@
     "eslint": "^7.32.0",
     "eslint-plugin-nuxt": "^3.0.0",
     "sass": "^1.43.5",
-    "sass-loader": "10.1.1"
+    "sass-loader": "10.1.1",
+    "webpack": "^4.46.0"
   }
 }
