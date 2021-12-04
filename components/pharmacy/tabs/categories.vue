@@ -109,10 +109,10 @@
               >
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn class="button cancel py-2" @click="closeDelete()">{{
+                <v-btn class="button cancel" @click="closeDelete()">{{
                   $t("label.button.decline")
                 }}</v-btn>
-                <v-btn class="button py-2" @click="deleteItemConfirm()">{{
+                <v-btn class="button delete" @click="deleteItemConfirm()">{{
                   $t("label.button.btndelete")
                 }}</v-btn>
               </v-card-actions>
@@ -121,13 +121,13 @@
         </v-toolbar>
       </template>
       <template v-slot:[`item.actions`]="{ item }">
-        <v-icon small class="mr-2" @click="editItem(item)"> mdi-pencil </v-icon>
-        <v-icon small color="indigo darken-4" @click="deleteItem(item)">
-          mdi-delete
+        <v-icon class="mr-2" color="blue" @click="editItem(item)">
+          mdi-pencil
         </v-icon>
+        <v-icon color="red" @click="deleteItem(item)"> mdi-delete </v-icon>
       </template>
       <template v-slot:no-data>
-        <p class="mt-2">No Data available for {{ routename }}</p>
+        <p class="mt-2">{{ $t("label.message.nodataavailable") }}</p>
       </template>
     </v-data-table>
   </div>
@@ -224,7 +224,14 @@ export default {
       this.dialogDelete = true;
     },
     deleteItemConfirm: function () {
-      this.closeDelete();
+      this.$store
+        .dispatch("delete_medicine_category", this.editedItem.id)
+        .then((res) => {
+          setTimeout(() => {
+            this.closeDelete();
+            this.$emit("update");
+          }, this.delay_seconds);
+        });
     },
     closeDelete: function () {
       this.dialogDelete = false;

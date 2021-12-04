@@ -328,6 +328,31 @@ const actions = {
 
       });
   },
+  async delete_medicine_measure({ commit }, payload) {
+    commit("UpdateMM");
+    await this.$api.$delete(`pharmacy/measures/${payload}`)
+      .then(response => {
+        commit("UpdateMMSuccess", response);
+
+      }).catch(error => {
+        commit("UpdateMMError");
+        console.log(error);
+
+      });
+  },
+
+  async delete_medicine_category({ commit }, payload) {
+    commit("UPDATE_MEDICINE_CATEGORY");
+    await this.$api.$delete(`pharmacy/medicines/categories/${payload}`)
+      .then(response => {
+        commit("UPDATE_MEDICINE_CATEGORY_SUCCESS", response);
+
+      }).catch(error => {
+        commit("UPDATE_MEDICINE_CATEGORY_ERROR");
+        console.log(error);
+
+      });
+  },
 
 }
 const getters = {

@@ -39,9 +39,9 @@ export default function ({ $axios, redirect, store }, inject) {
     const code = parseInt(error.response && error.response.status)
     if (code === 404) {
       const message = error.response.data.defaultUserMessage
-      Vue.toasted.error(`Failed with message: ${message}`, {
+      Vue.toasted.error(`${message}`, {
         icon: 'close-circle', position: 'top-center', keepOnHover: true, type: 'error',
-        theme: 'outline', duration: 5000
+        theme: 'bubble', duration: 5000
       });
     }
     if (code === 401) {

@@ -86,19 +86,18 @@
               </v-card-actions>
             </v-card>
           </v-dialog>
-          <v-dialog v-model="dialogDelete" dark max-width="500px">
+          <v-dialog v-model="dialogDelete" max-width="500px">
             <v-card>
               <v-card-title class="headline"
                 >Are you sure you want to delete this item?</v-card-title
               >
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn color="indigo" class="py-2" @click="closeDelete()">{{
+                <v-btn class="button py-2" @click="closeDelete()">{{
                   $t("label.button.decline")
                 }}</v-btn>
                 <v-btn
-                  color="warning darken-1"
-                  class="py-2"
+                  class="button cancel py-2"
                   @click="deleteItemConfirm()"
                   >{{ $t("label.button.btnyesdelete") }}</v-btn
                 >
@@ -108,10 +107,10 @@
         </v-toolbar>
       </template>
       <template v-slot:[`item.actions`]="{ item }">
-        <v-icon small class="mr-2" @click="editItem(item)"> mdi-pencil </v-icon>
-        <v-icon small color="indigo darken-4" @click="deleteItem(item)">
-          mdi-delete
+        <v-icon class="mr-2" color="blue lighten-2" @click="editItem(item)">
+          mdi-pencil
         </v-icon>
+        <v-icon color="red" @click="deleteItem(item)"> mdi-delete </v-icon>
       </template>
     </v-data-table>
   </div>
@@ -167,11 +166,17 @@ export default {
     save() {
       if (this.editedIndex > -1) {
         Object.assign(this.measures[this.editedIndex], this.editedItem);
-        this.$store.dispatch("update_medicine_measure", this.editedItem);
-        //this.$emit("update");
+        this.$store
+          .dispatch("update_medicine_measure", this.editedItem)
+          .then((res) => {
+            setTimeout(() => this.$emit("update"), this.delay_seconds);
+          });
       } else {
-        this.$store.dispatch("create_medicine_measurement", this.editedItem);
-        this.$emit("update");
+        this.$store
+          .dispatch("create_medicine_measurement", this.editedItem)
+          .then((res) => {
+            setTimeout(() => this.$emit("update"), this.delay_seconds);
+          });
       }
       this.close();
     },
@@ -194,7 +199,15 @@ export default {
       this.dialogDelete = true;
     },
     deleteItemConfirm: function () {
-      this.closeDelete();
+      console.log(this.editedItem);
+      this.$store
+        .dispatch("delete_medicine_measure", this.editedItem.id)
+        .then((res) => {
+          setTimeout(() => {
+            this.$emit("update");
+            this.closeDelete();
+          }, this.delay_seconds);
+        });
     },
     closeDelete: function () {
       this.dialogDelete = false;
@@ -218,9 +231,6 @@ export default {
       return this.editedIndex === -1
         ? "New medicine  measures"
         : "Edit medicine measures ?";
-    },
-    datas() {
-      return this.measures;
     },
   },
 };
