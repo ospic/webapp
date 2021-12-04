@@ -26,24 +26,29 @@ export default {
         {
           label: "Violet",
           color: "#2F4454",
-          value: "#2F4454"
+          value: "#2F4454",
         },
         {
           label: "Forest green",
           color: "#228B22",
-          value: "#228B22"
+          value: "#228B22",
         },
         {
           label: "Dry green",
           color: "#2CB673",
-          value: "#2CB673"
+          value: "#2CB673",
         },
         {
           label: "Pastel green",
           color: "#00A756",
-          value: "#00A756"
-        }
-      ]
+          value: "#00A756",
+        },
+        {
+          label: "Cream",
+          color: "#893F04",
+          value: "#893F04",
+        },
+      ],
     };
   },
 
@@ -51,7 +56,7 @@ export default {
     changeColor() {
       window.localStorage.setItem("color", this.select);
       this.$vuetify.theme.themes.light.primary = this.select;
-    }
-  }
+    },
+  },
 };
 </script>

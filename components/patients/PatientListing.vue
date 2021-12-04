@@ -16,22 +16,25 @@
     >
       <template v-slot:top>
         <v-toolbar flat class="primary" dark>
+          <v-spacer></v-spacer>
           <v-text-field
             v-model="search"
             append-icon="search"
             label="Enter search text ..."
-            dense
             single-line
             hide-details
-          ></v-text-field>
+            rounded
+            filled
+            height="40"
+          ></v-text-field
+          >&nbsp;&nbsp;
 
-          <v-spacer></v-spacer>
           <div v-if="hasPermission('ALL_FUNCTIONS', 'CREATE_PATIENT')">
-            <v-btn medium v-if="isMdAndUp" class="button" to="/patients/add"
+            <v-btn x-large v-if="isMdAndUp" class="button" to="/patients/add"
               ><v-icon>mdi-plus</v-icon
               >{{ $t("label.button.btnnewpatient") }}</v-btn
             >
-            <v-btn small fab v-else class="button" to="/patients/add"
+            <v-btn fab v-else class="button" to="/patients/add"
               ><v-icon>mdi-plus</v-icon></v-btn
             >
           </div>

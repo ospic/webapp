@@ -1,0 +1,26 @@
+.v-dialog__content {
+  .v-dialog {
+    .v-card {
+      .v-card__title {
+        span {
+          color: $color_white;
+          font-weight: normal;
+        }
+      }
+      hr.v-divider {
+        color: blue;
+        height: 20px;
+        font-weight: bold;
+      }
+      .v-card__actions {
+        button {
+          span {
+            color: $color_white;
+            font-weight: normal;
+            font-size: small;
+          }
+        }
+      }
+    }
+  }
+}

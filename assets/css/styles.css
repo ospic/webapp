@@ -1834,13 +1834,13 @@ button.button {
 }
 
 button.button span {
-  color: yellowgreen;
-  font-weight: bold;
+  color: #ffffff;
+  font-weight: normal;
   font-size: large;
 }
 
 button.button.cancel {
-  background-color: #fb8c00 !important;
+  background-color: #c67f43 !important;
 }
 
 button.button.cancel span {
@@ -1865,5 +1865,22 @@ button.button.error {
 
 button.button i {
   font-weight: bold;
+}
+
+.v-dialog__content .v-dialog .v-card .v-card__title span {
+  color: #ffffff;
+  font-weight: normal;
+}
+
+.v-dialog__content .v-dialog .v-card hr.v-divider {
+  color: blue;
+  height: 20px;
+  font-weight: bold;
+}
+
+.v-dialog__content .v-dialog .v-card .v-card__actions button span {
+  color: #ffffff;
+  font-weight: normal;
+  font-size: small;
 }
 /*# sourceMappingURL=styles.css.map */

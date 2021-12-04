@@ -39,12 +39,11 @@
                 rounded
                 v-model="toggle_exclusive"
               >
-                <v-btn medium class="button cancel" @click="list = !list">
+                <v-btn color="blue" @click="list = !list">
                   <v-icon>mdi-view-grid</v-icon>
                 </v-btn>
                 <v-btn
-                  color="button"
-                  medium
+                  class="button"
                   prepend-icon="mdi-plus"
                   v-bind="attrs"
                   v-on="on"
@@ -54,22 +53,14 @@
                 >
               </v-btn-toggle>
 
-              <v-btn
-                color="button"
-                fab
-                v-else
-                small
-                class="mb-2 font-weight-normal"
-                v-bind="attrs"
-                v-on="on"
-                dark
+              <v-btn class="button" fab v-else v-bind="attrs" v-on="on" dark
                 ><v-icon>mdi-plus</v-icon>
               </v-btn>
             </template>
             <v-card>
-              <v-toolbar dark flat color="primary">
-                <v-toolbar-title>{{ formTitle }}</v-toolbar-title>
-              </v-toolbar>
+              <v-card-title class="primary">
+                <span>{{ formTitle }}</span>
+              </v-card-title>
 
               <v-divider></v-divider>
               <v-card-text>
@@ -225,11 +216,11 @@
                   </v-row>
                 </v-container>
               </v-card-text>
-
+              <v-divider></v-divider>
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn color="blue darken-1" text @click="close">Cancel</v-btn>
-                <v-btn color="primary darken-1" @click="save">Save</v-btn>
+                <v-btn class="button cancel" @click="close">Cancel</v-btn>
+                <v-btn class="button" @click="save">Save</v-btn>
               </v-card-actions>
             </v-card>
           </v-dialog>
@@ -277,7 +268,7 @@
         </v-icon>
       </template>
       <template v-slot:no-data>
-        <p class="mt-2">No Data available for {{ routename }}</p>
+        <p class="mt-2">{{ $t("local.message.nodataavailable") }}</p>
       </template>
     </v-data-table>
     <v-card v-else class="mx-auto" flat tile>
