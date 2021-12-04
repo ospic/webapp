@@ -268,7 +268,7 @@
         </v-icon>
       </template>
       <template v-slot:no-data>
-        <p class="mt-2">{{ $t("local.message.nodataavailable") }}</p>
+        <p class="mt-2">{{ $t("label.message.nodataavailable") }}</p>
       </template>
     </v-data-table>
     <v-card v-else class="mx-auto" flat tile>

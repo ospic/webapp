@@ -139,12 +139,18 @@ export default {
       if (this.editedIndex > -1) {
         Object.assign(this.groups[this.editedIndex], this.editedItem);
 
-        this.$store.dispatch("update_medicine_group", this.editedItem);
-        // this.$emit("update");
+        this.$store
+          .dispatch("update_medicine_group", this.editedItem)
+          .then((res) => {
+            setTimeout(() => this.$emit("update"), this.delay_seconds);
+          });
       } else {
         this.groups.push(this.editedItem);
-        this.$store.dispatch("add_new_medicine_group", this.editedItem);
-        this.$emit("update");
+        this.$store
+          .dispatch("add_new_medicine_group", this.editedItem)
+          .then((res) => {
+            setTimeout(() => this.$emit("update"), this.delay_seconds);
+          });
       }
       this.close();
     },
