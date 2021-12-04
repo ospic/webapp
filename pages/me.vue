@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="breadcrumb ">
+    <div class="breadcrumb">
       <router-link to="/">{{ $t("label.breadcrumb.dashboard") }}</router-link>
       <router-link to="/me" class="active">{{
         $t("label.breadcrumb.profile")
@@ -82,41 +82,42 @@
         <v-toolbar color="primary" flat dark>
           <v-toolbar-title> User Profile</v-toolbar-title>
           <v-spacer></v-spacer>
-          <v-dialog v-model="uploaddialog" persistent max-width="600">
-            <v-card>
-              <v-card-title class="headline">
-                Upload profile image
-              </v-card-title>
-              <v-card-text>
-                <v-file-input
-                  label="Profile picture"
-                  accept="image/png, image/jpeg, image/bmp"
-                  prepend-icon="mdi-camera"
-                  show-size
-                  @change="selectFile"
-                >
-                  <template v-slot:selection="{ text }">
-                    <v-chip small label color="primary">
-                      {{ text }}
-                    </v-chip>
-                  </template>
-                </v-file-input>
-              </v-card-text>
-              <v-card-actions>
-                <v-spacer></v-spacer>
-                <v-btn
-                  color="primary"
-                  @click.stop="uploaddialog = false"
-                  x-small
-                >
-                  Cancel
-                </v-btn>
-                <v-btn x-small shaped @click="uploadProfileImage()">
-                  Save
-                </v-btn>
-              </v-card-actions>
-            </v-card>
-          </v-dialog>
+          <v-overlay dark :absolute="true" :value="uploaddialog">
+            <v-dialog v-model="uploaddialog" persistent max-width="600">
+              <v-card>
+                <v-toolbar color="primary" dark flat>
+                  <v-toolbar-title>
+                    <span class="headline">
+                      Upload profile image</span
+                    ></v-toolbar-title
+                  >
+                </v-toolbar>
+
+                <v-card-text class="pt-4">
+                  <v-file-input
+                    label="Profile picture"
+                    accept="image/png, image/jpeg, image/bmp"
+                    prepend-icon="mdi-camera"
+                    show-size
+                    @change="selectFile"
+                  >
+                    <template v-slot:selection="{ text }">
+                      <v-chip small label color="primary">
+                        {{ text }}
+                      </v-chip>
+                    </template>
+                  </v-file-input>
+                </v-card-text>
+                <v-card-actions>
+                  <v-spacer></v-spacer>
+                  <v-btn color="primary" @click.stop="uploaddialog = false">
+                    Cancel
+                  </v-btn>
+                  <v-btn shaped @click="uploadProfileImage()"> Save </v-btn>
+                </v-card-actions>
+              </v-card>
+            </v-dialog>
+          </v-overlay>
 
           <v-dialog v-model="dialog" width="500">
             <template v-slot:activator="{ on, attrs }">
@@ -209,7 +210,7 @@
                     :rules="[
                       rules.required,
                       rules.min,
-                      passwordConfirmationRule
+                      passwordConfirmationRule,
                     ]"
                     :type="show3 ? 'text' : 'password'"
                     @click:append="show3 = !show3"
@@ -304,14 +305,14 @@ export default {
     confirmPassword: "",
     currentFile: undefined,
     rules: {
-      required: value => !!value || "Required.",
-      min: v => v.length >= 8 || "Min 8 characters",
-      emailMatch: () => "The email and password you entered don't match"
+      required: (value) => !!value || "Required.",
+      min: (v) => v.length >= 8 || "Min 8 characters",
+      emailMatch: () => "The email and password you entered don't match",
     },
     form_data: {
       oldPassword: "",
-      newPassword: ""
-    }
+      newPassword: "",
+    },
   }),
   beforeCreate() {
     this.$store.dispatch("retrieve_profile");
@@ -329,7 +330,7 @@ export default {
       this.progress = true;
       delete this.user.staff.user;
       delete this.user.staff.department;
-      this.$store.dispatch("updatestaff", this.user.staff).then(response => {
+      this.$store.dispatch("updatestaff", this.user.staff).then((response) => {
         setTimeout(() => this.closeprofileupdate(), this.delay_seconds);
       });
     },
@@ -340,7 +341,7 @@ export default {
 
       return await this.$api
         .$patch(`/auth/${userId}/images/`, formData)
-        .then(response => {
+        .then((response) => {
           if (response !== null) {
             this.uploaddialog = false;
             setTimeout(
@@ -349,11 +350,11 @@ export default {
             );
           }
         })
-        .catch(error => {
+        .catch((error) => {
           console.log(error);
         });
     },
-    closeprofileupdate: function() {
+    closeprofileupdate: function () {
       this.$store.dispatch("retrieve_profile");
       this.edit = false;
       this.progress = false;
@@ -373,7 +374,7 @@ export default {
       } else {
         return "cyan";
       }
-    }
+    },
   },
   created() {
     if (this.$route.query.edit) {
@@ -383,19 +384,21 @@ export default {
   computed: {
     user() {
       var user = this.$store.getters.profile;
-      if (user.staff.fullName === null) {
+      if (user.staff && user.staff.fullName != undefined) {
         this.edit = true;
       }
       return user;
     },
     entityThumbNail() {
-      return this.user.staff.imageUrl;
+      if (this.user.staff) {
+        return this.user.staff.imageUrl;
+      }
     },
     passwordConfirmationRule() {
       return () =>
         this.form_data.newPassword === this.confirmPassword ||
         "Password must match";
-    }
-  }
+    },
+  },
 };
 </script>

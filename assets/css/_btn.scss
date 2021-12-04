@@ -2,15 +2,15 @@ button {
   &.button {
     background-color: $button_color;
     span {
-      color: yellowgreen;
-      font-weight: bold;
+      color: $color_white;
+      font-weight: normal;
       font-size: large;
     }
     &.cancel {
       span {
         color: white;
       }
-      background-color: $color_warning !important;
+      background-color: $color_cream !important;
     }
     &.upload {
       background-color: $color_teal !important;

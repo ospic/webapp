@@ -7,15 +7,11 @@
       :items-per-page="15"
       sort-by="id"
       dense
-      class="elevation-0 "
+      class="elevation-0"
     >
       <template v-slot:top>
         <v-toolbar flat color="primary" dark>
-          <v-toolbar-title
-            ><h3>
-              Medicine measurement units
-            </h3></v-toolbar-title
-          >
+          <v-toolbar-title><h3>Medicine measurement units</h3></v-toolbar-title>
           <v-spacer></v-spacer>
 
           <v-text-field
@@ -31,31 +27,22 @@
           <v-dialog v-model="dialog" max-width="900px">
             <template v-slot:activator="{ on, attrs }">
               <v-btn
-                color="button"
+                x-large
                 elevation="1"
-                medium
                 v-if="isMdAndUp"
-                class="mb-2 font-weight-normal"
+                class="button"
                 v-bind="attrs"
                 v-on="on"
                 dark
                 ><v-icon left>mdi-plus</v-icon>
                 {{ $t("label.button.addnewmeasure") }}</v-btn
               >
-              <v-btn
-                v-else
-                color="button"
-                fab
-                small
-                class="mb-2 font-weight-normal"
-                v-bind="attrs"
-                v-on="on"
-                dark
+              <v-btn v-else fab class="button" v-bind="attrs" v-on="on" dark
                 ><v-icon>mdi-plus</v-icon>
               </v-btn>
             </template>
             <v-card>
-              <v-card-title>
+              <v-card-title class="primary">
                 <span class="headline">{{ formTitle }}</span>
               </v-card-title>
               <v-divider></v-divider>
@@ -83,13 +70,13 @@
                   </v-row>
                 </v-container>
               </v-card-text>
-
+              <v-divider></v-divider>
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn color="blue darken-1" outlined @click="close">{{
+                <v-btn class="button cancel" @click="close">{{
                   $t("label.button.decline")
                 }}</v-btn>
-                <v-btn color="error" medium @click="save">{{
+                <v-btn class="button" @click="save">{{
                   $t(
                     editedIndex === -1
                       ? "label.button.btnsave"
@@ -135,10 +122,10 @@ export default {
   props: {
     measures: {
       type: Array,
-      default: null
-    }
+      default: null,
+    },
   },
-  data: function() {
+  data: function () {
     return {
       dialog: false,
       dialogDelete: false,
@@ -148,22 +135,32 @@ export default {
         id: 0,
         unit: "",
         symbol: "",
-        quantity: ""
+        quantity: "",
       },
       defaultItem: {
         id: 0,
         unit: "",
         symbol: "",
-        quantity: ""
+        quantity: "",
       },
       headers: [
-        { text: "ID", value: "id" },
-        { text: "Unit", value: "unit" },
-        { text: "Symbol", value: "symbol", sortable: false },
-        { text: "Quantity", value: "quantity", sortable: false },
+        { text: "ID", value: "id", class: "primary" },
+        { text: "Unit", value: "unit", class: "primary" },
+        { text: "Symbol", value: "symbol", sortable: false, class: "primary" },
+        {
+          text: "Quantity",
+          value: "quantity",
+          sortable: false,
+          class: "primary",
+        },
 
-        { text: "Actions", value: "actions", sortable: false }
-      ]
+        {
+          text: "Actions",
+          value: "actions",
+          sortable: false,
+          class: "primary",
+        },
+      ],
     };
   },
   methods: {
@@ -178,34 +175,34 @@ export default {
       }
       this.close();
     },
-    close: function() {
+    close: function () {
       this.dialog = false;
       this.$nextTick(() => {
         this.editedItem = Object.assign({}, this.defaultItem);
         this.editedIndex = -1;
       });
     },
-    editItem: function(item) {
+    editItem: function (item) {
       this.editedIndex = this.measures.indexOf(item);
       this.editedItem = Object.assign({}, item);
       this.dialog = true;
       this.editedItemId = item.id;
     },
-    deleteItem: function(item) {
+    deleteItem: function (item) {
       this.editedIndex = this.measures.indexOf(item);
       this.editedItem = Object.assign({}, item);
       this.dialogDelete = true;
     },
-    deleteItemConfirm: function() {
+    deleteItemConfirm: function () {
       this.closeDelete();
     },
-    closeDelete: function() {
+    closeDelete: function () {
       this.dialogDelete = false;
       this.$nextTick(() => {
         this.editedItem = Object.assign({}, this.defaultItem);
         this.editedIndex = -1;
       });
-    }
+    },
   },
   watch: {
     dialog(val) {
@@ -213,7 +210,7 @@ export default {
     },
     dialogDelete(val) {
       val || this.closeDelete();
-    }
+    },
   },
   computed: {
     ...mapGetters({}),
@@ -224,7 +221,7 @@ export default {
     },
     datas() {
       return this.measures;
-    }
-  }
+    },
+  },
 };
 </script>

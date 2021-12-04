@@ -28,35 +28,33 @@
       @click:row="navigateToWard"
     >
       <template v-slot:top>
-        <v-toolbar flat dark color="primary">
+        <v-toolbar flat dark color="primary" class="py-4">
           <v-toolbar-title
             ><h3>{{ title }}</h3></v-toolbar-title
           >
           <v-spacer></v-spacer>
-
           <v-text-field
             v-model="search"
-            append-icon="search"
-            label="Enter search text ..."
-            rounded
+            label="Search by name/company/composition"
             single-line
             hide-details
+            rounded
             filled
-            class="pt-3"
-          ></v-text-field>
-          <v-spacer></v-spacer>
+            height="40"
+          ></v-text-field
+          >&nbsp;&nbsp;
           <v-dialog v-model="dialog" max-width="700px">
             <template v-slot:activator="{ on, attrs }">
               <v-btn
-                medium
                 v-bind="attrs"
+                x-large
                 v-on="on"
                 v-if="isMdAndUp"
                 class="button"
                 ><v-icon>mdi-plus</v-icon
                 >{{ $t("label.button.btncreateward") }}</v-btn
               >
-              <v-btn small v-bind="attrs" v-on="on" fab v-else class="button"
+              <v-btn v-bind="attrs" v-on="on" fab v-else class="button"
                 ><v-icon>mdi-plus</v-icon></v-btn
               >
             </template>
@@ -79,12 +77,13 @@
                   </v-form>
                 </v-container>
               </v-card-text>
+              <v-divider></v-divider>
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn color="primary" small @click="close">
+                <v-btn class="button cancel" @click="close">
                   {{ $t("label.button.btncancel") }}
                 </v-btn>
-                <v-btn color="warning" small @click="save">
+                <v-btn class="button" @click="save">
                   {{ $t("label.button.btnsave") }}
                 </v-btn>
               </v-card-actions>
