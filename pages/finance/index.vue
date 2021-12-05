@@ -1,10 +1,14 @@
 <template>
   <v-container fluid>
-    <v-row no-gutters>
+    <v-row no-gutters wrap>
       <v-col
         v-for="(bill, index) in bills"
         :key="index"
         class="ma-0 pa-0 pr-2 pb-2"
+        sm="12"
+        md="2"
+        lg="2"
+        xl="2"
       >
         <statistical-card :item="bill"></statistical-card>
       </v-col>
@@ -18,7 +22,13 @@
           ></smooth-line-chart>
         </v-card>
       </v-col>
-      <v-col cols="12" md="5" sm="12" v-if="billsperday != null">
+      <v-col
+        cols="12"
+        md="5"
+        sm="12"
+        v-if="billsperday != null"
+        class="pa-0 ma-0"
+      >
         <v-card class="ml-1">
           <smooth-line-chart
             :data="billtrends"
@@ -26,7 +36,7 @@
           ></smooth-line-chart>
         </v-card>
       </v-col>
-      <v-col cols="12" md="2" sm="12">
+      <v-col cols="12" md="2" sm="12" class="ma-0 pa-0">
         <v-col
           v-for="(trx, index) in transactions"
           :key="index"
@@ -47,10 +57,10 @@ export default {
   components: {
     "statistical-card": StatisticalCard,
     "transaction-card": TransactionCard,
-    "smooth-line-chart": SmoothLineChart
+    "smooth-line-chart": SmoothLineChart,
   },
 
-  data: function() {
+  data: function () {
     return {};
   },
   created() {
@@ -64,7 +74,7 @@ export default {
       billsperday: "billsperday",
       billsummation: "billsummation",
       transactionsperday: "transactionsperday",
-      transactionsummation: "transactionsummation"
+      transactionsummation: "transactionsummation",
     }),
     bills: {
       get() {
@@ -74,28 +84,28 @@ export default {
             title: "No. bills today",
             subtitle: "Total number of bills today",
             icon: "mdi-currency-usd-circle",
-            color: "black darken-2"
+            color: "black darken-2",
           },
           {
             value: this.billsummation.totalBillsAmountToday,
             title: "Amount of bills today",
             subtitle: "Total amount of bills today",
             icon: "mdi-layers-outline",
-            color: "red darken-1"
+            color: "red darken-1",
           },
           {
             value: this.billsummation.totalBillsPaidAmountToday,
             title: "Amount paid today",
             subtitle: "Total amount of bills paid today",
             icon: "mdi-layers-outline",
-            color: "red darken-1"
+            color: "red darken-1",
           },
           {
             value: this.billsummation.totalNumberOfBills,
             title: "No. of bills",
             subtitle: "Total number of bills",
             icon: "mdi-bitcoin",
-            color: "blue"
+            color: "blue",
           },
 
           {
@@ -103,17 +113,17 @@ export default {
             title: "Bills amount",
             subtitle: "Total of all bills amount",
             icon: "mdi-layers-outline",
-            color: "red darken-1"
+            color: "red darken-1",
           },
           {
             value: this.billsummation.totalBillsPaidAmount,
             title: "Total paid bills",
             subtitle: "Amount paid from bills",
             icon: "mdi-barcode-scan",
-            color: "blue darken-2"
-          }
+            color: "blue darken-2",
+          },
         ];
-      }
+      },
     },
     transactions: {
       get() {
@@ -125,7 +135,7 @@ export default {
             subtitle1: "Transactions",
             subtitle2: "Total amount",
             icon: "mdi-currency-usd-circle",
-            color: "black darken-2"
+            color: "black darken-2",
           },
 
           {
@@ -135,18 +145,18 @@ export default {
             subtitle1: "Number of Transactions",
             subtitle2: "Total amount",
             icon: "mdi-contactless-payment-circle",
-            color: "primary darken-1"
+            color: "primary darken-1",
           },
 
           {
-            value: this.transactionsummation
-              .totalNumberOfTransactionsLast30Days,
+            value:
+              this.transactionsummation.totalNumberOfTransactionsLast30Days,
             amount: this.transactionsummation.totalTransactionAmountLast30Days,
             title: "Transactions in last 30 days",
             subtitle1: "No. of transactions in last 30 days",
             subtitle2: "Transactions amount in last 30 days",
             icon: "mdi-wallet",
-            color: "red darken-1"
+            color: "red darken-1",
           },
 
           {
@@ -156,10 +166,10 @@ export default {
             subtitle1: "Number of all transactions",
             subtitle2: "Total amounts",
             icon: "mdi-barcode",
-            color: "blue darken-2"
-          }
+            color: "blue darken-2",
+          },
         ];
-      }
+      },
     },
     transactiontrends: {
       get() {
@@ -167,7 +177,7 @@ export default {
         var datas = new Array();
         var categories = new Array();
         if (item !== undefined) {
-          item.forEach(element => {
+          item.forEach((element) => {
             datas.push(element.numberOfTransactions);
             var val = element.transactionDate;
             categories.push(new Date(val).toISOString());
@@ -177,13 +187,13 @@ export default {
           series: [
             {
               name: "Number of Transactions per day",
-              data: datas
-            }
+              data: datas,
+            },
           ],
-          categories: categories
+          categories: categories,
         };
         return data;
-      }
+      },
     },
     billtrends: {
       get() {
@@ -191,7 +201,7 @@ export default {
         var datas = new Array();
         var categories = new Array();
         if (item !== undefined) {
-          item.forEach(element => {
+          item.forEach((element) => {
             datas.push(element.totalBills);
             var val = element.createdDate;
             categories.push(new Date(val).toISOString());
@@ -201,15 +211,15 @@ export default {
           series: [
             {
               name: "Number of bills per day",
-              data: datas
-            }
+              data: datas,
+            },
           ],
-          categories: categories
+          categories: categories,
         };
         return data;
-      }
-    }
-  }
+      },
+    },
+  },
 };
 </script>
 <style scoped>

@@ -50,7 +50,9 @@
       "newappointment": "New appointment",
       "createselfservice": "Create Selfservice",
       "newconsultation": "New consultation",
-      "addcontacts": "Add Contacts"
+      "addcontacts": "Add Contacts",
+      "newcontact": "New Contact",
+      "newevent": "New Event"
     },
     "menu": {
       "dashboard": "Dashboard",
@@ -177,7 +179,9 @@
       "insurances": "Insurances",
       "systemcolors": "System colors",
       "globalconfigurations": "Global configurations",
-      "themecolor": "Theme colors"
+      "themecolor": "Theme colors",
+      "addnewevent": "Add new event",
+      "events": "Events"
     },
     "tab": {
       "appointments": "Appointments",

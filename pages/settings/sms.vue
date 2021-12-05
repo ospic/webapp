@@ -16,8 +16,8 @@
         <v-dialog v-model="dialog" max-width="700px">
           <template v-slot:activator="{ on, attrs }">
             <v-btn
-              medium
-              class="mb-2 button"
+              x-large
+              class="button"
               v-bind="attrs"
               v-on="on"
               v-if="isMdAndUp"
@@ -25,14 +25,7 @@
               ><v-icon small>mdi-plus</v-icon>
               {{ $t("label.button.btnnewsmsconfig") }}</v-btn
             >
-            <v-btn
-              v-else
-              fab
-              small
-              class="mb-2 button"
-              v-bind="attrs"
-              v-on="on"
-              dark
+            <v-btn v-else fab class="button" v-bind="attrs" v-on="on" dark
               ><v-icon>mdi-plus</v-icon></v-btn
             >
           </template>
@@ -93,10 +86,10 @@
             >
             <v-card-actions>
               <v-spacer></v-spacer>
-              <v-btn color="primary" x-small @click="closeDelete">{{
+              <v-btn color="primary" @click="closeDelete">{{
                 $t("label.button.btnno")
               }}</v-btn>
-              <v-btn color="warning" x-small @click="deleteItemConfirm">{{
+              <v-btn color="warning" @click="deleteItemConfirm">{{
                 $t("label.button.btnyes")
               }}</v-btn>
 
@@ -109,7 +102,7 @@
     <template v-slot:[`item.actions`]="{ item }">
       <v-tooltip bottom v-if="!item.isActive">
         <template v-slot:activator="{ on, attrs }">
-          <v-icon v-bind="attrs" v-on="on" small @click="activateItem(item.id)">
+          <v-icon v-bind="attrs" v-on="on" @click="activateItem(item.id)">
             mdi-power
           </v-icon>
         </template>
@@ -121,7 +114,6 @@
             v-bind="attrs"
             v-on="on"
             color="warning"
-            small
             @click="activateItem(item.id)"
           >
             mdi-circle
@@ -130,8 +122,8 @@
         <span>{{ $t("label.tooltip.active") }}</span>
       </v-tooltip>
 
-      <v-icon small class="mr-2" @click="editItem(item)"> mdi-pencil </v-icon>
-      <v-icon small @click="deleteItem(item)"> mdi-delete </v-icon>
+      <v-icon class="mr-2" @click="editItem(item)"> mdi-pencil </v-icon>
+      <v-icon @click="deleteItem(item)"> mdi-delete </v-icon>
     </template>
     <template v-slot:[`item.isActive`]="{ item }">
       <v-icon class="font-weight-black" color="primary" v-if="item.isActive">

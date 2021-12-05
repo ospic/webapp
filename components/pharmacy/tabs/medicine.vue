@@ -273,7 +273,9 @@
     </v-data-table>
     <v-card v-else class="mx-auto" flat tile>
       <v-toolbar class="primary" dark>
-        <strong>Grid view</strong>
+        <v-card-title>
+          <span>Grid view</span>
+        </v-card-title>
 
         <v-spacer></v-spacer>
         <v-btn medium class="button cancel" @click="list = !list">
@@ -288,13 +290,12 @@
               xs="6"
               sm="6"
               md="2"
-              xl="1"
               v-for="(item, i) in sortedmedicines"
               :key="i"
             >
               <v-tooltip bottom :disabled="!item.isExpiring" color="primary">
                 <template v-slot:activator="{ on, attrs }">
-                  <v-card class="default" v-bind="attrs" v-on="on">
+                  <v-card flat outlined v-bind="attrs" v-on="on">
                     <v-list-item>
                       <v-avatar
                         :color="item.isExpiring ? 'red' : 'blue'"
@@ -311,7 +312,7 @@
                         ></v-list-item-subtitle>
                         <v-list-item-title
                           class="text-h6 font-weight-black my-1"
-                          v-html="item.quantity"
+                          v-html="`Quantity left: ` + item.quantity"
                         ></v-list-item-title>
                       </v-list-item-content>
                     </v-list-item>

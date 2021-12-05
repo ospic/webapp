@@ -43,13 +43,11 @@
               <v-dialog v-model="dialog" max-width="900px">
                 <template v-slot:activator="{ on, attrs }">
                   <v-btn
-                    elevation="1"
-                    medium
+                    x-large
                     prepend-icon="mdi-plus"
-                    class="mb-2 button"
+                    class="mt-2 button"
                     v-bind="attrs"
                     v-on="on"
-                    dark
                     v-if="isMdAndUp"
                     ><v-icon left>mdi-plus</v-icon
                     >{{ $t("label.button.newdepartment") }}</v-btn

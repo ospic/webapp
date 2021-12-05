@@ -1,5 +1,5 @@
 <template>
-  <v-card class="mx-auto default ">
+  <v-card class="mx-auto default">
     <v-progress-circular
       v-if="appointments.length == null"
       indeterminate
@@ -105,7 +105,7 @@
                                 readonly
                                 v-bind="attrs"
                                 v-on="on"
-                                :rules="[v => !!v || 'Date is required']"
+                                :rules="[(v) => !!v || 'Date is required']"
                                 required
                               ></v-text-field>
                             </template>
@@ -172,8 +172,8 @@
             color="button warning"
             v-show="
               item.status === 'ACCEPTED' ||
-                item.status === 'WAITING' ||
-                item.status === 'PROGRESSING'
+              item.status === 'WAITING' ||
+              item.status === 'PROGRESSING'
             "
             @click.stop="editItem(item)"
             >re-schedule</v-btn
@@ -183,8 +183,8 @@
             color="button error"
             v-show="
               item.status === 'ACCEPTED' ||
-                item.status === 'WAITING' ||
-                item.status === 'PROGRESSING'
+              item.status === 'WAITING' ||
+              item.status === 'PROGRESSING'
             "
             @click="reject_appointment(item.id)"
             >decline</v-btn
@@ -204,8 +204,8 @@ export default {
   props: {
     appointments: {
       type: Array,
-      default: null
-    }
+      default: null,
+    },
   },
   data: () => ({
     search: null,
@@ -215,11 +215,16 @@ export default {
     menu: null,
     date: null,
     headers: [
-      { text: "ID", value: "id" },
-      { text: "Appointment Date", value: "appointmentDate", sortable: true },
-      { text: "Status", value: "status" },
-      { text: "Patient", value: "patientId" },
-      { text: "Actions", value: "actions" }
+      { text: "ID", value: "id", class: "primary" },
+      {
+        text: "Date",
+        value: "appointmentDate",
+        sortable: true,
+        class: "primary",
+      },
+      { text: "Status", value: "status", class: "primary" },
+      { text: "Patient", value: "patientId", class: "primary" },
+      { text: "Actions", value: "actions", class: "primary" },
     ],
     editedIndex: -1,
     editedItem: {
@@ -228,8 +233,8 @@ export default {
       physicianId: 0,
       date: "",
       time: "",
-      timeZone: "Africa/Dar_es_Salaam"
-    }
+      timeZone: "Africa/Dar_es_Salaam",
+    },
   }),
   methods: {
     editItem(item) {
@@ -261,11 +266,11 @@ export default {
         this.dialog = false;
       }, this.delay_seconds);
     },
-    save: function() {
+    save: function () {
       console.log(this.editedItem);
       this.$store.dispatch("update_appointment", this.editedItem);
       this.close();
-    }
+    },
   },
 
   computed: {
@@ -273,7 +278,7 @@ export default {
       return this.editedIndex === -1
         ? "label.dialogs.newappointment"
         : "label.dialogs.rescheduleappointment";
-    }
-  }
+    },
+  },
 };
 </script>
