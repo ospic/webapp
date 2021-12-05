@@ -3,9 +3,9 @@
     <template v-slot:default="{ hover }">
       <v-card class="default" :elevation="hover ? 3 : 1">
         <v-toolbar flat dense color="primary" dark>
-          <v-toolbar-title class=" text-caption">
-            {{ item.title }}
-          </v-toolbar-title>
+          <v-card-title>
+            <span> {{ item.title }}</span>
+          </v-card-title>
           <v-spacer></v-spacer>
           <v-icon v-text="item.icon" color="white"></v-icon>
         </v-toolbar>
@@ -14,7 +14,11 @@
           <v-list-item>
             <v-list-item-content>
               <v-list-item-title
-                class="primary--text font-weight-normal text-body-1"
+                class="
+                  primary--text
+                  font-weight-bold
+                  text-body-1 text-xs-center
+                "
                 >{{
                   formatPrice(item.value) == null ? 0 : formatPrice(item.value)
                 }}
@@ -34,12 +38,12 @@ export default {
   props: {
     item: {
       type: Object,
-      default: null
-    }
+      default: null,
+    },
   },
-  data: function() {
+  data: function () {
     return {};
-  }
+  },
 };
 </script>
 <style scoped>

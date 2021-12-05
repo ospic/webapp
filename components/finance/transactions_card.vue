@@ -3,9 +3,9 @@
     <template v-slot:default="{ hover }">
       <v-card class="default" :elevation="hover ? 3 : 1">
         <v-toolbar flat dense>
-          <v-toolbar-title class="grey--text text-caption">
-            {{ item.title }}
-          </v-toolbar-title>
+          <v-card-title class="grey--text">
+            <span> {{ item.title }}</span>
+          </v-card-title>
           <v-spacer></v-spacer>
           <v-icon v-text="item.icon" :color="item.color"></v-icon>
         </v-toolbar>
@@ -47,12 +47,12 @@ export default {
   props: {
     item: {
       type: Object,
-      default: null
-    }
+      default: null,
+    },
   },
-  data: function() {
+  data: function () {
     return {};
-  }
+  },
 };
 </script>
 <style scoped>

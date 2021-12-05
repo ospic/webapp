@@ -65,7 +65,9 @@
         <v-btn
           @click="updatestatus(item)"
           small
-          :color="item.active ? 'error' : 'primary'"
+          elevation="0"
+          :color="item.active ? 'red darken-2' : 'primary'"
+          class="white--text"
         >
           <v-icon v-if="item.active" small left> mdi-close</v-icon
           ><v-icon v-else small left>mdi-check</v-icon>

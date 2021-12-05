@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="breadcrumb ">
+    <div class="breadcrumb">
       <router-link to="/">{{ $t("label.breadcrumb.dashboard") }}</router-link>
       <router-link to="/patients">{{
         $t("label.breadcrumb.patients")
@@ -16,7 +16,12 @@
       >
     </div>
     <v-container fluid>
-      <v-card class="mx-auto default">
+      <v-progress-linear
+        v-if="!visits"
+        indeterminate
+        color="primary"
+      ></v-progress-linear>
+      <v-card v-else-if="visits.length > 0" class="mx-auto default">
         <v-card-title class="primary white--text">
           <span class="title"
             >Admission {{ this.$route.params.id }} Visits</span
@@ -50,6 +55,11 @@
           </v-timeline>
         </v-card-text>
       </v-card>
+      <v-layout v-else justify-center>
+        <v-card-actions>
+          <span>No visits yet</span>
+        </v-card-actions>
+      </v-layout>
     </v-container>
   </div>
 </template>
@@ -57,24 +67,24 @@
 const COLORS = ["info", "warning", "error", "success"];
 export default {
   data: () => ({
-    visits: null
+    visits: null,
   }),
   methods: {
     async fetchvitits() {
       return await this.$api
         .$get(`admissions/${this.$route.params.id}/visits`)
-        .then(response => {
+        .then((response) => {
           this.visits = response.reverse();
         })
-        .catch(error => {
+        .catch((error) => {
           console.log(error);
         });
-    }
+    },
   },
   beforeCreate() {},
   created() {
     this.fetchvitits();
   },
-  computed: {}
+  computed: {},
 };
 </script>

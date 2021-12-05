@@ -24,26 +24,16 @@
           <v-dialog v-model="dialog" max-width="700px">
             <template v-slot:activator="{ on, attrs }">
               <v-btn
-                color="button"
-                class="mb-2"
-                medium
+                class="button"
                 v-bind="attrs"
                 v-on="on"
-                dark
+                x-large
                 v-if="isMdAndUp"
                 ><v-icon>mdi-plus</v-icon>
                 {{ $t("label.button.btncreatenewuser") }}</v-btn
               >
 
-              <v-btn
-                v-else
-                color="button"
-                fab
-                small
-                class="mb-2"
-                v-bind="attrs"
-                v-on="on"
-                dark
+              <v-btn v-else color="button" fab v-bind="attrs" v-on="on" dark
                 ><v-icon>mdi-plus</v-icon>
               </v-btn>
             </template>
@@ -164,8 +154,8 @@
         </v-icon>
       </template>
       <template v-slot:[`item.actions`]="{ item }">
-        <v-icon small class="mr-2" @click="editItem(item)"> mdi-pencil </v-icon>
-        <v-icon small @click="deleteItem(item)"> mdi-delete </v-icon>
+        <v-icon color="blue" @click="editItem(item)"> mdi-pencil </v-icon>
+        <v-icon color="red" @click="deleteItem(item)"> mdi-delete </v-icon>
       </template>
       <template v-slot:[`item.roles`]="{ item }">
         <v-chip

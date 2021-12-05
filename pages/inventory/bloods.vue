@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="breadcrumb ">
+    <div class="breadcrumb">
       <router-link to="/">{{ $t("label.breadcrumb.dashboard") }}</router-link>
       <router-link to="/inventory">{{
         $t("label.breadcrumb.inventory")
@@ -74,13 +74,15 @@
                     </v-row>
                   </v-container>
                 </v-card-text>
-
+                <v-divider></v-divider>
                 <v-card-actions>
                   <v-spacer></v-spacer>
-                  <v-btn color="blue darken-1" text @click="close"
-                    >Cancel</v-btn
-                  >
-                  <v-btn color="blue darken-1" text @click="save">Save</v-btn>
+                  <v-btn class="button cancel" @click="close">{{
+                    $t("label.button.btncancel")
+                  }}</v-btn>
+                  <v-btn class="button" @click="save">{{
+                    $t("label.button.btnsave")
+                  }}</v-btn>
                 </v-card-actions>
               </v-card>
             </v-dialog>
@@ -109,16 +111,21 @@ export default {
     dialog: false,
     headers: [
       { text: "Group", value: "group", class: "primary" },
-      { text: "Quantitty(in bags)", value: "counts", class: "primary", sortable: false },
-      { text: "Actions", value: "actions", class: "primary" }
+      {
+        text: "Quantitty(in bags)",
+        value: "counts",
+        class: "primary",
+        sortable: false,
+      },
+      { text: "Actions", value: "actions", class: "primary" },
     ],
     editedItem: {
       id: 0,
       group: "",
       added: 0,
       total: 0,
-      counts: 0
-    }
+      counts: 0,
+    },
   }),
   beforeCreate() {
     this.$store.dispatch("fetchbloodsbank");
@@ -133,19 +140,19 @@ export default {
     close() {
       this.dialog = false;
     },
-    getdata: function() {
+    getdata: function () {
       this.$store.dispatch("fetchbloodsbank");
     },
     save() {
       var data = {
         groupId: this.editedItem.id,
-        bagsCount: this.editedItem.added
+        bagsCount: this.editedItem.added,
       };
       this.$store.dispatch("updatebloodgroup", data).then(() => {
         this.getdata();
         this.close();
       });
-    }
+    },
   },
   computed: {
     groups() {
@@ -153,7 +160,7 @@ export default {
     },
     summation() {
       return parseInt(this.editedItem.added) + parseInt(this.editedItem.counts);
-    }
-  }
+    },
+  },
 };
 </script>

@@ -43,10 +43,9 @@
               <v-dialog v-model="dialog" max-width="900px">
                 <template v-slot:activator="{ on, attrs }">
                   <v-btn
-                    elevation="1"
-                    medium
+                    x-large
                     prepend-icon="mdi-plus"
-                    class="mb-2 button"
+                    class="button mt-2"
                     v-bind="attrs"
                     v-on="on"
                     dark

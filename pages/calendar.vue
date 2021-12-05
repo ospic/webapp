@@ -8,9 +8,7 @@
     </div>
     <v-card>
       <v-toolbar dark flat color="primary">
-        <v-toolbar-title>
-          <strong>Events</strong>
-        </v-toolbar-title>
+        <v-toolbar-title> {{ $t("label.titles.events") }} </v-toolbar-title>
         <v-spacer></v-spacer>
         <v-dialog
           v-model="dialog"
@@ -18,17 +16,22 @@
           max-width="800"
         >
           <template v-slot:activator="{ on, attrs }">
-            <v-btn class="button" v-bind="attrs" v-on="on"
-              ><v-icon left>mdi-plus</v-icon> new events</v-btn
+            <v-btn class="button" x-large v-bind="attrs" v-on="on"
+              ><v-icon left>mdi-plus</v-icon
+              >{{ $t("label.button.newevent") }}</v-btn
             >
           </template>
           <template v-slot:default="dialog">
             <v-card>
               <v-form ref="form" v-model="valid" lazy-validation>
-                <v-toolbar flat color="primary" dark>Add new event</v-toolbar>
+                <v-card-title flat class="primary" dark
+                  ><span>{{
+                    $t("label.titles.addnewevent")
+                  }}</span></v-card-title
+                >
 
                 <v-card-text>
-                  <v-row>
+                  <v-row class="mt-3">
                     <v-col cols="12">
                       <v-text-field
                         autofocus
@@ -46,6 +49,7 @@
                         v-model="event.description"
                         label="Event description"
                         hint="Description"
+                        filled
                         :rules="[(v) => !!v || 'Field is required']"
                         required
                       ></v-textarea>
@@ -134,6 +138,7 @@
                     </v-col>
                   </v-row>
                 </v-card-text>
+                <v-divider></v-divider>
                 <v-card-actions class="justify-end">
                   <v-btn @click="close" class="button cancel">Cancel</v-btn>
                   <v-btn
