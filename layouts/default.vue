@@ -15,16 +15,15 @@
           <v-list-item-icon class="ml-1 mr-2">
             <v-icon medium>mdi-view-grid-outline</v-icon>
           </v-list-item-icon>
-          <v-list-item-title color="#8C93F5" class="font-weight-bold">{{
+          <v-list-item-title color="#8C93F5" class="font-weight-normal">{{
             $t("label.menu.overview")
           }}</v-list-item-title>
         </v-list-item>
-        <v-divider></v-divider>
         <div v-for="(setting, ind) in settings" :key="ind + setting.icon">
           <v-menu transition="slide-x-transition" bottom>
             <template v-slot:activator="{ on, attrs }">
               <v-list-item v-on="on">
-                <v-list-item-title class="font-weight-bold" v-bind="attrs">
+                <v-list-item-title class="font-weight-normal" v-bind="attrs">
                   <v-icon
                     slot="prependIcon"
                     v-html="setting.icon"
@@ -56,7 +55,7 @@
               </template>
             </v-list>
           </v-menu>
-          <v-divider></v-divider>
+
           <!--<v-list-group
             :value="false"
             no-action
@@ -107,11 +106,10 @@
             <v-list-item-icon class="ml-1 mr-3">
               <v-icon v-text="item.icon"></v-icon>
             </v-list-item-icon>
-            <v-list-item-title class="font-weight-bold">{{
+            <v-list-item-title class="font-weight-normal">{{
               $t(item.text)
             }}</v-list-item-title>
           </v-list-item>
-          <v-divider :key="i"></v-divider>
         </template>
       </v-list>
       <template v-slot:append>

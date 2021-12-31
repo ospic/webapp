@@ -31,6 +31,13 @@
   src: local("Roboto"), url(../fonts/roboto/Roboto-Regular.ttf) format("truetype");
 }
 
+@font-face {
+  font-family: "SofiaPro";
+  font-style: normal;
+  font-weight: 400;
+  src: local("Sofia Pro"), url(../fonts/sofia/Sofia-Pro-Medium.otf) format("truetype");
+}
+
 #__nuxt .app {
-  font-family: "FiraSans", sans-serif;
+  font-family: "SofiaPro", sans-serif;
 }
