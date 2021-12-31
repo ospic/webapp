@@ -79,7 +79,8 @@
       "transactions": "Transactions",
       "bills": "Service Bill's",
       "financereports": "Financial Report's",
-      "medicalservices": "Medical Services"
+      "medicalservices": "Medical Services",
+      "overview": "Overview"
     },
     "message": {
       "nodataavailable": "No Data available ...",

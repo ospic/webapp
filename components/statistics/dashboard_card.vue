@@ -2,7 +2,7 @@
   <v-col class="pa-1" xs="6" sm="6" md="2" xl="2">
     <v-hover>
       <template v-slot:default="{ hover }">
-        <v-card class="mx-auto" outlined>
+        <v-card class="mx-auto" flat elevation="1" v-on="hover">
           <v-list-item>
             <v-list-item-content>
               <v-list-item-title
