@@ -128,7 +128,7 @@
             class="white--text font-weight-bold overline"
             @click.stop="drawer = !drawer"
           >
-            <v-icon small color="white">mdi-dots-grid</v-icon>
+            <v-icon small color="white">mdi-text</v-icon>
           </span>
         </v-avatar>
         &nbsp;&nbsp;
