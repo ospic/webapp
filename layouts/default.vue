@@ -1,9 +1,5 @@
 <template>
-  <v-app
-    class="app"
-    style="
-    background: rgba(0,0,0,0);"
-  >
+  <v-app class="app" style="background: rgba(0, 0, 0, 0)">
     <!--NAVIGATION DRAWER-->
     <v-navigation-drawer
       v-model="drawer"
@@ -12,7 +8,6 @@
       color="primary"
       dark
       app
-      expand-on-hover
       width="220"
       height="100%"
     >
@@ -38,7 +33,7 @@
           <v-list-item-icon class="ml-1 mr-1">
             <v-icon small>mdi-view-grid</v-icon>
           </v-list-item-icon>
-          <v-list-item-title color="#8C93F5" class="font-weight-bold ">{{
+          <v-list-item-title color="#8C93F5" class="font-weight-bold">{{
             $t("label.menu.dashboard")
           }}</v-list-item-title>
         </v-list-item>
@@ -74,7 +69,7 @@
               >
                 <v-list-item-title
                   color="white"
-                  class="font-weight-light ma-0 pa-0 "
+                  class="font-weight-light ma-0 pa-0"
                 >
                   <v-icon small>mdi-circle-medium</v-icon>
                   &nbsp;&nbsp;{{ $t(menu.title) }}</v-list-item-title
@@ -96,7 +91,7 @@
             <v-list-item-icon class="ml-1 mr-1">
               <v-icon v-text="item.icon" small></v-icon>
             </v-list-item-icon>
-            <v-list-item-title class="font-weight-bold ">{{
+            <v-list-item-title class="font-weight-bold">{{
               $t(item.text)
             }}</v-list-item-title>
           </v-list-item>
@@ -122,7 +117,7 @@
           title="Sponsor ospic"
           height="30"
           width="216"
-          style="border: 0;"
+          style="border: 0"
         ></iframe>
       </template>
     </v-navigation-drawer>
@@ -145,9 +140,7 @@
       <v-spacer></v-spacer>
 
       <v-badge class="mr-3" icon="mdi-lock" color="blue" bottom overlap>
-        <template v-slot:badge>
-          10
-        </template>
+        <template v-slot:badge> 10 </template>
         <v-btn fab small class="primary" elevation="0" to="/notifications">
           <v-icon medium color="white">mdi-bell</v-icon></v-btn
         >
@@ -162,7 +155,7 @@
             @click.stop="syncro()"
             small
             elevation="0"
-            class="primary mr-1 "
+            class="primary mr-1"
             dark
           >
             <v-icon v-on="on" v-if="sync" medium>mdi-progress-clock</v-icon>
@@ -241,8 +234,8 @@
 
     <v-main>
       <v-container
-        style="background-color: transparent;"
-        class="pa-0 px-3  ma-0 mt-5"
+        style="background-color: transparent"
+        class="pa-0 px-3 ma-0 mt-5"
         fluid
       >
         <v-alert v-if="!domain" dense color="green lighten-1" type="info">
@@ -256,9 +249,7 @@
       </v-container>
     </v-main>
     <v-footer class="primary" fixed padless app>
-      <v-btn color="whitish" text to="/about" x-small>
-        Made by Ospic
-      </v-btn>
+      <v-btn color="whitish" text to="/about" x-small> Made by Ospic </v-btn>
     </v-footer>
   </v-app>
 </template>
@@ -285,7 +276,7 @@ export default {
       value: 0,
 
       titles: {
-        title: "Ospic"
+        title: "Ospic",
       },
       settings: [
         {
@@ -298,27 +289,27 @@ export default {
               title: "label.menu.appointmentandschedule",
               to: "/appointments",
               permissions:
-                "ALL_FUNCTIONS, CREATE_PATIENT, UPDATE_PATIENT, DELETE_PATIENT, DELETE_PATIENT"
+                "ALL_FUNCTIONS, CREATE_PATIENT, UPDATE_PATIENT, DELETE_PATIENT, DELETE_PATIENT",
             },
             {
               title: "label.menu.patients",
               to: "/patients",
               permissions:
-                "ALL_FUNCTIONS, CREATE_PATIENT, UPDATE_PATIENT, DELETE_PATIENT, DELETE_PATIENT"
+                "ALL_FUNCTIONS, CREATE_PATIENT, UPDATE_PATIENT, DELETE_PATIENT, DELETE_PATIENT",
             },
             {
               title: "label.menu.opdcenter",
               to: "/opd",
 
               permissions:
-                "ALL_FUNCTIONS, CREATE_PATIENT, UPDATE_PATIENT, DELETE_PATIENT, DELETE_PATIENT"
+                "ALL_FUNCTIONS, CREATE_PATIENT, UPDATE_PATIENT, DELETE_PATIENT, DELETE_PATIENT",
             },
             {
               title: "label.menu.ipdcenter",
               to: "/ipd",
-              permissions: "ALL_FUNCTIONS"
-            }
-          ]
+              permissions: "ALL_FUNCTIONS",
+            },
+          ],
         },
         {
           title: "label.menu.inventoryandstock",
@@ -328,29 +319,29 @@ export default {
             {
               title: "label.titles.pharmacy",
               to: "/inventory/",
-              permissions: "ALL_FUNCTIONS"
+              permissions: "ALL_FUNCTIONS",
             },
             {
               title: "label.titles.medicine",
               to: "/inventory/medicine",
-              permissions: "ALL_FUNCTIONS"
+              permissions: "ALL_FUNCTIONS",
             },
             {
               title: "label.titles.bloodbank",
               to: "/inventory/bloods",
-              permissions: "ALL_FUNCTIONS"
+              permissions: "ALL_FUNCTIONS",
             },
             {
               title: "label.titles.wards",
               to: "/inventory/ward",
-              permissions: "ALL_FUNCTIONS"
+              permissions: "ALL_FUNCTIONS",
             },
             {
               title: "label.titles.beds",
               to: "/inventory/bed",
-              permissions: "ALL_FUNCTIONS"
-            }
-          ]
+              permissions: "ALL_FUNCTIONS",
+            },
+          ],
         },
         {
           title: "label.menu.medicalservices",
@@ -361,25 +352,25 @@ export default {
               title: "label.menu.laboratory",
               icon: "mdi-octagon",
               to: "/services/laboratory",
-              permissions: "ALL_FUNCTIONS"
+              permissions: "ALL_FUNCTIONS",
             },
             {
               title: "label.menu.radiology",
               icon: "mdi-radioactive",
               to: "/services/radiology",
-              permissions: "ALL_FUNCTIONS"
+              permissions: "ALL_FUNCTIONS",
             },
             {
               title: "label.titles.medicalservices",
               to: "/services",
-              permissions: "ALL_FUNCTIONS"
+              permissions: "ALL_FUNCTIONS",
             },
             {
               title: "label.titles.servicecategories",
               to: "/services/types",
-              permissions: "ALL_FUNCTIONS"
-            }
-          ]
+              permissions: "ALL_FUNCTIONS",
+            },
+          ],
         },
         {
           title: "label.menu.organization",
@@ -389,20 +380,20 @@ export default {
             {
               title: "label.menu.staff",
               to: "/staffs",
-              permissions: "ALL_FUNCTIONS"
+              permissions: "ALL_FUNCTIONS",
             },
             {
               title: "label.titles.departments",
               to: "/departments",
-              permissions: "ALL_FUNCTIONS"
+              permissions: "ALL_FUNCTIONS",
             },
             {
               title: "label.titles.insurances",
               to: "/insurances",
               permissions:
-                "ALL_FUNCTIONS, READ_INSURANCE_COMPANY,UPDATE_INSURANCE_COMPANY,DELETE_INSURANCE_COMPANY,CREATE_INSURANCE_COMPANY"
-            }
-          ]
+                "ALL_FUNCTIONS, READ_INSURANCE_COMPANY,UPDATE_INSURANCE_COMPANY,DELETE_INSURANCE_COMPANY,CREATE_INSURANCE_COMPANY",
+            },
+          ],
         },
         {
           title: "label.menu.finance",
@@ -413,25 +404,25 @@ export default {
             {
               title: "label.menu.dashboard",
               to: "/finance",
-              permissions: "ALL_FUNCTIONS"
+              permissions: "ALL_FUNCTIONS",
             },
             {
               title: "label.menu.bills",
               to: "/finance/bills",
-              permissions: "ALL_FUNCTIONS"
+              permissions: "ALL_FUNCTIONS",
             },
             {
               title: "label.menu.transactions",
               to: "/finance/transactions",
-              permissions: "ALL_FUNCTIONS"
+              permissions: "ALL_FUNCTIONS",
             },
             {
               title: "label.menu.financereports",
               to: "/finance/reports",
-              permissions: "ALL_FUNCTIONS"
-            }
-          ]
-        }
+              permissions: "ALL_FUNCTIONS",
+            },
+          ],
+        },
       ],
 
       items: [
@@ -448,46 +439,46 @@ export default {
           icon: "mdi-calendar-month",
           route: "calendar",
 
-          permissions: "ALL_FUNCTIONS"
+          permissions: "ALL_FUNCTIONS",
         },
         {
           text: "label.menu.reports",
           icon: "mdi-clipboard-file",
           route: "reports",
 
-          permissions: "ALL_FUNCTIONS"
+          permissions: "ALL_FUNCTIONS",
         },
         {
           text: "label.tooltip.settingsandconfigurations",
           icon: "mdi-cog-outline",
           route: "settings",
-          permissions: "ALL_FUNCTIONS"
-        }
+          permissions: "ALL_FUNCTIONS",
+        },
       ],
       actions: [
         // { title: "View profile", icon: "mdi-account-circle" },
         { title: "Settings", icon: "mdi-cog" },
         { title: "Help", icon: "mdi-help" },
-        { title: "Logout", icon: "mdi-logout-variant" }
+        { title: "Logout", icon: "mdi-logout-variant" },
       ],
       select: { locale: "English", lang: "en" },
       locales: [
         {
           locale: "English",
-          lang: "en"
+          lang: "en",
         },
         {
           locale: "Kiswahili",
-          lang: "sw"
+          lang: "sw",
         },
         {
           locale: "French",
-          lang: "fr"
+          lang: "fr",
         },
         {
           locale: "Arab",
-          lang: "ar"
-        }
+          lang: "ar",
+        },
       ],
       miniVariant: false,
       right: true,
@@ -496,17 +487,17 @@ export default {
       rightDrawer: false,
       year: new Date().getFullYear(),
       userdata: {
-        username: "Elirehema Paul"
+        username: "Elirehema Paul",
       },
       menus: [
         { title: "View profile", icon: "mdi-account", value: 1 },
-        { title: "Logout", icon: "mdi-power", value: 2 }
-      ]
+        { title: "Logout", icon: "mdi-power", value: 2 },
+      ],
     };
   },
 
   methods: {
-    selectionAction: function(i) {
+    selectionAction: function (i) {
       switch (i.value) {
         case 1:
           this.nativateToHere("me");
@@ -517,14 +508,14 @@ export default {
           break;
       }
     },
-    toggledrawer: function() {
+    toggledrawer: function () {
       this.drawer = !this.drawer;
     },
-    logoutsession: function() {
+    logoutsession: function () {
       this.$store.dispatch("_clear_local_storage_and_sign_out");
       this.drawer = !this.drawer;
     },
-    changemode: function() {
+    changemode: function () {
       this.dark = !this.dark;
       this.$vuetify.theme.dark = this.dark;
     },
@@ -546,13 +537,13 @@ export default {
       }
     },
 
-    syncro: async function() {
+    syncro: async function () {
       const vm = this;
       vm.sync = !vm.sync;
       await Promise.all([
         vm.$store.dispatch("retrievepatients"),
-        vm.$store.dispatch("retrievephysicians")
-      ]).then(function() {
+        vm.$store.dispatch("retrievephysicians"),
+      ]).then(function () {
         console.log("Loading complete...");
       });
       setTimeout(() => {
@@ -561,7 +552,7 @@ export default {
     },
     changeLanguage(lang) {
       this.$i18n.locale = lang;
-    }
+    },
   },
   beforeDestroy() {
     clearInterval(this.interval);
@@ -570,7 +561,7 @@ export default {
   computed: {
     user() {
       return this.$store.getters.profile;
-    }
-  }
+    },
+  },
 };
 </script>
