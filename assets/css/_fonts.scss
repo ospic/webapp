@@ -1,39 +1,34 @@
 @font-face {
   font-family: "Oxygen";
-  src: local("Oxygen"),
-    url(../fonts/oxygen/Oxygen-Regular.ttf) format("truetype");
+  src: local("Oxygen"), url(../fonts/oxygen/Oxygen-Regular.ttf) format("truetype");
 }
 
 @font-face {
   font-family: "FiraSans";
   font-style: normal;
   font-weight: 400;
-  src: local("Fira Sans"),
-    url(../fonts/fira/FiraSans-Regular.ttf) format("truetype");
+  src: local("Fira Sans"), url(../fonts/fira/FiraSans-Regular.ttf) format("truetype");
 }
 
 @font-face {
   font-family: "ProductSans";
   font-style: normal;
   font-weight: 400;
-  src: local("Product Sans"),
-    url(../fonts/productsans/ProductSans-Regular.ttf) format("truetype");
+  src: local("Product Sans"), url(../fonts/productsans/ProductSans-Regular.ttf) format("truetype");
 }
 
 @font-face {
   font-family: "MontSerrat";
   font-style: normal;
   font-weight: 400;
-  src: local("MontSerrat"),
-    url(../fonts/motserrat/Montserrat-Regular.ttf) format("truetype");
+  src: local("MontSerrat"), url(../fonts/motserrat/Montserrat-Regular.ttf) format("truetype");
 }
 
 @font-face {
   font-family: "Roboto";
   font-style: normal;
   font-weight: 400;
-  src: local("Roboto"),
-    url(../fonts/roboto/Roboto-Regular.ttf) format("truetype");
+  src: local("Roboto"), url(../fonts/roboto/Roboto-Regular.ttf) format("truetype");
 }
 
 #__nuxt .app {
