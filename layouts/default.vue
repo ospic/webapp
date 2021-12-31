@@ -8,6 +8,7 @@
       color="primary"
       dark
       app
+      clipped
       width="220"
       height="100%"
     >
@@ -121,7 +122,7 @@
         ></iframe>
       </template>
     </v-navigation-drawer>
-    <v-app-bar hide-on-scroll fixed app flat color="primary">
+    <v-app-bar clipped-left hide-on-scroll fixed app flat color="primary">
       <v-toolbar-title>
         <v-avatar color="primary lighten-1" size="36">
           <span
@@ -235,7 +236,7 @@
     <v-main>
       <v-container
         style="background-color: transparent"
-        class="pa-0 px-3 ma-0 mt-5"
+        class="ma-5 pa-0 px-2"
         fluid
       >
         <v-alert v-if="!domain" dense color="green lighten-1" type="info">
