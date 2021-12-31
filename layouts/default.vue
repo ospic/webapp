@@ -122,7 +122,7 @@
         ></iframe>
       </template>
     </v-navigation-drawer>
-    <v-app-bar clipped-left hide-on-scroll fixed app flat color="primary">
+    <v-app-bar clipped-left hide-on-scroll dense fixed app flat color="primary">
       <v-toolbar-title>
         <v-avatar color="primary lighten-1" size="36">
           <span
