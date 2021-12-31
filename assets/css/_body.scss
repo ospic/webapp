@@ -8,10 +8,10 @@ main {
   background-size: cover;
   -webkit-box-shadow: inset 0 0 0 1000px rgba(63, 203, 98, 0);
   box-shadow: inset 0 0 0 1000px rgba(63, 203, 98, 0);
-  zoom: 75%;
+  zoom: 90%;
   &.v-main {
     &.default {
-      zoom: 75%;
+      zoom: 90%;
     }
     &.login {
       background: transparent;
@@ -24,7 +24,7 @@ main {
 }
 nav,
 header {
-  zoom: 80%;
+  zoom: 90%;
 }
 
 .page-enter-active,

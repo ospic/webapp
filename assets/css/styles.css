@@ -51,11 +51,11 @@ main {
   background-size: cover;
   -webkit-box-shadow: inset 0 0 0 1000px rgba(63, 203, 98, 0);
   box-shadow: inset 0 0 0 1000px rgba(63, 203, 98, 0);
-  zoom: 75%;
+  zoom: 90%;
 }
 
 main.v-main.default {
-  zoom: 75%;
+  zoom: 90%;
 }
 
 main.v-main.login {
@@ -68,7 +68,7 @@ main.v-main.login {
 
 nav,
 header {
-  zoom: 80%;
+  zoom: 90%;
 }
 
 .page-enter-active,
@@ -1893,5 +1893,9 @@ button.button i {
   color: #ffffff;
   font-weight: normal;
   font-size: small;
+}
+
+text.apexcharts-title-text {
+  font-family: "SofiaPro", sans-serif !important;
 }
 /*# sourceMappingURL=styles.css.map */
