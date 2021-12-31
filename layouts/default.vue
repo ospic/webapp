@@ -248,7 +248,7 @@
     <v-main>
       <v-container
         style="background-color: transparent"
-        class="ma-5 pa-0 px-2"
+        class="ma-0 pa-0 px-0"
         fluid
       >
         <v-alert v-if="!domain" dense color="green lighten-1" type="info">
@@ -294,7 +294,7 @@ export default {
       settings: [
         {
           title: "label.menu.patients",
-          icon: "mdi-account-multiple",
+          icon: "mdi-account-multiple-plus-outline",
           permissions:
             "ALL_FUNCTIONS, CREATE_PATIENT, UPDATE_PATIENT, DELETE_PATIENT, DELETE_PATIENT",
           menus: [
@@ -326,7 +326,7 @@ export default {
         },
         {
           title: "label.menu.inventoryandstock",
-          icon: "mdi-store-24-hour",
+          icon: "mdi-store-alert-outline",
           permissions: "ALL_FUNCTIONS",
           menus: [
             {
@@ -358,7 +358,7 @@ export default {
         },
         {
           title: "label.menu.medicalservices",
-          icon: "mdi-octagon",
+          icon: "mdi-medical-bag",
           permissions: "ALL_FUNCTIONS",
           menus: [
             {
@@ -387,7 +387,7 @@ export default {
         },
         {
           title: "label.menu.organization",
-          icon: "mdi-store-24-hour",
+          icon: "mdi-office-building-outline",
           permissions: "ALL_FUNCTIONS",
           menus: [
             {
@@ -449,14 +449,14 @@ export default {
         **/
         {
           text: "label.menu.calendar",
-          icon: "mdi-calendar-month",
+          icon: "mdi-calendar-blank",
           route: "calendar",
 
           permissions: "ALL_FUNCTIONS",
         },
         {
           text: "label.menu.reports",
-          icon: "mdi-clipboard-file",
+          icon: "mdi-file-clock-outline",
           route: "reports",
 
           permissions: "ALL_FUNCTIONS",
