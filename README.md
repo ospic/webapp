@@ -75,7 +75,7 @@ Refresh page and the application is using the development server with basic auth
 
 ## Api documentations
 
-Platform api's are well written in Swagger and we improve this documentation daily. [Click to get started working with api's](https://ospicapi.herokuapp.com/swagger-ui.html#)
+Platform api's are well written in Swagger and we improve this documentation daily. [Click to get started working with api's](https://ospicapi.herokuapp.com/api/swagger-ui.html#)
 <a href="http://ospic.github.io/webapp/" target="_blank"><img src="https://github.com/ospic/webapp/blob/master/assets/images/swagger.png?raw=true"/></a>
 
 ## Open application in Gitpod
