@@ -115,4 +115,4 @@ $ npm run start
 $ npm run generate
 ```
 
-[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/donate?business=HE3L345WEKRWJ&item_name=Support+Ospic+an+open+source++Hospital+Management+system+developers+team.&currency_code=USD) [![DigitalOcean Referral Badge](https://web-platforms.sfo2.cdn.digitaloceanspaces.com/WWW/Badge%201.svg)](https://www.digitalocean.com/?refcode=74129e2fe9bc&utm_campaign=Referral_Invite&utm_medium=Referral_Program&utm_source=badge)
+![Open Collective sponsors](https://img.shields.io/opencollective/sponsors/ospic?color=yellow&label=Sponsor&style=plastic) [![DigitalOcean Referral Badge](https://web-platforms.sfo2.cdn.digitaloceanspaces.com/WWW/Badge%201.svg)](https://www.digitalocean.com/?refcode=74129e2fe9bc&utm_campaign=Referral_Invite&utm_medium=Referral_Program&utm_source=badge)
