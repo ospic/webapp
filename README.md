@@ -115,4 +115,4 @@ $ npm run start
 $ npm run generate
 ```
 
-![Open Collective sponsors](https://img.shields.io/opencollective/sponsors/ospic?color=yellow&label=Sponsor&style=plastic) [![DigitalOcean Referral Badge](https://web-platforms.sfo2.cdn.digitaloceanspaces.com/WWW/Badge%201.svg)](https://www.digitalocean.com/?refcode=74129e2fe9bc&utm_campaign=Referral_Invite&utm_medium=Referral_Program&utm_source=badge)
+![Open Collective backers and sponsors](https://img.shields.io/opencollective/all/ospic) [![DigitalOcean Referral Badge](https://web-platforms.sfo2.cdn.digitaloceanspaces.com/WWW/Badge%201.svg)](https://www.digitalocean.com/?refcode=74129e2fe9bc&utm_campaign=Referral_Invite&utm_medium=Referral_Program&utm_source=badge)
