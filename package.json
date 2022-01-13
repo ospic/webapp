@@ -16,7 +16,7 @@
     "test": "jest"
   },
   "engines": {
-    "npm": "8.1.2"
+    "npm": ">=16.0.0"
   },
   "dependencies": {
     "@nuxt/webpack": "^2.15.8",
