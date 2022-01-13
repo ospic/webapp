@@ -40,7 +40,8 @@
     "vue-i18n": "^8.26.8",
     "vue-pdf-app": "^2.1.0",
     "vuetify": "^2.6.2",
-    "vuex-persistedstate": "^4.1.0"
+    "vuex-persistedstate": "^4.1.0",
+    "webpack": "^5.66.0"
   },
   "devDependencies": {
     "@babel/eslint-parser": "7.16.5",
