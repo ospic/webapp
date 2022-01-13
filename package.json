@@ -16,10 +16,10 @@
     "test": "jest"
   },
   "engines": {
-    "npm": ">=16.0.0"
+    "npm": "8.3.0",
+    "node": "14.18.1"
   },
   "dependencies": {
-    "@nuxt/webpack": "^2.15.8",
     "@nuxtjs/axios": "^5.13.5",
     "@nuxtjs/google-analytics": "^2.4.0",
     "@nuxtjs/pwa": "^3.3.5",
@@ -31,7 +31,7 @@
     "core-js": "^3.20.2",
     "fibers": "^5.0.0",
     "fs-extra": "^10.0.0",
-    "nuxt": "^2.13.3",
+    "nuxt": "^2.15.8",
     "nuxt-material-design-icons": "^1.0.4",
     "opn": "^6.0.0",
     "secure-ls": "^1.2.6",
@@ -40,8 +40,7 @@
     "vue-i18n": "^8.26.8",
     "vue-pdf-app": "^2.1.0",
     "vuetify": "^2.6.2",
-    "vuex-persistedstate": "^4.1.0",
-    "webpack": "^5.66.0"
+    "vuex-persistedstate": "^4.1.0"
   },
   "devDependencies": {
     "@babel/eslint-parser": "7.16.5",
