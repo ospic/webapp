@@ -82,6 +82,7 @@
                       <v-text-field
                         v-model="editedItem.quantity"
                         type="number"
+                        min="0"
                         label="Quantity"
                       ></v-text-field>
                     </v-col>
@@ -89,6 +90,7 @@
                       <v-text-field
                         v-model="editedItem.buyingPrice"
                         type="number"
+                        min="0"
                         label="Buying price"
                       ></v-text-field>
                     </v-col>
@@ -109,6 +111,7 @@
                       <v-text-field
                         v-model="editedItem.sellingPrice"
                         type="number"
+                        min="0"
                         label="Selling price"
                       ></v-text-field>
                     </v-col>
@@ -142,6 +145,69 @@
                         label="Effects"
                       ></v-text-field>
                     </v-col>
+                    <v-col cols="12" sm="6" md="4">
+                      <v-text-field
+                        v-model="editedItem.strength"
+                        label="Strength"
+                        suffix="mg/ml"
+                      ></v-text-field>
+                    </v-col>
+                    <v-col cols="12" sm="6" md="4">
+                      <v-text-field
+                        v-model="editedItem.batchNumber"
+                        label="Batch Number"
+                      ></v-text-field>
+                    </v-col>
+
+                    <v-col cols="12" sm="6" md="4">
+                      <v-menu
+                        ref=""
+                        v-model="purchasedate"
+                        :close-on-content-click="false"
+                        :return-value.sync="date"
+                        transition="scale-transition"
+                        offset-y
+                        max-width="290px"
+                        min-width="290px"
+                      >
+                        <template v-slot:activator="{ on, attrs }">
+                          <v-text-field
+                            v-model="editedItem.purchaseDateTime"
+                            label="Purchase Date"
+                            prepend-icon="mdi-calendar"
+                            readonly
+                            v-bind="attrs"
+                            v-on="on"
+                            :rules="[(v) => !!v || 'Date is required']"
+                            required
+                          ></v-text-field>
+                        </template>
+                        <v-date-picker
+                          v-model="editedItem.purchaseDateTime"
+                          no-title
+                          scrollable
+                          required
+                          @input="purchasedate = false"
+                        >
+                          <v-spacer></v-spacer>
+                          <v-btn
+                            text
+                            color="primary"
+                            @click="purchasedate = false"
+                          >
+                            Cancel
+                          </v-btn>
+                          <v-btn
+                            text
+                            color="primary"
+                            @click="$refs.purchasedate.save(date)"
+                          >
+                            OK
+                          </v-btn>
+                        </v-date-picker>
+                      </v-menu>
+                    </v-col>
+
                     <v-col cols="12" sm="6" md="4">
                       <v-menu
                         ref="menu2"
@@ -260,6 +326,58 @@
         </v-tooltip>
       </template>
 
+      <template v-slot:[`item.more`]="{ item }">
+        <v-tooltip right color="primary">
+          <template v-slot:activator="{ on, attrs }">
+            <v-icon
+              color="primary"
+              dark
+              v-bind="attrs"
+              v-on="on"
+              v-html="'mdi-information-outline'"
+            >
+            </v-icon>
+          </template>
+          <v-list color="primary" dark dense>
+            <v-list-item two-line>
+              <v-list-item-content>
+                <v-list-item-title>GENERIC NAME</v-list-item-title>
+                <v-list-item-subtitle
+                  >{{ item.genericName }}
+                </v-list-item-subtitle>
+              </v-list-item-content>
+            </v-list-item>
+            <v-list-item color="primary" three-line>
+              <v-list-item-content>
+                <v-list-item-title>GROUP</v-list-item-title>
+                <v-list-item-subtitle
+                  >{{ item.group.name }}
+                </v-list-item-subtitle>
+                <v-list-item-subtitle>
+                  {{ item.group.descriptions }}
+                </v-list-item-subtitle>
+              </v-list-item-content>
+            </v-list-item>
+
+            <v-list-item two-line>
+              <v-list-item-content>
+                <v-list-item-title>COMPOSITION</v-list-item-title>
+                <v-list-item-subtitle
+                  >{{ item.compositions }}
+                </v-list-item-subtitle>
+              </v-list-item-content>
+            </v-list-item>
+
+            <v-list-item two-line>
+              <v-list-item-content>
+                <v-list-item-title>MANUFACTURE</v-list-item-title>
+                <v-list-item-subtitle>{{ item.company }} </v-list-item-subtitle>
+              </v-list-item-content>
+            </v-list-item>
+          </v-list>
+        </v-tooltip>
+      </template>
+
       <template class="primary"> </template>
       <template v-if="showaction" v-slot:[`item.actions`]="{ item }">
         <v-icon small class="mr-2" @click="editItem(item)"> mdi-pencil </v-icon>
@@ -346,14 +464,16 @@ export default {
     medicinos: null,
     menu1: false,
     menu2: false,
+    purchasedate: false,
     tab: null,
     list: true,
     date: new Date().toISOString().substr(0, 7),
     headers: [
       { text: "", value: "status", class: "primary" },
       { text: "Name", value: "name", class: "primary", align: "left" },
-      { text: "Generic Name", value: "genericName", class: "primary" },
       { text: "Store Box", value: "storeBox", class: "primary" },
+      { text: "Strength(mg/ml)", value: "strength", class: "primary" },
+
       {
         text: "Quantity left",
         value: "quantity",
@@ -363,8 +483,6 @@ export default {
       { text: "Buying price", value: "buyingPrice", class: "primary" },
       { text: "Selling price", value: "sellingPrice", class: "primary" },
 
-      { text: "Composition", value: "compositions", class: "primary" },
-      { text: "Group", value: "group.name", class: "primary", sortable: true },
       {
         text: "Category",
         value: "category.name",
@@ -372,14 +490,11 @@ export default {
         sortable: true,
       },
 
-      {
-        text: "Manufacture",
-        value: "company",
-        class: "primary",
-        sortable: false,
-      },
+      { text: "Batch #", value: "batchNumber", class: "primary" },
       { text: "Effects", value: "effects", class: "primary" },
-      { text: "Expire Date", value: "expireOn", class: "primary" },
+      { text: "Purchase", value: "purchasedOn", class: "primary" },
+      { text: "Expire", value: "expireOn", class: "primary" },
+      { text: "More", value: "more", class: "primary", sortable: false },
       { text: "Actions", value: "actions", class: "primary", sortable: false },
     ],
     editedIndex: -1,
@@ -398,6 +513,9 @@ export default {
       sellingPrice: 0,
       expireDateTime: null,
       storeBox: "",
+      purchaseDateTime: null,
+      batchNumber: "",
+      strength: "",
     },
     defaultItem: {
       id: 0,
@@ -413,6 +531,9 @@ export default {
       sellingPrice: 0,
       expireDateTime: null,
       storeBox: "",
+      purchaseDateTime: null,
+      batchNumber: "",
+      strength: "",
     },
   }),
   created() {
@@ -426,7 +547,7 @@ export default {
     editItem(item) {
       this.editedIndex = this.medicines.indexOf(item);
       var dt = item.expireDate;
-      console.log(dt.substring(0, dt.length - 8));
+      var xdt = item.purchaseDate;
       this.editedItem = Object.assign({}, item);
       this.dialog = true;
       this.editedItemId = item.id;
@@ -435,6 +556,7 @@ export default {
       );
 
       this.editedItem.expireDateTime = dt.substring(0, dt.length - 8);
+      this.editedItem.purchaseDateTime = xdt.substring(0, xdt.length - 8);
     },
     deleteItem(item) {
       const index = this.medicines.indexOf(item);
