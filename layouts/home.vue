@@ -1,32 +1,40 @@
 <template>
-  <v-app
-    class="aspire"
-    style="background: transparent; background-image: url('https://storage.googleapis.com/aims-edu/images/000/001/174/lead/64.jpg'); height: 100%; background-repeat: no-repeat; background-size: cover;"
-  >
-    <v-main class="login">
+  <v-app class="app login">
+    <v-main class="transparent">
       <nuxt />
     </v-main>
-    <v-footer class="primary" fixed padless app>
-      <v-spacer></v-spacer>
-      <v-btn color="whitish" text to="/about" x-small>
-        Made by Ospic
-      </v-btn>
-    </v-footer>
+    <footer-component></footer-component>
   </v-app>
 </template>
 
 <script>
+import FooterComponent from "@/components/TFooter.vue";
 export default {
+  components: {
+    "footer-component": FooterComponent,
+  },
   data() {
     return {
-      locales: ["English", "Kiswahili"]
+      locales: ["English", "Kiswahili"],
+      socials: [
+        {
+          icon: "mdi-twitter",
+          link: "https://twitter.com/ospicapp?ref_src=twsrc%5Etfw",
+        },
+        {
+          icon: "mdi-facebook",
+          link: null,
+        },
+        { icon: "mdi-linkedin", link: null },
+        { icon: "mdi-instagram", link: null },
+      ],
     };
   },
   head() {
     return {
-      title: "Home Page"
+      title: "Home Page",
     };
-  }
+  },
 };
 </script>
 <style scoped>

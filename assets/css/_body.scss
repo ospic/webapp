@@ -11,15 +11,27 @@ main {
   zoom: 90%;
   &.v-main {
     &.default {
-      zoom: 90%;
+      zoom: 0%;
     }
     &.login {
       background: transparent;
       background-image: url("https://storage.googleapis.com/aims-edu/images/000/001/174/lead/64.jpg");
-      height: 100%;
+      height: 70%;
       background-repeat: no-repeat;
       background-size: cover;
     }
+  }
+}
+.v-application--wrap {
+  background: transparent;
+  background-image: url("https://storage.googleapis.com/aims-edu/images/000/001/174/lead/64.jpg");
+  height: 70%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  & footer.v-footer {
+    background-color: white !important;
+    opacity: 0.65;
+    text-decoration-color: black;
   }
 }
 nav,
