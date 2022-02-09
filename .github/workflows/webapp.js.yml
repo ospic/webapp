@@ -34,6 +34,7 @@ jobs:
       - run: npm cache verify
       - run: npm cache clean -f
       - run: rm -rf node_modules package-lock.json 
+      - run: npm i -g npm@6
       - run: npm i --save
       - run: npm run production
       # - run: npm test
