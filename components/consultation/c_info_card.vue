@@ -38,7 +38,6 @@
                     <v-list-item-subtitle v-else v-html="userdata.country">
                     </v-list-item-subtitle>
                   </v-list-item-content>
-
                   <v-list-item-icon>
                     <div class="text-center">
                       <v-dialog v-model="uploaddialog" persistent width="600">
@@ -48,7 +47,7 @@
                             fab
                             x-small
                             dark
-                            v-if="entityThumbNail != null"
+                            v-if="userdata.patientPhoto != null"
                             @click.stop="deletePatientProfilePic()"
                           >
                             <v-icon>mdi-trash-can-outline</v-icon>
@@ -273,7 +272,7 @@ export default {
   },
   computed:{
     entityThumbNail: function() {
-      return this.userdata.patientPhoto;
+      return this.$api.defaults.baseURL +"patients/"+this.userdata.id+"/images";
     },
      staffs: {
       get() {
