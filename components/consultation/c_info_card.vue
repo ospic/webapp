@@ -310,8 +310,7 @@ export default {
 
     },
     async deletePatientProfilePic() {
-      console.log(this.userdata.patientPhoto.split('/').pop());
-      return await this.$api.$delete(`/patients/${this.$route.params.id}/images/${this.userdata.patientPhoto.split('/').pop()}`)
+      return await this.$api.$delete(`/patients/${this.$route.params.id}/images/`)
         .then(response => {
           if (response !== null) {
             this.$emit('update-profile');

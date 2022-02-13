@@ -160,7 +160,7 @@
       </v-dialog>
     </v-row>
     <v-row>
-      <v-col md="2" sm="6" v-for="(file, i) in files" :key="i">
+      <v-col md="4" lg="2" sm="6" v-for="(file, i) in files" :key="i">
         <v-card outlined dense>
           <v-toolbar dense height="40" class="primary" flat>
             <h5 class="white--text font-weight-medium">{{ file.name }}</h5>
@@ -261,6 +261,13 @@ export default {
     },
     viewfile: function (it) {
       this.selectedfile = it;
+      this.selectedfile.url =
+        this.$api.defaults.baseURL +
+        "consultations/" +
+        this.$route.params.id +
+        "/files/" +
+        it.id +
+        "/";
       this.viewdialog = true;
       console.log(it);
     },
