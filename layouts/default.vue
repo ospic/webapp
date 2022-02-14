@@ -20,7 +20,13 @@
           }}</v-list-item-title>
         </v-list-item>
         <div v-for="(setting, ind) in settings" :key="ind + setting.icon">
-          <v-menu transition="slide-x-transition" bottom>
+          <v-menu
+            :close-on-content-click="false"
+            :nudge-width="200"
+            offset-x
+            transition="slide-x-transition"
+            bottom
+          >
             <template v-slot:activator="{ on, attrs }">
               <v-list-item v-on="on">
                 <v-list-item-title class="font-weight-normal" v-bind="attrs">
@@ -287,6 +293,8 @@ export default {
       sync: false,
       interval: {},
       value: 0,
+      overlay: false,
+      zIndex: 0,
 
       titles: {
         title: "Ospic",
