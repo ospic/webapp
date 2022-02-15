@@ -54,6 +54,6 @@
     "eslint": "^8.8.0",
     "eslint-plugin-nuxt": "^3.1.0",
     "sass": "^1.49.7",
-    "sass-loader": "10.1.1"
+    "sass-loader": "12.5.0"
   }
 }
