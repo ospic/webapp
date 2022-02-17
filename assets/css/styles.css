@@ -1929,4 +1929,15 @@ h6 {
   font-weight: bold;
   color: black;
 }
+
+a,
+i {
+  text-decoration: none;
+}
+
+a :hover,
+i :hover {
+  background-color: #2cb673;
+  color: #ffffff;
+}
 /*# sourceMappingURL=styles.css.map */

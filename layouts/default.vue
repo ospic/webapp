@@ -21,10 +21,11 @@
         </v-list-item>
         <div v-for="(setting, ind) in settings" :key="ind + setting.icon">
           <v-menu
-            :close-on-content-click="false"
-            :nudge-width="200"
+            :close-on-content-click="true"
+            :nudge-width="150"
             offset-x
             transition="slide-x-transition"
+            allow-overflow
             bottom
           >
             <template v-slot:activator="{ on, attrs }">
@@ -38,26 +39,31 @@
                   ></v-icon>
                   {{ $t(setting.title) }}</v-list-item-title
                 >
+                <v-list-item-action>
+                  <v-icon color="grey lighten-1">mdi-chevron-right</v-icon>
+                </v-list-item-action>
               </v-list-item>
             </template>
             <v-list>
               <template v-for="(submenu, index) in setting.menus">
-                <v-list-item
-                  dense
-                  class="my-0 py-0"
-                  :key="index"
-                  :to="submenu.to"
-                  color="primary"
-                  v-if="hasPermission(submenu.permissions)"
-                >
-                  <v-list-item-title
-                    color="white"
-                    class="font-weight-medium ma-0 pa-0"
+                <nuxt-link :to="submenu.to" :key="index">
+                  <v-list-item
+                    dense
+                    class="my-0 py-0"
+                    :key="index"
+                    color="primary"
+                    v-if="hasPermission(submenu.permissions)"
                   >
-                    <v-icon small>mdi-circle-medium</v-icon>
-                    &nbsp;&nbsp;{{ $t(submenu.title) }}</v-list-item-title
-                  >
-                </v-list-item>
+                    <v-list-item-title
+                      color="white"
+                      class="font-weight-medium ma-0 pa-0"
+                    >
+                      <v-icon small>mdi-circle-medium</v-icon>
+                      &nbsp;&nbsp;{{ $t(submenu.title) }}</v-list-item-title
+                    >
+                  </v-list-item>
+                </nuxt-link>
+                <v-divider :key="index"></v-divider>
               </template>
             </v-list>
           </v-menu>
@@ -254,7 +260,7 @@
     <v-main>
       <v-container
         style="background-color: transparent"
-        class="ma-0 pa-0 px-0"
+        class="ma-0 mt-5 pa-0 mx-2"
         fluid
       >
         <v-alert v-if="!domain" dense color="green lighten-1" type="info">

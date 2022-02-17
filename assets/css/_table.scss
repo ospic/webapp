@@ -1,3 +1,7 @@
+@mixin color_red {
+  color: red;
+}
+
 table {
   border-collapse: collapse;
   empty-cells: show;
@@ -6,9 +10,9 @@ table {
 tr:nth-child(odd) {
   background: #eaeaea;
   &.strikeout {
-    color: red;
+    @include color_red;
     a {
-      color: red;
+      @include color_red;
     }
   }
 }
@@ -16,9 +20,9 @@ tr:nth-child(odd) {
 tr:nth-child(even) {
   background: white;
   &.strikeout {
-    color: red;
+    @include color_red;
     a {
-      color: red;
+      @include color_red;
     }
   }
 }

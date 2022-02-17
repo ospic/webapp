@@ -13,3 +13,9 @@ $color_dlue: #303edb;
 $color_white: #ffffff !global;
 $button_color: #02532b;
 $color_cream: #c67f43;
+
+$color_drygreen: #2cb673;
+
+@mixin whitecolor {
+  color: $color_white;
+}
