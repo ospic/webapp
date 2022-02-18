@@ -38,6 +38,15 @@
         <template v-slot:[`item.patientName`]="{ item }">
           {{ item.patientName }} ( {{ item.patientId }})
         </template>
+        <template v-slot:[`item.status`]="{ item }">
+          <v-tooltip right v-if="item.isAdmitted" color="primary">
+            <template v-slot:activator="{ on, attrs }">
+              <v-icon v-bind="attrs" v-on="on" small>mdi-bed-outline</v-icon>
+            </template>
+            <span>Admitted</span>
+          </v-tooltip>
+          <div v-else></div>
+        </template>
         <template v-slot:[`item.staffName`]="{ item }">
           <p v-if="item.staffName == null">Unassigned</p>
           <p v-else>{{ item.staffName }} ( {{ item.staffId }})</p>
@@ -72,6 +81,7 @@ export default {
       { text: "Consultant", value: "staffName", class: "primary" },
       { text: "From", value: "fromDate", class: "primary" },
       { text: "To", value: "toDate", class: "primary" },
+      { text: "Status", value: "status", class: "primary" },
     ],
     body: {
       options: {

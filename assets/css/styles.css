@@ -1852,13 +1852,13 @@ th span {
 }
 
 button.button {
-  background-color: #02532b;
+  background-color: #2cb673;
 }
 
 button.button span {
   color: #ffffff;
   font-weight: normal;
-  font-size: large;
+  font-size: small;
 }
 
 button.button.cancel {

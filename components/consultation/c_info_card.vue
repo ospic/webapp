@@ -145,6 +145,7 @@
           </v-card-actions>
         </v-card>
       </v-col>
+
       <v-col xs="12" md="9" sm="12">
         <v-tabs
           slider-color="blue"
@@ -161,7 +162,10 @@
             >
           </v-tab>
 
-          <v-tab class="font-weight-normal" @click.stop="getPatientServices()">
+          <v-tab
+            class="font-weight-normal"
+            @click.stop="getPatientServices(true)"
+          >
             <v-icon small left>mdi-clock-check</v-icon>
             {{ $t("label.tab.consultations") }}
           </v-tab>
@@ -180,14 +184,23 @@
 
           <v-tab-item class="default">
             <div class="">
-              <v-btn
-                class="button small ma-2"
-                small
-                v-if="!userdata.isActive"
-                @click.stop="initiateServiceInstance()"
-                ><v-icon small left>mdi-plus</v-icon
-                >{{ $t("label.button.newconsultation") }}</v-btn
-              >
+              <v-row no-gutters>
+                <v-spacer></v-spacer>
+                <v-btn
+                  class="button small ma-2"
+                  small
+                  v-if="!userdata.isActive"
+                  @click.stop="initiateServiceInstance()"
+                  ><v-icon small left>mdi-plus</v-icon
+                  >{{ $t("label.button.newconsultation") }}</v-btn
+                >
+                <v-btn
+                  class="button small ma-2"
+                  small
+                  @click.stop="getPatientServices(null)"
+                  >View all</v-btn
+                >
+              </v-row>
               <tb-services :services="services"></tb-services>
             </div>
           </v-tab-item>
@@ -253,7 +266,7 @@ export default {
       halfIcon: 'mdi-star-half-full',
       address: null,
       staff:null,
-      services: null,
+      services: [],
       cards:[],
       diagnoses: null,
         attrs: {
@@ -338,8 +351,8 @@ export default {
         });
 
     },
-    async getPatientServices(){
-        return await this.$api.$get(`consultations/patient/${this.$route.params.id}`)
+    async getPatientServices(status){
+        return await this.$api.$get(`consultations/patient/${this.$route.params.id}`,{params:{active: status}})
         .then(response => {
           if (response !== null) {
             this.services = response.sort(function(a,b){return b.isActive - a.isActive});
