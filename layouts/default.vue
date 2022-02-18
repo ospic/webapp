@@ -170,8 +170,8 @@
           </v-list>
         </v-menu>
       </v-badge>
-      <div>
-        <v-list-item dense two-line dark>
+      <div class="ma-0 pa-0">
+        <v-list-item class="ma-0 pa-0" dense dark>
           <v-list-item-avatar :key="image" color="primary lighten-2">
             <v-img :src="profileImage" class="pa-2"></v-img>
           </v-list-item-avatar>
@@ -181,9 +181,6 @@
               v-html="user.username"
               class="font-weight-black"
             ></v-list-item-title>
-            <v-list-item-subtitle
-              ><v-icon dense color="warning">mdi-circle-medium</v-icon>Online
-            </v-list-item-subtitle>
           </v-list-item-content>
           <v-list-item-action>
             <v-menu offset-y tile content-class="elevation-1 mt-2">
