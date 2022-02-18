@@ -11,7 +11,7 @@
       height="100%"
     >
       <v-list nav subheader tile class="mt-0 pa-0 py-1">
-        <v-list-item class="list-item ma-0" to="/">
+        <v-list-item class="list-item ma-0" v-if="!showback" to="/">
           <v-list-item-icon class="ml-1 mr-2">
             <v-icon medium color="primary">mdi-panorama-wide-angle</v-icon>
           </v-list-item-icon>
@@ -26,7 +26,6 @@
             @click="navigateBack"
             class="ma-2 px-4"
             color="primary"
-            to="/"
             text-color="white"
             pill
           >
@@ -39,15 +38,16 @@
             v-on:click="navigateToHere(setting.to)"
           >
             <v-list-item-title
-              :class="!showback ? `font-weight-thin` : `font-weight-thin ml-5`"
-              v-bind="attrs"
+              :class="
+                !showback ? `font-weight-light ` : ` font-weight-light ml-5`
+              "
             >
               <v-icon
                 slot="prependIcon"
                 v-html="setting.icon"
                 :medium="!showback"
                 :small="showback"
-                :color="showback ? 'blue' : 'primary'"
+                color=" primary"
                 class="ml-1 mr-2"
               ></v-icon>
               {{ $t(setting.title) }}</v-list-item-title
@@ -393,6 +393,10 @@ export default {
       }
       if (id == "/reports") {
         this.settings = this.menuoptions.reports;
+        this.showback = true;
+      }
+      if (id == "/settings") {
+        this.settings = this.menuoptions.settings;
         this.showback = true;
       }
     },

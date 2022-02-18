@@ -208,6 +208,50 @@ Vue.mixin({
             permissions:
               "ALL_FUNCTIONS, READ_INSURANCE_COMPANY,UPDATE_INSURANCE_COMPANY,DELETE_INSURANCE_COMPANY,CREATE_INSURANCE_COMPANY"
           },
+        ],
+        settings: [
+          {
+            title: "label.titles.users",
+            to: "/settings",
+            icon: "mdi-account-settings",
+            permissions: "ALL_FUNCTIONS",
+          },
+          {
+            title: "label.menu.selfservice",
+            to: "/settings/selfservices",
+            icon: "mdi-tooltip-account",
+            permissions: "ALL_FUNCTIONS",
+          },
+          {
+            title: "label.menu.roles",
+            icon: "mdi-account-cog",
+            to: "/settings/roles",
+            permissions: "ALL_FUNCTIONS",
+          },
+          {
+            title: "label.titles.sms",
+            to: "/settings/sms",
+            icon: "mdi-message-cog-outline",
+            permissions: "ALL_FUNCTIONS",
+          },
+          {
+            title: "label.titles.email",
+            to: "/settings/config/email",
+            icon: "mdi-folder-cog-outline",
+            permissions: "ALL_FUNCTIONS",
+          },
+          {
+            title: "label.titles.themecolor",
+            to: "/settings/colors",
+            icon: "mdi-invert-colors",
+            permissions: "ALL_FUNCTIONS",
+          },
+          {
+            title: "label.menu.system",
+            to: "/settings/configurations",
+            icon: "mdi-cog-transfer",
+            permissions: "ALL_FUNCTIONS",
+          }
         ]
 
 
@@ -260,7 +304,7 @@ Vue.mixin({
           permissions: "ALL_FUNCTIONS",
         },
         {
-          title: "label.tooltip.settingsandconfigurations",
+          title: "label.menu.settings",
           icon: "mdi-cog",
           to: "/settings",
           permissions: "ALL_FUNCTIONS",
