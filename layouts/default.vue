@@ -21,30 +21,33 @@
         </v-list-item>
 
         <div v-for="(setting, index) in settings" :key="index">
-          <v-list-item
+          <v-chip
             v-if="index == 0 && showback"
-            class="list-item ma-0"
+            @click="navigateBack"
+            class="ma-2 px-4"
+            color="primary"
             to="/"
+            text-color="white"
+            pill
           >
-            <v-chip
-              @click="navigateBack"
-              class="ma-2 px-4"
-              color="primary"
-              text-color="white"
-              pill
+            <v-icon left class="mr-4"> mdi-keyboard-backspace </v-icon>
+            Back to main menu
+          </v-chip>
+          <v-list-item
+            v-esle
+            v-if="hasPermission(setting.permissions)"
+            v-on:click="navigateToHere(setting.to)"
+          >
+            <v-list-item-title
+              :class="!showback ? `font-weight-thin` : `font-weight-thin ml-5`"
+              v-bind="attrs"
             >
-              <v-icon left class="mr-4"> mdi-keyboard-backspace </v-icon>
-              Back to main menu
-            </v-chip>
-          </v-list-item>
-          <v-list-item v-esle v-on:click="navigateToHere(setting.to)">
-            <v-list-item-title class="font-weight-thin" v-bind="attrs">
               <v-icon
                 slot="prependIcon"
                 v-html="setting.icon"
                 :medium="!showback"
                 :small="showback"
-                color="primary"
+                :color="showback ? 'blue' : 'primary'"
                 class="ml-1 mr-2"
               ></v-icon>
               {{ $t(setting.title) }}</v-list-item-title
@@ -382,6 +385,14 @@ export default {
       }
       if (id == "/staffs") {
         this.settings = this.menuoptions.organization;
+        this.showback = true;
+      }
+      if (id == "/calendar") {
+        this.settings = this.menuoptions.calendar;
+        this.showback = true;
+      }
+      if (id == "/reports") {
+        this.settings = this.menuoptions.reports;
         this.showback = true;
       }
     },
