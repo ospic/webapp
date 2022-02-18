@@ -83,7 +83,10 @@
       "medicalservices": "Medical Services",
       "overview": "Overview",
       "settings": "Settings",
-      "calendarlist": "List of Events"
+      "calendarlist": "List of Events",
+      "roles": "Roles",
+      "selfservice": "Self-services",
+      "system": "System"
     },
     "message": {
       "nodataavailable": "No Data available ...",
@@ -183,9 +186,11 @@
       "insurances": "Insurances",
       "systemcolors": "System colors",
       "globalconfigurations": "Global configurations",
-      "themecolor": "Theme colors",
+      "themecolor": "Themes",
       "addnewevent": "Add new event",
-      "events": "Events"
+      "events": "Events",
+      "sms": "SMS",
+      "email": "Email"
     },
     "tab": {
       "appointments": "Appointments",
