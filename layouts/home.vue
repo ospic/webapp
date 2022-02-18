@@ -3,7 +3,7 @@
     <v-main class="transparent">
       <nuxt />
     </v-main>
-    <footer-component></footer-component>
+    <footer-component v-if="isMdAndUp"></footer-component>
   </v-app>
 </template>
 
