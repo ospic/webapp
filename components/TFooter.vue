@@ -26,9 +26,9 @@
                   </h4></v-list-item-title
                 >
                 <v-list-item-subtitle class="mt-4">
-                  <p>Reception : +255 xxx xxx</p>
+                  <p>Reception : +255 739 087 522</p>
 
-                  <p>Office : +255 xxx xxx</p>
+                  <p>Office : +255 739 087 522</p>
                 </v-list-item-subtitle>
               </v-list-item-content>
             </v-list-item>
