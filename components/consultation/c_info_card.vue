@@ -5,6 +5,7 @@
         <v-card flat>
           <v-img
             :src="entityThumbNail"
+            :key="profileImage"
             lazy-src="https://www.attendanceworks.org/wp-content/uploads/2020/09/img-placeholder.png"
             aspect-ratio="1"
             class="grey lighten-2 align-end"
@@ -260,6 +261,7 @@ export default {
         boilerplate: true,
         elevation: 2,
       },
+      profileImage: 1,
 
 
 
@@ -301,6 +303,7 @@ export default {
         .then(response => {
           if (response !== null) {
             this.uploaddialog = false
+            this.profileImage = this.profileImage+1;
             this.$emit('update-profile');
           }
         }).catch(error => {
@@ -313,6 +316,7 @@ export default {
       return await this.$api.$delete(`/patients/${this.$route.params.id}/images/`)
         .then(response => {
           if (response !== null) {
+            this.profileImage = this.profileImage-1;
             this.$emit('update-profile');
           }
         }).catch(error => {

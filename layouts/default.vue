@@ -13,116 +13,44 @@
       <v-list nav subheader tile class="mt-0 pa-0 py-1">
         <v-list-item class="list-item ma-0" to="/">
           <v-list-item-icon class="ml-1 mr-2">
-            <v-icon medium>mdi-view-grid-outline</v-icon>
+            <v-icon medium color="primary">mdi-panorama-wide-angle</v-icon>
           </v-list-item-icon>
-          <v-list-item-title color="#8C93F5" class="font-weight-normal">{{
+          <v-list-item-title color="primary" class="font-weight-normal">{{
             $t("label.menu.overview")
           }}</v-list-item-title>
         </v-list-item>
-        <div v-for="(setting, ind) in settings" :key="ind + setting.icon">
-          <v-menu
-            :close-on-content-click="true"
-            :nudge-width="150"
-            offset-x
-            transition="slide-x-transition"
-            allow-overflow
-            bottom
-          >
-            <template v-slot:activator="{ on, attrs }">
-              <v-list-item v-on="on">
-                <v-list-item-title class="font-weight-normal" v-bind="attrs">
-                  <v-icon
-                    slot="prependIcon"
-                    v-html="setting.icon"
-                    medium
-                    class="ml-1 mr-2"
-                  ></v-icon>
-                  {{ $t(setting.title) }}</v-list-item-title
-                >
-                <v-list-item-action>
-                  <v-icon color="grey lighten-1">mdi-chevron-right</v-icon>
-                </v-list-item-action>
-              </v-list-item>
-            </template>
-            <v-list>
-              <template v-for="(submenu, index) in setting.menus">
-                <nuxt-link :to="submenu.to" :key="index">
-                  <v-list-item
-                    dense
-                    class="my-0 py-0"
-                    :key="index"
-                    color="primary"
-                    v-if="hasPermission(submenu.permissions)"
-                  >
-                    <v-list-item-title
-                      color="white"
-                      class="font-weight-medium ma-0 pa-0"
-                    >
-                      <v-icon small>mdi-circle-medium</v-icon>
-                      &nbsp;&nbsp;{{ $t(submenu.title) }}</v-list-item-title
-                    >
-                  </v-list-item>
-                </nuxt-link>
-                <v-divider :key="index"></v-divider>
-              </template>
-            </v-list>
-          </v-menu>
 
-          <!--<v-list-group
-            :value="false"
-            no-action
-            ripple
-            color="white"
-            v-if="hasPermission(setting.permissions)"
-          >
-            <template v-slot:activator class="ma-0 pa-0">
-              <v-list-item-title class="font-weight-bold" dark>
-                <v-icon
-                  slot="prependIcon"
-                  v-html="setting.icon"
-                  small
-                  class="ml-1 mr-2"
-                ></v-icon>
-                {{ $t(setting.title) }}</v-list-item-title
-              >
-            </template>
-
-            <template v-for="(menu, index) in setting.menus">
-              <v-list-item
-                dense
-                class="my-0 py-0"
-                :key="index + menu.title"
-                :to="menu.to"
-                color="white"
-                v-if="hasPermission(menu.permissions)"
-              >
-                <v-list-item-title
-                  color="white"
-                  class="font-weight-light ma-0 pa-0"
-                >
-                  <v-icon small>mdi-circle-medium</v-icon>
-                  &nbsp;&nbsp;{{ $t(menu.title) }}</v-list-item-title
-                >
-              </v-list-item>
-            </template>
-          </v-list-group>-->
-        </div>
-
-        <template v-for="(item, i) in items">
+        <div v-for="(setting, index) in settings" :key="index">
           <v-list-item
+            v-if="index == 0 && showback"
             class="list-item ma-0"
-            :key="`${i}-${item.route}`"
-            v-if="hasPermission(item.permissions)"
-            v-on:click="nativateToHere(item.route)"
+            to="/"
           >
-            <v-list-item-icon class="ml-1 mr-3">
-              <v-icon v-text="item.icon"></v-icon>
-            </v-list-item-icon>
-            <v-list-item-title class="font-weight-normal">{{
-              $t(item.text)
-            }}</v-list-item-title>
+            <v-chip
+              @click="navigateBack"
+              class="ma-2 px-4"
+              color="primary"
+              text-color="white"
+              pill
+            >
+              <v-icon left class="mr-4"> mdi-keyboard-backspace </v-icon>
+              Back to main menu
+            </v-chip>
           </v-list-item>
-        </template>
+          <v-list-item v-esle v-on:click="navigateToHere(setting.to)">
+            <v-list-item-title class="font-weight-thin" v-bind="attrs">
+              <v-icon
+                slot="prependIcon"
+                v-html="setting.icon"
+                :medium="!showback"
+                :small="showback"
+                color="primary"
+                class="ml-1 mr-2"
+              ></v-icon>
+              {{ $t(setting.title) }}</v-list-item-title
+            >
+          </v-list-item>
+        </div>
       </v-list>
       <template v-slot:append>
         <v-select
@@ -301,6 +229,8 @@ export default {
       value: 0,
       overlay: false,
       zIndex: 0,
+      showback: false,
+      menulist: 0,
 
       titles: {
         title: "Ospic",
@@ -308,177 +238,54 @@ export default {
       settings: [
         {
           title: "label.menu.patients",
-          icon: "mdi-account-multiple-plus-outline",
+          icon: "mdi-account-group",
+          to: "/patients",
           permissions:
             "ALL_FUNCTIONS, CREATE_PATIENT, UPDATE_PATIENT, DELETE_PATIENT, DELETE_PATIENT",
-          menus: [
-            {
-              title: "label.menu.appointmentandschedule",
-              to: "/appointments",
-              permissions:
-                "ALL_FUNCTIONS, CREATE_PATIENT, UPDATE_PATIENT, DELETE_PATIENT, DELETE_PATIENT",
-            },
-            {
-              title: "label.menu.patients",
-              to: "/patients",
-              permissions:
-                "ALL_FUNCTIONS, CREATE_PATIENT, UPDATE_PATIENT, DELETE_PATIENT, DELETE_PATIENT",
-            },
-            {
-              title: "label.menu.opdcenter",
-              to: "/opd",
-
-              permissions:
-                "ALL_FUNCTIONS, CREATE_PATIENT, UPDATE_PATIENT, DELETE_PATIENT, DELETE_PATIENT",
-            },
-            {
-              title: "label.menu.ipdcenter",
-              to: "/ipd",
-              permissions: "ALL_FUNCTIONS",
-            },
-          ],
         },
         {
           title: "label.menu.inventoryandstock",
-          icon: "mdi-store-alert-outline",
+          icon: "mdi-rhombus-outline",
           permissions: "ALL_FUNCTIONS",
-          menus: [
-            {
-              title: "label.titles.pharmacy",
-              to: "/inventory/",
-              permissions: "ALL_FUNCTIONS",
-            },
-            {
-              title: "label.titles.medicine",
-              to: "/inventory/medicine",
-              permissions: "ALL_FUNCTIONS",
-            },
-            {
-              title: "label.titles.bloodbank",
-              to: "/inventory/bloods",
-              permissions: "ALL_FUNCTIONS",
-            },
-            {
-              title: "label.titles.wards",
-              to: "/inventory/ward",
-              permissions: "ALL_FUNCTIONS",
-            },
-            {
-              title: "label.titles.beds",
-              to: "/inventory/bed",
-              permissions: "ALL_FUNCTIONS",
-            },
-          ],
+          to: "/inventory",
         },
         {
           title: "label.menu.medicalservices",
-          icon: "mdi-medical-bag",
+          icon: "mdi-square-rounded",
+          to: "/services",
           permissions: "ALL_FUNCTIONS",
-          menus: [
-            {
-              title: "label.menu.laboratory",
-              icon: "mdi-octagon",
-              to: "/services/laboratory",
-              permissions: "ALL_FUNCTIONS",
-            },
-            {
-              title: "label.menu.radiology",
-              icon: "mdi-radioactive",
-              to: "/services/radiology",
-              permissions: "ALL_FUNCTIONS",
-            },
-            {
-              title: "label.titles.medicalservices",
-              to: "/services",
-              permissions: "ALL_FUNCTIONS",
-            },
-            {
-              title: "label.titles.servicecategories",
-              to: "/services/types",
-              permissions: "ALL_FUNCTIONS",
-            },
-          ],
         },
         {
           title: "label.menu.organization",
-          icon: "mdi-office-building-outline",
+          icon: "mdi-tooltip",
+          to: "/staffs",
           permissions: "ALL_FUNCTIONS",
-          menus: [
-            {
-              title: "label.menu.staff",
-              to: "/staffs",
-              permissions: "ALL_FUNCTIONS",
-            },
-            {
-              title: "label.titles.departments",
-              to: "/departments",
-              permissions: "ALL_FUNCTIONS",
-            },
-            {
-              title: "label.titles.insurances",
-              to: "/insurances",
-              permissions:
-                "ALL_FUNCTIONS, READ_INSURANCE_COMPANY,UPDATE_INSURANCE_COMPANY,DELETE_INSURANCE_COMPANY,CREATE_INSURANCE_COMPANY",
-            },
-          ],
         },
         {
           title: "label.menu.finance",
-          icon: "mdi-finance",
+          icon: "mdi-wallet-plus",
+          to: "/finance",
           permissions:
             "ALL_FUNCTIONS, CREATE_BILL, READ_BILL,UPDATE_BILL,DELETE_BILL",
-          menus: [
-            {
-              title: "label.menu.dashboard",
-              to: "/finance",
-              permissions: "ALL_FUNCTIONS",
-            },
-            {
-              title: "label.menu.bills",
-              to: "/finance/bills",
-              permissions: "ALL_FUNCTIONS",
-            },
-            {
-              title: "label.menu.transactions",
-              to: "/finance/transactions",
-              permissions: "ALL_FUNCTIONS",
-            },
-            {
-              title: "label.menu.financereports",
-              to: "/finance/reports",
-              permissions: "ALL_FUNCTIONS",
-            },
-          ],
         },
-      ],
-
-      items: [
-        /**  {
-          text: "label.menu.stations",
-          icon: "mdi-map-marker-radius",
-          route: "stations",
-
-          permissions: "ALL_FUNCTIONS"
-        },
-        **/
         {
-          text: "label.menu.calendar",
-          icon: "mdi-calendar-blank",
-          route: "calendar",
+          title: "label.menu.calendar",
+          icon: "mdi-calendar-month",
+          to: "/calendar",
 
           permissions: "ALL_FUNCTIONS",
         },
         {
-          text: "label.menu.reports",
-          icon: "mdi-file-clock-outline",
-          route: "reports",
+          title: "label.menu.reports",
+          icon: "mdi-chart-box",
+          to: "/reports",
 
           permissions: "ALL_FUNCTIONS",
         },
         {
-          text: "label.tooltip.settingsandconfigurations",
-          icon: "mdi-cog-outline",
-          route: "settings",
+          title: "label.menu.settings",
+          icon: "mdi-cog",
+          to: "/settings",
           permissions: "ALL_FUNCTIONS",
         },
       ],
@@ -546,8 +353,37 @@ export default {
       this.dark = !this.dark;
       this.$vuetify.theme.dark = this.dark;
     },
-    nativateToHere(id) {
-      this.$router.push("/" + id);
+    navigateBack: function () {
+      this.settings = this.defaultmenu;
+      this.showback = false;
+    },
+    navigateToHere(id) {
+      console.log(id);
+      this.$router.push(id);
+      if (id == "/") {
+        this.settings = this.settings;
+        this.showback = true;
+      }
+      if (id == "/patients") {
+        this.settings = this.menuoptions.patients;
+        this.showback = true;
+      }
+      if (id == "/inventory") {
+        this.settings = this.menuoptions.inventory;
+        this.showback = true;
+      }
+      if (id == "/services") {
+        this.settings = this.menuoptions.services;
+        this.showback = true;
+      }
+      if (id == "/finance") {
+        this.settings = this.menuoptions.finance;
+        this.showback = true;
+      }
+      if (id == "/staffs") {
+        this.settings = this.menuoptions.organization;
+        this.showback = true;
+      }
     },
     toggle(mode) {
       if (`${mode}` === "true") {

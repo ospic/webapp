@@ -41,7 +41,206 @@ Vue.mixin({
           sortBy: ["name"]
         }
       },
-      thumbnil: 'https://avataaars.io/?avatarStyle=Circle&topType=ShortHairSides&accessoriesType=Prescription02&hairColor=BrownDark&facialHairType=Blank&clotheType=BlazerSweater&eyeType=Default&eyebrowType=UnibrowNatural&mouthType=Twinkle&skinColor=Light'
+      thumbnil: 'https://avataaars.io/?avatarStyle=Circle&topType=ShortHairSides&accessoriesType=Prescription02&hairColor=BrownDark&facialHairType=Blank&clotheType=BlazerSweater&eyeType=Default&eyebrowType=UnibrowNatural&mouthType=Twinkle&skinColor=Light',
+      menuoptions: {
+
+        patients: [
+          {
+            title: "label.menu.appointmentandschedule",
+            icon: 'mdi-rhombus-split',
+            to: "/appointments",
+            permissions:
+              "ALL_FUNCTIONS, CREATE_PATIENT, UPDATE_PATIENT, DELETE_PATIENT, DELETE_PATIENT",
+          },
+          {
+            title: "label.menu.patients",
+            icon: 'mdi-rhombus-split',
+            to: "/patients",
+
+            permissions:
+              "ALL_FUNCTIONS, CREATE_PATIENT, UPDATE_PATIENT, DELETE_PATIENT, DELETE_PATIENT",
+          },
+          {
+            title: "label.menu.opdcenter",
+            icon: 'mdi-rhombus-split',
+            to: "/opd",
+
+            permissions:
+              "ALL_FUNCTIONS, CREATE_PATIENT, UPDATE_PATIENT, DELETE_PATIENT, DELETE_PATIENT",
+          },
+          {
+            title: "label.menu.ipdcenter",
+            icon: 'mdi-rhombus-split',
+            to: "/ipd",
+            permissions: "ALL_FUNCTIONS",
+          },
+        ],
+
+        inventory: [
+          {
+            title: "label.titles.pharmacy",
+            icon: 'mdi-rhombus-split',
+            to: "/inventory/",
+            permissions: "ALL_FUNCTIONS",
+          },
+          {
+            title: "label.titles.medicine",
+            icon: 'mdi-rhombus-split',
+            to: "/inventory/medicine",
+            permissions: "ALL_FUNCTIONS",
+          },
+          {
+            title: "label.titles.bloodbank",
+            icon: 'mdi-rhombus-split',
+            to: "/inventory/bloods",
+            permissions: "ALL_FUNCTIONS",
+          },
+          {
+            title: "label.titles.wards",
+            icon: 'mdi-rhombus-split',
+            to: "/inventory/ward",
+            permissions: "ALL_FUNCTIONS",
+          },
+          {
+            title: "label.titles.beds",
+            icon: 'mdi-rhombus-split',
+            to: "/inventory/bed",
+            permissions: "ALL_FUNCTIONS",
+          },
+        ],
+        services: [
+          {
+            title: "label.menu.laboratory",
+            icon: 'mdi-rhombus-split',
+            to: "/services/laboratory",
+            permissions: "ALL_FUNCTIONS",
+          },
+          {
+            title: "label.menu.radiology",
+            icon: 'mdi-rhombus-split',
+            to: "/services/radiology",
+            permissions: "ALL_FUNCTIONS",
+          },
+          {
+            title: "label.titles.medicalservices",
+            icon: 'mdi-rhombus-split',
+            to: "/services",
+            permissions: "ALL_FUNCTIONS",
+          },
+          {
+            title: "label.titles.servicecategories",
+            icon: 'mdi-rhombus-split',
+            to: "/services/types",
+            permissions: "ALL_FUNCTIONS",
+          },
+        ],
+
+        organization: [
+          {
+            title: "label.menu.staff",
+            icon: 'mdi-rhombus-split',
+            to: "/staffs",
+            permissions: "ALL_FUNCTIONS",
+          },
+          {
+            title: "label.titles.departments",
+            icon: 'mdi-rhombus-split',
+            to: "/departments",
+            permissions: "ALL_FUNCTIONS",
+          },
+          {
+            title: "label.titles.insurances",
+            icon: 'mdi-rhombus-split',
+            to: "/insurances",
+            permissions:
+              "ALL_FUNCTIONS, READ_INSURANCE_COMPANY,UPDATE_INSURANCE_COMPANY,DELETE_INSURANCE_COMPANY,CREATE_INSURANCE_COMPANY",
+          },
+        ],
+
+        finance: [
+          {
+            title: "label.menu.dashboard",
+            icon: 'mdi-rhombus-split',
+            to: "/finance",
+            permissions: "ALL_FUNCTIONS",
+          },
+          {
+            title: "label.menu.bills",
+            icon: 'mdi-rhombus-split',
+            to: "/finance/bills",
+            permissions: "ALL_FUNCTIONS",
+          },
+          {
+            title: "label.menu.transactions",
+            icon: 'mdi-rhombus-split',
+            to: "/finance/transactions",
+            permissions: "ALL_FUNCTIONS",
+          },
+          {
+            title: "label.menu.financereports",
+            icon: 'mdi-rhombus-split',
+            to: "/finance/reports",
+            permissions:
+              "ALL_FUNCTIONS, READ_INSURANCE_COMPANY,UPDATE_INSURANCE_COMPANY,DELETE_INSURANCE_COMPANY,CREATE_INSURANCE_COMPANY"
+          },
+        ],
+
+
+      },
+      defaultmenu: [
+        {
+          title: "label.menu.patients",
+          icon: "mdi-account-group",
+          to: "/patients",
+          permissions:
+            "ALL_FUNCTIONS, CREATE_PATIENT, UPDATE_PATIENT, DELETE_PATIENT, DELETE_PATIENT",
+        },
+        {
+          title: "label.menu.inventoryandstock",
+          icon: "mdi-rhombus-outline",
+          permissions: "ALL_FUNCTIONS",
+          to: "/inventory",
+        },
+        {
+          title: "label.menu.medicalservices",
+          icon: "mdi-square-rounded",
+          to: "/services",
+          permissions: "ALL_FUNCTIONS",
+        },
+        {
+          title: "label.menu.organization",
+          icon: "mdi-tooltip",
+          to: "/staffs",
+          permissions: "ALL_FUNCTIONS",
+        },
+        {
+          title: "label.menu.finance",
+          icon: "mdi-wallet-plus",
+          to: "/finance",
+          permissions:
+            "ALL_FUNCTIONS, CREATE_BILL, READ_BILL,UPDATE_BILL,DELETE_BILL",
+        },
+        {
+          title: "label.menu.calendar",
+          icon: "mdi-calendar-month",
+          to: "/calendar",
+
+          permissions: "ALL_FUNCTIONS",
+        },
+        {
+          title: "label.menu.reports",
+          icon: "mdi-chart-box",
+          to: "/reports",
+
+          permissions: "ALL_FUNCTIONS",
+        },
+        {
+          title: "label.tooltip.settingsandconfigurations",
+          icon: "mdi-cog",
+          to: "/settings",
+          permissions: "ALL_FUNCTIONS",
+        },
+      ],
     }
   },
   methods: {

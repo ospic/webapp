@@ -39,11 +39,11 @@
 import info_card_info from "~/components/consultation/c_info_card";
 export default {
   components: {
-    "card-info": info_card_info
+    "card-info": info_card_info,
   },
   data() {
     return {
-      userdata: null
+      userdata: null,
     };
   },
 
@@ -51,16 +51,19 @@ export default {
     async viewusedata() {
       return await this.$api
         .$get(`patients/${this.$route.params.id}/`)
-        .then(response => {
+        .then((response) => {
           this.userdata = response;
         })
-        .catch(error => {
+        .catch((error) => {
           console.log(error);
         });
     },
-    reUpdateProfile: function() {
-      this.viewusedata();
-    }
+    reUpdateProfile: function () {
+      setTimeout(() => {
+        this.viewusedata();
+        console.log("Call emit");
+      }, this.delay_seconds);
+    },
   },
   created() {
     this.viewusedata();
@@ -68,8 +71,8 @@ export default {
   computed: {
     username() {
       return this.userdata == null ? "" : this.userdata.name;
-    }
-  }
+    },
+  },
 };
 </script>
 

@@ -80,7 +80,8 @@
       "bills": "Service Bill's",
       "financereports": "Financial Report's",
       "medicalservices": "Medical Services",
-      "overview": "Overview"
+      "overview": "Overview",
+      "settings": "Settings"
     },
     "message": {
       "nodataavailable": "No Data available ...",
