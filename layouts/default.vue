@@ -95,12 +95,12 @@
 
       <v-spacer></v-spacer>
 
-      <v-badge class="mr-3" icon="mdi-lock" color="blue" bottom overlap>
+      <!--<v-badge class="mr-3" icon="mdi-lock" color="blue" bottom overlap>
         <template v-slot:badge> 10 </template>
         <v-btn fab small class="primary" elevation="0" to="/notifications">
           <v-icon medium color="white">mdi-bell</v-icon></v-btn
         >
-      </v-badge>
+      </v-badge>-->
 
       <v-tooltip bottom color="primary" open-on-hover open-delay="500">
         <template v-slot:activator="{ on }">
@@ -125,29 +125,55 @@
         <span v-else color="white">{{ $t("label.tooltip.synchronise") }}</span>
       </v-tooltip>
 
-      <v-btn
-        fab
-        x-small
-        class="pa-1 button"
-        elevation="1"
-        v-show="false"
-        dark
-        @click="(dark = !dark), toggle(dark)"
-      >
-        <v-icon
-          medium
-          :color="dark ? 'yellow' : 'white'"
-          v-html="
-            dark
-              ? 'mdi-lightbulb-on mdi-rotate-180'
-              : 'mdi-lightbulb-outline mdi-rotate-180'
-          "
-        ></v-icon>
-      </v-btn>
+      <v-badge icon="mdi-lock" color="blue" class="mr-8" top overlap>
+        <template class="text-caption" v-slot:badge> 3 </template>
+        <v-menu offset-y content-class="elevation-1 mt-4">
+          <template v-slot:activator="{ on, attrs }">
+            <v-icon v-bind="attrs" medium v-on="on" color="white"
+              >mdi-bell</v-icon
+            >
+          </template>
+          <v-list tile>
+            <v-timeline align-top dense>
+              <v-timeline-item
+                color="primary"
+                small
+                v-for="(item, i) in 5"
+                :key="i"
+                fill-dot
+                class="pt-0 mt-0"
+                icon="mdi-bell-alert"
+              >
+                <v-list-item class="ma-0 pl-0" :key="i">
+                  <v-list-item-content>
+                    <v-list-item-title class="blue--text"
+                      >The standard Lorem Ipsum passage,</v-list-item-title
+                    >
+                    <v-list-item-subtitle
+                      class="font-weight-normal text-caption"
+                      >Something changed here. Lorem ipsum dolor sit de amet ...
+                    </v-list-item-subtitle>
+                  </v-list-item-content>
+                  <v-list-item-action>
+                    <strong class="primary--text text-caption"
+                      >{{ item % 12 < 10 ? "0" + (item % 12) : item % 12 }}:00
+                      am</strong
+                    ></v-list-item-action
+                  >
+                </v-list-item>
+                <v-divider></v-divider>
+              </v-timeline-item>
+            </v-timeline>
+            <v-list-item class="d-flex justify-center">
+              <nuxt-link to="/notifications">View All</nuxt-link>
+            </v-list-item>
+          </v-list>
+        </v-menu>
+      </v-badge>
       <div>
         <v-list-item dense two-line dark>
-          <v-list-item-avatar>
-            <v-img :src="thumbnail"></v-img>
+          <v-list-item-avatar :key="image" color="primary lighten-2">
+            <v-img :src="profileImage" class="pa-2"></v-img>
           </v-list-item-avatar>
 
           <v-list-item-content>
@@ -160,11 +186,11 @@
             </v-list-item-subtitle>
           </v-list-item-content>
           <v-list-item-action>
-            <v-menu offset-y>
+            <v-menu offset-y tile content-class="elevation-1 mt-2">
               <template v-slot:activator="{ on, attrs }">
                 <v-icon v-bind="attrs" v-on="on">mdi-menu-down</v-icon>
               </template>
-              <v-list rounded>
+              <v-list tile>
                 <v-list-item
                   ripple
                   v-for="(item, index) in menus"
@@ -172,8 +198,8 @@
                   @click="selectionAction(item)"
                 >
                   <v-list-item-icon>
-                    <v-avatar color="primary" size="36">
-                      <v-icon dark v-text="item.icon"></v-icon>
+                    <v-avatar color="primary" size="24">
+                      <v-icon small dark v-text="item.icon"></v-icon>
                     </v-avatar>
                   </v-list-item-icon>
 
@@ -234,6 +260,7 @@ export default {
       zIndex: 0,
       showback: false,
       menulist: 0,
+      image: 0,
 
       titles: {
         title: "Ospic",
@@ -332,12 +359,15 @@ export default {
       ],
     };
   },
+  created() {
+    this.image = this.image++;
+  },
 
   methods: {
     selectionAction: function (i) {
       switch (i.value) {
         case 1:
-          this.nativateToHere("me");
+          this.navigateToHere("me");
           break;
 
         case 2:
@@ -439,6 +469,9 @@ export default {
   computed: {
     user() {
       return this.$store.getters.profile;
+    },
+    profileImage() {
+      return this.$api.defaults.baseURL + "auth/" + this.user.id + "/images";
     },
   },
 };
