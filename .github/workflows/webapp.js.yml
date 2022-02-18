@@ -6,10 +6,10 @@ name: Builds
 on:
   push:
     branches: [master]
-  # pull_request:
-  #  branches: [opened, labeled, master]
-  # issues:
-  #  types: [opened, labeled]
+  pull_request:
+    branches: [opened, labeled, master]
+  issues:
+   types: [opened, labeled]
   #pull_request:
   # types: [opened, labeled]
 env:
