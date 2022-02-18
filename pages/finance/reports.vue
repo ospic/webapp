@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="breadcrumb ">
+    <div class="breadcrumb">
       <router-link to="/finance">{{
         $t("label.breadcrumb.dashboard")
       }}</router-link>
@@ -23,7 +23,7 @@ import report_component from "@/components/reports/report";
 import { mapGetters } from "vuex";
 export default {
   components: {
-    "report-component": report_component
+    "report-component": report_component,
   },
   mounted() {
     this.$store.dispatch("get_financial_reports");
@@ -31,11 +31,11 @@ export default {
 
   computed: {
     ...mapGetters({
-      reports: "financialreports"
+      reports: "financialreports",
     }),
     reportUrl() {
       return this;
-    }
-  }
+    },
+  },
 };
 </script>

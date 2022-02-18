@@ -68,6 +68,7 @@ export default {
   data: () => ({
     focus: "",
     dates: [],
+    search: null,
     type: "month",
     time: null,
     menu: false,

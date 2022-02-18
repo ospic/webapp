@@ -176,6 +176,31 @@ Vue.mixin({
             to: "/finance/transactions",
             permissions: "ALL_FUNCTIONS",
           },
+
+        ],
+        calendar: [
+          {
+            title: "label.menu.calendar",
+            icon: 'mdi-rhombus-split',
+            to: "/calendar",
+            permissions:
+              "ALL_FUNCTIONS, READ_INSURANCE_COMPANY,UPDATE_INSURANCE_COMPANY,DELETE_INSURANCE_COMPANY,CREATE_INSURANCE_COMPANY",
+          },
+          {
+            title: "label.menu.calendarlist",
+            icon: 'mdi-rhombus-split',
+            to: "/calendar/list",
+            permissions: "ALL_FUNCTIONS",
+          },
+
+        ],
+        reports: [
+          {
+            title: "label.menu.allreports",
+            icon: 'mdi-rhombus-split',
+            to: "/reports",
+            permissions: "ALL_FUNCTIONS",
+          },
           {
             title: "label.menu.financereports",
             icon: 'mdi-rhombus-split',
@@ -183,7 +208,7 @@ Vue.mixin({
             permissions:
               "ALL_FUNCTIONS, READ_INSURANCE_COMPANY,UPDATE_INSURANCE_COMPANY,DELETE_INSURANCE_COMPANY,CREATE_INSURANCE_COMPANY"
           },
-        ],
+        ]
 
 
       },

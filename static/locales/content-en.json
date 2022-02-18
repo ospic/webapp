@@ -68,6 +68,7 @@
       "stations": "Stations",
       "staff": "Staffs",
       "reports": "Reports",
+      "allreports": "All Reports",
       "calendar": "Calendar",
       "securitycontrol": "Security Control",
       "create": "Create",
@@ -81,7 +82,8 @@
       "financereports": "Financial Report's",
       "medicalservices": "Medical Services",
       "overview": "Overview",
-      "settings": "Settings"
+      "settings": "Settings",
+      "calendarlist": "List of Events"
     },
     "message": {
       "nodataavailable": "No Data available ...",
