@@ -39,7 +39,7 @@
 }
 
 #__nuxt .app {
-  font-family: "SofiaPro", sans-serif;
+  font-family: "FiraSans", sans-serif;
 }
 
 main {
@@ -1938,7 +1938,6 @@ i {
 
 a :hover,
 i :hover {
-  background-color: #2cb673;
-  color: #ffffff;
+  background-color: none;
 }
 /*# sourceMappingURL=styles.css.map */

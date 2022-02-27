@@ -2,7 +2,7 @@
   <div id="chart">
     <apexchart
       type="area"
-      height="380"
+      :height="height"
       :options="chartOptions"
       :series="data.series"
     ></apexchart>
@@ -11,57 +11,61 @@
 <script>
 export default {
   props: {
+    height: {
+      type: Number,
+      default: 380,
+    },
     data: {
       type: Object,
-      default: null
-    }
+      default: null,
+    },
   },
-  data: function() {
+  data: function () {
     return {
       chartOptions: {
         chart: {
           type: "bar",
-          height: 350
+          height: 350,
         },
         plotOptions: {
           bar: {
             horizontal: false,
             columnWidth: "55%",
-            endingShape: "rounded"
-          }
+            endingShape: "rounded",
+          },
         },
         dataLabels: {
-          enabled: false
+          enabled: false,
         },
         stroke: {
           show: true,
           curve: "smooth",
-          width: 1
+          width: 1,
         },
         xaxis: {
           type: "date",
-          categories: this.data.categories
+          categories: this.data.categories,
         },
         yaxis: {
           title: {
-            text: "Total"
-          }
+            text: "Total",
+          },
         },
         fill: {
-          opacity: 1
+          opacity: 1,
         },
         tooltip: {
           y: {
-            formatter: function(val) {
+            formatter: function (val) {
               return "" + val + "";
-            }
+            },
           },
           x: {
-            format: "dd/MM/yy"
-          }
-        }
-      }
+            format: "dd/MM/yy",
+          },
+        },
+      },
     };
-  }
+  },
 };
 </script>

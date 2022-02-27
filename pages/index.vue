@@ -63,18 +63,45 @@
           </v-hover>
         </v-col>
       </v-row>
+
       <v-row justify="start" align="start" class="mt-3">
         <v-col cols="12" sm="6" class="ma-0 pa-0 mt-2">
-          <v-card class="mr-1 ml-1 mx-auto default" height="400" dense>
-            <line-chart-gradient :data="service_trends"></line-chart-gradient>
+          <v-card
+            class="mr-1 ml-1 mx-auto default pa-1"
+            flat
+            elevation="1"
+            height="400"
+            dense
+          >
+            <v-card-title>{{ service_trends.series[0].name }}</v-card-title>
+            <v-card-text>
+              <v-sparkline
+                :labels="service_trends.categories"
+                :value="service_trends.series[0].data"
+                line-width="0.5"
+                padding="5"
+                height="100%"
+                :gradient="['#f72047', '#ffd200', '#1feaea']"
+                stroke-linecap="round"
+                smooth="16"
+                fill
+                label-size="4"
+              ></v-sparkline>
+              <!--<line-chart-gradient :data="service_trends"></line-chart-gradient>-->
+            </v-card-text>
           </v-card>
         </v-col>
         <v-col cols="12" sm="6" v-if="bsc_size > 0" class="ma-0 pa-0 mt-2">
           <v-card class="mr-1 ml-1 mx-auto default" height="400" dense>
-            <area-chart-spline
-              :data="bsc_chart"
-              class="ma-0"
-            ></area-chart-spline>
+            <v-card-title> Gender </v-card-title>
+            <v-card-text>
+              <area-chart-spline
+                :data="bsc_chart"
+                :patienttrends="patienttrends"
+                :height="350"
+                class="ma-0"
+              ></area-chart-spline>
+            </v-card-text>
           </v-card>
         </v-col>
       </v-row>
@@ -445,8 +472,11 @@ export default {
         if (item !== undefined) {
           item.forEach((element) => {
             datas.push(element.total);
-            var val = element.date;
-            categories.push(new Date(val).toISOString().split("T")[0]);
+            var date =
+              new Date(element.date).getMonth() +
+              "/" +
+              new Date(element.date).getDate();
+            categories.push(date);
           });
         }
         var data = {

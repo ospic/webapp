@@ -1,7 +1,7 @@
 <template>
   <div fluid>
     <apexchart
-      height="350"
+      :height="height"
       width="98%"
       type="line"
       :options="options"
@@ -13,7 +13,10 @@
 export default {
 
   props:{
-
+    height:{
+      type: Number,
+      default: 350
+    },
     data:{
       type: Object,
       default: null

@@ -9,6 +9,7 @@
       clipped
       width="220"
       height="100%"
+      elevation="0"
     >
       <v-list nav subheader tile class="mt-0 pa-0 py-1">
         <v-list-item class="list-item ma-0" v-if="!showback" to="/">

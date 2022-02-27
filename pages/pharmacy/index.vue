@@ -64,7 +64,7 @@ export default {
     "tab-medicine": medicineTab,
     "tab-med-groups": medicineGroupsTab,
     "tab-med-categories": medicineCategoriesTab,
-    "tab-med-measurement": measurementTab
+    "tab-med-measurement": measurementTab,
   },
   data: () => ({
     dialog: false,
@@ -78,7 +78,7 @@ export default {
       { text: "Units", value: "units", sortable: true },
       { text: "Group", value: "group", sortable: true },
       { text: "Category", value: "category", sortable: true },
-      { text: "Actions", value: "actions", sortable: false }
+      { text: "Actions", value: "actions", sortable: false },
     ],
     editedIndex: -1,
     editedItemId: "",
@@ -89,7 +89,7 @@ export default {
       compositions: "",
       category: "",
       group: "",
-      units: 0
+      units: 0,
     },
     defaultItem: {
       id: 0,
@@ -98,14 +98,14 @@ export default {
       compositions: "",
       category: "",
       group: "",
-      units: 0
+      units: 0,
     },
     items: [
       { id: 1, tab: "Medicines", content: "Tab 1" },
       { id: 3, tab: "Medicine Groups", content: "Tab 2 Content" },
       { id: 2, tab: "Medicine Categories", content: "Tab 2 Content" },
-      { id: 4, tab: "Measurement units", content: "Tab measures " }
-    ]
+      { id: 4, tab: "Measurement units", content: "Tab measures " },
+    ],
   }),
   created() {
     this.fetchGroups();
@@ -121,19 +121,19 @@ export default {
       this.dialog = true;
       this.editedItemId = item.id;
     },
-    fetchMedicines: function() {
+    fetchMedicines: function () {
       this.$store.dispatch("getmedicines");
     },
-    fetchCategories: function() {
+    fetchCategories: function () {
       this.$store.dispatch("getmedicinescategories");
     },
-    fetchGroups: function() {
+    fetchGroups: function () {
       this.$store.dispatch("getmedicinesgroups");
     },
-    fetchMedicineMeasureUnits: function() {
+    fetchMedicineMeasureUnits: function () {
       this.$store.dispatch("fetch_medicine_measurements");
     },
-    handleTabNavigation: function(val) {
+    handleTabNavigation: function (val) {
       switch (val.id) {
         case 1:
           this.fetchMedicines();
@@ -150,16 +150,16 @@ export default {
       }
     },
 
-    handleClick: function(value) {
+    handleClick: function (value) {
       console.log(value);
       this.$router.push("/patients/" + value.id);
-    }
+    },
   },
   watch: {
     dialog(val) {
       val || this.close();
       this.$store.dispatch("retrieve_medicine_template");
-    }
+    },
   },
   computed: {
     ...mapGetters({
@@ -167,11 +167,11 @@ export default {
       categories: "medicinecategories",
       groups: "medicinegroups",
       template: "medicine_templates",
-      medicinemeasurements: "medicinemeasurements"
+      medicinemeasurements: "medicinemeasurements",
     }),
     formTitle() {
       return this.editedIndex === -1 ? "New Item" : "Edit Item";
-    }
-  }
+    },
+  },
 };
 </script>

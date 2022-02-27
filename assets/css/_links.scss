@@ -2,7 +2,6 @@ a,
 i {
   text-decoration: none;
   :hover {
-    background-color: $color_drygreen;
-    @include whitecolor;
+    background-color: none;
   }
 }

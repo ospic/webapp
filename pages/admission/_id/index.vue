@@ -1,10 +1,15 @@
 <template>
   <div>
-    <div class="breadcrumb  " v-if="admission != null">
+    <div class="breadcrumb" v-if="admission != null">
       <router-link to="/">{{ $t("label.breadcrumb.dashboard") }}</router-link>
       <router-link to="/patients">{{
         $t("label.breadcrumb.patients")
       }}</router-link>
+      <router-link :to="`/consultations/${admission.serviceId}`"
+        >{{ $t("label.breadcrumb.consultation") }} ({{
+          admission.serviceId
+        }})</router-link
+      >
 
       <router-link :to="`/admission/${this.$route.params.id}`" class="active"
         >Admission ({{ this.$route.params.id }})</router-link
@@ -23,9 +28,7 @@
           color="primary"
           @click="_end_this_admission"
         >
-          <v-icon left>
-            mdi-reorder-horizontal
-          </v-icon>
+          <v-icon left> mdi-reorder-horizontal </v-icon>
           End this admission</v-btn
         >
         <v-btn
@@ -34,9 +37,7 @@
           color="primary"
           :to="`/admission/${this.$route.params.id}/visit`"
         >
-          <v-icon left>
-            mdi-tag-plus
-          </v-icon>
+          <v-icon left> mdi-tag-plus </v-icon>
           Visit admission</v-btn
         >
         <v-btn
@@ -44,9 +45,7 @@
           color="primary"
           :to="`/admission/${this.$route.params.id}/visits`"
         >
-          <v-icon left>
-            mdi-eye
-          </v-icon>
+          <v-icon left> mdi-eye </v-icon>
           Admission Visits</v-btn
         >
       </v-card-title>
@@ -58,9 +57,7 @@
             <v-col cols="12" md="6">
               <v-row no-gutters>
                 <v-col cols="12" md="6">
-                  <p class="font-weight-black">
-                    Admission ID.
-                  </p></v-col
+                  <p class="font-weight-black">Admission ID.</p></v-col
                 >
 
                 <v-col cols="12" md="6">
@@ -69,9 +66,7 @@
                   </p></v-col
                 >
                 <v-col cols="12" md="6">
-                  <p class="font-weight-black">
-                    Start Date.
-                  </p></v-col
+                  <p class="font-weight-black">Start Date.</p></v-col
                 >
 
                 <v-col cols="12" md="6">
@@ -80,9 +75,7 @@
                   </p></v-col
                 >
                 <v-col cols="12" md="6">
-                  <p class="font-weight-black">
-                    End Date.
-                  </p></v-col
+                  <p class="font-weight-black">End Date.</p></v-col
                 >
 
                 <v-col cols="12" md="6">
@@ -91,9 +84,7 @@
                   </p></v-col
                 >
                 <v-col cols="12" md="6">
-                  <p class="font-weight-black">
-                    Is Active.
-                  </p></v-col
+                  <p class="font-weight-black">Is Active.</p></v-col
                 >
 
                 <v-col cols="12" md="6">
@@ -102,9 +93,7 @@
                   </p>
                 </v-col>
                 <v-col cols="12" md="6">
-                  <p class="font-weight-black">
-                    Ward ID.
-                  </p></v-col
+                  <p class="font-weight-black">Ward ID.</p></v-col
                 >
 
                 <v-col cols="12" md="6">
@@ -113,9 +102,7 @@
                   </p></v-col
                 >
                 <v-col cols="12" md="6">
-                  <p class="font-weight-black">
-                    Ward Name.
-                  </p></v-col
+                  <p class="font-weight-black">Ward Name.</p></v-col
                 >
 
                 <v-col cols="12" md="6">
@@ -124,9 +111,7 @@
                   </p></v-col
                 >
                 <v-col cols="12" md="6">
-                  <p class="font-weight-black">
-                    Bed ID.
-                  </p></v-col
+                  <p class="font-weight-black">Bed ID.</p></v-col
                 >
 
                 <v-col cols="12" md="6">
@@ -135,9 +120,7 @@
                   </p></v-col
                 >
                 <v-col cols="12" md="6">
-                  <p class="font-weight-black">
-                    Bed Name
-                  </p></v-col
+                  <p class="font-weight-black">Bed Name</p></v-col
                 >
 
                 <v-col cols="12" md="6">
@@ -172,45 +155,31 @@ export default {
   data: () => ({
     admission: null,
     endrequest: {},
-    date: new Date().toISOString().substr(0, 10)
+    date: new Date().toISOString().substr(0, 10),
   }),
   methods: {
     async _get_admission_by_id() {
       return await this.$api
         .$get(`admissions/${this.$route.params.id}/`)
-        .then(response => {
+        .then((response) => {
           this.admission = response;
         })
-        .catch(error => {
+        .catch((error) => {
           console.log(error);
         });
     },
     _end_this_admission() {
-      //var request_data =
       this.$store.dispatch("end_patient_admission", {
         serviceId: this.admission.serviceId,
         admissionId: this.admission.id,
         bedId: this.admission.bedId,
-        endDateTime: this.date
+        endDateTime: this.date,
       });
-
-      /**return await this.$api
-        .$post(`admissions/end/`, request_data)
-        .then(response => {
-          console.log(response);
-          if (response !== null) {
-            this._get_admission_by_id();
-          }
-        })
-        .catch(error => {
-          console.log(error);
-        });
-        **/
-    }
+    },
   },
   created() {
     this._get_admission_by_id();
   },
-  computed: {}
+  computed: {},
 };
 </script>

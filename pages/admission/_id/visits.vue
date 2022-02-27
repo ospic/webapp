@@ -55,11 +55,18 @@
           </v-timeline>
         </v-card-text>
       </v-card>
-      <v-layout v-else justify-center>
-        <v-card-actions>
-          <span>No visits yet</span>
-        </v-card-actions>
-      </v-layout>
+
+      <v-card
+        v-else
+        flat
+        class="d-flex justify-center align-center"
+        height="600"
+        width="100%"
+      >
+        <span class="font-weight-black text-h3 grey--text"
+          >No visit yet ...</span
+        >
+      </v-card>
     </v-container>
   </div>
 </template>
