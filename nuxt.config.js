@@ -27,7 +27,7 @@ export default {
   **/
   env: {
     baseUrl: 'https://ospicapi.herokuapp.com/api/',
-    localUrl: 'http://137.184.239.13:8080/api/'
+    localUrl: 'https://api.ospicx.com/api/'
   },
 
   // Global page headers (https://go.nuxtjs.dev/config-head)
