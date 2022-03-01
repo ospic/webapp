@@ -1,0 +1,53 @@
+{
+  "name": "Ospic Hospital Management System",
+  "short_name": "Ospic Hms",
+  "icons": [
+    {
+      "src": "/webapp/assets/icons/icon_64x64.fcd6f3.png",
+      "sizes": "64x64",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/webapp/assets/icons/icon_120x120.fcd6f3.png",
+      "sizes": "120x120",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/webapp/assets/icons/icon_144x144.fcd6f3.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/webapp/assets/icons/icon_152x152.fcd6f3.png",
+      "sizes": "152x152",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/webapp/assets/icons/icon_192x192.fcd6f3.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/webapp/assets/icons/icon_384x384.fcd6f3.png",
+      "sizes": "384x384",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/webapp/assets/icons/icon_512x512.fcd6f3.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "start_url": "/webapp/?standalone=true",
+  "display": "standalone",
+  "background_color": "#2F4454",
+  "lang": "en",
+  "color_theme": "#2F4454"
+}
