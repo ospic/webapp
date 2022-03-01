@@ -26,7 +26,7 @@ export default {
   },
   **/
   env: {
-    baseUrl: 'https://api.ospicx.com/',
+    baseUrl: 'https://api.ospicx.com/api/',
     localUrl: 'http://localhost:8080/api/'
   },
 
