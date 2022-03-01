@@ -1,0 +1,22 @@
+{
+    "label": {
+      "heading": {
+        "applicationname": "Ospic HMIS"
+      },
+      "button": {
+        "btncontactus": "Contact Us",
+        "btncalculator": "Go to Calculator",
+        "btnsignin": "Sign In",
+        "btnsignup": "Sign Up",
+        "btnchangelanguages": "Change Language",
+        "buttonsignin": "Sign In",
+        "buttonsignup": "Sign Up",
+        "btncalculate": "Submit",
+        "btncancel": "Cancel",
+        "btnclear": "Clear",
+        "btnback": "Back",
+        "btnhome": "Home",
+        "btnsave": "Save"
+      }
+    }
+}

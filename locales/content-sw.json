@@ -1,0 +1,95 @@
+{
+  "label": {
+    "heading": {
+      "applicationname": "Ospic HMIS",
+      "applicationsettings":"Ospic Settings"
+    },
+    "button": {
+      "btncontactus": "Contact Us",
+      "btncalculator": "Go to Calculator",
+      "btnsignin": "Sign In",
+      "btnsignup": "Sign Up",
+      "btnchangelanguages": "Change Language",
+      "buttonsignin": "Sign In",
+      "buttonsignup": "Sign Up",
+      "btncalculate": "Submit",
+      "btncancel": "Sitisha",
+      "btnclear": "Clear",
+      "btnback": "Nyuma",
+      "btnhome": "Nyumbani",
+      "btnsave": "Hifadhi",
+      "btnyes":"Yes",
+      "btnno":"No"
+    },
+    "menu":{
+      "dashboard":"Dashibodi",
+      "patients":"Wagonjwa",
+      "appointmentandschedule":"Teuzi",
+      "opdcenter":"OPD Center",
+      "ipdcenter":"IPD Center",
+      "laboratory": "Maabara",
+      "pharmacyandmedicine":"Parmarcy and Medicine",
+      "radiology":"Radiology",
+      "cashandbillingcenter":"Cash/Biling center",
+      "printreceiptbills":"Receipt Print/Bills/Payments",
+      "financialaccount":"Fincancial Account",
+      "payrollmanagement":"Payroll Management",
+      "inventoryandstock":"Inventory & Stock",
+      "nursestations":"Nurse Stations",
+      "administrationsandmonitoring":"Administration & Monitoring",
+      "misreport":"MIS reports",
+      "securitycontrol":"Security Control",
+      "create":"Create",
+      "read":"Read",
+      "update":"Sasisha",
+      "delete":"Futa",
+      "organization":"shirika"
+    },
+    "message": {
+      "nodataavailable":"No Data available ...",
+      "aboutusmessage": "Nbs Administrator Dashboard Application is a Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
+      "thanksmessage": "Thank you for developing with {{app_name}} and I look forward to bringing more exciting features in the future.",
+      "motto": "Making awesome stuffs",
+      "saveschedule": "By Clicking save this repayment schedule will be saved and can be re-calculated later. \n\n Are you sure you want to save this ? \n\n If yes Provide the Name below and click save button to save ",
+      "profileupdate": "By clicking *I Agree* you are agreeing to the Terms and Conditions and your profile informattions will be updated with a newly data you provide and your login infomations will also be updated. So you will be requested to re-login with new username if any. \n\n Do you agree ?"
+    },
+    "contacts": {
+      "community": "Community",
+      "developer": "Developer",
+      "slack": "slack community"
+    },
+    "dialogs":{
+      "deleteconfirmdialog":"Are you sure you want to delete this item ?"
+    },
+    "tooltip": {
+      "tooltiphello": "Hello there",
+      "tooltipwelcometo": "Welcome to",
+      "loanrepaymentschedulecalculator": "Loan Repayment Schedule Calculator",
+      "settingsandconfigurations":"Settings Configuration",
+      "progresssynchronising":"Sync ....",
+      "synchronise":"Sync",
+      "clicktologout":"Click to logout",
+      "gendermale":"Male",
+      "genderfemale":"Female",
+      "genderother":"Other"
+    },
+    "titles":{
+      "settings":"Mipangilio",
+      "roleandpermissions":"Roles and Permissions",
+      "usersettings":"Users settings",
+      "administrations":"Administrations",
+      "usersmanagement":"Users Management",
+      "users":"Watumiaji",
+      "roles":"Roles",
+      "system":"Mfumo",
+      "newuser":"Mtumiaji mpya",
+      "edituser":"Sanikisha mtumiaji",
+      "home":"Home",
+      "configurations":"Configurations",
+      "language":"Lugha",
+      "themesettings":"Themes",
+      "actions":"Actions",
+      "changelanguage":"Badili Lugha"
+    }
+  }
+}
