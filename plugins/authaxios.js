@@ -19,6 +19,8 @@ export default function ({ $axios, redirect, store }, inject) {
   });
 
   api.onRequest(config => {
+
+    console.log(window.location.hostname.split('.')[0]);
     api.setHeader("Access-Control-Allow-Headers", "x-access-token, Origin, Content-Type, Accept");
     api.setHeader("Access-Control-Allow-Origin", "*");
 
