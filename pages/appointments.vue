@@ -27,7 +27,7 @@
               {{ $t("label.titles.unassignedservices") }}
             </v-badge>
           </v-tab>
-          <v-tab ripple
+          <v-tab ripple class="pr-8"
             ><v-badge
               color="green"
               :content="assigned.length"
