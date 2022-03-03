@@ -16,7 +16,7 @@
     "test": "jest"
   },
   "engines": {
-    "npm": "8.3.0",
+    "npm": "8.3.2",
     "node": "14.18.1"
   },
   "dependencies": {
