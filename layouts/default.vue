@@ -22,17 +22,18 @@
         </v-list-item>
 
         <div v-for="(setting, index) in settings" :key="index">
-          <v-chip
+          <v-list-item
+            class="list-item ma-0"
             v-if="index == 0 && showback"
             @click="navigateBack"
-            class="ma-2 px-4"
-            color="primary"
-            text-color="white"
-            pill
           >
-            <v-icon left class="mr-4"> mdi-keyboard-backspace </v-icon>
-            Back to main menu
-          </v-chip>
+            <v-list-item-icon class="ml-1 mr-2">
+              <v-icon medium color="primary">mdi-keyboard-backspace</v-icon>
+            </v-list-item-icon>
+            <v-list-item-title color="primary" class="font-weight-normal"
+              >Back to main menu</v-list-item-title
+            >
+          </v-list-item>
           <v-list-item
             v-esle
             v-if="hasPermission(setting.permissions)"
