@@ -223,10 +223,7 @@ export default {
           {
             series: [this.services.totalOpd, this.services.totalIpd],
             chartOptions: {
-              labels: [
-                "Out Patient Department(OPD)",
-                "In Patient Department (IPD) ",
-              ],
+              labels: ["OPD", "IPD "],
             },
             title: "OPD Vs IPD in (%)",
           },
@@ -248,9 +245,9 @@ export default {
             title: "Consultations assignment",
           },
           {
-            series: [this.ward.totalOccupied, this.ward.totalUnOccupied],
+            series: [this.ward.occupiedPercent, this.ward.unOccupiedPercent],
             chartOptions: {
-              labels: ["Occupied beds", "Free beds"],
+              labels: ["Occupied", "Free"],
             },
             title: "Beds distributions",
           },

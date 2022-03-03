@@ -1,7 +1,7 @@
 <template>
   <apexchart
     :height="height"
-    width="90%"
+    :width="width"
     :options="options"
     :series="data.series"
   ></apexchart>
@@ -23,7 +23,7 @@ export default {
     return {
       options:{
          chart: {
-          height: 350,
+          height: 380,
           width: '100%',
           type: 'pie',
           background: 'transparent',
@@ -79,9 +79,13 @@ export default {
         },
         legend: {
           position: "bottom",
-          show: false,
+          show: true,
            markers:{
-            fillColors: ['#00897B', '#ED1C23']
+            fillColors: ['#44FF07', '#00A756']
+          },
+          itemMargin: {
+            horizontal: 5,
+            vertical: 0
           },
         },
 
