@@ -136,6 +136,14 @@ header {
   opacity: 0;
 }
 
+.badge {
+  z-index: 10 !important;
+}
+
+.apexcharts-toolbar {
+  z-index: 0 !important;
+}
+
 /*since the first link does not have a triangle before it we can reduce the left padding to make it look consistent with other links*/
 /*hover/active styles*/
 /*adding the arrows for the breadcrumbs using rotated pseudo elements*/

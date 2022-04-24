@@ -127,20 +127,34 @@
         <span v-else color="white">{{ $t("label.tooltip.synchronise") }}</span>
       </v-tooltip>
 
-      <v-badge icon="mdi-lock" color="blue" class="mr-8" top overlap>
-        <template class="text-caption" v-slot:badge> 3 </template>
-        <v-menu offset-y content-class="elevation-1 mt-4">
+      <v-badge
+        v-if="notificationnumber > 0"
+        icon="mdi-lock"
+        color="blue"
+        class="mr-8"
+        top
+        overlap
+      >
+        <template class="text-caption" v-slot:badge>
+          {{ notificationnumber }}
+        </template>
+        <v-menu
+          max-width="500"
+          position-x="center"
+          offset-y
+          content-class="elevation-1 mt-4 badge"
+        >
           <template v-slot:activator="{ on, attrs }">
             <v-icon v-bind="attrs" medium v-on="on" color="white"
-              >mdi-bell</v-icon
+              >mdi-bell-outline</v-icon
             >
           </template>
-          <v-list tile>
+          <v-list color="white" tile>
             <v-timeline align-top dense>
               <v-timeline-item
                 color="primary"
                 small
-                v-for="(item, i) in 5"
+                v-for="(n, i) in 5"
                 :key="i"
                 fill-dot
                 class="pt-0 mt-0"
@@ -148,20 +162,26 @@
               >
                 <v-list-item class="ma-0 pl-0" :key="i">
                   <v-list-item-content>
-                    <v-list-item-title class="blue--text"
-                      >The standard Lorem Ipsum passage,</v-list-item-title
-                    >
+                    <v-list-item-title class="blue--text">{{
+                      notifications[n].title
+                    }}</v-list-item-title>
                     <v-list-item-subtitle
                       class="font-weight-normal text-caption"
-                      >Something changed here. Lorem ipsum dolor sit de amet ...
+                    >
+                      <span
+                        class="d-inline-block text-truncate"
+                        style="max-width: 350px"
+                      >
+                        {{ notifications[n].message }}
+                      </span>
                     </v-list-item-subtitle>
                   </v-list-item-content>
                   <v-list-item-action>
-                    <strong class="primary--text text-caption"
+                    <!--<strong class="primary--text text-caption"
                       >{{ item % 12 < 10 ? "0" + (item % 12) : item % 12 }}:00
                       am</strong
-                    ></v-list-item-action
-                  >
+                    >-->
+                  </v-list-item-action>
                 </v-list-item>
                 <v-divider></v-divider>
               </v-timeline-item>
@@ -239,6 +259,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
 Vue.use(Vuex);
+import { mapGetters } from "vuex";
 export default {
   async fetch({ store, params }) {
     // await this.$store.dispatch("getProfile");
@@ -361,6 +382,14 @@ export default {
   created() {
     this.image = this.image++;
   },
+  mounted: function () {
+    this.$nextTick(function () {
+      window.setInterval(() => {
+        console.log("Notifications");
+        this.$store.dispatch("_getnewnotifications");
+      }, 20000);
+    });
+  },
 
   methods: {
     selectionAction: function (i) {
@@ -466,6 +495,10 @@ export default {
   },
 
   computed: {
+    ...mapGetters({
+      notificationnumber: "notificationsize",
+      notifications: "newnotifications",
+    }),
     user() {
       return this.$store.getters.profile;
     },
@@ -475,3 +508,4 @@ export default {
   },
 };
 </script>
+
