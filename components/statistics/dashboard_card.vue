@@ -10,7 +10,7 @@
                 v-html="item.value"
               ></v-list-item-title>
               <v-list-item-subtitle
-                class="font-weight-normal my-1"
+                class="font-weight-normal black--text my-1"
                 v-html="item.title"
               ></v-list-item-subtitle>
             </v-list-item-content>
