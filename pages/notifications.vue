@@ -2,31 +2,48 @@
   <v-card class="mx-auto" max-width="">
     <v-card dark flat>
       <v-card-title class="pa-2 primary">
-        <h3 class="title font-weight-light text-center grow">
-          Notifications
-        </h3>
+        <h3 class="title font-weight-light text-center grow">Notifications</h3>
       </v-card-title>
     </v-card>
     <v-card-text class="py-0">
       <v-timeline align-top dense>
-        <v-timeline-item color="primary" small v-for="(item, i) in 10" :key="i">
+        <v-timeline-item
+          color="primary"
+          small
+          v-for="(notification, i) in notifications"
+          :key="i"
+        >
           <v-row class="pt-1" no-gutters dense>
             <v-col cols="1">
-              <strong
+              <!--<strong
                 >{{ item % 12 < 10 ? "0" + (item % 12) : item % 12 }}:00
                 am</strong
-              >
+              >-->
             </v-col>
             <v-col>
-              <strong>The standard Lorem Ipsum passage,</strong>
+              <strong>{{ notification.title }}</strong>
               <div class="caption">
                 <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                  laboris nisi ut aliquip ex ea commodo consequat.
+                  {{ notification.message }}
                 </p>
               </div>
+            </v-col>
+            <v-col cols="1">
+              <v-btn icon text>
+                <v-tooltip top>
+                  <template v-slot:activator="{ on, attrs }">
+                    <v-icon
+                      v-bind="attrs"
+                      v-on="on"
+                      color="primary"
+                      @click.stop="markasread(notification)"
+                      v-if="notification.isNewNotification"
+                      >mdi-checkbox-marked-circle-outline</v-icon
+                    >
+                  </template>
+                  <span>Mark as read</span>
+                </v-tooltip>
+              </v-btn>
             </v-col>
           </v-row>
           <v-divider></v-divider>
@@ -36,9 +53,31 @@
   </v-card>
 </template>
 <script>
+import { mapGetters } from "vuex";
 export default {
   data: () => ({
-    total: 10
-  })
+    total: 10,
+  }),
+  created() {
+    this.$store.dispatch("_getallnotifications");
+  },
+  methods: {
+    fetchnotifications: function () {
+      this.$store.dispatch("_getallnotifications");
+    },
+    markasread: function (notification) {
+      this.$store.dispatch("_readnotification", notification.id).then(() => {
+        setTimeout(() => {
+          this.fetchnotifications();
+          this.$store.dispatch("_getnewnotifications");
+        }, this.delay_seconds);
+      });
+    },
+  },
+  computed: {
+    ...mapGetters({
+      notifications: "allnotifications",
+    }),
+  },
 };
 </script>

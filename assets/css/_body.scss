@@ -9,10 +9,12 @@ main {
   -webkit-box-shadow: inset 0 0 0 1000px rgba(63, 203, 98, 0);
   box-shadow: inset 0 0 0 1000px rgba(63, 203, 98, 0);
   zoom: 90%;
+
   &.v-main {
     &.default {
       zoom: 0%;
     }
+
     &.login {
       background: transparent;
       background-image: url("https://storage.googleapis.com/aims-edu/images/000/001/174/lead/64.jpg");
@@ -22,18 +24,21 @@ main {
     }
   }
 }
+
 .v-application--wrap {
   background: transparent;
   background-image: url("https://storage.googleapis.com/aims-edu/images/000/001/174/lead/64.jpg");
   height: 70%;
   background-repeat: no-repeat;
   background-size: cover;
+
   & footer.v-footer {
     background-color: white !important;
     opacity: 0.65;
     text-decoration-color: black;
   }
 }
+
 nav,
 header {
   zoom: 90%;
@@ -43,7 +48,16 @@ header {
 .page-leave-active {
   transition: opacity 0.5s;
 }
+
 .page-enter,
 .page-leave-to {
   opacity: 0;
+}
+
+.badge {
+  z-index: 10 !important;
+}
+
+.apexcharts-toolbar {
+  z-index: 0 !important;
 }
