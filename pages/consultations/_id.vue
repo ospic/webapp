@@ -92,6 +92,7 @@
                 light
                 small-chips
                 class="mx-3 mt-4 d-flex align-bottom"
+                @focus="$store.dispatch('fetchAllStaffs')"
                 label="Re/Assign staffs"
                 @change="_assign_staff()"
               >
