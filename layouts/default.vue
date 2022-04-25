@@ -127,71 +127,63 @@
         <span v-else color="white">{{ $t("label.tooltip.synchronise") }}</span>
       </v-tooltip>
 
-      <v-badge
-        v-if="notificationnumber > 0"
-        icon="mdi-lock"
-        color="blue"
-        class="mr-8"
-        top
-        overlap
+      <v-menu
+        max-width="500"
+        position-x="center"
+        offset-y
+        content-class="elevation-1 mt-4 badge"
       >
-        <template class="text-caption" v-slot:badge>
-          {{ notificationnumber }}
+        <template v-slot:activator="{ on, attrs }">
+          <v-badge
+            :content="notificationnumber"
+            class="mr-8"
+            color="blue lighten-2"
+            overlap
+          >
+            <v-icon v-bind="attrs" v-on="on" color="white" medium>
+              mdi-bell-outline
+            </v-icon>
+          </v-badge>
         </template>
-        <v-menu
-          max-width="500"
-          position-x="center"
-          offset-y
-          content-class="elevation-1 mt-4 badge"
-        >
-          <template v-slot:activator="{ on, attrs }">
-            <v-icon v-bind="attrs" medium v-on="on" color="white"
-              >mdi-bell-outline</v-icon
+        <v-list color="white" tile>
+          <v-timeline v-if="notifications.length > 0" align-top dense>
+            <v-timeline-item
+              color="primary"
+              small
+              v-for="(n, i) in notificationnumber > 5 ? 5 : notificationnumber"
+              :key="i"
+              fill-dot
+              class="pt-0 mt-0"
+              icon="mdi-bell-alert"
             >
-          </template>
-          <v-list color="white" tile>
-            <v-timeline v-if="notifications.length > 0" align-top dense>
-              <v-timeline-item
-                color="primary"
-                small
-                v-for="(n, i) in notificationnumber > 5
-                  ? 5
-                  : notificationnumber"
-                :key="i"
-                fill-dot
-                class="pt-0 mt-0"
-                icon="mdi-bell-alert"
-              >
-                <v-list-item class="ma-0 pl-0" :key="i">
-                  <v-list-item-content>
-                    <v-list-item-title class="blue--text">{{
-                      notifications[i].title
-                    }}</v-list-item-title>
-                    <v-list-item-subtitle
-                      class="font-weight-normal text-caption"
+              <v-list-item class="ma-0 pl-0" :key="i">
+                <v-list-item-content>
+                  <v-list-item-title class="blue--text">{{
+                    notifications[i].title
+                  }}</v-list-item-title>
+                  <v-list-item-subtitle class="font-weight-normal text-caption">
+                    <span
+                      class="d-inline-block text-truncate"
+                      style="max-width: 350px"
                     >
-                      <span
-                        class="d-inline-block text-truncate"
-                        style="max-width: 350px"
-                      >
-                        {{ notifications[i].message }}
-                      </span>
-                      <br />
-                      <span class="d-inline-block blue--text text-caption">{{
-                        notifications[i].createdAt
-                      }}</span>
-                    </v-list-item-subtitle>
-                  </v-list-item-content>
-                </v-list-item>
-                <v-divider></v-divider>
-              </v-timeline-item>
-            </v-timeline>
-            <v-list-item class="d-flex justify-center">
-              <nuxt-link to="/notifications">View All</nuxt-link>
-            </v-list-item>
-          </v-list>
-        </v-menu>
-      </v-badge>
+                      {{ notifications[i].message }}
+                    </span>
+                    <br />
+                    <span class="d-inline-block blue--text text-caption">{{
+                      notifications[i].createdAt
+                    }}</span>
+                  </v-list-item-subtitle>
+                </v-list-item-content>
+              </v-list-item>
+              <v-divider></v-divider>
+            </v-timeline-item>
+          </v-timeline>
+          <v-list-item class="d-flex justify-center">
+            <nuxt-link to="/notifications">View All</nuxt-link>
+          </v-list-item>
+        </v-list>
+      </v-menu>
+
       <div class="ma-0 pa-0">
         <v-list-item class="ma-0 pa-0" dense dark>
           <v-list-item-avatar :key="image" color="primary lighten-2">
