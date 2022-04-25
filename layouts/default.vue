@@ -150,11 +150,13 @@
             >
           </template>
           <v-list color="white" tile>
-            <v-timeline align-top dense>
+            <v-timeline v-if="notifications.length > 0" align-top dense>
               <v-timeline-item
                 color="primary"
                 small
-                v-for="(n, i) in 5"
+                v-for="(n, i) in notificationnumber > 5
+                  ? 5
+                  : notificationnumber"
                 :key="i"
                 fill-dot
                 class="pt-0 mt-0"
@@ -163,7 +165,7 @@
                 <v-list-item class="ma-0 pl-0" :key="i">
                   <v-list-item-content>
                     <v-list-item-title class="blue--text">{{
-                      notifications[n].title
+                      notifications[i].title
                     }}</v-list-item-title>
                     <v-list-item-subtitle
                       class="font-weight-normal text-caption"
@@ -172,16 +174,14 @@
                         class="d-inline-block text-truncate"
                         style="max-width: 350px"
                       >
-                        {{ notifications[n].message }}
+                        {{ notifications[i].message }}
                       </span>
+                      <br />
+                      <span class="d-inline-block blue--text text-caption">{{
+                        notifications[i].createdAt
+                      }}</span>
                     </v-list-item-subtitle>
                   </v-list-item-content>
-                  <v-list-item-action>
-                    <!--<strong class="primary--text text-caption"
-                      >{{ item % 12 < 10 ? "0" + (item % 12) : item % 12 }}:00
-                      am</strong
-                    >-->
-                  </v-list-item-action>
                 </v-list-item>
                 <v-divider></v-divider>
               </v-timeline-item>

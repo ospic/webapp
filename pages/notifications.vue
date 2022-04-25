@@ -15,10 +15,9 @@
         >
           <v-row class="pt-1" no-gutters dense>
             <v-col cols="1">
-              <!--<strong
-                >{{ item % 12 < 10 ? "0" + (item % 12) : item % 12 }}:00
-                am</strong
-              >-->
+              <strong class="primary--text text-caption">{{
+                notification.createdAt
+              }}</strong>
             </v-col>
             <v-col>
               <strong>{{ notification.title }}</strong>
@@ -37,7 +36,7 @@
                       v-on="on"
                       color="primary"
                       @click.stop="markasread(notification)"
-                      v-if="notification.isNewNotification"
+                      v-if="notification.isNew"
                       >mdi-checkbox-marked-circle-outline</v-icon
                     >
                   </template>
