@@ -131,6 +131,7 @@
         max-width="500"
         position-x="center"
         offset-y
+        v-if="notificationnumber > 0"
         content-class="elevation-1 mt-4 badge"
       >
         <template v-slot:activator="{ on, attrs }">
