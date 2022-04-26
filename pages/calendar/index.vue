@@ -32,7 +32,7 @@
 
                 <v-card-text>
                   <v-row class="mt-3">
-                    <v-col cols="12">
+                    <v-col cols="12" sm="12" md="6">
                       <v-text-field
                         autofocus
                         v-model="event.name"
@@ -43,17 +43,36 @@
                       >
                       </v-text-field>
                     </v-col>
-                    <v-col cols="12">
-                      <v-textarea
-                        name="input--1"
-                        v-model="event.description"
-                        label="Event description"
-                        hint="Description"
-                        filled
-                        :rules="[(v) => !!v || 'Field is required']"
-                        required
-                      ></v-textarea>
+                    <v-col sm="6" md="3">
+                      <v-checkbox
+                        v-model="event.timed"
+                        :label="`Timed : ${event.timed}`"
+                      ></v-checkbox>
                     </v-col>
+                    <v-col sm="6" md="3">
+                      <v-checkbox
+                        v-model="isdep"
+                        :label="`Department: ${isdep}`"
+                      ></v-checkbox>
+                    </v-col>
+                    <v-col cols="12" sm="12" md="6" v-if="isdep">
+                      <v-select
+                        v-model="event.departmentId"
+                        :items="departments"
+                        item-text="name"
+                        item-value="id"
+                        chips
+                        small-chips
+                        :rules="[
+                          (v) => !!v || 'You must select one to continue!',
+                        ]"
+                        label="Departments"
+                        required
+                        persistent-hint
+                        single-line
+                      ></v-select>
+                    </v-col>
+
                     <v-col cols="12" sm="12" md="6">
                       <v-menu
                         ref="menu"
@@ -105,13 +124,7 @@
                       </v-menu>
                     </v-col>
 
-                    <v-col sm="12" md="6">
-                      <v-checkbox
-                        v-model="event.timed"
-                        :label="`Is Timed event: ${event.timed}`"
-                      ></v-checkbox>
-                    </v-col>
-                    <v-col cols="12" sm="12" md="6">
+                    <v-col cols="12" sm="6" md="3">
                       <v-text-field
                         type="time"
                         id="appt"
@@ -123,7 +136,7 @@
                     </v-col>
                     <v-spacer></v-spacer>
 
-                    <v-col cols="11" sm="12" md="6">
+                    <v-col cols="11" sm="6" md="3">
                       <v-text-field
                         type="time"
                         id="appt"
@@ -135,6 +148,17 @@
                         min="12:00"
                         max="18:00"
                       ></v-text-field>
+                    </v-col>
+                    <v-col cols="12" sm="12" md="12">
+                      <v-textarea
+                        name="input--0"
+                        v-model="event.description"
+                        label="Event description"
+                        hint="Description"
+                        filled
+                        :rules="[(v) => !!v || 'Field is required']"
+                        required
+                      ></v-textarea>
                     </v-col>
                   </v-row>
                 </v-card-text>
@@ -288,6 +312,7 @@ export default {
     dialog: false,
     edit: false,
     updateId: null,
+    isdep: true,
     nowDate: new Date().toISOString().slice(0, 10),
     today: new Date().toISOString(),
     timeNow: new Date().toTimeString().split(" ")[0],
@@ -310,6 +335,7 @@ export default {
       timed: true,
       description: null,
       departmentId: null,
+      memberIds: [],
     },
     colors: [
       "blue",
@@ -456,6 +482,7 @@ export default {
   computed: {
     ...mapGetters({
       eventsa: "events",
+      departments: "departments",
     }),
     events() {
       const events = [];
