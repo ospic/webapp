@@ -43,19 +43,14 @@
                       >
                       </v-text-field>
                     </v-col>
-                    <v-col sm="6" md="3">
+                    <v-col sm="6" md="6" class="d-flex justify-center">
                       <v-checkbox
                         v-model="event.timed"
                         :label="`Timed : ${event.timed}`"
                       ></v-checkbox>
                     </v-col>
-                    <v-col sm="6" md="3">
-                      <v-checkbox
-                        v-model="isdep"
-                        :label="`Department: ${isdep}`"
-                      ></v-checkbox>
-                    </v-col>
-                    <v-col cols="12" sm="12" md="6" v-if="isdep">
+
+                    <v-col cols="12" sm="12" md="6">
                       <v-select
                         v-model="event.departmentId"
                         :items="departments"
@@ -63,6 +58,7 @@
                         item-value="id"
                         chips
                         small-chips
+                        @change="fetchdepartmentstaffs"
                         :rules="[
                           (v) => !!v || 'You must select one to continue!',
                         ]"
@@ -71,6 +67,43 @@
                         persistent-hint
                         single-line
                       ></v-select>
+                    </v-col>
+                    <v-col cols="12" sm="12" md="6" v-if="isdep">
+                      <v-select
+                        v-model="event.memberIds"
+                        :items="departmentstaffs"
+                        item-text="username"
+                        item-value="id"
+                        chips
+                        small-chips
+                        multiple
+                        @change="fetchdepartmentstaffs"
+                        :rules="[
+                          (v) => !!v || 'You must select one to continue!',
+                        ]"
+                        label="Choose member to receive notification"
+                        required
+                        persistent-hint
+                        single-line
+                      >
+                        <template v-slot:append="{ item }">
+                          <v-checkbox v-model="item.id"></v-checkbox>
+                        </template>
+                        <template v-slot:item="{ item }">
+                          {{
+                            item.fullName == null
+                              ? item.username
+                              : item.fullName
+                          }}
+                        </template>
+                        <template v-slot:selection="{ item }">
+                          {{
+                            item.fullName == null
+                              ? item.username
+                              : item.fullName
+                          }}
+                        </template>
+                      </v-select>
                     </v-col>
 
                     <v-col cols="12" sm="12" md="6">
@@ -325,6 +358,7 @@ export default {
     selectedEvent: {},
     selectedElement: null,
     selectedOpen: false,
+    departmentstaffs: [],
 
     event: {
       name: null,
@@ -371,11 +405,13 @@ export default {
             () => this.$store.dispatch("get_calendar_events"),
             this.delay_seconds
           );
-          setTimeout(() => (this.focus = this.focus + " "), this.delay_seconds);
+          setTimeout(() => {
+            this.focus = this.focus + " ";
+            this.$refs.form.reset();
+            this.dialog = false;
+          }, this.delay_seconds);
         });
       }
-      this.$refs.form.reset();
-      this.dialog = false;
     },
     viewDay({ date }) {
       this.focus = date;
@@ -476,6 +512,16 @@ export default {
           this.close();
         }, this.delay_seconds);
       });
+    },
+    async fetchdepartmentstaffs() {
+      return await this.$api
+        .$get(`staffs/dep/${this.event.departmentId}/`)
+        .then((response) => {
+          this.departmentstaffs = response;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     },
   },
 
