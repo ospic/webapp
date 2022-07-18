@@ -34,7 +34,7 @@ Login Credentials:
 
 2. Install [vuejs and vue-cli](https://vuejs.org/v2/guide/installation.html).
 
-3. Clone th project
+3. Clone the project
 
 ```
 git clone https://github.com/ospic/webapp.git
