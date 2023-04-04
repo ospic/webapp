@@ -1,4 +1,4 @@
-const open = require('opn');
+
 const routerBase = process.env.DEPLOY_ENV === 'prod' ? '/webapp/' : '/';
 import metajs from './plugins/meta';
 const meta = metajs();
@@ -18,13 +18,7 @@ export default {
     color: ' #00A756',
     background: '#FAFAFA'
   },
-  /**
-  hooks: {
-    listen(server, { host, port }) {
-      open(`http://${host}:${port}`)
-    }
-  },
-  **/
+
   env: {
     baseUrl: 'https://api.ospicx.com/api/',
     localUrl: 'http://localhost:8080/api/'
