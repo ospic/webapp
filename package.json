@@ -31,7 +31,7 @@
     "core-js": "^3.23.5",
     "fibers": "^5.0.1",
     "fs-extra": "^10.1.0",
-    "nuxt": "^2.15.8",
+    "nuxt": "^3.4.3",
     "nuxt-material-design-icons": "^1.0.4",
     "secure-ls": "^1.2.6",
     "sweetalert": "^2.1.2",
