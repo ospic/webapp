@@ -39,7 +39,8 @@ export default {
       { name: "apple-mobile-web-app-status-bar-style", content: "#00A756" },
       { name: 'viewport', content: 'width=device-width, initial-scale=1.0' },
       { hid: 'description', name: 'description', content: 'Open source Hospital Management System' },
-      { name: "google-site-verification", content: "cx99OlrotJDjh6FbXnZFs4lRdaqQ7ksY-SadPjv2CLQ" },
+      { name: "google-site-verification", content: "MzkebCr5qPO9ZK3NNdvmWzeeAeMOUx54BMw-J24uSWE" },
+      
       //Twitter meta-data
       { hid: "twitter:site", name: "twitter:site", content: "ospicapp" },
       { hid: "twitter:card", name: "twitter:card", content: "summary_large_image" },
