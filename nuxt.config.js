@@ -20,7 +20,7 @@ export default {
   },
 
   env: {
-    baseUrl: 'https://api.ospicx.com/api/',
+    baseUrl: 'https://api.ospic.app/api/',
     localUrl: 'http://localhost:8080/api/'
   },
 
@@ -139,8 +139,8 @@ export default {
       ogSiteName: "Ospic Hms",
       ogTitle: "Ospic Hospital Management system",
       ogDescription: "Open source Hospital Management System",
-      ogHost: "https://app.ospicx.com/",
-      ogImage: "https://docs.ospicx.com/preview.png",
+      ogHost: "https://app.ospic.app/",
+      ogImage: "https://docs.ospic.app/preview.png",
       ogUrl: "",
       twitterCard: "Ospic",
       twitterSite: "ospicapp",
@@ -154,7 +154,7 @@ export default {
 
   /**Sitemap file */
   sitemap: {
-    hostname: 'https://app.ospicx.com',
+    hostname: 'https://app.ospic.app',
     gzip: false,
     defaults: {
       changefreq: 'daily',

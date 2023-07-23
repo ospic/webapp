@@ -1,8 +1,8 @@
 const type = "website";
-const url = "https://app.ospicx.com";
+const url = "https://app.ospic.app";
 const title = "Ospic application";
 const description = "Opsic Hospital Management System application";
-const mainImage = "https://docs.ospicx.com/preview.png";
+const mainImage = "https://docs.ospic.app/preview.png";
 
 
 export default (meta) => {
