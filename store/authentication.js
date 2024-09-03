@@ -104,9 +104,10 @@ const mutations = {
   }
 };
 const actions = {
+  //{ tenant: window.location.hostname.split('.')[0] }
   async _authenticate_then_login({ commit }, payload) {
     commit("SIGNIN");
-    await this.$authapi.$post(`auth/signin`, payload, { params: { tenant: window.location.hostname.split('.')[0] } })
+    await this.$authapi.$post(`auth/signin`, payload, { params: { tenant: 'default' } })
       .then(response => {
         if (response) {
           commit("SIGNIN_SUCCESS", response);
