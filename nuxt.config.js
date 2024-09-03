@@ -20,7 +20,7 @@ export default {
   },
 
   env: {
-    baseUrl: 'https://api.ospic.app/api/',
+    baseUrl: 'http://159.203.183.129:8080/api/',
     localUrl: 'http://localhost:8080/api/'
   },
 
@@ -40,7 +40,7 @@ export default {
       { name: 'viewport', content: 'width=device-width, initial-scale=1.0' },
       { hid: 'description', name: 'description', content: 'Open source Hospital Management System' },
       { name: "google-site-verification", content: "MzkebCr5qPO9ZK3NNdvmWzeeAeMOUx54BMw-J24uSWE" },
-      
+
       //Twitter meta-data
       { hid: "twitter:site", name: "twitter:site", content: "ospicapp" },
       { hid: "twitter:card", name: "twitter:card", content: "summary_large_image" },
