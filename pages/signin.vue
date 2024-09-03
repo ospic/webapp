@@ -107,7 +107,7 @@ export default {
   },
   methods: {
     login() {
-      this.payload.tenantId = 300;
+      this.payload.tenantId = 1;
     this.$store.dispatch("_authenticate_then_login",  this.payload)
     },
     nativateToHere(id) {
