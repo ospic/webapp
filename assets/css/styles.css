@@ -1,49 +1,43 @@
+@charset "UTF-8";
 @font-face {
   font-family: "Oxygen";
   src: local("Oxygen"), url(../fonts/oxygen/Oxygen-Regular.ttf) format("truetype");
 }
-
 @font-face {
   font-family: "FiraSans";
   font-style: normal;
   font-weight: 400;
   src: local("Fira Sans"), url(../fonts/fira/FiraSans-Regular.ttf) format("truetype");
 }
-
 @font-face {
   font-family: "ProductSans";
   font-style: normal;
   font-weight: 400;
   src: local("Product Sans"), url(../fonts/productsans/ProductSans-Regular.ttf) format("truetype");
 }
-
 @font-face {
   font-family: "MontSerrat";
   font-style: normal;
   font-weight: 400;
   src: local("MontSerrat"), url(../fonts/motserrat/Montserrat-Regular.ttf) format("truetype");
 }
-
 @font-face {
   font-family: "Roboto";
   font-style: normal;
   font-weight: 400;
   src: local("Roboto"), url(../fonts/roboto/Roboto-Regular.ttf) format("truetype");
 }
-
 @font-face {
   font-family: "SofiaPro";
   font-style: normal;
   font-weight: 400;
   src: local("Sofia Pro"), url(../fonts/sofia/Sofia-Pro-Medium.otf) format("truetype");
 }
-
 @font-face {
   font-family: "Mulish";
   font-style: normal;
   src: url(../fonts/mulish/Mulish-Regular.ttf);
 }
-
 #__nuxt .app {
   font-family: "FiraSans", sans-serif;
 }
@@ -88,15 +82,11 @@ main {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  -webkit-box-shadow: inset 0 0 0 1000px rgba(63, 203, 98, 0);
   box-shadow: inset 0 0 0 1000px rgba(63, 203, 98, 0);
-  zoom: 90%;
 }
-
 main.v-main.default {
   zoom: 0%;
 }
-
 main.v-main.login {
   background: transparent;
   background-image: url("https://storage.googleapis.com/aims-edu/images/000/001/174/lead/64.jpg");
@@ -112,12 +102,10 @@ main.v-main.login {
   background-repeat: no-repeat;
   background-size: cover;
 }
-
 .v-application--wrap footer.v-footer {
   background-color: white !important;
   opacity: 0.65;
-  -webkit-text-decoration-color: black;
-          text-decoration-color: black;
+  text-decoration-color: black;
 }
 
 nav,
@@ -127,7 +115,6 @@ header {
 
 .page-enter-active,
 .page-leave-active {
-  -webkit-transition: opacity 0.5s;
   transition: opacity 0.5s;
 }
 
@@ -151,13 +138,11 @@ header {
 /*we will use the :before element to show numbers*/
 .breadcrumb {
   display: inline-block;
-  -webkit-box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.35);
-          box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.35);
   overflow: hidden;
   border-radius: 5px;
   counter-reset: flag;
 }
-
 .breadcrumb a {
   text-decoration: none;
   outline: none;
@@ -165,43 +150,34 @@ header {
   float: left;
   font-size: 12px;
   line-height: 36px;
-  color: #97b458 !important;
+  color: rgb(151, 180, 88) !important;
   padding: 0 10px 0 60px;
   background: #666;
-  background: -webkit-gradient(linear, left top, left bottom, from(#666), to(#333));
   background: linear-gradient(#666, #333);
   position: relative;
 }
-
 .breadcrumb a:first-child {
   padding-left: 46px;
   border-radius: 5px 0 0 5px;
 }
-
 .breadcrumb a:first-child:before {
   left: 14px;
 }
-
 .breadcrumb a:last-child {
   border-radius: 0 5px 5px 0;
   padding-right: 20px;
 }
-
 .breadcrumb a:last-child:after {
   content: none;
 }
-
 .breadcrumb a:hover {
   background: #333;
-  background: -webkit-gradient(linear, left top, left bottom, from(#333), to(#000));
   background: linear-gradient(#333, #000);
 }
-
 .breadcrumb a:hover:after {
   background: #333;
   background: linear-gradient(135deg, #333, #000);
 }
-
 .breadcrumb a:after {
   content: "";
   position: absolute;
@@ -209,16 +185,13 @@ header {
   right: -18px;
   width: 36px;
   height: 36px;
-  -webkit-transform: scale(0.707) rotate(45deg);
-          transform: scale(0.707) rotate(45deg);
+  transform: scale(0.707) rotate(45deg);
   z-index: 1;
   background: #666;
   background: linear-gradient(135deg, #666, #333);
-  -webkit-box-shadow: 2px -2px 0 2px rgba(0, 0, 0, 0.4), 3px -3px 0 2px rgba(255, 255, 255, 0.1);
-          box-shadow: 2px -2px 0 2px rgba(0, 0, 0, 0.4), 3px -3px 0 2px rgba(255, 255, 255, 0.1);
+  box-shadow: 2px -2px 0 2px rgba(0, 0, 0, 0.4), 3px -3px 0 2px rgba(255, 255, 255, 0.1);
   border-radius: 0 5px 0 50px;
 }
-
 .breadcrumb a:before {
   content: counter(flag);
   counter-increment: flag;
@@ -232,18 +205,14 @@ header {
   top: 0;
   left: 30px;
   background: #444;
-  background: -webkit-gradient(linear, left top, left bottom, from(#444), to(#222));
   background: linear-gradient(#444, #222);
   font-weight: bold;
 }
-
 .breadcrumb a.active {
   background: #333;
-  background: -webkit-gradient(linear, left top, left bottom, from(#333), to(#000));
   background: linear-gradient(#333, #000);
   color: yellow !important;
 }
-
 .breadcrumb a.active:after {
   background: #333;
   background: linear-gradient(135deg, #333, #000);
@@ -252,43 +221,33 @@ header {
 .flat a {
   background: white;
   color: black;
-  -webkit-transition: all 0.5s;
   transition: all 0.5s;
 }
-
 .flat a:after {
   background: white;
   color: black;
-  -webkit-transition: all 0.5s;
   transition: all 0.5s;
 }
-
 .flat a:before {
   background: white;
-  -webkit-box-shadow: 0 0 0 1px #ccc;
-          box-shadow: 0 0 0 1px #ccc;
+  box-shadow: 0 0 0 1px #ccc;
 }
-
 .flat a:hover {
   background: #9eeb62;
 }
-
 .flat a:hover:after {
   background: #9eeb62;
 }
-
 .flat a.active {
   background: #9eeb62;
 }
-
 .flat a.active:after {
   background: #9eeb62;
 }
 
 .v-card.neo {
   background: linear-gradient(145deg, #cacaca, #ffffff);
-  -webkit-box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
-          box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
+  box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
 }
 
 .swal-wide {
@@ -304,11 +263,9 @@ canvas {
   position: relative;
   height: 330px;
 }
-
 .data-card > data-chart {
   height: 100px;
 }
-
 .data-card > data-chart #pie-chart canvas {
   height: 50px;
   width: 50px;
@@ -316,9 +273,7 @@ canvas {
 
 .card {
   /* Add shadows to create the "card" effect */
-  -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  -webkit-transition: 0.3s;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
 }
 
@@ -344,7 +299,6 @@ canvas {
 
 .page-enter-active,
 .page-leave-active {
-  -webkit-transition: opacity 0.3s;
   transition: opacity 0.3s;
 }
 
@@ -374,11 +328,9 @@ table {
 tr:nth-child(odd) {
   background: #eaeaea;
 }
-
 tr:nth-child(odd).strikeout {
   color: red;
 }
-
 tr:nth-child(odd).strikeout a {
   color: red;
 }
@@ -386,11 +338,9 @@ tr:nth-child(odd).strikeout a {
 tr:nth-child(even) {
   background: white;
 }
-
 tr:nth-child(even).strikeout {
   color: red;
 }
-
 tr:nth-child(even).strikeout a {
   color: red;
 }
@@ -399,7 +349,6 @@ tr.strikeout td {
   font-size: 10px !important;
   position: relative;
 }
-
 tr.strikeout td:not(:last-child):before {
   content: " ";
   position: absolute;
@@ -408,9 +357,8 @@ tr.strikeout td:not(:last-child):before {
   border-bottom: 2px solid red;
   width: 100%;
 }
-
 tr.strikeout td:not(:last-child):after {
-  content: "\00B7";
+  content: "·";
   font-size: 1px;
 }
 
@@ -422,14 +370,12 @@ th {
   font-weight: b;
   color: white;
 }
-
 th span {
   color: white;
 }
 
 .stamp {
-  -webkit-transform: rotate(12deg);
-          transform: rotate(12deg);
+  transform: rotate(12deg);
   color: #555;
   font-size: 3rem;
   font-weight: 700;
@@ -448,10 +394,9 @@ th span {
 }
 
 .is-nope {
-  color: #e22636;
-  border: 0.5rem double #da1f2e;
-  -webkit-transform: rotate(3deg);
-          transform: rotate(3deg);
+  color: rgb(226, 38, 54);
+  border: 0.5rem double rgb(218, 31, 46);
+  transform: rotate(3deg);
   -webkit-mask-position: 2rem 3rem;
   mask-position: 2rem 3rem;
   font-size: 2rem;
@@ -462,16 +407,14 @@ th span {
   border: 0.5rem solid #0a9928;
   -webkit-mask-position: 13rem 6rem;
   mask-position: 13rem 6rem;
-  -webkit-transform: rotate(-4deg);
-          transform: rotate(-4deg);
+  transform: rotate(-4deg);
   border-radius: 0;
 }
 
 .is-draft {
   color: #c4c4c4;
   border: 1rem double #c4c4c4;
-  -webkit-transform: rotate(-5deg);
-          transform: rotate(-5deg);
+  transform: rotate(-5deg);
   font-size: 6rem;
   font-family: "FiraSans";
   border-radius: 0;
@@ -489,11 +432,9 @@ th span {
   padding: 10px 0 0;
   position: relative;
   margin: 0 auto;
-  -webkit-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
   cursor: pointer;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   font-family: sans-serif;
   text-decoration: none;
   display: block;
@@ -526,8 +467,7 @@ th span {
 }
 
 .fi:hover:not(.fi-no-hover) {
-  -webkit-transform: translate(0, -5px);
-          transform: translate(0, -5px);
+  transform: translate(0, -5px);
 }
 
 .fi-content {
@@ -1902,41 +1842,32 @@ th span {
 button.button {
   background-color: #2cb673;
 }
-
 button.button span {
   color: #ffffff;
   font-weight: normal;
   font-size: small;
 }
-
 button.button.cancel {
   background-color: #c67f43 !important;
 }
-
 button.button.cancel span {
   color: white;
 }
-
 button.button.upload {
   background-color: #00897b !important;
 }
-
 button.button.warning {
   background-color: #fb8c00 !important;
 }
-
 button.button.warning span.v-btn__content {
   color: #ffffff !important;
 }
-
 button.button.delete {
   background-color: red !important;
 }
-
 button.button.error {
   background-color: #ff0000 !important;
 }
-
 button.button i {
   font-weight: bold;
 }
@@ -1945,13 +1876,11 @@ button.button i {
   color: #ffffff;
   font-weight: normal;
 }
-
 .v-dialog__content .v-dialog .v-card hr.v-divider {
   color: blue;
   height: 20px;
   font-weight: bold;
 }
-
 .v-dialog__content .v-dialog .v-card .v-card__actions button span {
   color: #ffffff;
   font-weight: normal;
@@ -1964,8 +1893,7 @@ text.apexcharts-title-text {
 
 a.link {
   text-decoration: none;
-  -webkit-text-decoration-color: grey;
-          text-decoration-color: grey;
+  text-decoration-color: grey;
 }
 
 h1,
@@ -1983,9 +1911,7 @@ a,
 i {
   text-decoration: none;
 }
-
 a :hover,
 i :hover {
   background-color: none;
-}
-/*# sourceMappingURL=styles.css.map */
+}/*# sourceMappingURL=styles.css.map */
