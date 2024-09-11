@@ -33,7 +33,6 @@ tr:nth-child(even) {
 
 tr.strikeout {
   td {
-
     font-size: 10px !important;
     position: relative;
 
@@ -65,5 +64,14 @@ th {
 
   span {
     color: white;
+  }
+}
+
+.v-data-table {
+  & header {
+    background-color: $color_primary !important;
+  }
+  & .v-input.search {
+    background-color: white !important;
   }
 }

@@ -23,12 +23,7 @@
           <v-spacer></v-spacer>
           <v-dialog v-model="dialog" max-width="700px">
             <template v-slot:activator="{ on, attrs }">
-              <v-btn
-                class="button"
-                v-bind="attrs"
-                v-on="on"
-                x-large
-                v-if="isMdAndUp"
+              <v-btn class="button" v-bind="attrs" v-on="on" v-if="isMdAndUp"
                 ><v-icon>mdi-plus</v-icon>
                 {{ $t("label.button.btncreatenewuser") }}</v-btn
               >

@@ -27,7 +27,6 @@
           <v-dialog v-model="dialog" max-width="900px">
             <template v-slot:activator="{ on, attrs }">
               <v-btn
-                x-large
                 elevation="1"
                 v-if="isMdAndUp"
                 class="button"

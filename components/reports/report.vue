@@ -1,68 +1,6 @@
 <template>
   <div>
     <v-card class="mx-auto">
-      <v-toolbar flat dark color="primary">
-        <v-toolbar-title class="title">{{ title }}</v-toolbar-title>
-        <v-spacer></v-spacer>
-        <v-col cols="12" md="3" class="mt-3">
-          <v-text-field
-            v-model="search"
-            append-icon="search"
-            label="Search report by name/desc"
-            outlined
-            rounded
-            single-line
-            hide-details
-          ></v-text-field>
-        </v-col>
-
-        <v-dialog v-model="dialog" width="500">
-          <template v-slot:activator="{ on, attrs }">
-            <v-btn color="primary" v-bind="attrs" v-on="on" v-if="false">
-              <v-icon small>mdi-file-upload</v-icon>&nbsp; Upload report
-            </v-btn>
-            <v-btn
-              v-if="false"
-              color="primary"
-              fab
-              small
-              class="mb-2 font-weight-normal"
-              v-bind="attrs"
-              v-on="on"
-              dark
-              ><v-icon>mdi-file-upload</v-icon>
-            </v-btn>
-          </template>
-
-          <v-card>
-            <v-card-title class="headline grey lighten-2">
-              Upload new report ?
-            </v-card-title>
-
-            <v-card-text>
-              <v-file-input
-                show-size
-                small-chips
-                accept=".jrxml"
-                truncate-length="50"
-                @change="filechanged"
-              ></v-file-input>
-            </v-card-text>
-
-            <v-divider></v-divider>
-
-            <v-card-actions>
-              <v-spacer></v-spacer>
-              <v-btn color="primary" small @click="dialog = false">
-                No Deny
-              </v-btn>
-              <v-btn color="warning" small @click="uploadreport">
-                Yes Upload
-              </v-btn>
-            </v-card-actions>
-          </v-card>
-        </v-dialog>
-      </v-toolbar>
       <v-card-text class="ma-0 pa-0">
         <v-container fluid class="ma-0 pa-0">
           <v-progress-circular
@@ -84,6 +22,81 @@
             mobile-breakpoint="100"
             @click:row="handle_row_click"
           >
+            <template v-slot:top>
+              <v-toolbar flat>
+                <span class="text-h4 white--text">{{ title }}</span>
+                <v-spacer></v-spacer>
+                <v-col cols="12" md="3" class="mt-3">
+                  <v-text-field
+                    v-model="search"
+                    prepend-inner-icon="mdi-magnify"
+                    label="Search..."
+                    single-line
+                    hide-details
+                    outlined
+                    filled
+                    rounded
+                    height="40"
+                    dense
+                    class="search mr-2"
+                    clearable
+                    autocomplete="off"
+                  ></v-text-field>
+                </v-col>
+
+                <v-dialog v-model="dialog" width="500">
+                  <template v-slot:activator="{ on, attrs }">
+                    <v-btn
+                      color="primary"
+                      v-bind="attrs"
+                      v-on="on"
+                      v-if="false"
+                    >
+                      <v-icon small>mdi-file-upload</v-icon>&nbsp; Upload report
+                    </v-btn>
+                    <v-btn
+                      v-if="false"
+                      color="primary"
+                      fab
+                      small
+                      class="mb-2 font-weight-normal"
+                      v-bind="attrs"
+                      v-on="on"
+                      dark
+                      ><v-icon>mdi-file-upload</v-icon>
+                    </v-btn>
+                  </template>
+
+                  <v-card>
+                    <v-card-title class="headline grey lighten-2">
+                      Upload new report ?
+                    </v-card-title>
+
+                    <v-card-text>
+                      <v-file-input
+                        show-size
+                        small-chips
+                        accept=".jrxml"
+                        truncate-length="50"
+                        @change="filechanged"
+                      ></v-file-input>
+                    </v-card-text>
+
+                    <v-divider></v-divider>
+
+                    <v-card-actions>
+                      <v-spacer></v-spacer>
+                      <v-btn color="primary" small @click="dialog = false">
+                        No Deny
+                      </v-btn>
+                      <v-btn color="warning" small @click="uploadreport">
+                        Yes Upload
+                      </v-btn>
+                    </v-card-actions>
+                  </v-card>
+                </v-dialog>
+              </v-toolbar>
+            </template>
           </v-data-table>
         </v-container>
       </v-card-text>

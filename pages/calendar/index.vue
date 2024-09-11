@@ -16,7 +16,7 @@
           max-width="800"
         >
           <template v-slot:activator="{ on, attrs }">
-            <v-btn class="button" x-large v-bind="attrs" v-on="on"
+            <v-btn class="button" v-bind="attrs" v-on="on"
               ><v-icon left>mdi-plus</v-icon
               >{{ $t("label.button.newevent") }}</v-btn
             >

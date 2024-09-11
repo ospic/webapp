@@ -7,12 +7,11 @@
           $t("label.breadcrumb.appointments")
         }}</router-link>
       </div>
-      <v-card>
+      <v-card flat color="primary">
         <v-tabs
-          slider-color="blue"
+          slider-color="white"
           background-color="primary"
           slider-size="3"
-          right
           v-model="tab"
           show-arrows-on-hover="true"
           :show-arrows="$vuetify.breakpoint.mobile"
@@ -20,7 +19,7 @@
         >
           <v-tab>
             <v-badge
-              color="green"
+              color="button"
               :content="unassigned.length"
               :value="unassigned.length"
             >
@@ -29,7 +28,7 @@
           </v-tab>
           <v-tab ripple class="pr-8"
             ><v-badge
-              color="green"
+              color="button"
               :content="assigned.length"
               :value="assigned.length"
               class="lowercase"

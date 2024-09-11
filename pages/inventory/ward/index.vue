@@ -45,12 +45,7 @@
           >&nbsp;&nbsp;
           <v-dialog v-model="dialog" max-width="700px">
             <template v-slot:activator="{ on, attrs }">
-              <v-btn
-                v-bind="attrs"
-                x-large
-                v-on="on"
-                v-if="isMdAndUp"
-                class="button"
+              <v-btn v-bind="attrs" v-on="on" v-if="isMdAndUp" class="button"
                 ><v-icon>mdi-plus</v-icon
                 >{{ $t("label.button.btncreateward") }}</v-btn
               >

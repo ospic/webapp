@@ -23,29 +23,33 @@
           @click:row="handleClick"
         >
           <template v-slot:top>
-            <v-toolbar flat dark color="primary">
-              <h2>
-                <strong>{{ title }}</strong>
-              </h2>
-              <v-spacer></v-spacer>
+            <v-toolbar flat>
+              <span class="text-h4 white--text">{{ title }}</span>
 
-              <v-text-field
-                v-model="search"
-                append-icon="search"
-                label="Enter search text ..."
-                rounded
-                outlined
-                single-line
-                hide-details
-                class="mt-2"
-              ></v-text-field
-              >&nbsp;&nbsp;
+              <v-spacer></v-spacer>
+              <v-col cols="12" md="3">
+                <v-text-field
+                  v-model="search"
+                  prepend-inner-icon="mdi-magnify"
+                  label="Search..."
+                  single-line
+                  hide-details
+                  outlined
+                  filled
+                  rounded
+                  height="40"
+                  dense
+                  class="search mr-2"
+                  clearable
+                  autocomplete="off"
+                ></v-text-field>
+              </v-col>
               <v-dialog v-model="dialog" max-width="900px">
                 <template v-slot:activator="{ on, attrs }">
                   <v-btn
-                    x-large
                     prepend-icon="mdi-plus"
-                    class="button mt-2"
+                    class="button"
+                    rounded
                     v-bind="attrs"
                     v-on="on"
                     dark

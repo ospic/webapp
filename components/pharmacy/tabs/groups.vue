@@ -30,7 +30,6 @@
                 class="button primary"
                 v-bind="attrs"
                 v-on="on"
-                x-large
                 dark
                 v-if="isMdAndUp"
                 ><v-icon left>mdi-plus</v-icon

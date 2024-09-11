@@ -366,12 +366,19 @@ th {
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: left;
-  background-color: #2f4454;
+  background-color: #2cb673;
   font-weight: b;
   color: white;
 }
 th span {
   color: white;
+}
+
+.v-data-table header {
+  background-color: #2cb673 !important;
+}
+.v-data-table .v-input.search {
+  background-color: white !important;
 }
 
 .stamp {
