@@ -108,11 +108,11 @@ export default {
      ** You can extend webpack config here
      */
     publicPath: process.env.NODE_ENV === 'production' ? '/assets/' : '',
-    extend(config, ctx) { },
+    extend(_config, _ctx) { },
     postcss: {
       preset: {
         features: {
-          customProperties: false
+          'custom-properties': false
         }
       }
     },
