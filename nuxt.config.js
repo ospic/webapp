@@ -21,7 +21,7 @@ export default {
 
   env: {
     baseUrl: 'http://159.203.183.129:8080/api/',
-    localUrl: 'http://localhost:8080/api/'
+    localUrl: 'http://192.168.1.45:8080/api/'
   },
 
   // Global page headers (https://go.nuxtjs.dev/config-head)

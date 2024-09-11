@@ -1839,36 +1839,36 @@ th span {
   overflow: hidden;
 }
 
-button.button {
-  background-color: #2cb673;
+.button {
+  background-color: #24a0ed;
 }
-button.button span {
+.button span {
   color: #ffffff;
   font-weight: normal;
   font-size: small;
 }
-button.button.cancel {
+.button.cancel {
   background-color: #c67f43 !important;
 }
-button.button.cancel span {
+.button.cancel span {
   color: white;
 }
-button.button.upload {
+.button.upload {
   background-color: #00897b !important;
 }
-button.button.warning {
+.button.warning {
   background-color: #fb8c00 !important;
 }
-button.button.warning span.v-btn__content {
+.button.warning span.v-btn__content {
   color: #ffffff !important;
 }
-button.button.delete {
+.button.delete {
   background-color: red !important;
 }
-button.button.error {
+.button.error {
   background-color: #ff0000 !important;
 }
-button.button i {
+.button i {
   font-weight: bold;
 }
 
