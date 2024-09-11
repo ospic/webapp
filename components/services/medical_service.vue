@@ -26,25 +26,32 @@
           <h3>{{ routename }}</h3>
           <v-spacer></v-spacer>
           <v-spacer></v-spacer>
-          <v-select
-            :items="servicetypes"
-            item-text="name"
-            item-value="name"
-            chips
-            small-chips
-            @click="fetch_medical_service_types"
-            @change="filter_medical_services"
-            :rules="[(v) => !!v || 'You must select one to continue!']"
-            label="Filter by service types"
-            required
-            persistent-hint
-            single-line
-          ></v-select>
-          <v-spacer></v-spacer>
+          <v-col cols="12" md="3">
+            <v-select
+              :items="servicetypes"
+              item-text="name"
+              item-value="name"
+              chips
+              small-chips
+              @click="fetch_medical_service_types"
+              @change="filter_medical_services"
+              :rules="[(v) => !!v || 'You must select one to continue!']"
+              label="Filter by service types"
+              required
+              single-line
+              hide-details
+              outlined
+              filled
+              rounded
+              height="40"
+              dense
+              persistent-hint
+            ></v-select>
+          </v-col>
           <v-dialog v-model="dialog" max-width="700px">
             <template v-slot:activator="{ on, attrs }">
               <v-btn
-                x-large
+                rounded
                 class="button"
                 v-bind="attrs"
                 v-on="on"
@@ -166,10 +173,12 @@
         <td @click.stop>
           <v-switch
             v-model="item.isActive"
-            inset
             dense
+            inset
+            hide-details
+            single-line
             @change="enableDisableService(item)"
-            color="green lighten-1"
+            color="button darken-1"
           ></v-switch>
         </td>
       </template>
@@ -287,3 +296,9 @@ export default {
   },
 };
 </script>
+<style scoped>
+.v-input--selection-controls {
+  margin-top: 0px !important;
+  padding-top: 0px !important;
+}
+</style>

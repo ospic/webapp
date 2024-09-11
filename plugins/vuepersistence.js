@@ -10,12 +10,15 @@ export default ({ store }) => {
   window.onNuxtReady(() => {
     createPersistedState({
       paths: [
-        'authentication', 'reports'
+        "authentication", "inventory", "profile", "diagnoses",
+        "templates", "users", "patients", "documents", "statistics", "theme", "smsconfiguration", "statisitics",
+        "consultations", "departments", "medicalservices", "laboratory", 'bills', 'radiology', 'reports', 'accounting',
+        'servicetypes', 'pharmarcy', 'configuration', 'notifications',
       ],
       storage: {
-        getItem: key => encryptStorage.getItem1f511_key,
+        getItem: key => encryptStorage.getItem(key),
         setItem: (key, value) => encryptStorage.setItem(key, value),
-        removeItem: key => encryptStorage.removeItem1f511_key
+        removeItem: key => encryptStorage.removeItem(key)
       }
     })(store)
   })
