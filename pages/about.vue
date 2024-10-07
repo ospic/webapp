@@ -6,7 +6,7 @@
           <div class="font-weight-black">
             Made by
             <a href="https://github.com/ospic" target="_blank">Ospic </a>
-            as an open source Hospital management system
+            as an Hospital management system
             <a
               style="color: blue; text-decoration: underline"
               href="https://app.ospicx.com/"
