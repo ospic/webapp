@@ -20,7 +20,7 @@ export default {
   },
 
   env: {
-    baseUrl: 'http://159.203.183.129:8080/api/',
+    baseUrl: 'https://api.ospic.app/api/',
     localUrl: 'http://localhost:8080/api/'
   },
 
