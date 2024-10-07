@@ -1,5 +1,5 @@
 <h1 align="center">HMS :hospital: </h1>
-<p align="center">Open source Hospital Management System (HMS) <p>
+<p align="center">Hospital Management System (HMS) <p>
 
 <p align="center">
 <a href="https://travis-ci.com/ospic/webapp"><img alt="Deployment" src="https://github.com/ospic/webapp/actions/workflows/webapp.js.yml/badge.svg"></a><a href="https://github.com/ospic/actions" target="_blank"><img alt="GitHub Actions " src="https://github.com/ospic/webapp/workflows/Auto%20Assign%20to%20Project(s)/badge.svg"></a> <a href="https://sourceforge.net/p/ospic/"><img src="https://sourceforge.net/sflogo.php?type=11&group_id=3283394" alt="SourceForge"></a>
