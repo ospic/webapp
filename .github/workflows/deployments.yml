@@ -22,7 +22,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [15.x]
+        node-version: [18.x]
 
     steps:
       - uses: actions/checkout@v2
@@ -43,13 +43,4 @@ jobs:
         with:
           token: ${{ secrets.GITHUBTOKEN }}
           branch: gh-pages # The branch the action should deploy to.
-          folder: dist # The folder the action should deploy.
-
-      - name: Deploy to repo 🚀
-        uses: JamesIves/github-pages-deploy-action@4.1.0
-        with:
-          token: ${{ secrets.GITHUBTOKEN }}
-          branch: master # The branch the action should deploy to.
-          repository-name: ospic/deploys
-          target-folder: application
           folder: dist # The folder the action should deploy.
