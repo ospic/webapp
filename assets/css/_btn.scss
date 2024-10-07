@@ -1,34 +1,32 @@
-button {
-  &.button {
-    background-color: $button_color;
+.button {
+  background-color: $button_color;
+  span {
+    color: $color_white;
+    font-weight: normal;
+    font-size: small;
+  }
+  &.cancel {
     span {
-      color: $color_white;
-      font-weight: normal;
-      font-size: small;
+      color: white;
     }
-    &.cancel {
-      span {
-        color: white;
-      }
-      background-color: $color_cream !important;
+    background-color: $color_cream !important;
+  }
+  &.upload {
+    background-color: $color_teal !important;
+  }
+  &.warning {
+    background-color: $color_warning !important;
+    span.v-btn__content {
+      color: $color_white !important;
     }
-    &.upload {
-      background-color: $color_teal !important;
-    }
-    &.warning {
-      background-color: $color_warning !important;
-      span.v-btn__content {
-        color: $color_white !important;
-      }
-    }
-    &.delete {
-      background-color: red !important;
-    }
-    &.error {
-      background-color: $color_error !important;
-    }
-    i {
-      font-weight: bold;
-    }
+  }
+  &.delete {
+    background-color: red !important;
+  }
+  &.error {
+    background-color: $color_error !important;
+  }
+  i {
+    font-weight: bold;
   }
 }

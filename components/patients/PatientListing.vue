@@ -15,23 +15,35 @@
       @update:page="updatePagination"
     >
       <template v-slot:top>
-        <v-toolbar flat class="primary" dark>
+        <v-toolbar flat color="primary">
           <v-spacer></v-spacer>
-          <v-text-field
-            v-model="search"
-            append-icon="search"
-            label="Enter search text ..."
-            single-line
-            hide-details
-            rounded
-            filled
-            height="40"
-          ></v-text-field
-          >&nbsp;&nbsp;
+          <v-col cols="12" md="3">
+            <v-text-field
+              v-model="search"
+              prepend-inner-icon="mdi-magnify"
+              label="Search group by name, id"
+              single-line
+              hide-details
+              outlined
+              filled
+              rounded
+              height="40"
+              dense
+              class="search mr-2"
+              clearable
+              autocomplete="off"
+              light
+            ></v-text-field>
+          </v-col>
 
           <div v-if="hasPermission('ALL_FUNCTIONS', 'CREATE_PATIENT')">
-            <v-btn x-large v-if="isMdAndUp" class="button" to="/patients/add"
-              ><v-icon>mdi-plus</v-icon
+            <v-btn
+              rounded
+              v-if="isMdAndUp"
+              class="button"
+              color="button"
+              to="/patients/add"
+              ><v-icon left>mdi-plus</v-icon
               >{{ $t("label.button.btnnewpatient") }}</v-btn
             >
             <v-btn fab v-else class="button" to="/patients/add"

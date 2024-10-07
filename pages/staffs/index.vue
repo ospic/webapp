@@ -7,15 +7,17 @@
       }}</router-link>
     </div>
     <v-card>
-      <v-toolbar flat dark class="primary">
+      <v-toolbar flat class="primary">
         <v-row no-gutters>
           <v-col cols="12" sm="12" md="3">
             <v-card-title>
-              <h5 v-if="title != null">
+              <span class="text-h5 white--text" v-if="title != null">
                 <v-icon color="blue" left>mdi-circle</v-icon>&nbsp;{{ title }}
                 Department Staff's
-              </h5>
-              <h5 v-else>{{ $t("label.titles.staffs") }}</h5></v-card-title
+              </span>
+              <span class="text-h5 white--text" v-else>{{
+                $t("label.titles.staffs")
+              }}</span></v-card-title
             >
           </v-col>
           <v-spacer></v-spacer>
@@ -37,8 +39,8 @@
       <v-card-text class="pa-0">
         <v-tabs
           v-model="tab"
-          background-color="primary"
-          slider-color="blue"
+          background-color="primary darken-2"
+          slider-color="white"
           dark
           show-arrows="true"
         >
@@ -51,7 +53,7 @@
             @click="fetchDepartmentStaffs(department.id, department.name)"
             reverse-trasition="true"
           >
-            <v-icon left color="blue"> mdi-circle-medium </v-icon>
+            <v-icon left color="yellow"> mdi-circle-medium </v-icon>
             {{ department.name }}
           </v-tab>
           <v-tab-item v-for="department in departments" :key="department.id">

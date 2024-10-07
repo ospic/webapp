@@ -35,7 +35,7 @@ export default (ctx) => {
           teal: "#00897B",
           whitish: "F5F5F5",
           dlue: "#1520A6",
-          button: "#02532b"
+          button: "#24a0ed"
         }
 
       },

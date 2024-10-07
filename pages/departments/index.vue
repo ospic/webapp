@@ -28,24 +28,30 @@
                 <strong>{{ title }}</strong>
               </h2>
               <v-spacer></v-spacer>
-
-              <v-text-field
-                v-model="search"
-                append-icon="search"
-                label="Enter search text ..."
-                rounded
-                outlined
-                single-line
-                hide-details
-                class="mt-2"
-              ></v-text-field
-              >&nbsp;&nbsp;
+              <v-col cols="12" md="3">
+                <v-text-field
+                  v-model="search"
+                  prepend-inner-icon="mdi-magnify"
+                  label="Search ..."
+                  single-line
+                  hide-details
+                  outlined
+                  filled
+                  rounded
+                  height="40"
+                  dense
+                  class="search mr-2"
+                  clearable
+                  autocomplete="off"
+                  light
+                ></v-text-field>
+              </v-col>
               <v-dialog v-model="dialog" max-width="900px">
                 <template v-slot:activator="{ on, attrs }">
                   <v-btn
-                    x-large
                     prepend-icon="mdi-plus"
-                    class="mt-2 button"
+                    rounded
+                    class="button"
                     v-bind="attrs"
                     v-on="on"
                     v-if="isMdAndUp"

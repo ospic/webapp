@@ -18,18 +18,26 @@
       >
         <template v-slot:top>
           <v-toolbar flat color="primary" dark>
-            <h2>
-              <strong>{{ $t(title) }}</strong>
-            </h2>
+            <span class="text-h4 white--text">{{ $t(title) }}</span>
             <v-spacer></v-spacer>
-            <v-text-field
-              v-model="search"
-              append-icon="search"
-              label="Enter search text ..."
-              dense
-              single-line
-              hide-details
-            ></v-text-field>
+            <v-col cols="12" md="3">
+              <v-text-field
+                v-model="search"
+                prepend-inner-icon="mdi-magnify"
+                label="Search group by name, id"
+                single-line
+                hide-details
+                outlined
+                filled
+                rounded
+                height="40"
+                dense
+                class="search mr-2"
+                clearable
+                autocomplete="off"
+                light
+              ></v-text-field>
+            </v-col>
           </v-toolbar>
         </template>
         <template v-slot:[`item.isActive`]="{ item }">

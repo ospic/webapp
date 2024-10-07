@@ -15,13 +15,7 @@
         <v-spacer></v-spacer>
         <v-dialog v-model="dialog" max-width="700px">
           <template v-slot:activator="{ on, attrs }">
-            <v-btn
-              x-large
-              class="button"
-              v-bind="attrs"
-              v-on="on"
-              v-if="isMdAndUp"
-              dark
+            <v-btn class="button" v-bind="attrs" v-on="on" v-if="isMdAndUp" dark
               ><v-icon small>mdi-plus</v-icon>
               {{ $t("label.button.btnnewsmsconfig") }}</v-btn
             >

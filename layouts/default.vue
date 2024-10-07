@@ -70,13 +70,6 @@
           class="font-weight-light ma-2"
           @change="changeLanguage(select.lang)"
         ></v-select>
-        <iframe
-          src="https://github.com/sponsors/ospic/button"
-          title="Sponsor ospic"
-          height="30"
-          width="216"
-          style="border: 0"
-        ></iframe>
       </template>
     </v-navigation-drawer>
     <v-app-bar clipped-left hide-on-scroll dense fixed app flat color="primary">
