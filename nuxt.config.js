@@ -9,7 +9,7 @@ export default {
   ssr: false,
   router: {
     mode: 'hash',
-    base: routerBase,
+    base: '/', //routerBase,
     routerNameSplitter: "/",
     middleware: ['router']
   },
